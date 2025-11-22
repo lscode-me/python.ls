@@ -1,0 +1,56 @@
+Homework Assignments
+--------------------
+
+1. Understanding References and Identity
+   Write a short script that tests whether two variables refer to the same object.
+   Use the following examples and explain why each result is True or False:
+       a = 256
+       b = 256
+       a is b
+
+       a = 257
+       b = 257
+       a is b
+
+       a = []
+       b = []
+       a is b
+
+       c = a
+       a is c
+
+   Your task:
+   - Predict the output before running the code.
+   - Run the script and compare results.
+   - Write a short explanation (1–2 sentences per line).
+
+2. Mutable Default Argument Bug
+   The following function behaves incorrectly:
+
+       def append_item(x, items=[]):
+           items.append(x)
+           return items
+
+   Task:
+   - Explain what is wrong with this function.
+   - Rewrite it so that it works correctly.
+   - Show example output of both versions for three calls:
+         append_item(1)
+         append_item(2)
+         append_item(3)
+
+3. Inspecting Object Memory and References
+   Write a script that uses:
+       - type()
+       - id()
+       - sys.getsizeof()
+       - sys.getrefcount()
+   Perform the following steps:
+       a) Create three objects: an integer, a string, and a list.
+       b) Print their type, size, identity, and reference count.
+       c) Create additional variables referencing the same objects.
+       d) Print updated reference counts and explain what changed.
+
+   Your goal:
+   - Understand how reference counting works.
+   - Observe how Python stores objects of different types.
