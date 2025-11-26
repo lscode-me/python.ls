@@ -8,15 +8,22 @@ A comprehensive course designed for life science professionals looking to develo
 - [Objects](Python/Objects/Objects.md)
 - [Operations](Python/Objects/Operations.md)
 
-### 2. Attributes and Methods
+### 2. OOP (Object-Oriented Programming)
+- [Attributes and Methods](Python/OOP/AttributesAndMethods.md)
+- [OOP Basics](Python/OOP/OOP_Basics.md)
+- [Advanced OOP](Python/OOP/Advanced_OOP.md)
 
 ### 3. Functions and FP
+- [Functions and Functional Programming](Python/Functions/Functions.md)
 
-### 4. Protocols and Interfaces
+### 4. Pythonic
+- [Pythonic Code](Python/Pythonic/Pythonic.md)
 
-### 5. Iteration Protocol
+### 5. Protocols and Interfaces
+- [Protocols and Duck Typing](Python/Protocols/Protocols.md)
 
-### 6. Pythonic
+### 6. Iteration Protocol
+- [Iterators and Generators](Python/Iteration/Iteration.md)
 
 ## Linux for Developers
 

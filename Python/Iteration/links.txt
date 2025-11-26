@@ -1,0 +1,144 @@
+Iteration Protocol Resources
+=============================
+
+Official Python Documentation
+------------------------------
+Iterator Types
+https://docs.python.org/3/library/stdtypes.html#iterator-types
+
+Iterators Tutorial
+https://docs.python.org/3/tutorial/classes.html#iterators
+
+Generators Tutorial
+https://docs.python.org/3/tutorial/classes.html#generators
+
+itertools Module
+https://docs.python.org/3/library/itertools.html
+
+PEP 255 - Simple Generators
+https://www.python.org/dev/peps/pep-0255/
+
+PEP 289 - Generator Expressions
+https://www.python.org/dev/peps/pep-0289/
+
+PEP 380 - Syntax for Delegating to a Subgenerator
+https://www.python.org/dev/peps/pep-0380/
+
+
+Real Python Tutorials
+---------------------
+Python Iterators
+https://realpython.com/python-iterators-iterables/
+
+Introduction to Python Generators
+https://realpython.com/introduction-to-python-generators/
+
+Python itertools
+https://realpython.com/python-itertools/
+
+How to Use Generators and yield in Python
+https://realpython.com/introduction-to-python-generators/
+
+
+Books
+-----
+"Python Cookbook" by David Beazley (Chapter 4 on Iterators and Generators)
+"Fluent Python" by Luciano Ramalho (Chapter 14 on Iterables, Iterators, and Generators)
+"Effective Python" by Brett Slatkin (Items on Iteration)
+
+
+Video Resources
+---------------
+David Beazley - Generator Tricks for Systems Programmers
+https://www.youtube.com/watch?v=oEfVhHFGVqE
+
+Raymond Hettinger - Transforming Code into Beautiful, Idiomatic Python
+https://www.youtube.com/watch?v=OSGv2VnC0go
+
+James Powell - Generators Will Free Your Mind
+https://www.youtube.com/watch?v=RdhoN4VVqq8
+
+Corey Schafer - Python Generators
+https://www.youtube.com/watch?v=bD05uGo_sVI
+
+
+Advanced Topics
+---------------
+David Beazley - A Curious Course on Coroutines and Concurrency
+http://www.dabeaz.com/coroutines/
+
+Generator Tricks for Systems Programmers (Tutorial)
+http://www.dabeaz.com/generators/
+
+PEP 342 - Coroutines via Enhanced Generators
+https://www.python.org/dev/peps/pep-0342/
+
+Understanding Python's "with" statement
+https://docs.python.org/3/reference/compound_stmts.html#with
+
+
+itertools Recipes
+-----------------
+itertools Recipes (Official Docs)
+https://docs.python.org/3/library/itertools.html#itertools-recipes
+
+More itertools Library
+https://more-itertools.readthedocs.io/
+
+toolz - Functional Iterators
+https://toolz.readthedocs.io/
+
+
+Articles and Blog Posts
+-----------------------
+Loop Like a Native
+https://nedbatchelder.com/text/iter.html
+
+Iteration Inside Out
+https://www.blog.pythonlibrary.org/2018/10/10/an-intro-to-itertools/
+
+Understanding Generators in Python
+https://www.programiz.com/python-programming/generator
+
+Python Iterators and Generators
+https://www.datacamp.com/community/tutorials/python-iterator-generator
+
+
+Performance and Profiling
+--------------------------
+Profiling Python Code
+https://docs.python.org/3/library/profile.html
+
+memory_profiler
+https://pypi.org/project/memory-profiler/
+
+Generator vs List Performance
+https://wiki.python.org/moin/Generators
+
+
+Practice and Examples
+---------------------
+itertools Problems on LeetCode
+https://leetcode.com/tag/iterator/
+
+Python Generator Exercises
+https://www.w3resource.com/python-exercises/python-generator-exercises.php
+
+Exercism - Python Generators
+https://exercism.org/tracks/python
+
+
+Community Resources
+-------------------
+Python Reddit (r/learnpython)
+https://www.reddit.com/r/learnpython/
+
+Stack Overflow - Python Iterators
+https://stackoverflow.com/questions/tagged/python+iterator
+
+Stack Overflow - Python Generators
+https://stackoverflow.com/questions/tagged/python+generator
+
+Python Discord Community
+https://discord.gg/python
+

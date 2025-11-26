@@ -1,0 +1,208 @@
+Homework Assignments - OOP
+---------------------------
+
+1. Creating Basic Classes
+   Create a class hierarchy for a library system with the following requirements:
+   
+   Base class: `LibraryItem`
+   - Attributes: title, item_id, available (boolean)
+   - Methods: __init__, checkout(), return_item(), __str__
+   
+   Derived classes: `Book`, `Magazine`, `DVD`
+   - Book: add author, isbn, pages
+   - Magazine: add issue_number, month
+   - DVD: add duration, director
+   
+   Your task:
+   - Implement all three classes with proper inheritance
+   - Override __str__ in each derived class
+   - Create instances and test checkout/return functionality
+   
+   Your goal:
+   - Understand class inheritance
+   - Practice method overriding
+   - Learn to create object hierarchies
+
+2. Properties and Validation
+   Create a `BankAccount` class with the following requirements:
+   
+   Attributes:
+   - account_number (read-only)
+   - holder_name (read-only)
+   - balance (controlled access)
+   
+   Methods:
+   - deposit(amount): add money to balance
+   - withdraw(amount): remove money from balance
+   - Use @property for balance with validation:
+     * Balance cannot be negative after withdrawal
+     * Deposit/withdrawal amounts must be positive
+   
+   Your task:
+   - Implement the class with properties
+   - Add proper validation
+   - Test with various scenarios (valid/invalid operations)
+   - Handle errors gracefully with exceptions
+   
+   Your goal:
+   - Master property decorators
+   - Implement data validation
+   - Understand encapsulation principles
+   - Practice exception handling
+
+3. Polymorphism in Action
+   Create a shape calculator system:
+   
+   Base class: `Shape` (abstract)
+   - Abstract methods: area(), perimeter()
+   
+   Derived classes:
+   - Rectangle(width, height)
+   - Circle(radius)
+   - Triangle(side_a, side_b, side_c)
+   
+   Function: `print_shape_info(shape)`
+   - Takes any Shape object
+   - Prints its area and perimeter
+   
+   Your task:
+   - Use abc module for abstract base class
+   - Implement all three shapes
+   - Create a list of different shapes
+   - Calculate total area of all shapes
+   
+   Your goal:
+   - Understand polymorphism
+   - Work with abstract classes
+   - Practice working with collections of objects
+
+4. Composition vs Inheritance
+   Model a computer system using composition:
+   
+   Component classes:
+   - CPU(brand, cores, speed)
+   - RAM(size_gb, speed)
+   - Storage(type, capacity_gb)
+   
+   Main class: `Computer`
+   - Has-a CPU, RAM, and Storage
+   - Methods: 
+     * get_specs(): return formatted string with all component info
+     * upgrade_ram(new_ram): replace RAM
+     * add_storage(storage): add additional storage
+   
+   Your task:
+   - Implement using composition (not inheritance)
+   - Create multiple computers with different configurations
+   - Demonstrate upgrading components
+   - Show why composition is better than inheritance here
+   
+   Your goal:
+   - Understand "has-a" vs "is-a" relationships
+   - Practice composition pattern
+   - Learn when to use composition over inheritance
+
+5. Multiple Inheritance and MRO
+   Create a system demonstrating multiple inheritance:
+   
+   Mixin classes:
+   - Flyable: fly() method
+   - Swimmable: swim() method
+   - Walkable: walk() method
+   
+   Animal classes using mixins:
+   - Duck(Flyable, Swimmable, Walkable)
+   - Fish(Swimmable)
+   - Bird(Flyable, Walkable)
+   - Human(Swimmable, Walkable)
+   
+   Your task:
+   - Implement all mixins and classes
+   - Print the MRO for each animal class using __mro__
+   - Create a function that tests all capabilities of an object
+   - Handle cases where an object doesn't have certain capabilities
+   
+   Your goal:
+   - Understand multiple inheritance
+   - Learn about Method Resolution Order
+   - Practice duck typing (if it can fly, call fly())
+
+6. Special Methods (Magic Methods)
+   Create a `Vector2D` class representing a 2D vector:
+   
+   Implement these special methods:
+   - __init__(x, y)
+   - __str__: "Vector(x, y)"
+   - __repr__: "Vector2D(x, y)"
+   - __add__: vector addition
+   - __sub__: vector subtraction
+   - __mul__: scalar multiplication
+   - __eq__: equality comparison
+   - __abs__: magnitude of vector
+   - __len__: return 2 (dimensions)
+   
+   Your task:
+   - Implement all listed special methods
+   - Test with various operations:
+     * v1 + v2
+     * v1 - v2
+     * v1 * 3
+     * v1 == v2
+     * abs(v1)
+     * len(v1)
+   
+   Your goal:
+   - Master special methods
+   - Make objects behave like built-in types
+   - Understand operator overloading
+
+7. Class Methods and Static Methods
+   Create a `Person` class with class and static methods:
+   
+   Instance attributes: name, birth_year
+   Class attribute: population (track total persons created)
+   
+   Methods:
+   - __init__(name, birth_year): increment population
+   - get_age(): return current age
+   - @classmethod from_birth_year(cls, name, birth_year): alternative constructor
+   - @classmethod get_population(cls): return total population
+   - @staticmethod is_adult(age): return True if age >= 18
+   
+   Your task:
+   - Implement all methods correctly
+   - Create several Person instances using both constructors
+   - Test class method to get population count
+   - Use static method to check if persons are adults
+   
+   Your goal:
+   - Understand instance vs class vs static methods
+   - Learn alternative constructors pattern
+   - Practice class-level state management
+
+8. Advanced OOP: Context Managers
+   Create a `FileManager` class that works as a context manager:
+   
+   Requirements:
+   - __init__(filename, mode)
+   - __enter__: open file, return file object
+   - __exit__: close file, handle exceptions
+   - Should track: number of files opened, total bytes read/written
+   
+   Usage:
+       with FileManager('data.txt', 'w') as f:
+           f.write('Hello World')
+   
+   Your task:
+   - Implement the context manager protocol
+   - Add class-level statistics (total files opened)
+   - Handle exceptions properly in __exit__
+   - Test with reading and writing files
+   - Demonstrate exception handling
+   
+   Your goal:
+   - Understand context managers
+   - Master __enter__ and __exit__ methods
+   - Learn resource management patterns
+   - Practice exception handling in context managers
+
