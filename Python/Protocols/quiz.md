@@ -13,8 +13,6 @@ B) If an object has the required methods, it can be used regardless of its type
 C) A strict type checking system  
 D) A method for converting types  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 2: Iterator Protocol
@@ -25,8 +23,6 @@ A) `__iter__()` and `__next__()`
 B) `__start__()` and `__stop__()`  
 C) `__begin__()` and `__end__()`  
 D) `__first__()` and `__last__()`  
-
-**Correct Answer: A**
 
 ---
 
@@ -39,8 +35,6 @@ B) `__start__()` and `__finish__()`
 C) `__enter__()` and `__exit__()`  
 D) `__begin__()` and `__end__()`  
 
-**Correct Answer: C**
-
 ---
 
 ## Question 4: Sequence Protocol
@@ -51,8 +45,6 @@ A) `__len__()`
 B) `__getitem__()`  
 C) `__contains__()`  
 D) `__append__()`  
-
-**Correct Answer: D**
 
 ---
 
@@ -65,8 +57,6 @@ B) Inherit from the Function class
 C) Use the @callable decorator  
 D) Define a `__invoke__()` method  
 
-**Correct Answer: A**
-
 ---
 
 ## Question 6: typing.Protocol
@@ -77,8 +67,6 @@ A) It's faster at runtime
 B) It enables structural subtyping without explicit inheritance  
 C) It works with older Python versions  
 D) It automatically implements methods  
-
-**Correct Answer: B**
 
 ---
 
@@ -91,8 +79,6 @@ B) `abc`
 C) `interfaces`  
 D) `protocols`  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 8: StopIteration
@@ -103,8 +89,6 @@ A) When an error occurs
 B) When there are no more items to return  
 C) When the iterator is created  
 D) Never, Python handles this automatically  
-
-**Correct Answer: B**
 
 ---
 
@@ -117,8 +101,6 @@ B) `__access__()`
 C) `__read__()`  
 D) `__fetch__()`  
 
-**Correct Answer: A**
-
 ---
 
 ## Question 10: Collections ABC
@@ -130,7 +112,20 @@ B) `Sequence`
 C) `MutableSequence`  
 D) `Container`  
 
-**Correct Answer: B**
+---
+
+## Answer Key
+
+1. B - If an object has the required methods, it can be used regardless of its type
+2. A - `__iter__()` and `__next__()`
+3. C - `__enter__()` and `__exit__()`
+4. D - `__append__()`
+5. A - Define a `__call__()` method
+6. B - It enables structural subtyping without explicit inheritance
+7. B - `abc`
+8. B - When there are no more items to return
+9. A - `__get__()`
+10. B - `Sequence`
 
 ---
 

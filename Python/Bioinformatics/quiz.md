@@ -13,8 +13,6 @@ B) Uracil (U)
 C) Guanine (G)  
 D) Cytosine (C)  
 
-**Correct Answer: B** (Uracil is found in RNA, not DNA)
-
 ---
 
 ## Question 2: Genetic Code
@@ -25,8 +23,6 @@ A) 2
 B) 3  
 C) 4  
 D) 6  
-
-**Correct Answer: B**
 
 ---
 
@@ -39,8 +35,6 @@ B) It affects DNA stability (G-C has 3 hydrogen bonds vs A-T's 2)
 C) It indicates the number of genes  
 D) It has no biological significance  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 4: FASTA Format
@@ -51,8 +45,6 @@ A) `@`
 B) `#`  
 C) `>`  
 D) `*`  
-
-**Correct Answer: C**
 
 ---
 
@@ -65,8 +57,6 @@ B) 99% accuracy
 C) 99.9% accuracy  
 D) 100% accuracy  
 
-**Correct Answer: C**
-
 ---
 
 ## Question 6: Sequence Alignment
@@ -77,8 +67,6 @@ A) To make sequences the same length
 B) To identify regions of similarity and evolutionary relationships  
 C) To translate DNA to protein  
 D) To remove errors from sequences  
-
-**Correct Answer: B**
 
 ---
 
@@ -91,8 +79,6 @@ B) A sequence between a start codon (ATG) and a stop codon
 C) A sequence that codes for RNA  
 D) The first 100 nucleotides of a gene  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 8: BioPython Seq Object
@@ -103,8 +89,6 @@ A) `seq.reverse()`
 B) `seq.complement()`  
 C) `seq.reverse_complement()`  
 D) `seq.flip()`  
-
-**Correct Answer: C**
 
 ---
 
@@ -117,8 +101,6 @@ B) GCG
 C) TAG  
 D) CCG  
 
-**Correct Answer: C**
-
 ---
 
 ## Question 10: Multiple Sequence Alignment
@@ -130,7 +112,20 @@ B) To identify conserved regions across multiple species
 C) To translate proteins  
 D) To compress sequence data  
 
-**Correct Answer: B**
+---
+
+## Answer Key
+
+1. B - Uracil (U) - Uracil is found in RNA, not DNA
+2. B - 3
+3. B - It affects DNA stability (G-C has 3 hydrogen bonds vs A-T's 2)
+4. C - `>`
+5. C - 99.9% accuracy
+6. B - To identify regions of similarity and evolutionary relationships
+7. B - A sequence between a start codon (ATG) and a stop codon
+8. C - `seq.reverse_complement()`
+9. C - TAG
+10. B - To identify conserved regions across multiple species
 
 ---
 

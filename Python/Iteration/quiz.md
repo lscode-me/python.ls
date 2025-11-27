@@ -13,8 +13,6 @@ B) An iterable can be iterated over; an iterator keeps track of the current posi
 C) Iterables are faster than iterators  
 D) Iterators can only be used once, iterables can be reused  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 2: Generator Expression
@@ -25,8 +23,6 @@ A) `[x**2 for x in range(10)]`
 B) `{x**2 for x in range(10)}`  
 C) `(x**2 for x in range(10))`  
 D) `list(x**2 for x in range(10))`  
-
-**Correct Answer: C**
 
 ---
 
@@ -39,8 +35,6 @@ B) The function pauses and returns a value, saving its state
 C) The function raises an exception  
 D) The function continues without interruption  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 4: Generator.send()
@@ -51,8 +45,6 @@ A) Terminates the generator
 B) Sends a value into the generator that becomes the result of the current yield  
 C) Creates a new generator  
 D) Sends the generator to another function  
-
-**Correct Answer: B**
 
 ---
 
@@ -65,8 +57,6 @@ B) `[1, 2, 3, 4]`
 C) `[(1, 3), (2, 4)]`  
 D) `[3, 7]`  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 6: Generator Memory
@@ -77,8 +67,6 @@ A) They compress data automatically
 B) They generate values on-the-fly instead of storing all values in memory  
 C) They use less CPU  
 D) They cache results  
-
-**Correct Answer: B**
 
 ---
 
@@ -91,8 +79,6 @@ B) Delegates generator operations to another generator
 C) Yields values in reverse order  
 D) Combines multiple yield statements  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 8: itertools.islice
@@ -103,8 +89,6 @@ A) `[5, 6, 7, 8, 9]`
 B) `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`  
 C) `[5, 10]`  
 D) `[5, 15, 25, 35, 45]`  
-
-**Correct Answer: A**
 
 ---
 
@@ -117,8 +101,6 @@ B) `cycle()`
 C) `count()`  
 D) `infinite()`  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 10: Generator Comprehension Performance
@@ -130,7 +112,20 @@ B) When working with large datasets and you only need to iterate once
 C) When you need to sort the results  
 D) When you need to access the length  
 
-**Correct Answer: B**
+---
+
+## Answer Key
+
+1. B - An iterable can be iterated over; an iterator keeps track of the current position
+2. C - `(x**2 for x in range(10))`
+3. B - The function pauses and returns a value, saving its state
+4. B - Sends a value into the generator that becomes the result of the current yield
+5. B - `[1, 2, 3, 4]`
+6. B - They generate values on-the-fly instead of storing all values in memory
+7. B - Delegates generator operations to another generator
+8. A - `[5, 6, 7, 8, 9]`
+9. B - `cycle()`
+10. B - When working with large datasets and you only need to iterate once
 
 ---
 

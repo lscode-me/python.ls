@@ -13,8 +13,6 @@ B) Read and write mode (file must exist)
 C) Write mode (creates new file)  
 D) Append mode  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 2: Context Manager
@@ -25,8 +23,6 @@ A) It's faster than regular open()
 B) It automatically closes the file, even if an exception occurs  
 C) It allows multiple files to be opened  
 D) It prevents file corruption  
-
-**Correct Answer: B**
 
 ---
 
@@ -39,8 +35,6 @@ B) `Path('/home').join('user', 'file.txt')`
 C) `Path('/home') / 'user' / 'file.txt'`  
 D) `Path.join('/home', 'user', 'file.txt')`  
 
-**Correct Answer: C**
-
 ---
 
 ## Question 4: CSV Reading
@@ -51,8 +45,6 @@ A) `csvfile`
 B) `csv`  
 C) `pandas`  
 D) `spreadsheet`  
-
-**Correct Answer: B**
 
 ---
 
@@ -65,8 +57,6 @@ B) Converts a Python object to a JSON string
 C) Dumps JSON to a file  
 D) Validates JSON syntax  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 6: Binary Files
@@ -77,8 +67,6 @@ A) `'r'`
 B) `'rb'`  
 C) `'binary'`  
 D) `'b'`  
-
-**Correct Answer: B**
 
 ---
 
@@ -91,8 +79,6 @@ B) UTF-8
 C) Latin-1  
 D) UTF-16  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 8: Temporary Files
@@ -103,8 +89,6 @@ A) `temp`
 B) `tmpfile`  
 C) `tempfile`  
 D) `temporary`  
-
-**Correct Answer: C**
 
 ---
 
@@ -117,8 +101,6 @@ B) `Path.exists('file.txt')`
 C) `os.path.exists('file.txt')`  
 D) `file.exists('file.txt')`  
 
-**Correct Answer: A**
-
 ---
 
 ## Question 10: ZIP Files
@@ -130,7 +112,20 @@ B) `zipfile`
 C) `archive`  
 D) `compress`  
 
-**Correct Answer: B**
+---
+
+## Answer Key
+
+1. B - Read and write mode (file must exist)
+2. B - It automatically closes the file, even if an exception occurs
+3. C - `Path('/home') / 'user' / 'file.txt'`
+4. B - `csv`
+5. B - Converts a Python object to a JSON string
+6. B - `'rb'`
+7. B - UTF-8
+8. C - `tempfile`
+9. A - `Path('file.txt').exists()`
+10. B - `zipfile`
 
 ---
 

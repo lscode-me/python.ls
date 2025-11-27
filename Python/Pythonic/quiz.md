@@ -13,8 +13,6 @@ B) Simple is better than complex
 C) Performance is better than readability  
 D) Readability counts  
 
-**Correct Answer: C**
-
 ---
 
 ## Question 2: List Comprehension
@@ -25,8 +23,6 @@ A) `squares = []; [squares.append(x**2) for x in range(10)]`
 B) `squares = [x**2 for x in range(10)]`  
 C) `squares = list(map(lambda x: x**2, range(10)))`  
 D) `squares = []; exec("[squares.append(x**2) for x in range(10)]")`  
-
-**Correct Answer: B**
 
 ---
 
@@ -39,8 +35,6 @@ B) Easier to Ask for Forgiveness than Permission
 C) Execute And Fix Problems  
 D) Every Action Follows Protocol  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 4: Enumerate
@@ -51,8 +45,6 @@ A) `for i in range(len(items)): print(i, items[i])`
 B) `for i, item in enumerate(items): print(i, item)`  
 C) `i = 0; for item in items: print(i, item); i += 1`  
 D) `for item in items: print(items.index(item), item)`  
-
-**Correct Answer: B**
 
 ---
 
@@ -65,8 +57,6 @@ B) `"Hello, {}".format(name)`
 C) `f"Hello, {name}"`  
 D) `"Hello, " + name`  
 
-**Correct Answer: C**
-
 ---
 
 ## Question 6: Context Managers
@@ -77,8 +67,6 @@ A) Only for file operations
 B) For any resource that needs setup and cleanup  
 C) Only for database connections  
 D) Never, try/finally is better  
-
-**Correct Answer: B**
 
 ---
 
@@ -91,8 +79,6 @@ B) `a=1, b=[2, 3, 4], c=5`
 C) `a=1, b=2, c=5`  
 D) `a=1, b=[2, 3, 4, 5], c=None`  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 8: Default Dictionary Values
@@ -103,8 +89,6 @@ A) `value = d[key] if key in d else default`
 B) `value = d.get(key, default)`  
 C) `try: value = d[key]\nexcept: value = default`  
 D) `value = d[key] or default`  
-
-**Correct Answer: B**
 
 ---
 
@@ -117,8 +101,6 @@ B) `if 1 <= x <= 10:`
 C) `if x in range(1, 11):`  
 D) `if min(1, x) == 1 and max(x, 10) == 10:`  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 10: Any and All
@@ -130,7 +112,20 @@ B) `False`
 C) `[True, True, True]`  
 D) `3`  
 
-**Correct Answer: B**
+---
+
+## Answer Key
+
+1. C - Performance is better than readability (this is NOT in the Zen of Python)
+2. B - `squares = [x**2 for x in range(10)]`
+3. B - Easier to Ask for Forgiveness than Permission
+4. B - `for i, item in enumerate(items): print(i, item)`
+5. C - `f"Hello, {name}"`
+6. B - For any resource that needs setup and cleanup
+7. B - `a=1, b=[2, 3, 4], c=5`
+8. B - `value = d.get(key, default)`
+9. B - `if 1 <= x <= 10:`
+10. B - `False`
 
 ---
 

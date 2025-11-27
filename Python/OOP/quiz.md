@@ -13,8 +13,6 @@ B) Class attributes are shared by all instances, instance attributes are unique 
 C) Class attributes cannot be modified, instance attributes can be changed  
 D) There is no difference, they are the same thing  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 2: Method Types
@@ -25,8 +23,6 @@ A) @staticmethod
 B) @classmethod  
 C) @property  
 D) @abstractmethod  
-
-**Correct Answer: B**
 
 ---
 
@@ -39,8 +35,6 @@ B) Alphabetical order of parent classes
 C) Method Resolution Order (MRO) using C3 linearization  
 D) Always left to right  
 
-**Correct Answer: C**
-
 ---
 
 ## Question 4: Special Methods
@@ -51,8 +45,6 @@ A) `__length__()`
 B) `__len__()`  
 C) `__size__()`  
 D) `__count__()`  
-
-**Correct Answer: B**
 
 ---
 
@@ -65,8 +57,6 @@ B) Allows a method to be accessed like an attribute
 C) Prevents attribute modification  
 D) Creates a class-level attribute  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 6: Abstract Base Classes
@@ -77,8 +67,6 @@ A) Python creates the instance but the abstract methods return None
 B) Python raises a TypeError  
 C) Python creates the instance but warns about missing implementations  
 D) The abstract methods are automatically implemented with default behavior  
-
-**Correct Answer: B**
 
 ---
 
@@ -91,8 +79,6 @@ B) By prefixing the name with a single underscore `_`
 C) By prefixing the name with double underscores `__`  
 D) Python doesn't support private attributes  
 
-**Correct Answer: C**
-
 ---
 
 ## Question 8: Polymorphism
@@ -103,8 +89,6 @@ A) The ability to create multiple constructors
 B) The ability of different classes to be treated through a common interface  
 C) The ability to inherit from multiple parent classes  
 D) The ability to change object types at runtime  
-
-**Correct Answer: B**
 
 ---
 
@@ -117,8 +101,6 @@ B) It automatically generates special methods like `__init__`, `__repr__`, and `
 C) It prevents the class from being inherited  
 D) It makes all attributes immutable  
 
-**Correct Answer: B**
-
 ---
 
 ## Question 10: Slots
@@ -128,9 +110,20 @@ What is the purpose of `__slots__` in a class definition?
 A) To define which methods are available  
 B) To restrict memory usage by preventing dynamic attribute creation  
 C) To create a fixed number of instances  
-D) To define the order of method execution  
+D) To define the order of method execution
 
-**Correct Answer: B**
+## Answer Key
+
+1. B - Class attributes are shared by all instances, instance attributes are unique to each instance
+2. B - @classmethod
+3. C - Method Resolution Order (MRO) using C3 linearization
+4. B - `__len__()`
+5. B - Allows a method to be accessed like an attribute
+6. B - Python raises a TypeError
+7. C - By prefixing the name with double underscores `__`
+8. B - The ability of different classes to be treated through a common interface
+9. B - It automatically generates special methods like `__init__`, `__repr__`, and `__eq__`
+10. B - To restrict memory usage by preventing dynamic attribute creation
 
 ---
 

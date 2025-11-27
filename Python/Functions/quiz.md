@@ -130,7 +130,20 @@ B) The function returns a string
 C) The function converts input to string  
 D) The function has a string default value  
 
-**Correct Answer: B**
+---
+
+## Answer Key
+
+1. B - Collects all positional arguments into a tuple
+2. B - `lambda x, y: x + y`
+3. B - A function that remembers values from its enclosing scope
+4. B - Modifies or enhances a function's behavior without changing its code
+5. B - `[2, 4, 6]`
+6. B - yield
+7. B - Functions can be passed as arguments, returned from other functions, and assigned to variables
+8. B - The condition that stops the recursion
+9. B - `[6, 8, 9]`
+10. B - The function returns a string
 
 ---
 
