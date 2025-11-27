@@ -30,9 +30,9 @@ D) @abstractmethod
 
 In multiple inheritance, which order does Python use to search for methods?
 
-A) Random order  
-B) Alphabetical order of parent classes  
-C) Method Resolution Order (MRO) using C3 linearization  
+A) Method Resolution Order (MRO) using C3 linearization  
+B) Random order  
+C) Alphabetical order of parent classes  
 D) Always left to right  
 
 ---
@@ -42,8 +42,8 @@ D) Always left to right
 What special method is called when you use the `len()` function on an object?
 
 A) `__length__()`  
-B) `__len__()`  
-C) `__size__()`  
+B) `__size__()`  
+C) `__len__()`  
 D) `__count__()`  
 
 ---
@@ -64,9 +64,9 @@ D) Creates a class-level attribute
 What happens if you try to instantiate an abstract class that has abstract methods?
 
 A) Python creates the instance but the abstract methods return None  
-B) Python raises a TypeError  
-C) Python creates the instance but warns about missing implementations  
-D) The abstract methods are automatically implemented with default behavior  
+B) Python creates the instance but warns about missing implementations  
+C) The abstract methods are automatically implemented with default behavior  
+D) Python raises a TypeError  
 
 ---
 
@@ -74,9 +74,9 @@ D) The abstract methods are automatically implemented with default behavior
 
 How does Python indicate that an attribute should be treated as private?
 
-A) By using the `private` keyword  
-B) By prefixing the name with a single underscore `_`  
-C) By prefixing the name with double underscores `__`  
+A) By prefixing the name with double underscores `__`  
+B) By using the `private` keyword  
+C) By prefixing the name with a single underscore `_`  
 D) Python doesn't support private attributes  
 
 ---
@@ -108,22 +108,22 @@ D) It makes all attributes immutable
 What is the purpose of `__slots__` in a class definition?
 
 A) To define which methods are available  
-B) To restrict memory usage by preventing dynamic attribute creation  
-C) To create a fixed number of instances  
+B) To create a fixed number of instances  
+C) To restrict memory usage by preventing dynamic attribute creation  
 D) To define the order of method execution
 
 ## Answer Key
 
 1. B - Class attributes are shared by all instances, instance attributes are unique to each instance
 2. B - @classmethod
-3. C - Method Resolution Order (MRO) using C3 linearization
-4. B - `__len__()`
+3. A - Method Resolution Order (MRO) using C3 linearization
+4. C - `__len__()`
 5. B - Allows a method to be accessed like an attribute
-6. B - Python raises a TypeError
-7. C - By prefixing the name with double underscores `__`
+6. D - Python raises a TypeError
+7. A - By prefixing the name with double underscores `__`
 8. B - The ability of different classes to be treated through a common interface
 9. B - It automatically generates special methods like `__init__`, `__repr__`, and `__eq__`
-10. B - To restrict memory usage by preventing dynamic attribute creation
+10. C - To restrict memory usage by preventing dynamic attribute creation
 
 ---
 

@@ -32,8 +32,8 @@ What special methods define the context manager protocol?
 
 A) `__open__()` and `__close__()`  
 B) `__start__()` and `__finish__()`  
-C) `__enter__()` and `__exit__()`  
-D) `__begin__()` and `__end__()`  
+C) `__begin__()` and `__end__()`  
+D) `__enter__()` and `__exit__()`  
 
 ---
 
@@ -52,9 +52,9 @@ D) `__append__()`
 
 How do you make a class instance callable like a function?
 
-A) Define a `__call__()` method  
-B) Inherit from the Function class  
-C) Use the @callable decorator  
+A) Inherit from the Function class  
+B) Use the @callable decorator  
+C) Define a `__call__()` method  
 D) Define a `__invoke__()` method  
 
 ---
@@ -74,8 +74,8 @@ D) It automatically implements methods
 
 What module provides abstract base classes in Python?
 
-A) `abstract`  
-B) `abc`  
+A) `abc`  
+B) `abstract`  
 C) `interfaces`  
 D) `protocols`  
 
@@ -86,8 +86,8 @@ D) `protocols`
 When should an iterator raise `StopIteration`?
 
 A) When an error occurs  
-B) When there are no more items to return  
-C) When the iterator is created  
+B) When the iterator is created  
+C) When there are no more items to return  
 D) Never, Python handles this automatically  
 
 ---
@@ -96,10 +96,10 @@ D) Never, Python handles this automatically
 
 Which method is called when you access a descriptor attribute?
 
-A) `__get__()`  
-B) `__access__()`  
-C) `__read__()`  
-D) `__fetch__()`  
+A) `__access__()`  
+B) `__read__()`  
+C) `__fetch__()`  
+D) `__get__()`  
 
 ---
 
@@ -107,8 +107,8 @@ D) `__fetch__()`
 
 Which collections.abc class represents a read-only sequence?
 
-A) `Iterable`  
-B) `Sequence`  
+A) `Sequence`  
+B) `Iterable`  
 C) `MutableSequence`  
 D) `Container`  
 
@@ -118,14 +118,14 @@ D) `Container`
 
 1. B - If an object has the required methods, it can be used regardless of its type
 2. A - `__iter__()` and `__next__()`
-3. C - `__enter__()` and `__exit__()`
+3. D - `__enter__()` and `__exit__()`
 4. D - `__append__()`
-5. A - Define a `__call__()` method
+5. C - Define a `__call__()` method
 6. B - It enables structural subtyping without explicit inheritance
-7. B - `abc`
-8. B - When there are no more items to return
-9. A - `__get__()`
-10. B - `Sequence`
+7. A - `abc`
+8. C - When there are no more items to return
+9. D - `__get__()`
+10. A - `Sequence`
 
 ---
 

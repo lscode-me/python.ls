@@ -8,8 +8,8 @@ Test your knowledge of bioinformatics concepts and Python applications.
 
 Which of the following is NOT a valid DNA nucleotide?
 
-A) Adenine (A)  
-B) Uracil (U)  
+A) Uracil (U)  
+B) Adenine (A)  
 C) Guanine (G)  
 D) Cytosine (C)  
 
@@ -20,9 +20,9 @@ D) Cytosine (C)
 How many nucleotides make up a codon?
 
 A) 2  
-B) 3  
-C) 4  
-D) 6  
+B) 4  
+C) 6  
+D) 3  
 
 ---
 
@@ -41,9 +41,9 @@ D) It has no biological significance
 
 What character starts a header line in FASTA format?
 
-A) `@`  
-B) `#`  
-C) `>`  
+A) `>`  
+B) `@`  
+C) `#`  
 D) `*`  
 
 ---
@@ -64,9 +64,9 @@ D) 100% accuracy
 What is the purpose of sequence alignment?
 
 A) To make sequences the same length  
-B) To identify regions of similarity and evolutionary relationships  
-C) To translate DNA to protein  
-D) To remove errors from sequences  
+B) To translate DNA to protein  
+C) To remove errors from sequences  
+D) To identify regions of similarity and evolutionary relationships  
 
 ---
 
@@ -75,8 +75,8 @@ D) To remove errors from sequences
 What defines an Open Reading Frame?
 
 A) Any sequence of DNA  
-B) A sequence between a start codon (ATG) and a stop codon  
-C) A sequence that codes for RNA  
+B) A sequence that codes for RNA  
+C) A sequence between a start codon (ATG) and a stop codon  
 D) The first 100 nucleotides of a gene  
 
 ---
@@ -86,8 +86,8 @@ D) The first 100 nucleotides of a gene
 How do you get the reverse complement of a DNA sequence using BioPython?
 
 A) `seq.reverse()`  
-B) `seq.complement()`  
-C) `seq.reverse_complement()`  
+B) `seq.reverse_complement()`  
+C) `seq.complement()`  
 D) `seq.flip()`  
 
 ---
@@ -96,9 +96,9 @@ D) `seq.flip()`
 
 Which of the following is a stop codon?
 
-A) ATG  
-B) GCG  
-C) TAG  
+A) TAG  
+B) ATG  
+C) GCG  
 D) CCG  
 
 ---
@@ -108,24 +108,24 @@ D) CCG
 What is the primary use of Multiple Sequence Alignment (MSA)?
 
 A) To sequence DNA faster  
-B) To identify conserved regions across multiple species  
-C) To translate proteins  
-D) To compress sequence data  
+B) To translate proteins  
+C) To compress sequence data  
+D) To identify conserved regions across multiple species  
 
 ---
 
 ## Answer Key
 
-1. B - Uracil (U) - Uracil is found in RNA, not DNA
-2. B - 3
+1. A - Uracil (U) - Uracil is found in RNA, not DNA
+2. D - 3
 3. B - It affects DNA stability (G-C has 3 hydrogen bonds vs A-T's 2)
-4. C - `>`
+4. A - `>`
 5. C - 99.9% accuracy
-6. B - To identify regions of similarity and evolutionary relationships
-7. B - A sequence between a start codon (ATG) and a stop codon
-8. C - `seq.reverse_complement()`
-9. C - TAG
-10. B - To identify conserved regions across multiple species
+6. D - To identify regions of similarity and evolutionary relationships
+7. C - A sequence between a start codon (ATG) and a stop codon
+8. B - `seq.reverse_complement()`
+9. A - TAG
+10. D - To identify conserved regions across multiple species
 
 ---
 

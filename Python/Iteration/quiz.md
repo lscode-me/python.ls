@@ -19,9 +19,9 @@ D) Iterators can only be used once, iterables can be reused
 
 Which of the following creates a generator expression?
 
-A) `[x**2 for x in range(10)]`  
-B) `{x**2 for x in range(10)}`  
-C) `(x**2 for x in range(10))`  
+A) `(x**2 for x in range(10))`  
+B) `[x**2 for x in range(10)]`  
+C) `{x**2 for x in range(10)}`  
 D) `list(x**2 for x in range(10))`  
 
 ---
@@ -31,9 +31,9 @@ D) `list(x**2 for x in range(10))`
 What happens when a generator function encounters a `yield` statement?
 
 A) The function terminates  
-B) The function pauses and returns a value, saving its state  
-C) The function raises an exception  
-D) The function continues without interruption  
+B) The function raises an exception  
+C) The function continues without interruption  
+D) The function pauses and returns a value, saving its state  
 
 ---
 
@@ -42,8 +42,8 @@ D) The function continues without interruption
 What does the `send()` method do with a generator?
 
 A) Terminates the generator  
-B) Sends a value into the generator that becomes the result of the current yield  
-C) Creates a new generator  
+B) Creates a new generator  
+C) Sends a value into the generator that becomes the result of the current yield  
 D) Sends the generator to another function  
 
 ---
@@ -63,8 +63,8 @@ D) `[3, 7]`
 
 Why are generators memory-efficient?
 
-A) They compress data automatically  
-B) They generate values on-the-fly instead of storing all values in memory  
+A) They generate values on-the-fly instead of storing all values in memory  
+B) They compress data automatically  
 C) They use less CPU  
 D) They cache results  
 
@@ -75,9 +75,9 @@ D) They cache results
 What does `yield from` do?
 
 A) Creates multiple generators  
-B) Delegates generator operations to another generator  
-C) Yields values in reverse order  
-D) Combines multiple yield statements  
+B) Yields values in reverse order  
+C) Combines multiple yield statements  
+D) Delegates generator operations to another generator  
 
 ---
 
@@ -85,9 +85,9 @@ D) Combines multiple yield statements
 
 What does `list(itertools.islice(range(100), 5, 10))` return?
 
-A) `[5, 6, 7, 8, 9]`  
-B) `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`  
-C) `[5, 10]`  
+A) `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`  
+B) `[5, 10]`  
+C) `[5, 6, 7, 8, 9]`  
 D) `[5, 15, 25, 35, 45]`  
 
 ---
@@ -96,8 +96,8 @@ D) `[5, 15, 25, 35, 45]`
 
 Which `itertools` function creates an infinite iterator that cycles through values?
 
-A) `repeat()`  
-B) `cycle()`  
+A) `cycle()`  
+B) `repeat()`  
 C) `count()`  
 D) `infinite()`  
 
@@ -117,14 +117,14 @@ D) When you need to access the length
 ## Answer Key
 
 1. B - An iterable can be iterated over; an iterator keeps track of the current position
-2. C - `(x**2 for x in range(10))`
-3. B - The function pauses and returns a value, saving its state
-4. B - Sends a value into the generator that becomes the result of the current yield
+2. A - `(x**2 for x in range(10))`
+3. D - The function pauses and returns a value, saving its state
+4. C - Sends a value into the generator that becomes the result of the current yield
 5. B - `[1, 2, 3, 4]`
-6. B - They generate values on-the-fly instead of storing all values in memory
-7. B - Delegates generator operations to another generator
-8. A - `[5, 6, 7, 8, 9]`
-9. B - `cycle()`
+6. A - They generate values on-the-fly instead of storing all values in memory
+7. D - Delegates generator operations to another generator
+8. C - `[5, 6, 7, 8, 9]`
+9. A - `cycle()`
 10. B - When working with large datasets and you only need to iterate once
 
 ---

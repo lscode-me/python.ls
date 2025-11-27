@@ -10,8 +10,8 @@ Which statement is NOT one of the principles from "The Zen of Python"?
 
 A) Explicit is better than implicit  
 B) Simple is better than complex  
-C) Performance is better than readability  
-D) Readability counts  
+C) Readability counts  
+D) Performance is better than readability  
 
 ---
 
@@ -19,10 +19,10 @@ D) Readability counts
 
 Which is the most Pythonic way to create a list of squares?
 
-A) `squares = []; [squares.append(x**2) for x in range(10)]`  
-B) `squares = [x**2 for x in range(10)]`  
+A) `squares = [x**2 for x in range(10)]`  
+B) `squares = []; [squares.append(x**2) for x in range(10)]`  
 C) `squares = list(map(lambda x: x**2, range(10)))`  
-D) `squares = []; exec("[squares.append(x**2) for x in range(10)]")`  
+D) `squares = []; exec("[squares.append(x**2) for x in range(10)]")` 
 
 ---
 
@@ -31,8 +31,8 @@ D) `squares = []; exec("[squares.append(x**2) for x in range(10)]")`
 What does EAFP stand for in Python?
 
 A) Error And Failure Prevention  
-B) Easier to Ask for Forgiveness than Permission  
-C) Execute And Fix Problems  
+B) Execute And Fix Problems  
+C) Easier to Ask for Forgiveness than Permission  
 D) Every Action Follows Protocol  
 
 ---
@@ -42,9 +42,9 @@ D) Every Action Follows Protocol
 What is the most Pythonic way to iterate with both index and value?
 
 A) `for i in range(len(items)): print(i, items[i])`  
-B) `for i, item in enumerate(items): print(i, item)`  
-C) `i = 0; for item in items: print(i, item); i += 1`  
-D) `for item in items: print(items.index(item), item)`  
+B) `i = 0; for item in items: print(i, item); i += 1`  
+C) `for item in items: print(items.index(item), item)`  
+D) `for i, item in enumerate(items): print(i, item)`  
 
 ---
 
@@ -53,8 +53,8 @@ D) `for item in items: print(items.index(item), item)`
 Which is the most modern and Pythonic string formatting method?
 
 A) `"Hello, %s" % name`  
-B) `"Hello, {}".format(name)`  
-C) `f"Hello, {name}"`  
+B) `f"Hello, {name}"`  
+C) `"Hello, {}".format(name)`  
 D) `"Hello, " + name`  
 
 ---
@@ -74,8 +74,8 @@ D) Never, try/finally is better
 
 What does this code do: `a, *b, c = [1, 2, 3, 4, 5]`?
 
-A) Raises a SyntaxError  
-B) `a=1, b=[2, 3, 4], c=5`  
+A) `a=1, b=[2, 3, 4], c=5`  
+B) Raises a SyntaxError  
 C) `a=1, b=2, c=5`  
 D) `a=1, b=[2, 3, 4, 5], c=None`  
 
@@ -86,8 +86,8 @@ D) `a=1, b=[2, 3, 4, 5], c=None`
 What's the Pythonic way to get a dictionary value with a default?
 
 A) `value = d[key] if key in d else default`  
-B) `value = d.get(key, default)`  
-C) `try: value = d[key]\nexcept: value = default`  
+B) `try: value = d[key]\nexcept: value = default`  
+C) `value = d.get(key, default)`  
 D) `value = d[key] or default`  
 
 ---
@@ -97,9 +97,9 @@ D) `value = d[key] or default`
 Which is the most Pythonic way to check if a value is in a range?
 
 A) `if x >= 1 and x <= 10:`  
-B) `if 1 <= x <= 10:`  
-C) `if x in range(1, 11):`  
-D) `if min(1, x) == 1 and max(x, 10) == 10:`  
+B) `if x in range(1, 11):`  
+C) `if min(1, x) == 1 and max(x, 10) == 10:`  
+D) `if 1 <= x <= 10:`  
 
 ---
 
@@ -107,8 +107,8 @@ D) `if min(1, x) == 1 and max(x, 10) == 10:`
 
 What does `all([True, True, False, True])` return?
 
-A) `True`  
-B) `False`  
+A) `False`  
+B) `True`  
 C) `[True, True, True]`  
 D) `3`  
 
@@ -116,16 +116,16 @@ D) `3`
 
 ## Answer Key
 
-1. C - Performance is better than readability (this is NOT in the Zen of Python)
-2. B - `squares = [x**2 for x in range(10)]`
-3. B - Easier to Ask for Forgiveness than Permission
-4. B - `for i, item in enumerate(items): print(i, item)`
-5. C - `f"Hello, {name}"`
+1. D - Performance is better than readability (this is NOT in the Zen of Python)
+2. A - `squares = [x**2 for x in range(10)]`
+3. C - Easier to Ask for Forgiveness than Permission
+4. D - `for i, item in enumerate(items): print(i, item)`
+5. B - `f"Hello, {name}"`
 6. B - For any resource that needs setup and cleanup
-7. B - `a=1, b=[2, 3, 4], c=5`
-8. B - `value = d.get(key, default)`
-9. B - `if 1 <= x <= 10:`
-10. B - `False`
+7. A - `a=1, b=[2, 3, 4], c=5`
+8. C - `value = d.get(key, default)`
+9. D - `if 1 <= x <= 10:`
+10. A - `False`
 
 ---
 

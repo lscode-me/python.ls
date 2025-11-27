@@ -30,9 +30,9 @@ D) It prevents file corruption
 
 Which is the correct way to join paths using pathlib?
 
-A) `Path('/home') + 'user' + 'file.txt'`  
-B) `Path('/home').join('user', 'file.txt')`  
-C) `Path('/home') / 'user' / 'file.txt'`  
+A) `Path('/home') / 'user' / 'file.txt'`  
+B) `Path('/home') + 'user' + 'file.txt'`  
+C) `Path('/home').join('user', 'file.txt')`  
 D) `Path.join('/home', 'user', 'file.txt')`  
 
 ---
@@ -42,9 +42,9 @@ D) `Path.join('/home', 'user', 'file.txt')`
 Which module is used for reading and writing CSV files in Python?
 
 A) `csvfile`  
-B) `csv`  
-C) `pandas`  
-D) `spreadsheet`  
+B) `pandas`  
+C) `spreadsheet`  
+D) `csv`  
 
 ---
 
@@ -53,8 +53,8 @@ D) `spreadsheet`
 What does `json.dumps()` do?
 
 A) Loads JSON from a file  
-B) Converts a Python object to a JSON string  
-C) Dumps JSON to a file  
+B) Dumps JSON to a file  
+C) Converts a Python object to a JSON string  
 D) Validates JSON syntax  
 
 ---
@@ -63,8 +63,8 @@ D) Validates JSON syntax
 
 Which mode should you use to read a binary file?
 
-A) `'r'`  
-B) `'rb'`  
+A) `'rb'`  
+B) `'r'`  
 C) `'binary'`  
 D) `'b'`  
 
@@ -75,9 +75,9 @@ D) `'b'`
 What is the default encoding for text files in Python 3?
 
 A) ASCII  
-B) UTF-8  
-C) Latin-1  
-D) UTF-16  
+B) Latin-1  
+C) UTF-16  
+D) UTF-8  
 
 ---
 
@@ -86,8 +86,8 @@ D) UTF-16
 Which module provides functionality for creating temporary files?
 
 A) `temp`  
-B) `tmpfile`  
-C) `tempfile`  
+B) `tempfile`  
+C) `tmpfile`  
 D) `temporary`  
 
 ---
@@ -108,9 +108,9 @@ D) `file.exists('file.txt')`
 Which module is used to work with ZIP archives in Python?
 
 A) `zip`  
-B) `zipfile`  
-C) `archive`  
-D) `compress`  
+B) `archive`  
+C) `compress`  
+D) `zipfile`  
 
 ---
 
@@ -118,14 +118,14 @@ D) `compress`
 
 1. B - Read and write mode (file must exist)
 2. B - It automatically closes the file, even if an exception occurs
-3. C - `Path('/home') / 'user' / 'file.txt'`
-4. B - `csv`
-5. B - Converts a Python object to a JSON string
-6. B - `'rb'`
-7. B - UTF-8
-8. C - `tempfile`
-9. A - `Path('file.txt').exists()`
-10. B - `zipfile`
+3. A - `Path('/home') / 'user' / 'file.txt'`
+4. D - `csv`
+5. C - Converts a Python object to a JSON string
+6. A - `'rb'`
+7. D - UTF-8
+8. B - `tempfile`
+9. C - `Path('file.txt').exists()`
+10. D - `zipfile`
 
 ---
 

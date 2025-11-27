@@ -19,10 +19,10 @@ D) Whether two objects are equal after type conversion
 
 Which of the following data types is immutable in Python?
 
-A) List  
-B) Dictionary  
-C) Set  
-D) Tuple  
+A) Tuple  
+B) List  
+C) Dictionary  
+D) Set  
 
 ---
 
@@ -31,8 +31,8 @@ D) Tuple
 What happens when an object's reference count reaches zero?
 
 A) The object is frozen and cannot be modified  
-B) The object is marked for garbage collection  
-C) Python raises a ReferenceError  
+B) Python raises a ReferenceError  
+C) The object is marked for garbage collection  
 D) The object is converted to None  
 
 ---
@@ -48,9 +48,9 @@ def append_to_list(element, target=[]):
 ```
 
 A) Lists cannot be used as default arguments  
-B) The default list is created once and shared between all calls  
-C) The function will raise a TypeError  
-D) There is no problem with this code  
+B) The function will raise a TypeError  
+C) There is no problem with this code  
+D) The default list is created once and shared between all calls  
 
 ---
 
@@ -69,8 +69,8 @@ D) There is no difference, they are synonyms
 
 Why does `a is b` return True when `a = 256` and `b = 256`, but False when `a = 257` and `b = 257`?
 
-A) 257 is a prime number  
-B) Python caches small integers (-5 to 256) for optimization  
+A) Python caches small integers (-5 to 256) for optimization  
+B) 257 is a prime number  
 C) Large numbers are stored differently in memory  
 D) This is undefined behavior and may vary  
 
@@ -81,8 +81,8 @@ D) This is undefined behavior and may vary
 Which statement about string interning is correct?
 
 A) All strings are automatically interned in Python  
-B) Only strings that look like identifiers are typically interned  
-C) String interning only works for strings shorter than 10 characters  
+B) String interning only works for strings shorter than 10 characters  
+C) Only strings that look like identifiers are typically interned  
 D) String interning was removed in Python 3  
 
 ---
@@ -92,9 +92,9 @@ D) String interning was removed in Python 3
 What is the primary garbage collection mechanism in CPython?
 
 A) Mark and sweep algorithm only  
-B) Reference counting with cyclic garbage collector  
-C) Generational garbage collection only  
-D) Manual memory management like in C  
+B) Generational garbage collection only  
+C) Manual memory management like in C  
+D) Reference counting with cyclic garbage collector  
 
 ---
 
@@ -102,9 +102,9 @@ D) Manual memory management like in C
 
 What happens when you access a non-existent attribute of an object?
 
-A) Python returns None  
-B) Python returns an empty string  
-C) Python raises an AttributeError  
+A) Python raises an AttributeError  
+B) Python returns None  
+C) Python returns an empty string  
 D) Python creates the attribute with a default value  
 
 ---
@@ -123,14 +123,14 @@ D) gettype()
 ## Answer Key
 
 1. B - Whether two variables reference the same object in memory
-2. D - Tuple
-3. B - The object is marked for garbage collection
-4. B - The default list is created once and shared between all calls
+2. A - Tuple
+3. C - The object is marked for garbage collection
+4. D - The default list is created once and shared between all calls
 5. B - Shallow copy creates a new object but references nested objects; deep copy recursively copies everything
-6. B - Python caches small integers (-5 to 256) for optimization
-7. B - Only strings that look like identifiers are typically interned
-8. B - Reference counting with cyclic garbage collector
-9. C - Python raises an AttributeError
+6. A - Python caches small integers (-5 to 256) for optimization
+7. C - Only strings that look like identifiers are typically interned
+8. D - Reference counting with cyclic garbage collector
+9. A - Python raises an AttributeError
 10. B - type()
 
 ---
