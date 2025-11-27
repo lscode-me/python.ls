@@ -1,0 +1,246 @@
+Homework Assignments - File Handling
+-------------------------------------
+
+1. Basic File Operations
+   Create a file manager script with the following functions:
+   
+   a) read_file(filename) - read and return file contents
+   b) write_file(filename, content) - write content to file
+   c) append_to_file(filename, content) - append content
+   d) count_lines(filename) - return number of lines
+   e) count_words(filename) - return number of words
+   f) find_in_file(filename, search_term) - return line numbers
+   
+   Your task:
+   - Implement all functions with proper error handling
+   - Use context managers for all file operations
+   - Handle different encodings (UTF-8, ASCII)
+   - Test with various file types and sizes
+   
+   Your goal:
+   - Master basic file I/O operations
+   - Understand file modes and encodings
+   - Practice error handling with files
+
+2. Log File Analyzer
+   Create a log file analyzer that processes web server logs:
+   
+   Log format example:
+       192.168.1.1 - - [26/Nov/2025:10:15:23] "GET /index.html HTTP/1.1" 200 2326
+   
+   Functions to implement:
+   a) parse_log_entry(line) - extract IP, timestamp, request, status, size
+   b) analyze_log(filename) - return statistics:
+      - Total requests
+      - Unique IPs
+      - Most common endpoints
+      - Status code distribution
+      - Total bandwidth
+   c) filter_by_status(filename, status_code)
+   d) find_errors(filename) - return 4xx and 5xx entries
+   
+   Your task:
+   - Read large log files efficiently (line by line)
+   - Parse complex log format
+   - Generate comprehensive statistics
+   - Export results to JSON and CSV
+   
+   Your goal:
+   - Practice reading large files efficiently
+   - Learn text parsing and pattern matching
+   - Understand data aggregation from files
+
+3. CSV Data Processing
+   Create a CSV data processor for tabular data:
+   
+   Features:
+   a) Read CSV with headers
+   b) Filter rows by conditions
+   c) Sort by columns
+   d) Calculate statistics (sum, average, min, max)
+   e) Add computed columns
+   f) Merge multiple CSV files
+   g) Export filtered/processed data
+   
+   Example operations:
+   - Filter employees with salary > 50000
+   - Sort by age descending
+   - Add "bonus" column (10% of salary)
+   - Calculate average salary by department
+   
+   Your task:
+   - Use csv module for reading/writing
+   - Implement flexible filtering system
+   - Handle missing/invalid data
+   - Support large CSV files
+   
+   Your goal:
+   - Master CSV file operations
+   - Practice data transformation
+   - Learn data validation and cleaning
+
+4. JSON Configuration Manager
+   Create a configuration management system using JSON:
+   
+   Features:
+   a) load_config(filename) - load configuration
+   b) save_config(filename, config) - save configuration
+   c) get_value(key_path) - get nested value (e.g., "database.host")
+   d) set_value(key_path, value) - set nested value
+   e) validate_config(config, schema) - validate structure
+   f) merge_configs(config1, config2) - merge configurations
+   
+   Your task:
+   - Support nested configuration structures
+   - Implement dot-notation for nested access
+   - Add validation against schema
+   - Handle default values
+   - Support environment variable substitution
+   
+   Your goal:
+   - Master JSON file operations
+   - Learn configuration management patterns
+   - Practice nested data structure manipulation
+
+5. Directory Tree Processor
+   Create tools for processing directory structures:
+   
+   Features:
+   a) list_files(path, pattern) - list files matching pattern
+   b) calculate_dir_size(path) - total size recursively
+   c) find_duplicates(path) - find duplicate files by content
+   d) organize_by_type(path) - organize files by extension
+   e) clean_empty_dirs(path) - remove empty directories
+   f) generate_tree(path) - create visual tree structure
+   
+   Your task:
+   - Use pathlib for path operations
+   - Implement recursive directory traversal
+   - Calculate file hashes for duplicate detection
+   - Create tree visualization (like Unix `tree` command)
+   - Handle symbolic links and permissions errors
+   
+   Your goal:
+   - Master directory operations
+   - Learn recursive file system traversal
+   - Practice file system manipulation
+
+6. Binary File Processor
+   Work with binary files and formats:
+   
+   Tasks:
+   a) Image file header reader (PNG, JPEG, GIF)
+   b) File type detector by magic numbers
+   c) Binary file splitter/merger
+   d) Simple hex viewer
+   e) Binary file comparison tool
+   
+   Your task:
+   - Read and interpret binary data
+   - Understand file format structures
+   - Work with bytes and bytearray
+   - Implement chunked reading for large files
+   
+   Example formats:
+   - PNG: starts with 89 50 4E 47
+   - JPEG: starts with FF D8 FF
+   - PDF: starts with 25 50 44 46
+   
+   Your goal:
+   - Master binary file operations
+   - Understand file formats
+   - Practice low-level data manipulation
+
+7. File Compression and Archiving
+   Create archive management tools:
+   
+   Features:
+   a) create_archive(files, output_name) - create ZIP
+   b) extract_archive(archive_path, destination)
+   c) list_archive_contents(archive_path)
+   d) add_to_archive(archive_path, files)
+   e) compress_directory(path) - compress entire directory
+   f) compare_with_gzip(file) - compare regular vs compressed size
+   
+   Your task:
+   - Work with zipfile module
+   - Handle compression with gzip
+   - Support tar.gz format
+   - Preserve file metadata (timestamps, permissions)
+   - Show compression ratios
+   
+   Your goal:
+   - Master file compression
+   - Learn archive formats
+   - Understand compression benefits and trade-offs
+
+8. Text File Converter
+   Create converters between different text formats:
+   
+   Conversions:
+   a) CSV ↔ JSON
+   b) CSV ↔ Markdown table
+   c) JSON ↔ YAML (use pyyaml)
+   d) Plain text ↔ HTML
+   e) Markdown ↔ HTML (basic)
+   
+   Your task:
+   - Parse source format correctly
+   - Generate valid target format
+   - Preserve data structure
+   - Handle edge cases (special characters, empty fields)
+   - Support bidirectional conversion
+   
+   Your goal:
+   - Practice format conversion
+   - Learn multiple file formats
+   - Master data transformation
+
+9. Temporary File Management
+   Work with temporary files and directories:
+   
+   Tasks:
+   a) Create temp file for processing large datasets
+   b) Implement temp directory for batch operations
+   c) Create secure temp files for sensitive data
+   d) Clean up temp files on error
+   e) Implement temp file rotation system
+   
+   Your task:
+   - Use tempfile module
+   - Ensure cleanup with context managers
+   - Handle cleanup in exception scenarios
+   - Implement automatic cleanup after time period
+   - Create temp file naming strategy
+   
+   Your goal:
+   - Master temporary file handling
+   - Learn cleanup strategies
+   - Practice resource management
+
+10. Advanced File I/O Project
+    Create a complete file-based database system:
+    
+    Features:
+    - Store records in JSON files
+    - Index for fast lookups
+    - Support CRUD operations
+    - Query with filtering and sorting
+    - Transaction support (rollback on error)
+    - Backup and restore
+    - Export to various formats
+    
+    Your task:
+    - Design file-based storage structure
+    - Implement efficient read/write operations
+    - Add indexing for performance
+    - Support concurrent access (file locking)
+    - Create backup mechanism
+    - Optimize for large datasets
+    
+    Your goal:
+    - Apply all file I/O knowledge
+    - Build real-world application
+    - Learn database concepts
+    - Practice system design
+

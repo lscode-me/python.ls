@@ -16,14 +16,17 @@ A comprehensive course designed for life science professionals looking to develo
 ### 3. Functions and FP
 - [Functions and Functional Programming](Python/Functions/Functions.md)
 
-### 4. Pythonic
-- [Pythonic Code](Python/Pythonic/Pythonic.md)
-
-### 5. Protocols and Interfaces
+### 4. Protocols and Interfaces
 - [Protocols and Duck Typing](Python/Protocols/Protocols.md)
 
-### 6. Iteration Protocol
+### 5. Iteration Protocol
 - [Iterators and Generators](Python/Iteration/Iteration.md)
+
+### 6. File Handling
+- [Files and I/O](Python/Files/Files.md)
+
+### 7. Pythonic
+- [Pythonic Code](Python/Pythonic/Pythonic.md)
 
 ## Linux for Developers
 
