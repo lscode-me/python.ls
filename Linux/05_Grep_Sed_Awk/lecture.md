@@ -1,5 +1,11 @@
 # Grep, Sed & Awk: Text Processing Power Tools
 
+## Sample Data Files
+
+📁 **[DataSamples.md](DataSamples.md)** — sample data files for practice (app.log, access.log, data.csv, users.txt, etc.)
+
+---
+
 ## Overview
 The trio of `grep`, `sed`, and `awk` form the foundation of Unix text processing. Each tool excels at different tasks:
 - **grep**: Search and filter lines

@@ -1,5 +1,11 @@
 # Log Processing & Real-World Pipelines
 
+## Sample Data Files
+
+📁 **[DataSamples.md](DataSamples.md)** — sample data files for practice (app.jsonl, errors.jsonl, queries.jsonl, access.log, etc.)
+
+---
+
 ## Overview
 Process logs, APIs, and generate reports using Unix pipelines. This lecture covers JSONL logs, compressed streams, API integration, and markdown generation.
 

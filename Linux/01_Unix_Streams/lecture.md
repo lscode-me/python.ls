@@ -1,5 +1,11 @@
 # Unix as a Language of Data & Streams
 
+## Sample Data Files
+
+📁 **[DataSamples.md](DataSamples.md)** — sample data files for practice (data.csv, app.log, access.log, etc.)
+
+---
+
 ## Introduction
 
 Unix wasn't just designed as an operating system — it was designed as a **philosophy for building composable tools**. At its core is the idea that **data flows through transformations**, and each tool does one thing well.

@@ -1,5 +1,11 @@
 # Structured Data Processing (JSON, CSV, YAML, XML)
 
+## Sample Data Files
+
+📁 **[DataSamples.md](DataSamples.md)** — sample data files for practice (users.json, products.json, config.yaml, data.xml, etc.)
+
+---
+
 ## Overview
 Modern data comes in structured formats. This lecture covers tools for processing JSON, CSV, YAML, and XML in Unix pipelines.
 
