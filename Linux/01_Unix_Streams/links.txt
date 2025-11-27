@@ -1,0 +1,225 @@
+Unix Streams and Data Processing - Resources
+=============================================
+
+Unix Philosophy
+---------------
+The Unix Programming Environment
+https://en.wikipedia.org/wiki/The_Unix_Programming_Environment
+
+The Art of Unix Programming by Eric S. Raymond
+http://www.catb.org/~esr/writings/taoup/html/
+
+Unix Philosophy - Basics
+https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html
+
+The UNIX Philosophy
+https://www.mike.org.cn/articles/the-unix-philosophy/
+
+Books and Tutorials
+-------------------
+Data Science at the Command Line (2e)
+https://datascienceatthecommandline.com/
+
+Command Line Tools for Data Science
+https://www.oreilly.com/library/view/data-science-at/9781491947845/
+
+Linux Command Line and Shell Scripting Bible
+https://www.wiley.com/en-us/Linux+Command+Line+and+Shell+Scripting+Bible
+
+The Linux Command Line by William Shotts
+https://linuxcommand.org/tlcl.php
+
+Bash Guide for Beginners
+https://tldp.org/LDP/Bash-Beginners-Guide/html/
+
+Standard Streams and Pipes
+---------------------------
+Understanding Standard Input and Output
+https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux/
+
+All about pipes on Linux
+https://www.redhat.com/sysadmin/pipes-command-line-linux
+
+Linux I/O Redirection
+https://www.guru99.com/linux-redirection.html
+
+Named Pipes (FIFOs)
+https://www.linuxjournal.com/article/2156
+
+Essential Commands
+------------------
+grep Manual
+https://www.gnu.org/software/grep/manual/grep.html
+
+sed - Stream Editor
+https://www.gnu.org/software/sed/manual/sed.html
+
+awk Tutorial
+https://www.grymoire.com/Unix/Awk.html
+
+sort Command Tutorial
+https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html
+
+uniq Command
+https://www.gnu.org/software/coreutils/manual/html_node/uniq-invocation.html
+
+cut Command Examples
+https://shapeshed.com/unix-cut/
+
+curl Tutorial
+https://curl.se/docs/manual.html
+
+curl Cookbook
+https://catonmat.net/cookbooks/curl
+
+Text Processing Tools
+---------------------
+Text Processing Commands
+https://www.thegeekstuff.com/2012/02/linux-text-processing-commands/
+
+Advanced Bash-Scripting Guide - Text Processing Commands
+https://tldp.org/LDP/abs/html/textproc.html
+
+Regular Expressions Tutorial
+https://www.regular-expressions.info/tutorial.html
+
+Regex101 - Regex Tester
+https://regex101.com/
+
+Data Formats
+------------
+CSV Format Specification (RFC 4180)
+https://tools.ietf.org/html/rfc4180
+
+JSON Lines (JSONL)
+https://jsonlines.org/
+
+Working with JSON at the Command Line
+https://www.linode.com/docs/guides/how-to-use-jq/
+
+Streaming Data Processing
+--------------------------
+Stream Processing 101
+https://www.oreilly.com/radar/the-world-beyond-batch-streaming-101/
+
+Unix Pipelines and Stream Processing
+https://adamdrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html
+
+Big Data Processing with Unix Tools
+https://aadrake.com/posts/2014-08-command-line-tools-can-be-faster-than-hadoop.html
+
+Performance and Optimization
+-----------------------------
+Performance Analysis with Time
+https://www.gnu.org/software/time/
+
+GNU Parallel Tutorial
+https://www.gnu.org/software/parallel/parallel_tutorial.html
+
+Optimizing Pipelines
+https://www.pixelbeat.org/programming/profiling/
+
+Command Examples and Cheatsheets
+---------------------------------
+Linux Command Library
+https://linuxcommandlibrary.com/
+
+ExplainShell - Command Breakdown
+https://explainshell.com/
+
+Bash One-Liners Explained
+https://catonmat.net/bash-one-liners-explained-part-one
+
+Data Science One-Liners
+https://github.com/onceupon/Bash-Oneliner
+
+Real-World Use Cases
+---------------------
+Processing Large Files with Unix Tools
+https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/
+
+Log Analysis with Command Line
+https://www.loggly.com/blog/analyzing-log-data-with-logstash-elasticsearch-and-kibana/
+
+CSV Processing Best Practices
+https://csvkit.readthedocs.io/en/latest/
+
+Interactive Learning
+--------------------
+OverTheWire - Bandit (Linux Command Line Game)
+https://overthewire.org/wargames/bandit/
+
+Command Line Challenge
+https://cmdchallenge.com/
+
+Linux Journey - Learn Linux
+https://linuxjourney.com/
+
+Community and Forums
+--------------------
+Unix & Linux Stack Exchange
+https://unix.stackexchange.com/
+
+r/commandline on Reddit
+https://www.reddit.com/r/commandline/
+
+r/bash on Reddit
+https://www.reddit.com/r/bash/
+
+Linux Questions Forum
+https://www.linuxquestions.org/
+
+Public Datasets for Practice
+-----------------------------
+Awesome Public Datasets
+https://github.com/awesomedata/awesome-public-datasets
+
+Data.gov
+https://data.gov/
+
+Kaggle Datasets
+https://www.kaggle.com/datasets
+
+UCI Machine Learning Repository
+https://archive.ics.uci.edu/ml/index.php
+
+Tools for Data Scientists
+--------------------------
+csvkit - CSV utilities
+https://csvkit.readthedocs.io/
+
+jq - JSON processor
+https://stedolan.github.io/jq/
+
+xsv - Fast CSV toolkit
+https://github.com/BurntSushi/xsv
+
+Miller (mlr) - Data processing
+https://miller.readthedocs.io/
+
+Videos and Courses
+------------------
+Missing Semester of Your CS Education
+https://missing.csail.mit.edu/
+
+Command Line Power User
+https://commandlinepoweruser.com/
+
+Linux Command Line Full Course
+https://www.youtube.com/watch?v=ZtqBQ68cfJc
+
+Standards and Specifications
+-----------------------------
+POSIX Standard
+https://pubs.opengroup.org/onlinepubs/9699919799/
+
+Filesystem Hierarchy Standard
+https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
+
+Style Guides
+------------
+Google Shell Style Guide
+https://google.github.io/styleguide/shellguide.html
+
+Bash Best Practices
+https://bertvv.github.io/cheat-sheets/Bash.html

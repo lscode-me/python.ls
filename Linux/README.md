@@ -34,7 +34,79 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 2. Shell Programming as a Mini-DSL for Data Processing
+# 2. Files, I-nodes & File Descriptors  
+### *Understanding Unix File System Architecture*
+
+### Topics
+- **I-nodes (index nodes)**  
+  - What is an i-node: metadata structure (permissions, timestamps, size, pointers to blocks)  
+  - I-node vs filename: hard links point to the same i-node  
+  - `ls -i` to view i-node numbers  
+  - `stat` command for detailed i-node information  
+  
+- **File descriptors**  
+  - File descriptor = integer handle to open files  
+  - Process file descriptor table  
+  - Standard descriptors: 0 (stdin), 1 (stdout), 2 (stderr)  
+  - `/proc/[pid]/fd/` - view open file descriptors  
+  - Redirecting descriptors: `2>&1`, `1>&2`, `3>file`  
+  
+- **File types in Unix**  
+  - Regular files (`-`)  
+  - Directories (`d`)  
+  - Symbolic links (`l`)  
+  - Named pipes/FIFOs (`p`)  
+  - Sockets (`s`)  
+  - Character devices (`c`)  
+  - Block devices (`b`)  
+  - Identifying with `ls -l` first character  
+  
+- **File permissions**  
+  - Read (r=4), Write (w=2), Execute (x=1)  
+  - User, Group, Other (ugo)  
+  - Octal notation: `chmod 755`, `chmod 644`  
+  - Symbolic notation: `chmod u+x`, `chmod go-w`  
+  - Special bits: setuid (4000), setgid (2000), sticky (1000)  
+  - `umask` - default permission mask  
+  
+- **stdin/stdout/stderr as files**  
+  - `/dev/stdin` → `/proc/self/fd/0`  
+  - `/dev/stdout` → `/proc/self/fd/1`  
+  - `/dev/stderr` → `/proc/self/fd/2`  
+  - `/dev/null` - the black hole  
+  - `/dev/zero`, `/dev/random`, `/dev/urandom`  
+  
+- **File data formats**  
+  - Text vs binary files  
+  - Line endings: `\n` (Unix), `\r\n` (Windows), `\r` (old Mac)  
+  - Character encoding: ASCII, UTF-8, UTF-16, Latin-1  
+  - `file` command to identify format  
+  - Magic bytes and file signatures  
+
+### Learning Goals
+- Understand Unix file system abstractions  
+- Master file descriptors and redirection  
+- Work confidently with permissions  
+- Distinguish file types and formats  
+
+### Hands-on Tasks
+1. Use `stat` to inspect i-node information for a file and its hard link.  
+2. Create a script that redirects stdout to one file and stderr to another.  
+3. List all file types in `/dev` using `ls -l | cut -c1 | sort | uniq -c`.  
+4. Change permissions on a script: make executable for user, read-only for others.  
+5. Read from `/dev/urandom`, pipe through `base64`, save to file.  
+6. Use `lsof` or `/proc/self/fd/` to inspect open file descriptors of a running process.  
+7. Identify file formats using `file` command on various files.  
+8. Create hard link and symbolic link, compare i-node numbers.  
+9. Redirect stderr to stdout and pipe both to `grep`.  
+10. Set umask and create files to observe default permissions.
+
+### Tools
+`stat`, `ls`, `ln`, `chmod`, `umask`, `file`, `lsof`, `cat`, redirection operators (`>`, `>>`, `2>`, `&>`, `2>&1`)
+
+---
+
+# 3. Shell Programming as a Mini-DSL for Data Processing
 
 ### Topics
 - Command substitution `$(...)`  
@@ -56,7 +128,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 3. Coreutils as Building Blocks of Pipelines
+# 4. Coreutils as Building Blocks of Pipelines
 
 ### Topics
 - Streaming utilities  
@@ -78,7 +150,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 4. grep, sed, and awk — The Core Text Processing Trio
+# 5. grep, sed, and awk — The Core Text Processing Trio
 
 ### Topics
 - Regular expressions  
@@ -99,7 +171,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 5. Working with Structured Data: CSV, JSON, YAML, XML
+# 6. Working with Structured Data: CSV, JSON, YAML, XML
 
 ### Topics
 - Structured formats overview  
@@ -120,7 +192,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 6. Streaming Analytics & Aggregations
+# 7. Streaming Analytics & Aggregations
 
 ### Topics
 - Streaming join, group-by, reduce  
@@ -142,7 +214,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 7. Log Processing & API Data Pipelines
+# 8. Log Processing & API Data Pipelines
 
 ### Topics
 - JSONL (one JSON per line)  
@@ -163,7 +235,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 8. Pipeline Performance, Parallelism & Scaling
+# 9. Pipeline Performance, Parallelism & Scaling
 
 ### Topics
 - GNU parallel  
@@ -185,7 +257,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 9. Streams, Pseudo-files & IPC (`-`, `p`, `s`)
+# 10. Streams, Pseudo-files & IPC (`-`, `p`, `s`)
 
 ### Topics
 - `-` as stdin/stdout pseudo-file  
@@ -206,7 +278,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 10. Bash as a Glue Language
+# 11. Bash as a Glue Language
 
 ### Topics
 - Combining many tools  
@@ -227,7 +299,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 11. Python & External Languages in Pipelines
+# 12. Python & External Languages in Pipelines
 
 ### Topics
 - Python as a stream filter  
@@ -248,7 +320,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 12. Architecture of Complex Pipelines  
+# 13. Architecture of Complex Pipelines  
 ### *Map/Reduce, Temporary Files, Dependency Flow*
 
 ### Topics
@@ -273,7 +345,7 @@ The curriculum progresses **from core concepts → to stream processing → to s
 
 ---
 
-# 13. Final Project — Data Pipeline Challenge
+# 14. Final Project — Data Pipeline Challenge
 
 ### Project Summary
 Build a complete ETL pipeline that:

@@ -1,0 +1,257 @@
+Files, I-nodes & File Descriptors - Resources
+==============================================
+
+I-nodes and File System
+-----------------------
+Understanding Unix I-nodes
+https://www.grymoire.com/Unix/Inodes.html
+
+The Inode and the Unix File System
+https://www.linux.com/training-tutorials/understanding-linux-links/
+
+Hard Links and Symbolic Links
+https://linuxgazette.net/105/pitcher.html
+
+File System Hierarchy
+https://www.pathname.com/fhs/
+
+ext4 File System
+https://ext4.wiki.kernel.org/
+
+File Descriptors
+----------------
+Understanding File Descriptors
+https://www.bottomupcs.com/file_descriptors.xhtml
+
+Linux File Descriptors Explained
+https://www.computerhope.com/jargon/f/file-descriptor.htm
+
+Advanced I/O Redirection
+https://tldp.org/LDP/abs/html/io-redirection.html
+
+/proc/[pid]/fd Directory
+https://man7.org/linux/man-pages/man5/proc.5.html
+
+Using lsof Command
+https://www.howtogeek.com/426031/how-to-use-the-linux-lsof-command/
+
+File Types
+----------
+Unix File Types Overview
+https://www.gnu.org/software/libc/manual/html_node/Testing-File-Type.html
+
+Named Pipes (FIFOs)
+https://www.linuxjournal.com/article/2156
+
+Unix Domain Sockets
+https://beej.us/guide/bgipc/html/single/bgipc.html#unixsock
+
+Character and Block Devices
+https://www.kernel.org/doc/html/latest/admin-guide/devices.html
+
+Special Files in /dev
+https://tldp.org/LDP/sag/html/dev-fs.html
+
+File Permissions
+----------------
+Linux File Permissions Explained
+https://www.linode.com/docs/guides/linux-users-and-groups/
+
+Understanding chmod
+https://www.guru99.com/file-permissions.html
+
+Octal Permissions Calculator
+https://chmod-calculator.com/
+
+umask Tutorial
+https://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html
+
+Special Permission Bits (setuid, setgid, sticky)
+https://www.redhat.com/sysadmin/suid-sgid-sticky-bit
+
+POSIX Permissions
+https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html
+
+Access Control Lists (ACLs)
+https://www.redhat.com/sysadmin/linux-access-control-lists
+
+Standard Streams
+----------------
+stdin, stdout, stderr Explained
+https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux/
+
+I/O Redirection Tutorial
+https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-i-o-redirection
+
+Advanced Redirection Techniques
+https://catonmat.net/bash-one-liners-explained-part-three
+
+Here Documents and Here Strings
+https://tldp.org/LDP/abs/html/here-docs.html
+
+Special Device Files
+--------------------
+/dev/null - The Black Hole
+https://www.putorius.net/introduction-to-dev-null.html
+
+/dev/zero and /dev/random
+https://www.redhat.com/sysadmin/redirect-to-dev-null
+
+/dev/urandom vs /dev/random
+https://unix.stackexchange.com/questions/324209/when-to-use-dev-random-vs-dev-urandom
+
+Pseudo-Terminal Devices (/dev/pts)
+https://www.kernel.org/doc/Documentation/filesystems/devpts.txt
+
+File Formats and Encoding
+--------------------------
+File Command Magic Database
+https://www.darwinsys.com/file/
+
+Magic Bytes - File Signatures
+https://en.wikipedia.org/wiki/List_of_file_signatures
+
+Character Encoding Guide
+https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
+
+UTF-8 Everywhere Manifesto
+http://utf8everywhere.org/
+
+iconv - Character Set Conversion
+https://www.gnu.org/software/libc/manual/html_node/iconv-Examples.html
+
+Line Ending Conversions
+https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/
+
+Tools and Utilities
+-------------------
+stat Command Tutorial
+https://www.geeksforgeeks.org/stat-command-in-linux-with-examples/
+
+ln Command - Creating Links
+https://www.computerhope.com/unix/uln.htm
+
+chmod Command Examples
+https://www.computerhope.com/unix/uchmod.htm
+
+lsof - List Open Files
+https://www.tecmint.com/10-lsof-command-examples-in-linux/
+
+file Command Examples
+https://www.tecmint.com/find-linux-file-types/
+
+xxd - Hex Dump
+https://www.tutorialspoint.com/unix_commands/xxd.htm
+
+dd Command Tutorial
+https://www.geeksforgeeks.org/dd-command-linux/
+
+Advanced Topics
+---------------
+File System Internals
+https://www.kernel.org/doc/html/latest/filesystems/
+
+Virtual File Systems (VFS)
+https://www.kernel.org/doc/html/latest/filesystems/vfs.html
+
+Process File Descriptors in /proc
+https://www.kernel.org/doc/html/latest/filesystems/proc.html
+
+File Locking (flock)
+https://www.gnu.org/software/libc/manual/html_node/File-Locks.html
+
+Memory-Mapped Files (mmap)
+https://man7.org/linux/man-pages/man2/mmap.2.html
+
+Sparse Files
+https://www.kernel.org/doc/html/latest/filesystems/ext4/dynamic.html
+
+Debugging and Monitoring
+-------------------------
+strace - Trace System Calls
+https://strace.io/
+
+ltrace - Library Call Tracer
+https://man7.org/linux/man-pages/man1/ltrace.1.html
+
+inotify - Monitor File System Events
+https://man7.org/linux/man-pages/man7/inotify.7.html
+
+Monitoring File Descriptor Usage
+https://www.cyberciti.biz/tips/linux-procfs-file-descriptors.html
+
+Security
+--------
+Linux File Permissions and Security
+https://www.redhat.com/sysadmin/linux-file-permissions-explained
+
+Understanding setuid
+https://www.hackingarticles.in/linux-privilege-escalation-using-suid-binaries/
+
+Finding Security Vulnerabilities
+https://gtfobins.github.io/
+
+File Integrity Monitoring
+https://www.tripwire.com/
+
+Books
+-----
+"The Linux Programming Interface" by Michael Kerrisk
+https://man7.org/tlpi/
+
+"Advanced Programming in the UNIX Environment" by Stevens & Rago
+https://www.apuebook.com/
+
+"Understanding the Linux Kernel" by Bovet & Cesati
+https://www.oreilly.com/library/view/understanding-the-linux/0596005652/
+
+Man Pages
+---------
+stat(1) - Display File Status
+https://man7.org/linux/man-pages/man1/stat.1.html
+
+stat(2) - Get File Status (System Call)
+https://man7.org/linux/man-pages/man2/stat.2.html
+
+open(2) - Open File Descriptor
+https://man7.org/linux/man-pages/man2/open.2.html
+
+chmod(1) - Change File Mode
+https://man7.org/linux/man-pages/man1/chmod.1.html
+
+umask(2) - Set File Mode Creation Mask
+https://man7.org/linux/man-pages/man2/umask.2.html
+
+ln(1) - Make Links
+https://man7.org/linux/man-pages/man1/ln.1.html
+
+lsof(8) - List Open Files
+https://man7.org/linux/man-pages/man8/lsof.8.html
+
+file(1) - Determine File Type
+https://man7.org/linux/man-pages/man1/file.1.html
+
+mkfifo(1) - Make FIFOs
+https://man7.org/linux/man-pages/man1/mkfifo.1.html
+
+Interactive Learning
+--------------------
+Linux File System Exercises
+https://linuxjourney.com/lesson/filesystem-hierarchy
+
+Over The Wire - Bandit Challenges
+https://overthewire.org/wargames/bandit/
+
+Linux Survival
+https://linuxsurvival.com/
+
+Community
+---------
+Unix & Linux Stack Exchange
+https://unix.stackexchange.com/
+
+r/linuxquestions
+https://www.reddit.com/r/linuxquestions/
+
+Linux Questions Forum
+https://www.linuxquestions.org/
