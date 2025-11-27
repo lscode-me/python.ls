@@ -28,6 +28,9 @@ A comprehensive course designed for life science professionals looking to develo
 ### 7. Pythonic
 - [Pythonic Code](Python/Pythonic/Pythonic.md)
 
+### 8. Bioinformatics
+- [Python for Bioinformatics](Python/Bioinformatics/Bioinformatics.md)
+
 ## Linux for Developers
 
 ### 1. Files: types, metadata

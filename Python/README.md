@@ -167,6 +167,30 @@ Write beautiful, idiomatic Python code following best practices.
 
 ---
 
+### 8. Python for Bioinformatics
+
+Apply Python to real-world bioinformatics problems and biological data analysis.
+
+**Topics Covered:**
+- DNA, RNA, and protein sequence analysis
+- Genetic code and translation
+- FASTA and FASTQ file parsing
+- Sequence alignment algorithms (Needleman-Wunsch, Smith-Waterman)
+- BioPython library essentials
+- Working with biological databases (NCBI, UniProt)
+- Sequence motif finding
+- Open Reading Frame (ORF) detection
+- Multiple sequence alignment
+- Phylogenetic analysis basics
+- Real-world bioinformatics workflows
+
+**Materials:**
+- [Bioinformatics.md](Bioinformatics/Bioinformatics.md) - Python for biological data
+- [Homework Assignments](Bioinformatics/hw.txt) - 12 practical bioinformatics projects
+- [Resources](Bioinformatics/links.txt) - Comprehensive bioinformatics resources
+
+---
+
 ## 🎯 Learning Path
 
 ### Recommended Order
@@ -177,6 +201,7 @@ Write beautiful, idiomatic Python code following best practices.
 5. **Iteration** - Master efficient data processing
 6. **Files** - Handle real-world data
 7. **Pythonic** - Polish your Python skills
+8. **Bioinformatics** - Apply Python to life sciences (capstone)
 
 ### Prerequisites
 - Basic programming knowledge
@@ -237,13 +262,16 @@ Write beautiful, idiomatic Python code following best practices.
 5. **Iteration** - Log file analyzer
 6. **Files** - File-based database
 7. **Pythonic** - Code refactoring tool
+8. **Bioinformatics** - Sequence analysis pipeline
 
 ### Final Project Ideas
-- Bioinformatics sequence analyzer
-- Scientific data processor
-- Laboratory data management system
-- Genomic data visualizer
-- Research paper metadata extractor
+- Complete genomic sequence analyzer with visualization
+- NGS data quality control and filtering pipeline
+- Phylogenetic tree builder with multiple alignment
+- Protein structure analyzer and property predictor
+- Gene finder with functional annotation
+- BLAST-like sequence similarity search tool
+- Laboratory data management system with database integration
 
 ---
 
@@ -286,11 +314,14 @@ Write beautiful, idiomatic Python code following best practices.
 - Database management for research data
 
 ### Domain-Specific Libraries
-- **BioPython** - Biological computation
+- **BioPython** - Biological computation (covered in detail)
 - **scipy/numpy** - Scientific computing
-- **pandas** - Data manipulation
+- **pandas** - Data manipulation and analysis
 - **matplotlib/seaborn** - Visualization
 - **scikit-learn** - Machine learning
+- **pysam** - SAM/BAM file handling
+- **PyVCF** - Variant calling format
+- **HTSeq** - High-throughput sequencing analysis
 
 ---
 
