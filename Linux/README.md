@@ -1,368 +1,307 @@
-# Unix & Data Pipelines  
-### **A Practical Course for Engineers**
+# Unix & Data Pipelines
+### A Practical Course for Engineers
+
+A course that teaches engineers to use Unix tools, shell scripting, and CLI-based data processing as a powerful DSL for building data pipelines. Students learn to work with large datasets, transform structured and unstructured data, and integrate Unix tools with Python.
 
 ---
 
-## **Course Overview**
+## 📚 Course Contents
 
-This course teaches engineers to use Unix tools, shell scripting, and CLI-based data processing as a powerful DSL (domain-specific language) for building data pipelines.  
-Students learn to work with large datasets, transform structured and unstructured data, orchestrate multi-step pipelines, and integrate Unix tools with Python.
+### 1. Unix as a Language of Data & Streams
 
-The curriculum progresses **from core concepts → to stream processing → to structured data → to scaling → to complex pipeline architecture**.
+Introduction to Unix philosophy and stream-based data processing.
 
----
+**Topics:** Streams, pipes, stdin/stdout, Filter→Transform→Aggregate workflow
 
-# 1. Unix as a Language of Data & Streams
+**Materials:**
+- [Lecture](01_Unix_Streams/lecture.md) - Unix philosophy for data processing
+- [Sample Data](01_Unix_Streams/DataSamples.md) - Practice datasets
+- [Homework](01_Unix_Streams/hw.txt) - 10 assignments + bonus ETL project
+- [Resources](01_Unix_Streams/links.txt)
 
-### Topics
-- Unix philosophy for data-intensive tasks  
-- Streams, pipes, stdin/stdout  
-- Filter → Transform → Aggregate workflow  
-- Text as the universal data interface  
-
-### Learning Goals
-- Think in terms of *data flowing through transformations*  
-- Build simple analytical pipelines  
-
-### Hands-on Tasks
-1. Fetch a CSV using `curl`, filter by date, show top 10 entries.  
-2. Count unique column values using pipelines.  
-3. Compute most frequent values in a log or CSV.
-
-### Tools
-`curl`, `cut`, `grep`, `sort`, `uniq`, `head`  
+**Tools:** `curl`, `cut`, `grep`, `sort`, `uniq`, `head`, `tail`
 
 ---
 
-# 2. Files, I-nodes & File Descriptors  
-### *Understanding Unix File System Architecture*
+### 2. Files, I-nodes & File Descriptors
 
-### Topics
-- **I-nodes (index nodes)**  
-  - What is an i-node: metadata structure (permissions, timestamps, size, pointers to blocks)  
-  - I-node vs filename: hard links point to the same i-node  
-  - `ls -i` to view i-node numbers  
-  - `stat` command for detailed i-node information  
-  
-- **File descriptors**  
-  - File descriptor = integer handle to open files  
-  - Process file descriptor table  
-  - Standard descriptors: 0 (stdin), 1 (stdout), 2 (stderr)  
-  - `/proc/[pid]/fd/` - view open file descriptors  
-  - Redirecting descriptors: `2>&1`, `1>&2`, `3>file`  
-  
-- **File types in Unix**  
-  - Regular files (`-`)  
-  - Directories (`d`)  
-  - Symbolic links (`l`)  
-  - Named pipes/FIFOs (`p`)  
-  - Sockets (`s`)  
-  - Character devices (`c`)  
-  - Block devices (`b`)  
-  - Identifying with `ls -l` first character  
-  
-- **File permissions**  
-  - Read (r=4), Write (w=2), Execute (x=1)  
-  - User, Group, Other (ugo)  
-  - Octal notation: `chmod 755`, `chmod 644`  
-  - Symbolic notation: `chmod u+x`, `chmod go-w`  
-  - Special bits: setuid (4000), setgid (2000), sticky (1000)  
-  - `umask` - default permission mask  
-  
-- **stdin/stdout/stderr as files**  
-  - `/dev/stdin` → `/proc/self/fd/0`  
-  - `/dev/stdout` → `/proc/self/fd/1`  
-  - `/dev/stderr` → `/proc/self/fd/2`  
-  - `/dev/null` - the black hole  
-  - `/dev/zero`, `/dev/random`, `/dev/urandom`  
-  
-- **File data formats**  
-  - Text vs binary files  
-  - Line endings: `\n` (Unix), `\r\n` (Windows), `\r` (old Mac)  
-  - Character encoding: ASCII, UTF-8, UTF-16, Latin-1  
-  - `file` command to identify format  
-  - Magic bytes and file signatures  
+Understanding Unix file system architecture.
 
-### Learning Goals
-- Understand Unix file system abstractions  
-- Master file descriptors and redirection  
-- Work confidently with permissions  
-- Distinguish file types and formats  
+**Topics:** I-nodes, file descriptors, file types, permissions, special files
 
-### Hands-on Tasks
-1. Use `stat` to inspect i-node information for a file and its hard link.  
-2. Create a script that redirects stdout to one file and stderr to another.  
-3. List all file types in `/dev` using `ls -l | cut -c1 | sort | uniq -c`.  
-4. Change permissions on a script: make executable for user, read-only for others.  
-5. Read from `/dev/urandom`, pipe through `base64`, save to file.  
-6. Use `lsof` or `/proc/self/fd/` to inspect open file descriptors of a running process.  
-7. Identify file formats using `file` command on various files.  
-8. Create hard link and symbolic link, compare i-node numbers.  
-9. Redirect stderr to stdout and pipe both to `grep`.  
-10. Set umask and create files to observe default permissions.
+**Materials:**
+- [Lecture](02_Files_Inodes_Descriptors/lecture.md) - Complete file system guide
+- [Homework](02_Files_Inodes_Descriptors/hw.txt) - 10 assignments + 4 bonus challenges
+- [Resources](02_Files_Inodes_Descriptors/links.txt)
 
-### Tools
-`stat`, `ls`, `ln`, `chmod`, `umask`, `file`, `lsof`, `cat`, redirection operators (`>`, `>>`, `2>`, `&>`, `2>&1`)
+**Tools:** `stat`, `ls`, `ln`, `chmod`, `umask`, `file`, `lsof`, redirections
 
 ---
 
-# 3. Shell Programming as a Mini-DSL for Data Processing
+### 3. Shell Programming
 
-### Topics
-- Command substitution `$(...)`  
-- Streaming loops: `while read`  
-- Arrays, strings, arithmetic  
-- Functions, exit codes, `set -euo pipefail`  
-- Process substitution `<(cmd)` and `>(cmd)`  
+Bash as a domain-specific language for data processing.
 
-### Learning Goals
-- Write safe, reusable data-processing scripts  
+**Topics:** Command substitution, `while read`, arrays, functions, `set -euo pipefail`, process substitution
 
-### Hands-on Tasks
-1. Script that reads JSONL from stdin → filters with `jq` → outputs CSV.  
-2. Streaming loop calculating mean/median of a field.  
-3. Join two transformed streams using process substitution.
+**Materials:**
+- [Lecture](03_Shell_Programming/lecture.md) - Shell scripting for data pipelines
+- [Homework](03_Shell_Programming/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](03_Shell_Programming/links.txt)
 
-### Tools
-`bash`, `jq`, `awk`, `printf`
+**Tools:** `bash`, `jq`, `awk`, `printf`
 
 ---
 
-# 4. Coreutils as Building Blocks of Pipelines
+### 4. Coreutils Data Transformation
 
-### Topics
-- Streaming utilities  
-- Field manipulation with `cut`, `paste`, `tr`  
-- Sorting & merging large files  
-- Splitting datasets  
-- Stream buffering (`stdbuf`) & monitoring (`pv`)  
+Building blocks for efficient data pipelines.
 
-### Learning Goals
-- Efficiently work with multi-gigabyte datasets  
+**Topics:** Field manipulation, sorting, splitting datasets, stream buffering & monitoring
 
-### Hands-on Tasks
-1. Split a large CSV into chunks, then merge them back.  
-2. Count lines/words/characters across files.  
-3. Use `pv` + `stdbuf` to process a 10GB file smoothly.
+**Materials:**
+- [Lecture](04_Coreutils/lecture.md) - Coreutils for data processing
+- [Homework](04_Coreutils/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](04_Coreutils/links.txt)
 
-### Tools
-`cat`, `cut`, `paste`, `sort`, `uniq`, `split`, `pv`, `stdbuf`
+**Tools:** `cat`, `cut`, `paste`, `tr`, `sort`, `uniq`, `split`, `pv`, `stdbuf`
 
 ---
 
-# 5. grep, sed, and awk — The Core Text Processing Trio
+### 5. grep, sed, awk — The Text Processing Trio
 
-### Topics
-- Regular expressions  
-- Filtering with `grep`  
-- Stream editing with `sed`  
-- Field-based analytics with `awk`  
+Master text filtering, transformation, and analytics.
 
-### Learning Goals
-- Perform non-trivial text transformations and aggregations  
+**Topics:** Regular expressions, stream editing, field-based analytics
 
-### Hands-on Tasks
-1. Extract all requests with status 500.  
-2. Anonymize emails using `sed`.  
-3. Compute average response time per IP with `awk`.
+**Materials:**
+- [Lecture](05_Grep_Sed_Awk/lecture.md) - Complete text processing guide
+- [Sample Data](05_Grep_Sed_Awk/DataSamples.md) - Practice datasets
+- [Homework](05_Grep_Sed_Awk/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](05_Grep_Sed_Awk/links.txt)
 
-### Tools
-`grep`, `sed`, `awk`
+**Tools:** `grep`, `sed`, `awk`
 
 ---
 
-# 6. Working with Structured Data: CSV, JSON, YAML, XML
+### 6. Structured Data: CSV, JSON, YAML, XML
 
-### Topics
-- Structured formats overview  
-- JSON parsing with `jq`  
-- CSV processing with `csvkit`, `mlr`, `datamash`  
-- YAML (`yq`) and XML (`xmlstarlet`) processing  
+Working with structured data formats.
 
-### Learning Goals
-- Transform and analyze structured data streams  
+**Topics:** JSON parsing with jq, CSV with csvkit/mlr, YAML with yq, XML with xmlstarlet
 
-### Hands-on Tasks
-1. Convert JSON → CSV → aggregated CSV → YAML report.  
-2. Compute diffs between YAML files.  
-3. Extract data from XML and convert to JSON.
+**Materials:**
+- [Lecture](06_Structured_Data/lecture.md) - Structured data processing
+- [Sample Data](06_Structured_Data/DataSamples.md) - Practice datasets
+- [Homework](06_Structured_Data/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](06_Structured_Data/links.txt)
 
-### Tools
-`jq`, `csvkit`, `mlr`, `yq`, `xmlstarlet`
+**Tools:** `jq`, `csvkit`, `mlr`, `yq`, `xmlstarlet`
 
 ---
 
-# 7. Streaming Analytics & Aggregations
+### 7. Streaming Analytics & Aggregations
 
-### Topics
-- Streaming join, group-by, reduce  
-- Textual map/reduce patterns  
-- Column statistics: mean, median, stdev  
-- Multi-field grouping  
+Analytical queries using CLI tools.
 
-### Learning Goals
-- Analytical queries using CLI tools  
-- Processing large datasets without loading into memory  
+**Topics:** Streaming joins, group-by, reduce, column statistics, multi-field grouping
 
-### Hands-on Tasks
-1. Group by a categorical column and show top N groups.  
-2. Compute mean and median with `datamash`.  
-3. Join two large CSV files.
+**Materials:**
+- [Lecture](07_Streaming_Analytics/lecture.md) - Analytics without loading into memory
+- [Sample Data](07_Streaming_Analytics/DataSamples.md) - Practice datasets
+- [Homework](07_Streaming_Analytics/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](07_Streaming_Analytics/links.txt)
 
-### Tools
-`awk`, `datamash`, `mlr`, `sort`, `join`
+**Tools:** `awk`, `datamash`, `mlr`, `sort`, `join`
 
 ---
 
-# 8. Log Processing & API Data Pipelines
+### 8. Log Processing & API Pipelines
 
-### Topics
-- JSONL (one JSON per line)  
-- Gzip streaming (`zcat`, `bzcat`, `xzcat`)  
-- REST API pipelines  
-- Markdown table generation  
+Working with logs and REST APIs.
 
-### Learning Goals
-- Transform and analyze log data and API responses  
+**Topics:** JSONL format, gzip streaming, REST API pipelines, report generation
 
-### Hands-on Tasks
-1. Stream-process gzip logs and compute IP frequencies.  
-2. Query a REST API with `curl`, compute statistics using `jq`.  
-3. Generate Markdown tables using `column -t`.
+**Materials:**
+- [Lecture](08_Log_Processing/lecture.md) - Log and API data processing
+- [Sample Data](08_Log_Processing/DataSamples.md) - Practice datasets
+- [Homework](08_Log_Processing/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](08_Log_Processing/links.txt)
 
-### Tools
-`curl`, `jq`, `zcat`, `datamash`, `column`
+**Tools:** `curl`, `jq`, `zcat`, `datamash`, `column`
 
 ---
 
-# 9. Pipeline Performance, Parallelism & Scaling
+### 9. Performance & Parallelism
 
-### Topics
-- GNU parallel  
-- `xargs -P` parallel execution  
-- External sorting (`sort -S`, `--parallel`)  
-- Profiling: `time`, `dstat`, `pv`  
+Optimizing pipeline performance.
 
-### Learning Goals
-- Break large jobs into parallel chunks  
-- Improve performance of data pipelines  
+**Topics:** GNU parallel, xargs -P, external sorting optimization, profiling
 
-### Hands-on Tasks
-1. Process 100 CSV files in parallel.  
-2. Tune sorting performance using buffer size.  
-3. Measure pipeline throughput with `pv`.
+**Materials:**
+- [Lecture](09_Performance_Parallelism/lecture.md) - Performance optimization techniques
+- [Homework](09_Performance_Parallelism/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](09_Performance_Parallelism/links.txt)
 
-### Tools
-`parallel`, `xargs`, `pv`, `time`, `dstat`, `sort`
+**Tools:** `parallel`, `xargs`, `pv`, `time`, `dstat`, `sort`
 
 ---
 
-# 10. Streams, Pseudo-files & IPC (`-`, `p`, `s`)
+### 10. Streams, IPC & Unix Sockets
 
-### Topics
-- `-` as stdin/stdout pseudo-file  
-- Named pipes (FIFO) using `mkfifo`  
-- UNIX domain sockets  
-- Shell ↔ Python IPC  
+Inter-process communication and advanced streaming.
 
-### Learning Goals
-- Build multi-process pipelines and IPC-driven flows  
+**Topics:** Named pipes (FIFO), Unix domain sockets, Shell↔Python IPC, buffering control
 
-### Hands-on Tasks
-1. Use `-` to build multi-stage pipelines without files.  
-2. Create a FIFO pipe sending JSON to another process.  
-3. Python UNIX socket server + Bash client (`socat`).  
+**Materials:**
+- [Lecture](10_Streams_IPC/lecture.md) - IPC and advanced streaming
+- [Homework](10_Streams_IPC/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](10_Streams_IPC/links.txt)
 
-### Tools
-`mkfifo`, `socat`, `jq`, `cat`, Python’s `socket`
+**Tools:** `mkfifo`, `socat`, `nc`, Python `socket`
 
 ---
 
-# 11. Bash as a Glue Language
+### 11. Bash as a Glue Language
 
-### Topics
-- Combining many tools  
-- Error handling with `trap`, `pipefail`  
-- `.env`-based configuration  
-- Temporary files & directories  
+Writing robust production scripts.
 
-### Learning Goals
-- Write robust multi-step processing scripts  
+**Topics:** Error handling with `trap`, `.env` configuration, temporary files, signal handling
 
-### Hands-on Tasks
-1. ETL job: API → JSON → CSV → SQLite → Markdown report.  
-2. Add `trap`-based cleanup and error-handling.  
-3. Parameterize commands via environment variables.
+**Materials:**
+- [Lecture](11_Bash_Glue/lecture.md) - Production-ready scripting
+- [Homework](11_Bash_Glue/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](11_Bash_Glue/links.txt)
 
-### Tools
-`bash`, `jq`, `sqlite3`, `env`, `trap`
+**Tools:** `bash`, `trap`, `mktemp`, `env`
 
 ---
 
-# 12. Python & External Languages in Pipelines
+### 12. Python in Pipelines
 
-### Topics
-- Python as a stream filter  
-- Reading stdin, writing stdout  
-- pandas CLI vs Miller (`mlr`)  
-- Hybrid Bash ↔ Python pipelines  
+Integrating Python into Unix workflows.
 
-### Learning Goals
-- Seamlessly integrate Python into Unix workflows  
+**Topics:** Python as stream filter, stdin/stdout, pandas vs mlr, hybrid pipelines
 
-### Hands-on Tasks
-1. Python script reading JSONL from stdin and outputting a summary.  
-2. Replace a slow CLI step with Python for comparison.  
-3. Compare pandas vs Miller performance.
+**Materials:**
+- [Lecture](12_Python_Pipelines/lecture.md) - Python integration patterns
+- [Homework](12_Python_Pipelines/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](12_Python_Pipelines/links.txt)
 
-### Tools
-`python`, `jq`, `mlr`, `pandas`
+**Tools:** `python`, `jq`, `mlr`, `pandas`
 
 ---
 
-# 13. Architecture of Complex Pipelines  
-### *Map/Reduce, Temporary Files, Dependency Flow*
+### 13. Complex Pipeline Architecture
 
-### Topics
-- Unix-style map/reduce  
-- Temporary staging files (`mktemp`)  
-- Checkpoints & `.done` markers  
-- Makefile-based orchestration  
-- Reproducibility & restartability  
+Building large, maintainable pipelines.
 
-### Learning Goals
-- Architect large, restartable, debuggable pipelines  
-- Balance pipes vs temporary files  
-- Manage dependencies explicitly  
+**Topics:** Map/reduce patterns, checkpoints, staging, Makefile orchestration, reproducibility
 
-### Hands-on Tasks
-1. Build a chunked map/reduce pipeline using `split` + `parallel`.  
-2. Add `.done` checkpoints for restartability.  
-3. Write a Makefile orchestrating multi-stage processing.
+**Materials:**
+- [Lecture](13_Complex_Pipelines/lecture.md) - Production pipeline architecture
+- [Homework](13_Complex_Pipelines/hw.txt) - 10 assignments + 5 bonus challenges
+- [Resources](13_Complex_Pipelines/links.txt)
 
-### Tools
-`parallel`, `split`, `datamash`, `make`, temporary directories
+**Tools:** `parallel`, `split`, `make`, `mktemp`
 
 ---
 
-# 14. Final Project — Data Pipeline Challenge
+### 14. Final Project — Data Pipeline Challenge
 
-### Project Summary
-Build a complete ETL pipeline that:
+Build a complete production-ready ETL pipeline.
 
-- Processes **5GB of JSONL or CSV**  
-- Uses streaming and parallel processing  
-- Converts between formats (JSON ↔ CSV ↔ Markdown)  
-- Uses checkpoints & logging  
-- Integrates Bash with Python  
+**Requirements:**
+- Process 5GB+ of JSONL or CSV data
+- Use streaming and parallel processing
+- Convert between formats (JSON↔CSV↔Markdown)
+- Implement checkpoints & logging
+- Integrate Bash with Python
 
-### Evaluation Criteria
-- Correctness  
-- Performance  
-- Architecture clarity  
-- Error handling & safety  
-- Clean code & documentation  
+**Materials:**
+- [Project Requirements](14_Final_Project/lecture.md) - Full project specification
+- [Homework](14_Final_Project/hw.txt) - Deliverables checklist
+
+**Evaluation:** Correctness (40%), Performance (20%), Code Quality (20%), Documentation (20%)
 
 ---
 
-**End of syllabus.**
+## 🎯 Learning Path
+
+### Progression
+```
+Core Concepts → Stream Processing → Structured Data → Scaling → Complex Architecture
+```
+
+1. **Unix Streams** - Think in terms of data flows
+2. **Files & I-nodes** - Understand the file system
+3. **Shell Programming** - Write reusable scripts
+4. **Coreutils** - Master the building blocks
+5. **grep/sed/awk** - Text processing power
+6. **Structured Data** - Handle JSON, CSV, YAML
+7. **Analytics** - Aggregate without loading into memory
+8. **Logs & APIs** - Real-world data sources
+9. **Performance** - Parallelize and optimize
+10. **IPC** - Advanced inter-process communication
+11. **Bash Glue** - Production-ready scripts
+12. **Python Pipes** - Hybrid workflows
+13. **Architecture** - Large pipeline design
+14. **Final Project** - Apply everything
+
+---
+
+## 📖 How to Use This Course
+
+### For Each Module:
+1. **Read the lecture** (lecture.md) - Theory and examples
+2. **Practice with sample data** (DataSamples.md) - Where available
+3. **Complete homework** (hw.txt) - 10 assignments per module
+4. **Explore resources** (links.txt) - Deepen understanding
+5. **Take the quiz** (quiz.md) - Self-assessment
+
+### Study Tips:
+- Start with small data samples, then scale up
+- Test each pipeline stage independently
+- Use `head` to limit output during development
+- Save intermediate results when debugging
+
+---
+
+## 🛠️ Prerequisites
+
+### Required Tools
+- Linux/macOS terminal (or WSL on Windows)
+- `bash` 4.0+
+- Core utilities: `grep`, `sed`, `awk`, `sort`, `uniq`, `cut`
+
+### Recommended Tools
+- `jq` - JSON processor
+- `mlr` (Miller) - CSV/JSON Swiss Army knife
+- `parallel` - GNU Parallel
+- `pv` - Pipe Viewer
+- Python 3.8+ with `pandas`
+
+### Installation (Ubuntu/Debian)
+```bash
+sudo apt install jq miller parallel pv csvkit
+pip install pandas
+```
+
+### Installation (macOS)
+```bash
+brew install jq miller parallel pv csvkit
+pip install pandas
+```
+
+---
+
+## 📚 Recommended Resources
+
+- [Data Science at the Command Line](https://datascienceatthecommandline.com/)
+- [The Art of Command Line](https://github.com/jlevy/the-art-of-command-line)
+- [Bash Hackers Wiki](https://wiki.bash-hackers.org/)
+- `man` pages: `man bash`, `man awk`, `man jq`
+
+---
+
+Happy piping! 🚀
