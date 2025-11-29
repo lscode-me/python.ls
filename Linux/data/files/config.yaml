@@ -1,0 +1,23 @@
+database:
+  host: localhost
+  port: 5432
+  name: myapp
+  user: admin
+
+server:
+  host: 0.0.0.0
+  port: 8080
+  debug: false
+
+logging:
+  level: INFO
+  format: json
+  file: /var/log/app.log
+
+features:
+  - name: authentication
+    enabled: true
+  - name: caching
+    enabled: true
+    ttl: 3600
+

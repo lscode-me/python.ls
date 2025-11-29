@@ -2,7 +2,7 @@
 
 ## Sample Data Files
 
-📁 **[DataSamples.md](DataSamples.md)** — sample data files for practice (app.jsonl, errors.jsonl, queries.jsonl, access.log, etc.)
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
 
 ---
 

@@ -1,0 +1,10 @@
+date,product,quantity,revenue,region
+2024-03-15,Phone,5,4995,North
+2024-03-15,Laptop,3,4497,South
+2024-03-16,Phone,8,7992,East
+2024-03-16,Shirt,15,675,North
+2024-03-17,Laptop,4,5996,West
+2024-03-17,Pants,12,960,South
+2024-03-18,Tablet,6,3594,East
+2024-03-18,Jacket,8,1200,North
+

@@ -1,5 +1,7 @@
 # Bash as Glue: Combining Tools & Error Handling
 
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
 ## Overview
 Use bash to combine tools, handle errors with `trap`, manage configuration with `.env`, and work with temporary files.
 

@@ -1,0 +1,8 @@
+{"timestamp": "2024-03-15T10:30:00Z", "user_id": 1, "type": "login", "session_id": "s001"}
+{"timestamp": "2024-03-15T10:35:00Z", "user_id": 1, "type": "purchase", "amount": 999, "product_id": 1}
+{"timestamp": "2024-03-15T10:40:00Z", "user_id": 2, "type": "login", "session_id": "s002"}
+{"timestamp": "2024-03-15T10:45:00Z", "user_id": 1, "type": "error", "message": "Payment failed"}
+{"timestamp": "2024-03-15T10:50:00Z", "user_id": 2, "type": "purchase", "amount": 1499, "product_id": 2}
+{"timestamp": "2024-03-15T11:00:00Z", "user_id": 3, "type": "login", "session_id": "s003"}
+{"timestamp": "2024-03-15T11:05:00Z", "user_id": 3, "type": "logout", "session_id": "s003"}
+

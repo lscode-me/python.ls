@@ -1,0 +1,7 @@
+{"timestamp": "2024-03-15T10:30:15Z", "error_type": "ConnectionError", "service": "cache", "message": "Failed to connect to cache server"}
+{"timestamp": "2024-03-15T10:31:05Z", "error_type": "TimeoutError", "service": "db", "message": "Database query timeout after 30s"}
+{"timestamp": "2024-03-15T10:32:00Z", "error_type": "ValidationError", "service": "api", "message": "Missing required field: user_id"}
+{"timestamp": "2024-03-15T10:33:15Z", "error_type": "AuthError", "service": "auth", "message": "Invalid token"}
+{"timestamp": "2024-03-15T10:34:00Z", "error_type": "TimeoutError", "service": "db", "message": "Database connection timeout"}
+{"timestamp": "2024-03-15T10:35:30Z", "error_type": "ConnectionError", "service": "cache", "message": "Cache server unreachable"}
+

@@ -1,5 +1,7 @@
 # Shell Programming as a Mini-DSL for Data Processing
 
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
 ## Introduction
 
 Bash isn't just a command interpreter — it's a powerful programming language designed for text processing and pipeline orchestration. When used correctly, shell scripts become a domain-specific language (DSL) for data transformation.

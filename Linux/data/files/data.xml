@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <users>
+    <user id="1">
+      <name>Alice</name>
+      <age>30</age>
+      <city>Moscow</city>
+    </user>
+    <user id="2">
+      <name>Bob</name>
+      <age>25</age>
+      <city>SPb</city>
+    </user>
+    <user id="3">
+      <name>Carol</name>
+      <age>35</age>
+      <city>Kazan</city>
+    </user>
+  </users>
+  <products>
+    <product id="1">
+      <name>Phone</name>
+      <price>999</price>
+    </product>
+    <product id="2">
+      <name>Laptop</name>
+      <price>1499</price>
+    </product>
+  </products>
+</root>
+

@@ -41,7 +41,6 @@ A comprehensive course designed for life science professionals looking to develo
 
 ### 1. Unix as a Language of Data & Streams
 - [Lecture](Linux/01_Unix_Streams/lecture.md) - Unix philosophy, pipes, Filter→Transform→Aggregate
-- [Sample Data](Linux/01_Unix_Streams/DataSamples.md)
 
 ### 2. Files, I-nodes & File Descriptors
 - [Lecture](Linux/02_Files_Inodes_Descriptors/lecture.md) - I-nodes, file descriptors, permissions, file types
@@ -54,19 +53,15 @@ A comprehensive course designed for life science professionals looking to develo
 
 ### 5. grep, sed, awk — Text Processing Trio
 - [Lecture](Linux/05_Grep_Sed_Awk/lecture.md) - Regular expressions, stream editing, analytics
-- [Sample Data](Linux/05_Grep_Sed_Awk/DataSamples.md)
 
 ### 6. Structured Data: CSV, JSON, YAML, XML
 - [Lecture](Linux/06_Structured_Data/lecture.md) - jq, csvkit, mlr, yq, xmlstarlet
-- [Sample Data](Linux/06_Structured_Data/DataSamples.md)
 
 ### 7. Streaming Analytics & Aggregations
 - [Lecture](Linux/07_Streaming_Analytics/lecture.md) - Joins, group-by, reduce, statistics
-- [Sample Data](Linux/07_Streaming_Analytics/DataSamples.md)
 
 ### 8. Log Processing & API Pipelines
 - [Lecture](Linux/08_Log_Processing/lecture.md) - JSONL, gzip streaming, REST APIs
-- [Sample Data](Linux/08_Log_Processing/DataSamples.md)
 
 ### 9. Performance & Parallelism
 - [Lecture](Linux/09_Performance_Parallelism/lecture.md) - GNU parallel, xargs -P, sort tuning, profiling
@@ -88,6 +83,8 @@ A comprehensive course designed for life science professionals looking to develo
 
 📖 **[Linux Course README](Linux/README.md)** - Full course guide with learning path
 
+📁 **[Sample Data](Linux/data/DataSamples.md)** - Unified practice datasets for all modules
+
 ---
 
 ## 📚 Course Structure
@@ -97,7 +94,6 @@ Each topic includes:
 - **hw.txt** - Homework assignments
 - **links.txt** - Additional resources
 - **quiz.md** - Self-assessment questions
-- **DataSamples.md** - Sample data for practice (some modules)
 
 ---
 
@@ -111,7 +107,7 @@ Each topic includes:
 ### Quick Start
 ```bash
 # Clone the repository
-git clone <repo-url>
+git clone https://github.com/orasul/python.ls.git
 cd python.ls
 
 # Start with Python or Linux track

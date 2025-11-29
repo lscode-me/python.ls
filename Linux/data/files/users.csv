@@ -1,0 +1,8 @@
+id,name,email,city,status
+1,Alice,alice@example.com,Moscow,active
+2,Bob,bob@company.org,SPb,active
+3,Carol,carol@test.net,Kazan,inactive
+4,Dave,dave@domain.co.uk,Moscow,active
+5,Eve,eve@service.io,Sochi,inactive
+6,Frank,frank@mail.ru,Novosibirsk,active
+

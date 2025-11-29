@@ -1,0 +1,13 @@
+apple
+banana
+cherry
+apple
+date
+banana
+elderberry
+apple
+fig
+banana
+grape
+cherry
+

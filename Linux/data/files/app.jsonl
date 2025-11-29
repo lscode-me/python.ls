@@ -1,0 +1,10 @@
+{"timestamp": "2024-03-15T10:30:00Z", "level": "INFO", "message": "Application started", "service": "api"}
+{"timestamp": "2024-03-15T10:30:05Z", "level": "DEBUG", "message": "Loading configuration", "service": "api"}
+{"timestamp": "2024-03-15T10:30:10Z", "level": "INFO", "message": "Database connected", "service": "db"}
+{"timestamp": "2024-03-15T10:30:15Z", "level": "ERROR", "message": "Failed to connect to cache", "service": "cache", "error_type": "ConnectionError"}
+{"timestamp": "2024-03-15T10:30:20Z", "level": "WARN", "message": "Retrying cache connection", "service": "cache"}
+{"timestamp": "2024-03-15T10:30:25Z", "level": "INFO", "message": "Cache connected", "service": "cache"}
+{"timestamp": "2024-03-15T10:31:00Z", "level": "INFO", "message": "Request processed", "service": "api", "duration_ms": 45}
+{"timestamp": "2024-03-15T10:31:05Z", "level": "ERROR", "message": "Database timeout", "service": "db", "error_type": "TimeoutError"}
+{"timestamp": "2024-03-15T10:32:00Z", "level": "ERROR", "message": "Invalid request format", "service": "api", "error_type": "ValidationError"}
+

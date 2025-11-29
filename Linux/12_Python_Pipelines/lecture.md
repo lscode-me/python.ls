@@ -1,5 +1,7 @@
 # Python in Pipelines: Hybrid Shell-Python Workflows
 
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
 ## Overview
 Integrate Python into Unix pipelines as stream filters, compare pandas vs command-line tools, and build hybrid pipelines.
 

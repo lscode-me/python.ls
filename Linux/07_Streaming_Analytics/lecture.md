@@ -5,7 +5,7 @@ Perform database-like operations on streams: joins, aggregations, group-by opera
 
 ## Sample Data Files
 
-📁 **[DataSamples.md](DataSamples.md)** — sample data files for practice (customers.csv, orders.csv, events.jsonl, etc.)
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
 
 ---
 

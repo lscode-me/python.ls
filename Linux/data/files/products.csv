@@ -1,0 +1,10 @@
+id,name,price,category,rating
+1,Phone,999,Electronics,4.5
+2,Laptop,1499,Electronics,4.8
+3,Shirt,45,Clothing,4.0
+4,Pants,80,Clothing,4.3
+5,Tablet,599,Electronics,4.2
+6,Jacket,150,Clothing,4.7
+7,Apple,2,Food,4.9
+8,Bread,3,Food,4.6
+

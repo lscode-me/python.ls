@@ -15,7 +15,6 @@ Introduction to Unix philosophy and stream-based data processing.
 
 **Materials:**
 - [Lecture](01_Unix_Streams/lecture.md) - Unix philosophy for data processing
-- [Sample Data](01_Unix_Streams/DataSamples.md) - Practice datasets
 - [Homework](01_Unix_Streams/hw.txt) - 10 assignments + bonus ETL project
 - [Resources](01_Unix_Streams/links.txt)
 
@@ -76,7 +75,6 @@ Master text filtering, transformation, and analytics.
 
 **Materials:**
 - [Lecture](05_Grep_Sed_Awk/lecture.md) - Complete text processing guide
-- [Sample Data](05_Grep_Sed_Awk/DataSamples.md) - Practice datasets
 - [Homework](05_Grep_Sed_Awk/hw.txt) - 10 assignments + 5 bonus challenges
 - [Resources](05_Grep_Sed_Awk/links.txt)
 
@@ -92,7 +90,6 @@ Working with structured data formats.
 
 **Materials:**
 - [Lecture](06_Structured_Data/lecture.md) - Structured data processing
-- [Sample Data](06_Structured_Data/DataSamples.md) - Practice datasets
 - [Homework](06_Structured_Data/hw.txt) - 10 assignments + 5 bonus challenges
 - [Resources](06_Structured_Data/links.txt)
 
@@ -108,7 +105,6 @@ Analytical queries using CLI tools.
 
 **Materials:**
 - [Lecture](07_Streaming_Analytics/lecture.md) - Analytics without loading into memory
-- [Sample Data](07_Streaming_Analytics/DataSamples.md) - Practice datasets
 - [Homework](07_Streaming_Analytics/hw.txt) - 10 assignments + 5 bonus challenges
 - [Resources](07_Streaming_Analytics/links.txt)
 
@@ -124,7 +120,6 @@ Working with logs and REST APIs.
 
 **Materials:**
 - [Lecture](08_Log_Processing/lecture.md) - Log and API data processing
-- [Sample Data](08_Log_Processing/DataSamples.md) - Practice datasets
 - [Homework](08_Log_Processing/hw.txt) - 10 assignments + 5 bonus challenges
 - [Resources](08_Log_Processing/links.txt)
 
@@ -252,9 +247,16 @@ Core Concepts → Stream Processing → Structured Data → Scaling → Complex 
 
 ## 📖 How to Use This Course
 
+### Sample Data
+
+All modules use a unified sample dataset:
+- **[Sample Data](data/DataSamples.md)** - CSV, JSON, logs, and config files with consistent entities
+
+Run the setup script to create all practice files at once.
+
 ### For Each Module:
 1. **Read the lecture** (lecture.md) - Theory and examples
-2. **Practice with sample data** (DataSamples.md) - Where available
+2. **Practice with sample data** - Use the unified dataset
 3. **Complete homework** (hw.txt) - 10 assignments per module
 4. **Explore resources** (links.txt) - Deepen understanding
 5. **Take the quiz** (quiz.md) - Self-assessment

@@ -1,0 +1,9 @@
+[
+  {"id": 1, "name": "Phone", "price": 999, "category": "Electronics"},
+  {"id": 2, "name": "Laptop", "price": 1499, "category": "Electronics"},
+  {"id": 3, "name": "Shirt", "price": 45, "category": "Clothing"},
+  {"id": 4, "name": "Pants", "price": 80, "category": "Clothing"},
+  {"id": 5, "name": "Tablet", "price": 599, "category": "Electronics"},
+  {"id": 6, "name": "Jacket", "price": 150, "category": "Clothing"}
+]
+

@@ -2,7 +2,7 @@
 
 ## Sample Data Files
 
-📁 **[DataSamples.md](DataSamples.md)** — sample data files for practice (users.json, products.json, config.yaml, data.xml, etc.)
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
 
 ---
 

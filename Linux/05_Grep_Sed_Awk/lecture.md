@@ -2,7 +2,7 @@
 
 ## Sample Data Files
 
-📁 **[DataSamples.md](DataSamples.md)** — sample data files for practice (app.log, access.log, data.csv, users.txt, etc.)
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
 
 ---
 
