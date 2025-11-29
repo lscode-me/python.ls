@@ -4,92 +4,27 @@ A comprehensive course designed for life science professionals looking to develo
 
 ---
 
-## 🐍 Python Core Foundations
+## 📚 Courses
 
-### 1. Objects, References, Memory, Types
-- [Objects](Python/Objects/Objects.md) - Python object model and references
-- [Operations](Python/Objects/Operations.md) - Working with Python objects
+### 🐍 Python for Life Science Developers
 
-### 2. Functions and Functional Programming
-- [Functions](Python/Functions/Functions.md) - Arguments, closures, decorators, FP patterns
+**10 modules** covering Python fundamentals, OOP, functional programming, and bioinformatics applications.
 
-### 3. File Handling
-- [Files](Python/Files/Files.md) - File I/O, formats, pathlib
+From objects and memory management to BioPython and sequence analysis. Learn to write clean, efficient, Pythonic code for life science applications.
 
-### 4. Testing in Python
-- [Testing](Python/Testing/Testing.md) - pytest, unittest, TDD, mocking, coverage
-
-### 5. Iteration Protocol
-- [Iteration](Python/Iteration/Iteration.md) - Iterators, generators, itertools
-
-### 6. Streams and Unix I/O
-- [Streams](Python/Streams/Streams.md) - Building Unix-style CLI tools
-
-### 7. OOP (Object-Oriented Programming)
-- [Attributes and Methods](Python/OOP/AttributesAndMethods.md) - Deep dive into class members
-- [OOP Basics](Python/OOP/OOP_Basics.md) - Classes, inheritance, polymorphism
-- [Advanced OOP](Python/OOP/Advanced_OOP.md) - Decorators, dataclasses, metaclasses
-
-### 8. Pythonic Code
-- [Pythonic](Python/Pythonic/Pythonic.md) - Writing idiomatic Python
-
-### 9. Protocols and Interfaces
-- [Protocols](Python/Protocols/Protocols.md) - Duck typing, protocols, ABCs
-
-### 10. Python for Bioinformatics
-- [Bioinformatics](Python/Bioinformatics/Bioinformatics.md) - Sequence analysis, BioPython
-
-📖 **[Python Course README](Python/README.md)** - Full course guide with learning path
+**→ [Python Course README](Python/README.md)** - Full course contents, learning path, and materials
 
 ---
 
-## 🐧 Linux for Developers: Unix & Data Pipelines
+### 🐧 Linux for Developers: Unix & Data Pipelines
 
-### 1. Unix as a Language of Data & Streams
-- [Lecture](Linux/01_Unix_Streams/lecture.md) - Unix philosophy, pipes, Filter→Transform→Aggregate
+**14 modules** teaching Unix tools, shell scripting, and CLI-based data processing.
 
-### 2. Files, I-nodes & File Descriptors
-- [Lecture](Linux/02_Files_Inodes_Descriptors/lecture.md) - I-nodes, file descriptors, permissions, file types
+Master stream processing, structured data formats, performance optimization, and build production-ready ETL pipelines.
 
-### 3. Shell Programming
-- [Lecture](Linux/03_Shell_Programming/lecture.md) - Bash as DSL, loops, functions, error handling
+**→ [Linux Course README](Linux/README.md)** - Full course contents, learning path, and materials
 
-### 4. Coreutils Data Transformation
-- [Lecture](Linux/04_Coreutils/lecture.md) - cut, paste, sort, uniq, split, pv, stdbuf
-
-### 5. grep, sed, awk — Text Processing Trio
-- [Lecture](Linux/05_Grep_Sed_Awk/lecture.md) - Regular expressions, stream editing, analytics
-
-### 6. Structured Data: CSV, JSON, YAML, XML
-- [Lecture](Linux/06_Structured_Data/lecture.md) - jq, csvkit, mlr, yq, xmlstarlet
-
-### 7. Streaming Analytics & Aggregations
-- [Lecture](Linux/07_Streaming_Analytics/lecture.md) - Joins, group-by, reduce, statistics
-
-### 8. Log Processing & API Pipelines
-- [Lecture](Linux/08_Log_Processing/lecture.md) - JSONL, gzip streaming, REST APIs
-
-### 9. Performance & Parallelism
-- [Lecture](Linux/09_Performance_Parallelism/lecture.md) - GNU parallel, xargs -P, sort tuning, profiling
-
-### 10. Streams, IPC & Unix Sockets
-- [Lecture](Linux/10_Streams_IPC/lecture.md) - Named pipes (FIFO), Unix sockets, Shell↔Python IPC
-
-### 11. Bash as a Glue Language
-- [Lecture](Linux/11_Bash_Glue/lecture.md) - Error handling, trap, .env config, temp files
-
-### 12. Python in Pipelines
-- [Lecture](Linux/12_Python_Pipelines/lecture.md) - Python as stream filter, pandas vs mlr
-
-### 13. Complex Pipeline Architecture
-- [Lecture](Linux/13_Complex_Pipelines/lecture.md) - Map/reduce, checkpoints, Makefile orchestration
-
-### 14. Final Project
-- [Project Requirements](Linux/14_Final_Project/lecture.md) - Build a complete ETL pipeline (5GB+ data)
-
-📖 **[Linux Course README](Linux/README.md)** - Full course guide with learning path
-
-📁 **[Sample Data](Linux/data/DataSamples.md)** - Unified practice datasets for all modules
+**→ [Sample Data](Linux/data/DataSamples.md)** - Unified practice datasets for all modules
 
 ---
 
