@@ -1,4 +1,4 @@
-# Structured Data Resources
+# Structured Data Processing (JSON, CSV, YAML, XML) - Resources
 
 ## jq (JSON)
 https://jqlang.github.io/jq/ - Official jq website

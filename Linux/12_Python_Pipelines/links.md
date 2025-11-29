@@ -1,3 +1,5 @@
+# Python in Pipelines: Hybrid Shell-Python Workflows - Resources
+
 https://docs.python.org/3/library/sys.html
 https://docs.python.org/3/library/fileinput.html
 https://pandas.pydata.org/docs/

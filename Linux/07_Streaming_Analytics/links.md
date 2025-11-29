@@ -1,4 +1,4 @@
-# Streaming Analytics Resources
+# Streaming Analytics: Join, Group-By, Map/Reduce - Resources
 
 ## Join Operations
 https://www.gnu.org/software/coreutils/manual/html_node/join-invocation.html

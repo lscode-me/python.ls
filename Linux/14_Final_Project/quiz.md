@@ -1,4 +1,4 @@
-# Final Project Quiz
+# Final Project: Build a Complete ETL Pipeline - Quiz
 
 This is a project-based assessment. No traditional quiz.
 

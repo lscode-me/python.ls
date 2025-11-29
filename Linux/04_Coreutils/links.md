@@ -1,4 +1,4 @@
-# Coreutils Resources
+# Coreutils: Data Transformation Utilities - Resources
 
 ## Official Documentation
 https://www.gnu.org/software/coreutils/manual/

@@ -1,4 +1,4 @@
-# Homework: Streaming Analytics
+# Streaming Analytics: Join, Group-By, Map/Reduce - Homework
 
 ## Assignment 1: Inner Join
 Join two CSV files on a common ID column.

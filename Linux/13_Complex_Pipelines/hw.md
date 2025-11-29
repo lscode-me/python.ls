@@ -1,4 +1,4 @@
-# Homework: Complex Pipelines - Production Grade
+# Complex Pipelines: Map/Reduce, Staging, Checkpoints, Orchestration - Homework
 
 ## Assignment 1: Basic Split-Map-Reduce
 Implement classic map/reduce pattern on a large CSV file.

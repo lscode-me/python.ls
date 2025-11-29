@@ -1,5 +1,10 @@
 # Files, I-nodes & File Descriptors
-### Understanding Unix File System Architecture
+
+## Sample Data Files
+
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
+---
 
 ## Introduction
 

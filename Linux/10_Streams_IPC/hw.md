@@ -1,4 +1,4 @@
-# Homework: Streams, IPC & Unix Sockets
+# Streams, IPC & Unix Sockets - Homework
 
 ## Assignment 1: Create and Use a Named Pipe
 Create a FIFO and use it for async communication.

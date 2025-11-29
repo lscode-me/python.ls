@@ -1,4 +1,4 @@
-# Grep, Sed & Awk Resources
+# Grep, Sed & Awk: Text Processing Power Tools - Resources
 
 ## Regular Expressions
 https://regex101.com/ - Interactive regex tester

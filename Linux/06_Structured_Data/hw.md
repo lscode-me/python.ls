@@ -1,4 +1,4 @@
-# Homework: Structured Data Processing
+# Structured Data Processing (JSON, CSV, YAML, XML) - Homework
 
 ## Assignment 1: Extract JSON Fields
 Extract the "name" and "age" fields from a JSON array of users.

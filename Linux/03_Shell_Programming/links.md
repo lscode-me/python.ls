@@ -1,4 +1,4 @@
-# Shell Programming Resources
+# Shell Programming as a Mini-DSL for Data Processing - Resources
 
 
 ## Bash Guides and Tutorials

@@ -1,6 +1,10 @@
 # Coreutils: Data Transformation Utilities
 
+## Sample Data Files
+
 📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
+---
 
 ## Overview
 GNU coreutils provide essential stream processing tools for data transformation. This lecture covers utilities that reshape, reorder, and format streaming data.

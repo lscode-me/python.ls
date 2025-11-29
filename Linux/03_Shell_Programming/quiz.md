@@ -1,4 +1,4 @@
-# Shell Programming - Quiz
+# Shell Programming as a Mini-DSL for Data Processing - Quiz
 
 Test your knowledge of bash scripting and data processing.
 

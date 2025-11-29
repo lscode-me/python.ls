@@ -1,4 +1,4 @@
-# Quiz: Streams, IPC & Unix Sockets
+# Streams, IPC & Unix Sockets - Quiz
 
 ## Questions
 

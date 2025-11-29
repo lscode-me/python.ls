@@ -1,4 +1,4 @@
-# Final Project: Complete ETL Pipeline
+# Final Project: Build a Complete ETL Pipeline - Homework
 
 See lecture.md for full project requirements and guidelines.
 

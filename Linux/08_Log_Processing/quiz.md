@@ -1,4 +1,4 @@
-# Quiz: Log Processing
+# Log Processing & Real-World Pipelines - Quiz
 
 ## Questions
 

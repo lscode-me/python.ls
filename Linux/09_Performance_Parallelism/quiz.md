@@ -1,4 +1,4 @@
-# Quiz: Performance & Parallelism
+# Performance & Parallelism - Quiz
 
 ## Questions
 

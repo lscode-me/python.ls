@@ -1,4 +1,4 @@
-# Homework: Performance & Parallelism
+# Performance & Parallelism - Homework
 
 ## Assignment 1: Basic Parallel Execution
 Use GNU parallel to process 100 files in parallel.

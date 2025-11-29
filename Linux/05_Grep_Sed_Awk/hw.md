@@ -1,4 +1,4 @@
-# Homework: Grep, Sed & Awk
+# Grep, Sed & Awk: Text Processing Power Tools - Homework
 
 ## Assignment 1: Grep - Pattern Matching
 Search a log file for all ERROR and FATAL lines.

@@ -1,4 +1,4 @@
-# Quiz: Streaming Analytics
+# Streaming Analytics: Join, Group-By, Map/Reduce - Quiz
 
 ## Questions
 

@@ -1,11 +1,14 @@
 # Streaming Analytics: Join, Group-By, Map/Reduce
 
-## Overview
-Perform database-like operations on streams: joins, aggregations, group-by operations, and map/reduce patterns.
-
 ## Sample Data Files
 
 📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
+---
+
+## Overview
+
+Perform database-like operations on streams: joins, aggregations, group-by operations, and map/reduce patterns.
 
 ---
 

@@ -1,4 +1,4 @@
-# Log Processing Resources
+# Log Processing & Real-World Pipelines - Resources
 
 ## JSONL/NDJSON
 https://jsonlines.org/

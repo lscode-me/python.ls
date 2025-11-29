@@ -1,4 +1,4 @@
-# Homework: Coreutils Data Transformation
+# Coreutils: Data Transformation Utilities - Homework
 
 ## Assignment 1: Column Extraction (cut)
 Extract the 2nd and 4th columns from a CSV file.

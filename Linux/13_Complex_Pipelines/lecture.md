@@ -1,6 +1,10 @@
 # Complex Pipelines: Map/Reduce, Staging, Checkpoints, Orchestration
 
+## Sample Data Files
+
 📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
+---
 
 ## Overview
 Build production-grade pipelines with map/reduce patterns, temporary staging, checkpoints for recovery, and Makefile orchestration.

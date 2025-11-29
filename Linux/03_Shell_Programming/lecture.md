@@ -1,6 +1,10 @@
 # Shell Programming as a Mini-DSL for Data Processing
 
+## Sample Data Files
+
 📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
+---
 
 ## Introduction
 

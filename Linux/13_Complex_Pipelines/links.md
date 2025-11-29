@@ -1,3 +1,5 @@
+# Complex Pipelines: Map/Reduce, Staging, Checkpoints, Orchestration - Resources
+
 https://www.gnu.org/software/make/manual/
 https://makefiletutorial.com/
 https://en.wikipedia.org/wiki/MapReduce

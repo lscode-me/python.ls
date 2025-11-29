@@ -1,4 +1,4 @@
-# Homework: Log Processing
+# Log Processing & Real-World Pipelines - Homework
 
 ## Assignment 1: Filter JSONL Errors
 Extract all ERROR level entries from a JSONL log file.

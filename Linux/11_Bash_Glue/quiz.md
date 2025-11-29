@@ -1,4 +1,4 @@
-# Quiz: Bash as Glue - Error Handling & Configuration
+# Bash as Glue: Combining Tools & Error Handling - Quiz
 
 ## Questions
 

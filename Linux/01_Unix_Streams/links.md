@@ -1,4 +1,4 @@
-# Unix Streams and Data Processing - Resources
+# Unix as a Language of Data & Streams - Resources
 
 
 ## Unix Philosophy

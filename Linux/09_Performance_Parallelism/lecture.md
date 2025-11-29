@@ -1,6 +1,10 @@
 # Performance & Parallelism
 
+## Sample Data Files
+
 📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
+---
 
 ## Overview
 Optimize pipeline performance through parallelism, efficient sorting, and profiling.

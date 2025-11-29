@@ -1,6 +1,10 @@
 # Streams, IPC & Unix Sockets
 
+## Sample Data Files
+
 📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
+---
 
 ## Overview
 Advanced stream handling: stdin/stdout as pseudo-files, named pipes (FIFOs), Unix sockets, and inter-process communication between shell and Python.

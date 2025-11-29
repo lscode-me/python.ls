@@ -1,4 +1,4 @@
-# Homework: Python in Pipelines
+# Python in Pipelines: Hybrid Shell-Python Workflows - Homework
 
 ## Assignment 1: Python stdin Filter - Uppercase Converter
 Create Python script that reads lines from stdin and converts to uppercase.

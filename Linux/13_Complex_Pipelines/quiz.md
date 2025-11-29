@@ -1,4 +1,4 @@
-# Quiz: Complex Pipelines
+# Complex Pipelines: Map/Reduce, Staging, Checkpoints, Orchestration - Quiz
 
 ## Questions
 

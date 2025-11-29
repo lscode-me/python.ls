@@ -1,4 +1,4 @@
-# Homework: Bash as Glue - Error Handling & Configuration
+# Bash as Glue: Combining Tools & Error Handling - Homework
 
 ## Assignment 1: Basic trap with EXIT Cleanup
 Create script that cleans up temporary files on exit.

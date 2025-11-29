@@ -1,4 +1,4 @@
-# Quiz: Grep, Sed & Awk
+# Grep, Sed & Awk: Text Processing Power Tools - Quiz
 
 ## Questions
 

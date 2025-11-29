@@ -1,4 +1,4 @@
-# Shell Programming - Homework
+# Shell Programming as a Mini-DSL for Data Processing - Homework
 
 
 ## Assignment 1: Command Substitution

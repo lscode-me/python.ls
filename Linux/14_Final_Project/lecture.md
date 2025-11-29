@@ -1,5 +1,11 @@
 # Final Project: Build a Complete ETL Pipeline
 
+## Sample Data Files
+
+📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice
+
+---
+
 ## Project Overview
 Build a production-ready ETL pipeline that processes a 5GB dataset using Unix command-line tools and Python.
 

@@ -1,4 +1,4 @@
-# Final Project Resources
+# Final Project: Build a Complete ETL Pipeline - Resources
 
 ## Datasets
 https://www.kaggle.com/datasets
