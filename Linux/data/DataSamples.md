@@ -14,8 +14,8 @@ cat users.csv
 
 **Option 2: Copy to your working directory**
 ```bash
-cp -r Linux/data/files/* ~/course_data/
-cd ~/course_data
+cp -r Linux/data/files/* ~/workspace/linux_course_data/
+cd ~/workspace/linux_course_data
 ```
 
 ---
@@ -563,7 +563,7 @@ Run this script to create all sample files at once:
 #!/bin/bash
 # Create all sample data files for the course
 
-mkdir -p ~/course_data && cd ~/course_data
+mkdir -p ~/workspace/linux_course_data && cd ~/workspace/linux_course_data
 
 # === Basic Text Files ===
 
@@ -620,7 +620,32 @@ contact@company.com
 jane_doe123@mail.ru
 EOF
 
+cat > users.txt << 'EOF'
+alice@example.com
+bob.smith@company.org
+carol_jones@test.net
+dave+work@domain.co.uk
+admin@localhost
+support+help@service.io
+invalid-email
+user@sub.domain.example.com
+contact@company.com
+jane_doe123@mail.ru
+EOF
+
 # === CSV Files ===
+
+cat > data.csv << 'EOF'
+id,name,age,city,status
+1,Alice,30,Moscow,active
+2,Bob,25,SPb,active
+3,Carol,35,Kazan,inactive
+4,Dave,28,Moscow,active
+5,Eve,32,Sochi,inactive
+6,Frank,45,Novosibirsk,active
+7,Grace,27,Samara,active
+8,Henry,38,Ekaterinburg,inactive
+EOF
 
 cat > users.csv << 'EOF'
 id,name,email,city,status
@@ -725,6 +750,19 @@ date,amount,category
 2024-03-19,50,Food
 2024-03-20,75,Clothing
 2024-03-20,120,Electronics
+EOF
+
+cat > user_activity.csv << 'EOF'
+user_id,signup_date,activity_date,actions
+u1,2024-01-01,2024-01-05,12
+u2,2024-01-01,2024-01-08,8
+u1,2024-01-01,2024-02-10,15
+u3,2024-02-01,2024-02-05,5
+u2,2024-01-01,2024-02-12,10
+u3,2024-02-01,2024-03-01,7
+u4,2024-03-01,2024-03-15,3
+u1,2024-01-01,2024-03-20,18
+u2,2024-01-01,2024-03-25,6
 EOF
 
 # === Log Files ===
@@ -861,6 +899,16 @@ cat > sessions.jsonl << 'EOF'
 {"session_id": "s003", "user_id": 1, "start_time": "2024-03-15T11:00:00Z", "duration": 600, "pages": 5}
 {"session_id": "s004", "user_id": 3, "start_time": "2024-03-15T11:30:00Z", "duration": 2400, "pages": 22}
 {"session_id": "s005", "user_id": 2, "start_time": "2024-03-15T12:00:00Z", "duration": 1200, "pages": 10}
+EOF
+
+cat > queries.jsonl << 'EOF'
+{"timestamp": "2024-03-15T10:30:00Z", "query": "SELECT * FROM users WHERE id = 1", "duration_ms": 15, "rows": 1}
+{"timestamp": "2024-03-15T10:30:05Z", "query": "SELECT * FROM orders WHERE user_id = 1", "duration_ms": 45, "rows": 12}
+{"timestamp": "2024-03-15T10:30:10Z", "query": "SELECT * FROM products", "duration_ms": 1250, "rows": 5000}
+{"timestamp": "2024-03-15T10:30:15Z", "query": "UPDATE users SET last_login = NOW()", "duration_ms": 8, "rows": 1}
+{"timestamp": "2024-03-15T10:30:20Z", "query": "SELECT * FROM logs WHERE date > '2024-03-01'", "duration_ms": 3500, "rows": 100000}
+{"timestamp": "2024-03-15T10:30:25Z", "query": "SELECT COUNT(*) FROM sessions", "duration_ms": 120, "rows": 1}
+{"timestamp": "2024-03-15T10:30:30Z", "query": "SELECT * FROM analytics WHERE event_type = 'click'", "duration_ms": 2100, "rows": 45000}
 EOF
 
 # === Config Files ===

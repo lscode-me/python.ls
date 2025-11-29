@@ -7,4 +7,3 @@
 {"timestamp": "2024-03-15T10:31:00Z", "level": "INFO", "message": "Request processed", "service": "api", "duration_ms": 45}
 {"timestamp": "2024-03-15T10:31:05Z", "level": "ERROR", "message": "Database timeout", "service": "db", "error_type": "TimeoutError"}
 {"timestamp": "2024-03-15T10:32:00Z", "level": "ERROR", "message": "Invalid request format", "service": "api", "error_type": "ValidationError"}
-

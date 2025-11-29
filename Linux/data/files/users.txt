@@ -8,4 +8,3 @@ invalid-email
 user@sub.domain.example.com
 contact@company.com
 jane_doe123@mail.ru
-

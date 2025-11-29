@@ -9,4 +9,3 @@ order_id,customer_id,product_id,quantity,amount,date
 108,5,2,1,1499,2024-03-18
 109,3,1,1,999,2024-03-19
 110,6,3,3,135,2024-03-19
-

@@ -4,4 +4,3 @@
 {"id": 4, "name": "Dave", "age": 28, "city": "Moscow", "status": "active"}
 {"id": 5, "name": "Eve", "age": 32, "city": "Sochi", "status": "inactive"}
 {"id": 6, "name": "Frank", "age": 45, "city": "Novosibirsk", "status": "active"}
-

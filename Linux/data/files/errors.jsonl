@@ -4,4 +4,3 @@
 {"timestamp": "2024-03-15T10:33:15Z", "error_type": "AuthError", "service": "auth", "message": "Invalid token"}
 {"timestamp": "2024-03-15T10:34:00Z", "error_type": "TimeoutError", "service": "db", "message": "Database connection timeout"}
 {"timestamp": "2024-03-15T10:35:30Z", "error_type": "ConnectionError", "service": "cache", "message": "Cache server unreachable"}
-

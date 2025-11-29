@@ -20,4 +20,3 @@ features:
   - name: caching
     enabled: true
     ttl: 3600
-

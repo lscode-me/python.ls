@@ -3,4 +3,3 @@
 {"session_id": "s003", "user_id": 1, "start_time": "2024-03-15T11:00:00Z", "duration": 600, "pages": 5}
 {"session_id": "s004", "user_id": 3, "start_time": "2024-03-15T11:30:00Z", "duration": 2400, "pages": 22}
 {"session_id": "s005", "user_id": 2, "start_time": "2024-03-15T12:00:00Z", "duration": 1200, "pages": 10}
-

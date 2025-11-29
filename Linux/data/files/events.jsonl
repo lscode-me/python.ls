@@ -5,4 +5,3 @@
 {"timestamp": "2024-03-15T10:50:00Z", "user_id": 2, "type": "purchase", "amount": 1499, "product_id": 2}
 {"timestamp": "2024-03-15T11:00:00Z", "user_id": 3, "type": "login", "session_id": "s003"}
 {"timestamp": "2024-03-15T11:05:00Z", "user_id": 3, "type": "logout", "session_id": "s003"}
-
