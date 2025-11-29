@@ -23,11 +23,10 @@ Understanding Python's object model, memory management, and core data types.
 - Common pitfalls (mutable default arguments)
 
 **Materials:**
-- [Objects.md](Objects/Objects.md) - Core concepts and theory
-- [Operations.md](Objects/Operations.md) - Working with Python objects
-- [Homework Assignments](Objects/hw.md) - 6 practical exercises
-- [Resources](Objects/links.md) - Curated learning materials
-- [Quiz](Objects/quiz.md) - Test your knowledge
+- [Lecture](01_Objects/lecture.md) - Core concepts and theory
+- [Homework Assignments](01_Objects/hw.md) - 6 practical exercises
+- [Resources](01_Objects/links.md) - Curated learning materials
+- [Quiz](01_Objects/quiz.md) - Test your knowledge
 
 ---
 
@@ -48,10 +47,10 @@ From basic functions to advanced functional programming patterns.
 - Functional programming concepts
 
 **Materials:**
-- [Functions.md](Functions/Functions.md) - Complete function guide
-- [Homework Assignments](Functions/hw.md) - 8 functional programming challenges
-- [Resources](Functions/links.md) - FP learning resources
-- [Quiz](Functions/quiz.md) - Test your knowledge
+- [Lecture](02_Functions/lecture.md) - Complete function guide
+- [Homework Assignments](02_Functions/hw.md) - 8 functional programming challenges
+- [Resources](02_Functions/links.md) - FP learning resources
+- [Quiz](02_Functions/quiz.md) - Test your knowledge
 
 ---
 
@@ -72,10 +71,10 @@ Comprehensive file I/O operations and data format handling.
 - Performance and buffering
 
 **Materials:**
-- [Files.md](Files/Files.md) - Complete file handling guide
-- [Homework Assignments](Files/hw.md) - 10 file processing projects
-- [Resources](Files/links.md) - File I/O resources
-- [Quiz](Files/quiz.md) - Test your knowledge
+- [Lecture](03_Files/lecture.md) - Complete file handling guide
+- [Homework Assignments](03_Files/hw.md) - 10 file processing projects
+- [Resources](03_Files/links.md) - File I/O resources
+- [Quiz](03_Files/quiz.md) - Test your knowledge
 
 ---
 
@@ -96,10 +95,10 @@ Writing reliable code with pytest, unittest, and Test-Driven Development.
 - Continuous Integration
 
 **Materials:**
-- [Testing.md](Testing/Testing.md) - Complete testing guide
-- [Homework Assignments](Testing/hw.md) - 12 testing challenges
-- [Resources](Testing/links.md) - Testing frameworks and tools
-- [Quiz](Testing/quiz.md) - Test your knowledge
+- [Lecture](04_Testing/lecture.md) - Complete testing guide
+- [Homework Assignments](04_Testing/hw.md) - 12 testing challenges
+- [Resources](04_Testing/links.md) - Testing frameworks and tools
+- [Quiz](04_Testing/quiz.md) - Test your knowledge
 
 ---
 
@@ -120,10 +119,10 @@ Master iterators, generators, and efficient data processing.
 - Real-world iteration patterns
 
 **Materials:**
-- [Iteration.md](Iteration/Iteration.md) - Complete iteration guide
-- [Homework Assignments](Iteration/hw.md) - 10 iteration challenges
-- [Resources](Iteration/links.md) - Iteration learning materials
-- [Quiz](Iteration/quiz.md) - Test your knowledge
+- [Lecture](05_Iteration/lecture.md) - Complete iteration guide
+- [Homework Assignments](05_Iteration/hw.md) - 10 iteration challenges
+- [Resources](05_Iteration/links.md) - Iteration learning materials
+- [Quiz](05_Iteration/quiz.md) - Test your knowledge
 
 ---
 
@@ -148,10 +147,10 @@ Learn to write Unix-style command-line utilities in Python.
 - Best practices and templates for CLI tools
 
 **Materials:**
-- [Streams.md](Streams/Streams.md) - Complete Unix I/O guide
-- [Homework Assignments](Streams/hw.md) - 10 CLI utility projects
-- [Quiz](Streams/quiz.md) - Test your knowledge
-- [Resources](Streams/links.md) - CLI tools and Unix resources
+- [Lecture](06_Streams/lecture.md) - Complete Unix I/O guide
+- [Homework Assignments](06_Streams/hw.md) - 10 CLI utility projects
+- [Resources](06_Streams/links.md) - CLI tools and Unix resources
+- [Quiz](06_Streams/quiz.md) - Test your knowledge
 
 ---
 
@@ -172,12 +171,10 @@ Master classes, inheritance, encapsulation, and design patterns.
 - Advanced OOP (decorators, dataclasses, metaclasses, slots)
 
 **Materials:**
-- [AttributesAndMethods.md](OOP/AttributesAndMethods.md) - Attributes and methods deep dive
-- [OOP_Basics.md](OOP/OOP_Basics.md) - Core OOP concepts
-- [Advanced_OOP.md](OOP/Advanced_OOP.md) - Advanced patterns and techniques
-- [Homework Assignments](OOP/hw.md) - 8 comprehensive projects
-- [Resources](OOP/links.md) - OOP learning materials
-- [Quiz](OOP/quiz.md) - Test your knowledge
+- [Lecture](07_OOP/lecture.md) - Core OOP concepts and advanced patterns
+- [Homework Assignments](07_OOP/hw.md) - 8 comprehensive projects
+- [Resources](07_OOP/links.md) - OOP learning materials
+- [Quiz](07_OOP/quiz.md) - Test your knowledge
 
 ---
 
@@ -197,10 +194,10 @@ Write beautiful, idiomatic Python code following best practices.
 - Common anti-patterns to avoid
 
 **Materials:**
-- [Pythonic.md](Pythonic/Pythonic.md) - Writing idiomatic Python
-- [Homework Assignments](Pythonic/hw.md) - Code refactoring exercises
-- [Resources](Pythonic/links.md) - Extensive Pythonic resources
-- [Quiz](Pythonic/quiz.md) - Test your knowledge
+- [Lecture](08_Pythonic/lecture.md) - Writing idiomatic Python
+- [Homework Assignments](08_Pythonic/hw.md) - Code refactoring exercises
+- [Resources](08_Pythonic/links.md) - Extensive Pythonic resources
+- [Quiz](08_Pythonic/quiz.md) - Test your knowledge
 
 ---
 
@@ -219,10 +216,10 @@ Understanding Python's protocol system and creating flexible interfaces.
 - Protocols vs ABC: when to use each
 
 **Materials:**
-- [Protocols.md](Protocols/Protocols.md) - Protocol system explained
-- [Homework Assignments](Protocols/hw.md) - 8 protocol implementation tasks
-- [Resources](Protocols/links.md) - Protocol and interface resources
-- [Quiz](Protocols/quiz.md) - Test your knowledge
+- [Lecture](09_Protocols/lecture.md) - Protocol system explained
+- [Homework Assignments](09_Protocols/hw.md) - 8 protocol implementation tasks
+- [Resources](09_Protocols/links.md) - Protocol and interface resources
+- [Quiz](09_Protocols/quiz.md) - Test your knowledge
 
 ---
 
@@ -244,10 +241,10 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 - Real-world bioinformatics workflows
 
 **Materials:**
-- [Bioinformatics.md](Bioinformatics/Bioinformatics.md) - Python for biological data
-- [Homework Assignments](Bioinformatics/hw.md) - 12 practical bioinformatics projects
-- [Resources](Bioinformatics/links.md) - Comprehensive bioinformatics resources
-- [Quiz](Bioinformatics/quiz.md) - Test your knowledge
+- [Lecture](10_Bioinformatics/lecture.md) - Python for biological data
+- [Homework Assignments](10_Bioinformatics/hw.md) - 12 practical bioinformatics projects
+- [Resources](10_Bioinformatics/links.md) - Comprehensive bioinformatics resources
+- [Quiz](10_Bioinformatics/quiz.md) - Test your knowledge
 
 ---
 
