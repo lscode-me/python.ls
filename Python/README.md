@@ -31,33 +31,7 @@ Understanding Python's object model, memory management, and core data types.
 
 ---
 
-### 2. Object-Oriented Programming (OOP)
-
-Master classes, inheritance, encapsulation, and design patterns.
-
-**Topics Covered:**
-- Classes and objects
-- Instance vs class attributes
-- Methods (instance, class, static)
-- Inheritance and polymorphism
-- Encapsulation and access control
-- Abstract base classes
-- Special methods (magic methods)
-- Properties and descriptors
-- Composition vs inheritance
-- Advanced OOP (decorators, dataclasses, metaclasses, slots)
-
-**Materials:**
-- [AttributesAndMethods.md](OOP/AttributesAndMethods.md) - Attributes and methods deep dive
-- [OOP_Basics.md](OOP/OOP_Basics.md) - Core OOP concepts
-- [Advanced_OOP.md](OOP/Advanced_OOP.md) - Advanced patterns and techniques
-- [Homework Assignments](OOP/hw.md) - 8 comprehensive projects
-- [Resources](OOP/links.md) - OOP learning materials
-- [Quiz](OOP/quiz.md) - Test your knowledge
-
----
-
-### 3. Functions and Functional Programming
+### 2. Functions and Functional Programming
 
 From basic functions to advanced functional programming patterns.
 
@@ -81,25 +55,51 @@ From basic functions to advanced functional programming patterns.
 
 ---
 
-### 4. Protocols and Interfaces
+### 3. File Handling
 
-Understanding Python's protocol system and creating flexible interfaces.
+Comprehensive file I/O operations and data format handling.
 
 **Topics Covered:**
-- Duck typing philosophy
-- Built-in protocols (sequence, iterator, container, callable)
-- Context manager protocol
-- Numeric and comparison protocols
-- typing.Protocol (structural subtyping)
-- Abstract Base Classes (ABC)
-- Collections ABCs
-- Protocols vs ABC: when to use each
+- File modes and operations
+- Reading and writing files
+- Text encodings
+- Binary files
+- pathlib for modern path operations
+- Directory operations
+- CSV and JSON file handling
+- Temporary files
+- File compression (ZIP, GZIP)
+- Performance and buffering
 
 **Materials:**
-- [Protocols.md](Protocols/Protocols.md) - Protocol system explained
-- [Homework Assignments](Protocols/hw.md) - 8 protocol implementation tasks
-- [Resources](Protocols/links.md) - Protocol and interface resources
-- [Quiz](Protocols/quiz.md) - Test your knowledge
+- [Files.md](Files/Files.md) - Complete file handling guide
+- [Homework Assignments](Files/hw.md) - 10 file processing projects
+- [Resources](Files/links.md) - File I/O resources
+- [Quiz](Files/quiz.md) - Test your knowledge
+
+---
+
+### 4. Testing in Python
+
+Writing reliable code with pytest, unittest, and Test-Driven Development.
+
+**Topics Covered:**
+- unittest vs pytest
+- Writing effective tests
+- Fixtures and setup/teardown
+- Parametrized tests
+- Mocking and patching
+- Test coverage
+- Test-Driven Development (TDD)
+- Integration vs unit tests
+- Best practices and patterns
+- Continuous Integration
+
+**Materials:**
+- [Testing.md](Testing/Testing.md) - Complete testing guide
+- [Homework Assignments](Testing/hw.md) - 12 testing challenges
+- [Resources](Testing/links.md) - Testing frameworks and tools
+- [Quiz](Testing/quiz.md) - Test your knowledge
 
 ---
 
@@ -127,31 +127,7 @@ Master iterators, generators, and efficient data processing.
 
 ---
 
-### 6. File Handling
-
-Comprehensive file I/O operations and data format handling.
-
-**Topics Covered:**
-- File modes and operations
-- Reading and writing files
-- Text encodings
-- Binary files
-- pathlib for modern path operations
-- Directory operations
-- CSV and JSON file handling
-- Temporary files
-- File compression (ZIP, GZIP)
-- Performance and buffering
-
-**Materials:**
-- [Files.md](Files/Files.md) - Complete file handling guide
-- [Homework Assignments](Files/hw.md) - 10 file processing projects
-- [Resources](Files/links.md) - File I/O resources
-- [Quiz](Files/quiz.md) - Test your knowledge
-
----
-
-### 7. Streams and Unix I/O
+### 6. Streams and Unix I/O
 
 Learn to write Unix-style command-line utilities in Python.
 
@@ -179,6 +155,32 @@ Learn to write Unix-style command-line utilities in Python.
 
 ---
 
+### 7. Object-Oriented Programming (OOP)
+
+Master classes, inheritance, encapsulation, and design patterns.
+
+**Topics Covered:**
+- Classes and objects
+- Instance vs class attributes
+- Methods (instance, class, static)
+- Inheritance and polymorphism
+- Encapsulation and access control
+- Abstract base classes
+- Special methods (magic methods)
+- Properties and descriptors
+- Composition vs inheritance
+- Advanced OOP (decorators, dataclasses, metaclasses, slots)
+
+**Materials:**
+- [AttributesAndMethods.md](OOP/AttributesAndMethods.md) - Attributes and methods deep dive
+- [OOP_Basics.md](OOP/OOP_Basics.md) - Core OOP concepts
+- [Advanced_OOP.md](OOP/Advanced_OOP.md) - Advanced patterns and techniques
+- [Homework Assignments](OOP/hw.md) - 8 comprehensive projects
+- [Resources](OOP/links.md) - OOP learning materials
+- [Quiz](OOP/quiz.md) - Test your knowledge
+
+---
+
 ### 8. Pythonic Code
 
 Write beautiful, idiomatic Python code following best practices.
@@ -202,7 +204,29 @@ Write beautiful, idiomatic Python code following best practices.
 
 ---
 
-### 9. Python for Bioinformatics
+### 9. Protocols and Interfaces
+
+Understanding Python's protocol system and creating flexible interfaces.
+
+**Topics Covered:**
+- Duck typing philosophy
+- Built-in protocols (sequence, iterator, container, callable)
+- Context manager protocol
+- Numeric and comparison protocols
+- typing.Protocol (structural subtyping)
+- Abstract Base Classes (ABC)
+- Collections ABCs
+- Protocols vs ABC: when to use each
+
+**Materials:**
+- [Protocols.md](Protocols/Protocols.md) - Protocol system explained
+- [Homework Assignments](Protocols/hw.md) - 8 protocol implementation tasks
+- [Resources](Protocols/links.md) - Protocol and interface resources
+- [Quiz](Protocols/quiz.md) - Test your knowledge
+
+---
+
+### 10. Python for Bioinformatics
 
 Apply Python to real-world bioinformatics problems and biological data analysis.
 
@@ -231,14 +255,15 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 
 ### Recommended Order
 1. **Objects** - Understand Python's foundation
-2. **OOP** - Master object-oriented design
-3. **Functions** - Learn functional programming
-4. **Protocols** - Understand Python's interface system
+2. **Functions** - Learn functional programming
+3. **Files** - Handle real-world data
+4. **Testing** - Write reliable, testable code
 5. **Iteration** - Master efficient data processing
-6. **Files** - Handle real-world data
-7. **Streams** - Build Unix-style command-line tools
+6. **Streams** - Build Unix-style command-line tools
+7. **OOP** - Master object-oriented design
 8. **Pythonic** - Polish your Python skills
-9. **Bioinformatics** - Apply Python to life sciences (capstone)
+9. **Protocols** - Understand Python's interface system
+10. **Bioinformatics** - Apply Python to life sciences (capstone)
 
 ### Prerequisites
 - Basic programming knowledge

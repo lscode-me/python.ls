@@ -10,27 +10,33 @@ A comprehensive course designed for life science professionals looking to develo
 - [Objects](Python/Objects/Objects.md) - Python object model and references
 - [Operations](Python/Objects/Operations.md) - Working with Python objects
 
-### 2. OOP (Object-Oriented Programming)
-- [Attributes and Methods](Python/OOP/AttributesAndMethods.md) - Deep dive into class members
-- [OOP Basics](Python/OOP/OOP_Basics.md) - Classes, inheritance, polymorphism
-- [Advanced OOP](Python/OOP/Advanced_OOP.md) - Decorators, dataclasses, metaclasses
-
-### 3. Functions and Functional Programming
+### 2. Functions and Functional Programming
 - [Functions](Python/Functions/Functions.md) - Arguments, closures, decorators, FP patterns
 
-### 4. Protocols and Interfaces
-- [Protocols](Python/Protocols/Protocols.md) - Duck typing, protocols, ABCs
+### 3. File Handling
+- [Files](Python/Files/Files.md) - File I/O, formats, pathlib
+
+### 4. Testing in Python
+- [Testing](Python/Testing/Testing.md) - pytest, unittest, TDD, mocking, coverage
 
 ### 5. Iteration Protocol
 - [Iteration](Python/Iteration/Iteration.md) - Iterators, generators, itertools
 
-### 6. File Handling
-- [Files](Python/Files/Files.md) - File I/O, formats, pathlib
+### 6. Streams and Unix I/O
+- [Streams](Python/Streams/Streams.md) - Building Unix-style CLI tools
 
-### 7. Pythonic Code
+### 7. OOP (Object-Oriented Programming)
+- [Attributes and Methods](Python/OOP/AttributesAndMethods.md) - Deep dive into class members
+- [OOP Basics](Python/OOP/OOP_Basics.md) - Classes, inheritance, polymorphism
+- [Advanced OOP](Python/OOP/Advanced_OOP.md) - Decorators, dataclasses, metaclasses
+
+### 8. Pythonic Code
 - [Pythonic](Python/Pythonic/Pythonic.md) - Writing idiomatic Python
 
-### 8. Python for Bioinformatics
+### 9. Protocols and Interfaces
+- [Protocols](Python/Protocols/Protocols.md) - Duck typing, protocols, ABCs
+
+### 10. Python for Bioinformatics
 - [Bioinformatics](Python/Bioinformatics/Bioinformatics.md) - Sequence analysis, BioPython
 
 📖 **[Python Course README](Python/README.md)** - Full course guide with learning path
