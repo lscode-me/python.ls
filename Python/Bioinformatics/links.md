@@ -1,8 +1,8 @@
-Bioinformatics Resources
-========================
+# Bioinformatics Resources
 
-BioPython
----------
+
+## BioPython
+
 BioPython Official Tutorial
 https://biopython.org/DIST/docs/tutorial/Tutorial.html
 
@@ -19,8 +19,8 @@ Getting Started with BioPython
 https://realpython.com/python-biopython/
 
 
-Sequence Analysis
------------------
+## Sequence Analysis
+
 Rosalind - Bioinformatics Problems
 http://rosalind.info/
 
@@ -37,8 +37,8 @@ NCBI BLAST Tutorial
 https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs
 
 
-File Formats
-------------
+## File Formats
+
 FASTA Format Specification
 https://en.wikipedia.org/wiki/FASTA_format
 
@@ -58,8 +58,8 @@ GFF/GTF Format
 https://www.ensembl.org/info/website/upload/gff.html
 
 
-Biological Databases
---------------------
+## Biological Databases
+
 NCBI Entrez Programming Utilities
 https://www.ncbi.nlm.nih.gov/books/NBK25501/
 
@@ -79,8 +79,8 @@ KEGG API
 https://www.kegg.jp/kegg/rest/keggapi.html
 
 
-Python for Life Sciences
--------------------------
+## Python for Life Sciences
+
 Python for Biologists
 https://pythonforbiologists.com/
 
@@ -94,8 +94,8 @@ Scientific Python Lectures
 https://scipy-lectures.org/
 
 
-Next-Generation Sequencing
----------------------------
+## Next-Generation Sequencing
+
 Introduction to RNA-Seq
 https://www.ebi.ac.uk/training/online/courses/rna-seq-introduction/
 
@@ -109,8 +109,8 @@ Quality Control for NGS Data
 https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 
 
-Multiple Sequence Alignment
-----------------------------
+## Multiple Sequence Alignment
+
 Clustal Omega
 http://www.clustal.org/omega/
 
@@ -124,8 +124,8 @@ MSA Visualization Tools
 https://msa.biojs.net/
 
 
-Phylogenetics
--------------
+## Phylogenetics
+
 Phylogenetic Tree Construction Methods
 https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/
 
@@ -142,8 +142,8 @@ IQ-TREE
 http://www.iqtree.org/
 
 
-Protein Analysis
-----------------
+## Protein Analysis
+
 Protein Structure Prediction
 https://alphafold.ebi.ac.uk/
 
@@ -160,8 +160,8 @@ PROSITE - Protein Domains
 https://prosite.expasy.org/
 
 
-Genomics
---------
+## Genomics
+
 Human Genome Browser (UCSC)
 https://genome.ucsc.edu/
 
@@ -178,8 +178,8 @@ gnomAD - Genome Aggregation Database
 https://gnomad.broadinstitute.org/
 
 
-Structural Bioinformatics
---------------------------
+## Structural Bioinformatics
+
 PyMOL Wiki
 https://pymolwiki.org/
 
@@ -193,8 +193,8 @@ MDAnalysis - Molecular Dynamics
 https://www.mdanalysis.org/
 
 
-Statistical Analysis
---------------------
+## Statistical Analysis
+
 SciPy for Biology
 https://docs.scipy.org/doc/scipy/
 
@@ -208,8 +208,8 @@ Scikit-learn for Biology
 https://scikit-learn.org/stable/
 
 
-Visualization
--------------
+## Visualization
+
 Matplotlib for Biology
 https://matplotlib.org/stable/gallery/
 
@@ -223,8 +223,8 @@ Bokeh Interactive Plots
 https://docs.bokeh.org/
 
 
-RNA Analysis
-------------
+## RNA Analysis
+
 RNA Secondary Structure Prediction
 https://rna.urmc.rochester.edu/RNAstructure.html
 
@@ -235,8 +235,8 @@ RNA-Seq Analysis
 https://www.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html
 
 
-Metagenomics
-------------
+## Metagenomics
+
 QIIME 2 Documentation
 https://docs.qiime2.org/
 
@@ -250,8 +250,8 @@ Microbiome Analysis
 https://microbiomejournal.biomedcentral.com/
 
 
-Courses and Tutorials
----------------------
+## Courses and Tutorials
+
 Bioinformatics Algorithms (Coursera)
 https://www.coursera.org/specializations/bioinformatics
 
@@ -268,8 +268,8 @@ EMBL-EBI Online Training
 https://www.ebi.ac.uk/training/online/
 
 
-Books
------
+## Books
+
 "Bioinformatics Programming Using Python" by Mitchell L. Model
 
 "Bioinformatics with Python Cookbook" by Tiago Antao
@@ -281,8 +281,8 @@ Books
 "Bioinformatics Algorithms: An Active Learning Approach" by Compeau & Pevzner
 
 
-Tools and Software
-------------------
+## Tools and Software
+
 SAMtools - SAM/BAM Manipulation
 http://www.htslib.org/
 
@@ -299,8 +299,8 @@ SeqKit - FASTA/FASTQ Toolkit
 https://bioinf.shenwei.me/seqkit/
 
 
-Specialized Libraries
----------------------
+## Specialized Libraries
+
 pysam - SAM/BAM Python Interface
 https://pysam.readthedocs.io/
 
@@ -317,8 +317,8 @@ HTSeq - NGS Data Analysis
 https://htseq.readthedocs.io/
 
 
-Reproducible Research
----------------------
+## Reproducible Research
+
 Snakemake - Workflow Management
 https://snakemake.readthedocs.io/
 
@@ -332,8 +332,8 @@ Docker for Bioinformatics
 https://biocontainers.pro/
 
 
-Communities and Forums
-----------------------
+## Communities and Forums
+
 BioStars - Bioinformatics Q&A
 https://www.biostars.org/
 
@@ -350,8 +350,8 @@ Bioinformatics.org
 https://www.bioinformatics.org/
 
 
-Data Repositories
------------------
+## Data Repositories
+
 Gene Expression Omnibus (GEO)
 https://www.ncbi.nlm.nih.gov/geo/
 
@@ -368,8 +368,8 @@ The Cancer Genome Atlas (TCGA)
 https://www.cancer.gov/tcga
 
 
-Journals and Publications
--------------------------
+## Journals and Publications
+
 Bioinformatics (Oxford)
 https://academic.oup.com/bioinformatics
 
@@ -383,8 +383,8 @@ Nature Biotechnology
 https://www.nature.com/nbt/
 
 
-Benchmarking Datasets
----------------------
+## Benchmarking Datasets
+
 NCBI RefSeq
 https://www.ncbi.nlm.nih.gov/refseq/
 

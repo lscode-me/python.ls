@@ -1,8 +1,8 @@
-Files, I-nodes & File Descriptors - Homework
-==============================================
+# Files, I-nodes & File Descriptors - Homework
 
-Assignment 1: I-node Investigation
------------------------------------
+
+## Assignment 1: I-node Investigation
+
 1. Create a file and check its i-node number using `ls -i`
 2. Create a hard link to that file
 3. Verify both have the same i-node number
@@ -13,8 +13,8 @@ Assignment 1: I-node Investigation
 8. Compare i-node numbers of symlink vs original
 9. Delete the original and observe what happens to the symlink
 
-Assignment 2: File Descriptor Exploration
-------------------------------------------
+## Assignment 2: File Descriptor Exploration
+
 1. Write a script that redirects stdout to `output.txt` and stderr to `error.txt`
 2. In the script, write to both stdout and stderr
 3. Run the script and verify output goes to correct files
@@ -24,8 +24,8 @@ Assignment 2: File Descriptor Exploration
 7. Open another file for writing on FD 4
 8. Copy data from FD 3 to FD 4
 
-Assignment 3: File Types Survey
---------------------------------
+## Assignment 3: File Types Survey
+
 1. List all files in `/dev` and identify their types using `ls -l`
 2. Count how many of each file type exist
 3. Use `ls -l /dev | cut -c1 | sort | uniq -c`
@@ -34,8 +34,8 @@ Assignment 3: File Types Survey
 6. Create a named pipe using `mkfifo`
 7. Test the pipe by writing to it in one terminal and reading in another
 
-Assignment 4: Permission Management
-------------------------------------
+## Assignment 4: Permission Management
+
 1. Create a file with permissions 644
 2. Change it to 755 using octal notation
 3. Change it to rwxr-x--- using symbolic notation
@@ -45,8 +45,8 @@ Assignment 4: Permission Management
 7. Create a script and make it executable only for the owner
 8. Test chmod with recursive option on a directory tree
 
-Assignment 5: Special Permission Bits
---------------------------------------
+## Assignment 5: Special Permission Bits
+
 1. Find all files with setuid bit in /usr/bin: `find /usr/bin -perm -4000`
 2. Research why certain programs (like passwd) need setuid
 3. Create a directory and set the setgid bit (2000)
@@ -54,8 +54,8 @@ Assignment 5: Special Permission Bits
 5. Set the sticky bit on a directory (1000)
 6. Test that users can only delete their own files
 
-Assignment 6: Working with /dev Files
---------------------------------------
+## Assignment 6: Working with /dev Files
+
 1. Redirect a command's output to `/dev/null`
 2. Read 100 bytes from `/dev/urandom` and save to a file
 3. Convert the random bytes to base64 encoding
@@ -64,8 +64,8 @@ Assignment 6: Working with /dev Files
 6. Generate 5 random passwords using `/dev/urandom`
 7. Time how long it takes to read 1MB from `/dev/zero`
 
-Assignment 7: File Format Analysis
------------------------------------
+## Assignment 7: File Format Analysis
+
 1. Use `file` command to identify formats of 10 different files
 2. Find all PNG files in a directory: `file * | grep PNG`
 3. View the first 16 bytes (hex) of a PDF, PNG, and JPEG file using `xxd`
@@ -73,8 +73,8 @@ Assignment 7: File Format Analysis
 5. Create a script that identifies file types by magic bytes
 6. Test the script on various files
 
-Assignment 8: Line Ending Conversion
--------------------------------------
+## Assignment 8: Line Ending Conversion
+
 1. Create a file with Unix line endings (\n)
 2. Convert it to Windows line endings (\r\n) manually using `sed`
 3. Verify with `od -c filename` or `cat -A filename`
@@ -82,8 +82,8 @@ Assignment 8: Line Ending Conversion
 5. Compare file sizes before and after conversion
 6. Use `dos2unix` and `unix2dos` if available
 
-Assignment 9: Character Encoding
----------------------------------
+## Assignment 9: Character Encoding
+
 1. Create a file with UTF-8 text including special characters (é, ñ, 中, etc.)
 2. Check encoding with `file -i filename`
 3. Convert the file to ISO-8859-1 using `iconv`
@@ -91,8 +91,8 @@ Assignment 9: Character Encoding
 5. Convert back to UTF-8
 6. Handle encoding in a bash script with `LC_ALL`
 
-Assignment 10: Advanced Redirection
-------------------------------------
+## Assignment 10: Advanced Redirection
+
 Create a script that:
 1. Logs all stdout messages to `output.log`
 2. Logs all stderr messages to `error.log`
@@ -103,16 +103,16 @@ Create a script that:
 
 Hint: Use exec, file descriptors, and process substitution
 
-Bonus Challenge 1: File Descriptor Leaks
------------------------------------------
+## Bonus Challenge 1: File Descriptor Leaks
+
 1. Write a script that opens many files without closing them
 2. Monitor `/proc/self/fd/` to see the leak
 3. Observe what happens when you run out of file descriptors
 4. Fix the script to properly close descriptors
 5. Use `ulimit -n` to check/set the FD limit
 
-Bonus Challenge 2: I-node Exhaustion
--------------------------------------
+## Bonus Challenge 2: I-node Exhaustion
+
 1. Check available i-nodes with `df -i`
 2. Create a script that creates many small empty files
 3. Monitor i-node usage
@@ -120,8 +120,8 @@ Bonus Challenge 2: I-node Exhaustion
 5. Clean up the test files
 6. Document the difference between running out of i-nodes vs disk space
 
-Bonus Challenge 3: Build a Simple Logger
------------------------------------------
+## Bonus Challenge 3: Build a Simple Logger
+
 Create a bash function or script that:
 1. Accepts messages via stdin or arguments
 2. Writes to a log file with timestamps
@@ -137,8 +137,8 @@ logger "Process completed"
 somecommand | logger
 ```
 
-Bonus Challenge 4: Permission Audit Tool
------------------------------------------
+## Bonus Challenge 4: Permission Audit Tool
+
 Write a script that:
 1. Scans a directory tree for security issues
 2. Finds world-writable files
@@ -147,8 +147,8 @@ Write a script that:
 5. Generates a report with findings
 6. Suggests remediation for each issue
 
-Submission Guidelines
----------------------
+## Submission Guidelines
+
 For each assignment:
 1. Document the commands you used
 2. Include the output or screenshots
@@ -156,8 +156,8 @@ For each assignment:
 4. Answer any questions asked in the assignment
 5. Note any errors or unexpected behavior
 
-Tips
-----
+## Tips
+
 - Use `man` pages: `man stat`, `man chmod`, `man ln`
 - Test with small examples first
 - Use `echo $?` to check exit codes

@@ -1,8 +1,8 @@
-Shell Programming Resources
-============================
+# Shell Programming Resources
 
-Bash Guides and Tutorials
---------------------------
+
+## Bash Guides and Tutorials
+
 Advanced Bash-Scripting Guide
 https://tldp.org/LDP/abs/html/
 
@@ -21,8 +21,8 @@ https://wiki.bash-hackers.org/
 Google Shell Style Guide
 https://google.github.io/styleguide/shellguide.html
 
-Command Substitution
---------------------
+## Command Substitution
+
 Command Substitution Explained
 https://www.gnu.org/software/bash/manual/html_node/Command-Substitution.html
 
@@ -32,8 +32,8 @@ https://www.gnu.org/software/bash/manual/html_node/Process-Substitution.html
 Bash Process Substitution Examples
 https://www.linuxjournal.com/content/shell-process-redirection
 
-Loops and Conditionals
------------------------
+## Loops and Conditionals
+
 Bash while Loop Examples
 https://www.cyberciti.biz/faq/bash-while-loop/
 
@@ -46,8 +46,8 @@ https://linuxize.com/post/bash-if-else-statement/
 Case Statements in Bash
 https://linuxize.com/post/bash-case-statement/
 
-Arrays
-------
+## Arrays
+
 Bash Arrays Tutorial
 https://www.gnu.org/software/bash/manual/html_node/Arrays.html
 
@@ -57,8 +57,8 @@ https://www.linuxjournal.com/content/bash-arrays
 Bash Array Examples
 https://www.thegeekstuff.com/2010/06/bash-array-tutorial/
 
-String Operations
------------------
+## String Operations
+
 Bash String Manipulation
 https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
 
@@ -68,8 +68,8 @@ https://www.tldp.org/LDP/abs/html/string-manipulation.html
 Bash String Processing
 https://www.cyberciti.biz/faq/bash-string-comparison/
 
-Functions
----------
+## Functions
+
 Bash Functions Tutorial
 https://linuxize.com/post/bash-functions/
 
@@ -79,8 +79,8 @@ https://www.thegeekstuff.com/2010/04/unix-bash-function-examples/
 Local Variables in Functions
 https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html
 
-Error Handling
---------------
+## Error Handling
+
 Bash Error Handling
 https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 
@@ -93,8 +93,8 @@ https://www.linuxjournal.com/content/bash-trap-command
 Exit Codes and Status
 https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html
 
-Arithmetic
-----------
+## Arithmetic
+
 Bash Arithmetic Operations
 https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html
 
@@ -104,8 +104,8 @@ https://www.shell-tips.com/bash/math-arithmetic-calculation/
 Using bc for Calculations
 https://www.gnu.org/software/bc/manual/html_mono/bc.html
 
-I/O and Redirection
--------------------
+## I/O and Redirection
+
 Advanced Redirection in Bash
 https://www.gnu.org/software/bash/manual/html_node/Redirections.html
 
@@ -115,8 +115,8 @@ https://www.gnu.org/software/bash/manual/html_node/Redirecting-Input.html
 Here Documents
 https://www.gnu.org/software/bash/manual/html_node/Redirecting-Input.html
 
-Best Practices
---------------
+## Best Practices
+
 Bash Best Practices
 https://bertvv.github.io/cheat-sheets/Bash.html
 
@@ -135,8 +135,8 @@ https://www.shellcheck.net/
 Writing Robust Bash Scripts
 https://www.davidpashley.com/articles/writing-robust-shell-scripts/
 
-Testing
--------
+## Testing
+
 Bash Unit Testing with bats
 https://github.com/bats-core/bats-core
 
@@ -146,8 +146,8 @@ https://github.com/kward/shunit2
 Testing Bash Scripts
 https://www.marksayson.com/blog/testing-bash-scripts/
 
-Advanced Topics
----------------
+## Advanced Topics
+
 Bash Co-processes
 https://www.gnu.org/software/bash/manual/html_node/Coprocesses.html
 
@@ -160,8 +160,8 @@ https://www.gnu.org/software/parallel/parallel_tutorial.html
 Named Pipes and Process Substitution
 https://www.linuxjournal.com/content/using-named-pipes-fifos-bash
 
-Performance
------------
+## Performance
+
 Optimizing Bash Scripts
 https://www.tldp.org/LDP/abs/html/optimizations.html
 
@@ -171,8 +171,8 @@ https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html
 Profiling Bash Scripts
 https://stackoverflow.com/questions/5014823/how-to-profile-a-bash-shell-script-slow-startup
 
-Data Processing
----------------
+## Data Processing
+
 Text Processing with Bash
 https://www.tldp.org/LDP/abs/html/textproc.html
 
@@ -185,8 +185,8 @@ https://datascienceatthecommandline.com/2e/
 Bash for Data Processing
 https://www.oreilly.com/library/view/data-science-at/9781491947845/
 
-Debugging
----------
+## Debugging
+
 Bash Debugging Guide
 https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 
@@ -199,8 +199,8 @@ https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_03.html
 VS Code Bash Debug Extension
 https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
 
-Tools
------
+## Tools
+
 shellcheck - Static Analysis
 https://github.com/koalaman/shellcheck
 
@@ -213,8 +213,8 @@ https://github.com/openstack/bashate
 shellharden - Bash Hardening
 https://github.com/anordal/shellharden
 
-Books
------
+## Books
+
 "The Linux Command Line" by William Shotts
 https://linuxcommand.org/tlcl.php
 
@@ -224,8 +224,8 @@ https://www.oreilly.com/library/view/learning-the-bash/0596009658/
 "Bash Cookbook" by Carl Albing & JP Vossen
 https://www.oreilly.com/library/view/bash-cookbook-2nd/9781491975329/
 
-Interactive Learning
---------------------
+## Interactive Learning
+
 Learn Shell - Interactive Tutorial
 https://www.learnshell.org/
 
@@ -235,8 +235,8 @@ https://ryanstutorials.net/bash-scripting-tutorial/
 Command Line Challenge
 https://cmdchallenge.com/
 
-Cheat Sheets
-------------
+## Cheat Sheets
+
 Bash Cheat Sheet
 https://devhints.io/bash
 
@@ -246,8 +246,8 @@ https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh
 Advanced Bash Cheat Sheet
 https://bertvv.github.io/cheat-sheets/Bash.html
 
-Community
----------
+## Community
+
 Bash Questions - Stack Overflow
 https://stackoverflow.com/questions/tagged/bash
 
@@ -257,8 +257,8 @@ https://www.reddit.com/r/bash/
 Unix & Linux Stack Exchange
 https://unix.stackexchange.com/
 
-Man Pages
----------
+## Man Pages
+
 bash(1)
 https://man7.org/linux/man-pages/man1/bash.1.html
 
@@ -268,8 +268,8 @@ https://man7.org/linux/man-pages/man1/read.1p.html
 test(1)
 https://man7.org/linux/man-pages/man1/test.1.html
 
-Examples and Snippets
----------------------
+## Examples and Snippets
+
 Bash One-Liners Explained
 https://catonmat.net/bash-one-liners-explained-part-one
 

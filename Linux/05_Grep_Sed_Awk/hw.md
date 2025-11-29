@@ -92,8 +92,8 @@ Parse a log file to extract:
 ### Bonus 3: Text Report Generator
 From a CSV with sales data, generate a formatted text report:
 ```
-Sales Report
-============
+# Sales Report
+
 Total Revenue: $12,345.67
 Total Orders: 150
 Average Order: $82.30

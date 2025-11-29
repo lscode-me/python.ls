@@ -1,8 +1,8 @@
-File Handling Resources
-=======================
+# File Handling Resources
 
-Official Python Documentation
-------------------------------
+
+## Official Python Documentation
+
 Input and Output Tutorial
 https://docs.python.org/3/tutorial/inputoutput.html
 
@@ -31,8 +31,8 @@ gzip Module
 https://docs.python.org/3/library/gzip.html
 
 
-Real Python Tutorials
----------------------
+## Real Python Tutorials
+
 Reading and Writing Files in Python
 https://realpython.com/read-write-files-python/
 
@@ -52,15 +52,15 @@ Context Managers and with Statement
 https://realpython.com/python-with-statement/
 
 
-Books
------
+## Books
+
 "Python Cookbook" by David Beazley (Chapter 5 on Files and I/O)
 "Fluent Python" by Luciano Ramalho (Context Managers)
 "Effective Python" by Brett Slatkin (Items on File Handling)
 
 
-Video Resources
----------------
+## Video Resources
+
 Corey Schafer - File Objects
 https://www.youtube.com/watch?v=Uh2ebFW8OYM
 
@@ -71,8 +71,8 @@ Tech With Tim - Working with Files in Python
 https://www.youtube.com/watch?v=4mX0uPQFLDU
 
 
-pathlib Resources
------------------
+## pathlib Resources
+
 pathlib Tutorial by Real Python
 https://realpython.com/python-pathlib/
 
@@ -83,8 +83,8 @@ pathlib vs os.path
 https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/
 
 
-CSV and Data Files
-------------------
+## CSV and Data Files
+
 CSV File Reading and Writing
 https://docs.python.org/3/library/csv.html
 
@@ -95,8 +95,8 @@ Python CSV Tutorial
 https://www.datacamp.com/community/tutorials/python-csv-tutorial
 
 
-JSON Resources
---------------
+## JSON Resources
+
 Working with JSON in Python
 https://www.programiz.com/python-programming/json
 
@@ -107,8 +107,8 @@ JSON Schema Validation
 https://python-jsonschema.readthedocs.io/
 
 
-Binary Files
-------------
+## Binary Files
+
 Working with Binary Data in Python
 https://docs.python.org/3/library/struct.html
 
@@ -119,8 +119,8 @@ Binary File Processing
 https://realpython.com/python-binascii/
 
 
-File Compression
-----------------
+## File Compression
+
 zipfile Documentation
 https://docs.python.org/3/library/zipfile.html
 
@@ -134,8 +134,8 @@ tarfile Module
 https://docs.python.org/3/library/tarfile.html
 
 
-Advanced Topics
----------------
+## Advanced Topics
+
 Memory-Mapped Files
 https://docs.python.org/3/library/mmap.html
 
@@ -149,8 +149,8 @@ watchdog - File System Events
 https://pypi.org/project/watchdog/
 
 
-Best Practices
---------------
+## Best Practices
+
 Python File I/O Best Practices
 https://docs.python-guide.org/writing/structure/
 
@@ -161,8 +161,8 @@ File Encodings in Python 3
 https://docs.python.org/3/howto/unicode.html
 
 
-Tools and Libraries
--------------------
+## Tools and Libraries
+
 pandas - Data Analysis
 https://pandas.pydata.org/
 
@@ -176,8 +176,8 @@ h5py - HDF5 Files
 https://www.h5py.org/
 
 
-Practice and Examples
----------------------
+## Practice and Examples
+
 File Handling Exercises
 https://www.w3resource.com/python-exercises/file/
 
@@ -188,8 +188,8 @@ GeeksforGeeks - File Handling
 https://www.geeksforgeeks.org/file-handling-python/
 
 
-Community Resources
--------------------
+## Community Resources
+
 Python Reddit (r/learnpython)
 https://www.reddit.com/r/learnpython/
 

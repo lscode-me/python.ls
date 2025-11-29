@@ -1,8 +1,8 @@
-Bioinformatics - Homework Assignments
-======================================
+# Bioinformatics - Homework Assignments
 
-Assignment 1: DNA Sequence Analysis
------------------------------------
+
+## Assignment 1: DNA Sequence Analysis
+
 Create a comprehensive DNA sequence analyzer that:
 - Validates DNA sequences
 - Calculates GC content
@@ -20,8 +20,8 @@ Test with:
 - Very long sequences (performance testing)
 
 
-Assignment 2: Genetic Code Implementation
-------------------------------------------
+## Assignment 2: Genetic Code Implementation
+
 Implement a complete genetic code translation system:
 - Create the standard genetic code table
 - Implement translation (DNA/RNA to protein)
@@ -39,8 +39,8 @@ Requirements:
 - Report all possible ORFs with their positions
 
 
-Assignment 3: FASTA File Parser
---------------------------------
+## Assignment 3: FASTA File Parser
+
 Build a robust FASTA file parser and writer:
 - Parse multi-sequence FASTA files
 - Handle wrapped sequences (multi-line)
@@ -60,8 +60,8 @@ Test cases:
 - Files with millions of sequences
 
 
-Assignment 4: FASTQ Quality Control
-------------------------------------
+## Assignment 4: FASTQ Quality Control
+
 Implement FASTQ quality control pipeline:
 - Parse FASTQ files (handle both formats)
 - Calculate per-base quality statistics
@@ -81,8 +81,8 @@ Requirements:
 - Handle paired-end reads
 
 
-Assignment 5: Sequence Alignment
----------------------------------
+## Assignment 5: Sequence Alignment
+
 Implement sequence alignment algorithms:
 - Global alignment (Needleman-Wunsch)
 - Local alignment (Smith-Waterman)
@@ -100,8 +100,8 @@ Bonus:
 - Add support for protein alignment with BLOSUM matrices
 
 
-Assignment 6: BioPython Integration
-------------------------------------
+## Assignment 6: BioPython Integration
+
 Create a sequence analysis toolkit using BioPython:
 - Read sequences from various formats (FASTA, GenBank, EMBL)
 - Perform sequence manipulations
@@ -121,8 +121,8 @@ Features to implement:
 - Compare sequences and report differences
 
 
-Assignment 7: Motif Finder
----------------------------
+## Assignment 7: Motif Finder
+
 Develop a sequence motif finding tool:
 - Search for exact motifs
 - Support IUPAC ambiguity codes
@@ -143,8 +143,8 @@ Patterns to find:
 - Common restriction sites
 
 
-Assignment 8: Gene Finder
---------------------------
+## Assignment 8: Gene Finder
+
 Build a simple gene prediction tool:
 - Find all ORFs in all six reading frames
 - Filter by minimum length
@@ -163,8 +163,8 @@ Advanced features:
 - Calculate codon adaptation index (CAI)
 
 
-Assignment 9: Multiple Sequence Alignment Analyzer
----------------------------------------------------
+## Assignment 9: Multiple Sequence Alignment Analyzer
+
 Create tools to analyze multiple sequence alignments:
 - Read alignment files (FASTA, Clustal, Stockholm)
 - Calculate conservation scores
@@ -184,8 +184,8 @@ Statistics to calculate:
 - Most conserved and variable regions
 
 
-Assignment 10: Biological Database Interface
----------------------------------------------
+## Assignment 10: Biological Database Interface
+
 Build a command-line tool to interact with biological databases:
 - Query NCBI (nucleotide, protein databases)
 - Retrieve sequences by ID or search term
@@ -206,8 +206,8 @@ Features:
 - Support query history
 
 
-Assignment 11: Sequence Statistics Dashboard
----------------------------------------------
+## Assignment 11: Sequence Statistics Dashboard
+
 Create a comprehensive sequence analysis dashboard:
 - Process multiple sequences from a file
 - Calculate extensive statistics:
@@ -229,8 +229,8 @@ Output format:
 - Export to CSV/JSON
 
 
-Assignment 12: Phylogenetic Analysis Tool
-------------------------------------------
+## Assignment 12: Phylogenetic Analysis Tool
+
 Implement basic phylogenetic analysis:
 - Calculate pairwise distances (multiple models)
 - Build distance matrix
@@ -249,8 +249,8 @@ Distance models:
 - Calculate bootstrap support (basic)
 
 
-Bonus Project: End-to-End Pipeline
------------------------------------
+## Bonus Project: End-to-End Pipeline
+
 Create a complete sequence analysis pipeline:
 1. Download sequences from NCBI for a gene family
 2. Perform quality checks

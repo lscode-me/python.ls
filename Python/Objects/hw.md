@@ -1,5 +1,5 @@
-Homework Assignments
---------------------
+## Homework Assignments
+
 
 1. Exploring Basic Data Types
    Write a script that creates and prints different data types:

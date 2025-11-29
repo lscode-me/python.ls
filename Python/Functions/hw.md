@@ -1,5 +1,5 @@
-Homework Assignments - Functions and Functional Programming
--------------------------------------------------------------
+## Homework Assignments - Functions and Functional Programming
+
 
 1. Function Basics and Arguments
    Create a flexible data processing function:

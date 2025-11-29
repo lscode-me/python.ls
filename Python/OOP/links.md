@@ -1,8 +1,8 @@
-OOP Resources and References
-============================
+# OOP Resources and References
 
-Official Python Documentation
-------------------------------
+
+## Official Python Documentation
+
 Python Classes Tutorial
 https://docs.python.org/3/tutorial/classes.html
 
@@ -16,8 +16,8 @@ Python Descriptors
 https://docs.python.org/3/howto/descriptor.html
 
 
-Real Python Tutorials
----------------------
+## Real Python Tutorials
+
 OOP in Python 3
 https://realpython.com/python3-object-oriented-programming/
 
@@ -34,15 +34,15 @@ Multiple Inheritance in Python
 https://realpython.com/python-multiple-inheritance/
 
 
-Books
------
+## Books
+
 "Python Object-Oriented Programming" by Steven F. Lott and Dusty Phillips
 "Fluent Python" by Luciano Ramalho (Chapters on OOP)
 "Effective Python" by Brett Slatkin (Items on Classes)
 
 
-Video Resources
----------------
+## Video Resources
+
 Corey Schafer - Python OOP Tutorial Series
 https://www.youtube.com/watch?v=ZDa-Z5JzLYM&list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc
 
@@ -53,8 +53,8 @@ ArjanCodes - OOP Design Patterns
 https://www.youtube.com/c/ArjanCodes
 
 
-Design Patterns
----------------
+## Design Patterns
+
 Refactoring Guru - Design Patterns in Python
 https://refactoring.guru/design-patterns/python
 
@@ -65,8 +65,8 @@ Gang of Four Design Patterns
 https://springframework.guru/gang-of-four-design-patterns/
 
 
-Advanced Topics
----------------
+## Advanced Topics
+
 Metaprogramming in Python
 https://realpython.com/python-metaclasses/
 
@@ -80,8 +80,8 @@ Python Decorators Deep Dive
 https://realpython.com/primer-on-python-decorators/
 
 
-Practice and Examples
----------------------
+## Practice and Examples
+
 Python OOP Exercises
 https://www.w3resource.com/python-exercises/oop/
 
@@ -92,8 +92,8 @@ Python OOP Examples on GitHub
 https://github.com/topics/python-oop
 
 
-Community Resources
--------------------
+## Community Resources
+
 Python Reddit (r/learnpython)
 https://www.reddit.com/r/learnpython/
 

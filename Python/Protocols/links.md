@@ -1,8 +1,8 @@
-Protocols and Interfaces Resources
-===================================
+# Protocols and Interfaces Resources
 
-Official Python Documentation
-------------------------------
+
+## Official Python Documentation
+
 Data Model - Special Methods
 https://docs.python.org/3/reference/datamodel.html
 
@@ -19,8 +19,8 @@ collections.abc Module
 https://docs.python.org/3/library/collections.abc.html
 
 
-Real Python Tutorials
----------------------
+## Real Python Tutorials
+
 Python Protocols
 https://realpython.com/python-protocol/
 
@@ -34,15 +34,15 @@ Duck Typing in Python
 https://realpython.com/lessons/duck-typing/
 
 
-Books
------
+## Books
+
 "Fluent Python" by Luciano Ramalho (Part II on Data Structures)
 "Python Cookbook" by David Beazley (Protocols and Magic Methods)
 "Effective Python" by Brett Slatkin (Items on Interfaces)
 
 
-Video Resources
----------------
+## Video Resources
+
 Raymond Hettinger - Beyond PEP 8
 https://www.youtube.com/watch?v=wf-BqAjZb8M
 
@@ -53,8 +53,8 @@ Brett Slatkin - Refactoring Python: Why and How to Restructure Your Code
 https://www.youtube.com/watch?v=D_6ybDcU5gc
 
 
-Advanced Topics
----------------
+## Advanced Topics
+
 PEP 3119 - Introducing Abstract Base Classes
 https://www.python.org/dev/peps/pep-3119/
 
@@ -68,8 +68,8 @@ Protocol-Oriented Programming in Python
 https://www.youtube.com/watch?v=vvSMR0JxRWY
 
 
-Articles and Blog Posts
------------------------
+## Articles and Blog Posts
+
 Understanding Python Protocols
 https://andrewbrookins.com/python/protocols-in-python/
 
@@ -80,8 +80,8 @@ Making Your Classes Comparable
 https://portingguide.readthedocs.io/en/latest/comparisons.html
 
 
-Community Resources
--------------------
+## Community Resources
+
 Python Reddit (r/Python)
 https://www.reddit.com/r/Python/
 

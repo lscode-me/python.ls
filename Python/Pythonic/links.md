@@ -1,8 +1,8 @@
-Pythonic Code - Resources
-=========================
+# Pythonic Code - Resources
 
-The Zen of Python
------------------
+
+## The Zen of Python
+
 PEP 20 - The Zen of Python
 https://www.python.org/dev/peps/pep-0020/
 
@@ -13,8 +13,8 @@ Tim Peters on The Zen of Python
 https://mail.python.org/pipermail/python-list/1999-June/001951.html
 
 
-Official Python Style Guides
------------------------------
+## Official Python Style Guides
+
 PEP 8 - Style Guide for Python Code
 https://www.python.org/dev/peps/pep-0008/
 
@@ -28,8 +28,8 @@ The Hitchhiker's Guide to Python - Code Style
 https://docs.python-guide.org/writing/style/
 
 
-Real Python Tutorials
----------------------
+## Real Python Tutorials
+
 Writing Pythonic Code
 https://realpython.com/learning-paths/writing-pythonic-code/
 
@@ -49,16 +49,16 @@ Python zip() Function
 https://realpython.com/python-zip-function/
 
 
-Books
------
+## Books
+
 "The Hitchhiker's Guide to Python" by Kenneth Reitz & Tanya Schlusser
 "Effective Python" by Brett Slatkin (90 Specific Ways to Write Better Python)
 "Python Tricks" by Dan Bader
 "Fluent Python" by Luciano Ramalho (Pythonic Thinking)
 
 
-Video Resources
----------------
+## Video Resources
+
 Raymond Hettinger - Transforming Code into Beautiful, Idiomatic Python
 https://www.youtube.com/watch?v=OSGv2VnC0go
 
@@ -78,8 +78,8 @@ Brandon Rhodes - The Mighty Dictionary
 https://www.youtube.com/watch?v=C4Kc8xzcA68
 
 
-Idiomatic Python Patterns
---------------------------
+## Idiomatic Python Patterns
+
 Python Idioms and Efficiency
 https://python-patterns.guide/
 
@@ -96,8 +96,8 @@ Writing Idiomatic Python
 https://jeffknupp.com/blog/2012/10/04/writing-idiomatic-python/
 
 
-List Comprehensions and Generators
------------------------------------
+## List Comprehensions and Generators
+
 List Comprehensions Tutorial
 https://www.datacamp.com/community/tutorials/python-list-comprehension
 
@@ -111,8 +111,8 @@ Understanding List Comprehensions
 https://treyhunner.com/2015/12/python-list-comprehensions-now-in-color/
 
 
-Context Managers
-----------------
+## Context Managers
+
 Context Managers and the with Statement
 https://realpython.com/python-with-statement/
 
@@ -126,8 +126,8 @@ Writing Custom Context Managers
 https://www.geeksforgeeks.org/context-manager-in-python/
 
 
-Code Quality Tools
-------------------
+## Code Quality Tools
+
 Black - The Uncompromising Code Formatter
 https://github.com/psf/black
 
@@ -144,8 +144,8 @@ isort - Import Sorting
 https://pycqa.github.io/isort/
 
 
-Best Practices Articles
------------------------
+## Best Practices Articles
+
 Writing Clean Python Code
 https://testdriven.io/blog/clean-code-python/
 
@@ -162,8 +162,8 @@ Pythonic vs Non-Pythonic Examples
 https://gist.github.com/JeffPaine/6213790
 
 
-EAFP vs LBYL
-------------
+## EAFP vs LBYL
+
 EAFP vs LBYL
 https://realpython.com/python-lbyl-vs-eafp/
 
@@ -174,8 +174,8 @@ EAFP Principle in Python
 https://devblogs.microsoft.com/python/idiomatic-python-eafp-versus-lbyl/
 
 
-Specific Python Idioms
-----------------------
+## Specific Python Idioms
+
 Python's any() and all()
 https://realpython.com/python-any-all/
 
@@ -195,8 +195,8 @@ https://treyhunner.com/2018/03/tuple-unpacking-improves-python-code-readability/
 https://realpython.com/python-kwargs-and-args/
 
 
-Advanced Pythonic Patterns
----------------------------
+## Advanced Pythonic Patterns
+
 Decorators
 https://realpython.com/primer-on-python-decorators/
 
@@ -213,8 +213,8 @@ Pattern Matching (Python 3.10+)
 https://www.python.org/dev/peps/pep-0636/
 
 
-Code Review and Examples
--------------------------
+## Code Review and Examples
+
 Code Review Best Practices
 https://realpython.com/python-code-quality/
 
@@ -228,8 +228,8 @@ Real World Python Programs
 https://github.com/mahmoud/awesome-python-applications
 
 
-Community and Discussion
-------------------------
+## Community and Discussion
+
 Python Reddit (r/Python)
 https://www.reddit.com/r/Python/
 
@@ -246,8 +246,8 @@ Planet Python - Blog Aggregator
 https://planetpython.org/
 
 
-Code Challenges for Practice
------------------------------
+## Code Challenges for Practice
+
 Python Morsels - Pythonic Challenges
 https://www.pythonmorsels.com/
 
@@ -261,8 +261,8 @@ LeetCode - Python Solutions
 https://leetcode.com/problemset/all/
 
 
-Style Guides from Companies
----------------------------
+## Style Guides from Companies
+
 Google Python Style Guide
 https://google.github.io/styleguide/pyguide.html
 
@@ -276,8 +276,8 @@ Airbnb JavaScript to Python
 https://github.com/airbnb/javascript
 
 
-Python Performance and Optimization
-------------------------------------
+## Python Performance and Optimization
+
 Python Performance Tips
 https://wiki.python.org/moin/PythonSpeed/PerformanceTips
 
@@ -288,8 +288,8 @@ Python Speed Optimization
 https://towardsdatascience.com/python-performance-optimization-f4a4e8f0e8e5
 
 
-Podcasts and Blogs
-------------------
+## Podcasts and Blogs
+
 Talk Python To Me Podcast
 https://talkpython.fm/
 

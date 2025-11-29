@@ -1,5 +1,5 @@
-Homework Assignments - Protocols and Interfaces
------------------------------------------------
+## Homework Assignments - Protocols and Interfaces
+
 
 1. Implementing Common Protocols
    Create a `Deck` class representing a deck of playing cards:

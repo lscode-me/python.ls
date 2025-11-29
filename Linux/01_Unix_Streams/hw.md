@@ -1,32 +1,32 @@
-Unix as a Language of Data & Streams - Homework
-================================================
+# Unix as a Language of Data & Streams - Homework
 
-Assignment 1: CSV Analysis Pipeline
-------------------------------------
+
+## Assignment 1: CSV Analysis Pipeline
+
 Fetch a CSV file from a URL (or use a local file) and:
 1. Display the first 10 rows
 2. Count total number of records
 3. Extract a specific column and show unique values
 4. Find the top 5 most frequent values in that column
 
-Assignment 2: Log File Analysis
---------------------------------
+## Assignment 2: Log File Analysis
+
 Given an access log or application log:
 1. Filter entries from a specific date or time range
 2. Count how many log entries there are per hour
 3. Identify the most frequent log level (ERROR, WARN, INFO, etc.)
 4. Extract and count unique IP addresses
 
-Assignment 3: Data Quality Check
----------------------------------
+## Assignment 3: Data Quality Check
+
 For a CSV or TSV file:
 1. Check for duplicate rows
 2. Find rows with empty/missing fields
 3. Count unique values in each column
 4. Identify outliers (values that appear only once)
 
-Assignment 4: Stream Processing Pipeline
------------------------------------------
+## Assignment 4: Stream Processing Pipeline
+
 Build a pipeline that:
 1. Reads data from stdin or a file
 2. Filters rows based on a condition
@@ -36,8 +36,8 @@ Build a pipeline that:
 
 Example: Process sales data to find top 10 products by revenue
 
-Assignment 5: Multi-Source Data Merge
---------------------------------------
+## Assignment 5: Multi-Source Data Merge
+
 1. Download or create two CSV files with related data
 2. Extract relevant columns from each
 3. Combine them (simple concatenation)
@@ -45,8 +45,8 @@ Assignment 5: Multi-Source Data Merge
 5. Sort by a specific field
 6. Output to a new file
 
-Assignment 6: Real-Time Log Monitoring
----------------------------------------
+## Assignment 6: Real-Time Log Monitoring
+
 1. Use `tail -f` to follow a log file
 2. Filter for specific patterns (errors, warnings)
 3. Count occurrences in real-time
@@ -54,8 +54,8 @@ Assignment 6: Real-Time Log Monitoring
 
 Hint: You may need to use `stdbuf` for line buffering
 
-Assignment 7: API Data Processing
-----------------------------------
+## Assignment 7: API Data Processing
+
 1. Use `curl` to fetch JSON data from a public API
 2. Pipe the output through processing commands
 3. Extract specific fields
@@ -66,8 +66,8 @@ Example APIs:
 - https://api.github.com/users/[username]/repos
 - https://jsonplaceholder.typicode.com/posts
 
-Assignment 8: Text Transformation Pipeline
--------------------------------------------
+## Assignment 8: Text Transformation Pipeline
+
 Create a pipeline that:
 1. Reads text data from stdin
 2. Converts to lowercase or uppercase
@@ -76,24 +76,24 @@ Create a pipeline that:
 5. Counts word frequency
 6. Shows top 20 most common words
 
-Assignment 9: Data Format Conversion
--------------------------------------
+## Assignment 9: Data Format Conversion
+
 1. Take a CSV file
 2. Convert it to a different delimiter (e.g., CSV to TSV)
 3. Add a header row if missing
 4. Reorder columns
 5. Save to a new file
 
-Assignment 10: Performance Comparison
---------------------------------------
+## Assignment 10: Performance Comparison
+
 Compare different approaches to the same task:
 1. Count unique values in a column using `sort | uniq`
 2. Count unique values using `awk`
 3. Measure execution time for each approach using `time`
 4. Document which approach is faster and why
 
-Bonus Challenge: Build a Complete ETL Pipeline
------------------------------------------------
+## Bonus Challenge: Build a Complete ETL Pipeline
+
 Create a bash script that:
 1. Downloads data from a URL
 2. Validates the data (checks for required fields)
@@ -109,8 +109,8 @@ Requirements:
 - Handle errors gracefully
 - Output should be reproducible
 
-Submission Guidelines
----------------------
+## Submission Guidelines
+
 For each assignment:
 1. Provide the command(s) or script used
 2. Include sample input data (first few lines)
@@ -118,8 +118,8 @@ For each assignment:
 4. Explain your approach
 5. Note any challenges or interesting findings
 
-Tips
-----
+## Tips
+
 - Test your pipelines on small data samples first
 - Use `head` to limit output during development
 - Break complex pipelines into stages

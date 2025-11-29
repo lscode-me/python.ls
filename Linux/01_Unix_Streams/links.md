@@ -1,8 +1,8 @@
-Unix Streams and Data Processing - Resources
-=============================================
+# Unix Streams and Data Processing - Resources
 
-Unix Philosophy
----------------
+
+## Unix Philosophy
+
 The Unix Programming Environment
 https://en.wikipedia.org/wiki/The_Unix_Programming_Environment
 
@@ -15,8 +15,8 @@ https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html
 The UNIX Philosophy
 https://www.mike.org.cn/articles/the-unix-philosophy/
 
-Books and Tutorials
--------------------
+## Books and Tutorials
+
 Data Science at the Command Line (2e)
 https://datascienceatthecommandline.com/
 
@@ -32,8 +32,8 @@ https://linuxcommand.org/tlcl.php
 Bash Guide for Beginners
 https://tldp.org/LDP/Bash-Beginners-Guide/html/
 
-Standard Streams and Pipes
----------------------------
+## Standard Streams and Pipes
+
 Understanding Standard Input and Output
 https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux/
 
@@ -46,8 +46,8 @@ https://www.guru99.com/linux-redirection.html
 Named Pipes (FIFOs)
 https://www.linuxjournal.com/article/2156
 
-Essential Commands
-------------------
+## Essential Commands
+
 grep Manual
 https://www.gnu.org/software/grep/manual/grep.html
 
@@ -72,8 +72,8 @@ https://curl.se/docs/manual.html
 curl Cookbook
 https://catonmat.net/cookbooks/curl
 
-Text Processing Tools
----------------------
+## Text Processing Tools
+
 Text Processing Commands
 https://www.thegeekstuff.com/2012/02/linux-text-processing-commands/
 
@@ -86,8 +86,8 @@ https://www.regular-expressions.info/tutorial.html
 Regex101 - Regex Tester
 https://regex101.com/
 
-Data Formats
-------------
+## Data Formats
+
 CSV Format Specification (RFC 4180)
 https://tools.ietf.org/html/rfc4180
 
@@ -97,8 +97,8 @@ https://jsonlines.org/
 Working with JSON at the Command Line
 https://www.linode.com/docs/guides/how-to-use-jq/
 
-Streaming Data Processing
---------------------------
+## Streaming Data Processing
+
 Stream Processing 101
 https://www.oreilly.com/radar/the-world-beyond-batch-streaming-101/
 
@@ -108,8 +108,8 @@ https://adamdrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-clu
 Big Data Processing with Unix Tools
 https://aadrake.com/posts/2014-08-command-line-tools-can-be-faster-than-hadoop.html
 
-Performance and Optimization
------------------------------
+## Performance and Optimization
+
 Performance Analysis with Time
 https://www.gnu.org/software/time/
 
@@ -119,8 +119,8 @@ https://www.gnu.org/software/parallel/parallel_tutorial.html
 Optimizing Pipelines
 https://www.pixelbeat.org/programming/profiling/
 
-Command Examples and Cheatsheets
----------------------------------
+## Command Examples and Cheatsheets
+
 Linux Command Library
 https://linuxcommandlibrary.com/
 
@@ -133,8 +133,8 @@ https://catonmat.net/bash-one-liners-explained-part-one
 Data Science One-Liners
 https://github.com/onceupon/Bash-Oneliner
 
-Real-World Use Cases
----------------------
+## Real-World Use Cases
+
 Processing Large Files with Unix Tools
 https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/
 
@@ -144,8 +144,8 @@ https://www.loggly.com/blog/analyzing-log-data-with-logstash-elasticsearch-and-k
 CSV Processing Best Practices
 https://csvkit.readthedocs.io/en/latest/
 
-Interactive Learning
---------------------
+## Interactive Learning
+
 OverTheWire - Bandit (Linux Command Line Game)
 https://overthewire.org/wargames/bandit/
 
@@ -155,8 +155,8 @@ https://cmdchallenge.com/
 Linux Journey - Learn Linux
 https://linuxjourney.com/
 
-Community and Forums
---------------------
+## Community and Forums
+
 Unix & Linux Stack Exchange
 https://unix.stackexchange.com/
 
@@ -169,8 +169,8 @@ https://www.reddit.com/r/bash/
 Linux Questions Forum
 https://www.linuxquestions.org/
 
-Public Datasets for Practice
------------------------------
+## Public Datasets for Practice
+
 Awesome Public Datasets
 https://github.com/awesomedata/awesome-public-datasets
 
@@ -183,8 +183,8 @@ https://www.kaggle.com/datasets
 UCI Machine Learning Repository
 https://archive.ics.uci.edu/ml/index.php
 
-Tools for Data Scientists
---------------------------
+## Tools for Data Scientists
+
 csvkit - CSV utilities
 https://csvkit.readthedocs.io/
 
@@ -197,8 +197,8 @@ https://github.com/BurntSushi/xsv
 Miller (mlr) - Data processing
 https://miller.readthedocs.io/
 
-Videos and Courses
-------------------
+## Videos and Courses
+
 Missing Semester of Your CS Education
 https://missing.csail.mit.edu/
 
@@ -208,16 +208,16 @@ https://commandlinepoweruser.com/
 Linux Command Line Full Course
 https://www.youtube.com/watch?v=ZtqBQ68cfJc
 
-Standards and Specifications
------------------------------
+## Standards and Specifications
+
 POSIX Standard
 https://pubs.opengroup.org/onlinepubs/9699919799/
 
 Filesystem Hierarchy Standard
 https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
 
-Style Guides
-------------
+## Style Guides
+
 Google Shell Style Guide
 https://google.github.io/styleguide/shellguide.html
 

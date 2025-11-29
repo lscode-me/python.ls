@@ -1,8 +1,8 @@
-Functions and Functional Programming Resources
-=============================================
+# Functions and Functional Programming Resources
 
-Official Python Documentation
-------------------------------
+
+## Official Python Documentation
+
 Functions Tutorial
 https://docs.python.org/3/tutorial/controlflow.html#defining-functions
 
@@ -19,8 +19,8 @@ itertools Module
 https://docs.python.org/3/library/itertools.html
 
 
-Real Python Tutorials
----------------------
+## Real Python Tutorials
+
 Python Functions
 https://realpython.com/defining-your-own-python-function/
 
@@ -43,15 +43,15 @@ Python Generators
 https://realpython.com/introduction-to-python-generators/
 
 
-Books
------
+## Books
+
 "Functional Programming in Python" by David Mertz
 "Fluent Python" by Luciano Ramalho (Chapters 5-7)
 "Python Cookbook" by David Beazley (Function-related recipes)
 
 
-Video Resources
----------------
+## Video Resources
+
 Corey Schafer - Python Functions
 https://www.youtube.com/watch?v=9Os0o3wzS_I
 
@@ -65,8 +65,8 @@ James Powell - So you want to be a Python expert?
 https://www.youtube.com/watch?v=cKPlPJyQrt4
 
 
-Advanced Topics
----------------
+## Advanced Topics
+
 PEP 3102 - Keyword-Only Arguments
 https://www.python.org/dev/peps/pep-3102/
 
@@ -83,8 +83,8 @@ Descriptor HowTo Guide
 https://docs.python.org/3/howto/descriptor.html
 
 
-Functional Programming Libraries
----------------------------------
+## Functional Programming Libraries
+
 toolz - Functional programming utilities
 https://github.com/pytoolz/toolz
 
@@ -98,8 +98,8 @@ funcy - Fancy and practical functional tools
 https://github.com/Suor/funcy
 
 
-Practice and Examples
----------------------
+## Practice and Examples
+
 Python Exercises - Functions
 https://www.w3resource.com/python-exercises/python-functions-exercises.php
 
@@ -110,8 +110,8 @@ Codewars - Functional Programming
 https://www.codewars.com/kata/search/python?q=functional
 
 
-Articles and Blog Posts
------------------------
+## Articles and Blog Posts
+
 Functional Programming in Python: When and How to Use It
 https://stackabuse.com/functional-programming-in-python/
 
@@ -128,8 +128,8 @@ Map, Filter and Reduce
 https://www.learnpython.org/en/Map,_Filter,_Reduce
 
 
-Performance and Optimization
------------------------------
+## Performance and Optimization
+
 Optimizing Python Code
 https://wiki.python.org/moin/PythonSpeed/PerformanceTips
 
@@ -140,8 +140,8 @@ Python Speed - Performance Tips
 https://wiki.python.org/moin/PythonSpeed
 
 
-Community Resources
--------------------
+## Community Resources
+
 Python Reddit (r/learnpython)
 https://www.reddit.com/r/learnpython/
 

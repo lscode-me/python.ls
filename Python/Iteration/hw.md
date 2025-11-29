@@ -1,5 +1,5 @@
-Homework Assignments - Iteration Protocol
-------------------------------------------
+## Homework Assignments - Iteration Protocol
+
 
 1. Custom Iterator Classes
    Create the following iterator classes:

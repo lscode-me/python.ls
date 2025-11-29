@@ -1,8 +1,8 @@
-Files, I-nodes & File Descriptors - Resources
-==============================================
+# Files, I-nodes & File Descriptors - Resources
 
-I-nodes and File System
------------------------
+
+## I-nodes and File System
+
 Understanding Unix I-nodes
 https://www.grymoire.com/Unix/Inodes.html
 
@@ -18,8 +18,8 @@ https://www.pathname.com/fhs/
 ext4 File System
 https://ext4.wiki.kernel.org/
 
-File Descriptors
-----------------
+## File Descriptors
+
 Understanding File Descriptors
 https://www.bottomupcs.com/file_descriptors.xhtml
 
@@ -35,8 +35,8 @@ https://man7.org/linux/man-pages/man5/proc.5.html
 Using lsof Command
 https://www.howtogeek.com/426031/how-to-use-the-linux-lsof-command/
 
-File Types
-----------
+## File Types
+
 Unix File Types Overview
 https://www.gnu.org/software/libc/manual/html_node/Testing-File-Type.html
 
@@ -52,8 +52,8 @@ https://www.kernel.org/doc/html/latest/admin-guide/devices.html
 Special Files in /dev
 https://tldp.org/LDP/sag/html/dev-fs.html
 
-File Permissions
-----------------
+## File Permissions
+
 Linux File Permissions Explained
 https://www.linode.com/docs/guides/linux-users-and-groups/
 
@@ -75,8 +75,8 @@ https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html
 Access Control Lists (ACLs)
 https://www.redhat.com/sysadmin/linux-access-control-lists
 
-Standard Streams
-----------------
+## Standard Streams
+
 stdin, stdout, stderr Explained
 https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux/
 
@@ -89,8 +89,8 @@ https://catonmat.net/bash-one-liners-explained-part-three
 Here Documents and Here Strings
 https://tldp.org/LDP/abs/html/here-docs.html
 
-Special Device Files
---------------------
+## Special Device Files
+
 /dev/null - The Black Hole
 https://www.putorius.net/introduction-to-dev-null.html
 
@@ -103,8 +103,8 @@ https://unix.stackexchange.com/questions/324209/when-to-use-dev-random-vs-dev-ur
 Pseudo-Terminal Devices (/dev/pts)
 https://www.kernel.org/doc/Documentation/filesystems/devpts.txt
 
-File Formats and Encoding
---------------------------
+## File Formats and Encoding
+
 File Command Magic Database
 https://www.darwinsys.com/file/
 
@@ -123,8 +123,8 @@ https://www.gnu.org/software/libc/manual/html_node/iconv-Examples.html
 Line Ending Conversions
 https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/
 
-Tools and Utilities
--------------------
+## Tools and Utilities
+
 stat Command Tutorial
 https://www.geeksforgeeks.org/stat-command-in-linux-with-examples/
 
@@ -146,8 +146,8 @@ https://www.tutorialspoint.com/unix_commands/xxd.htm
 dd Command Tutorial
 https://www.geeksforgeeks.org/dd-command-linux/
 
-Advanced Topics
----------------
+## Advanced Topics
+
 File System Internals
 https://www.kernel.org/doc/html/latest/filesystems/
 
@@ -166,8 +166,8 @@ https://man7.org/linux/man-pages/man2/mmap.2.html
 Sparse Files
 https://www.kernel.org/doc/html/latest/filesystems/ext4/dynamic.html
 
-Debugging and Monitoring
--------------------------
+## Debugging and Monitoring
+
 strace - Trace System Calls
 https://strace.io/
 
@@ -180,8 +180,8 @@ https://man7.org/linux/man-pages/man7/inotify.7.html
 Monitoring File Descriptor Usage
 https://www.cyberciti.biz/tips/linux-procfs-file-descriptors.html
 
-Security
---------
+## Security
+
 Linux File Permissions and Security
 https://www.redhat.com/sysadmin/linux-file-permissions-explained
 
@@ -194,8 +194,8 @@ https://gtfobins.github.io/
 File Integrity Monitoring
 https://www.tripwire.com/
 
-Books
------
+## Books
+
 "The Linux Programming Interface" by Michael Kerrisk
 https://man7.org/tlpi/
 
@@ -205,8 +205,8 @@ https://www.apuebook.com/
 "Understanding the Linux Kernel" by Bovet & Cesati
 https://www.oreilly.com/library/view/understanding-the-linux/0596005652/
 
-Man Pages
----------
+## Man Pages
+
 stat(1) - Display File Status
 https://man7.org/linux/man-pages/man1/stat.1.html
 
@@ -234,8 +234,8 @@ https://man7.org/linux/man-pages/man1/file.1.html
 mkfifo(1) - Make FIFOs
 https://man7.org/linux/man-pages/man1/mkfifo.1.html
 
-Interactive Learning
---------------------
+## Interactive Learning
+
 Linux File System Exercises
 https://linuxjourney.com/lesson/filesystem-hierarchy
 
@@ -245,8 +245,8 @@ https://overthewire.org/wargames/bandit/
 Linux Survival
 https://linuxsurvival.com/
 
-Community
----------
+## Community
+
 Unix & Linux Stack Exchange
 https://unix.stackexchange.com/
 

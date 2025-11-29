@@ -1,8 +1,8 @@
-Iteration Protocol Resources
-=============================
+# Iteration Protocol Resources
 
-Official Python Documentation
-------------------------------
+
+## Official Python Documentation
+
 Iterator Types
 https://docs.python.org/3/library/stdtypes.html#iterator-types
 
@@ -25,8 +25,8 @@ PEP 380 - Syntax for Delegating to a Subgenerator
 https://www.python.org/dev/peps/pep-0380/
 
 
-Real Python Tutorials
----------------------
+## Real Python Tutorials
+
 Python Iterators
 https://realpython.com/python-iterators-iterables/
 
@@ -40,15 +40,15 @@ How to Use Generators and yield in Python
 https://realpython.com/introduction-to-python-generators/
 
 
-Books
------
+## Books
+
 "Python Cookbook" by David Beazley (Chapter 4 on Iterators and Generators)
 "Fluent Python" by Luciano Ramalho (Chapter 14 on Iterables, Iterators, and Generators)
 "Effective Python" by Brett Slatkin (Items on Iteration)
 
 
-Video Resources
----------------
+## Video Resources
+
 David Beazley - Generator Tricks for Systems Programmers
 https://www.youtube.com/watch?v=oEfVhHFGVqE
 
@@ -62,8 +62,8 @@ Corey Schafer - Python Generators
 https://www.youtube.com/watch?v=bD05uGo_sVI
 
 
-Advanced Topics
----------------
+## Advanced Topics
+
 David Beazley - A Curious Course on Coroutines and Concurrency
 http://www.dabeaz.com/coroutines/
 
@@ -77,8 +77,8 @@ Understanding Python's "with" statement
 https://docs.python.org/3/reference/compound_stmts.html#with
 
 
-itertools Recipes
------------------
+## itertools Recipes
+
 itertools Recipes (Official Docs)
 https://docs.python.org/3/library/itertools.html#itertools-recipes
 
@@ -89,8 +89,8 @@ toolz - Functional Iterators
 https://toolz.readthedocs.io/
 
 
-Articles and Blog Posts
------------------------
+## Articles and Blog Posts
+
 Loop Like a Native
 https://nedbatchelder.com/text/iter.html
 
@@ -104,8 +104,8 @@ Python Iterators and Generators
 https://www.datacamp.com/community/tutorials/python-iterator-generator
 
 
-Performance and Profiling
---------------------------
+## Performance and Profiling
+
 Profiling Python Code
 https://docs.python.org/3/library/profile.html
 
@@ -116,8 +116,8 @@ Generator vs List Performance
 https://wiki.python.org/moin/Generators
 
 
-Practice and Examples
----------------------
+## Practice and Examples
+
 itertools Problems on LeetCode
 https://leetcode.com/tag/iterator/
 
@@ -128,8 +128,8 @@ Exercism - Python Generators
 https://exercism.org/tracks/python
 
 
-Community Resources
--------------------
+## Community Resources
+
 Python Reddit (r/learnpython)
 https://www.reddit.com/r/learnpython/
 

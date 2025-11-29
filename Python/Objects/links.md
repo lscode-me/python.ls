@@ -1,8 +1,8 @@
-Objects, References, Memory, and Types - Resources
-===================================================
+# Objects, References, Memory, and Types - Resources
 
-Official Python Documentation
-------------------------------
+
+## Official Python Documentation
+
 Python Data Model
 https://docs.python.org/3/reference/datamodel.html
 
@@ -19,8 +19,8 @@ Garbage Collection
 https://docs.python.org/3/library/gc.html
 
 
-Real Python Tutorials
----------------------
+## Real Python Tutorials
+
 Immutability in Python
 https://realpython.com/python-mutable-vs-immutable-types/
 
@@ -40,15 +40,15 @@ Pointers in Python
 https://realpython.com/pointers-in-python/
 
 
-Books
------
+## Books
+
 "Fluent Python" by Luciano Ramalho (Chapter 8 - Object References, Mutability, and Recycling)
 "Python Cookbook" by David Beazley (Data Structures and Algorithms)
 "Effective Python" by Brett Slatkin (Item 8: Know the Differences Between bytes and str)
 
 
-Video Resources
----------------
+## Video Resources
+
 Raymond Hettinger - Modern Python Dictionaries
 https://www.youtube.com/watch?v=p33CVV29OG8
 
@@ -62,8 +62,8 @@ Corey Schafer - Python Strings
 https://www.youtube.com/watch?v=k9TUPpGqYTo
 
 
-Deep Dive Articles
-------------------
+## Deep Dive Articles
+
 Python Names and Values
 https://nedbatchelder.com/text/names.html
 
@@ -77,8 +77,8 @@ Python's Memory Model
 https://rushter.com/blog/python-memory-managment/
 
 
-CPython Internals
------------------
+## CPython Internals
+
 CPython Internals Book
 https://realpython.com/products/cpython-internals-book/
 
@@ -92,8 +92,8 @@ Understanding Python Bytecode
 https://opensource.com/article/18/4/introduction-python-bytecode
 
 
-Reference Counting and GC
--------------------------
+## Reference Counting and GC
+
 Python Garbage Collection Guide
 https://rushter.com/blog/python-garbage-collector/
 
@@ -107,8 +107,8 @@ Reference Cycles
 https://docs.python.org/3/library/weakref.html
 
 
-Mutability and Immutability
----------------------------
+## Mutability and Immutability
+
 Mutable vs Immutable Objects
 https://medium.com/@meghamohan/mutable-and-immutable-side-of-python-c2145cf72747
 
@@ -119,8 +119,8 @@ Python Mutable and Immutable Types
 https://www.geeksforgeeks.org/mutable-vs-immutable-objects-in-python/
 
 
-Common Pitfalls
----------------
+## Common Pitfalls
+
 Common Gotchas in Python
 https://docs.python-guide.org/writing/gotchas/
 
@@ -131,8 +131,8 @@ Late Binding Closures
 https://docs.python-guide.org/writing/gotchas/#late-binding-closures
 
 
-Interactive Tools
------------------
+## Interactive Tools
+
 Python Tutor - Visualize Code Execution
 http://pythontutor.com/
 
@@ -143,8 +143,8 @@ objgraph - Object Reference Graphs
 https://mg.pov.lt/objgraph/
 
 
-Practice and Exercises
-----------------------
+## Practice and Exercises
+
 Python Object Exercises
 https://www.w3resource.com/python-exercises/python-basic-exercises.php
 
@@ -155,8 +155,8 @@ Python Memory Management Quiz
 https://realpython.com/quizzes/python-memory-management/
 
 
-Advanced Topics
----------------
+## Advanced Topics
+
 Weak References
 https://docs.python.org/3/library/weakref.html
 
@@ -170,8 +170,8 @@ Python's Memory Model and You
 https://www.youtube.com/watch?v=F6u5rhUQ6dU
 
 
-PEPs (Python Enhancement Proposals)
-------------------------------------
+## PEPs (Python Enhancement Proposals)
+
 PEP 205 - Weak References
 https://www.python.org/dev/peps/pep-0205/
 
@@ -182,8 +182,8 @@ PEP 412 - Key-Sharing Dictionary
 https://www.python.org/dev/peps/pep-0412/
 
 
-Community Resources
--------------------
+## Community Resources
+
 Python Reddit (r/learnpython)
 https://www.reddit.com/r/learnpython/
 
@@ -197,8 +197,8 @@ Python Discord Community
 https://discord.gg/python
 
 
-Debugging and Profiling
------------------------
+## Debugging and Profiling
+
 sys.getsizeof() Documentation
 https://docs.python.org/3/library/sys.html#sys.getsizeof
 

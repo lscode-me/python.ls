@@ -1,5 +1,5 @@
-Homework Assignments - File Handling
--------------------------------------
+## Homework Assignments - File Handling
+
 
 1. Basic File Operations
    Create a file manager script with the following functions:
