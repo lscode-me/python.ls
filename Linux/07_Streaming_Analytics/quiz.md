@@ -62,6 +62,36 @@
     - C) Use `awk 'moving_avg(5)'`
     - D) Sort and take average
 
+11. How do you join three CSV files using DuckDB?
+    - A) Run three separate join commands
+    - B) Use nested SELECT statements
+    - C) Use multiple JOIN clauses in one query
+    - D) You can't join more than two files
+
+12. What does `ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC)` do?
+    - A) Counts total rows
+    - B) Assigns sequential numbers within each category by price
+    - C) Orders by price and category
+    - D) Partitions data into numbered buckets
+
+13. Which DuckDB window function returns the previous row's value?
+    - A) `PREV()`
+    - B) `PREVIOUS()`
+    - C) `LAG()`
+    - D) `LAST()`
+
+14. How do you calculate the median in DuckDB?
+    - A) `MEDIAN(column)`
+    - B) `AVG(column)`
+    - C) `PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY column)`
+    - D) `MIDDLE(column)`
+
+15. When should you use DuckDB over awk for analytics?
+    - A) For simple line-by-line processing
+    - B) For complex queries with multiple aggregations and window functions
+    - C) For text pattern matching
+    - D) For quick one-liners
+
 ---
 
 ## Answer Key
@@ -75,3 +105,8 @@
 8. C - `top` with `-n 5` and `-g category` finds top-K per group
 9. B - Hash join optimal for small lookup, large data
 10. A - Maintain circular buffer of last N values
+11. C - DuckDB supports multiple JOIN clauses in a single SELECT query
+12. B - ROW_NUMBER assigns sequential numbers within each partition (category)
+13. C - LAG() returns the value from the previous row in the window
+14. C - PERCENTILE_CONT(0.5) calculates the median (50th percentile)
+15. B - DuckDB is better for SQL-style analytical queries with complex logic

@@ -208,3 +208,14 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Book build
+BUILD_BOOK_README.md
+Python_and_Linux_Book.html
+SUMMARY.txt
+book_combined.md
+build_book.py
+build_html.py
+build_pdf.sh
+build_pdf_python.py
+how_to_build_pdf.md

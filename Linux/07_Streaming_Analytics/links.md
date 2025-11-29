@@ -32,6 +32,22 @@ https://en.wikipedia.org/wiki/Streaming_algorithm
 https://www.cs.dartmouth.edu/~ac/Teach/CS49-Fall11/Notes/lecnotes.pdf
 https://blog.acolyer.org/2016/03/04/a-survey-of-synopsis-construction-in-data-streams/
 
+## DuckDB
+https://duckdb.org/ - Official DuckDB website
+https://duckdb.org/docs/sql/aggregates - Aggregate functions
+https://duckdb.org/docs/sql/window_functions - Window functions
+https://duckdb.org/docs/guides/performance/indexing - Performance tuning
+https://duckdb.org/docs/sql/query_syntax/from - FROM clause and joins
+https://github.com/duckdb/duckdb - GitHub repository
+https://duckdb.org/2022/05/04/friendlier-sql.html - Friendlier SQL features
+https://duckdb.org/docs/guides/python/overview - DuckDB with Python
+
+## DuckDB Performance
+https://duckdb.org/why_duckdb - Why DuckDB is fast
+https://duckdb.org/2021/03/05/aggregate-hashtable.html - Aggregate performance
+https://duckdb.org/2021/08/27/external-sorting.html - Sorting large datasets
+https://www.youtube.com/watch?v=bZOvAKGkzpQ - DuckDB performance deep dive
+
 ## SQL-Like Tools
 https://github.com/harelba/q - SQL on CSV/TSV
 https://github.com/dinedal/textql - SQL queries on text files
@@ -58,4 +74,7 @@ https://www.youtube.com/results?search_query=linux+join+command
 ## Community
 https://stackoverflow.com/questions/tagged/miller
 https://stackoverflow.com/questions/tagged/datamash
+https://stackoverflow.com/questions/tagged/duckdb
 https://github.com/johnkerl/miller/discussions
+https://discord.gg/tcvwpjfnZx - DuckDB Discord
+https://github.com/duckdb/duckdb/discussions - DuckDB discussions

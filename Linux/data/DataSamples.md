@@ -18,6 +18,20 @@ cp -r Linux/data/files/* ~/workspace/linux_course_data/
 cd ~/workspace/linux_course_data
 ```
 
+**Option 3: Run DuckDB examples**
+```bash
+cd Linux/data/files/
+./duckdb_examples.sh
+```
+
+The `duckdb_examples.sh` script demonstrates:
+- Querying CSV files with SQL
+- Joins across multiple files
+- Aggregations and GROUP BY
+- Window functions (ROW_NUMBER, running totals)
+- Exporting to CSV and Parquet formats
+- Common analytical queries
+
 ---
 
 ## 🔤 Basic Text Files

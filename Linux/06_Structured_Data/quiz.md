@@ -62,6 +62,36 @@
     - C) Slurps multiple JSON objects into an array
     - D) Streams JSON output
 
+11. How do you query a CSV file with DuckDB?
+    - A) `duckdb -c "SELECT * FROM csv('users.csv')"`
+    - B) `duckdb -c "SELECT * FROM 'users.csv'"`
+    - C) `duckdb users.csv -q "SELECT *"`
+    - D) `duckdb --query users.csv`
+
+12. Which DuckDB function reads CSV files with automatic schema detection?
+    - A) `read_csv('file.csv')`
+    - B) `read_csv_auto('file.csv')`
+    - C) `auto_read_csv('file.csv')`
+    - D) `csv_read('file.csv')`
+
+13. What is the main advantage of DuckDB over csvkit for large files?
+    - A) Easier syntax
+    - B) Better error messages
+    - C) Columnar storage and efficient memory usage
+    - D) More output formats
+
+14. How do you export DuckDB query results to Parquet format?
+    - A) `duckdb -c "SELECT * FROM 'data.csv'" > output.parquet`
+    - B) `duckdb -c "COPY (SELECT * FROM 'data.csv') TO 'output.parquet'"`
+    - C) `duckdb -c "SELECT * FROM 'data.csv'" -parquet`
+    - D) `duckdb -c "EXPORT TO PARQUET 'output.parquet'"`
+
+15. When should you use DuckDB instead of Miller?
+    - A) For simple column selection
+    - B) For complex multi-way joins and window functions
+    - C) For quick one-liners
+    - D) For streaming data
+
 ---
 
 ## Answer Key
@@ -75,3 +105,8 @@
 8. B - `stats1 -a sum -f field -g groupby` aggregates
 9. B - `format` command pretty-prints XML
 10. C - `-s` slurp mode reads all inputs into array
+11. B - DuckDB can read CSV files directly using `'filename.csv'` syntax
+12. B - `read_csv_auto()` automatically detects headers, types, delimiters
+13. C - DuckDB uses columnar storage, processes data efficiently without loading everything into memory
+14. B - `COPY (query) TO 'file.parquet'` exports to Parquet format
+15. B - DuckDB excels at complex SQL operations, window functions, and analytical queries

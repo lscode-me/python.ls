@@ -60,6 +60,46 @@ Perform left outer join to find customers with no orders.
 - Use: `mlr --csv join --ul -f customers.csv -j id orders.csv`
 - Filter for NULL order_id
 
+## DuckDB Analytics Assignments
+
+### Assignment 11: Multi-Way Join with DuckDB
+Join users, orders, and products in one query.
+- Input: `users.csv`, `orders.csv`, `products.csv`
+- Command: Three-way join using DuckDB
+- Output: Complete order details with customer and product names
+- Hint: `SELECT u.name, p.name as product, o.amount FROM 'users.csv' u JOIN 'orders.csv' o ON ... JOIN 'products.csv' p ON ...`
+
+### Assignment 12: Window Functions - Ranking
+Rank products by price within each category.
+- Input: `products.csv`
+- Use: `ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC)`
+- Output: Products with rank column
+
+### Assignment 13: Running Totals with DuckDB
+Calculate cumulative revenue per customer over time.
+- Input: `orders.csv`
+- Use: `SUM(amount) OVER (PARTITION BY customer_id ORDER BY date)`
+- Output: Each order with running total
+
+### Assignment 14: Top-N per Group
+Find top 2 most expensive products in each category.
+- Input: `products.csv`
+- Use: CTE with ROW_NUMBER and WHERE clause
+- Output: Top 2 products per category
+
+### Assignment 15: Time-Series Analytics
+Analyze daily order trends.
+- Input: `orders.csv`
+- Calculate: daily totals, moving averages, day-over-day changes
+- Use: LAG function for previous day comparison
+- Output: Daily analytics report
+
+### Assignment 16: Percentile Calculations
+Calculate price percentiles per category.
+- Input: `products.csv`
+- Use: `PERCENTILE_CONT(0.5)` for median, `PERCENTILE_CONT(0.95)` for 95th percentile
+- Output: Category-level price statistics
+
 ## Bonus Challenges
 
 ### Bonus 1: Cohort Analysis
@@ -89,6 +129,30 @@ Create pivot table: rows=products, columns=months, values=sum of sales.
 Calculate median and 95th percentile from streaming data.
 - Use: qsort or approximate algorithms
 - Implement in awk
+
+### Bonus 6: DuckDB vs awk Performance
+Compare DuckDB and awk for large dataset:
+- Create 10M row CSV file
+- Perform complex aggregation (multi-key GROUP BY)
+- Measure time and memory
+- Document when to use each tool
+
+### Bonus 7: Complex Window Analytics
+Implement advanced analytics pipeline:
+- Calculate customer lifetime value (CLV)
+- Identify churn patterns (gaps in order dates)
+- Rank customers by recency, frequency, monetary value (RFM)
+- Use multiple window functions in single query
+- Input: `orders.csv`
+- Output: Customer analytics table
+
+### Bonus 8: Gap Analysis with GENERATE_SERIES
+Find missing dates in time series data.
+- Generate complete date range
+- LEFT JOIN with actual data
+- Identify gaps (dates with no orders)
+- Use: `GENERATE_SERIES` and `UNNEST` in DuckDB
+- Output: Report of inactive days
 
 ## Submission Guidelines
 - Submit all commands and scripts

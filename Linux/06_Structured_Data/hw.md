@@ -64,6 +64,38 @@ Convert CSV to JSON, filter, convert back to CSV.
   2. Filter: `jq '.[] | select(.price < 50)'`
   3. JSON → CSV: `jq -r '[.id, .name, .price] | @csv'`
 
+## DuckDB Assignments
+
+### Assignment 11: Query CSV with SQL
+Use DuckDB to query a CSV file with SQL.
+- Input: `users.csv`
+- Command: `duckdb -c "SELECT name, city FROM 'users.csv' WHERE status = 'active'"`
+- Output: Active users with their cities
+
+### Assignment 12: Aggregate with DuckDB
+Calculate statistics per category using SQL.
+- Input: `products.csv`
+- Command: `duckdb -c "SELECT category, COUNT(*), AVG(price), MAX(price) FROM 'products.csv' GROUP BY category"`
+- Output: Category statistics
+
+### Assignment 13: Join with DuckDB
+Join users and orders using SQL.
+- Input: `users.csv`, `orders.csv`
+- Command: `duckdb -c "SELECT u.name, COUNT(o.order_id) as orders, SUM(o.amount) as total FROM 'users.csv' u JOIN 'orders.csv' o ON u.id = o.customer_id GROUP BY u.name"`
+- Output: User statistics with order counts
+
+### Assignment 14: Export to Parquet
+Convert CSV to Parquet format.
+- Input: `users.csv`
+- Command: `duckdb -c "COPY (SELECT * FROM 'users.csv') TO 'users.parquet' (FORMAT PARQUET)"`
+- Output: `users.parquet` file
+
+### Assignment 15: Complex Query
+Find top spending customers by city.
+- Input: `users.csv`, `orders.csv`
+- Use: CTE (Common Table Expression) in DuckDB
+- Output: Ranked customers per city
+
 ## Bonus Challenges
 
 ### Bonus 1: JSON Aggregation
@@ -100,6 +132,22 @@ Aggregate data from multiple JSON files:
 - Merge into single array
 - Group by category
 - Calculate statistics per category
+
+### Bonus 6: DuckDB Performance Comparison
+Compare DuckDB vs mlr performance:
+- Create a large CSV file (1M+ rows)
+- Perform same aggregation with both tools
+- Measure execution time using `time` command
+- Compare memory usage
+- Document results
+
+### Bonus 7: Window Functions with DuckDB
+Use DuckDB window functions:
+- Input: `orders.csv`
+- Calculate running total per customer
+- Add row numbers within customer groups
+- Find previous and next order amounts (LAG/LEAD)
+- Output: Enhanced dataset with analytical columns
 
 ## Submission Guidelines
 - Submit all commands and scripts

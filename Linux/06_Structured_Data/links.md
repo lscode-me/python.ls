@@ -42,10 +42,28 @@ https://json-schema.org/ - JSON Schema
 https://ajv.js.org/ - JSON validator
 https://csvlint.io/ - CSV validator
 
+## DuckDB
+https://duckdb.org/ - Official DuckDB website
+https://duckdb.org/docs/ - Complete documentation
+https://duckdb.org/docs/guides/overview - Getting started guide
+https://duckdb.org/docs/sql/introduction - SQL reference
+https://duckdb.org/docs/data/csv - Reading CSV files
+https://duckdb.org/docs/data/json - Reading JSON files
+https://duckdb.org/docs/data/parquet - Working with Parquet
+https://github.com/duckdb/duckdb - GitHub repository
+
+## DuckDB Tutorials
+https://motherduck.com/blog/duckdb-tutorial-for-beginners/
+https://duckdb.org/2021/05/14/sql-on-pandas.html - DuckDB with pandas
+https://duckdb.org/2021/06/25/querying-parquet.html - Querying Parquet files
+https://www.youtube.com/watch?v=Z-6SnP6yzgo - DuckDB introduction video
+https://blef.fr/duckdb-snippets/ - DuckDB snippets and examples
+
 ## Advanced Topics
 https://stedolan.github.io/jq/manual/#Advancedfeatures
 https://miller.readthedocs.io/en/latest/reference-verbs/
 https://github.com/kellyjonbrazil/jc - Convert command output to JSON
+https://duckdb.org/docs/sql/window_functions - Window functions in DuckDB
 
 ## Books
 "Data Science at the Command Line" - Chapter on structured data
@@ -63,4 +81,7 @@ https://miller.readthedocs.io/en/latest/cheat-sheet/
 ## Community
 https://stackoverflow.com/questions/tagged/jq
 https://stackoverflow.com/questions/tagged/csvkit
+https://stackoverflow.com/questions/tagged/duckdb
 https://github.com/jqlang/jq/discussions
+https://discord.gg/tcvwpjfnZx - DuckDB Discord
+https://github.com/duckdb/duckdb/discussions - DuckDB discussions
