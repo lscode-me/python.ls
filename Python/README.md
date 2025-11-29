@@ -145,7 +145,35 @@ Comprehensive file I/O operations and data format handling.
 
 ---
 
-### 7. Pythonic Code
+### 7. Streams and Unix I/O
+
+Learn to write Unix-style command-line utilities in Python.
+
+**Topics Covered:**
+- Unix philosophy applied to Python
+- Standard streams (stdin, stdout, stderr)
+- Reading from stdin efficiently
+- Writing to stdout and stderr correctly
+- Command-line argument parsing with argparse
+- Building pipeable filters and processors
+- Buffering and performance considerations
+- Signal handling (SIGINT, BrokenPipeError, KeyboardInterrupt)
+- Creating composable Unix-style utilities
+- Working with CSV, JSON, and structured data streams
+- Creating pipelines in Python
+- Binary data handling
+- Progress monitoring and logging
+- Best practices and templates for CLI tools
+
+**Materials:**
+- [Streams.md](Streams/Streams.md) - Complete Unix I/O guide
+- [Homework Assignments](Streams/hw.md) - 10 CLI utility projects
+- [Quiz](Streams/quiz.md) - Test your knowledge
+- [Resources](Streams/links.md) - CLI tools and Unix resources
+
+---
+
+### 8. Pythonic Code
 
 Write beautiful, idiomatic Python code following best practices.
 
@@ -167,7 +195,7 @@ Write beautiful, idiomatic Python code following best practices.
 
 ---
 
-### 8. Python for Bioinformatics
+### 9. Python for Bioinformatics
 
 Apply Python to real-world bioinformatics problems and biological data analysis.
 
@@ -200,8 +228,9 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 4. **Protocols** - Understand Python's interface system
 5. **Iteration** - Master efficient data processing
 6. **Files** - Handle real-world data
-7. **Pythonic** - Polish your Python skills
-8. **Bioinformatics** - Apply Python to life sciences (capstone)
+7. **Streams** - Build Unix-style command-line tools
+8. **Pythonic** - Polish your Python skills
+9. **Bioinformatics** - Apply Python to life sciences (capstone)
 
 ### Prerequisites
 - Basic programming knowledge
@@ -261,8 +290,9 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 4. **Protocols** - Custom collection classes
 5. **Iteration** - Log file analyzer
 6. **Files** - File-based database
-7. **Pythonic** - Code refactoring tool
-8. **Bioinformatics** - Sequence analysis pipeline
+7. **Streams** - Unix-style text processing toolkit
+8. **Pythonic** - Code refactoring tool
+9. **Bioinformatics** - Sequence analysis pipeline
 
 ### Final Project Ideas
 - Complete genomic sequence analyzer with visualization
