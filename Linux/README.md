@@ -15,8 +15,9 @@ Introduction to Unix philosophy and stream-based data processing.
 
 **Materials:**
 - [Lecture](01_Unix_Streams/lecture.md) - Unix philosophy for data processing
-- [Homework](01_Unix_Streams/hw.txt) - 10 assignments + bonus ETL project
-- [Resources](01_Unix_Streams/links.txt)
+- [Homework](01_Unix_Streams/hw.md) - 10 assignments + bonus ETL project
+- [Resources](01_Unix_Streams/links.md)
+- [Quiz](01_Unix_Streams/quiz.md) - Test your knowledge
 
 **Tools:** `curl`, `cut`, `grep`, `sort`, `uniq`, `head`, `tail`
 
@@ -30,8 +31,9 @@ Understanding Unix file system architecture.
 
 **Materials:**
 - [Lecture](02_Files_Inodes_Descriptors/lecture.md) - Complete file system guide
-- [Homework](02_Files_Inodes_Descriptors/hw.txt) - 10 assignments + 4 bonus challenges
-- [Resources](02_Files_Inodes_Descriptors/links.txt)
+- [Homework](02_Files_Inodes_Descriptors/hw.md) - 10 assignments + 4 bonus challenges
+- [Resources](02_Files_Inodes_Descriptors/links.md)
+- [Quiz](02_Files_Inodes_Descriptors/quiz.md) - Test your knowledge
 
 **Tools:** `stat`, `ls`, `ln`, `chmod`, `umask`, `file`, `lsof`, redirections
 
@@ -45,8 +47,9 @@ Bash as a domain-specific language for data processing.
 
 **Materials:**
 - [Lecture](03_Shell_Programming/lecture.md) - Shell scripting for data pipelines
-- [Homework](03_Shell_Programming/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](03_Shell_Programming/links.txt)
+- [Homework](03_Shell_Programming/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](03_Shell_Programming/links.md)
+- [Quiz](03_Shell_Programming/quiz.md) - Test your knowledge
 
 **Tools:** `bash`, `jq`, `awk`, `printf`
 
@@ -60,8 +63,9 @@ Building blocks for efficient data pipelines.
 
 **Materials:**
 - [Lecture](04_Coreutils/lecture.md) - Coreutils for data processing
-- [Homework](04_Coreutils/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](04_Coreutils/links.txt)
+- [Homework](04_Coreutils/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](04_Coreutils/links.md)
+- [Quiz](04_Coreutils/quiz.md) - Test your knowledge
 
 **Tools:** `cat`, `cut`, `paste`, `tr`, `sort`, `uniq`, `split`, `pv`, `stdbuf`
 
@@ -75,8 +79,9 @@ Master text filtering, transformation, and analytics.
 
 **Materials:**
 - [Lecture](05_Grep_Sed_Awk/lecture.md) - Complete text processing guide
-- [Homework](05_Grep_Sed_Awk/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](05_Grep_Sed_Awk/links.txt)
+- [Homework](05_Grep_Sed_Awk/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](05_Grep_Sed_Awk/links.md)
+- [Quiz](05_Grep_Sed_Awk/quiz.md) - Test your knowledge
 
 **Tools:** `grep`, `sed`, `awk`
 
@@ -90,8 +95,9 @@ Working with structured data formats.
 
 **Materials:**
 - [Lecture](06_Structured_Data/lecture.md) - Structured data processing
-- [Homework](06_Structured_Data/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](06_Structured_Data/links.txt)
+- [Homework](06_Structured_Data/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](06_Structured_Data/links.md)
+- [Quiz](06_Structured_Data/quiz.md) - Test your knowledge
 
 **Tools:** `jq`, `csvkit`, `mlr`, `yq`, `xmlstarlet`
 
@@ -105,8 +111,9 @@ Analytical queries using CLI tools.
 
 **Materials:**
 - [Lecture](07_Streaming_Analytics/lecture.md) - Analytics without loading into memory
-- [Homework](07_Streaming_Analytics/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](07_Streaming_Analytics/links.txt)
+- [Homework](07_Streaming_Analytics/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](07_Streaming_Analytics/links.md)
+- [Quiz](07_Streaming_Analytics/quiz.md) - Test your knowledge
 
 **Tools:** `awk`, `datamash`, `mlr`, `sort`, `join`
 
@@ -120,8 +127,9 @@ Working with logs and REST APIs.
 
 **Materials:**
 - [Lecture](08_Log_Processing/lecture.md) - Log and API data processing
-- [Homework](08_Log_Processing/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](08_Log_Processing/links.txt)
+- [Homework](08_Log_Processing/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](08_Log_Processing/links.md)
+- [Quiz](08_Log_Processing/quiz.md) - Test your knowledge
 
 **Tools:** `curl`, `jq`, `zcat`, `datamash`, `column`
 
@@ -135,8 +143,9 @@ Optimizing pipeline performance.
 
 **Materials:**
 - [Lecture](09_Performance_Parallelism/lecture.md) - Performance optimization techniques
-- [Homework](09_Performance_Parallelism/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](09_Performance_Parallelism/links.txt)
+- [Homework](09_Performance_Parallelism/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](09_Performance_Parallelism/links.md)
+- [Quiz](09_Performance_Parallelism/quiz.md) - Test your knowledge
 
 **Tools:** `parallel`, `xargs`, `pv`, `time`, `dstat`, `sort`
 
@@ -150,8 +159,9 @@ Inter-process communication and advanced streaming.
 
 **Materials:**
 - [Lecture](10_Streams_IPC/lecture.md) - IPC and advanced streaming
-- [Homework](10_Streams_IPC/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](10_Streams_IPC/links.txt)
+- [Homework](10_Streams_IPC/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](10_Streams_IPC/links.md)
+- [Quiz](10_Streams_IPC/quiz.md) - Test your knowledge
 
 **Tools:** `mkfifo`, `socat`, `nc`, Python `socket`
 
@@ -165,8 +175,9 @@ Writing robust production scripts.
 
 **Materials:**
 - [Lecture](11_Bash_Glue/lecture.md) - Production-ready scripting
-- [Homework](11_Bash_Glue/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](11_Bash_Glue/links.txt)
+- [Homework](11_Bash_Glue/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](11_Bash_Glue/links.md)
+- [Quiz](11_Bash_Glue/quiz.md) - Test your knowledge
 
 **Tools:** `bash`, `trap`, `mktemp`, `env`
 
@@ -180,8 +191,9 @@ Integrating Python into Unix workflows.
 
 **Materials:**
 - [Lecture](12_Python_Pipelines/lecture.md) - Python integration patterns
-- [Homework](12_Python_Pipelines/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](12_Python_Pipelines/links.txt)
+- [Homework](12_Python_Pipelines/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](12_Python_Pipelines/links.md)
+- [Quiz](12_Python_Pipelines/quiz.md) - Test your knowledge
 
 **Tools:** `python`, `jq`, `mlr`, `pandas`
 
@@ -195,8 +207,9 @@ Building large, maintainable pipelines.
 
 **Materials:**
 - [Lecture](13_Complex_Pipelines/lecture.md) - Production pipeline architecture
-- [Homework](13_Complex_Pipelines/hw.txt) - 10 assignments + 5 bonus challenges
-- [Resources](13_Complex_Pipelines/links.txt)
+- [Homework](13_Complex_Pipelines/hw.md) - 10 assignments + 5 bonus challenges
+- [Resources](13_Complex_Pipelines/links.md)
+- [Quiz](13_Complex_Pipelines/quiz.md) - Test your knowledge
 
 **Tools:** `parallel`, `split`, `make`, `mktemp`
 
@@ -215,7 +228,9 @@ Build a complete production-ready ETL pipeline.
 
 **Materials:**
 - [Project Requirements](14_Final_Project/lecture.md) - Full project specification
-- [Homework](14_Final_Project/hw.txt) - Deliverables checklist
+- [Homework](14_Final_Project/hw.md) - Deliverables checklist
+- [Resources](14_Final_Project/links.md)
+- [Quiz](14_Final_Project/quiz.md) - Test your knowledge
 
 **Evaluation:** Correctness (40%), Performance (20%), Code Quality (20%), Documentation (20%)
 
@@ -257,8 +272,8 @@ Run the setup script to create all practice files at once.
 ### For Each Module:
 1. **Read the lecture** (lecture.md) - Theory and examples
 2. **Practice with sample data** - Use the unified dataset
-3. **Complete homework** (hw.txt) - 10 assignments per module
-4. **Explore resources** (links.txt) - Deepen understanding
+3. **Complete homework** (hw.md) - 10 assignments per module
+4. **Explore resources** (links.md) - Deepen understanding
 5. **Take the quiz** (quiz.md) - Self-assessment
 
 ### Study Tips:

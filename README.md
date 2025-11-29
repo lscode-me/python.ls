@@ -91,8 +91,8 @@ A comprehensive course designed for life science professionals looking to develo
 
 Each topic includes:
 - **lecture.md** - Theory and examples
-- **hw.txt** - Homework assignments
-- **links.txt** - Additional resources
+- **hw.md** - Homework assignments
+- **links.md** - Additional resources
 - **quiz.md** - Self-assessment questions
 
 ---

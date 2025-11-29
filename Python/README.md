@@ -25,8 +25,9 @@ Understanding Python's object model, memory management, and core data types.
 **Materials:**
 - [Objects.md](Objects/Objects.md) - Core concepts and theory
 - [Operations.md](Objects/Operations.md) - Working with Python objects
-- [Homework Assignments](Objects/hw.txt) - 6 practical exercises
-- [Resources](Objects/links.txt) - Curated learning materials
+- [Homework Assignments](Objects/hw.md) - 6 practical exercises
+- [Resources](Objects/links.md) - Curated learning materials
+- [Quiz](Objects/quiz.md) - Test your knowledge
 
 ---
 
@@ -50,8 +51,9 @@ Master classes, inheritance, encapsulation, and design patterns.
 - [AttributesAndMethods.md](OOP/AttributesAndMethods.md) - Attributes and methods deep dive
 - [OOP_Basics.md](OOP/OOP_Basics.md) - Core OOP concepts
 - [Advanced_OOP.md](OOP/Advanced_OOP.md) - Advanced patterns and techniques
-- [Homework Assignments](OOP/hw.txt) - 8 comprehensive projects
-- [Resources](OOP/links.txt) - OOP learning materials
+- [Homework Assignments](OOP/hw.md) - 8 comprehensive projects
+- [Resources](OOP/links.md) - OOP learning materials
+- [Quiz](OOP/quiz.md) - Test your knowledge
 
 ---
 
@@ -73,8 +75,9 @@ From basic functions to advanced functional programming patterns.
 
 **Materials:**
 - [Functions.md](Functions/Functions.md) - Complete function guide
-- [Homework Assignments](Functions/hw.txt) - 8 functional programming challenges
-- [Resources](Functions/links.txt) - FP learning resources
+- [Homework Assignments](Functions/hw.md) - 8 functional programming challenges
+- [Resources](Functions/links.md) - FP learning resources
+- [Quiz](Functions/quiz.md) - Test your knowledge
 
 ---
 
@@ -94,8 +97,9 @@ Understanding Python's protocol system and creating flexible interfaces.
 
 **Materials:**
 - [Protocols.md](Protocols/Protocols.md) - Protocol system explained
-- [Homework Assignments](Protocols/hw.txt) - 8 protocol implementation tasks
-- [Resources](Protocols/links.txt) - Protocol and interface resources
+- [Homework Assignments](Protocols/hw.md) - 8 protocol implementation tasks
+- [Resources](Protocols/links.md) - Protocol and interface resources
+- [Quiz](Protocols/quiz.md) - Test your knowledge
 
 ---
 
@@ -117,8 +121,9 @@ Master iterators, generators, and efficient data processing.
 
 **Materials:**
 - [Iteration.md](Iteration/Iteration.md) - Complete iteration guide
-- [Homework Assignments](Iteration/hw.txt) - 10 iteration challenges
-- [Resources](Iteration/links.txt) - Iteration learning materials
+- [Homework Assignments](Iteration/hw.md) - 10 iteration challenges
+- [Resources](Iteration/links.md) - Iteration learning materials
+- [Quiz](Iteration/quiz.md) - Test your knowledge
 
 ---
 
@@ -140,8 +145,9 @@ Comprehensive file I/O operations and data format handling.
 
 **Materials:**
 - [Files.md](Files/Files.md) - Complete file handling guide
-- [Homework Assignments](Files/hw.txt) - 10 file processing projects
-- [Resources](Files/links.txt) - File I/O resources
+- [Homework Assignments](Files/hw.md) - 10 file processing projects
+- [Resources](Files/links.md) - File I/O resources
+- [Quiz](Files/quiz.md) - Test your knowledge
 
 ---
 
@@ -190,8 +196,9 @@ Write beautiful, idiomatic Python code following best practices.
 
 **Materials:**
 - [Pythonic.md](Pythonic/Pythonic.md) - Writing idiomatic Python
-- [Homework Assignments](Pythonic/hw.txt) - Code refactoring exercises
-- [Resources](Pythonic/links.txt) - Extensive Pythonic resources
+- [Homework Assignments](Pythonic/hw.md) - Code refactoring exercises
+- [Resources](Pythonic/links.md) - Extensive Pythonic resources
+- [Quiz](Pythonic/quiz.md) - Test your knowledge
 
 ---
 
@@ -214,8 +221,9 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 
 **Materials:**
 - [Bioinformatics.md](Bioinformatics/Bioinformatics.md) - Python for biological data
-- [Homework Assignments](Bioinformatics/hw.txt) - 12 practical bioinformatics projects
-- [Resources](Bioinformatics/links.txt) - Comprehensive bioinformatics resources
+- [Homework Assignments](Bioinformatics/hw.md) - 12 practical bioinformatics projects
+- [Resources](Bioinformatics/links.md) - Comprehensive bioinformatics resources
+- [Quiz](Bioinformatics/quiz.md) - Test your knowledge
 
 ---
 
@@ -243,8 +251,9 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 
 ### For Each Topic:
 1. **Read the lecture notes** (.md files) - Theory and examples
-2. **Complete homework assignments** (hw.txt) - Hands-on practice
-3. **Explore resources** (links.txt) - Deepen your understanding
+2. **Complete homework assignments** (hw.md) - Hands-on practice
+3. **Explore resources** (links.md) - Deepen your understanding
+4. **Take the quiz** (quiz.md) - Test your knowledge
 4. **Build projects** - Apply what you've learned
 
 ### Study Tips:
