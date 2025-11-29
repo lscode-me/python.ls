@@ -114,6 +114,61 @@ D) `-O`
 
 ---
 
+## Question 11: tee Command
+
+What does `command | tee output.txt | process` do?
+
+A) Writes output to file only  
+B) Writes to output.txt AND passes data to process  
+C) Replaces process output with output.txt  
+D) Appends to output.txt  
+
+---
+
+## Question 12: Named Pipes
+
+What happens when you write to a FIFO before a reader connects?
+
+A) Data is lost  
+B) Write operation blocks until a reader connects  
+C) Error is thrown immediately  
+D) Data is written to disk  
+
+---
+
+## Question 13: Buffering
+
+Why use `grep --line-buffered` in a real-time pipeline?
+
+A) To make grep faster  
+B) To process multiple lines at once  
+C) To output each matching line immediately instead of buffering  
+D) To limit memory usage  
+
+---
+
+## Question 14: /dev/fd/
+
+What is `/dev/fd/0`?
+
+A) The first file in the current directory  
+B) A reference to the standard input (stdin)  
+C) A temporary file  
+D) A device file  
+
+---
+
+## Question 15: tee Multiple Outputs
+
+Which command saves data to three files AND displays it on screen?
+
+A) `command | tee file1 file2 file3`  
+B) `command > file1 > file2 > file3`  
+C) `command | tee file1 | tee file2 | tee file3`  
+D) `command >> file1 file2 file3`  
+
+---
+
 ## Answer Key
 
 1. D - stdin, stdout, stderr
@@ -126,12 +181,17 @@ D) `-O`
 8. B - `-n`
 9. C - Shows lines NOT matching pattern
 10. C - `-L`
+11. B - `tee` writes to file and passes data through to next command in pipeline
+12. B - FIFO write blocks until reader connects (synchronization mechanism)
+13. C - `--line-buffered` forces immediate output, crucial for real-time monitoring (like `tail -f | grep`)
+14. B - `/dev/fd/0` is a symbolic link to stdin (file descriptor 0)
+15. A - `tee` can write to multiple files in one command and still output to stdout
 
 ---
 
 ## Scoring Guide
 
-- **9-10 correct**: Excellent! You understand Unix streams and pipelines.
-- **7-8 correct**: Good job! Review the commands you missed.
-- **5-6 correct**: Fair understanding. Practice more with hands-on exercises.
-- **Below 5**: Study the lecture materials and try the homework assignments.
+- **13-15 correct**: Excellent! You understand Unix streams and pipelines deeply.
+- **10-12 correct**: Good job! Review advanced topics like buffering and named pipes.
+- **7-9 correct**: Fair understanding. Practice more with hands-on exercises.
+- **Below 7**: Study the lecture materials and try the homework assignments.

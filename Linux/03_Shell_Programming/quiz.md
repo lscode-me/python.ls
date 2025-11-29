@@ -114,6 +114,39 @@ D) Exports variable to child processes
 
 ---
 
+## Question 11: Default Values
+
+What does `${var:-default}` do?
+
+A) Sets var to "default" permanently  
+B) Uses "default" if var is unset or empty  
+C) Compares var to "default"  
+D) Appends "default" to var  
+
+---
+
+## Question 12: mapfile/readarray
+
+What does `mapfile -t lines < file.txt` do?
+
+A) Prints lines from file  
+B) Counts lines in file  
+C) Reads file into an array variable called `lines`  
+D) Maps each line to a function  
+
+---
+
+## Question 13: String Replacement
+
+What does `${text//old/new}` do?
+
+A) Replaces first occurrence of "old" with "new"  
+B) Replaces all occurrences of "old" with "new"  
+C) Removes "old" from text  
+D) Searches for "old" in text  
+
+---
+
 ## Answer Key
 
 1. B - $(command)
@@ -126,12 +159,15 @@ D) Exports variable to child processes
 8. C - `$((5 + 3))`
 9. B - `$1`
 10. B - Limits variable scope to the function
+11. B - Uses "default" value if var is unset or empty (doesn't modify var)
+12. C - Reads lines from file into array variable, `-t` removes trailing newlines
+13. B - `//` replaces all occurrences (single `/` replaces only first)
 
 ---
 
 ## Scoring Guide
 
-- **9-10 correct**: Excellent! You're a bash scripting pro.
-- **7-8 correct**: Good job! Review the advanced topics.
-- **5-6 correct**: Fair understanding. Practice more with scripts.
-- **Below 5**: Study the lecture materials and complete homework assignments.
+- **12-13 correct**: Excellent! You're a bash scripting pro.
+- **9-11 correct**: Good job! Review advanced parameter expansion and arrays.
+- **7-8 correct**: Fair understanding. Practice more with scripts.
+- **Below 7**: Study the lecture materials and complete homework assignments.

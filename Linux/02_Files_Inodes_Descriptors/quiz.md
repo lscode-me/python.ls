@@ -114,6 +114,39 @@ D) Enables group access
 
 ---
 
+## Question 11: Custom File Descriptors
+
+How do you open a file for writing on file descriptor 4?
+
+A) `exec 4> output.txt`  
+B) `open 4 > output.txt`  
+C) `fd 4 = output.txt`  
+D) `4> output.txt`  
+
+---
+
+## Question 12: Device Files
+
+What's the difference between `/dev/zero` and `/dev/urandom`?
+
+A) Both generate random data  
+B) `/dev/zero` produces null bytes, `/dev/urandom` produces pseudo-random data  
+C) `/dev/zero` is faster  
+D) They're the same file  
+
+---
+
+## Question 13: Setgid on Directories
+
+What happens when the setgid bit (2000) is set on a directory?
+
+A) Only owner can access the directory  
+B) New files inherit the directory's group ownership  
+C) Directory becomes read-only  
+D) Directory is shared across users  
+
+---
+
 ## Answer Key
 
 1. B - File metadata and pointers to data blocks
@@ -126,12 +159,15 @@ D) Enables group access
 8. C - 644
 9. B - Discarding unwanted output
 10. B - Allows the file to run with owner's permissions
+11. A - `exec 4> output.txt` opens file descriptor 4 for writing
+12. B - `/dev/zero` provides infinite null bytes, `/dev/urandom` provides pseudo-random data
+13. B - Setgid on directories makes new files inherit the directory's group (useful for shared directories)
 
 ---
 
 ## Scoring Guide
 
-- **9-10 correct**: Excellent! You understand Unix file systems deeply.
-- **7-8 correct**: Good job! Review the concepts you missed.
-- **5-6 correct**: Fair understanding. Practice more with file operations.
-- **Below 5**: Study the lecture materials and complete the homework assignments.
+- **12-13 correct**: Excellent! You understand Unix file systems deeply.
+- **9-11 correct**: Good job! Review advanced topics like custom file descriptors.
+- **7-8 correct**: Fair understanding. Practice more with file operations and permissions.
+- **Below 7**: Study the lecture materials and complete the homework assignments.

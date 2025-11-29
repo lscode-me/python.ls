@@ -291,6 +291,119 @@ tail data.csv
 tail -f app.log
 ```
 
+### `tee` - Split Output to Multiple Destinations
+
+The `tee` command reads from stdin and writes to both stdout and files simultaneously.
+
+```bash
+# Save output to file AND display it
+command | tee output.txt
+
+# Append to file instead of overwriting
+command | tee -a output.txt
+
+# Write to multiple files
+command | tee file1.txt file2.txt file3.txt
+
+# Save intermediate results while continuing pipeline
+curl -s https://api.example.com/data | \
+  tee raw_data.json | \
+  jq '.results[]' | \
+  tee processed.json | \
+  grep "ERROR"
+
+# Silent tee (write to file but don't show on screen)
+command | tee output.txt > /dev/null
+```
+
+**Practical Example: Log and Process**
+```bash
+# Save API response and process it
+curl -s 'https://api.github.com/repos/torvalds/linux' | \
+  tee api_response.json | \
+  jq -r '.stargazers_count'
+```
+
+### Named Pipes (FIFOs) - Introduction
+
+Named pipes allow inter-process communication through the filesystem.
+
+```bash
+# Create a named pipe
+mkfifo mypipe
+
+# Terminal 1: Write to pipe (blocks until someone reads)
+echo "Hello from pipe" > mypipe
+
+# Terminal 2: Read from pipe
+cat < mypipe
+
+# Use in pipelines
+mkfifo data_pipe
+gzip -c large_file.txt > data_pipe &
+process_data < data_pipe
+rm data_pipe
+```
+
+**Why use named pipes?**
+- Connect independent processes
+- Avoid intermediate files
+- Enable parallel processing
+
+### `/dev/fd/` - File Descriptor Files
+
+The `/dev/fd/` directory contains special files representing open file descriptors.
+
+```bash
+# View your current file descriptors
+ls -l /dev/fd/
+
+# Access stdin, stdout, stderr as files
+cat /dev/fd/0  # Same as reading from stdin
+echo "test" > /dev/fd/1  # Same as writing to stdout
+echo "error" > /dev/fd/2  # Same as writing to stderr
+
+# Use in redirections
+diff <(ls /tmp) <(ls /var/tmp)
+# Internally uses /dev/fd/N for process substitution
+```
+
+### Buffering in Unix Streams
+
+Understanding buffering is crucial for real-time data processing.
+
+**Buffering Modes:**
+- **Unbuffered**: Data is written immediately (stderr is unbuffered by default)
+- **Line-buffered**: Data is written when a newline is encountered (stdout to terminal)
+- **Fully-buffered**: Data is written when buffer is full (stdout to file/pipe)
+
+```bash
+# Problem: grep output doesn't appear immediately in pipeline
+tail -f app.log | grep ERROR | process_alerts
+# grep buffers output because stdout is a pipe
+
+# Solution 1: Use --line-buffered with grep
+tail -f app.log | grep --line-buffered ERROR | process_alerts
+
+# Solution 2: Use stdbuf to control buffering
+tail -f app.log | stdbuf -oL grep ERROR | process_alerts
+
+# Solution 3: Python with -u flag (unbuffered)
+tail -f app.log | python3 -u script.py
+
+# Solution 4: Flush in Python code
+print("output", flush=True)
+```
+
+**Example: Real-time Log Monitoring**
+```bash
+# Without line buffering - delays appear
+tail -f /var/log/syslog | grep "error" | awk '{print $1, $2, $5}'
+
+# With line buffering - immediate output
+tail -f /var/log/syslog | grep --line-buffered "error" | awk '{print $1, $2, $5}'
+```
+
 ---
 
 ## Practical Examples
@@ -329,6 +442,40 @@ grep ',,' data.csv | wc -l
 
 # Unique values in column
 cut -d',' -f2 data.csv | sort -u | wc -l
+```
+
+### Example 4: Using tee for Debugging
+
+```bash
+# Save intermediate results while debugging pipeline
+cat sales.csv | \
+  tee 01_raw.csv | \
+  grep -v "^#" | \
+  tee 02_no_comments.csv | \
+  cut -d',' -f1,3 | \
+  tee 03_selected_cols.csv | \
+  sort | \
+  uniq -c > final_result.txt
+
+# Now you can inspect each stage: 01_raw.csv, 02_no_comments.csv, etc.
+```
+
+### Example 5: Named Pipe for Parallel Processing
+
+```bash
+# Process large file in parallel using named pipes
+mkfifo pipe1 pipe2
+
+# Start two processors in background
+grep "TYPE_A" < pipe1 | process_a > output_a.txt &
+grep "TYPE_B" < pipe2 | process_b > output_b.txt &
+
+# Feed data to both pipes
+tee pipe1 pipe2 < large_data.txt > /dev/null
+
+# Wait for completion and cleanup
+wait
+rm pipe1 pipe2
 ```
 
 ---
@@ -449,7 +596,10 @@ In this module, you learned:
 - ✅ Standard I/O: stdin, stdout, stderr
 - ✅ Pipes and redirection
 - ✅ Filter → Transform → Aggregate pattern
-- ✅ Essential commands: `curl`, `cut`, `grep`, `sort`, `uniq`, `head`
+- ✅ Essential commands: `curl`, `cut`, `grep`, `sort`, `uniq`, `head`, `tee`
+- ✅ Named pipes (FIFOs) for inter-process communication
+- ✅ `/dev/fd/` file descriptor files
+- ✅ Buffering modes and how to control them
 - ✅ Building and debugging data pipelines
 
 ### Next Steps

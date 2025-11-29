@@ -62,6 +62,36 @@
     - C) `sort → grep → sed → uniq -c`
     - D) `grep → sort → sed → uniq -c`
 
+11. What does `grep -C 3 "pattern" file.txt` do?
+    - A) Shows 3 lines before the match
+    - B) Shows 3 lines after the match
+    - C) Shows 3 lines before and after the match
+    - D) Shows only the 3rd match
+
+12. How do you use backreferences in sed to swap date format from YYYY-MM-DD to DD/MM/YYYY?
+    - A) `sed 's/[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}/\3\/\2\/\1/'`
+    - B) `sed 's/\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\)/\3\/\2\/\1/'`
+    - C) `sed 's/(\d{4})-(\d{2})-(\d{2})/\3\/\2\/\1/'`
+    - D) `sed 's/(.*)-(.*)-(.*)/\3\/\2\/\1/'`
+
+13. What does `awk '{count[$1]++} END {for (key in count) print key, count[key]}'` do?
+    - A) Counts total lines in the file
+    - B) Counts occurrences of each unique value in the first field
+    - C) Counts fields in each line
+    - D) Counts words in the file
+
+14. Which sed command performs multiple substitutions on each line?
+    - A) `sed 's/foo/bar/' 's/old/new/' file.txt`
+    - B) `sed 's/foo/bar/; s/old/new/' file.txt`
+    - C) `sed -e 's/foo/bar/' -e 's/old/new/' file.txt`
+    - D) Both B and C
+
+15. What does `awk -F',' '{print NF}' data.csv` output?
+    - A) The number of records (lines) in the file
+    - B) The number of fields in each line
+    - C) The last field of each line
+    - D) The field separator
+
 ---
 
 ## Answer Key
@@ -75,3 +105,17 @@
 8. B - Comprehensive email regex pattern with word boundaries
 9. B - `NR > 1` skips header row, accumulates in END block
 10. B - Filter first (grep), transform (sed), then aggregate (sort | uniq -c)
+11. C - `-C` shows context lines both before and after (combines -A and -B)
+12. B - Need escaped parentheses `\(` `\)` for capturing groups, reference with `\1` `\2` `\3`
+13. B - Associative array counts occurrences of each unique first field value
+14. D - Both semicolon separation and multiple `-e` flags work for chaining sed commands
+15. B - NF is the number of fields in the current record/line
+
+---
+
+## Scoring Guide
+
+- **13-15 correct**: Excellent! You've mastered grep, sed & awk.
+- **10-12 correct**: Good job! Review advanced topics like backreferences and associative arrays.
+- **7-9 correct**: Fair understanding. Practice more with regex and awk programming.
+- **Below 7**: Study the lecture materials and complete hands-on exercises.

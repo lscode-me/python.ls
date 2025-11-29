@@ -62,6 +62,36 @@
     - C) XML
     - D) CSV
 
+11. Which command decompresses xz-compressed logs and searches for errors?
+    - A) `xzcat logs.xz | grep ERROR`
+    - B) `xz -d logs.xz | grep ERROR`
+    - C) `unxz logs.xz && grep ERROR logs`
+    - D) `zcat logs.xz | grep ERROR`
+
+12. How do you use `tee` to save API response while processing it?
+    - A) `curl -s 'api.com' | tee response.json | jq '.'`
+    - B) `curl -s 'api.com' > tee response.json | jq '.'`
+    - C) `curl -s 'api.com' | save response.json | jq '.'`
+    - D) `curl -s 'api.com' && tee response.json | jq '.'`
+
+13. What does `jq -s 'group_by(.level) | map({level: .[0].level, count: length})'` do?
+    - A) Sorts by level
+    - B) Filters by level
+    - C) Groups JSONL entries by level and counts each group
+    - D) Selects only the level field
+
+14. How do you compress pipeline output on the fly?
+    - A) `command | gzip > output.gz`
+    - B) `command > output.txt && gzip output.txt`
+    - C) `command | compress > output.gz`
+    - D) `command --gzip > output.gz`
+
+15. What's the correct way to generate a markdown heading with a variable date?
+    - A) `echo "# Report - $(date +%Y-%m-%d)"`
+    - B) `echo "# Report - {date}"`
+    - C) `printf "# Report - %s" date`
+    - D) `echo "# Report - $date"`
+
 ---
 
 ## Answer Key
@@ -75,3 +105,17 @@
 8. B - `sleep N` delays for N seconds (accepts decimals)
 9. B - `-r` for raw output, then `sort | uniq -c`
 10. B - JSONL is standard for streaming logs
+11. A - `xzcat` decompresses xz files to stdout (like `zcat` for gzip)
+12. A - `tee` writes to file and passes through to stdout for further processing
+13. C - `-s` slurps all inputs into array, `group_by` groups by field, `map` aggregates counts
+14. A - Pipe directly to `gzip` to compress output as it's generated
+15. A - Use command substitution `$(date +%Y-%m-%d)` to embed current date
+
+---
+
+## Scoring Guide
+
+- **13-15 correct**: Excellent! You're ready for production log processing.
+- **10-12 correct**: Good job! Review compression tools and jq aggregations.
+- **7-9 correct**: Fair understanding. Practice more with JSONL and API workflows.
+- **Below 7**: Study the lecture materials and complete hands-on exercises.
