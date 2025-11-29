@@ -253,9 +253,45 @@ u1,2024-01-01,2024-03-20,18
 u2,2024-01-01,2024-03-25,6
 ```
 
+### transactions.csv
+Transaction records for filtering examples.
+
+```csv
+date,amount,category
+2024-03-15,150,Electronics
+2024-03-15,45,Clothing
+2024-03-16,1499,Electronics
+2024-03-16,80,Clothing
+2024-03-17,25,Food
+2024-03-17,599,Electronics
+2024-03-18,200,Clothing
+2024-03-18,15,Food
+2024-03-19,999,Electronics
+2024-03-19,50,Food
+2024-03-20,75,Clothing
+2024-03-20,120,Electronics
+```
+
 ---
 
 ## 📝 Log Files
+
+### logs.txt
+Simple log file with dates for pattern matching.
+
+```
+2024-03-15 10:23:45 INFO Application started
+2024-03-15 10:24:12 ERROR Connection failed
+2024-03-16 08:00:00 INFO Daily backup started
+2024-03-16 08:15:30 WARN Disk space low
+2024-03-17 14:22:01 INFO User login: alice
+2024-03-17 14:25:45 ERROR Invalid token
+2024-03-18 09:00:00 INFO Scheduled task executed
+2024-03-19 11:30:22 DEBUG Cache cleared
+2024-03-20 16:45:00 INFO Application stopped
+2023-01-01 00:00:00 INFO New Year started
+2024-12-25 12:00:00 INFO Holiday mode enabled
+```
 
 ### app.log
 Plain text application log.
@@ -294,6 +330,32 @@ Web server access log (Combined Log Format).
 ---
 
 ## 📦 JSON Files
+
+### data.jsonl
+Simple JSONL for shell script examples.
+
+```jsonl
+{"name": "Alice", "age": 30, "city": "Moscow"}
+{"name": "Bob", "age": 25, "city": "SPb"}
+{"name": "Carol", "age": 35, "city": "Kazan"}
+{"name": "Dave", "age": 28, "city": "Moscow"}
+{"name": "Eve", "age": 32, "city": "Sochi"}
+{"name": "Frank", "age": 45, "city": "Novosibirsk"}
+```
+
+### sales.jsonl
+Sales data in JSONL format for aggregation examples.
+
+```jsonl
+{"date": "2024-03-15", "product": "Phone", "amount": 999, "region": "North"}
+{"date": "2024-03-15", "product": "Laptop", "amount": 1499, "region": "South"}
+{"date": "2024-03-16", "product": "Shirt", "amount": 45, "region": "East"}
+{"date": "2024-03-16", "product": "Phone", "amount": 999, "region": "West"}
+{"date": "2024-03-17", "product": "Tablet", "amount": 599, "region": "North"}
+{"date": "2024-03-17", "product": "Pants", "amount": 80, "region": "South"}
+{"date": "2024-03-18", "product": "Jacket", "amount": 150, "region": "East"}
+{"date": "2024-03-18", "product": "Laptop", "amount": 1499, "region": "West"}
+```
 
 ### users.json
 JSON array format.
@@ -649,7 +711,37 @@ a,b,c
 7,8,9
 EOF
 
+cat > transactions.csv << 'EOF'
+date,amount,category
+2024-03-15,150,Electronics
+2024-03-15,45,Clothing
+2024-03-16,1499,Electronics
+2024-03-16,80,Clothing
+2024-03-17,25,Food
+2024-03-17,599,Electronics
+2024-03-18,200,Clothing
+2024-03-18,15,Food
+2024-03-19,999,Electronics
+2024-03-19,50,Food
+2024-03-20,75,Clothing
+2024-03-20,120,Electronics
+EOF
+
 # === Log Files ===
+
+cat > logs.txt << 'EOF'
+2024-03-15 10:23:45 INFO Application started
+2024-03-15 10:24:12 ERROR Connection failed
+2024-03-16 08:00:00 INFO Daily backup started
+2024-03-16 08:15:30 WARN Disk space low
+2024-03-17 14:22:01 INFO User login: alice
+2024-03-17 14:25:45 ERROR Invalid token
+2024-03-18 09:00:00 INFO Scheduled task executed
+2024-03-19 11:30:22 DEBUG Cache cleared
+2024-03-20 16:45:00 INFO Application stopped
+2023-01-01 00:00:00 INFO New Year started
+2024-12-25 12:00:00 INFO Holiday mode enabled
+EOF
 
 cat > app.log << 'EOF'
 2024-03-15 10:23:45 INFO Application started
@@ -680,6 +772,26 @@ cat > access.log << 'EOF'
 EOF
 
 # === JSON Files ===
+
+cat > data.jsonl << 'EOF'
+{"name": "Alice", "age": 30, "city": "Moscow"}
+{"name": "Bob", "age": 25, "city": "SPb"}
+{"name": "Carol", "age": 35, "city": "Kazan"}
+{"name": "Dave", "age": 28, "city": "Moscow"}
+{"name": "Eve", "age": 32, "city": "Sochi"}
+{"name": "Frank", "age": 45, "city": "Novosibirsk"}
+EOF
+
+cat > sales.jsonl << 'EOF'
+{"date": "2024-03-15", "product": "Phone", "amount": 999, "region": "North"}
+{"date": "2024-03-15", "product": "Laptop", "amount": 1499, "region": "South"}
+{"date": "2024-03-16", "product": "Shirt", "amount": 45, "region": "East"}
+{"date": "2024-03-16", "product": "Phone", "amount": 999, "region": "West"}
+{"date": "2024-03-17", "product": "Tablet", "amount": 599, "region": "North"}
+{"date": "2024-03-17", "product": "Pants", "amount": 80, "region": "South"}
+{"date": "2024-03-18", "product": "Jacket", "amount": 150, "region": "East"}
+{"date": "2024-03-18", "product": "Laptop", "amount": 1499, "region": "West"}
+EOF
 
 cat > users.json << 'EOF'
 [

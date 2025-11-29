@@ -1,0 +1,9 @@
+{"date": "2024-03-15", "product": "Phone", "amount": 999, "region": "North"}
+{"date": "2024-03-15", "product": "Laptop", "amount": 1499, "region": "South"}
+{"date": "2024-03-16", "product": "Shirt", "amount": 45, "region": "East"}
+{"date": "2024-03-16", "product": "Phone", "amount": 999, "region": "West"}
+{"date": "2024-03-17", "product": "Tablet", "amount": 599, "region": "North"}
+{"date": "2024-03-17", "product": "Pants", "amount": 80, "region": "South"}
+{"date": "2024-03-18", "product": "Jacket", "amount": 150, "region": "East"}
+{"date": "2024-03-18", "product": "Laptop", "amount": 1499, "region": "West"}
+
