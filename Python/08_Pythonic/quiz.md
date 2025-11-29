@@ -114,6 +114,171 @@ D) `3`
 
 ---
 
+## Question 11: Generator vs List
+
+What's the main advantage of `(x**2 for x in range(1000000))` over `[x**2 for x in range(1000000)]`?
+
+A) Generators are faster  
+B) Generators use less memory (lazy evaluation)  
+C) Generators can be reused multiple times  
+D) Generators are easier to read  
+
+---
+
+## Question 12: Dictionary Comprehension
+
+What does `{k: v*2 for k, v in {'a': 1, 'b': 2}.items() if v > 1}` produce?
+
+A) `{'a': 2, 'b': 4}`  
+B) `{'b': 4}`  
+C) `{2: 'b'}`  
+D) `{'b': 2}`  
+
+---
+
+## Question 13: Duck Typing
+
+Which approach is more Pythonic for accepting different iterable types?
+
+A) `if isinstance(items, (list, tuple, set)): process(items)`  
+B) `try: iter(items); process(items)`  
+C) Just use `for item in items:` without type checking  
+D) Convert everything to list first: `process(list(items))`  
+
+---
+
+## Question 14: Star Unpacking
+
+Given `first, *middle, last = [1, 2, 3, 4, 5]`, what is `middle`?
+
+A) `[2, 3, 4]`  
+B) `(2, 3, 4)`  
+C) `2`  
+D) `[2, 3, 4, 5]`  
+
+---
+
+## Question 15: Swapping Variables
+
+What's the Pythonic way to swap two variables?
+
+A) `temp = a; a = b; b = temp`  
+B) `a, b = b, a`  
+C) `a = a + b; b = a - b; a = a - b`  
+D) `a ^= b; b ^= a; a ^= b`  
+
+---
+
+## Question 16: Collections Module
+
+Which `collections` tool is best for counting element frequencies?
+
+A) `defaultdict(int)`  
+B) `Counter`  
+C) `OrderedDict`  
+D) `deque`  
+
+---
+
+## Question 17: Context Manager
+
+What happens to the file if an exception occurs inside a `with` block?
+
+A) File remains open  
+B) File is automatically closed  
+C) Program crashes  
+D) File is deleted  
+
+---
+
+## Question 18: F-String Debugging
+
+What does `print(f"{x=}")` output when `x = 42`?
+
+A) `42`  
+B) `x`  
+C) `x=42`  
+D) `x = 42`  
+
+---
+
+## Question 19: Chained Comparisons
+
+Which statement is equivalent to `if 0 <= x < 100:`?
+
+A) `if x >= 0 and x < 100:`  
+B) `if (0 <= x) < 100:`  
+C) `if x in range(0, 100):`  
+D) Both A and C  
+
+---
+
+## Question 20: Zip Function
+
+What does `list(zip([1, 2, 3], ['a', 'b', 'c']))` return?
+
+A) `[[1, 'a'], [2, 'b'], [3, 'c']]`  
+B) `[(1, 'a'), (2, 'b'), (3, 'c')]`  
+C) `{1: 'a', 2: 'b', 3: 'c'}`  
+D) `[1, 2, 3, 'a', 'b', 'c']`  
+
+---
+
+## Question 21: Generator Function
+
+What's the key difference between `return` and `yield` in a function?
+
+A) `yield` returns multiple values at once  
+B) `yield` creates a generator that produces values lazily  
+C) `yield` is faster than `return`  
+D) `yield` is only for lists  
+
+---
+
+## Question 22: Dictionary Merging
+
+What's the Pythonic way (Python 3.5+) to merge two dictionaries?
+
+A) `d1.update(d2)`  
+B) `{**d1, **d2}`  
+C) `dict(d1, **d2)`  
+D) Both B and C  
+
+---
+
+## Question 23: Enumerate with Start
+
+What does `list(enumerate(['a', 'b', 'c'], start=1))` produce?
+
+A) `[(0, 'a'), (1, 'b'), (2, 'c')]`  
+B) `[(1, 'a'), (2, 'b'), (3, 'c')]`  
+C) `[('a', 1), ('b', 2), ('c', 3)]`  
+D) `[(1, 0), (2, 1), (3, 2)]`  
+
+---
+
+## Question 24: Defaultdict
+
+What happens when you access a non-existent key in `defaultdict(list)`?
+
+A) Raises KeyError  
+B) Returns None  
+C) Creates the key with an empty list `[]`  
+D) Returns an empty string  
+
+---
+
+## Question 25: String Formatting
+
+Which is the most modern Pythonic string formatting?
+
+A) `"Value: %d" % x`  
+B) `"Value: {}".format(x)`  
+C) `f"Value: {x}"`  
+D) `"Value: " + str(x)`  
+
+---
+
 ## Answer Key
 
 1. D - Performance is better than readability (this is NOT in the Zen of Python)
@@ -126,12 +291,29 @@ D) `3`
 8. C - `value = d.get(key, default)`
 9. D - `if 1 <= x <= 10:`
 10. A - `False`
+11. B - Generators use less memory (lazy evaluation)
+12. B - `{'b': 4}`
+13. C - Just use `for item in items:` without type checking
+14. A - `[2, 3, 4]`
+15. B - `a, b = b, a`
+16. B - `Counter`
+17. B - File is automatically closed
+18. C - `x=42`
+19. A - `if x >= 0 and x < 100:`
+20. B - `[(1, 'a'), (2, 'b'), (3, 'c')]`
+21. B - `yield` creates a generator that produces values lazily
+22. D - Both B and C (though B is more explicit)
+23. B - `[(1, 'a'), (2, 'b'), (3, 'c')]`
+24. C - Creates the key with an empty list `[]`
+25. C - `f"Value: {x}"`
 
 ---
 
 ## Scoring Guide
 
-- **9-10 correct**: Excellent! Your code is truly Pythonic.
-- **7-8 correct**: Great! You understand Python idioms well.
-- **5-6 correct**: Good foundation. Keep practicing Pythonic patterns.
-- **Below 5**: Read PEP 8 and practice writing more idiomatic code.
+- **23-25 correct**: Exceptional! You're a Python master.
+- **20-22 correct**: Excellent! Your code is truly Pythonic.
+- **17-19 correct**: Great! You understand Python idioms well.
+- **14-16 correct**: Good foundation. Keep practicing Pythonic patterns.
+- **11-13 correct**: You're on the right track. Review comprehensions and generators.
+- **Below 11**: Read PEP 8, PEP 20, and practice writing more idiomatic code.

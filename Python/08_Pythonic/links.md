@@ -195,6 +195,69 @@ https://treyhunner.com/2018/03/tuple-unpacking-improves-python-code-readability/
 https://realpython.com/python-kwargs-and-args/
 
 
+## Collections Module
+
+collections Module Documentation
+https://docs.python.org/3/library/collections.html
+
+Counter - Count Hashable Objects
+https://realpython.com/python-counter/
+
+defaultdict - Missing Keys Handler
+https://realpython.com/python-defaultdict/
+
+namedtuple - Lightweight Data Structures
+https://realpython.com/python-namedtuple/
+
+ChainMap, OrderedDict, deque
+https://pymotw.com/3/collections/
+
+
+## Generators and Iterators
+
+Python Generators
+https://realpython.com/introduction-to-python-generators/
+
+Generator Expressions vs List Comprehensions
+https://realpython.com/list-comprehension-python/#using-generator-expressions
+
+Yield and Generator Functions
+https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/
+
+Iterator Protocol in Python
+https://treyhunner.com/2018/06/how-to-make-an-iterator-in-python/
+
+Advanced Generators
+https://www.dabeaz.com/generators/
+
+
+## Duck Typing and Protocols
+
+Duck Typing in Python
+https://realpython.com/lessons/duck-typing/
+
+Type Hints and Duck Typing
+https://realpython.com/python-type-checking/
+
+Protocols and Structural Subtyping
+https://www.python.org/dev/peps/pep-0544/
+
+ABC (Abstract Base Classes)
+https://docs.python.org/3/library/abc.html
+
+
+## itertools Module
+
+itertools - Iterator Building Blocks
+https://docs.python.org/3/library/itertools.html
+
+itertools Recipes
+https://realpython.com/python-itertools/
+
+Mastering itertools
+https://www.programiz.com/python-programming/itertools
+
+
 ## Advanced Pythonic Patterns
 
 Decorators
