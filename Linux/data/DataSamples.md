@@ -87,9 +87,40 @@ contact@company.com
 jane_doe123@mail.ru
 ```
 
+### users.txt
+Alternative name for emails (used in grep examples).
+
+```
+alice@example.com
+bob.smith@company.org
+carol_jones@test.net
+dave+work@domain.co.uk
+admin@localhost
+support+help@service.io
+invalid-email
+user@sub.domain.example.com
+contact@company.com
+jane_doe123@mail.ru
+```
+
 ---
 
 ## 📊 CSV Files
+
+### data.csv
+Generic CSV for basic examples (cut, sort, awk).
+
+```csv
+id,name,age,city,status
+1,Alice,30,Moscow,active
+2,Bob,25,SPb,active
+3,Carol,35,Kazan,inactive
+4,Dave,28,Moscow,active
+5,Eve,32,Sochi,inactive
+6,Frank,45,Novosibirsk,active
+7,Grace,27,Samara,active
+8,Henry,38,Ekaterinburg,inactive
+```
 
 ### users.csv
 User data - consistent across all modules.
@@ -204,6 +235,22 @@ a,b,c
 1,2,3
 4,5,6
 7,8,9
+```
+
+### user_activity.csv
+User activity for cohort analysis.
+
+```csv
+user_id,signup_date,activity_date,actions
+u1,2024-01-01,2024-01-05,12
+u2,2024-01-01,2024-01-08,8
+u1,2024-01-01,2024-02-10,15
+u3,2024-02-01,2024-02-05,5
+u2,2024-01-01,2024-02-12,10
+u3,2024-02-01,2024-03-01,7
+u4,2024-03-01,2024-03-15,3
+u1,2024-01-01,2024-03-20,18
+u2,2024-01-01,2024-03-25,6
 ```
 
 ---
@@ -337,6 +384,19 @@ User session data.
 {"session_id": "s003", "user_id": 1, "start_time": "2024-03-15T11:00:00Z", "duration": 600, "pages": 5}
 {"session_id": "s004", "user_id": 3, "start_time": "2024-03-15T11:30:00Z", "duration": 2400, "pages": 22}
 {"session_id": "s005", "user_id": 2, "start_time": "2024-03-15T12:00:00Z", "duration": 1200, "pages": 10}
+```
+
+### queries.jsonl
+Database query log for slow query analysis.
+
+```jsonl
+{"timestamp": "2024-03-15T10:30:00Z", "query": "SELECT * FROM users WHERE id = 1", "duration_ms": 15, "rows": 1}
+{"timestamp": "2024-03-15T10:30:05Z", "query": "SELECT * FROM orders WHERE user_id = 1", "duration_ms": 45, "rows": 12}
+{"timestamp": "2024-03-15T10:30:10Z", "query": "SELECT * FROM products", "duration_ms": 1250, "rows": 5000}
+{"timestamp": "2024-03-15T10:30:15Z", "query": "UPDATE users SET last_login = NOW()", "duration_ms": 8, "rows": 1}
+{"timestamp": "2024-03-15T10:30:20Z", "query": "SELECT * FROM logs WHERE date > '2024-03-01'", "duration_ms": 3500, "rows": 100000}
+{"timestamp": "2024-03-15T10:30:25Z", "query": "SELECT COUNT(*) FROM sessions", "duration_ms": 120, "rows": 1}
+{"timestamp": "2024-03-15T10:30:30Z", "query": "SELECT * FROM analytics WHERE event_type = 'click'", "duration_ms": 2100, "rows": 45000}
 ```
 
 ---

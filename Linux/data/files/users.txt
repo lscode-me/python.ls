@@ -1,0 +1,11 @@
+alice@example.com
+bob.smith@company.org
+carol_jones@test.net
+dave+work@domain.co.uk
+admin@localhost
+support+help@service.io
+invalid-email
+user@sub.domain.example.com
+contact@company.com
+jane_doe123@mail.ru
+
