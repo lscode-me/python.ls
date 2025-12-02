@@ -219,3 +219,4 @@ build_html.py
 build_pdf.sh
 build_pdf_python.py
 how_to_build_pdf.md
+stats/*

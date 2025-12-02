@@ -12,6 +12,78 @@ The trio of `grep`, `sed`, and `awk` form the foundation of Unix text processing
 - **sed**: Stream editor for transformations
 - **awk**: Pattern scanning and data extraction
 
+## What is Regex?
+
+**Regular Expressions (regex)** are a formal language for describing text patterns. Regex is used for searching, validating, and manipulating textual data.
+
+### Core Concept
+Regex allows you to describe a **pattern**, not a specific string:
+- `cat` — matches only the word "cat"
+- `c.t` — matches "cat", "cot", "cut", "c3t", etc.
+- `[Cc]at` — matches "cat" or "Cat"
+- `^cat$` — matches a line containing only "cat"
+
+### Regex vs Shell Globbing
+
+⚠️ **Important!** Regex and shell globbing are **different systems** with different syntax:
+
+| Feature | Shell Globbing | Regex |
+|---------|----------------|-------|
+| **Purpose** | File matching | Text pattern matching |
+| **Context** | Command line (ls, cp, rm) | grep, sed, awk, editors |
+| **`*` meaning** | Any characters | Zero or more of **previous** |
+| **`?` meaning** | Single character | Zero or one of **previous** |
+| **`.` meaning** | Literal dot | Any single character |
+| **Character class** | `[abc]` ✓ | `[abc]` ✓ |
+| **Range** | `[a-z]` ✓ | `[a-z]` ✓ |
+| **Negation** | `[!abc]` | `[^abc]` |
+| **Anchors** | ❌ | `^` start, `$` end |
+| **Alternation** | `{txt,md}` | `(txt\|md)` |
+
+### Examples Comparison
+
+```bash
+# Shell Globbing (file matching)
+ls *.txt          # All files ending in .txt
+rm file?.log      # file1.log, fileA.log (? = one char)
+cp *.{py,js} dir/ # Copy .py and .js files
+
+# Regex (text pattern matching)
+grep ".*\.txt$"   # Lines ending in .txt (. = any char, * = zero or more)
+grep "file."      # "file" + any one character
+grep -E "(py|js)" # Lines containing "py" or "js"
+```
+
+### Common Confusion
+
+```bash
+# ❌ Wrong: using globbing syntax in regex
+grep "*.txt" file       # Wrong! Means zero or more '*', then ".txt"
+
+# ✓ Correct: proper regex
+grep ".*\.txt" file     # Matches: anything + ".txt"
+
+# ❌ Wrong: using regex in shell
+ls .*\.txt              # Wrong! Shell sees: .*.txt (hidden files, literal backslash)
+
+# ✓ Correct: proper globbing  
+ls *.txt                # Matches: any files ending in .txt
+```
+
+### When to Use What?
+
+```bash
+# Use Shell Globbing for files:
+rm *.tmp
+cp src/*.py dest/
+for file in *.{jpg,png}; do ...; done
+
+# Use Regex for text content:
+grep -E "^[A-Z].*\.$" file.txt      # Lines starting with capital, ending with period
+sed 's/[0-9]\{4\}-[0-9]\{2\}/XXXX-XX/' file.txt  # Mask dates
+awk '/^ERROR/ {print $0}' app.log    # Lines starting with ERROR
+```
+
 ## Regular Expressions Primer
 
 ### Basic Patterns
@@ -366,3 +438,424 @@ sed 's/<[^>]*>//g' page.html | \
 - Study awk programming language features
 - Learn Perl for more complex text processing
 - Explore ripgrep (rg) for faster searching
+
+---
+
+## Ready-to-Use Regex Patterns
+
+A collection of tested regular expressions for common tasks.
+
+### Network & Web
+
+#### IP Address (IPv4)
+```bash
+# Basic (permissive)
+grep -E '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b' file.txt
+
+# Strict (validates 0-255 range)
+grep -E '\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b' file.txt
+
+# Examples matched: 192.168.1.1, 10.0.0.255, 172.16.0.1
+```
+
+#### Email Address
+```bash
+# Basic (permissive)
+grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' file.txt
+
+# More strict
+grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(com|org|net|edu|gov|io|dev)\b' file.txt
+
+# Examples matched: user@example.com, john.doe+filter@company.co.uk
+```
+
+#### URL
+```bash
+# HTTP/HTTPS URLs
+grep -Eo 'https?://[A-Za-z0-9./_-]+' file.txt
+
+# With query parameters
+grep -Eo 'https?://[A-Za-z0-9./?&=_-]+' file.txt
+
+# Full URL with fragments
+grep -Eo 'https?://[A-Za-z0-9./?&=_#%-]+' file.txt
+
+# Examples matched: 
+# https://example.com/path
+# http://site.com/page?id=123&name=test
+```
+
+#### Domain Name
+```bash
+# Basic domain
+grep -E '\b[a-z0-9-]+\.[a-z]{2,}\b' file.txt
+
+# With subdomains
+grep -E '\b([a-z0-9-]+\.)+[a-z]{2,}\b' file.txt
+
+# Examples matched: example.com, sub.domain.co.uk, my-site.io
+```
+
+#### MAC Address
+```bash
+# Colon-separated
+grep -E '\b([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}\b' file.txt
+
+# Hyphen-separated
+grep -E '\b([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}\b' file.txt
+
+# Examples matched: 00:1A:2B:3C:4D:5E, 00-1A-2B-3C-4D-5E
+```
+
+### Date & Time
+
+#### Date (YYYY-MM-DD)
+```bash
+# ISO 8601 format
+grep -E '\b[0-9]{4}-[0-9]{2}-[0-9]{2}\b' file.txt
+
+# With validation (basic)
+grep -E '\b[12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\b' file.txt
+
+# Examples matched: 2024-12-02, 2023-01-15
+```
+
+#### Date (DD/MM/YYYY or MM/DD/YYYY)
+```bash
+# DD/MM/YYYY or MM/DD/YYYY
+grep -E '\b[0-9]{2}/[0-9]{2}/[0-9]{4}\b' file.txt
+
+# Examples matched: 02/12/2024, 12/25/2023
+```
+
+#### Time (HH:MM:SS)
+```bash
+# 24-hour format
+grep -E '\b([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\b' file.txt
+
+# With optional seconds
+grep -E '\b([01][0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?\b' file.txt
+
+# Examples matched: 14:30:00, 09:05:23
+```
+
+#### Timestamp (ISO 8601)
+```bash
+# Full ISO timestamp
+grep -E '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}' file.txt
+
+# With timezone
+grep -E '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([+-][0-9]{2}:[0-9]{2}|Z)' file.txt
+
+# Examples matched: 
+# 2024-12-02T14:30:00
+# 2024-12-02T14:30:00Z
+# 2024-12-02T14:30:00+03:00
+```
+
+### Financial
+
+#### Credit Card (Generic)
+```bash
+# Generic card number (16 digits with optional separators)
+grep -E '\b[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}\b' file.txt
+
+# ⚠️ Use only for testing/education, never log real card numbers!
+# Examples matched: 1234-5678-9012-3456, 1234 5678 9012 3456
+```
+
+#### Currency Amount
+```bash
+# USD format with optional cents
+grep -E '\$[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?' file.txt
+
+# Generic currency (digits with optional cents)
+grep -E '\b[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?\b' file.txt
+
+# Examples matched: $1,234.56, $999, 1,234,567.89
+```
+
+### Phone Numbers
+
+#### US Phone Number
+```bash
+# Various US formats
+grep -E '\b(\+1[-. ]?)?\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}\b' file.txt
+
+# Examples matched:
+# +1-555-123-4567
+# (555) 123-4567
+# 555.123.4567
+# 5551234567
+```
+
+#### International Format
+```bash
+# E.164 format
+grep -E '\+[0-9]{1,3}[0-9]{4,14}' file.txt
+
+# Examples matched: +1234567890, +79161234567
+```
+
+### Bioinformatics
+
+#### DNA Sequence
+```bash
+# DNA nucleotides (A, T, G, C)
+grep -E '^[ATGC]+$' sequence.txt
+
+# With length constraint (at least 10bp)
+grep -E '^[ATGC]{10,}$' sequence.txt
+
+# Case-insensitive
+grep -iE '^[ATGC]+$' sequence.txt
+
+# Examples matched: ATGCTAGCTAGC, GGCCAATTGGCC
+```
+
+#### RNA Sequence
+```bash
+# RNA nucleotides (A, U, G, C)
+grep -E '^[AUGC]+$' sequence.txt
+
+# With length constraint
+grep -E '^[AUGC]{10,}$' sequence.txt
+
+# Examples matched: AUGCUAGCUAGC, GGCCAAUUGGCC
+```
+
+#### Protein Sequence (Amino Acids)
+```bash
+# Single-letter amino acid codes
+grep -E '^[ACDEFGHIKLMNPQRSTVWY]+$' protein.txt
+
+# Including ambiguous codes (B, Z, X)
+grep -E '^[ACDEFGHIKLMNPQRSTVWYBZX]+$' protein.txt
+
+# Examples matched: MKTAYIAKQR, ACDEFGHIKLMNPQRSTVWY
+```
+
+#### FASTA Header
+```bash
+# Extract FASTA IDs
+grep -E '^>[A-Za-z0-9_|.-]+' sequences.fasta
+
+# Extract full header with description
+grep -E '^>.*' sequences.fasta
+
+# Examples matched: >seq1, >gi|12345|ref|NM_000001
+```
+
+#### Genetic Coordinates
+```bash
+# Format: chr:start-end
+grep -E 'chr[0-9XYM]+:[0-9]+-[0-9]+' coordinates.txt
+
+# Examples matched: chr1:1000-2000, chrX:123456-234567
+```
+
+### File & Path
+
+#### File Extensions
+```bash
+# Common programming files
+grep -E '\.(py|js|java|cpp|c|h|go|rs)$' filelist.txt
+
+# Data files
+grep -E '\.(csv|json|xml|yaml|txt)$' filelist.txt
+
+# Image files
+grep -E '\.(jpg|jpeg|png|gif|svg|webp)$' filelist.txt
+```
+
+#### Unix Path
+```bash
+# Absolute path
+grep -E '^/([^/]+/)*[^/]+$' paths.txt
+
+# Relative path
+grep -E '^[^/]([^/]+/)*[^/]+$' paths.txt
+
+# Examples matched: /usr/local/bin, ./src/main.py
+```
+
+### Identifiers
+
+#### UUID (Universally Unique Identifier)
+```bash
+# Standard UUID format
+grep -E '\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b' file.txt
+
+# Examples matched: 550e8400-e29b-41d4-a716-446655440000
+```
+
+#### Hex Color Code
+```bash
+# 3 or 6 digit hex colors
+grep -Eo '#[0-9A-Fa-f]{6}\b|#[0-9A-Fa-f]{3}\b' styles.css
+
+# Examples matched: #FF5733, #f00, #BADA55
+```
+
+#### Social Security Number (US)
+```bash
+# SSN format (XXX-XX-XXXX)
+grep -E '\b[0-9]{3}-[0-9]{2}-[0-9]{4}\b' file.txt
+
+# ⚠️ Use only for testing, never log real SSNs!
+# Examples matched: 123-45-6789
+```
+
+### Log & Code Patterns
+
+#### Log Level
+```bash
+# Common log levels
+grep -E '\b(DEBUG|INFO|WARN(ING)?|ERROR|FATAL|CRITICAL)\b' app.log
+
+# With timestamp context
+grep -E '\[[^\]]+\] (DEBUG|INFO|WARN|ERROR|FATAL)' app.log
+```
+
+#### IPv4 CIDR Notation
+```bash
+# IP with subnet mask
+grep -E '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/[0-9]{1,2}\b' networks.txt
+
+# Examples matched: 192.168.1.0/24, 10.0.0.0/8
+```
+
+#### Git Commit Hash
+```bash
+# Short hash (7 chars)
+grep -E '\b[0-9a-f]{7}\b' commits.txt
+
+# Full hash (40 chars)
+grep -E '\b[0-9a-f]{40}\b' commits.txt
+
+# Examples matched: a3d5f7e, 1234567890abcdef1234567890abcdef12345678
+```
+
+### Practical Usage Examples
+
+```bash
+# Extract all emails from text
+grep -Eo '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' document.txt > emails.txt
+
+# Find all IP addresses in logs
+grep -Eo '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b' access.log | sort -u
+
+# Extract URLs from HTML
+grep -Eo 'https?://[^"<>]+' page.html
+
+# Validate DNA sequences
+grep -vE '^[ATGC]+$' sequences.txt  # Show invalid sequences
+
+# Find all dates in logs
+grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' app.log | sort -u
+
+# Extract credit card numbers (for security audit)
+grep -Eo '\b[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}\b' suspicious.txt
+```
+
+### Testing Your Regex
+
+```bash
+# Test regex interactively
+echo "test@example.com" | grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
+
+# Show only matching part
+echo "IP: 192.168.1.1" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+
+# Test with multiple patterns
+echo -e "ATGC\nATGX\nGGCC" | grep -E '^[ATGC]+$'
+
+# Use online tools for complex patterns:
+# - regex101.com (with explanation)
+# - regexr.com (visual testing)
+# - debuggex.com (railroad diagrams)
+```
+
+### Tips for Creating Your Own Patterns
+
+1. **Start simple** — gradually increase pattern complexity
+2. **Test on real data** — validate with actual examples
+3. **Consider edge cases** — account for boundary conditions
+4. **Use anchors** — `^` and `$` for precise positioning
+5. **Escape properly** — escape special characters correctly
+6. **Document complex patterns** — add comments in scripts
+7. **Balance strictness** — find balance between precision and flexibility
+
+---
+
+## Quick Reference: Common Regex Patterns
+
+| Pattern | Regex | Example Matches |
+|---------|-------|-----------------|
+| **Email** | `\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b` | `user@example.com`, `john.doe@company.co.uk` |
+| **IPv4 Address** | `\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b` | `192.168.1.1`, `10.0.0.1` |
+| **URL (HTTP/HTTPS)** | `https?://[A-Za-z0-9./?&=_-]+` | `https://example.com/path?id=123` |
+| **Domain Name** | `\b([a-z0-9-]+\.)+[a-z]{2,}\b` | `example.com`, `sub.domain.io` |
+| **MAC Address** | `([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}` | `00:1A:2B:3C:4D:5E` |
+| **Date (ISO 8601)** | `[0-9]{4}-[0-9]{2}-[0-9]{2}` | `2024-12-02`, `2023-01-15` |
+| **Date (US/UK)** | `[0-9]{2}/[0-9]{2}/[0-9]{4}` | `12/02/2024`, `02/12/2024` |
+| **Time (24h)** | `([01][0-9]\|2[0-3]):[0-5][0-9]:[0-5][0-9]` | `14:30:00`, `09:05:23` |
+| **Timestamp (ISO)** | `[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}` | `2024-12-02T14:30:00` |
+| **Phone (US)** | `\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}` | `(555) 123-4567`, `555-123-4567` |
+| **Credit Card** | `[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}` | `1234-5678-9012-3456` |
+| **Currency (USD)** | `\$[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?` | `$1,234.56`, `$999` |
+| **DNA Sequence** | `^[ATGC]+$` | `ATGCTAGC`, `GGCCAATT` |
+| **RNA Sequence** | `^[AUGC]+$` | `AUGCUAGC`, `GGCCAAUU` |
+| **Protein Sequence** | `^[ACDEFGHIKLMNPQRSTVWY]+$` | `MKTAYIAKQR`, `ACDEFGH` |
+| **UUID** | `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` | `550e8400-e29b-41d4-a716-446655440000` |
+| **Hex Color** | `#[0-9A-Fa-f]{6}\|#[0-9A-Fa-f]{3}` | `#FF5733`, `#f00` |
+| **IPv4 CIDR** | `[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/[0-9]{1,2}` | `192.168.1.0/24`, `10.0.0.0/8` |
+| **Git Hash (short)** | `\b[0-9a-f]{7}\b` | `a3d5f7e`, `1234567` |
+| **Git Hash (full)** | `\b[0-9a-f]{40}\b` | `1234567890abcdef...` |
+| **Log Level** | `\b(DEBUG\|INFO\|WARN(ING)?\|ERROR\|FATAL\|CRITICAL)\b` | `ERROR`, `WARNING`, `INFO` |
+| **SSN (US)** | `[0-9]{3}-[0-9]{2}-[0-9]{4}` | `123-45-6789` |
+| **Unix Path** | `^/([^/]+/)*[^/]+$` | `/usr/local/bin`, `/home/user/file.txt` |
+| **File Extension** | `\.(txt\|csv\|json\|xml\|yaml)$` | `.txt`, `.json`, `.csv` |
+
+### Usage with grep
+
+```bash
+# Use -E for extended regex (recommended)
+grep -E 'pattern' file.txt
+
+# Case-insensitive
+grep -iE 'pattern' file.txt
+
+# Extract only matching parts
+grep -Eo 'pattern' file.txt
+
+# Show line numbers
+grep -nE 'pattern' file.txt
+
+# Invert match (exclude)
+grep -vE 'pattern' file.txt
+```
+
+### Quick Syntax Reminder
+
+| Symbol | Meaning | Example |
+|--------|---------|---------|
+| `.` | Any single character | `c.t` matches `cat`, `cot`, `c5t` |
+| `^` | Start of line | `^Hello` matches lines starting with "Hello" |
+| `$` | End of line | `world$` matches lines ending with "world" |
+| `*` | Zero or more | `ab*c` matches `ac`, `abc`, `abbc` |
+| `+` | One or more | `ab+c` matches `abc`, `abbc` (not `ac`) |
+| `?` | Zero or one | `ab?c` matches `ac`, `abc` |
+| `[abc]` | Character class | Matches `a`, `b`, or `c` |
+| `[^abc]` | Negated class | Matches anything except `a`, `b`, `c` |
+| `[a-z]` | Range | Matches any lowercase letter |
+| `\|` | Alternation (OR) | `cat\|dog` matches `cat` or `dog` |
+| `()` | Grouping | `(ab)+` matches `ab`, `abab`, `ababab` |
+| `{n}` | Exactly n times | `[0-9]{3}` matches exactly 3 digits |
+| `{n,}` | n or more times | `[0-9]{3,}` matches 3+ digits |
+| `{n,m}` | Between n and m | `[0-9]{2,4}` matches 2-4 digits |
+| `\b` | Word boundary | `\bcat\b` matches "cat" but not "category" |
+| `\d` | Digit (some tools) | Equivalent to `[0-9]` |
+| `\w` | Word character | Equivalent to `[A-Za-z0-9_]` |
+| `\s` | Whitespace | Matches space, tab, newline |
+| `\\` | Escape character | `\.` matches literal dot |
