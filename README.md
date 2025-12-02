@@ -12,7 +12,7 @@ A comprehensive course designed for life science professionals looking to develo
 
 From objects and memory management to BioPython and sequence analysis. Learn to write clean, efficient, Pythonic code for life science applications.
 
-**→ [Python Course README](Python/README.md)** - Full course contents, learning path, and materials
+**→ [Python Course](Python/README.md)** - Full course contents, learning path, and materials
 
 ---
 
@@ -22,7 +22,7 @@ From objects and memory management to BioPython and sequence analysis. Learn to 
 
 Master stream processing, structured data formats, performance optimization, and build production-ready ETL pipelines.
 
-**→ [Linux Course README](Linux/README.md)** - Full course contents, learning path, and materials
+**→ [Linux Course](Linux/README.md)** - Full course contents, learning path, and materials
 
 **→ [Sample Data](Linux/data/DataSamples.md)** - Unified practice datasets for all modules
 
