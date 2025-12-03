@@ -8,7 +8,7 @@ This course takes you from Python basics to advanced concepts, with a focus on w
 
 ---
 
-## 📚 Course Contents
+## 📚 Course Contents (11 Modules)
 
 ### 1. Objects, References, Memory, Types
 
@@ -154,7 +154,35 @@ Learn to write Unix-style command-line utilities in Python.
 
 ---
 
-### 7. Object-Oriented Programming (OOP)
+### 7. Coroutines and Data Pipelines
+
+Master coroutines for building push-based data processing pipelines.
+
+**Topics Covered:**
+- From generators to coroutines
+- The `send()` pattern and coroutine priming
+- Bidirectional communication (yield for both producing and consuming)
+- Push vs Pull data processing models
+- Building coroutine-based pipelines (filter → map → sink)
+- Pipeline components: filters, mappers, broadcasters (tee), sinks
+- Stateful data processing with coroutines
+- Real-time log processing and ETL pipelines
+- Windowing, batching, and aggregation patterns
+- Error handling and pipeline cleanup
+- Branching and multi-consumer pipelines
+- Performance optimization for streaming data
+- Comparison with iterator-based (pull) pipelines
+- Production-ready pipeline patterns
+
+**Materials:**
+- [Lecture](07_Coroutines/lecture.md) - Complete coroutines and pipeline guide
+- [Homework Assignments](07_Coroutines/hw.md) - 8 pipeline projects (basic to expert)
+- [Resources](07_Coroutines/links.md) - David Beazley's tutorials and more
+- [Quiz](07_Coroutines/quiz.md) - Test your knowledge
+
+---
+
+### 8. Object-Oriented Programming (OOP)
 
 Master classes, inheritance, encapsulation, and design patterns.
 
@@ -171,14 +199,14 @@ Master classes, inheritance, encapsulation, and design patterns.
 - Advanced OOP (decorators, dataclasses, metaclasses, slots)
 
 **Materials:**
-- [Lecture](07_OOP/lecture.md) - Core OOP concepts and advanced patterns
-- [Homework Assignments](07_OOP/hw.md) - 8 comprehensive projects
-- [Resources](07_OOP/links.md) - OOP learning materials
-- [Quiz](07_OOP/quiz.md) - Test your knowledge
+- [Lecture](08_OOP/lecture.md) - Core OOP concepts and advanced patterns
+- [Homework Assignments](08_OOP/hw.md) - 8 comprehensive projects
+- [Resources](08_OOP/links.md) - OOP learning materials
+- [Quiz](08_OOP/quiz.md) - Test your knowledge
 
 ---
 
-### 8. Pythonic Code
+### 9. Pythonic Code
 
 Write beautiful, idiomatic Python code following best practices.
 
@@ -194,14 +222,14 @@ Write beautiful, idiomatic Python code following best practices.
 - Common anti-patterns to avoid
 
 **Materials:**
-- [Lecture](08_Pythonic/lecture.md) - Writing idiomatic Python
-- [Homework Assignments](08_Pythonic/hw.md) - Code refactoring exercises
-- [Resources](08_Pythonic/links.md) - Extensive Pythonic resources
-- [Quiz](08_Pythonic/quiz.md) - Test your knowledge
+- [Lecture](09_Pythonic/lecture.md) - Writing idiomatic Python
+- [Homework Assignments](09_Pythonic/hw.md) - Code refactoring exercises
+- [Resources](09_Pythonic/links.md) - Extensive Pythonic resources
+- [Quiz](09_Pythonic/quiz.md) - Test your knowledge
 
 ---
 
-### 9. Protocols and Interfaces
+### 10. Protocols and Interfaces
 
 Understanding Python's protocol system and creating flexible interfaces.
 
@@ -216,14 +244,14 @@ Understanding Python's protocol system and creating flexible interfaces.
 - Protocols vs ABC: when to use each
 
 **Materials:**
-- [Lecture](09_Protocols/lecture.md) - Protocol system explained
-- [Homework Assignments](09_Protocols/hw.md) - 8 protocol implementation tasks
-- [Resources](09_Protocols/links.md) - Protocol and interface resources
-- [Quiz](09_Protocols/quiz.md) - Test your knowledge
+- [Lecture](10_Protocols/lecture.md) - Protocol system explained
+- [Homework Assignments](10_Protocols/hw.md) - 8 protocol implementation tasks
+- [Resources](10_Protocols/links.md) - Protocol and interface resources
+- [Quiz](10_Protocols/quiz.md) - Test your knowledge
 
 ---
 
-### 10. Python for Bioinformatics
+### 11. Python for Bioinformatics
 
 Apply Python to real-world bioinformatics problems and biological data analysis.
 
@@ -241,10 +269,10 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 - Real-world bioinformatics workflows
 
 **Materials:**
-- [Lecture](10_Bioinformatics/lecture.md) - Python for biological data
-- [Homework Assignments](10_Bioinformatics/hw.md) - 12 practical bioinformatics projects
-- [Resources](10_Bioinformatics/links.md) - Comprehensive bioinformatics resources
-- [Quiz](10_Bioinformatics/quiz.md) - Test your knowledge
+- [Lecture](11_Bioinformatics/lecture.md) - Python for biological data
+- [Homework Assignments](11_Bioinformatics/hw.md) - 12 practical bioinformatics projects
+- [Resources](11_Bioinformatics/links.md) - Comprehensive bioinformatics resources
+- [Quiz](11_Bioinformatics/quiz.md) - Test your knowledge
 
 ---
 
@@ -257,10 +285,11 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 4. **Testing** - Write reliable, testable code
 5. **Iteration** - Master efficient data processing
 6. **Streams** - Build Unix-style command-line tools
-7. **OOP** - Master object-oriented design
-8. **Pythonic** - Polish your Python skills
-9. **Protocols** - Understand Python's interface system
-10. **Bioinformatics** - Apply Python to life sciences (capstone)
+7. **Coroutines** - Master push-based data pipelines
+8. **OOP** - Master object-oriented design
+9. **Pythonic** - Polish your Python skills
+10. **Protocols** - Understand Python's interface system
+11. **Bioinformatics** - Apply Python to life sciences (capstone)
 
 ### Prerequisites
 - Basic programming knowledge
@@ -316,14 +345,16 @@ Apply Python to real-world bioinformatics problems and biological data analysis.
 
 ### Mini Projects by Topic
 1. **Objects** - Memory profiler tool
-2. **OOP** - Library management system
-3. **Functions** - Data processing pipeline
-4. **Protocols** - Custom collection classes
+2. **Functions** - Data processing pipeline
+3. **Files** - File-based database
+4. **Testing** - Test suite for existing project
 5. **Iteration** - Log file analyzer
-6. **Files** - File-based database
-7. **Streams** - Unix-style text processing toolkit
-8. **Pythonic** - Code refactoring tool
-9. **Bioinformatics** - Sequence analysis pipeline
+6. **Streams** - Unix-style text processing toolkit
+7. **Coroutines** - Real-time log monitoring system
+8. **OOP** - Library management system
+9. **Pythonic** - Code refactoring tool
+10. **Protocols** - Custom collection classes
+11. **Bioinformatics** - Sequence analysis pipeline
 
 ### Final Project Ideas
 - Complete genomic sequence analyzer with visualization
