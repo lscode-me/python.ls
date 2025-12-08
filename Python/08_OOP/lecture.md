@@ -61,412 +61,9 @@ print(person.introduce())    # Hi, I'm Alice, 30 years old
 
 ---
 
-## 4. Instance vs Class Variables
+## 4. What are Attributes?
 
-### Instance Variables
-Unique to each instance. Defined with `self`.
-
-```python
-class Car:
-    def __init__(self, brand, model):
-        self.brand = brand      # instance variable
-        self.model = model      # instance variable
-
-car1 = Car("Toyota", "Camry")
-car2 = Car("Honda", "Civic")
-
-print(car1.brand)    # Toyota
-print(car2.brand)    # Honda
-```
-
-### Class Variables
-Shared across all instances. Defined at class level.
-
-```python
-class Car:
-    wheels = 4              # class variable
-    
-    def __init__(self, brand):
-        self.brand = brand  # instance variable
-
-car1 = Car("Toyota")
-car2 = Car("Honda")
-
-print(car1.wheels)    # 4
-print(car2.wheels)    # 4
-print(Car.wheels)     # 4
-```
-
----
-
-## 5. Inheritance
-
-Inheritance allows a class to inherit attributes and methods from another class.
-
-```python
-class Animal:
-    def __init__(self, name):
-        self.name = name
-    
-    def speak(self):
-        return "Some sound"
-
-class Dog(Animal):
-    def speak(self):
-        return f"{self.name} barks"
-
-class Cat(Animal):
-    def speak(self):
-        return f"{self.name} meows"
-
-dog = Dog("Rex")
-cat = Cat("Whiskers")
-
-print(dog.speak())    # Rex barks
-print(cat.speak())    # Whiskers meows
-```
-
----
-
-## 6. Method Overriding
-
-Child classes can override methods from parent classes.
-
-```python
-class Shape:
-    def area(self):
-        return 0
-
-class Rectangle(Shape):
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-    
-    def area(self):
-        return self.width * self.height
-
-class Circle(Shape):
-    def __init__(self, radius):
-        self.radius = radius
-    
-    def area(self):
-        return 3.14 * self.radius ** 2
-
-rect = Rectangle(5, 10)
-circle = Circle(7)
-
-print(rect.area())      # 50
-print(circle.area())    # 153.86
-```
-
----
-
-## 7. The `super()` Function
-
-`super()` allows you to call methods from the parent class.
-
-```python
-class Vehicle:
-    def __init__(self, brand, year):
-        self.brand = brand
-        self.year = year
-    
-    def info(self):
-        return f"{self.brand}, {self.year}"
-
-class Car(Vehicle):
-    def __init__(self, brand, year, doors):
-        super().__init__(brand, year)
-        self.doors = doors
-    
-    def info(self):
-        return f"{super().info()}, {self.doors} doors"
-
-car = Car("Toyota", 2020, 4)
-print(car.info())    # Toyota, 2020, 4 doors
-```
-
----
-
-## 8. Multiple Inheritance
-
-Python supports multiple inheritance (inheriting from multiple parent classes).
-
-```python
-class Flyable:
-    def fly(self):
-        return "Flying in the sky"
-
-class Swimmable:
-    def swim(self):
-        return "Swimming in water"
-
-class Duck(Flyable, Swimmable):
-    def __init__(self, name):
-        self.name = name
-
-duck = Duck("Donald")
-print(duck.fly())     # Flying in the sky
-print(duck.swim())    # Swimming in water
-```
-
-### Method Resolution Order (MRO)
-
-Python uses C3 linearization to determine the order in which methods are resolved.
-
-```python
-class A:
-    def method(self):
-        return "A"
-
-class B(A):
-    def method(self):
-        return "B"
-
-class C(A):
-    def method(self):
-        return "C"
-
-class D(B, C):
-    pass
-
-d = D()
-print(d.method())       # B
-print(D.__mro__)        # Shows the method resolution order
-```
-
----
-
-## 9. Polymorphism
-
-Polymorphism allows different classes to implement the same interface.
-
-```python
-class Bird:
-    def sound(self):
-        return "Chirp"
-
-class Dog:
-    def sound(self):
-        return "Bark"
-
-class Cat:
-    def sound(self):
-        return "Meow"
-
-def animal_sound(animal):
-    print(animal.sound())
-
-bird = Bird()
-dog = Dog()
-cat = Cat()
-
-animal_sound(bird)    # Chirp
-animal_sound(dog)     # Bark
-animal_sound(cat)     # Meow
-```
-
----
-
-## 10. Encapsulation and Access Control
-
-Python uses naming conventions to indicate access levels.
-
-### Public Attributes
-No prefix. Accessible from anywhere.
-
-```python
-class Person:
-    def __init__(self, name):
-        self.name = name    # public
-```
-
-### Protected Attributes
-Single underscore `_`. Convention: "internal use only".
-
-```python
-class Person:
-    def __init__(self, name):
-        self._id = 12345    # protected
-```
-
-### Private Attributes
-Double underscore `__`. Name mangling applied.
-
-```python
-class Person:
-    def __init__(self, name):
-        self.__secret = "password"    # private
-
-p = Person("Alice")
-# print(p.__secret)            # AttributeError
-print(p._Person__secret)       # password (name mangling)
-```
-
----
-
-## 11. Properties and Getters/Setters
-
-Properties provide controlled access to attributes.
-
-```python
-class Employee:
-    def __init__(self, name, salary):
-        self._name = name
-        self._salary = salary
-    
-    @property
-    def salary(self):
-        return self._salary
-    
-    @salary.setter
-    def salary(self, value):
-        if value < 0:
-            raise ValueError("Salary cannot be negative")
-        self._salary = value
-    
-    @property
-    def name(self):
-        return self._name
-
-emp = Employee("Alice", 50000)
-print(emp.salary)       # 50000
-
-emp.salary = 60000
-print(emp.salary)       # 60000
-
-# emp.salary = -1000    # ValueError
-```
-
----
-
-## 12. Abstract Classes
-
-Abstract classes cannot be instantiated and are meant to be inherited.
-
-```python
-from abc import ABC, abstractmethod
-
-class Animal(ABC):
-    @abstractmethod
-    def sound(self):
-        pass
-    
-    @abstractmethod
-    def move(self):
-        pass
-
-class Dog(Animal):
-    def sound(self):
-        return "Bark"
-    
-    def move(self):
-        return "Run"
-
-# animal = Animal()    # TypeError: Can't instantiate abstract class
-
-dog = Dog()
-print(dog.sound())     # Bark
-print(dog.move())      # Run
-```
-
----
-
-## 13. Composition vs Inheritance
-
-**Composition**: "has-a" relationship  
-**Inheritance**: "is-a" relationship
-
-```python
-# Inheritance: Car IS A Vehicle
-class Vehicle:
-    pass
-
-class Car(Vehicle):
-    pass
-
-# Composition: Car HAS AN Engine
-class Engine:
-    def __init__(self, horsepower):
-        self.horsepower = horsepower
-    
-    def start(self):
-        return "Engine started"
-
-class Car:
-    def __init__(self, engine):
-        self.engine = engine
-    
-    def start(self):
-        return self.engine.start()
-
-engine = Engine(200)
-car = Car(engine)
-print(car.start())    # Engine started
-```
-
-Prefer composition when you want flexibility and avoid deep inheritance hierarchies.
-
----
-
-## 14. Special Methods for OOP
-
-### `__str__` and `__repr__`
-
-```python
-class Book:
-    def __init__(self, title, author):
-        self.title = title
-        self.author = author
-    
-    def __str__(self):
-        return f"{self.title} by {self.author}"
-    
-    def __repr__(self):
-        return f"Book('{self.title}', '{self.author}')"
-
-book = Book("1984", "George Orwell")
-print(str(book))     # 1984 by George Orwell
-print(repr(book))    # Book('1984', 'George Orwell')
-```
-
-### `__eq__` and `__lt__`
-
-```python
-class Person:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-    
-    def __eq__(self, other):
-        return self.age == other.age
-    
-    def __lt__(self, other):
-        return self.age < other.age
-
-p1 = Person("Alice", 30)
-p2 = Person("Bob", 25)
-
-print(p1 == p2)    # False
-print(p2 < p1)     # True
-```
-
----
-
-
----
-
-
-# Week 1 — Python Core Foundations (Lecture 1)
-## Attributes and Methods
-
----
-
-## 1. What are Attributes?
-
-Attributes are variables attached to an object.
-
-Every Python object can have attributes that store data or references to other objects.
+Attributes are variables attached to an object. They store data or references to other objects.
 
 ```python
 class Person:
@@ -484,11 +81,9 @@ Attributes can be added dynamically in Python (for most objects).
 
 ---
 
-## 2. What are Methods?
+## 5. What are Methods?
 
-Methods are functions attached to an object.
-
-They can access and modify the object's state through attributes.
+Methods are functions attached to an object. They can access and modify the object's state through attributes.
 
 ```python
 class Person:
@@ -504,10 +99,10 @@ The first parameter `self` refers to the instance calling the method.
 
 ---
 
-## 3. Instance Attributes vs Class Attributes
+## 6. Instance vs Class Attributes
 
 ### Instance Attributes
-Unique to each object instance. Defined in `__init__` or added later.
+Unique to each instance. Defined with `self` in `__init__` or added later.
 
 ```python
 class Dog:
@@ -522,7 +117,7 @@ print(dog2.name)    # Max
 ```
 
 ### Class Attributes
-Shared by all instances of the class. Defined at class level.
+Shared across all instances. Defined at class level.
 
 ```python
 class Dog:
@@ -541,7 +136,7 @@ print(Dog.species)     # Canis familiaris
 
 ---
 
-## 4. Attribute Lookup Order
+## 7. Attribute Lookup Order
 
 Python searches for attributes in this order:
 
@@ -568,7 +163,7 @@ print(dog.category)  # 3. Found in parent class
 
 ---
 
-## 5. Modifying Class Attributes
+## 8. Modifying Class Attributes
 
 Modifying a class attribute affects all instances (unless shadowed).
 
@@ -596,7 +191,7 @@ print(Counter.count)         # 5  (class attribute)
 
 ---
 
-## 6. Instance Methods, Class Methods, Static Methods
+## 9. Instance Methods, Class Methods, Static Methods
 
 ### Instance Methods
 Access and modify instance state. Take `self` as first parameter.
@@ -650,14 +245,741 @@ print(Math.multiply(4, 6))  # 24
 
 ---
 
-## 7. Special Methods (Magic Methods)
+## 10. Inheritance
 
-Special methods start and end with double underscores `__`.
+Inheritance allows a class to inherit attributes and methods from another class.
 
-They define how objects behave with built-in operations.
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    
+    def speak(self):
+        return "Some sound"
 
-### `__init__`: Constructor
-Called when an object is created.
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} barks"
+
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} meows"
+
+dog = Dog("Rex")
+cat = Cat("Whiskers")
+
+print(dog.speak())    # Rex barks
+print(cat.speak())    # Whiskers meows
+```
+
+---
+
+## 11. Method Overriding
+
+Child classes can override methods from parent classes.
+
+```python
+class Shape:
+    def area(self):
+        return 0
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+rect = Rectangle(5, 10)
+circle = Circle(7)
+
+print(rect.area())      # 50
+print(circle.area())    # 153.86
+```
+
+---
+
+## 12. The `super()` Function
+
+`super()` allows you to call methods from the parent class.
+
+```python
+class Vehicle:
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+    
+    def info(self):
+        return f"{self.brand}, {self.year}"
+
+class Car(Vehicle):
+    def __init__(self, brand, year, doors):
+        super().__init__(brand, year)
+        self.doors = doors
+    
+    def info(self):
+        return f"{super().info()}, {self.doors} doors"
+
+car = Car("Toyota", 2020, 4)
+print(car.info())    # Toyota, 2020, 4 doors
+```
+
+---
+
+## 13. Multiple Inheritance
+
+Python supports multiple inheritance (inheriting from multiple parent classes).
+
+```python
+class Flyable:
+    def fly(self):
+        return "Flying in the sky"
+
+class Swimmable:
+    def swim(self):
+        return "Swimming in water"
+
+class Duck(Flyable, Swimmable):
+    def __init__(self, name):
+        self.name = name
+
+duck = Duck("Donald")
+print(duck.fly())     # Flying in the sky
+print(duck.swim())    # Swimming in water
+```
+
+### Method Resolution Order (MRO)
+
+Python uses C3 linearization to determine the order in which methods are resolved.
+
+```python
+class A:
+    def method(self):
+        return "A"
+
+class B(A):
+    def method(self):
+        return "B"
+
+class C(A):
+    def method(self):
+        return "C"
+
+class D(B, C):
+    pass
+
+d = D()
+print(d.method())       # B
+print(D.__mro__)        # Shows the method resolution order
+```
+
+---
+
+## 14. Polymorphism
+
+Polymorphism allows different classes to implement the same interface.
+
+```python
+class Bird:
+    def sound(self):
+        return "Chirp"
+
+class Dog:
+    def sound(self):
+        return "Bark"
+
+class Cat:
+    def sound(self):
+        return "Meow"
+
+def animal_sound(animal):
+    print(animal.sound())
+
+bird = Bird()
+dog = Dog()
+cat = Cat()
+
+animal_sound(bird)    # Chirp
+animal_sound(dog)     # Bark
+animal_sound(cat)     # Meow
+```
+
+---
+
+## 15. Encapsulation and Access Control
+
+Python uses naming conventions to indicate access levels.
+
+### Public Attributes
+No prefix. Accessible from anywhere.
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name    # public
+```
+
+### Protected Attributes
+Single underscore `_`. Convention: "internal use only" or "don't use outside the class".
+
+```python
+class Person:
+    def __init__(self, name):
+        self._internal_id = 12345    # protected
+```
+
+### Private Attributes
+Double underscore `__`. Name mangling applied.
+
+```python
+class Person:
+    def __init__(self, name):
+        self.__secret = "password"    # private
+
+p = Person("Alice")
+# print(p.__secret)            # AttributeError
+print(p._Person__secret)       # password (name mangling)
+```
+
+Name mangling transforms `__secret` to `_ClassName__secret` to avoid conflicts in inheritance.
+
+---
+
+## 16. Properties and Getters/Setters
+
+Properties provide controlled access to attributes. They allow you to add logic when getting, setting, or deleting attributes.
+
+```python
+class Employee:
+    def __init__(self, name, salary):
+        self._name = name
+        self._salary = salary
+    
+    @property
+    def salary(self):
+        return self._salary
+    
+    @salary.setter
+    def salary(self, value):
+        if value < 0:
+            raise ValueError("Salary cannot be negative")
+        self._salary = value
+    
+    @property
+    def name(self):
+        return self._name
+
+emp = Employee("Alice", 50000)
+print(emp.salary)       # 50000
+
+emp.salary = 60000
+print(emp.salary)       # 60000
+
+# emp.salary = -1000    # ValueError
+```
+
+### Example with Temperature Conversion
+
+```python
+class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius
+    
+    @property
+    def celsius(self):
+        return self._celsius
+    
+    @celsius.setter
+    def celsius(self, value):
+        if value < -273.15:
+            raise ValueError("Temperature below absolute zero")
+        self._celsius = value
+    
+    @property
+    def fahrenheit(self):
+        return self._celsius * 9/5 + 32
+
+t = Temperature(25)
+print(t.celsius)        # 25
+print(t.fahrenheit)     # 77.0
+
+t.celsius = 30
+print(t.celsius)        # 30
+
+# t.celsius = -300      # ValueError: Temperature below absolute zero
+```
+
+Properties make attributes look like regular attributes but with validation logic.
+
+---
+
+## 17. Special Methods (Magic Methods)
+
+Special methods start and end with double underscores `__`. They define how objects behave with built-in operations.
+
+### `__str__` and `__repr__`
+
+```python
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+    
+    def __str__(self):
+        return f"{self.title} by {self.author}"
+    
+    def __repr__(self):
+        return f"Book('{self.title}', '{self.author}')"
+
+book = Book("1984", "George Orwell")
+print(str(book))     # 1984 by George Orwell
+print(repr(book))    # Book('1984', 'George Orwell')
+```
+
+### `__eq__` and `__lt__`
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def __eq__(self, other):
+        return self.age == other.age
+    
+    def __lt__(self, other):
+        return self.age < other.age
+
+p1 = Person("Alice", 30)
+p2 = Person("Bob", 25)
+
+print(p1 == p2)    # False
+print(p2 < p1)     # True
+```
+
+---
+
+## 18. Composition vs Inheritance
+
+**Composition**: "has-a" relationship  
+**Inheritance**: "is-a" relationship
+
+```python
+# Inheritance: Car IS A Vehicle
+class Vehicle:
+    pass
+
+class Car(Vehicle):
+    pass
+
+# Composition: Car HAS AN Engine
+class Engine:
+    def __init__(self, horsepower):
+        self.horsepower = horsepower
+    
+    def start(self):
+        return "Engine started"
+
+class Car:
+    def __init__(self, engine):
+        self.engine = engine
+    
+    def start(self):
+        return self.engine.start()
+
+engine = Engine(200)
+car = Car(engine)
+print(car.start())    # Engine started
+```
+
+Prefer composition when you want flexibility and avoid deep inheritance hierarchies.
+
+---
+
+## 19. Modules vs Classes: Organizing Code in Namespaces
+
+Both modules and classes provide namespaces for organizing code, but they serve different purposes.
+
+### Modules as Namespaces
+
+Modules are Python files that group related functions, classes, and variables.
+
+```python
+# math_utils.py
+PI = 3.14159
+
+def calculate_area(radius):
+    return PI * radius ** 2
+
+def calculate_circumference(radius):
+    return 2 * PI * radius
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+```
+
+```python
+# Usage
+import math_utils
+
+print(math_utils.PI)                          # 3.14159
+print(math_utils.calculate_area(5))          # 78.53975
+circle = math_utils.Circle(10)
+```
+
+### Classes as Namespaces
+
+Classes group related data and behavior, creating instances with state.
+
+```python
+# Using a class to organize related constants and methods
+class MathConstants:
+    PI = 3.14159
+    E = 2.71828
+    GOLDEN_RATIO = 1.61803
+    
+    @staticmethod
+    def circle_area(radius):
+        return MathConstants.PI * radius ** 2
+
+# Usage
+print(MathConstants.PI)                       # 3.14159
+print(MathConstants.circle_area(5))           # 78.53975
+```
+
+### When to Use Modules vs Classes
+
+**Use Modules when:**
+- Organizing related functions and constants
+- No need for state or multiple instances
+- Sharing utilities across the application
+- Creating a library or API
+
+```python
+# config.py - module for configuration
+DATABASE_URL = "postgresql://localhost/mydb"
+DEBUG = True
+MAX_CONNECTIONS = 100
+
+def get_connection():
+    # return database connection
+    pass
+```
+
+**Use Classes when:**
+- You need to maintain state
+- Creating multiple instances with different data
+- Implementing OOP principles (inheritance, polymorphism)
+- Modeling real-world entities
+
+```python
+# Configuration as a class (when you need multiple configs)
+class Config:
+    def __init__(self, env="development"):
+        self.env = env
+        self.debug = env == "development"
+        self.database_url = self._get_database_url()
+    
+    def _get_database_url(self):
+        if self.env == "production":
+            return "postgresql://prod-server/db"
+        return "postgresql://localhost/dev-db"
+
+dev_config = Config("development")
+prod_config = Config("production")
+```
+
+### Hybrid Approach
+
+Often, modules contain multiple classes and functions:
+
+```python
+# shapes.py module
+PI = 3.14159
+
+class Shape:
+    """Base class for all shapes"""
+    def area(self):
+        raise NotImplementedError
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return PI * self.radius ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        return self.width * self.height
+
+def total_area(shapes):
+    """Utility function to calculate total area of multiple shapes"""
+    return sum(shape.area() for shape in shapes)
+```
+
+**Key Principle**: Use modules to organize code by topic/functionality, use classes to create objects with state and behavior.
+
+---
+
+## 20. Classes vs Functions: Callable Objects
+
+Both classes and functions are callable in Python, but they serve different purposes.
+
+### Functions as Callables
+
+Functions are the simplest callable objects.
+
+```python
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Alice"))    # Hello, Alice!
+print(callable(greet))   # True
+```
+
+### Classes as Callable Factories
+
+Classes are callable - calling them creates instances.
+
+```python
+class Greeter:
+    def __init__(self, greeting):
+        self.greeting = greeting
+    
+    def greet(self, name):
+        return f"{self.greeting}, {name}!"
+
+# Class is callable - creates instances
+greeter = Greeter("Hello")
+print(greeter.greet("Alice"))    # Hello, Alice!
+
+print(callable(Greeter))         # True
+print(callable(greeter))         # False (instance is not callable by default)
+```
+
+### Making Instances Callable with `__call__`
+
+You can make class instances callable by defining `__call__` method.
+
+```python
+class Greeter:
+    def __init__(self, greeting):
+        self.greeting = greeting
+    
+    def __call__(self, name):
+        return f"{self.greeting}, {name}!"
+
+greeter = Greeter("Hello")
+print(greeter("Alice"))          # Hello, Alice! (calling the instance)
+print(callable(greeter))         # True
+```
+
+### When to Use Functions vs Classes
+
+**Use Functions when:**
+- Simple, stateless operations
+- Single responsibility
+- No need to maintain state between calls
+- Functional programming style
+
+```python
+# Simple transformation - function is perfect
+def double(x):
+    return x * 2
+
+numbers = [1, 2, 3, 4, 5]
+doubled = list(map(double, numbers))
+```
+
+**Use Classes when:**
+- Need to maintain state
+- Complex behavior with multiple related methods
+- Configuration or context needed
+- Reusable, customizable behavior
+
+```python
+# Stateful operation - class is better
+class Multiplier:
+    def __init__(self, factor):
+        self.factor = factor
+        self.call_count = 0
+    
+    def __call__(self, x):
+        self.call_count += 1
+        return x * self.factor
+
+double = Multiplier(2)
+triple = Multiplier(3)
+
+print(double(5))           # 10
+print(triple(5))           # 15
+print(double.call_count)   # 1
+```
+
+### Closures vs Classes
+
+Closures (functions with state) can sometimes replace simple classes:
+
+```python
+# Using closure
+def make_multiplier(factor):
+    def multiply(x):
+        return x * factor
+    return multiply
+
+double = make_multiplier(2)
+print(double(5))    # 10
+
+# Using class
+class Multiplier:
+    def __init__(self, factor):
+        self.factor = factor
+    
+    def __call__(self, x):
+        return x * self.factor
+
+triple = Multiplier(3)
+print(triple(5))    # 15
+```
+
+**Closures are good for:**
+- Simple state
+- Single operation
+- Functional style
+
+**Classes are better for:**
+- Multiple methods
+- Complex state
+- Inheritance
+- Clear intent
+
+### Practical Example: Validators
+
+```python
+# Function approach
+def validate_age(age):
+    if not isinstance(age, int):
+        raise TypeError("Age must be an integer")
+    if age < 0 or age > 150:
+        raise ValueError("Age must be between 0 and 150")
+    return True
+
+# Class approach (more flexible)
+class RangeValidator:
+    def __init__(self, min_value, max_value, field_name="value"):
+        self.min_value = min_value
+        self.max_value = max_value
+        self.field_name = field_name
+    
+    def __call__(self, value):
+        if not isinstance(value, (int, float)):
+            raise TypeError(f"{self.field_name} must be a number")
+        if value < self.min_value or value > self.max_value:
+            raise ValueError(
+                f"{self.field_name} must be between {self.min_value} and {self.max_value}"
+            )
+        return True
+
+# Reusable validators
+age_validator = RangeValidator(0, 150, "Age")
+temperature_validator = RangeValidator(-273.15, 1000000, "Temperature")
+
+age_validator(30)           # True
+temperature_validator(25)   # True
+```
+
+### Decorators: Functions Returning Callables
+
+Decorators often use this pattern - functions that return classes or closures:
+
+```python
+# Decorator returning a class instance
+def repeat(times):
+    class Repeater:
+        def __init__(self, func):
+            self.func = func
+            self.times = times
+        
+        def __call__(self, *args, **kwargs):
+            for _ in range(self.times):
+                result = self.func(*args, **kwargs)
+            return result
+    
+    return Repeater
+
+@repeat(3)
+def greet(name):
+    print(f"Hello, {name}!")
+
+greet("Alice")
+# Output:
+# Hello, Alice!
+# Hello, Alice!
+# Hello, Alice!
+```
+
+**Key Principle**: Use functions for simple operations, classes when you need state, multiple methods, or want to leverage OOP features.
+
+---
+
+## 21. Built-in Functions for Attributes
+
+### `hasattr()`: Check if attribute exists
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+p = Person("Alice")
+print(hasattr(p, "name"))    # True
+print(hasattr(p, "age"))     # False
+```
+
+### `getattr()`: Get attribute value (with optional default)
+
+```python
+p = Person("Alice")
+print(getattr(p, "name"))           # Alice
+print(getattr(p, "age", "N/A"))     # N/A (default)
+```
+
+### `setattr()`: Set attribute value
+
+```python
+p = Person("Alice")
+setattr(p, "age", 30)
+print(p.age)    # 30
+```
+
+### `delattr()`: Delete attribute
+
+```python
+p = Person("Alice")
+p.age = 30
+delattr(p, "age")
+print(hasattr(p, "age"))    # False
+```
+
+---
+
+## 22. The `__dict__` Attribute
+
+Every object has a `__dict__` that stores its attributes as a dictionary.
 
 ```python
 class Person:
@@ -666,41 +988,22 @@ class Person:
         self.age = age
 
 p = Person("Alice", 30)
+print(p.__dict__)    # {'name': 'Alice', 'age': 30}
+
+p.city = "New York"
+print(p.__dict__)    # {'name': 'Alice', 'age': 30, 'city': 'New York'}
 ```
 
-### `__str__`: String Representation
-Called by `print()` and `str()`.
+You can directly modify `__dict__`:
 
 ```python
-class Person:
-    def __init__(self, name):
-        self.name = name
-    
-    def __str__(self):
-        return f"Person({self.name})"
-
-p = Person("Alice")
-print(p)    # Person(Alice)
-```
-
-### `__repr__`: Developer Representation
-Called by `repr()` and in the interactive shell.
-
-```python
-class Person:
-    def __init__(self, name):
-        self.name = name
-    
-    def __repr__(self):
-        return f"Person(name='{self.name}')"
-
-p = Person("Alice")
-print(repr(p))    # Person(name='Alice')
+p.__dict__["country"] = "USA"
+print(p.country)    # USA
 ```
 
 ---
 
-## 8. Attribute Access Methods
+## 23. Attribute Access Methods
 
 ### `__getattr__`: Called when attribute is not found
 
@@ -744,161 +1047,74 @@ del p.temp    # OK
 
 ---
 
-## 9. Built-in Functions for Attributes
+## 24. Abstract Classes
 
-### `hasattr()`: Check if attribute exists
-
-```python
-class Person:
-    def __init__(self, name):
-        self.name = name
-
-p = Person("Alice")
-print(hasattr(p, "name"))    # True
-print(hasattr(p, "age"))     # False
-```
-
-### `getattr()`: Get attribute value (with optional default)
+Abstract classes cannot be instantiated and are meant to be inherited. They define interfaces that subclasses must implement.
 
 ```python
-p = Person("Alice")
-print(getattr(p, "name"))           # Alice
-print(getattr(p, "age", "N/A"))     # N/A (default)
-```
+from abc import ABC, abstractmethod
 
-### `setattr()`: Set attribute value
-
-```python
-p = Person("Alice")
-setattr(p, "age", 30)
-print(p.age)    # 30
-```
-
-### `delattr()`: Delete attribute
-
-```python
-p = Person("Alice")
-p.age = 30
-delattr(p, "age")
-print(hasattr(p, "age"))    # False
-```
-
----
-
-## 10. Property Decorators
-
-Properties provide controlled access to attributes.
-
-They allow you to add logic when getting, setting, or deleting attributes.
-
-```python
-class Temperature:
-    def __init__(self, celsius):
-        self._celsius = celsius
+class Animal(ABC):
+    @abstractmethod
+    def sound(self):
+        pass
     
-    @property
-    def celsius(self):
-        return self._celsius
+    @abstractmethod
+    def move(self):
+        pass
+
+class Dog(Animal):
+    def sound(self):
+        return "Bark"
     
-    @celsius.setter
-    def celsius(self, value):
-        if value < -273.15:
-            raise ValueError("Temperature below absolute zero")
-        self._celsius = value
+    def move(self):
+        return "Run"
+
+# animal = Animal()    # TypeError: Can't instantiate abstract class
+
+dog = Dog()
+print(dog.sound())     # Bark
+print(dog.move())      # Run
+```
+
+### Advanced ABC Example
+
+```python
+from abc import ABC, abstractmethod
+
+class PaymentProcessor(ABC):
+    @abstractmethod
+    def process_payment(self, amount):
+        pass
     
-    @property
-    def fahrenheit(self):
-        return self._celsius * 9/5 + 32
+    @abstractmethod
+    def refund(self, transaction_id):
+        pass
+    
+    def log_transaction(self, message):
+        print(f"Transaction: {message}")
 
-t = Temperature(25)
-print(t.celsius)        # 25
-print(t.fahrenheit)     # 77.0
+class CreditCardProcessor(PaymentProcessor):
+    def process_payment(self, amount):
+        return f"Processing ${amount} via Credit Card"
+    
+    def refund(self, transaction_id):
+        return f"Refunding transaction {transaction_id}"
 
-t.celsius = 30
-print(t.celsius)        # 30
+# processor = PaymentProcessor()    # TypeError: Can't instantiate abstract class
 
-# t.celsius = -300      # ValueError: Temperature below absolute zero
-```
-
-Properties make attributes look like regular attributes but with validation logic.
-
----
-
-## 11. The `__dict__` Attribute
-
-Every object has a `__dict__` that stores its attributes as a dictionary.
-
-```python
-class Person:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-p = Person("Alice", 30)
-print(p.__dict__)    # {'name': 'Alice', 'age': 30}
-
-p.city = "New York"
-print(p.__dict__)    # {'name': 'Alice', 'age': 30, 'city': 'New York'}
-```
-
-You can directly modify `__dict__`:
-
-```python
-p.__dict__["country"] = "USA"
-print(p.country)    # USA
+processor = CreditCardProcessor()
+print(processor.process_payment(100))
+processor.log_transaction("Payment completed")
 ```
 
 ---
 
-## 12. Private and Protected Attributes
-
-Python uses naming conventions to indicate attribute visibility.
-
-### Public attributes
-No prefix. Can be accessed from anywhere.
-
-```python
-class Person:
-    def __init__(self, name):
-        self.name = name    # public
-```
-
-### Protected attributes
-Single underscore prefix `_`. Convention: "don't use outside the class".
-
-```python
-class Person:
-    def __init__(self, name):
-        self._internal_id = 12345    # protected
-```
-
-### Private attributes
-Double underscore prefix `__`. Name mangling applied.
-
-```python
-class Person:
-    def __init__(self, name):
-        self.__secret = "password"    # private
-
-p = Person("Alice")
-# print(p.__secret)    # AttributeError
-print(p._Person__secret)    # password (name mangling)
-```
-
-Name mangling transforms `__secret` to `_ClassName__secret` to avoid conflicts in inheritance.
+# Advanced OOP Concepts
 
 ---
 
-
----
-
-
-# Week 2 — Object-Oriented Programming (Lecture 2)
-## Advanced OOP Concepts
-
----
-
-## 1. Decorators in OOP
+## 25. Decorators in OOP
 
 Decorators modify or enhance functions and methods.
 
@@ -943,7 +1159,7 @@ class Logger:
 
 ---
 
-## 2. Class Decorators
+## 26. Class Decorators
 
 Class decorators modify entire classes.
 
@@ -964,7 +1180,7 @@ print(obj)    # MyClass instance
 
 ---
 
-## 3. Dataclasses
+## 27. Dataclasses
 
 Dataclasses reduce boilerplate code for classes that primarily store data.
 
@@ -994,7 +1210,7 @@ Benefits:
 
 ---
 
-## 4. Named Tuples
+## 28. Named Tuples
 
 Named tuples are lightweight, immutable data structures.
 
@@ -1029,7 +1245,7 @@ print(p.distance_from_origin())    # 5.0
 
 ---
 
-## 5. Slots for Memory Optimization
+## 29. Slots for Memory Optimization
 
 `__slots__` restricts attributes and reduces memory usage.
 
@@ -1065,38 +1281,7 @@ Use slots when:
 
 ---
 
-## 6. Metaclasses
-
-Metaclasses control class creation itself.
-
-```python
-class SingletonMeta(type):
-    _instances = {}
-    
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super().__call__(*args, **kwargs)
-        return cls._instances[cls]
-
-class Database(metaclass=SingletonMeta):
-    def __init__(self):
-        print("Initializing database")
-
-db1 = Database()
-db2 = Database()
-
-print(db1 is db2)    # True (same instance)
-```
-
-Common use cases:
-- Singletons
-- Registration of classes
-- Validation of class structure
-- Automatic method generation
-
----
-
-## 7. Descriptors
+## 30. Descriptors
 
 Descriptors control attribute access at the class level.
 
@@ -1135,7 +1320,7 @@ print(person.age)    # 30
 
 ---
 
-## 8. Context Managers
+## 31. Context Managers
 
 Context managers manage resources using `with` statement.
 
@@ -1181,7 +1366,7 @@ with file_manager('test.txt', 'w') as f:
 
 ---
 
-## 9. Mixins
+## 32. Mixins
 
 Mixins add functionality to classes through multiple inheritance.
 
@@ -1212,44 +1397,9 @@ Mixins should:
 
 ---
 
-## 10. Abstract Base Classes (ABC)
+## 33. Protocols (Structural Subtyping)
 
-ABCs define interfaces that subclasses must implement.
-
-```python
-from abc import ABC, abstractmethod
-
-class PaymentProcessor(ABC):
-    @abstractmethod
-    def process_payment(self, amount):
-        pass
-    
-    @abstractmethod
-    def refund(self, transaction_id):
-        pass
-    
-    def log_transaction(self, message):
-        print(f"Transaction: {message}")
-
-class CreditCardProcessor(PaymentProcessor):
-    def process_payment(self, amount):
-        return f"Processing ${amount} via Credit Card"
-    
-    def refund(self, transaction_id):
-        return f"Refunding transaction {transaction_id}"
-
-# processor = PaymentProcessor()    # TypeError: Can't instantiate abstract class
-
-processor = CreditCardProcessor()
-print(processor.process_payment(100))
-processor.log_transaction("Payment completed")
-```
-
----
-
-## 11. Protocols (Structural Subtyping)
-
-Protocols define interfaces without explicit inheritance.
+Protocols define interfaces without explicit inheritance (duck typing with type checking).
 
 ```python
 from typing import Protocol
@@ -1276,11 +1426,40 @@ render(circle)    # Drawing a circle
 render(square)    # Drawing a square
 ```
 
-Protocols enable duck typing with type checking.
+---
+
+## 34. Metaclasses
+
+Metaclasses control class creation itself.
+
+```python
+class SingletonMeta(type):
+    _instances = {}
+    
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+class Database(metaclass=SingletonMeta):
+    def __init__(self):
+        print("Initializing database")
+
+db1 = Database()
+db2 = Database()
+
+print(db1 is db2)    # True (same instance)
+```
+
+Common use cases:
+- Singletons
+- Registration of classes
+- Validation of class structure
+- Automatic method generation
 
 ---
 
-## 12. Operator Overloading
+## 35. Operator Overloading
 
 Special methods allow custom behavior for operators.
 
@@ -1325,7 +1504,7 @@ print(m1 > m2)    # True
 
 ---
 
-## 13. Composition Design Pattern
+## 36. Composition Design Pattern
 
 Prefer composition over inheritance for flexibility.
 
@@ -1364,7 +1543,7 @@ print(car.drive())
 
 ---
 
-## 14. Factory Pattern
+## 37. Factory Pattern
 
 Factory pattern creates objects without specifying exact classes.
 
