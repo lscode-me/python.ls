@@ -201,6 +201,274 @@ ls /existing/path      # Goes to output.log
 ls /nonexistent/path   # Goes to error.log
 ```
 
+### Advanced Example: Splitting Data into Multiple Streams
+
+You can use custom file descriptors to split data by type and process each stream separately:
+
+```bash
+#!/bin/bash
+
+# Open separate file descriptors for different log levels
+exec 3> info.log
+exec 4> warnings.log
+exec 5> errors.log
+
+# Function to process and route log lines
+process_logs() {
+  while IFS= read -r line; do
+    case "$line" in
+      *INFO*)
+        echo "$line" >&3  # Write to FD 3 (info.log)
+        ;;
+      *WARNING*)
+        echo "$line" >&4  # Write to FD 4 (warnings.log)
+        ;;
+      *ERROR*)
+        echo "$line" >&5  # Write to FD 5 (errors.log)
+        ;;
+    esac
+  done
+}
+
+# Process application logs
+cat app.log | process_logs
+
+# Close file descriptors
+exec 3>&-
+exec 4>&-
+exec 5>&-
+
+# Now process each stream separately
+echo "Processing info logs..."
+wc -l info.log
+
+echo "Processing warnings..."
+wc -l warnings.log
+
+echo "Critical errors found:"
+cat errors.log
+```
+
+**Alternative: Using Named Pipes (More Efficient)**
+
+For parallel processing, named pipes are often more convenient:
+
+```bash
+#!/bin/bash
+
+# Create named pipes
+mkfifo info_pipe warning_pipe error_pipe
+
+# Start background processors for each stream
+grep "INFO" < info_pipe | process_info > info_results.txt &
+grep "WARNING" < warning_pipe | process_warnings > warning_results.txt &
+grep "ERROR" < error_pipe | send_alerts &
+
+# Split input into multiple streams simultaneously
+tee info_pipe warning_pipe error_pipe < app.log > /dev/null
+
+# Wait for all processors to complete
+wait
+
+# Cleanup
+rm info_pipe warning_pipe error_pipe
+```
+
+**Key differences:**
+- **File descriptors**: Sequential processing, simpler for small datasets
+- **Named pipes**: Parallel processing, better for large datasets and real-time streaming
+- Named pipes enable multiple processes to read/write concurrently
+- File descriptors are easier for simple splitting and routing
+
+### More Examples: Saving and Restoring Standard Streams
+
+You can temporarily redirect stdout/stderr and then restore them:
+
+```bash
+#!/bin/bash
+
+# Save original stdout and stderr
+exec 3>&1  # FD 3 = copy of original stdout
+exec 4>&2  # FD 4 = copy of original stderr
+
+# Redirect to files
+exec 1> output.log
+exec 2> error.log
+
+echo "This goes to output.log"
+echo "This goes to error.log" >&2
+
+# Restore original stdout and stderr
+exec 1>&3  # Restore stdout
+exec 2>&4  # Restore stderr
+
+# Close backup descriptors
+exec 3>&-
+exec 4>&-
+
+# Now output goes to terminal again
+echo "This goes to terminal"
+```
+
+**Use case**: Temporarily capture output in a function, then restore normal behavior.
+
+### Example: Dual Logging (Screen + File)
+
+```bash
+#!/bin/bash
+
+# Open log file on FD 3
+exec 3> script.log
+
+# Function that logs to both screen and file
+log() {
+  echo "$@" | tee /dev/fd/3
+}
+
+# Alternative: direct dual write
+log_dual() {
+  echo "$@"      # To stdout (screen)
+  echo "$@" >&3  # To FD 3 (file)
+}
+
+log "Starting data processing..."
+log "Processing 1000 records..."
+log_dual "Completed!"
+
+exec 3>&-
+```
+
+### Example: Read and Write Same File
+
+```bash
+#!/bin/bash
+
+# Open file for both reading and writing
+exec 3<> data.txt
+
+# Read current content
+while IFS= read -r line <&3; do
+  echo "Read: $line"
+done
+
+# Write new data (appends after read position)
+echo "New line added at $(date)" >&3
+
+# Close descriptor
+exec 3>&-
+```
+
+### Example: File Locking with flock
+
+```bash
+#!/bin/bash
+
+# Open file on FD 3
+exec 3> /tmp/critical_section.lock
+
+# Acquire exclusive lock (blocks if another process has it)
+flock -x 3
+
+echo "Lock acquired, doing critical work..."
+# Perform operations that must not run concurrently
+sleep 2
+echo "Critical work done"
+
+# Release lock (automatic on FD close, but explicit is clearer)
+flock -u 3
+exec 3>&-
+```
+
+**Use case**: Prevent multiple instances of a script from running simultaneously.
+
+### Example: Network Communication with /dev/tcp
+
+```bash
+#!/bin/bash
+
+# Open TCP connection to web server on FD 3
+exec 3<> /dev/tcp/example.com/80
+
+# Send HTTP request
+echo -e "GET / HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n" >&3
+
+# Read response
+while read -r line <&3; do
+  echo "$line"
+done
+
+# Close connection
+exec 3>&-
+```
+
+**Note**: `/dev/tcp` is a Bash feature, not available in all shells.
+
+### Example: Timestamped Logging
+
+```bash
+#!/bin/bash
+
+# Open descriptors for different log types
+exec 3> activity.log
+exec 4> timing.log
+
+log_with_time() {
+  local msg="$1"
+  local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+  echo "[$timestamp] $msg" >&3
+}
+
+time_operation() {
+  local start=$(date +%s)
+  "$@"
+  local end=$(date +%s)
+  local duration=$((end - start))
+  echo "Operation '$*' took ${duration}s" >&4
+}
+
+log_with_time "Starting backup"
+time_operation sleep 2
+log_with_time "Backup complete"
+
+exec 3>&-
+exec 4>&-
+```
+
+### Example: Multiple Input Sources
+
+```bash
+#!/bin/bash
+
+# Open multiple input files
+exec 3< source1.txt
+exec 4< source2.txt
+exec 5< source3.txt
+
+# Merge and process
+{
+  cat <&3
+  cat <&4
+  cat <&5
+} | sort | uniq > merged_output.txt
+
+# Close all descriptors
+exec 3>&- 4>&- 5>&-
+```
+
+### When to Use Custom File Descriptors
+
+**Use custom FDs when:**
+- ✅ You need to preserve original stdin/stdout/stderr
+- ✅ Managing multiple input/output streams in one script
+- ✅ Implementing file locking
+- ✅ Creating reusable logging utilities
+- ✅ Building transaction-like operations (save state, rollback if needed)
+
+**Avoid when:**
+- ❌ Simple one-time redirections (`command > file` is simpler)
+- ❌ Need for parallel processing (use named pipes or subshells)
+- ❌ Script is already complex (adds mental overhead)
+
 ---
 
 ## File Types in Unix
