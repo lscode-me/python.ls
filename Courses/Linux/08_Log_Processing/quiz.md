@@ -95,21 +95,24 @@
 ---
 
 ## Answer Key
-1. B - JSONL has one object per line, perfect for streaming with `grep`, `jq -c`
-2. B - `zcat` streams gzip to stdout without extracting
-3. D - Both `jq -c select()` and `grep` work (jq is more reliable)
-4. B - `-s` flag silences curl progress bar
-5. C - Both `zcat file1.gz file2.gz` and `zcat *.gz` work
-6. B - Markdown table row format is `| val | val | val |`
-7. B - `curl -s` fetches silently, `jq '.'` pretty-prints
-8. B - `sleep N` delays for N seconds (accepts decimals)
-9. B - `-r` for raw output, then `sort | uniq -c`
-10. B - JSONL is standard for streaming logs
-11. A - `xzcat` decompresses xz files to stdout (like `zcat` for gzip)
-12. A - `tee` writes to file and passes through to stdout for further processing
-13. C - `-s` slurps all inputs into array, `group_by` groups by field, `map` aggregates counts
-14. A - Pipe directly to `gzip` to compress output as it's generated
-15. A - Use command substitution `$(date +%Y-%m-%d)` to embed current date
+
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | JSONL has one object per line, perfect for streaming with `grep`, `jq -c` |
+| 2 | B | `zcat` streams gzip to stdout without extracting |
+| 3 | D | Both `jq -c select()` and `grep` work (jq is more reliable) |
+| 4 | B | `-s` flag silences curl progress bar |
+| 5 | C | Both `zcat file1.gz file2.gz` and `zcat *.gz` work |
+| 6 | B | Markdown table row format is `| val | val | val |` |
+| 7 | B | `curl -s` fetches silently, `jq '.'` pretty-prints |
+| 8 | B | `sleep N` delays for N seconds (accepts decimals) |
+| 9 | B | `-r` for raw output, then `sort | uniq -c` |
+| 10 | B | JSONL is standard for streaming logs |
+| 11 | A | `xzcat` decompresses xz files to stdout (like `zcat` for gzip) |
+| 12 | A | `tee` writes to file and passes through to stdout for further processing |
+| 13 | C | `-s` slurps all inputs into array, `group_by` groups by field, `map` aggregates counts |
+| 14 | A | Pipe directly to `gzip` to compress output as it's generated |
+| 15 | A | Use command substitution `$(date +%Y-%m-%d)` to embed current date |
 
 ---
 

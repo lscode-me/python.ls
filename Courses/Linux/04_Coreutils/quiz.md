@@ -100,6 +100,13 @@ D) `sed 's/[a-z]/[A-Z]/g'`
 | 1 | D | Both formats work: `cut -f2,4` and awk |
 | 2 | B | `paste` merges files horizontally with delimiter |
 | 3 | C | Both `a-z` → `A-Z` and character classes work |
+| 4 | C | `-k3,3nr` sorts by 3rd column numerically in reverse (descending) order |
+| 5 | B | `uniq` only removes adjacent duplicate lines, so data must be sorted first |
+| 6 | B | `-l 1000` sets line count, `-d` uses numeric suffixes, and prefix is specified |
+| 7 | B | `pv` (pipe viewer) shows progress while passing data through |
+| 8 | C | `uniq -d` shows only duplicated lines (those appearing more than once) |
+| 9 | B | `stdbuf -oL` sets stdout to line-buffered mode for real-time output |
+| 10 | C | Must count with `uniq -c`, sort by count descending, then take top 5 |
 
 ---
 

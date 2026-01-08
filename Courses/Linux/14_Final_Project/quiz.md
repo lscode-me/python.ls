@@ -1,5 +1,78 @@
 # Final Project: Build a Complete ETL Pipeline - Quiz
 
+## Knowledge Assessment Questions
+
+Before starting your final project, answer these questions to assess your understanding of ETL concepts and best practices.
+
+---
+
+## Question 1: ETL Pipeline Architecture
+
+What is the recommended order of operations in an ETL pipeline?
+
+A) Load → Transform → Extract
+B) Transform → Extract → Load
+C) Extract → Transform → Load
+D) Extract → Load → Transform
+
+---
+
+## Question 2: Error Handling
+
+What is the best practice for handling errors in a production ETL pipeline?
+
+A) Let errors propagate and stop the entire pipeline
+B) Silently ignore all errors to keep the pipeline running
+C) Log errors, route to error sink, and continue processing valid records
+D) Retry indefinitely until the error is resolved
+
+---
+
+## Question 3: Data Quality
+
+Which approach best ensures data quality in an ETL pipeline?
+
+A) Trust the source data and process as-is
+B) Validate only at the final loading step
+C) Implement validation at extraction, transformation, and loading stages
+D) Fix data quality issues manually after loading
+
+---
+
+## Question 4: Performance Optimization
+
+When processing large datasets (5GB+), which technique is most effective?
+
+A) Load all data into memory at once
+B) Use streaming/chunked processing with parallel execution
+C) Process records one at a time sequentially
+D) Increase swap space to handle memory overflow
+
+---
+
+## Question 5: Testing Strategy
+
+What is the recommended testing approach for ETL pipelines?
+
+A) Only test the final output
+B) Test each stage independently, then test integration
+C) Manual verification is sufficient
+D) Testing is optional for one-time data loads
+
+---
+
+## Answer Key
+
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | C | ETL stands for Extract, Transform, Load - the standard order of operations |
+| 2 | C | Production pipelines should handle errors gracefully without losing valid data |
+| 3 | C | Validate at each stage to catch issues early and maintain data integrity |
+| 4 | B | Streaming and parallelism prevent memory issues and improve throughput |
+| 5 | B | Test components individually first, then verify they work together correctly |
+
+---
+
 ## Project-Based Assessment Overview
 
 This is a comprehensive project-based assessment rather than a traditional quiz. Your ETL pipeline will be evaluated across multiple dimensions to assess your mastery of Linux command-line tools, shell scripting, and systems integration.

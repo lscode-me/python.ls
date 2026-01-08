@@ -186,37 +186,38 @@
 
 ## Answer Key
 
-### Questions 1-15
-1. C - `-o` shows only matching text, not full lines
-2. B - `^` anchors pattern to start of line
-3. B - `/g` flag makes replacement global (all occurrences)
-4. B - `/pattern/d` deletes entire lines matching pattern
-5. C - `$0` is the entire current line/record
-6. B - Need comma separator in print for space-separated output
-7. A - NR is the current record (line) number
-8. B - Comprehensive email regex pattern with word boundaries
-9. B - `NR > 1` skips header row, accumulates in END block
-10. B - Filter first (grep), transform (sed), then aggregate (sort | uniq -c)
-11. C - `-C` shows context lines both before and after (combines -A and -B)
-12. B - Need escaped parentheses `\(` `\)` for capturing groups, reference with `\1` `\2` `\3`
-13. B - Associative array counts occurrences of each unique first field value
-14. D - Both semicolon separation and multiple `-e` flags work for chaining sed commands
-15. B - NF is the number of fields in the current record/line
-16. B - Regex is for text pattern matching (content), globbing is for file name matching (filesystem)
-17. B - Shell globbing `*.txt` matches any filenames ending in .txt
-18. B - In regex, `.*` means any characters (zero or more), `\.` is literal dot, `$` is end of line
-19. B - Full validation requires checking each octet is 0-255 using alternation
-20. A - `^` ensures start of string, `[ATGC]+` matches one or more valid DNA bases, `$` ensures end
-21. B - Critical difference: globbing `*` = any characters; regex `*` = zero or more of PREVIOUS character
-22. B - `-E` for extended regex, `-o` for only matching part, `https?` for optional 's', `[^ ]+` for non-space chars
-23. B - RNA uses AUGC (Uracil instead of Thymine); DNA uses ATGC
-24. B - `[^>]*` matches any character except `>`, preventing greedy matching across multiple tags
-25. B - `-v` inverts the match, showing non-matching lines
-26. A - Standard UUID format: 8-4-4-4-12 hexadecimal characters separated by hyphens
-27. B - Globbing `?` matches exactly one character; regex `?` means zero or one of the preceding element
-28. C - BEGIN block sets field separator to comma, then prints fields 1 and 3 from each line
-29. B - `-E` enables extended regex with `|` for alternation (OR logic)
-30. B - Uses repetition `{5}` for first 5 pairs, case-insensitive hex `[0-9A-Fa-f]`
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | C | `-o` shows only matching text, not full lines |
+| 2 | B | `^` anchors pattern to start of line |
+| 3 | B | `/g` flag makes replacement global (all occurrences) |
+| 4 | B | `/pattern/d` deletes entire lines matching pattern |
+| 5 | C | `$0` is the entire current line/record |
+| 6 | B | Need comma separator in print for space-separated output |
+| 7 | A | NR is the current record (line) number |
+| 8 | B | Comprehensive email regex pattern with word boundaries |
+| 9 | B | `NR > 1` skips header row, accumulates in END block |
+| 10 | B | Filter first (grep), transform (sed), then aggregate (sort | uniq -c) |
+| 11 | C | `-C` shows context lines both before and after (combines -A and -B) |
+| 12 | B | Need escaped parentheses for capturing groups, reference with `\1` `\2` `\3` |
+| 13 | B | Associative array counts occurrences of each unique first field value |
+| 14 | D | Both semicolon separation and multiple `-e` flags work |
+| 15 | B | NF is the number of fields in the current record/line |
+| 16 | B | Regex is for text pattern matching, globbing is for file name matching |
+| 17 | B | Shell globbing `*.txt` matches any filenames ending in .txt |
+| 18 | B | In regex, `.*` means any characters, `\.` is literal dot, `$` is end of line |
+| 19 | B | Full validation requires checking each octet is 0-255 using alternation |
+| 20 | A | `^` ensures start of string, `[ATGC]+` matches valid DNA bases, `$` ensures end |
+| 21 | B | Globbing `*` = any characters; regex `*` = zero or more of PREVIOUS character |
+| 22 | B | `-E` for extended regex, `-o` for only matching part |
+| 23 | B | RNA uses AUGC (Uracil instead of Thymine); DNA uses ATGC |
+| 24 | B | `[^>]*` matches any character except `>`, preventing greedy matching |
+| 25 | B | `-v` inverts the match, showing non-matching lines |
+| 26 | A | Standard UUID format: 8-4-4-4-12 hexadecimal characters |
+| 27 | B | Globbing `?` matches exactly one character; regex `?` means zero or one |
+| 28 | C | BEGIN block sets field separator, then prints fields 1 and 3 |
+| 29 | B | `-E` enables extended regex with `|` for alternation (OR logic) |
+| 30 | B | Uses repetition `{5}` for first 5 pairs, case-insensitive hex |
 
 ---
 

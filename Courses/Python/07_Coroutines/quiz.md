@@ -9,15 +9,6 @@ What is the main difference between a generator and a coroutine?
 - [ ] C) Generators produce data (pull), coroutines consume data (push)
 - [ ] D) Coroutines require the `async` keyword
 
-<details>
-<summary>Answer</summary>
-
-**C) Generators produce data (pull), coroutines consume data (push)**
-
-Generators use `yield` to produce values that are pulled by consumers using iteration. Coroutines use `yield` to receive values that are pushed by producers using `send()`.
-
-</details>
-
 ---
 
 ## Question 2: Priming Coroutines
@@ -38,17 +29,6 @@ c.send(10)  # What happens?
 - [ ] B) It raises a `TypeError`
 - [ ] C) It raises a `StopIteration`
 - [ ] D) It does nothing
-
-<details>
-<summary>Answer</summary>
-
-**B) It raises a `TypeError`**
-
-Error message: `TypeError: can't send non-None value to a just-started generator`
-
-You must first prime the coroutine with `next(c)` or `c.send(None)` to advance it to the first `yield` statement.
-
-</details>
 
 ---
 
@@ -75,17 +55,6 @@ What is `result`?
 - [ ] C) None
 - [ ] D) Raises an error
 
-<details>
-<summary>Answer</summary>
-
-**B) 10**
-
-The expression `value = yield total` first yields `total` (which becomes the return value of `send()`), then receives the sent value. So:
-1. `next(m)` returns 0 and pauses at yield
-2. `m.send(10)` sends 10, adds it to total (now 10), loops back, and yields 10
-
-</details>
-
 ---
 
 ## Question 4: Pipeline Direction
@@ -100,23 +69,6 @@ In which order should you build a coroutine pipeline?
 - [ ] B) sink, then transform, then filter (backward from end)
 - [ ] C) It doesn't matter
 - [ ] D) All components must be built simultaneously
-
-<details>
-<summary>Answer</summary>
-
-**B) sink, then transform, then filter (backward from end)**
-
-You build coroutine pipelines from the end (sink) to the beginning (source) because each stage needs a reference to the next stage to send data to.
-
-```python
-# Correct order:
-sink = printer()
-transform = map_items(func, sink)
-filter = filter_items(predicate, transform)
-# Now use 'filter' as entry point
-```
-
-</details>
 
 ---
 
@@ -138,15 +90,6 @@ def coroutine(func):
 - [ ] C) Converts functions to coroutines
 - [ ] D) Enables async/await syntax
 
-<details>
-<summary>Answer</summary>
-
-**B) Automatically primes the coroutine**
-
-The decorator calls `next(gen)` automatically, so you don't have to manually prime the coroutine before using `send()`.
-
-</details>
-
 ---
 
 ## Question 6: Pull vs Push
@@ -157,15 +100,6 @@ Which statement about pull and push models is TRUE?
 - [ ] B) Push model (coroutines) is better for infinite/streaming data
 - [ ] C) Pull model cannot handle real-time data
 - [ ] D) Push model uses less memory
-
-<details>
-<summary>Answer</summary>
-
-**B) Push model (coroutines) is better for infinite/streaming data**
-
-Coroutines naturally handle streaming data where a producer pushes items as they become available. Pull model (iterators) is better for finite sequences where the consumer controls the pace.
-
-</details>
 
 ---
 
@@ -193,15 +127,6 @@ c.close()
 - [ ] C) The coroutine raises a `StopIteration`
 - [ ] D) The coroutine is paused
 
-<details>
-<summary>Answer</summary>
-
-**B) The coroutine's `except GeneratorExit` block is executed**
-
-When you call `close()` on a coroutine, Python raises `GeneratorExit` inside the coroutine at the point where it's paused (at the `yield`). This allows you to perform cleanup.
-
-</details>
-
 ---
 
 ## Question 8: Tee (Broadcasting)
@@ -222,15 +147,6 @@ def tee(*targets):
 - [ ] C) Sends items to the first available target
 - [ ] D) Buffers items for later processing
 
-<details>
-<summary>Answer</summary>
-
-**B) Sends each item to all targets (broadcast)**
-
-The `tee` component broadcasts each received item to all target coroutines. Every target receives every item.
-
-</details>
-
 ---
 
 ## Question 9: State Management
@@ -241,24 +157,6 @@ Why are coroutines well-suited for stateful processing?
 - [ ] B) They maintain local variables across calls
 - [ ] C) They have special state management syntax
 - [ ] D) They store state in a database
-
-<details>
-<summary>Answer</summary>
-
-**B) They maintain local variables across calls**
-
-Coroutines preserve their local variables between `send()` calls, making it natural to maintain state (counters, accumulators, windows, etc.) without external storage.
-
-```python
-@coroutine
-def counter():
-    count = 0  # This persists across sends
-    while True:
-        item = yield count
-        count += 1
-```
-
-</details>
 
 ---
 
@@ -284,18 +182,6 @@ What gets printed?
 - [ ] C) 5, 10
 - [ ] D) Nothing
 
-<details>
-<summary>Answer</summary>
-
-**B) 10, 20**
-
-Flow:
-1. `filter.send(5)` → passes (5 > 0) → transform doubles to 10 → prints 10
-2. `filter.send(-3)` → blocked (-3 not > 0)
-3. `filter.send(10)` → passes (10 > 0) → transform doubles to 20 → prints 20
-
-</details>
-
 ---
 
 ## Question 11: Error Handling
@@ -315,27 +201,6 @@ def process(target):
 - [ ] B) Use try/except around `target.send()`
 - [ ] C) Check if item is valid before sending
 - [ ] D) Use a separate error sink
-
-<details>
-<summary>Answer</summary>
-
-**B) Use try/except around `target.send()`** (most common)
-
-But **D) Use a separate error sink** is also valid for production systems.
-
-```python
-@coroutine
-def safe_process(target, error_sink=None):
-    while True:
-        try:
-            item = yield
-            target.send(process(item))
-        except Exception as e:
-            if error_sink:
-                error_sink.send({'item': item, 'error': str(e)})
-```
-
-</details>
 
 ---
 
@@ -364,17 +229,6 @@ for x in data:
 - [ ] C) They use the same memory
 - [ ] D) It depends on the data
 
-<details>
-<summary>Answer</summary>
-
-**B) Approach B (coroutine pipeline)**
-
-Approach A creates intermediate lists (`filtered` and `doubled`), storing all items in memory.
-
-Approach B processes items one at a time, only storing one item in the pipeline at any moment. Much more memory efficient for large datasets.
-
-</details>
-
 ---
 
 ## Question 13: Yield Expression
@@ -396,18 +250,6 @@ result2 = c.send(100)
 - [ ] C) x = None, result1 = 42, result2 = None
 - [ ] D) x = 100, result1 = None, result2 = 42
 
-<details>
-<summary>Answer</summary>
-
-**B) x = 100, result1 = 42, result2 = 100**
-
-Execution flow:
-1. `next(c)` → executes until first yield → returns 42 (result1)
-2. `c.send(100)` → sends 100, which becomes the value of the yield expression → x = 100
-3. Continues to next yield → returns x (which is 100) → result2 = 100
-
-</details>
-
 ---
 
 ## Question 14: Pipeline Patterns
@@ -418,27 +260,6 @@ Which pipeline pattern is described here: "Collect items until a certain size is
 - [ ] B) Map
 - [ ] C) Batch/Window
 - [ ] D) Tee
-
-<details>
-<summary>Answer</summary>
-
-**C) Batch/Window**
-
-```python
-@coroutine
-def batch(size, target):
-    batch = []
-    while True:
-        item = yield
-        batch.append(item)
-        if len(batch) >= size:
-            target.send(batch)
-            batch = []
-```
-
-This pattern aggregates items into groups before processing.
-
-</details>
 
 ---
 
@@ -451,24 +272,6 @@ Which of these is NOT a good use case for coroutine pipelines?
 - [ ] C) Reversing a small list
 - [ ] D) ETL (Extract-Transform-Load) operations
 - [ ] E) Streaming sensor data analysis
-
-<details>
-<summary>Answer</summary>
-
-**C) Reversing a small list**
-
-For simple operations on small, in-memory data structures, regular Python functions or list operations are simpler and more appropriate.
-
-Coroutine pipelines excel at:
-- Large datasets that don't fit in memory
-- Streaming/infinite data
-- Multi-stage transformations
-- Real-time processing
-- Broadcasting to multiple consumers
-
-For a small list reversal, just use `list.reverse()` or `reversed()`!
-
-</details>
 
 ---
 
@@ -489,29 +292,6 @@ stage1 = transform_a(stage2)
 - [ ] C) Test each stage individually first
 - [ ] D) Rewrite everything from scratch
 
-<details>
-<summary>Answer</summary>
-
-**C) Test each stage individually first**
-
-Best practice for pipeline debugging:
-1. Test each component in isolation
-2. Build pipeline incrementally (2 stages, then 3, etc.)
-3. Use print/logging for intermediate results
-4. Create a `debug_sink` that shows all received data
-
-```python
-@coroutine
-def debug_sink(prefix="DEBUG"):
-    while True:
-        item = yield
-        print(f"{prefix}: {item}")
-```
-
-Then progressively replace the final sink with earlier stages.
-
-</details>
-
 ---
 
 ## Question 17: Performance
@@ -523,32 +303,6 @@ Which change would most improve the performance of a coroutine pipeline?
 - [ ] C) Reducing function call overhead by combining simple stages
 - [ ] D) Adding more error handling
 
-<details>
-<summary>Answer</summary>
-
-**C) Reducing function call overhead by combining simple stages**
-
-Each stage involves function calls and context switching. For performance-critical code:
-
-```python
-# Slow: Many small stages
-filter1 = filter_items(lambda x: x > 0, ...)
-filter2 = filter_items(lambda x: x < 100, ...)
-mapper = map_items(lambda x: x * 2, ...)
-
-# Faster: Combine related operations
-@coroutine
-def combined(target):
-    while True:
-        x = yield
-        if 0 < x < 100:
-            target.send(x * 2)
-```
-
-Trade-off: Less reusable but faster.
-
-</details>
-
 ---
 
 ## Question 18: Async Coroutines
@@ -559,20 +313,6 @@ How do traditional coroutines (using `yield` and `send()`) differ from async cor
 - [ ] B) Traditional coroutines are synchronous, async coroutines support concurrent I/O
 - [ ] C) Async coroutines are faster
 - [ ] D) Traditional coroutines don't support `yield`
-
-<details>
-<summary>Answer</summary>
-
-**B) Traditional coroutines are synchronous, async coroutines support concurrent I/O**
-
-- **Traditional coroutines** (this lecture): Use `yield`/`send()` for data flow, execute synchronously
-- **Async coroutines** (`async`/`await`): For concurrent I/O operations, different mechanism
-
-They share the name "coroutine" but are different concepts:
-- Traditional = data pipelines (this course)
-- Async = concurrent programming (different course)
-
-</details>
 
 ---
 
@@ -598,22 +338,6 @@ def sliding_window(size, target):
 - [ ] C) Sends sliding windows of N consecutive items
 - [ ] D) Filters items based on window size
 
-<details>
-<summary>Answer</summary>
-
-**C) Sends sliding windows of N consecutive items**
-
-Example with size=3:
-- Send: 1 → no output (window: [1])
-- Send: 2 → no output (window: [1,2])
-- Send: 3 → output [1,2,3]
-- Send: 4 → output [2,3,4]
-- Send: 5 → output [3,4,5]
-
-Useful for moving averages, pattern detection, etc.
-
-</details>
-
 ---
 
 ## Question 20: Pipeline Termination
@@ -637,37 +361,35 @@ for item in data:
 - [ ] C) Call `close()` on all stages from entry to sink
 - [ ] D) Send a special "STOP" value
 
-<details>
-<summary>Answer</summary>
+---
 
-**C) Call `close()` on all stages from entry to sink** (best practice)
-
-```python
-stage1.close()  # This should close stage2 and sink
-
-# Or explicitly:
-try:
-    stage1.close()
-    stage2.close()
-    sink.close()
-except:
-    pass
-```
-
-Better: Use a context manager:
-```python
-class Pipeline:
-    def __init__(self, *stages):
-        self.stages = stages
-    
-    def __exit__(self, *args):
-        for stage in self.stages:
-            stage.close()
-```
-
-</details>
 
 ---
+
+## Answer Key
+
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | C | Generators produce data (pull), coroutines consume data (push) |
+| 2 | B | It raises a `TypeError` - must prime with next() first |
+| 3 | B | 10 - yield returns total, then receives value |
+| 4 | B | Build backward from sink to source |
+| 5 | B | @coroutine decorator automatically primes the coroutine |
+| 6 | B | Push model (coroutines) is better for infinite/streaming data |
+| 7 | B | The coroutine's `except GeneratorExit` block is executed |
+| 8 | B | Tee sends each item to all targets (broadcast) |
+| 9 | B | Coroutines maintain local variables across calls |
+| 10 | B | 10, 20 - each send returns what was yielded |
+| 11 | B | Use try/except around `target.send()` |
+| 12 | B | Coroutine pipeline processes one item at a time, less memory |
+| 13 | B | x = 100, result1 = 42, result2 = 100 |
+| 14 | C | Batch/Window pattern processes items in groups |
+| 15 | C | Reversing a small list - coroutines need full data first |
+| 16 | C | Test each stage individually first |
+| 17 | C | Reducing function call overhead by combining simple stages |
+| 18 | B | Traditional coroutines are synchronous, async supports concurrent I/O |
+| 19 | C | Sends sliding windows of N consecutive items |
+| 20 | C | Call close() on all stages from entry to sink |
 
 ## Scoring
 

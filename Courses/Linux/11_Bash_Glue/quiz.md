@@ -96,18 +96,20 @@
 
 ## Answer Key
 
-1. **A** - `set -e` exits immediately if any command returns non-zero status
-2. **B** - `set -u` treats unset variables as error and exits
-3. **B** - `pipefail` makes pipeline return failure if any command in pipe fails (not just last)
-4. **C** - `EXIT` trap runs on any exit (normal or error)
-5. **B** - `mktemp` creates unique temporary file and returns its path
-6. **B** - `set -a` auto-exports all subsequent variable assignments
-7. **A** - Trap runs cleanup function on EXIT (normal), INT (Ctrl+C), or TERM (kill)
-8. **B** - `$LINENO` expands to current line number in script
-9. **B** - `-d` flag creates temporary directory instead of file
-10. **B** - `${VAR:-default}` uses default if VAR is unset or empty
-11. **B** - `-E` makes ERR trap inherited by functions and subshells
-12. **B** - Always quote variables to handle spaces and special characters
-13. **A** - `[ -f file ]` tests if file exists and is a regular file
-14. **B** - `trap - SIGNAL` removes custom trap, restores default behavior
-15. **D** - Gets absolute path of script directory, handling symlinks correctly
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | A | `set -e` exits immediately if any command returns non-zero status |
+| 2 | B | `set -u` treats unset variables as error and exits |
+| 3 | B | `pipefail` makes pipeline return failure if any command in pipe fails (not just last) |
+| 4 | C | `EXIT` trap runs on any exit (normal or error) |
+| 5 | B | `mktemp` creates unique temporary file and returns its path |
+| 6 | B | `set -a` auto-exports all subsequent variable assignments |
+| 7 | A | Trap runs cleanup function on EXIT (normal), INT (Ctrl+C), or TERM (kill) |
+| 8 | B | `$LINENO` expands to current line number in script |
+| 9 | B | `-d` flag creates temporary directory instead of file |
+| 10 | B | `${VAR:-default}` uses default if VAR is unset or empty |
+| 11 | B | `-E` makes ERR trap inherited by functions and subshells |
+| 12 | B | Always quote variables to handle spaces and special characters |
+| 13 | A | `[ -f file ]` tests if file exists and is a regular file |
+| 14 | B | `trap - SIGNAL` removes custom trap, restores default behavior |
+| 15 | D | Gets absolute path of script directory, handling symlinks correctly |

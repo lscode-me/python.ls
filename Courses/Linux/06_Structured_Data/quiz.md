@@ -95,18 +95,21 @@
 ---
 
 ## Answer Key
-1. B - `.[]` iterates array, `| .name` extracts name field
-2. B - `-r` outputs raw strings without JSON quotes
-3. C - Miller handles quoted fields, edge cases better than awk
-4. B - Need `-r` for raw output, `[fields]` for array, `@csv` for CSV format
-5. B - JSONL has one JSON object per line for streaming
-6. A - `csvcut -c columns` extracts specific columns
-7. B - `.[]` iterates, `select()` filters by condition
-8. B - `stats1 -a sum -f field -g groupby` aggregates
-9. B - `format` command pretty-prints XML
-10. C - `-s` slurp mode reads all inputs into array
-11. B - DuckDB can read CSV files directly using `'filename.csv'` syntax
-12. B - `read_csv_auto()` automatically detects headers, types, delimiters
-13. C - DuckDB uses columnar storage, processes data efficiently without loading everything into memory
-14. B - `COPY (query) TO 'file.parquet'` exports to Parquet format
-15. B - DuckDB excels at complex SQL operations, window functions, and analytical queries
+
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | `.[]` iterates array, `| .name` extracts name field |
+| 2 | B | `-r` outputs raw strings without JSON quotes |
+| 3 | C | Miller handles quoted fields, edge cases better than awk |
+| 4 | B | Need `-r` for raw output, `[fields]` for array, `@csv` for CSV format |
+| 5 | B | JSONL has one JSON object per line for streaming |
+| 6 | A | `csvcut -c columns` extracts specific columns |
+| 7 | B | `.[]` iterates, `select()` filters by condition |
+| 8 | B | `stats1 -a sum -f field -g groupby` aggregates |
+| 9 | B | `format` command pretty-prints XML |
+| 10 | C | `-s` slurp mode reads all inputs into array |
+| 11 | B | DuckDB can read CSV files directly using `'filename.csv'` syntax |
+| 12 | B | `read_csv_auto()` automatically detects headers, types, delimiters |
+| 13 | C | DuckDB uses columnar storage, processes data efficiently without loading everything into memory |
+| 14 | B | `COPY (query) TO 'file.parquet'` exports to Parquet format |
+| 15 | B | DuckDB excels at complex SQL operations, window functions, and analytical queries |
