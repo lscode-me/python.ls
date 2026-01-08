@@ -114,24 +114,32 @@ D) `Container`
 
 ---
 
+---
+
 ## Answer Key
 
-1. B - If an object has the required methods, it can be used regardless of its type
-2. A - `__iter__()` and `__next__()`
-3. D - `__enter__()` and `__exit__()`
-4. D - `__append__()`
-5. C - Define a `__call__()` method
-6. B - It enables structural subtyping without explicit inheritance
-7. A - `abc`
-8. C - When there are no more items to return
-9. D - `__get__()`
-10. A - `Sequence`
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | If an object has the required methods, it can be used regardless of its type |
+| 2 | A | `__iter__()` and `__next__()` |
+| 3 | D | `__enter__()` and `__exit__()` |
+| 4 | D | `__append__()` |
+| 5 | C | Define a `__call__()` method |
+| 6 | B | It enables structural subtyping without explicit inheritance |
+| 7 | A | `abc` |
+| 8 | C | When there are no more items to return |
+| 9 | D | `__get__()` |
+| 10 | A | `Sequence` |
 
 ---
 
 ## Scoring Guide
 
-- **9-10 correct**: Outstanding! You understand Python's protocol system deeply.
-- **7-8 correct**: Very good! You grasp the core protocol concepts.
-- **5-6 correct**: Fair understanding. Review protocol implementations.
-- **Below 5**: Study the protocol materials more carefully. These are advanced but important concepts.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **9-10 correct (90-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **7-8 correct (70-80%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **5-6 correct (50-60%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 5 correct (<50%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

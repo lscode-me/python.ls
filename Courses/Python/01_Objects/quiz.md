@@ -367,46 +367,52 @@ D) Manual malloc/free like in C
 
 ---
 
+---
+
 ## Answer Key
 
-1. B - Both a and b reference the same object in memory
-2. B - Everything in Python is an object, including integers, strings, lists, and functions
-3. C - bytearray (it is mutable)
-4. C - dict
-5. B - `[1, 2, 3]` (y references the same list as x)
-6. B - `"hello"` (strings are immutable, so a += "!" creates a new string)
-7. B - `is` checks identity (same object), `==` checks value equality
-8. B - Python caches small integers (typically -5 to 256) for optimization
-9. C - May be True or False (not guaranteed, depends on implementation)
-10. B - Typically True (strings that look like identifiers are interned)
-11. B - False (two different list objects)
-12. B - Tracking how many references point to an object
-13. C - Immediately when the reference count reaches 0
-14. B - The number of references to x (note: calling this function adds a temporary reference)
-15. B - `[1]` then `[1, 2]` (the default list is shared across calls)
-16. B - Use `lst=None` and create a new list inside the function if needed
-17. B - `<class 'list'>`
-18. B - The identity (memory address in CPython) of the object
-19. B - `True`
-20. D - `lambda x: x + 1` (functions and lambdas are callable)
-21. A - The size of the object in bytes (non-recursive)
-22. A - The size of the list "shell" only, not the contained objects
-23. B - Cyclic references that reference counting cannot handle
-24. B - Objects that reference obj
-25. C - Most immutable objects like integers and strings
-26. B - A list of attributes and methods of the object
-27. C - `[1, 2, 3]` (lists are mutable and therefore not hashable)
-28. B - `repr()` gives a detailed/debug representation, `str()` gives a user-friendly string
-29. C - `['a', 'b', 'c']`
-30. C - Reference counting, garbage collector for cycles, and PyObject allocator
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | Both a and b reference the same object in memory |
+| 2 | B | Everything in Python is an object, including integers, strings, lists, and functions |
+| 3 | C | bytearray (it is mutable) |
+| 4 | C | dict |
+| 5 | B | `[1, 2, 3]` (y references the same list as x) |
+| 6 | B | `"hello"` (strings are immutable, so a += "!" creates a new string) |
+| 7 | B | `is` checks identity (same object), `==` checks value equality |
+| 8 | B | Python caches small integers (typically -5 to 256) for optimization |
+| 9 | C | May be True or False (not guaranteed, depends on implementation) |
+| 10 | B | Typically True (strings that look like identifiers are interned) |
+| 11 | B | False (two different list objects) |
+| 12 | B | Tracking how many references point to an object |
+| 13 | C | Immediately when the reference count reaches 0 |
+| 14 | B | The number of references to x (note: calling this function adds a temporary reference) |
+| 15 | B | `[1]` then `[1, 2]` (the default list is shared across calls) |
+| 16 | B | Use `lst=None` and create a new list inside the function if needed |
+| 17 | B | `<class 'list'>` |
+| 18 | B | The identity (memory address in CPython) of the object |
+| 19 | B | `True` |
+| 20 | D | `lambda x: x + 1` (functions and lambdas are callable) |
+| 21 | A | The size of the object in bytes (non-recursive) |
+| 22 | A | The size of the list "shell" only, not the contained objects |
+| 23 | B | Cyclic references that reference counting cannot handle |
+| 24 | B | Objects that reference obj |
+| 25 | C | Most immutable objects like integers and strings |
+| 26 | B | A list of attributes and methods of the object |
+| 27 | C | `[1, 2, 3]` (lists are mutable and therefore not hashable) |
+| 28 | B | `repr()` gives a detailed/debug representation, `str()` gives a user-friendly string |
+| 29 | C | `['a', 'b', 'c']` |
+| 30 | C | Reference counting, garbage collector for cycles, and PyObject allocator |
 
 ---
 
 ## Scoring Guide
 
-- **27-30 correct**: Excellent! You have mastered Python's object model and memory management.
-- **23-26 correct**: Very good! You have a strong understanding of the core concepts.
-- **19-22 correct**: Good job! Review the topics you missed for deeper understanding.
-- **15-18 correct**: Fair understanding. Consider revisiting the lecture materials.
-- **10-14 correct**: Basic grasp. More practice with these fundamentals is recommended.
-- **Below 10**: Keep studying! These fundamentals are crucial for Python mastery.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **27-30 correct (90-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **21-26 correct (70-87%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **15-20 correct (50-67%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 15 correct (<50%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

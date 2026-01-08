@@ -147,27 +147,35 @@ D) Searches for "old" in text
 
 ---
 
+---
+
 ## Answer Key
 
-1. B - $(command)
-2. B - Splits input by comma into three variables
-3. C - `${#arr[@]}`
-4. A - Extracts substring starting at position 5, length 10
-5. B - Exits on error, undefined variables, and pipe failures
-6. C - 0
-7. B - A temporary named pipe for command output
-8. C - `$((5 + 3))`
-9. B - `$1`
-10. B - Limits variable scope to the function
-11. B - Uses "default" value if var is unset or empty (doesn't modify var)
-12. C - Reads lines from file into array variable, `-t` removes trailing newlines
-13. B - `//` replaces all occurrences (single `/` replaces only first)
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | $(command) |
+| 2 | B | Splits input by comma into three variables |
+| 3 | C | `${#arr[@]}` |
+| 4 | A | Extracts substring starting at position 5, length 10 |
+| 5 | B | Exits on error, undefined variables, and pipe failures |
+| 6 | C | 0 |
+| 7 | B | A temporary named pipe for command output |
+| 8 | C | `$((5 + 3))` |
+| 9 | B | `$1` |
+| 10 | B | Limits variable scope to the function |
+| 11 | B | Uses "default" value if var is unset or empty (doesn't modify var) |
+| 12 | C | Reads lines from file into array variable, `-t` removes trailing newlines |
+| 13 | B | `//` replaces all occurrences (single `/` replaces only first) |
 
 ---
 
 ## Scoring Guide
 
-- **12-13 correct**: Excellent! You're a bash scripting pro.
-- **9-11 correct**: Good job! Review advanced parameter expansion and arrays.
-- **7-8 correct**: Fair understanding. Practice more with scripts.
-- **Below 7**: Study the lecture materials and complete homework assignments.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **11-13 correct (85-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **9-10 correct (69-77%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **6-8 correct (46-62%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 6 correct (<46%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

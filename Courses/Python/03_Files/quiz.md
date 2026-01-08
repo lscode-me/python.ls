@@ -389,51 +389,57 @@ D) `buffering=None`
 
 ---
 
+---
+
 ## Answer Key
 
-1. B - Read and write mode (file must exist)
-2. B - It automatically closes the file, even if an exception occurs
-3. A - `Path('/home') / 'user' / 'file.txt'`
-4. D - `csv`
-5. C - Converts a Python object to a JSON string
-6. A - `'rb'`
-7. D - UTF-8
-8. B - `tempfile`
-9. A - `Path('file.txt').exists()`
-10. D - `zipfile`
-11. B - `open()` is an alias to `io.open()`
-12. B - Creating in-memory text streams
-13. C - `io.TextIOWrapper`
-14. C - Moves to the end of the file
-15. C - `'xmlcharrefreplace'`
-16. D - Both B and C are correct
-17. B - `'x'`
-18. C - A dictionary
-19. A - `load()` reads from a file, `loads()` reads from a string
-20. B - No buffering (only for binary mode)
-21. B - Wraps a binary stream to provide text interface
-22. B - `rglob()`
-23. C - `path.stat().st_size`
-24. C - `for line in file:`
-25. B - `'Hello'`
-26. B - `__enter__` and `__exit__`
-27. C - `'rt'`
-28. C - `path.suffix`
-29. C - `file.readable()`
-30. B - `newline=''`
-31. B - `socket.makefile()`
-32. B - It uses zero-copy technology (no user-space copy)
-33. C - Writes buffered data to disk
-34. B - When a newline character is written
-35. B - `buffering=0`
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | Read and write mode (file must exist) |
+| 2 | B | It automatically closes the file, even if an exception occurs |
+| 3 | A | `Path('/home') / 'user' / 'file.txt'` |
+| 4 | D | `csv` |
+| 5 | C | Converts a Python object to a JSON string |
+| 6 | A | `'rb'` |
+| 7 | D | UTF-8 |
+| 8 | B | `tempfile` |
+| 9 | A | `Path('file.txt').exists()` |
+| 10 | D | `zipfile` |
+| 11 | B | `open()` is an alias to `io.open()` |
+| 12 | B | Creating in-memory text streams |
+| 13 | C | `io.TextIOWrapper` |
+| 14 | C | Moves to the end of the file |
+| 15 | C | `'xmlcharrefreplace'` |
+| 16 | D | Both B and C are correct |
+| 17 | B | `'x'` |
+| 18 | C | A dictionary |
+| 19 | A | `load()` reads from a file, `loads()` reads from a string |
+| 20 | B | No buffering (only for binary mode) |
+| 21 | B | Wraps a binary stream to provide text interface |
+| 22 | B | `rglob()` |
+| 23 | C | `path.stat().st_size` |
+| 24 | C | `for line in file:` |
+| 25 | B | `'Hello'` |
+| 26 | B | `__enter__` and `__exit__` |
+| 27 | C | `'rt'` |
+| 28 | C | `path.suffix` |
+| 29 | C | `file.readable()` |
+| 30 | B | `newline=''` |
+| 31 | B | `socket.makefile()` |
+| 32 | B | It uses zero-copy technology (no user-space copy) |
+| 33 | C | Writes buffered data to disk |
+| 34 | B | When a newline character is written |
+| 35 | B | `buffering=0` |
 
 ---
 
 ## Scoring Guide
 
-- **32-35 correct**: Excellent! You're a file handling expert.
-- **28-31 correct**: Great job! You have strong file I/O skills.
-- **23-27 correct**: Good understanding. Keep practicing.
-- **18-22 correct**: Decent foundation. Review advanced topics.
-- **13-17 correct**: Basic knowledge. More practice needed.
-- **Below 13**: Review file handling concepts thoroughly and try practical exercises.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **31-35 correct (89-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **24-30 correct (69-86%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **17-23 correct (49-66%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 17 correct (<49%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

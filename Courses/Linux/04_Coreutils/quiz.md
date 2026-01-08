@@ -1,23 +1,50 @@
 # Coreutils: Data Transformation Utilities - Quiz
 
-## Questions
+Test your knowledge of "Coreutils: Data Transformation Utilities".
 
-1. Which command extracts the 2nd and 4th columns from a CSV file?
-   - A) `cut -d',' -f2-4 file.csv`
-   - B) `cut -d',' -f2,4 file.csv`
-   - C) `awk -F',' '{print $2,$4}' file.csv`
-   - D) Both B and C
+---
 
-2. What does `paste -d',' file1.txt file2.txt` do?
-   - A) Appends file2.txt to the end of file1.txt
-   - B) Merges lines from both files side-by-side with comma separator
-   - C) Pastes content of file2.txt into file1.txt
-   - D) Creates a CSV file from two text files
+## Question 1: Column Extraction
 
-3. Which command converts all lowercase letters to uppercase?
-   - A) `tr 'a-z' 'A-Z'`
-   - B) `tr '[:lower:]' '[:upper:]'`
-   - C) Both A and B
+Which command extracts the 2nd and 4th columns from a CSV file?
+
+A) `cut -d',' -f2-4 file.csv`
+
+B) `cut -d',' -f2,4 file.csv`
+
+C) `awk -F',' '{print $2,$4}' file.csv`
+
+D) Both B and C
+
+---
+
+## Question 2: Paste Command
+
+What does `paste -d',' file1.txt file2.txt` do?
+
+A) Appends file2.txt to the end of file1.txt
+
+B) Merges lines from both files side-by-side with comma separator
+
+C) Pastes content of file2.txt into file1.txt
+
+D) Creates a CSV file from two text files
+
+---
+
+## Question 3: Character Translation
+
+Which command converts all lowercase letters to uppercase?
+
+A) `tr 'a-z' 'A-Z'`
+
+B) `tr '[:lower:]' '[:upper:]'`
+
+C) Both A and B
+
+D) `sed 's/[a-z]/[A-Z]/g'`
+
+---
    - D) `awk '{print toupper($0)}'`
 
 4. What does `sort -t',' -k3,3nr data.csv` do?
@@ -64,14 +91,25 @@
 
 ---
 
+---
+
 ## Answer Key
-1. D - Both formats work: `cut -f2,4` and awk
-2. B - `paste` merges files horizontally with delimiter
-3. C - Both `a-z` → `A-Z` and character classes work
-4. C - `-k3,3nr` = sort by field 3, numeric, reverse
-5. B - `uniq` only detects adjacent duplicates
-6. B - `-d` for numeric suffixes, `-l 1000` for lines
-7. B - `pv` shows progress while piping to gzip
-8. C - `uniq -d` shows only duplicated lines
-9. B - `-oL` enables line-buffered output
-10. C - Must sort by count (`-rn`) after `uniq -c`
+
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | D | Both formats work: `cut -f2,4` and awk |
+| 2 | B | `paste` merges files horizontally with delimiter |
+| 3 | C | Both `a-z` → `A-Z` and character classes work |
+
+---
+
+## Scoring Guide
+
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **2-3 correct (67-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **2-1 correct (67-33%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **1-1 correct (33-33%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 1 correct (<33%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

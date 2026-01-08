@@ -279,41 +279,47 @@ D) `"Value: " + str(x)`
 
 ---
 
+---
+
 ## Answer Key
 
-1. D - Performance is better than readability (this is NOT in the Zen of Python)
-2. A - `squares = [x**2 for x in range(10)]`
-3. C - Easier to Ask for Forgiveness than Permission
-4. D - `for i, item in enumerate(items): print(i, item)`
-5. B - `f"Hello, {name}"`
-6. B - For any resource that needs setup and cleanup
-7. A - `a=1, b=[2, 3, 4], c=5`
-8. C - `value = d.get(key, default)`
-9. D - `if 1 <= x <= 10:`
-10. A - `False`
-11. B - Generators use less memory (lazy evaluation)
-12. B - `{'b': 4}`
-13. C - Just use `for item in items:` without type checking
-14. A - `[2, 3, 4]`
-15. B - `a, b = b, a`
-16. B - `Counter`
-17. B - File is automatically closed
-18. C - `x=42`
-19. A - `if x >= 0 and x < 100:`
-20. B - `[(1, 'a'), (2, 'b'), (3, 'c')]`
-21. B - `yield` creates a generator that produces values lazily
-22. D - Both B and C (though B is more explicit)
-23. B - `[(1, 'a'), (2, 'b'), (3, 'c')]`
-24. C - Creates the key with an empty list `[]`
-25. C - `f"Value: {x}"`
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | D | Performance is better than readability (this is NOT in the Zen of Python) |
+| 2 | A | `squares = [x**2 for x in range(10)]` |
+| 3 | C | Easier to Ask for Forgiveness than Permission |
+| 4 | D | `for i, item in enumerate(items): print(i, item)` |
+| 5 | B | `f"Hello, {name}"` |
+| 6 | B | For any resource that needs setup and cleanup |
+| 7 | A | `a=1, b=[2, 3, 4], c=5` |
+| 8 | C | `value = d.get(key, default)` |
+| 9 | D | `if 1 <= x <= 10:` |
+| 10 | A | `False` |
+| 11 | B | Generators use less memory (lazy evaluation) |
+| 12 | B | `{'b': 4}` |
+| 13 | C | Just use `for item in items:` without type checking |
+| 14 | A | `[2, 3, 4]` |
+| 15 | B | `a, b = b, a` |
+| 16 | B | `Counter` |
+| 17 | B | File is automatically closed |
+| 18 | C | `x=42` |
+| 19 | A | `if x >= 0 and x < 100:` |
+| 20 | B | `[(1, 'a'), (2, 'b'), (3, 'c')]` |
+| 21 | B | `yield` creates a generator that produces values lazily |
+| 22 | D | Both B and C (though B is more explicit) |
+| 23 | B | `[(1, 'a'), (2, 'b'), (3, 'c')]` |
+| 24 | C | Creates the key with an empty list `[]` |
+| 25 | C | `f"Value: {x}"` |
 
 ---
 
 ## Scoring Guide
 
-- **23-25 correct**: Exceptional! You're a Python master.
-- **20-22 correct**: Excellent! Your code is truly Pythonic.
-- **17-19 correct**: Great! You understand Python idioms well.
-- **14-16 correct**: Good foundation. Keep practicing Pythonic patterns.
-- **11-13 correct**: You're on the right track. Review comprehensions and generators.
-- **Below 11**: Read PEP 8, PEP 20, and practice writing more idiomatic code.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **22-25 correct (88-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **17-21 correct (68-84%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **12-16 correct (48-64%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 12 correct (<48%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

@@ -147,27 +147,35 @@ D) Directory is shared across users
 
 ---
 
+---
+
 ## Answer Key
 
-1. B - File metadata and pointers to data blocks
-2. B - Both filenames point to the same i-node
-3. C - 2
-4. C - Named pipe (FIFO)
-5. A - rwxr-xr-x
-6. C - Redirects stderr to stdout
-7. B - Symlinks are a separate file with a path, hard links share the same i-node
-8. C - 644
-9. B - Discarding unwanted output
-10. B - Allows the file to run with owner's permissions
-11. A - `exec 4> output.txt` opens file descriptor 4 for writing
-12. B - `/dev/zero` provides infinite null bytes, `/dev/urandom` provides pseudo-random data
-13. B - Setgid on directories makes new files inherit the directory's group (useful for shared directories)
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | File metadata and pointers to data blocks |
+| 2 | B | Both filenames point to the same i-node |
+| 3 | C | 2 |
+| 4 | C | Named pipe (FIFO) |
+| 5 | A | rwxr-xr-x |
+| 6 | C | Redirects stderr to stdout |
+| 7 | B | Symlinks are a separate file with a path, hard links share the same i-node |
+| 8 | C | 644 |
+| 9 | B | Discarding unwanted output |
+| 10 | B | Allows the file to run with owner's permissions |
+| 11 | A | `exec 4> output.txt` opens file descriptor 4 for writing |
+| 12 | B | `/dev/zero` provides infinite null bytes, `/dev/urandom` provides pseudo-random data |
+| 13 | B | Setgid on directories makes new files inherit the directory's group (useful for shared directories) |
 
 ---
 
 ## Scoring Guide
 
-- **12-13 correct**: Excellent! You understand Unix file systems deeply.
-- **9-11 correct**: Good job! Review advanced topics like custom file descriptors.
-- **7-8 correct**: Fair understanding. Practice more with file operations and permissions.
-- **Below 7**: Study the lecture materials and complete the homework assignments.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **11-13 correct (85-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **9-10 correct (69-77%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **6-8 correct (46-62%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 6 correct (<46%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

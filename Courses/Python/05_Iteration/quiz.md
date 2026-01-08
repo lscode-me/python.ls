@@ -366,40 +366,47 @@ D) When you need to access the length
 
 ---
 
+---
+
 ## Answer Key
 
-1. **B** - An iterable has `__iter__()`, an iterator has both `__iter__()` and `__next__()`
-2. **B** - First returns `[1, 2, 3]`, second returns `[]` (iterator is exhausted)
-3. **B** - Missing `__iter__()` method (should return `self`)
-4. **A** - Calls `callable` until it returns `sentinel`, then stops
-5. **C** - Returns `'END'` (the default value provided to `next()`)
-6. **A** - `(x**2 for x in range(10))` creates a generator expression
-7. **D** - The function pauses and returns a value, saving its state
-8. **B** - Returns `2` (generator remembers state)
-9. **C** - Sends a value into the generator that becomes the result of the current yield expression
-10. **B** - Prints `Received: 42`
-11. **D** - Delegates to a sub-iterator and yields all its values
-12. **B** - `[1, 2, 3, 4]`
-13. **B** - `[1, 2, 3, 4]` (note: we wrapped with `list()` to get actual list)
-14. **C** - `[5, 6, 7, 8, 9]`
-15. **A** - `[0, 2, 4, 6, 8]` (start=0, stop=10, step=2)
-16. **B** - Prints `1 2 3 1 2` (cycles through values)
-17. **B** - `[10, 12, 14, 16, 18]` (start=10, step=2)
-18. **B** - `['x', 'x', 'x']` (repeats value 3 times)
-19. **A** - `[(1, 3), (2, 4), (0, 5)]` (fills missing values with 0)
-20. **B** - `[1, 2, 3]` (stops when condition becomes false)
-21. **C** - `[6, 4, 7]` (drops elements until condition becomes false, then yields rest)
-22. **B** - The input must be sorted by the key function
-23. **C** - `[(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')]` (cartesian product)
-24. **A** - They generate values on-the-fly instead of storing all values in memory
-25. **B** - When working with large datasets and you only need to iterate once
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | An iterable has `__iter__()`, an iterator has both `__iter__()` and `__next__()` |
+| 2 | B | First returns `[1, 2, 3]`, second returns `[]` (iterator is exhausted) |
+| 3 | B | Missing `__iter__()` method (should return `self`) |
+| 4 | A | Calls `callable` until it returns `sentinel`, then stops |
+| 5 | C | Returns `'END'` (the default value provided to `next()`) |
+| 6 | A | `(x**2 for x in range(10))` creates a generator expression |
+| 7 | D | The function pauses and returns a value, saving its state |
+| 8 | B | Returns `2` (generator remembers state) |
+| 9 | C | Sends a value into the generator that becomes the result of the current yield expression |
+| 10 | B | Prints `Received: 42` |
+| 11 | D | Delegates to a sub-iterator and yields all its values |
+| 12 | B | `[1, 2, 3, 4]` |
+| 13 | B | `[1, 2, 3, 4]` (note: we wrapped with `list()` to get actual list) |
+| 14 | C | `[5, 6, 7, 8, 9]` |
+| 15 | A | `[0, 2, 4, 6, 8]` (start=0, stop=10, step=2) |
+| 16 | B | Prints `1 2 3 1 2` (cycles through values) |
+| 17 | B | `[10, 12, 14, 16, 18]` (start=10, step=2) |
+| 18 | B | `['x', 'x', 'x']` (repeats value 3 times) |
+| 19 | A | `[(1, 3), (2, 4), (0, 5)]` (fills missing values with 0) |
+| 20 | B | `[1, 2, 3]` (stops when condition becomes false) |
+| 21 | C | `[6, 4, 7]` (drops elements until condition becomes false, then yields rest) |
+| 22 | B | The input must be sorted by the key function |
+| 23 | C | `[(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')]` (cartesian product) |
+| 24 | A | They generate values on-the-fly instead of storing all values in memory |
+| 25 | B | When working with large datasets and you only need to iterate once |
 
 ---
 
 ## Scoring Guide
 
-- **23-25 correct**: Excellent! You're an iteration protocol master.
-- **20-22 correct**: Very strong understanding! Minor details to review.
-- **16-19 correct**: Good foundation. Practice with itertools and custom iterators.
-- **12-15 correct**: Basic understanding. Review `__iter__()`, `__next__()`, and itertools.
-- **Below 12**: Study the iteration protocol thoroughly. Implement custom iterators and practice with itertools.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **22-25 correct (88-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **17-21 correct (68-84%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **12-16 correct (48-64%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 12 correct (<48%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

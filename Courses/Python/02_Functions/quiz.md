@@ -298,54 +298,47 @@ D) The function has a string default value
 
 ---
 
+---
+
 ## Answer Key
 
-1. **C** - Collects all positional arguments into a tuple
-2. **B** - `positional, defaults, *args, **kwargs`
-3. **B** - `{'extra': 'x'}` (key is matched to the named parameter)
-4. **B** - `c` and `d` must be passed as keyword arguments
-5. **B** - Local, Enclosing, Global, Built-in
-6. **C** - `20` then `10` (local x shadows global x)
-7. **B** - When modifying a global variable inside a function
-8. **A** - `nonlocal` modifies enclosing function scope, `global` modifies module scope
-9. **B** - `lambda x, y: x + y`
-10. **A** - A function that remembers values from its enclosing scope
-11. **A** - `func = decorator(func)`
-12. **B** - `greet = bold(italic(greet))` (bottom to top)
-13. **B** - Outer function receives decorator args, middle creates decorator, inner is the wrapper
-14. **B** - Preserves the original function's metadata
-15. **A** - Data cannot be changed after it's created
-16. **C** - `tuple`
-17. **A** - Default mutable argument is shared across calls
-18. **B** - `items = items + [4]` (creates new list)
-19. **C** - `new_d = {**d, "key": "value"}`
-20. **D** - `[2, 4, 6]`
-21. **B** - `[6, 8, 9]`
-22. **A** - yield
-23. **C** - Functions can be passed as arguments, returned from other functions, and assigned to variables
-24. **D** - The condition that stops the recursion
-25. **A** - The function returns a string
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | C | Collects all positional arguments into a tuple |
+| 2 | B | `positional, defaults, *args, **kwargs` |
+| 3 | B | `{'extra': 'x'}` (key is matched to the named parameter) |
+| 4 | B | `c` and `d` must be passed as keyword arguments |
+| 5 | B | Local, Enclosing, Global, Built-in |
+| 6 | C | `20` then `10` (local x shadows global x) |
+| 7 | B | When modifying a global variable inside a function |
+| 8 | A | `nonlocal` modifies enclosing function scope, `global` modifies module scope |
+| 9 | B | `lambda x, y: x + y` |
+| 10 | A | A function that remembers values from its enclosing scope |
+| 11 | A | `func = decorator(func)` |
+| 12 | B | `greet = bold(italic(greet))` (bottom to top) |
+| 13 | B | Outer function receives decorator args, middle creates decorator, inner is the wrapper |
+| 14 | B | Preserves the original function's metadata |
+| 15 | A | Data cannot be changed after it's created |
+| 16 | C | `tuple` |
+| 17 | A | Default mutable argument is shared across calls |
+| 18 | B | `items = items + [4]` (creates new list) |
+| 19 | C | `new_d = {**d, "key": "value"}` |
+| 20 | D | `[2, 4, 6]` |
+| 21 | B | `[6, 8, 9]` |
+| 22 | A | yield |
+| 23 | C | Functions can be passed as arguments, returned from other functions, and assigned to variables |
+| 24 | D | The condition that stops the recursion |
+| 25 | A | The function returns a string |
 
 ---
 
 ## Scoring Guide
 
-- **23-25 correct**: Outstanding! You're a functional programming expert.
-- **20-22 correct**: Excellent! You have a strong understanding.
-- **17-19 correct**: Very good! A few concepts need more practice.
-- **14-16 correct**: Good foundation. Review decorators and immutability.
-- **11-13 correct**: Fair. Focus on scope, decorators, and immutability.
-- **Below 11**: Review the lecture materials thoroughly and practice with examples.
+Count your correct answers:
 
----
-
-## Key Concepts to Review
-
-If you struggled with specific questions, focus on these topics:
-
-- **Questions 1-4**: Function arguments, *args, **kwargs, keyword-only arguments
-- **Questions 5-8**: Variable scope, LEGB rule, global and nonlocal keywords
-- **Questions 9-10**: Lambda functions and closures
-- **Questions 11-14**: Decorators, decorator syntax, and functools.wraps
-- **Questions 15-19**: Immutability, mutable vs immutable types, pure functions
-- **Questions 20-25**: Higher-order functions, generators, recursion, type hints
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **22-25 correct (88-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **17-21 correct (68-84%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **12-16 correct (48-64%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 12 correct (<48%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

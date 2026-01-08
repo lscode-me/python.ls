@@ -1,10 +1,10 @@
 # Python for Bioinformatics - Quiz
 
-Test your knowledge of bioinformatics concepts and Python applications.
+Test your knowledge of bioinformatics concepts and Python applications in computational biology.
 
 ---
 
-## Question 1: DNA Bases
+## Question 1: DNA Basics
 
 Which of the following is NOT a valid DNA nucleotide?
 
@@ -39,99 +39,237 @@ D) It has no biological significance
 
 ## Question 4: FASTA Format
 
-What character starts a header line in FASTA format?
+What character starts a sequence identifier in FASTA format?
 
-A) `>`  
-B) `@`  
-C) `#`  
-D) `*`  
-
----
-
-## Question 5: Quality Scores
-
-In FASTQ format, what does a Phred score of Q30 represent?
-
-A) 30% accuracy  
-B) 99% accuracy  
-C) 99.9% accuracy  
-D) 100% accuracy  
+A) @  
+B) #  
+C) >  
+D) $  
 
 ---
 
-## Question 6: Sequence Alignment
+## Question 5: Sequence Alignment
 
-What is the purpose of sequence alignment?
+What is the purpose of sequence alignment in bioinformatics?
 
-A) To make sequences the same length  
-B) To translate DNA to protein  
-C) To remove errors from sequences  
-D) To identify regions of similarity and evolutionary relationships  
-
----
-
-## Question 7: Open Reading Frame (ORF)
-
-What defines an Open Reading Frame?
-
-A) Any sequence of DNA  
-B) A sequence that codes for RNA  
-C) A sequence between a start codon (ATG) and a stop codon  
-D) The first 100 nucleotides of a gene  
+A) To compress sequence data  
+B) To find similarities between sequences  
+C) To translate DNA to protein  
+D) To calculate molecular weight  
 
 ---
 
-## Question 8: BioPython Seq Object
+## Question 6: Python BioPython
 
-How do you get the reverse complement of a DNA sequence using BioPython?
+Which Python library is most commonly used for bioinformatics tasks?
 
-A) `seq.reverse()`  
-B) `seq.reverse_complement()`  
-C) `seq.complement()`  
-D) `seq.flip()`  
-
----
-
-## Question 9: Stop Codons
-
-Which of the following is a stop codon?
-
-A) TAG  
-B) ATG  
-C) GCG  
-D) CCG  
+A) NumPy  
+B) Pandas  
+C) BioPython  
+D) SciPy  
 
 ---
 
-## Question 10: Multiple Sequence Alignment
+## Question 7: DNA Transcription
 
-What is the primary use of Multiple Sequence Alignment (MSA)?
+What is the correct transcription of the DNA sequence "ATGCGA"?
 
-A) To sequence DNA faster  
-B) To translate proteins  
-C) To compress sequence data  
-D) To identify conserved regions across multiple species  
+A) UACGCU  
+B) TACGCT  
+C) AUGCGA  
+D) ATGCGA  
+
+---
+
+## Question 8: Reading Frames
+
+How many possible reading frames exist for a single DNA strand?
+
+A) 3  
+B) 6  
+C) 9  
+D) 12  
+
+---
+
+## Question 9: BLAST Algorithm
+
+What does BLAST stand for?
+
+A) Basic Linear Alignment Search Tool  
+B) Basic Local Alignment Search Tool  
+C) Biological Linear Algorithm Search Tool  
+D) Binary Local Alignment Search Tool  
+
+---
+
+## Question 10: Protein Structure
+
+How many levels of protein structure are there?
+
+A) 2  
+B) 3  
+C) 4  
+D) 5  
+
+---
+
+## Question 11: PCR Components
+
+Which of these is NOT required for PCR?
+
+A) DNA template  
+B) Primers  
+C) DNA polymerase  
+D) Restriction enzymes  
+
+---
+
+## Question 12: Phylogenetic Trees
+
+What do branch lengths typically represent in phylogenetic trees?
+
+A) Time since speciation  
+B) Geographic distance  
+C) Evolutionary distance  
+D) Population size  
+
+---
+
+## Question 13: Gene Expression
+
+What technique is commonly used to measure gene expression levels?
+
+A) PCR  
+B) RNA-seq  
+C) DNA sequencing  
+D) Protein crystallography  
+
+---
+
+## Question 14: Bioinformatics Databases
+
+Which database is the primary repository for protein sequences?
+
+A) GenBank  
+B) UniProt  
+C) EMBL  
+D) PDB  
+
+---
+
+## Question 15: Python Data Structures
+
+What Python data structure is best for storing a DNA sequence?
+
+A) List  
+B) String  
+C) Dictionary  
+D) Set  
+
+---
+
+## Question 16: GC Content Calculation
+
+What does this Python code calculate?
+
+```python
+def gc_content(sequence):
+    gc_count = sequence.count('G') + sequence.count('C')
+    return (gc_count / len(sequence)) * 100
+```
+
+A) AT content percentage  
+B) GC content percentage  
+C) Total nucleotide count  
+D) Sequence length  
+
+---
+
+## Question 17: Sequence Manipulation
+
+What would be the output of this code?
+
+```python
+seq = "ATGCGATAG"
+complement = seq.replace('A','t').replace('T','a').replace('G','c').replace('C','g').upper()
+print(complement)
+```
+
+A) ATGCGATAG  
+B) TACGCTATC  
+C) TACGCTAUC  
+D) UACGCUAUC  
+
+---
+
+## Question 18: BioPython Usage
+
+In BioPython, which module is used to parse FASTA files?
+
+A) Bio.Seq  
+B) Bio.SeqIO  
+C) Bio.Align  
+D) Bio.BLAST  
+
+---
+
+## Question 19: Real-World Application
+
+Which bioinformatics application would benefit most from parallel processing?
+
+A) Reading a single FASTA file  
+B) Genome-wide association studies (GWAS)  
+C) Calculating GC content of one sequence  
+D) Writing sequence data to a file  
+
+---
+
+## Question 20: Algorithm Complexity
+
+What is the time complexity of the naive string matching algorithm for finding a pattern in a sequence?
+
+A) O(n)  
+B) O(n²)  
+C) O(nm) where n=text length, m=pattern length  
+D) O(log n)  
 
 ---
 
 ## Answer Key
 
-1. A - Uracil (U) - Uracil is found in RNA, not DNA
-2. D - 3
-3. B - It affects DNA stability (G-C has 3 hydrogen bonds vs A-T's 2)
-4. A - `>`
-5. C - 99.9% accuracy
-6. D - To identify regions of similarity and evolutionary relationships
-7. C - A sequence between a start codon (ATG) and a stop codon
-8. B - `seq.reverse_complement()`
-9. A - TAG
-10. D - To identify conserved regions across multiple species
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | A | Uracil is found in RNA, not DNA |
+| 2 | D | A codon consists of 3 consecutive nucleotides |
+| 3 | B | GC pairs have 3 hydrogen bonds vs AT's 2, affecting stability |
+| 4 | C | FASTA format uses '>' for sequence headers |
+| 5 | B | Alignment identifies regions of similarity between sequences |
+| 6 | C | BioPython is specifically designed for bioinformatics |
+| 7 | A | Transcription: A→U, T→A, G→C, C→G |
+| 8 | A | Each DNA strand has 3 possible reading frames |
+| 9 | B | BLAST = Basic Local Alignment Search Tool |
+| 10 | C | Primary, secondary, tertiary, and quaternary structures |
+| 11 | D | PCR doesn't require restriction enzymes |
+| 12 | C | Branch lengths represent evolutionary distance |
+| 13 | B | RNA-seq is the standard for measuring gene expression |
+| 14 | B | UniProt is the main protein sequence database |
+| 15 | B | Strings are immutable and perfect for DNA sequences |
+| 16 | B | The function calculates GC content percentage |
+| 17 | B | Creates DNA complement by base replacement |
+| 18 | B | Bio.SeqIO handles sequence input/output operations |
+| 19 | B | GWAS analyzes millions of variants across populations |
+| 20 | C | Naive string matching has O(nm) complexity |
 
 ---
 
 ## Scoring Guide
 
-- **9-10 correct**: Excellent! You have strong bioinformatics knowledge.
-- **7-8 correct**: Great job! You understand key bioinformatics concepts.
-- **5-6 correct**: Good start. Review molecular biology basics.
-- **Below 5**: Study the bioinformatics fundamentals and try the practical exercises.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **18-20 correct (90-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **14-17 correct (70-85%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **10-13 correct (50-65%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 10 correct (<50%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

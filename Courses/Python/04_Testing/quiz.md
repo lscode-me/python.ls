@@ -512,3 +512,46 @@ Trivial code (getters, setters) doesn't need 100% coverage.
 - **Below 15**: Keep learning! Review the lecture material.
 
 Good luck! 🧪
+
+---
+
+## Answer Key
+
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | To ensure code works correctly and prevent regressions |
+| 2 | B | pytest uses `assert` statements instead of `self.assertEqual()` |
+| 3 | C | `test_user_registration_with_valid_email()` follows best practices |
+| 4 | B | To provide reusable test data and setup/teardown |
+| 5 | B | Arrange, Act, Assert |
+| 6 | B | Tests multiple inputs without code duplication |
+| 7 | C | When testing code with external dependencies (API, database) |
+| 8 | C | All lines of code were executed during tests |
+| 9 | B | Red → Green → Refactor |
+| 10 | B | `with pytest.raises(ValueError):` |
+| 11 | B | Fixture runs once per test file/module |
+| 12 | B | To avoid test order dependencies and flaky tests |
+| 13 | C | Testing implementation details (private methods) |
+| 14 | B | Fixtures are reusable and composable |
+| 15 | C | Unit tests test components in isolation |
+| 16 | B | The mock was called exactly once with argument 42 |
+| 17 | B | Mirror the source code structure |
+| 18 | B | Automatically catch bugs before merging |
+| 19 | B | Empty inputs, None, zero, negative numbers |
+| 20 | C | Clear AAA structure and descriptive names |
+| 21 | B | Hypothesis |
+| 22 | B | Mocks verify interactions, stubs provide data |
+| 23 | B | Diminishing returns; focus on critical code |
+
+---
+
+## Scoring Guide
+
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **20-23 correct (87-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **16-19 correct (70-83%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **12-15 correct (52-65%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 12 correct (<52%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

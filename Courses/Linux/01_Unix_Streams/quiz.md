@@ -169,29 +169,37 @@ D) `command >> file1 file2 file3`
 
 ---
 
+---
+
 ## Answer Key
 
-1. D - stdin, stdout, stderr
-2. B - Connects stdout of one command to stdin of the next
-3. C - `command &> file`
-4. B - It only removes adjacent duplicate lines
-5. B - Extracts the second field using comma as delimiter
-6. D - Filter → Transform → Aggregate
-7. B - Continuously monitors the file for new lines
-8. B - `-n`
-9. C - Shows lines NOT matching pattern
-10. C - `-L`
-11. B - `tee` writes to file and passes data through to next command in pipeline
-12. B - FIFO write blocks until reader connects (synchronization mechanism)
-13. C - `--line-buffered` forces immediate output, crucial for real-time monitoring (like `tail -f | grep`)
-14. B - `/dev/fd/0` is a symbolic link to stdin (file descriptor 0)
-15. A - `tee` can write to multiple files in one command and still output to stdout
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | D | stdin, stdout, stderr |
+| 2 | B | Connects stdout of one command to stdin of the next |
+| 3 | C | `command &> file` |
+| 4 | B | It only removes adjacent duplicate lines |
+| 5 | B | Extracts the second field using comma as delimiter |
+| 6 | D | Filter → Transform → Aggregate |
+| 7 | B | Continuously monitors the file for new lines |
+| 8 | B | `-n` |
+| 9 | C | Shows lines NOT matching pattern |
+| 10 | C | `-L` |
+| 11 | B | `tee` writes to file and passes data through to next command in pipeline |
+| 12 | B | FIFO write blocks until reader connects (synchronization mechanism) |
+| 13 | C | `--line-buffered` forces immediate output, crucial for real-time monitoring (like `tail -f | grep`) |
+| 14 | B | `/dev/fd/0` is a symbolic link to stdin (file descriptor 0) |
+| 15 | A | `tee` can write to multiple files in one command and still output to stdout |
 
 ---
 
 ## Scoring Guide
 
-- **13-15 correct**: Excellent! You understand Unix streams and pipelines deeply.
-- **10-12 correct**: Good job! Review advanced topics like buffering and named pipes.
-- **7-9 correct**: Fair understanding. Practice more with hands-on exercises.
-- **Below 7**: Study the lecture materials and try the homework assignments.
+Count your correct answers:
+
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **13-15 correct (87-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **10-12 correct (67-80%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **7-9 correct (47-60%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 7 correct (<47%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

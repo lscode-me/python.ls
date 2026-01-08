@@ -220,97 +220,37 @@ D) Use text streams as universal interface
 
 ---
 
-## Answer Key
-
-1. **B** - stdin, stdout, stderr
-   - These are the three standard Unix streams accessible in Python via `sys.stdin`, `sys.stdout`, `sys.stderr`
-
-2. **C** - `for line in sys.stdin:`
-   - Most efficient because it doesn't load entire file into memory, uses buffering, processes lines as read, and works with infinite streams
-
-3. **B** - To stderr
-   - Errors and diagnostic messages should go to stderr because it separates normal output from errors, can be redirected separately, follows Unix conventions, and keeps pipelines working
-
-4. **A** - 0
-   - Unix exit code 0 means success. Other codes: 1 = general error, 2 = incorrect usage, 130 = interrupted (Ctrl+C)
-
-5. **B** - Exception when writing to a closed pipe
-   - Occurs when a program tries to write to a pipe and the program on the other end has already terminated (e.g., `./script.py | head -10`)
-
-6. **B** - Sets flag to True if option is specified, False otherwise
-   - Creates a boolean flag: if `-v` is specified, `args.verbose == True`, otherwise `False`. Doesn't require a value after the flag
-
-7. **C** - Use fileinput or check for arguments
-   - Pattern: use `nargs='*'` for files argument, read from stdin if no files specified, otherwise process each file
-
-8. **B** - Output is buffered
-   - Python buffers output for efficiency. Output appears when buffer fills, `\n` encountered (line buffering), program terminates, or `flush()` called
-
-9. **C** - Zero or more values
-   - `nargs='*'` means the argument can have 0 or more values and creates a list. Compare: `nargs='?'` (0-1), `nargs='+'` (1+), `nargs=N` (exactly N)
-
-10. **B** - script.py reads content through stdin
-    - In pipeline: `cat` writes to stdout → becomes stdin for `script.py` → script.py output goes to `grep` → grep to `head`. script.py doesn't know about file.txt
-
-11. **C** - Variant C
-    - Correct structure uses `if __name__ == "__main__":` guard, allows importing without execution, easier to test, follows Python best practices
-
-12. **B** - `sys.stdin.buffer.read()`
-    - For binary data use `.buffer` attribute. `sys.stdin` works with text (str), `sys.stdin.buffer` works with bytes
-
-13. **A** - Variant A
-    - `sys.stdin` is already a file object, can be passed directly to `csv.reader()` or `csv.DictReader()`. No need to read all data into memory first
-
-14. **B** - Interrupt signal (Ctrl+C)
-    - SIGINT is sent when Ctrl+C is pressed. Should exit with code 130 (128 + 2, where 2 is SIGINT number)
-
-15. **C** - Create GUI for every program
-    - Unix philosophy: do one thing well, programs work together, use text streams as universal interface. GUIs are fine but not required for Unix approach
-
 ---
 
-## Practical Exercise
+## Answer Key
 
-Find errors in this code:
-
-```python
-import sys
-
-for line in sys.stdin.readlines():
-    result = process(line)
-    print(result, file=sys.stdout)
-    print(f"Processed line", file=sys.stdout)
-```
-
-**Errors:**
-1. `readlines()` loads entire file into memory — bad for large files (use `for line in sys.stdin:`)
-2. Diagnostic messages in stdout — should go to stderr
-3. `file=sys.stdout` is redundant — stdout is default
-4. No exception handling — need BrokenPipeError and KeyboardInterrupt
-
-**Fixed version:**
-```python
-import sys
-
-try:
-    for line in sys.stdin:
-        result = process(line)
-        print(result)  # To stdout
-        print("Processed line", file=sys.stderr)  # To stderr
-except BrokenPipeError:
-    sys.stderr.close()
-    sys.exit(0)
-except KeyboardInterrupt:
-    sys.exit(130)
-```
+| # | Answer | Explanation |
+|---|--------|-------------|
+| 1 | B | stdin, stdout, stderr |
+| 2 | C | `for line in sys.stdin:` |
+| 3 | B | To stderr |
+| 4 | A | 0 |
+| 5 | B | Exception when writing to a closed pipe |
+| 6 | B | Sets flag to True if option is specified, False otherwise |
+| 7 | C | Use fileinput or check for arguments |
+| 8 | B | Output is buffered |
+| 9 | C | Zero or more values |
+| 10 | B | script.py reads content through stdin |
+| 11 | C | Variant C |
+| 12 | B | `sys.stdin.buffer.read()` |
+| 13 | A | Variant A |
+| 14 | B | Interrupt signal (Ctrl+C) |
+| 15 | C | Create GUI for every program |
 
 ---
 
 ## Scoring Guide
 
-- **13-15 correct**: Excellent! You understand Unix approach in Python 🏆
-- **10-12 correct**: Good! Minor gaps remain 👍
-- **7-9 correct**: Not bad, need more practice 📚
-- **Below 7**: Re-read the lecture and do homework 💪
+Count your correct answers:
 
-**Tip:** The best way to learn is to write code! Create your own utilities and use them in daily work.
+| Result | Grade | Recommendations |
+|-----------|--------|--------------|
+| **13-15 correct (87-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **10-12 correct (67-80%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **7-9 correct (47-60%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 7 correct (<47%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |
