@@ -1,68 +1,85 @@
-# Course Quality Analyzer
+# Course Quality Management Tool
 
-A simple toolkit for quickly identifying issues in educational courses.
+A unified toolkit for checking and fixing educational course quality issues.
 
 ## 🚀 Quick Start
 
-**Just want to check your courses? Run this:**
+**Just run this:**
 ```bash
-cd tools
-python check_courses.py
+python check_and_fix_courses.py
 ```
 
-This will analyze all courses and show you exactly what needs attention.
+This will automatically:
+1. ✅ Standardize quiz formats
+2. ⚖️ Balance answer distributions
+3. 🔤 Check language consistency
+4. 📊 Analyze course quality
 
 ## 📁 Files
 
-- `check_courses.py` - **Simple course checker** (just run this!)
-- `course_analyzer.py` - Main analysis engine
+- `check_and_fix_courses.py` - **Unified course checker & fixer** (main tool)
 - `data.py` - Course structure definitions
 - `metrics.py` - Analysis constants and thresholds
-- `README.md` - This documentation
 
-## 🎯 What You'll See
+## 🎯 What It Does
 
-The analyzer focuses on **practical issues** that need your attention:
+### Step 1: Quiz Format Standardization
+Converts all quiz files to uniform format:
+```markdown
+## Question 1: Short Title
 
-### ❌ Critical Issues
-- Missing mandatory files (lecture.md, quiz.md, etc.)
-- Wrong number of modules
+Question text here?
 
-### ⚠️ Files That Need Work  
-- Files that are too small (likely incomplete)
-- Missing expected files in modules
+A) First option
+B) Second option
+C) Third option
+D) Fourth option
+```
 
-### ✅ What's Working Well
-- Courses without major issues get a clean report
+### Step 2: Answer Distribution Balancing
+Ensures ~25% distribution for each answer letter (A, B, C, D) by swapping options.
+
+### Step 3: Language Check
+Detects Russian text in English courses (or vice versa).
+
+### Step 4: Quality Analysis
+Reports:
+- ❌ Critical issues (missing files, wrong module count)
+- ⚠️ Warnings (small files, too few questions)
+- 📊 Quality scores per course
 
 ## 📊 Usage Options
 
-### Quick Check (Recommended)
+### Standard Run (Recommended)
 ```bash
-python check_courses.py
+python check_and_fix_courses.py
 ```
 
-### Advanced Options
+### Verbose Mode
 ```bash
-# Summary only (just scores, no details)
-python course_analyzer.py --summary
-
-# Check specific course
-python course_analyzer.py --course Linux
-
-# Check different folder
-python course_analyzer.py --courses-dir /path/to/courses
+python check_and_fix_courses.py -v
 ```
 
-## 🔧 Course Structure Expected
+### Dry Run (Preview Only)
+```bash
+python check_and_fix_courses.py --dry-run
+```
 
-**DataFundamentals (12 modules):** `lecture.md`, `quiz.md`  
-**Linux (14 modules):** `lecture.md`, `hw.md`, `links.md`, `quiz.md`  
-**Python (11 modules):** `lecture.md`, `hw.md`, `links.md`, `quiz.md`
+### Help
+```bash
+python check_and_fix_courses.py help
+```
+
+## 🔧 Course Structure
+
+Course structures are defined in `data.py`. Run the tool to see current configuration:
+```bash
+python check_and_fix_courses.py help
+```
 
 ## ⚙️ Customization
 
-Edit `data.py` to add new courses or change expected files:
+Edit `data.py` to add new courses:
 ```python
 COURSE_STRUCTURES['YourCourse'] = {
     'files': ['lecture.md', 'exercise.md'],
@@ -71,28 +88,32 @@ COURSE_STRUCTURES['YourCourse'] = {
 }
 ```
 
-Edit `metrics.py` to adjust file size thresholds and quality indicators.
+Edit `metrics.py` to adjust thresholds.
 
 ## 🎯 File Size Guidelines
 
-- **lecture.md**: min 2KB (recommended 8KB+)
-- **hw.md**: min 800 bytes (recommended 2KB+)
-- **links.md**: min 300 bytes (recommended 1KB+)
-- **quiz.md**: min 500 bytes (recommended 1.5KB+)
+| File | Minimum | Recommended |
+|------|---------|-------------|
+| lecture.md | 2 KB | 8 KB+ |
+| hw.md | 800 B | 2 KB+ |
+| links.md | 300 B | 1 KB+ |
+| quiz.md | 500 B | 1.5 KB+ |
+
+## 📝 Quiz Requirements
+
+- **Minimum 15 questions** per quiz
+- **Balanced answers**: ~25% each for A, B, C, D
+- **Standard format**: `## Question N: Title`
 
 ## 🏆 Quality Scores
 
-- 🟢 **Excellent** (0.9+) - Ready to use
-- 🔵 **Good** (0.75+) - Minor tweaks needed  
-- 🟡 **Fair** (0.6+) - Some work required
-- 🔴 **Needs work** (<0.6) - Significant issues
-
-## 💡 Common Fixes
-
-**"Too small" files** → Add more content, examples, explanations  
-**Missing files** → Create the expected files for each module  
-**Module count mismatch** → Add missing modules or update expected count in `data.py`
+| Score | Grade | Status |
+|-------|-------|--------|
+| 0.9+ | 🟢 Excellent | Ready to use |
+| 0.75+ | 🔵 Good | Minor tweaks needed |
+| 0.6+ | 🟡 Fair | Some work required |
+| <0.6 | 🔴 Needs work | Significant issues |
 
 ---
 
-*Just run `python check_courses.py` and fix what it tells you! 🚀*
+*Just run `python check_and_fix_courses.py` and it handles everything! 🚀*

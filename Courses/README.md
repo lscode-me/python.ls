@@ -64,7 +64,7 @@ This curriculum is specifically designed for:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    Data Fundamentals (12 modules)                │
+│                    Data Fundamentals (12 modules)               │
 │  Encodings → File Formats → JSON/YAML → CSV → Compression       │
 └─────────────────┬───────────────────────────────────────────────┘
                   │
