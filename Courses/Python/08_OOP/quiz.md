@@ -456,46 +456,46 @@ D) To destroy objects when no longer needed
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | B | A class is a blueprint, an object is an instance of that class |
-| 2 | B | It's called when an object is created to initialize its attributes |
-| 3 | B | Class attributes are shared by all instances, instance attributes are unique |
-| 4 | C | Instance attributes → Class attributes → Parent class attributes |
-| 5 | C | It refers to the instance calling the method |
-| 6 | B | @classmethod |
-| 7 | C | They don't access instance or class data |
-| 8 | B | Create new classes based on existing ones |
-| 9 | C | A child class providing a new implementation of a parent class method |
+| 1 | D | A class is a blueprint, an object is an instance of that class |
+| 2 | A | It's called when an object is created to initialize its attributes |
+| 3 | D | Class attributes are shared by all instances, instance attributes are unique |
+| 4 | B | Instance attributes → Class attributes → Parent class attributes |
+| 5 | B | It refers to the instance calling the method |
+| 6 | A | @classmethod |
+| 7 | A | They don't access instance or class data |
+| 8 | D | Create new classes based on existing ones |
+| 9 | B | A child class providing a new implementation of a parent class method |
 | 10 | B | Allows you to call methods from the parent class |
 | 11 | A | Method Resolution Order (MRO) using C3 linearization |
-| 12 | B | The ability of different classes to be treated through a common interface |
-| 13 | B | It's a convention suggesting "internal use only" |
-| 14 | A | By prefixing the name with double underscores `__` |
-| 15 | B | Allows a method to be accessed like an attribute |
-| 16 | C | @<property_name>.setter |
+| 12 | A | The ability of different classes to be treated through a common interface |
+| 13 | C | It's a convention suggesting "internal use only" |
+| 14 | D | By prefixing the name with double underscores `__` |
+| 15 | C | Allows a method to be accessed like an attribute |
+| 16 | D | @<property_name>.setter |
 | 17 | B | `__str__` is for end users, `__repr__` is for developers/debugging |
-| 18 | C | `__eq__()` |
+| 18 | B | `__eq__()` |
 | 19 | B | When you want a "has-a" relationship and more flexibility |
-| 20 | B | Modules organize related functions/classes, classes create objects with state |
-| 21 | A | Define the `__call__` method |
-| 22 | B | `hasattr()` |
+| 20 | A | Modules organize related functions/classes, classes create objects with state |
+| 21 | C | Define the `__call__` method |
+| 22 | C | `hasattr()` |
 | 23 | B | The instance's attributes as a dictionary |
-| 24 | B | Only when an attribute is not found through normal lookup |
+| 24 | D | Only when an attribute is not found through normal lookup |
 | 25 | D | Python raises a TypeError |
-| 26 | B | `abc` |
-| 27 | B | A function that modifies or enhances another function or class |
-| 28 | B | Modify the entire class definition |
-| 29 | B | It automatically generates special methods like `__init__`, `__repr__`, `__eq__` |
+| 26 | C | `abc` |
+| 27 | C | A function that modifies or enhances another function or class |
+| 28 | C | Modify the entire class definition |
+| 29 | C | It automatically generates special methods like `__init__`, `__repr__`, `__eq__` |
 | 30 | B | They are immutable and can be accessed by name or index |
-| 31 | C | To restrict memory usage by preventing dynamic attribute creation |
-| 32 | B | `__get__`, `__set__`, `__delete__` |
-| 33 | C | `__enter__` and `__exit__` |
-| 34 | B | A class that provides specific functionality through multiple inheritance |
+| 31 | D | To restrict memory usage by preventing dynamic attribute creation |
+| 32 | A | `__get__`, `__set__`, `__delete__` |
+| 33 | A | `__enter__` and `__exit__` |
+| 34 | D | A class that provides specific functionality through multiple inheritance |
 | 35 | B | An interface defined by structure (duck typing) without explicit inheritance |
-| 36 | B | A class that controls the creation of other classes |
+| 36 | C | A class that controls the creation of other classes |
 | 37 | C | `__add__()` |
-| 38 | B | @contextmanager |
-| 39 | C | Both A and B |
-| 40 | A | To create objects without specifying their exact classes |
+| 38 | A | @contextmanager |
+| 39 | A | Both A and B |
+| 40 | D | To create objects without specifying their exact classes |
 
 ---
 

@@ -114,22 +114,82 @@ D) `Container`
 
 ---
 
+## Question 11: Hashable Protocol
+
+What method must be implemented for an object to be hashable?
+
+A) `__hash__()` only
+B) `__hash__()` and `__eq__()`
+C) `__id__()` and `__hash__()`
+D) `__key__()` only
+
+---
+
+## Question 12: Comparison Protocol
+
+Which methods are needed for full ordering comparison support?
+
+A) Only `__eq__()`
+B) `__lt__()` only with `@functools.total_ordering`
+C) All of `__lt__()`, `__le__()`, `__gt__()`, `__ge__()`, `__eq__()`
+D) Both B and C can work
+
+---
+
+## Question 13: Mapping Protocol
+
+Which method is NOT part of the mapping protocol?
+
+A) `__getitem__()`
+B) `__iter__()`
+C) `__len__()`
+D) `__append__()`
+
+---
+
+## Question 14: Runtime Checkable
+
+What decorator makes a `typing.Protocol` checkable with `isinstance()`?
+
+A) `@abstract`
+B) `@runtime_checkable`
+C) `@isinstance_enabled`
+D) `@type_check`
+
+---
+
+## Question 15: Numeric Protocol
+
+Which method is called for the `+` operator?
+
+A) `__plus__()`
+B) `__sum__()`
+C) `__add__()`
+D) `__concat__()`
+
+---
+
 ---
 
 ## Answer Key
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | B | If an object has the required methods, it can be used regardless of its type |
-| 2 | A | `__iter__()` and `__next__()` |
-| 3 | D | `__enter__()` and `__exit__()` |
-| 4 | D | `__append__()` |
-| 5 | C | Define a `__call__()` method |
-| 6 | B | It enables structural subtyping without explicit inheritance |
-| 7 | A | `abc` |
-| 8 | C | When there are no more items to return |
-| 9 | D | `__get__()` |
-| 10 | A | `Sequence` |
+| 1 | A | Duck typing means objects are used based on their methods, not their type |
+| 2 | C | `__iter__()` returns the iterator, `__next__()` returns next item |
+| 3 | A | `__enter__()` and `__exit__()` define context manager behavior |
+| 4 | C | `__append__()` is for mutable sequences, not the basic sequence protocol |
+| 5 | D | Define `__call__()` method to make instances callable |
+| 6 | D | Protocol enables structural subtyping without requiring inheritance |
+| 7 | A | The `abc` module provides abstract base class functionality |
+| 8 | C | `StopIteration` signals the iterator has no more items |
+| 9 | B | `__get__()` is called when accessing a descriptor attribute |
+| 10 | C | `Sequence` is read-only, `MutableSequence` allows modifications |
+| 11 | B | Both `__hash__()` and `__eq__()` are needed for hashable objects |
+| 12 | B | Either implement all comparison methods or use `@total_ordering` with `__lt__` and `__eq__` |
+| 13 | B | `__append__()` is not part of mapping protocol, it's for sequences |
+| 14 | A | `@runtime_checkable` enables `isinstance()` checks on Protocol classes |
+| 15 | D | `__add__()` is called for the + operator |
 
 ---
 

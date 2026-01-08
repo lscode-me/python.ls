@@ -147,25 +147,49 @@ D) Directory is shared across users
 
 ---
 
+## Question 14: I-node Link Count
+
+What happens to the file data when the i-node link count reaches zero?
+
+A) Data is immediately deleted from disk  
+B) Data blocks are marked as free and can be overwritten  
+C) Data is moved to trash  
+D) An error is raised  
+
+---
+
+## Question 15: File Descriptor Inheritance
+
+What happens to file descriptors when a process forks?
+
+A) Child process gets its own independent file descriptors  
+B) Child process inherits copies of parent's file descriptors  
+C) File descriptors are closed in the child  
+D) Only stdin, stdout, stderr are inherited  
+
+---
+
 ---
 
 ## Answer Key
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | B | File metadata and pointers to data blocks |
-| 2 | B | Both filenames point to the same i-node |
-| 3 | C | 2 |
-| 4 | C | Named pipe (FIFO) |
-| 5 | A | rwxr-xr-x |
-| 6 | C | Redirects stderr to stdout |
+| 1 | D | I-nodes store file metadata and pointers to data blocks |
+| 2 | A | Both filenames point to the same i-node |
+| 3 | A | File descriptor 2 is stderr |
+| 4 | C | 'p' indicates a named pipe (FIFO) |
+| 5 | A | 755 = rwxr-xr-x |
+| 6 | D | Redirects stderr to stdout |
 | 7 | B | Symlinks are a separate file with a path, hard links share the same i-node |
-| 8 | C | 644 |
-| 9 | B | Discarding unwanted output |
-| 10 | B | Allows the file to run with owner's permissions |
-| 11 | A | `exec 4> output.txt` opens file descriptor 4 for writing |
-| 12 | B | `/dev/zero` provides infinite null bytes, `/dev/urandom` provides pseudo-random data |
-| 13 | B | Setgid on directories makes new files inherit the directory's group (useful for shared directories) |
+| 8 | B | umask 022 subtracts from 666 for files = 644 |
+| 9 | C | /dev/null discards all data written to it |
+| 10 | C | Setuid allows file to run with owner's permissions |
+| 11 | D | `exec 4> output.txt` opens file descriptor 4 for writing |
+| 12 | B | /dev/zero provides null bytes, /dev/urandom provides pseudo-random data |
+| 13 | A | Setgid on directories makes new files inherit the directory's group |
+| 14 | B | When link count reaches 0, data blocks are marked free for reuse |
+| 15 | C | Child processes inherit copies of parent's file descriptors |
 
 ---
 
@@ -175,7 +199,7 @@ Count your correct answers:
 
 | Result | Grade | Recommendations |
 |-----------|--------|--------------|
-| **11-13 correct (85-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
-| **9-10 correct (69-77%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
-| **6-8 correct (46-62%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
-| **Less than 6 correct (<46%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |
+| **13-15 correct (87-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **10-12 correct (67-80%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **7-9 correct (47-60%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 7 correct (<47%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

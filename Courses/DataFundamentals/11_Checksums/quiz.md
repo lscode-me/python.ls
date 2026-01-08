@@ -290,26 +290,26 @@ D) hashlib.new('sha512')
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | C | Hash transforms input of any size into fixed-length string (fingerprint). |
-| 2 | C | MD5 = 128 bits = 32 hex characters. |
-| 3 | D | SHA-256 = 256 bits = 64 hex characters. |
+| 1 | A | Hash transforms input of any size into fixed-length string (fingerprint). |
+| 2 | A | MD5 = 128 bits = 32 hex characters. |
+| 3 | C | SHA-256 = 256 bits = 64 hex characters. |
 | 4 | A | Practical collisions found for MD5, cryptographically insecure. |
-| 5 | B | `sha256sum` — standard command in Linux. |
-| 6 | C | `-c` (check) verifies files against hash list. |
-| 7 | B | Hash — one-way function, cannot recover input. |
-| 8 | D | Changing one bit of input changes ~50% of hash bits. |
-| 9 | B | Collision — when different inputs produce same hash. |
-| 10 | A | Need `.encode()` to convert str to bytes. |
-| 11 | C | Chunk reading allows hashing files larger than RAM. |
-| 12 | D | Git uses SHA-1 (migration to SHA-256 planned). |
-| 13 | C | bcrypt/argon2 specifically designed for passwords (slow, with salt). |
-| 14 | D | On macOS, use `shasum -a 256`. |
-| 15 | D | Without `-n`, echo adds `\n`, changing the hash. |
+| 5 | A | `sha256sum` — standard command in Linux. |
+| 6 | B | `-c` (check) verifies files against hash list. |
+| 7 | D | Hash — one-way function, cannot recover input. |
+| 8 | C | Changing one bit of input changes ~50% of hash bits. |
+| 9 | C | Collision — when different inputs produce same hash. |
+| 10 | D | Need `.encode()` to convert str to bytes. |
+| 11 | D | Chunk reading allows hashing files larger than RAM. |
+| 12 | B | Git uses SHA-1 (migration to SHA-256 planned). |
+| 13 | D | bcrypt/argon2 specifically designed for passwords (slow, with salt). |
+| 14 | A | On macOS, use `shasum -a 256`. |
+| 15 | C | Without `-n`, echo adds `\n`, changing the hash. |
 | 16 | B | SHA-512 = 512 bits = 128 hex characters. |
-| 17 | C | BLAKE3 very fast while cryptographically strong. |
+| 17 | B | BLAKE3 very fast while cryptographically strong. |
 | 18 | D | Identical hash = identical file contents. |
-| 19 | B | Hash irreversible and no key; encryption reversible with key. |
-| 20 | D | `hashlib.new('algorithm')` creates object for any algorithm. |
+| 19 | C | Hash irreversible and no key; encryption reversible with key. |
+| 20 | B | `hashlib.new('algorithm')` creates object for any algorithm. |
 
 ---
 

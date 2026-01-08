@@ -459,35 +459,35 @@ D) It supports comments
 | # | Answer | Explanation |
 |---|--------|-------------|
 | 1 | D | JSON supports 6 types: string, number, boolean, null, array, object. |
-| 2 | A | JSON uses only double quotes for strings. |
+| 2 | C | JSON uses only double quotes for strings. |
 | 3 | B | Standard JSON does not support comments. JSONC and JSON5 do. |
-| 4 | D | Trailing comma and unquoted keys are invalid in JSON. |
+| 4 | C | Trailing comma and unquoted keys are invalid in JSON. |
 | 5 | B | Hexadecimal numbers (`0xFF`) are not supported in JSON. |
-| 6 | D | Null is written in lowercase: `null` (not NULL, not None). |
-| 7 | C | Object keys ALWAYS in double quotes: `"name"`. |
-| 8 | A | `jq .` formats and validates JSON. |
+| 6 | C | Null is written in lowercase: `null` (not NULL, not None). |
+| 7 | B | Object keys ALWAYS in double quotes: `"name"`. |
+| 8 | B | `jq .` formats and validates JSON. |
 | 9 | D | `.name` — jq syntax for accessing a field. |
 | 10 | A | `-r` (raw output) prints strings without quotes. |
-| 11 | B | `json.dumps()` — dump string, converts to string. |
-| 12 | C | `json.load(file)` reads from file object. `loads()` — from string. |
+| 11 | A | `json.dumps()` — dump string, converts to string. |
+| 12 | A | `json.load(file)` reads from file object. `loads()` — from string. |
 | 13 | D | `\n` — escape sequence for newline. |
-| 14 | C | JSON uses lowercase `true` and `false` (not Python True/False). |
-| 15 | B | Trailing comma in arrays is invalid in JSON. |
-| 16 | B | JSON Schema describes structure for validating JSON documents. |
-| 17 | B | ISO 8601 (`2024-01-15T10:30:00Z`) — standard date format. |
-| 18 | D | Per RFC 8259, JSON must be in UTF-8 (without BOM). |
+| 14 | D | JSON uses lowercase `true` and `false` (not Python True/False). |
+| 15 | C | Trailing comma in arrays is invalid in JSON. |
+| 16 | A | JSON Schema describes structure for validating JSON documents. |
+| 17 | C | ISO 8601 (`2024-01-15T10:30:00Z`) — standard date format. |
+| 18 | B | Per RFC 8259, JSON must be in UTF-8 (without BOM). |
 | 19 | C | `select(.condition)` filters elements in jq. |
-| 20 | A | JSON Lines — format where each line is a separate JSON object. |
+| 20 | B | JSON Lines — format where each line is a separate JSON object. |
 | 21 | B | 🧬 Correct: double quotes, no trailing comma. |
 | 22 | B | 🧬 Sample IDs should be strings to preserve leading zeros and format. |
 | 23 | A | 🧬 Array of numbers is correct for quality scores. |
 | 24 | A | 🧬 `select()` with equality condition filters variants. |
-| 25 | B | 🧬 Correct: use file handle with `json.dump()`. |
-| 26 | B | 🧬 UTF-8 encoding in JSON handles special characters naturally. |
-| 27 | B | 🧬 Use `null` when data is unavailable; 0 means zero coverage (different meaning). |
-| 28 | B | 🧬 Extract coverage values into array, sum, and divide by length. |
-| 29 | C | 🧬 ISO 8601 format is standard for timestamps. |
-| 30 | B | 🧬 JSON Lines allows streaming/line-by-line processing for large datasets. |
+| 25 | A | 🧬 Correct: use file handle with `json.dump()`. |
+| 26 | D | 🧬 UTF-8 encoding in JSON handles special characters naturally. |
+| 27 | D | 🧬 Use `null` when data is unavailable; 0 means zero coverage (different meaning). |
+| 28 | D | 🧬 Extract coverage values into array, sum, and divide by length. |
+| 29 | A | 🧬 ISO 8601 format is standard for timestamps. |
+| 30 | C | 🧬 JSON Lines allows streaming/line-by-line processing for large datasets. |
 
 ---
 

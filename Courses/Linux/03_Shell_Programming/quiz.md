@@ -147,25 +147,49 @@ D) Searches for "old" in text
 
 ---
 
+## Question 14: Conditional Expressions
+
+What does `[[ -z "$var" ]]` test?
+
+A) If var is set  
+B) If var is empty or unset  
+C) If var is zero  
+D) If var is a file  
+
+---
+
+## Question 15: Here Documents
+
+What does `cat <<EOF ... EOF` do?
+
+A) Reads from a file named EOF  
+B) Provides multi-line input to the command  
+C) Appends to a file  
+D) Creates a named pipe  
+
+---
+
 ---
 
 ## Answer Key
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | B | $(command) |
-| 2 | B | Splits input by comma into three variables |
-| 3 | C | `${#arr[@]}` |
-| 4 | A | Extracts substring starting at position 5, length 10 |
-| 5 | B | Exits on error, undefined variables, and pipe failures |
-| 6 | C | 0 |
-| 7 | B | A temporary named pipe for command output |
-| 8 | C | `$((5 + 3))` |
-| 9 | B | `$1` |
-| 10 | B | Limits variable scope to the function |
-| 11 | B | Uses "default" value if var is unset or empty (doesn't modify var) |
-| 12 | C | Reads lines from file into array variable, `-t` removes trailing newlines |
-| 13 | B | `//` replaces all occurrences (single `/` replaces only first) |
+| 1 | C | $(command) is the modern, POSIX-compliant syntax |
+| 2 | C | IFS=',' sets the delimiter for read command |
+| 3 | B | `${#arr[@]}` gives the count of array elements |
+| 4 | C | Extracts substring starting at position 5, length 10 |
+| 5 | A | set -euo pipefail: exit on error, undefined vars, and pipe failures |
+| 6 | B | Exit code 0 indicates success |
+| 7 | C | Process substitution creates a temporary named pipe |
+| 8 | D | `$((expression))` is arithmetic expansion |
+| 9 | A | `$1` is the first positional parameter |
+| 10 | D | `local` limits variable scope to the function |
+| 11 | B | Returns "default" if var is unset/empty, doesn't modify var |
+| 12 | B | mapfile reads lines into an array, -t strips newlines |
+| 13 | A | `//` replaces all occurrences (single `/` replaces only first) |
+| 14 | A | `-z` tests if the string is empty or variable is unset |
+| 15 | D | Here documents provide multi-line input to commands |
 
 ---
 
@@ -175,7 +199,7 @@ Count your correct answers:
 
 | Result | Grade | Recommendations |
 |-----------|--------|--------------|
-| **11-13 correct (85-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
-| **9-10 correct (69-77%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
-| **6-8 correct (46-62%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
-| **Less than 6 correct (<46%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |
+| **13-15 correct (87-100%)** | 🏆 Excellent! | You have mastered the material excellently. Proceed to the next module. |
+| **10-12 correct (67-80%)** | ✅ Good | Good result! Review the topics where you made mistakes. |
+| **7-9 correct (47-60%)** | ⚠️ Satisfactory | It is recommended to re-read the corresponding lecture sections. |
+| **Less than 7 correct (<47%)** | 📚 Needs Review | Carefully re-read the lecture and try again. |

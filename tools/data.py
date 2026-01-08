@@ -2,10 +2,17 @@
 Course structure definitions and expected data
 """
 
+# Quiz balance configuration
+QUIZ_BALANCE_CONFIG = {
+    'max_deviation_percent': 7.0,  # Maximum allowed deviation from 25% per answer choice
+    'max_shuffle_attempts': 100,   # Maximum attempts to achieve balance
+    'target_distribution': 25.0    # Target percentage for each answer choice (A, B, C, D)
+}
+
 # Expected files for each course type
 COURSE_STRUCTURES = {
     'DataFundamentals': {
-        'files': ['lecture.md', 'quiz.md'],
+        'files': ['lecture.md', 'hw.md', 'links.md', 'quiz.md'],
         'module_count': 12,
         'description': 'Data Fundamentals for Life Sciences'
     },

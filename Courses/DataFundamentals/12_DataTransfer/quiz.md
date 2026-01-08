@@ -291,25 +291,25 @@ D) Parses query string into dictionary
 | # | Answer | Explanation |
 |---|--------|-------------|
 | 1 | C | Base64 transforms binary data into ASCII text for transmission. |
-| 2 | D | Base64 uses 64 characters: A-Z, a-z, 0-9, +, /. |
-| 3 | C | 3 bytes → 4 characters, approximately 33% increase. |
-| 4 | D | `=` — padding to make length multiple of 4. |
+| 2 | C | Base64 uses 64 characters: A-Z, a-z, 0-9, +, /. |
+| 3 | D | 3 bytes → 4 characters, approximately 33% increase. |
+| 4 | A | `=` — padding to make length multiple of 4. |
 | 5 | C | Space → `%20` or `+` (in query string). |
-| 6 | A | URL-safe Base64 uses `-` and `_` instead of `+` and `/`. |
+| 6 | B | URL-safe Base64 uses `-` and `_` instead of `+` and `/`. |
 | 7 | A | `b64encode` takes bytes, needs `.encode()`. |
 | 8 | B | `urllib.parse.urlencode()` encodes dictionary to query string. |
 | 9 | D | Correct MIME type: `application/json`. |
-| 10 | C | Data URL: `data:mime/type;base64,<data>`. |
+| 10 | A | Data URL: `data:mime/type;base64,<data>`. |
 | 11 | D | Parameter `charset=utf-8` specifies encoding. |
-| 12 | B | `&` = `%26` (26 hex = 38 dec = ASCII `&`). |
-| 13 | D | JWT uses Base64 URL-safe without padding. |
+| 12 | A | `&` = `%26` (26 hex = 38 dec = ASCII `&`). |
+| 13 | C | JWT uses Base64 URL-safe without padding. |
 | 14 | A | multipart/form-data used for file uploads in HTML forms. |
-| 15 | A | Base64 — encoding, not encryption. Anyone can decode. |
-| 16 | B | Base32 uses A-Z (26) + 2-7 (6) = 32 characters. |
-| 17 | C | `quote()` encodes string, `unquote()` decodes. |
+| 15 | B | Base64 — encoding, not encryption. Anyone can decode. |
+| 16 | D | Base32 uses A-Z (26) + 2-7 (6) = 32 characters. |
+| 17 | B | `quote()` encodes string, `unquote()` decodes. |
 | 18 | D | `inline` — display in browser, `attachment` — download. |
-| 19 | A | boundary separates different form parts (fields, files). |
-| 20 | D | `parse_qs()` parses query string into dictionary of lists. |
+| 19 | C | boundary separates different form parts (fields, files). |
+| 20 | B | `parse_qs()` parses query string into dictionary of lists. |
 
 ---
 

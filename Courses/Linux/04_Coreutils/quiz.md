@@ -47,47 +47,129 @@ D) `sed 's/[a-z]/[A-Z]/g'`
 ---
    - D) `awk '{print toupper($0)}'`
 
-4. What does `sort -t',' -k3,3nr data.csv` do?
-   - A) Sorts by 3rd column alphabetically
-   - B) Sorts by 3rd column numerically in ascending order
-   - C) Sorts by 3rd column numerically in descending order
-   - D) Sorts by 3rd character of each line
+## Question 4: What does do
 
-5. Why must you run `sort` before `uniq`?
-   - A) To make `uniq` run faster
-   - B) Because `uniq` only removes adjacent duplicate lines
-   - C) Because `sort` is required by `uniq` syntax
-   - D) To ensure alphabetical order
+What does `sort -t',' -k3,3nr data.csv` do?
 
-6. Which command splits a file into 1000-line chunks with numeric suffixes?
-   - A) `split -l 1000 file.txt`
-   - B) `split -l 1000 -d file.txt chunk_`
-   - C) `split -n 1000 file.txt`
-   - D) `csplit -l 1000 file.txt`
+A) Sorts by 3rd column alphabetically
+B) Sorts by 3rd column numerically in ascending order
+C) Sorts by 3rd column numerically in descending order
+D) Sorts by 3rd character of each line
 
-7. What does `pv large.csv | gzip > large.csv.gz` do?
-   - A) Compresses the file
-   - B) Compresses the file and shows progress
-   - C) Views the file and compresses it
-   - D) Pipes file through gzip with verification
 
-8. Which command shows only duplicate lines (those that appear more than once)?
-   - A) `sort file.txt | uniq`
-   - B) `sort file.txt | uniq -u`
-   - C) `sort file.txt | uniq -d`
-   - D) `sort file.txt | uniq -c | grep -v ' 1 '`
+## Question 5: Why must you run before
 
-9. What does `stdbuf -oL grep ERROR app.log` do?
-   - A) Buffers output for better performance
-   - B) Uses line-buffered output for real-time visibility
-   - C) Limits output to L lines
-   - D) Logs errors to a buffer file
+Why must you run `sort` before `uniq`?
 
-10. Which command counts the frequency of each line and shows the top 5?
-    - A) `sort file.txt | uniq | head -5`
-    - B) `sort file.txt | uniq -c | head -5`
-    - C) `sort file.txt | uniq -c | sort -rn | head -5`
-    - D) `uniq -c file.txt | sort -rn | head -5`
+A) To make `uniq` run faster
+B) Because `uniq` only removes adjacent duplicate lines
+C) Because `sort` is required by `uniq` syntax
+D) To ensure alphabetical order
+
+
+## Question 6: Which command splits a file
+
+Which command splits a file into 1000-line chunks with numeric suffixes?
+
+A) `split -l 1000 file.txt`
+B) `split -l 1000 -d file.txt chunk_`
+C) `split -n 1000 file.txt`
+D) `csplit -l 1000 file.txt`
+
+
+## Question 7: What does do
+
+What does `pv large.csv | gzip > large.csv.gz` do?
+
+A) Compresses the file
+B) Compresses the file and shows progress
+C) Views the file and compresses it
+D) Pipes file through gzip with verification
+
+
+## Question 8: Which command shows only duplicate
+
+Which command shows only duplicate lines (those that appear more than once)?
+
+A) `sort file.txt | uniq`
+B) `sort file.txt | uniq -u`
+C) `sort file.txt | uniq -d`
+D) `sort file.txt | uniq -c | grep -v ' 1 '`
+
+
+## Question 9: What does do
+
+What does `stdbuf -oL grep ERROR app.log` do?
+
+A) Buffers output for better performance
+B) Uses line-buffered output for real-time visibility
+C) Limits output to L lines
+D) Logs errors to a buffer file
+
+
+## Question 10: Which command counts the frequency
+
+Which command counts the frequency of each line and shows the top 5?
+
+A) `sort file.txt | uniq | head -5`
+B) `sort file.txt | uniq -c | head -5`
+C) `sort file.txt | uniq -c | sort -rn | head -5`
+D) `uniq -c file.txt | sort -rn | head -5`
+
+---
+
+## Question 11: Cut Complement
+
+What does `cut -d',' --complement -f1 file.csv` do?
+
+A) Extracts only the first column
+B) Extracts all columns except the first
+C) Counts the number of columns
+D) Removes all commas from the file
+
+---
+
+## Question 12: Split by Size
+
+Which command splits a file into 100MB chunks?
+
+A) `split -l 100 file.txt`
+B) `split -b 100M file.txt part_`
+C) `split -n 100 file.txt`
+D) `split --size=100MB file.txt`
+
+---
+
+## Question 13: TR Delete
+
+What does `tr -d '[:digit:]'` do?
+
+A) Translates digits to letters
+B) Removes all digits from input
+C) Duplicates all digits
+D) Counts all digits
+
+---
+
+## Question 14: Serial Paste
+
+What does `paste -s -d',' file.txt` do?
+
+A) Sorts and pastes file content
+B) Converts all rows into a single comma-separated line
+C) Pastes content into system clipboard
+D) Serializes file content to JSON
+
+---
+
+## Question 15: Parallel Sort
+
+What does `sort --parallel=4 -S 2G huge.txt` do?
+
+A) Sorts 4 files in parallel with 2GB output
+B) Sorts using 4 CPU cores and 2GB memory buffer
+C) Splits file into 4 parts of 2GB each
+D) Creates 4 sorted copies of the file
 
 ---
 
@@ -97,16 +179,21 @@ D) `sed 's/[a-z]/[A-Z]/g'`
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | D | Both formats work: `cut -f2,4` and awk |
-| 2 | B | `paste` merges files horizontally with delimiter |
-| 3 | C | Both `a-z` → `A-Z` and character classes work |
+| 1 | D | Both `cut -f2,4` and awk can extract specific columns |
+| 2 | A | `paste` merges files horizontally line-by-line with the specified delimiter |
+| 3 | C | Both `tr 'a-z' 'A-Z'` and `tr '[:lower:]' '[:upper:]'` convert to uppercase |
 | 4 | C | `-k3,3nr` sorts by 3rd column numerically in reverse (descending) order |
-| 5 | B | `uniq` only removes adjacent duplicate lines, so data must be sorted first |
-| 6 | B | `-l 1000` sets line count, `-d` uses numeric suffixes, and prefix is specified |
-| 7 | B | `pv` (pipe viewer) shows progress while passing data through |
-| 8 | C | `uniq -d` shows only duplicated lines (those appearing more than once) |
+| 5 | A | `uniq` only removes adjacent duplicate lines, so data must be sorted first |
+| 6 | B | `-l 1000` sets line count, `-d` uses numeric suffixes, prefix is specified |
+| 7 | A | `pv` (pipe viewer) shows progress while passing data through to gzip |
+| 8 | D | `uniq -d` shows only duplicated lines (those appearing more than once) |
 | 9 | B | `stdbuf -oL` sets stdout to line-buffered mode for real-time output |
 | 10 | C | Must count with `uniq -c`, sort by count descending, then take top 5 |
+| 11 | B | `--complement` inverts selection, extracting all columns except specified |
+| 12 | D | `-b 100M` splits by size (100 megabytes) with specified prefix |
+| 13 | C | `tr -d` deletes characters matching the specified class (digits) |
+| 14 | B | `-s` serial mode joins all lines into one, `-d','` uses comma separator |
+| 15 | A | `--parallel=4` uses 4 cores, `-S 2G` sets 2GB memory buffer for sorting |
 
 ---
 

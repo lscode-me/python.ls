@@ -285,31 +285,31 @@ D) `"Value: " + str(x)`
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | D | Performance is better than readability (this is NOT in the Zen of Python) |
-| 2 | A | `squares = [x**2 for x in range(10)]` |
-| 3 | C | Easier to Ask for Forgiveness than Permission |
-| 4 | D | `for i, item in enumerate(items): print(i, item)` |
-| 5 | B | `f"Hello, {name}"` |
-| 6 | B | For any resource that needs setup and cleanup |
+| 1 | B | Performance is better than readability (this is NOT in the Zen of Python) |
+| 2 | B | `squares = [x**2 for x in range(10)]` |
+| 3 | A | Easier to Ask for Forgiveness than Permission |
+| 4 | B | `for i, item in enumerate(items): print(i, item)` |
+| 5 | C | `f"Hello, {name}"` |
+| 6 | D | For any resource that needs setup and cleanup |
 | 7 | A | `a=1, b=[2, 3, 4], c=5` |
-| 8 | C | `value = d.get(key, default)` |
-| 9 | D | `if 1 <= x <= 10:` |
-| 10 | A | `False` |
-| 11 | B | Generators use less memory (lazy evaluation) |
-| 12 | B | `{'b': 4}` |
-| 13 | C | Just use `for item in items:` without type checking |
+| 8 | A | `value = d.get(key, default)` |
+| 9 | C | `if 1 <= x <= 10:` |
+| 10 | C | `False` |
+| 11 | D | Generators use less memory (lazy evaluation) |
+| 12 | C | `{'b': 4}` |
+| 13 | A | Just use `for item in items:` without type checking |
 | 14 | A | `[2, 3, 4]` |
-| 15 | B | `a, b = b, a` |
-| 16 | B | `Counter` |
-| 17 | B | File is automatically closed |
+| 15 | A | `a, b = b, a` |
+| 16 | D | `Counter` |
+| 17 | A | File is automatically closed |
 | 18 | C | `x=42` |
-| 19 | A | `if x >= 0 and x < 100:` |
-| 20 | B | `[(1, 'a'), (2, 'b'), (3, 'c')]` |
+| 19 | B | `if x >= 0 and x < 100:` |
+| 20 | D | `[(1, 'a'), (2, 'b'), (3, 'c')]` |
 | 21 | B | `yield` creates a generator that produces values lazily |
-| 22 | D | Both B and C (though B is more explicit) |
-| 23 | B | `[(1, 'a'), (2, 'b'), (3, 'c')]` |
-| 24 | C | Creates the key with an empty list `[]` |
-| 25 | C | `f"Value: {x}"` |
+| 22 | B | Both B and C (though B is more explicit) |
+| 23 | C | `[(1, 'a'), (2, 'b'), (3, 'c')]` |
+| 24 | D | Creates the key with an empty list `[]` |
+| 25 | D | `f"Value: {x}"` |
 
 ---
 

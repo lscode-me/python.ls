@@ -53,19 +53,19 @@ QUALITY_INDICATORS = {
 
 # Score weights for overall course evaluation
 SCORE_WEIGHTS = {
-    'structure_completeness': 0.3,  # Structural completeness
-    'content_quality': 0.25,        # Content quality
-    'file_sizes': 0.2,              # File sizes
+    'structure_completeness': 0.25,  # Structural completeness
+    'content_quality': 0.20,        # Content quality
+    'quiz_quality': 0.25,           # Quiz answer quality (CRITICAL)
     'module_balance': 0.15,         # Module balance
-    'readme_quality': 0.1           # README quality
+    'readme_quality': 0.15          # README quality
 }
 
 # Score thresholds for report color coding
 SCORE_THRESHOLDS = {
-    'excellent': 0.9,  # Excellent course
-    'good': 0.75,      # Good course
-    'fair': 0.6,       # Fair course
-    'poor': 0.4        # Needs improvement
+    'excellent': 0.90,  # Excellent course
+    'good': 0.80,       # Good course
+    'fair': 0.65,       # Fair course
+    'poor': 0.40        # Needs improvement
 }
 
 # Validation patterns for README files
