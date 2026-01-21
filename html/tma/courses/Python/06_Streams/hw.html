@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Input/Output Streams in Python: The Unix Approach">
+    <title>HW: Input/Output Streams in Python | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Input/Output Streams in Python</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Python for Life Science Developers</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 6 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="inputoutput-streams-in-python-homework">Input/Output Streams in Python - Homework</h1>
+<h2 id="exercise-1-basic-filter">Exercise 1: Basic Filter ⭐</h2>
+<p>Create a program <code>uppercase.py</code> that reads text from stdin and outputs it in UPPERCASE.</p>
+<p><strong>Requirements:</strong>
+- Read line by line from stdin
+- Output to stdout
+- Handle both English and non-English text</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash">echo &quot;hello world&quot; | python uppercase.py
+# HELLO WORLD
+
+cat file.txt | python uppercase.py
+</code></pre>
+
+<details>
+<summary>Hint</summary>
+
+
+<pre class="highlight"><code class="language-python">import sys
+
+for line in sys.stdin:
+    print(line.rstrip().upper())
+</code></pre>
+
+
+</details>
+
+<hr />
+<h2 id="exercise-2-filter-with-arguments">Exercise 2: Filter with Arguments ⭐⭐</h2>
+<p>Create a program <code>filter_lines.py</code> that filters lines by pattern.</p>
+<p><strong>Requirements:</strong>
+- First argument — search pattern
+- Option <code>-i</code> or <code>--ignore-case</code> — ignore case
+- Option <code>-v</code> or <code>--invert</code> — show lines WITHOUT the pattern
+- Option <code>-n</code> or <code>--line-number</code> — show line numbers</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># Find lines containing &quot;error&quot;
+cat app.log | python filter_lines.py error
+
+# Ignore case
+cat app.log | python filter_lines.py -i ERROR
+
+# Show lines WITHOUT &quot;test&quot;
+cat data.txt | python filter_lines.py -v test
+
+# With line numbers
+cat file.txt | python filter_lines.py -n python
+</code></pre>
+
+<details>
+<summary>Hint</summary>
+
+Use `argparse` for argument parsing:
+
+
+<pre class="highlight"><code class="language-python">import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('pattern')
+parser.add_argument('-i', '--ignore-case', action='store_true')
+parser.add_argument('-v', '--invert', action='store_true')
+parser.add_argument('-n', '--line-number', action='store_true')
+args = parser.parse_args()
+</code></pre>
+
+
+</details>
+
+<hr />
+<h2 id="exercise-3-text-statistics">Exercise 3: Text Statistics ⭐⭐</h2>
+<p>Create a program <code>textstats.py</code> that analyzes text.</p>
+<p><strong>Requirements:</strong>
+- Count lines, words, characters
+- Option <code>-l</code> — only lines
+- Option <code>-w</code> — only words<br />
+- Option <code>-c</code> — only characters
+- Without options — show all
+- Work with files and stdin</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># From stdin
+cat file.txt | python textstats.py
+#      42     256    1844
+
+# From file
+python textstats.py file.txt
+#      42     256    1844  file.txt
+
+# Only line count
+cat file.txt | python textstats.py -l
+#      42
+
+# Multiple files
+python textstats.py file1.txt file2.txt file3.txt
+#      42     256    1844  file1.txt
+#      15      89     512  file2.txt
+#      28     178     987  file3.txt
+#      85     523    3343  total
+</code></pre>
+
+<hr />
+<h2 id="exercise-4-csv-filter">Exercise 4: CSV Filter ⭐⭐⭐</h2>
+<p>Create a program <code>csvfilter.py</code> for working with CSV files.</p>
+<p><strong>Requirements:</strong>
+- Option <code>-c COLUMN</code> — column number or name for filtering
+- Option <code>-v VALUE</code> — value to filter by
+- Option <code>-d DELIMITER</code> — delimiter (default <code>,</code>)
+- Show header if present
+- Filter rows where specified column equals value</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># users.csv:
+# name,age,city
+# Alice,25,Moscow
+# Bob,30,London
+# Charlie,25,Paris
+
+# Filter by age
+cat users.csv | python csvfilter.py -c age -v 25
+# name,age,city
+# Alice,25,Moscow
+# Charlie,25,Paris
+
+# Filter by column name
+cat users.csv | python csvfilter.py -c city -v Moscow
+# name,age,city
+# Alice,25,Moscow
+
+# With different delimiter
+cat data.tsv | python csvfilter.py -d $'\t' -c 2 -v value
+</code></pre>
+
+<details>
+<summary>Hint</summary>
+
+Use the `csv` module:
+
+
+<pre class="highlight"><code class="language-python">import csv
+import sys
+
+reader = csv.DictReader(sys.stdin, delimiter=delimiter)
+writer = csv.DictWriter(sys.stdout, fieldnames=reader.fieldnames)
+
+writer.writeheader()
+for row in reader:
+    if row[column] == value:
+        writer.writerow(row)
+</code></pre>
+
+
+</details>
+
+<hr />
+<h2 id="exercise-5-json-processor">Exercise 5: JSON Processor ⭐⭐⭐</h2>
+<p>Create a program <code>jsonfilter.py</code> for working with JSON Lines (JSONL).</p>
+<p><strong>Requirements:</strong>
+- Read JSONL from stdin (each line is a separate JSON object)
+- Option <code>-k KEY</code> — extract value by key
+- Option <code>-f FIELD=VALUE</code> — filter by field
+- Option <code>--pretty</code> — pretty print JSON</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># data.jsonl:
+# {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;Moscow&quot;}
+# {&quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: 30, &quot;city&quot;: &quot;London&quot;}
+# {&quot;name&quot;: &quot;Charlie&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;Paris&quot;}
+
+# Extract names
+cat data.jsonl | python jsonfilter.py -k name
+# Alice
+# Bob
+# Charlie
+
+# Filter by age
+cat data.jsonl | python jsonfilter.py -f age=25
+# {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;Moscow&quot;}
+# {&quot;name&quot;: &quot;Charlie&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;Paris&quot;}
+
+# Pretty print
+cat data.jsonl | python jsonfilter.py -f city=Moscow --pretty
+# {
+#   &quot;name&quot;: &quot;Alice&quot;,
+#   &quot;age&quot;: 25,
+#   &quot;city&quot;: &quot;Moscow&quot;
+# }
+</code></pre>
+
+<hr />
+<h2 id="exercise-6-data-aggregation">Exercise 6: Data Aggregation ⭐⭐⭐</h2>
+<p>Create a program <code>aggregate.py</code> for calculating field statistics.</p>
+<p><strong>Requirements:</strong>
+- Read CSV from stdin
+- Option <code>-g COLUMN</code> — group by column
+- Option <code>-a FUNC:COLUMN</code> — aggregate (count, sum, avg, min, max)
+- Support multiple aggregations</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># sales.csv:
+# product,quantity,price
+# Apple,10,50
+# Orange,5,30
+# Apple,15,50
+# Banana,8,20
+# Orange,10,30
+
+# Count by product
+cat sales.csv | python aggregate.py -g product -a count:product
+# product,count
+# Apple,2
+# Orange,2
+# Banana,1
+
+# Sum quantity by product
+cat sales.csv | python aggregate.py -g product -a sum:quantity
+# product,sum_quantity
+# Apple,25
+# Orange,15
+# Banana,8
+
+# Multiple aggregations
+cat sales.csv | python aggregate.py -g product -a sum:quantity -a avg:price
+# product,sum_quantity,avg_price
+# Apple,25,50.0
+# Orange,15,30.0
+# Banana,8,20.0
+</code></pre>
+
+<hr />
+<h2 id="exercise-7-log-analyzer">Exercise 7: Log Analyzer ⭐⭐⭐⭐</h2>
+<p>Create a program <code>loganalyzer.py</code> for web server log analysis.</p>
+<p><strong>Requirements:</strong>
+- Parse logs in Apache/Nginx format:
+  <code>127.0.0.1 - - [01/Jan/2024:12:00:00 +0000] "GET /api/users HTTP/1.1" 200 1234</code>
+- Option <code>--status CODE</code> — filter by HTTP status
+- Option <code>--method METHOD</code> — filter by HTTP method
+- Option <code>--stats</code> — show statistics
+- Option <code>--top N</code> — top N IP addresses</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># Only 404 errors
+cat access.log | python loganalyzer.py --status 404
+
+# Only POST requests
+cat access.log | python loganalyzer.py --method POST
+
+# Statistics
+cat access.log | python loganalyzer.py --stats
+# Total requests: 1000
+# Total bytes: 1234567
+# By status:
+#   200: 850
+#   404: 100
+#   500: 50
+# Top IPs:
+#   192.168.1.1: 250
+#   192.168.1.2: 180
+#   ...
+
+# Combined filters
+cat access.log | python loganalyzer.py --status 500 --top 5
+</code></pre>
+
+<details>
+<summary>Parsing hint</summary>
+
+
+<pre class="highlight"><code class="language-python">import re
+from collections import Counter
+
+pattern = r'(\S+) - - \[(.*?)\] &quot;(\S+) (\S+) (\S+)&quot; (\d+) (\d+)'
+
+for line in sys.stdin:
+    match = re.match(pattern, line)
+    if match:
+        ip = match.group(1)
+        timestamp = match.group(2)
+        method = match.group(3)
+        path = match.group(4)
+        status = int(match.group(6))
+        size = int(match.group(7))
+        # ...
+</code></pre>
+
+
+</details>
+
+<hr />
+<h2 id="exercise-8-pipeline-utility">Exercise 8: Pipeline Utility ⭐⭐⭐⭐</h2>
+<p>Create a program <code>pipeline.py</code> that runs multiple commands in a pipeline.</p>
+<p><strong>Requirements:</strong>
+- Accept commands as arguments (separated by <code>--</code>)
+- Connect them in a pipeline
+- Pass stdin to first command
+- Output result of last command to stdout</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># Equivalent to: cat file.txt | grep error | wc -l
+cat file.txt | python pipeline.py grep error -- wc -l
+
+# Equivalent to: ps aux | grep python | awk '{print $2}'
+ps aux | python pipeline.py grep python -- awk '{print $2}'
+</code></pre>
+
+<details>
+<summary>Hint</summary>
+
+
+<pre class="highlight"><code class="language-python">import subprocess
+import sys
+
+# Split arguments into separate commands
+commands = []
+current_cmd = []
+for arg in sys.argv[1:]:
+    if arg == '--':
+        commands.append(current_cmd)
+        current_cmd = []
+    else:
+        current_cmd.append(arg)
+if current_cmd:
+    commands.append(current_cmd)
+
+# Create pipeline
+processes = []
+stdin = sys.stdin
+
+for cmd in commands:
+    proc = subprocess.Popen(cmd, stdin=stdin, stdout=subprocess.PIPE)
+    processes.append(proc)
+    stdin = proc.stdout
+
+# Read final output
+for line in stdin:
+    sys.stdout.buffer.write(line)
+</code></pre>
+
+
+</details>
+
+<hr />
+<h2 id="exercise-9-progress-monitor">Exercise 9: Progress Monitor ⭐⭐⭐</h2>
+<p>Create a program <code>progress.py</code> that shows stream processing progress.</p>
+<p><strong>Requirements:</strong>
+- Pass data through unchanged
+- Show in stderr: number of processed lines and speed
+- Update every second
+- Option <code>--bytes</code> — count bytes instead of lines
+- Option <code>--quiet</code> — don't show progress</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash">cat huge_file.log | python progress.py | grep ERROR &gt; errors.txt
+# Progress in stderr:
+# Processed 10000 lines (15234 lines/sec)
+# Processed 20000 lines (16891 lines/sec)
+# ...
+# Total: 1000000 lines in 62.3 sec
+
+# With byte counting
+cat file.bin | python progress.py --bytes | gzip &gt; file.gz
+# Processed 1.2 MB (450 KB/sec)
+</code></pre>
+
+<hr />
+<h2 id="exercise-10-universal-converter">Exercise 10: Universal Converter ⭐⭐⭐⭐⭐</h2>
+<p>Create a program <code>convert.py</code> for converting between different formats.</p>
+<p><strong>Requirements:</strong>
+- Option <code>--from FORMAT</code> — input format (json, csv, tsv, jsonl)
+- Option <code>--to FORMAT</code> — output format (json, csv, tsv, jsonl)
+- Automatic structure detection
+- Preserve headers when converting</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># CSV to JSON
+cat data.csv | python convert.py --from csv --to json
+# [
+#   {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: &quot;25&quot;},
+#   {&quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: &quot;30&quot;}
+# ]
+
+# JSON to CSV
+cat data.json | python convert.py --from json --to csv
+# name,age
+# Alice,25
+# Bob,30
+
+# JSONL to TSV
+cat data.jsonl | python convert.py --from jsonl --to tsv
+# name  age
+# Alice 25
+# Bob   30
+
+# All together in pipeline
+cat data.csv | python convert.py --from csv --to jsonl | \
+  python jsonfilter.py -f age=25 | \
+  python convert.py --from jsonl --to csv
+</code></pre>
+
+<hr />
+<h2 id="bonus-exercise-create-your-own-utility">Bonus Exercise: Create Your Own Utility ⭐⭐⭐⭐⭐</h2>
+<p>Design and implement your own Unix utility in Python.</p>
+<p><strong>Ideas:</strong>
+- Markdown to HTML converter
+- Test data generator
+- Calculator in <code>bc</code> style
+- Simple SQL processor for CSV
+- Data visualizer in terminal (ASCII graphs)
+- Stream encryptor/decryptor
+- Programming language detector from code</p>
+<p><strong>Requirements:</strong>
+- Follow Unix philosophy
+- Work with stdin/stdout
+- Proper error handling
+- Documentation (help via <code>--help</code>)
+- Usage examples</p>
+<hr />
+<h2 id="testing-your-programs">Testing Your Programs</h2>
+<p>Create tests for your utilities:</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Tests for utilities&quot;&quot;&quot;
+import subprocess
+import sys
+
+def run_command(cmd, input_data):
+    &quot;&quot;&quot;Run command with input data&quot;&quot;&quot;
+    result = subprocess.run(
+        cmd,
+        input=input_data,
+        capture_output=True,
+        text=True,
+        shell=True
+    )
+    return result.stdout, result.stderr, result.returncode
+
+def test_uppercase():
+    &quot;&quot;&quot;Test for uppercase.py&quot;&quot;&quot;
+    output, _, code = run_command(
+        'python uppercase.py',
+        'hello world\n'
+    )
+    assert output == 'HELLO WORLD\n'
+    assert code == 0
+    print(&quot;✓ uppercase.py test passed&quot;)
+
+def test_filter_lines():
+    &quot;&quot;&quot;Test for filter_lines.py&quot;&quot;&quot;
+    input_data = &quot;line with error\nline without\nanother error\n&quot;
+    output, _, code = run_command(
+        'python filter_lines.py error',
+        input_data
+    )
+    assert 'line with error' in output
+    assert 'another error' in output
+    assert 'line without' not in output
+    assert code == 0
+    print(&quot;✓ filter_lines.py test passed&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    test_uppercase()
+    test_filter_lines()
+    print(&quot;\n✓ All tests passed!&quot;)
+</code></pre>
+
+<hr />
+<h2 id="grading-criteria">Grading Criteria</h2>
+<ul>
+<li>⭐ — Basic level (required)</li>
+<li>⭐⭐ — Intermediate level (recommended)</li>
+<li>⭐⭐⭐ — Advanced level (for deeper understanding)</li>
+<li>⭐⭐⭐⭐ — Expert level (for ambitious learners)</li>
+<li>⭐⭐⭐⭐⭐ — Master level (creative assignment)</li>
+</ul>
+<p><strong>What we're checking:</strong>
+1. Correct work with stdin/stdout/stderr
+2. Command-line argument handling
+3. Proper exit codes
+4. Error handling (BrokenPipeError, KeyboardInterrupt)
+5. Code readability and structure
+6. Documentation and usage examples</p>
+<p>Good luck! 🚀</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

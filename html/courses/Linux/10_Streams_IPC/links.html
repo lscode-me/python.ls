@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Additional resources for Streams, IPC &amp; Unix Sockets">
+    <title>Streams, IPC &amp; Unix Sockets - Resources | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Streams, IPC & Unix Sockets</a> &raquo;
+                    <span>Resources</span>
+                </nav>
+                <div class="lecture-content"><h1 id="streams-ipc-unix-sockets-resources">Streams, IPC &amp; Unix Sockets - Resources</h1>
+<h2 id="core-documentation-and-manuals">Core Documentation and Manuals</h2>
+<h3 id="system-programming-references">System Programming References</h3>
+<ul>
+<li><a href="https://man7.org/tlpi/">Linux Programming Interface</a> - Comprehensive guide to Linux/Unix system programming</li>
+<li><a href="https://www.apuebook.com/">Advanced Programming in the UNIX Environment</a> - Classic systems programming textbook</li>
+<li><a href="http://oreilly.com/catalog/9780596009588/">Linux System Programming</a> - Practical guide to Linux system calls</li>
+</ul>
+<h3 id="man-pages-essential-reading">Man Pages - Essential Reading</h3>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man3/mkfifo.3.html">mkfifo(3)</a> - Create named pipes (FIFOs)</li>
+<li><a href="https://man7.org/linux/man-pages/man2/pipe.2.html">pipe(2)</a> - Create pipe for IPC</li>
+<li><a href="https://man7.org/linux/man-pages/man2/socket.2.html">socket(2)</a> - Create communication endpoint</li>
+<li><a href="https://man7.org/linux/man-pages/man7/unix.7.html">unix(7)</a> - Unix domain sockets</li>
+<li><a href="https://man7.org/linux/man-pages/man7/mq_overview.7.html">mq_overview(7)</a> - POSIX message queues</li>
+<li><a href="https://man7.org/linux/man-pages/man7/shm_overview.7.html">shm_overview(7)</a> - Shared memory overview</li>
+<li><a href="https://man7.org/linux/man-pages/man7/sem_overview.7.html">sem_overview(7)</a> - POSIX semaphores</li>
+<li><a href="https://man7.org/linux/man-pages/man7/signal.7.html">signal(7)</a> - Signal overview</li>
+</ul>
+<h3 id="tutorials-and-guides">Tutorials and Guides</h3>
+<ul>
+<li><a href="https://beej.us/guide/bgipc/html/">Beej's Guide to Unix IPC</a> - Excellent tutorial on Unix IPC mechanisms</li>
+<li><a href="https://www.linuxjournal.com/article/2156">Linux Journal: IPC Introduction</a> - Comprehensive IPC overview</li>
+<li><a href="https://www.rozmichelle.com/pipes-forks-dups/">Unix Pipes Tutorial</a> - Understanding pipes and process communication</li>
+<li><a href="https://www.geeksforgeeks.org/socket-programming-cc/">Socket Programming in C</a> - Practical socket examples</li>
+</ul>
+<h2 id="programming-resources">Programming Resources</h2>
+<h3 id="python-ipc-libraries">Python IPC Libraries</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/subprocess.html">subprocess module</a> - Spawning new processes</li>
+<li><a href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing module</a> - Process-based parallelism</li>
+<li><a href="https://docs.python.org/3/library/asyncio-subprocess.html">asyncio subprocess</a> - Asynchronous process management</li>
+<li><a href="https://docs.python.org/3/library/signal.html">signal module</a> - Signal handling</li>
+<li><a href="https://docs.python.org/3/library/os.html">os module</a> - Operating system interface</li>
+<li><a href="https://docs.python.org/3/library/sys.html">sys module</a> - System-specific parameters</li>
+<li><a href="https://docs.python.org/3/library/socket.html">socket module</a> - Low-level networking interface</li>
+</ul>
+<h3 id="cc-resources">C/C++ Resources</h3>
+<ul>
+<li><a href="https://www.gnu.org/software/libc/manual/">GNU libc manual</a> - Standard C library documentation</li>
+<li><a href="https://linux.die.net/man/2/shmget">System V IPC</a> - Message queues, semaphores, shared memory</li>
+<li><a href="https://computing.llnl.gov/tutorials/pthreads/">POSIX threads</a> - Thread programming tutorial</li>
+</ul>
+<h2 id="advanced-topics-and-research">Advanced Topics and Research</h2>
+<h3 id="performance-and-optimization">Performance and Optimization</h3>
+<ul>
+<li><a href="https://www.linuxjournal.com/article/6345">Zero-copy networking</a> - High-performance data transfer</li>
+<li><a href="https://man7.org/linux/man-pages/man7/epoll.7.html">epoll(7) man page</a> - I/O event notification</li>
+<li><a href="https://kernel.dk/io_uring.pdf">io_uring</a> - Modern async I/O interface</li>
+<li><a href="https://www.kernel.org/doc/html/latest/vm/numa.html">NUMA considerations</a> - Non-uniform memory access</li>
+</ul>
+<h3 id="security-and-isolation">Security and Isolation</h3>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man7/namespaces.7.html">Linux namespaces</a> - Process isolation mechanisms</li>
+<li><a href="https://man7.org/linux/man-pages/man7/capabilities.7.html">Linux capabilities</a> - Fine-grained privileges</li>
+<li><a href="https://man7.org/linux/man-pages/man2/seccomp.2.html">seccomp</a> - Secure computing mode</li>
+<li><a href="https://gitlab.com/apparmor/apparmor/-/wikis/Documentation">AppArmor</a> - Application security</li>
+</ul>
+<h3 id="container-technologies">Container Technologies</h3>
+<ul>
+<li><a href="https://docs.docker.com/engine/">Docker internals</a> - Container runtime</li>
+<li><a href="https://github.com/opencontainers/runc">runc specification</a> - OCI runtime</li>
+<li><a href="https://linuxcontainers.org/lxc/documentation/">LXC documentation</a> - Linux containers</li>
+</ul>
+<h2 id="tools-and-utilities">Tools and Utilities</h2>
+<h3 id="debugging-and-analysis">Debugging and Analysis</h3>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man1/strace.1.html">strace(1)</a> - Trace system calls</li>
+<li><a href="https://man7.org/linux/man-pages/man1/ltrace.1.html">ltrace(1)</a> - Trace library calls</li>
+<li><a href="https://www.gnu.org/software/gdb/documentation/">gdb</a> - GNU debugger</li>
+<li><a href="https://perf.wiki.kernel.org/index.php/Tutorial">perf</a> - Performance analysis tool</li>
+<li><a href="https://www.tcpdump.org/">tcpdump/Wireshark</a> - Network packet analysis</li>
+</ul>
+<h3 id="process-management">Process Management</h3>
+<ul>
+<li><a href="https://htop.dev/">htop/top</a> - Interactive process viewer</li>
+<li><a href="https://www.cyberciti.biz/faq/show-all-running-processes-in-linux/">ps command guide</a> - Process status</li>
+<li><a href="https://www.computerhope.com/unix/ukill.htm">kill and killall</a> - Process termination</li>
+<li><a href="https://www.computerhope.com/unix/unohup.htm">nohup and screen</a> - Background process management</li>
+</ul>
+<h2 id="courses-and-books">Courses and Books</h2>
+<h3 id="online-courses">Online Courses</h3>
+<ul>
+<li><a href="https://www.coursera.org/specializations/linux-system-programming">Linux System Programming Specialization (Coursera)</a></li>
+<li><a href="https://www.edx.org/learn/computer-programming/systems-programming">Systems Programming (edX)</a></li>
+<li><a href="https://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems course materials</a> - Free online book</li>
+</ul>
+<h3 id="recommended-books">Recommended Books</h3>
+<ul>
+<li>"Linux System Programming" by Robert Love</li>
+<li>"The Linux Programming Interface" by Michael Kerrisk</li>
+<li>"Advanced UNIX Programming" by Warren W. Gay</li>
+<li>"Unix Network Programming" by W. Richard Stevens</li>
+<li>"Understanding the Linux Kernel" by Daniel P. Bovet</li>
+</ul>
+<h2 id="community-and-forums">Community and Forums</h2>
+<h3 id="discussion-forums">Discussion Forums</h3>
+<ul>
+<li><a href="https://www.linuxquestions.org/">Linux Questions</a> - Active Linux community</li>
+<li><a href="https://stackoverflow.com/questions/tagged/linux">Stack Overflow - Linux</a> - Programming questions</li>
+<li><a href="https://www.reddit.com/r/linux/">Reddit r/linux</a> - General Linux discussions</li>
+<li><a href="https://unix.stackexchange.com/">Unix &amp; Linux Stack Exchange</a> - System administration</li>
+</ul>
+<h3 id="mailing-lists">Mailing Lists</h3>
+<ul>
+<li><a href="https://lore.kernel.org/lkml/">Linux Kernel Mailing List</a> - Kernel development</li>
+<li><a href="https://www.gnu.org/software/mailman/mailman-admin/node12.html">GNU/Linux discussion lists</a></li>
+</ul>
+<h2 id="standards-and-specifications">Standards and Specifications</h2>
+<h3 id="posix-standards">POSIX Standards</h3>
+<ul>
+<li><a href="https://pubs.opengroup.org/onlinepubs/9699919799/">IEEE POSIX.1-2017</a> - Latest POSIX standard</li>
+<li><a href="https://www.opengroup.org/membership/forums/platform/unix">Single UNIX Specification</a> - Unix standards</li>
+<li><a href="https://wiki.linuxfoundation.org/lsb/start">Linux Standard Base</a> - Linux distribution standards</li>
+</ul></div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

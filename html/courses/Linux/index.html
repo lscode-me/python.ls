@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A course that teaches engineers to use Unix tools, shell scripting, and CLI-based data processing as a powerful DSL for building data pipelines. Students learn to work with large datasets, transform s">
+    <title>Linux for Developers: Unix &amp; Data Pipelines | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="unix-data-pipelines">Unix &amp; Data Pipelines</h1>
+<h3 id="a-practical-course-for-engineers">A Practical Course for Engineers</h3>
+<p>A course that teaches engineers to use Unix tools, shell scripting, and CLI-based data processing as a powerful DSL for building data pipelines. Students learn to work with large datasets, transform structured and unstructured data, and integrate Unix tools with Python.</p>
+<hr />
+<h2 id="course-contents">📚 Course Contents</h2>
+<h3 id="1-unix-as-a-language-of-data-streams">1. Unix as a Language of Data &amp; Streams</h3>
+<p>Introduction to Unix philosophy and stream-based data processing.</p>
+<p><strong>Topics:</strong> Streams, pipes, stdin/stdout, Filter→Transform→Aggregate workflow</p>
+<p><strong>Materials:</strong><br />
+- <a href="01_Unix_Streams/">Lecture</a> - Unix philosophy for data processing<br />
+- <a href="01_Unix_Streams/hw.html">Homework</a> - 10 assignments + bonus ETL project<br />
+- <a href="01_Unix_Streams/links.html">Resources</a><br />
+- <a href="01_Unix_Streams/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>curl</code>, <code>cut</code>, <code>grep</code>, <code>sort</code>, <code>uniq</code>, <code>head</code>, <code>tail</code></p>
+<hr />
+<h3 id="2-files-i-nodes-file-descriptors">2. Files, I-nodes &amp; File Descriptors</h3>
+<p>Understanding Unix file system architecture.</p>
+<p><strong>Topics:</strong> I-nodes, file descriptors, file types, permissions, special files</p>
+<p><strong>Materials:</strong><br />
+- <a href="02_Files_Inodes_Descriptors/">Lecture</a> - Complete file system guide<br />
+- <a href="02_Files_Inodes_Descriptors/hw.html">Homework</a> - 10 assignments + 4 bonus challenges<br />
+- <a href="02_Files_Inodes_Descriptors/links.html">Resources</a><br />
+- <a href="02_Files_Inodes_Descriptors/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>stat</code>, <code>ls</code>, <code>ln</code>, <code>chmod</code>, <code>umask</code>, <code>file</code>, <code>lsof</code>, redirections</p>
+<hr />
+<h3 id="3-shell-programming">3. Shell Programming</h3>
+<p>Bash as a domain-specific language for data processing.</p>
+<p><strong>Topics:</strong> Command substitution, <code>while read</code>, arrays, functions, <code>set -euo pipefail</code>, process substitution</p>
+<p><strong>Materials:</strong><br />
+- <a href="03_Shell_Programming/">Lecture</a> - Shell scripting for data pipelines<br />
+- <a href="03_Shell_Programming/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="03_Shell_Programming/links.html">Resources</a><br />
+- <a href="03_Shell_Programming/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>bash</code>, <code>jq</code>, <code>awk</code>, <code>printf</code></p>
+<hr />
+<h3 id="4-coreutils-data-transformation">4. Coreutils Data Transformation</h3>
+<p>Building blocks for efficient data pipelines.</p>
+<p><strong>Topics:</strong> Field manipulation, sorting, splitting datasets, stream buffering &amp; monitoring</p>
+<p><strong>Materials:</strong><br />
+- <a href="04_Coreutils/">Lecture</a> - Coreutils for data processing<br />
+- <a href="04_Coreutils/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="04_Coreutils/links.html">Resources</a><br />
+- <a href="04_Coreutils/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>cat</code>, <code>cut</code>, <code>paste</code>, <code>tr</code>, <code>sort</code>, <code>uniq</code>, <code>split</code>, <code>pv</code>, <code>stdbuf</code></p>
+<hr />
+<h3 id="5-grep-sed-awk-the-text-processing-trio">5. grep, sed, awk — The Text Processing Trio</h3>
+<p>Master text filtering, transformation, and analytics.</p>
+<p><strong>Topics:</strong> Regular expressions, stream editing, field-based analytics</p>
+<p><strong>Materials:</strong><br />
+- <a href="05_Grep_Sed_Awk/">Lecture</a> - Complete text processing guide<br />
+- <a href="05_Grep_Sed_Awk/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="05_Grep_Sed_Awk/links.html">Resources</a><br />
+- <a href="05_Grep_Sed_Awk/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>grep</code>, <code>sed</code>, <code>awk</code></p>
+<hr />
+<h3 id="6-structured-data-csv-json-yaml-xml">6. Structured Data: CSV, JSON, YAML, XML</h3>
+<p>Working with structured data formats.</p>
+<p><strong>Topics:</strong> JSON parsing with jq, CSV with csvkit/mlr, YAML with yq, XML with xmlstarlet</p>
+<p><strong>Materials:</strong><br />
+- <a href="06_Structured_Data/">Lecture</a> - Structured data processing<br />
+- <a href="06_Structured_Data/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="06_Structured_Data/links.html">Resources</a><br />
+- <a href="06_Structured_Data/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>jq</code>, <code>csvkit</code>, <code>mlr</code>, <code>yq</code>, <code>xmlstarlet</code></p>
+<hr />
+<h3 id="7-streaming-analytics-aggregations">7. Streaming Analytics &amp; Aggregations</h3>
+<p>Analytical queries using CLI tools.</p>
+<p><strong>Topics:</strong> Streaming joins, group-by, reduce, column statistics, multi-field grouping</p>
+<p><strong>Materials:</strong><br />
+- <a href="07_Streaming_Analytics/">Lecture</a> - Analytics without loading into memory<br />
+- <a href="07_Streaming_Analytics/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="07_Streaming_Analytics/links.html">Resources</a><br />
+- <a href="07_Streaming_Analytics/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>awk</code>, <code>datamash</code>, <code>mlr</code>, <code>sort</code>, <code>join</code></p>
+<hr />
+<h3 id="8-log-processing-api-pipelines">8. Log Processing &amp; API Pipelines</h3>
+<p>Working with logs and REST APIs.</p>
+<p><strong>Topics:</strong> JSONL format, gzip streaming, REST API pipelines, report generation</p>
+<p><strong>Materials:</strong><br />
+- <a href="08_Log_Processing/">Lecture</a> - Log and API data processing<br />
+- <a href="08_Log_Processing/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="08_Log_Processing/links.html">Resources</a><br />
+- <a href="08_Log_Processing/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>curl</code>, <code>jq</code>, <code>zcat</code>, <code>datamash</code>, <code>column</code></p>
+<hr />
+<h3 id="9-performance-parallelism">9. Performance &amp; Parallelism</h3>
+<p>Optimizing pipeline performance.</p>
+<p><strong>Topics:</strong> GNU parallel, xargs -P, external sorting optimization, profiling</p>
+<p><strong>Materials:</strong><br />
+- <a href="09_Performance_Parallelism/">Lecture</a> - Performance optimization techniques<br />
+- <a href="09_Performance_Parallelism/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="09_Performance_Parallelism/links.html">Resources</a><br />
+- <a href="09_Performance_Parallelism/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>parallel</code>, <code>xargs</code>, <code>pv</code>, <code>time</code>, <code>dstat</code>, <code>sort</code></p>
+<hr />
+<h3 id="10-streams-ipc-unix-sockets">10. Streams, IPC &amp; Unix Sockets</h3>
+<p>Inter-process communication and advanced streaming.</p>
+<p><strong>Topics:</strong> Named pipes (FIFO), Unix domain sockets, Shell↔Python IPC, buffering control</p>
+<p><strong>Materials:</strong><br />
+- <a href="10_Streams_IPC/">Lecture</a> - IPC and advanced streaming<br />
+- <a href="10_Streams_IPC/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="10_Streams_IPC/links.html">Resources</a><br />
+- <a href="10_Streams_IPC/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>mkfifo</code>, <code>socat</code>, <code>nc</code>, Python <code>socket</code></p>
+<hr />
+<h3 id="11-bash-as-a-glue-language">11. Bash as a Glue Language</h3>
+<p>Writing robust production scripts.</p>
+<p><strong>Topics:</strong> Error handling with <code>trap</code>, <code>.env</code> configuration, temporary files, signal handling</p>
+<p><strong>Materials:</strong><br />
+- <a href="11_Bash_Glue/">Lecture</a> - Production-ready scripting<br />
+- <a href="11_Bash_Glue/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="11_Bash_Glue/links.html">Resources</a><br />
+- <a href="11_Bash_Glue/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>bash</code>, <code>trap</code>, <code>mktemp</code>, <code>env</code></p>
+<hr />
+<h3 id="12-python-in-pipelines">12. Python in Pipelines</h3>
+<p>Integrating Python into Unix workflows.</p>
+<p><strong>Topics:</strong> Python as stream filter, stdin/stdout, pandas vs mlr, hybrid pipelines</p>
+<p><strong>Materials:</strong><br />
+- <a href="12_Python_Pipelines/">Lecture</a> - Python integration patterns<br />
+- <a href="12_Python_Pipelines/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="12_Python_Pipelines/links.html">Resources</a><br />
+- <a href="12_Python_Pipelines/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>python</code>, <code>jq</code>, <code>mlr</code>, <code>pandas</code></p>
+<hr />
+<h3 id="13-complex-pipeline-architecture">13. Complex Pipeline Architecture</h3>
+<p>Building large, maintainable pipelines.</p>
+<p><strong>Topics:</strong> Map/reduce patterns, checkpoints, staging, Makefile orchestration, reproducibility</p>
+<p><strong>Materials:</strong><br />
+- <a href="13_Complex_Pipelines/">Lecture</a> - Production pipeline architecture<br />
+- <a href="13_Complex_Pipelines/hw.html">Homework</a> - 10 assignments + 5 bonus challenges<br />
+- <a href="13_Complex_Pipelines/links.html">Resources</a><br />
+- <a href="13_Complex_Pipelines/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Tools:</strong> <code>parallel</code>, <code>split</code>, <code>make</code>, <code>mktemp</code></p>
+<hr />
+<h3 id="14-final-project-data-pipeline-challenge">14. Final Project — Data Pipeline Challenge</h3>
+<p>Build a complete production-ready ETL pipeline.</p>
+<p><strong>Requirements:</strong><br />
+- Process 5GB+ of JSONL or CSV data<br />
+- Use streaming and parallel processing<br />
+- Convert between formats (JSON↔CSV↔Markdown)<br />
+- Implement checkpoints &amp; logging<br />
+- Integrate Bash with Python</p>
+<p><strong>Materials:</strong><br />
+- <a href="14_Final_Project/">Project Requirements</a> - Full project specification<br />
+- <a href="14_Final_Project/hw.html">Homework</a> - Deliverables checklist<br />
+- <a href="14_Final_Project/links.html">Resources</a><br />
+- <a href="14_Final_Project/quiz.html">Quiz</a> - Test your knowledge</p>
+<p><strong>Evaluation:</strong> Correctness (40%), Performance (20%), Code Quality (20%), Documentation (20%)</p>
+<hr />
+<h2 id="learning-path">🎯 Learning Path</h2>
+<h3 id="progression">Progression</h3>
+<pre class="highlight"><code>Core Concepts → Stream Processing → Structured Data → Scaling → Complex Architecture
+</code></pre>
+
+<ol>
+<li id="item-1"><strong>Unix Streams</strong> - Think in terms of data flows</li>
+<li id="item-2"><strong>Files &amp; I-nodes</strong> - Understand the file system</li>
+<li id="item-3"><strong>Shell Programming</strong> - Write reusable scripts</li>
+<li id="item-4"><strong>Coreutils</strong> - Master the building blocks</li>
+<li id="item-5"><strong>grep/sed/awk</strong> - Text processing power</li>
+<li id="item-6"><strong>Structured Data</strong> - Handle JSON, CSV, YAML</li>
+<li id="item-7"><strong>Analytics</strong> - Aggregate without loading into memory</li>
+<li id="item-8"><strong>Logs &amp; APIs</strong> - Real-world data sources</li>
+<li id="item-9"><strong>Performance</strong> - Parallelize and optimize</li>
+<li id="item-10"><strong>IPC</strong> - Advanced inter-process communication</li>
+<li id="item-11"><strong>Bash Glue</strong> - Production-ready scripts</li>
+<li id="item-12"><strong>Python Pipes</strong> - Hybrid workflows</li>
+<li id="item-13"><strong>Architecture</strong> - Large pipeline design</li>
+<li id="item-14"><strong>Final Project</strong> - Apply everything</li>
+</ol>
+<hr />
+<h2 id="how-to-use-this-course">📖 How to Use This Course</h2>
+<h3 id="sample-data">Sample Data</h3>
+<p>All modules use a unified sample dataset:<br />
+- <strong><a href="data/DataSamples.html">Sample Data</a></strong> - CSV, JSON, logs, and config files with consistent entities</p>
+<p>Run the setup script to create all practice files at once.</p>
+<h3 id="for-each-module">For Each Module:</h3>
+<ol>
+<li id="item-1"><strong>Read the lecture</strong> (lecture.md) - Theory and examples</li>
+<li id="item-2"><strong>Practice with sample data</strong> - Use the unified dataset</li>
+<li id="item-3"><strong>Complete homework</strong> (hw.md) - 10 assignments per module</li>
+<li id="item-4"><strong>Explore resources</strong> (links.md) - Deepen understanding</li>
+<li id="item-5"><strong>Take the quiz</strong> (quiz.md) - Self-assessment</li>
+</ol>
+<h3 id="study-tips">Study Tips:</h3>
+<ul>
+<li>Start with small data samples, then scale up</li>
+<li>Test each pipeline stage independently</li>
+<li>Use <code>head</code> to limit output during development</li>
+<li>Save intermediate results when debugging</li>
+</ul>
+<hr />
+<h2 id="prerequisites">🛠️ Prerequisites</h2>
+<h3 id="required-tools">Required Tools</h3>
+<ul>
+<li>Linux/macOS terminal (or WSL on Windows)</li>
+<li><code>bash</code> 4.0+</li>
+<li>Core utilities: <code>grep</code>, <code>sed</code>, <code>awk</code>, <code>sort</code>, <code>uniq</code>, <code>cut</code></li>
+</ul>
+<h3 id="recommended-tools">Recommended Tools</h3>
+<ul>
+<li><code>jq</code> - JSON processor</li>
+<li><code>mlr</code> (Miller) - CSV/JSON Swiss Army knife</li>
+<li><code>parallel</code> - GNU Parallel</li>
+<li><code>pv</code> - Pipe Viewer</li>
+<li>Python 3.8+ with <code>pandas</code></li>
+</ul>
+<h3 id="installation-ubuntudebian">Installation (Ubuntu/Debian)</h3>
+<pre class="highlight"><code class="language-bash">sudo apt install jq miller parallel pv csvkit
+pip install pandas
+</code></pre>
+
+<h3 id="installation-macos">Installation (macOS)</h3>
+<pre class="highlight"><code class="language-bash">brew install jq miller parallel pv csvkit
+pip install pandas
+</code></pre>
+
+<hr />
+<h2 id="recommended-resources">📚 Recommended Resources</h2>
+<ul>
+<li><a href="https://datascienceatthecommandline.com/">Data Science at the Command Line</a></li>
+<li><a href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a></li>
+<li><a href="https://wiki.bash-hackers.org/">Bash Hackers Wiki</a></li>
+<li><code>man</code> pages: <code>man bash</code>, <code>man awk</code>, <code>man jq</code></li>
+</ul>
+<hr />
+<p>Happy piping! 🚀</p>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../courses/Python/">Python</a></li>
+                    <li><a href="../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

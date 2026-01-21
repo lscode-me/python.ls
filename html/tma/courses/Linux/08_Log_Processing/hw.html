@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Log Processing &amp; Real-World Pipelines">
+    <title>HW: Log Processing &amp; Real-World Pi | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Log Processing &amp; Real-World Pi</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 8 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="log-processing-real-world-pipelines-homework">Log Processing &amp; Real-World Pipelines - Homework</h1>
+<h2 id="assignment-1-filter-jsonl-errors">Assignment 1: Filter JSONL Errors</h2>
+<p>Extract all ERROR level entries from a JSONL log file.
+- Input: <code>app.jsonl</code>
+- Command: <code>jq -c 'select(.level == "ERROR")' app.jsonl &gt; errors.jsonl</code></p>
+<h2 id="assignment-2-compressed-log-analysis">Assignment 2: Compressed Log Analysis</h2>
+<p>Count ERROR occurrences in a compressed log.
+- Input: <code>app.log.gz</code>
+- Command: <code>zcat app.log.gz | grep -c ERROR</code></p>
+<h2 id="assignment-3-api-data-fetch">Assignment 3: API Data Fetch</h2>
+<p>Fetch users from JSONPlaceholder API and extract names.
+- URL: <code>https://jsonplaceholder.typicode.com/users</code>
+- Command: <code>curl -s 'https://jsonplaceholder.typicode.com/users' | jq -r '.[].name'</code></p>
+<h2 id="assignment-4-generate-markdown-table">Assignment 4: Generate Markdown Table</h2>
+<p>Convert CSV to markdown table format.
+- Input: <code>data.csv</code>
+- Output: Markdown table with headers and rows</p>
+<h2 id="assignment-5-time-based-log-filtering">Assignment 5: Time-Based Log Filtering</h2>
+<p>Extract log entries from a specific hour.
+- Input: <code>app.jsonl</code> with timestamp field
+- Filter: entries from 10:00-11:00
+- Use: <code>jq -c 'select(.timestamp | startswith("2024-03-15T10"))'</code></p>
+<h2 id="assignment-6-error-aggregation">Assignment 6: Error Aggregation</h2>
+<p>Count errors by error_type from JSONL.
+- Input: <code>errors.jsonl</code>
+- Command: <code>jq -r '.error_type' errors.jsonl | sort | uniq -c | sort -rn</code></p>
+<h2 id="assignment-7-multi-file-processing">Assignment 7: Multi-File Processing</h2>
+<p>Process all gzip logs in a directory, count total errors.
+- Command: <code>zcat logs/*.gz | grep -c ERROR</code></p>
+<h2 id="assignment-8-api-pagination">Assignment 8: API Pagination</h2>
+<p>Fetch multiple pages from an API (pages 1-5).
+- Use: for loop with curl and jq
+- Combine results into single array</p>
+<h2 id="assignment-9-daily-report-generator">Assignment 9: Daily Report Generator</h2>
+<p>Create script that generates markdown report with:
+- Total log lines
+- Error count
+- Top 5 error types
+- Timestamp</p>
+<h2 id="assignment-10-complete-etl-pipeline">Assignment 10: Complete ETL Pipeline</h2>
+<p>Build pipeline that:
+1. Fetches data from API
+2. Filters relevant fields
+3. Aggregates statistics
+4. Generates markdown report
+5. Saves to file</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-real-time-log-monitor">Bonus 1: Real-Time Log Monitor</h3>
+<p>Create script that tails a JSONL log and prints ERROR entries in real-time.
+- Use: <code>tail -f | stdbuf -oL jq</code></p>
+<h3 id="bonus-2-multi-source-aggregation">Bonus 2: Multi-Source Aggregation</h3>
+<p>Combine data from:
+- API endpoint
+- Compressed log file
+- CSV file
+Generate unified markdown report.</p>
+<h3 id="bonus-3-rate-limited-api-crawler">Bonus 3: Rate-Limited API Crawler</h3>
+<p>Fetch data from paginated API with rate limit (2 req/sec).
+- Use: sleep or GNU parallel
+- Handle errors gracefully</p>
+<h3 id="bonus-4-log-rotation-analyzer">Bonus 4: Log Rotation Analyzer</h3>
+<p>Analyze all rotated logs (app.log, app.log.1.gz, app.log.2.gz, ...).
+- Find error trends over time
+- Generate time-series report</p>
+<h3 id="bonus-5-automated-daily-report">Bonus 5: Automated Daily Report</h3>
+<p>Create cron-ready script that:
+- Processes yesterday's logs
+- Generates markdown report
+- Emails report (using mail command)
+- Archives old reports</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ul>
+<li>Submit all scripts and commands</li>
+<li>Include sample input/output</li>
+<li>Test with real APIs (JSONPlaceholder, GitHub API)</li>
+<li>Document rate limits and error handling</li>
+</ul></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="course-page">
+    <nav class="breadcrumb">
+        <a href="{{ base_url }}/">Home</a> &raquo;
+        <a href="{{ base_url }}/courses/">Courses</a> &raquo;
+        <span>{{ course_title }}</span>
+    </nav>
+
+    <div class="course-header">
+        <span class="course-icon">{{ course_icon }}</span>
+        <h1>{{ course_title }}</h1>
+        <p class="course-description">{{ course_description }}</p>
+        <div class="course-meta">
+            <span class="module-count">📚 {{ module_count }} modules</span>
+        </div>
+    </div>
+
+    <div class="course-content">
+        {{ content | safe }}
+    </div>
+
+    <div class="modules-list">
+        <h2>📋 Modules</h2>
+        {% for module in modules %}
+        <div class="module-card">
+            <div class="module-number">{{ module.number }}</div>
+            <div class="module-info">
+                <h3><a href="{{ module.url }}">{{ module.title }}</a></h3>
+                <p>{{ module.description }}</p>
+            </div>
+            <div class="module-links">
+                <a href="{{ module.lecture_url }}" class="module-link" title="Lecture">📖</a>
+                <a href="{{ module.quiz_url }}" class="module-link" title="Quiz">📝</a>
+                <a href="{{ module.hw_url }}" class="module-link" title="Homework">💻</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}

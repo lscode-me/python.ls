@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Configuration Files">
+    <title>Homework: Configuration Files | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/DataFundamentals/">Data Fundamentals for Life Sciences</a> &raquo;
+                    <a href="index.html">Configuration Files</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="homework-configuration-files">Homework: Configuration Files</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-multi-format-configuration">Exercise 1: Multi-Format Configuration</h3>
+<ol>
+<li id="item-1">Create the same configuration in different formats:<br />
+   - INI file for legacy compatibility<br />
+   - TOML file for modern applications<br />
+   - Environment file (.env) for deployment<br />
+   - JSON config for web applications<br />
+   - YAML config for container orchestration</li>
+<li id="item-2">Include database settings, API keys, feature flags</li>
+<li id="item-3">Compare syntax, readability, and tooling support</li>
+</ol>
+<h3 id="exercise-2-environment-variable-management">Exercise 2: Environment Variable Management</h3>
+<ol>
+<li id="item-1">Practice different approaches to environment variables:<br />
+   - System environment variables<br />
+   - .env files with dotenv libraries<br />
+   - Docker environment injection<br />
+   - Kubernetes ConfigMaps and Secrets</li>
+<li id="item-2">Implement variable substitution and defaults</li>
+<li id="item-3">Handle sensitive data securely</li>
+</ol>
+<h3 id="exercise-3-configuration-hierarchy">Exercise 3: Configuration Hierarchy</h3>
+<ol>
+<li id="item-1">Implement a configuration system with multiple layers:<br />
+   - Default configuration (built into application)<br />
+   - System-wide configuration (/etc/app/)<br />
+   - User configuration (~/.app/config)<br />
+   - Environment-specific overrides<br />
+   - Command-line argument overrides</li>
+<li id="item-2">Document the precedence order</li>
+<li id="item-3">Create a configuration merger that handles conflicts</li>
+</ol>
+<h3 id="exercise-4-validation-and-schema">Exercise 4: Validation and Schema</h3>
+<ol>
+<li id="item-1">Create configuration schemas for validation:<br />
+   - JSON Schema for JSON configs<br />
+   - Custom validation for INI files<br />
+   - Type checking for environment variables</li>
+<li id="item-2">Implement validation in your preferred language</li>
+<li id="item-3">Provide helpful error messages for invalid configs</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Application Configuration System</strong><br />
+- Design a complete configuration system for a web application<br />
+- Support multiple environments (dev, staging, production)<br />
+- Include database, cache, logging, and API configurations<br />
+- Implement hot-reloading of configuration changes</p>
+<p><strong>Task 2: Secure Configuration Management</strong><br />
+- Implement secure storage for sensitive configuration<br />
+- Use encryption for secrets at rest<br />
+- Implement key rotation strategies<br />
+- Create audit trails for configuration changes</p>
+<p><strong>Task 3: Configuration as Code</strong><br />
+- Store all configuration in version control<br />
+- Implement configuration deployment pipelines<br />
+- Create rollback mechanisms for bad configurations<br />
+- Implement configuration testing and validation</p>
+<h2 id="security-considerations">Security Considerations</h2>
+<p><strong>Task 4: Security Best Practices</strong><br />
+1. Never store passwords in plain text<br />
+2. Use secure key management systems<br />
+3. Implement least-privilege access<br />
+4. Regular security audits of configuration<br />
+5. Proper handling of configuration in logs</p>
+<h2 id="tools-and-libraries">Tools and Libraries</h2>
+<p><strong>Task 5: Tool Comparison</strong><br />
+Research and compare configuration management tools:<br />
+- Consul for distributed configuration<br />
+- etcd for key-value configuration storage<br />
+- Vault for secrets management<br />
+- Spring Cloud Config for Java applications<br />
+- dotenv libraries for various languages</p>
+<h2 id="advanced-scenarios">Advanced Scenarios</h2>
+<p><strong>Task 6: Complex Configuration Scenarios</strong><br />
+1. Multi-tenant applications with per-tenant config<br />
+2. Microservices configuration coordination<br />
+3. Configuration feature toggles and A/B testing<br />
+4. Dynamic configuration updates without restarts<br />
+5. Configuration backup and disaster recovery</p>
+<h2 id="programming-implementation">Programming Implementation</h2>
+<p><strong>Task 7: Code Integration</strong><br />
+Implement configuration handling in your preferred language:<br />
+- Automatic type conversion<br />
+- Configuration validation at startup<br />
+- Graceful degradation for missing config<br />
+- Configuration change notifications<br />
+- Unit testing for configuration logic</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive configuration management portfolio:<br />
+1. Sample configurations in all major formats<br />
+2. Security analysis and recommendations<br />
+3. Implementation of configuration hierarchy system<br />
+4. Documentation of best practices<br />
+5. Tool comparison matrix<br />
+6. Working code examples with tests</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

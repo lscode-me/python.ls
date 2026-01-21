@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Data Transfer Encoding">
+    <title>Homework: Data Transfer Protocols | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/DataFundamentals/">Data Fundamentals for Life Sciences</a> &raquo;
+                    <a href="index.html">Data Transfer Encoding</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="homework-data-transfer-protocols">Homework: Data Transfer Protocols</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-httphttps-deep-dive">Exercise 1: HTTP/HTTPS Deep Dive</h3>
+<ol>
+<li id="item-1">Master HTTP request/response cycle:<br />
+   - Understand HTTP methods (GET, POST, PUT, DELETE, PATCH)<br />
+   - Practice with HTTP headers (Content-Type, Authorization, Cache-Control)<br />
+   - Work with different response codes and their meanings<br />
+   - Implement proper error handling for HTTP responses</li>
+<li id="item-2">HTTPS security implementation:<br />
+   - Understand SSL/TLS handshake process<br />
+   - Practice certificate validation and pinning<br />
+   - Implement secure HTTP client configurations<br />
+   - Handle certificate errors and security warnings</li>
+<li id="item-3">Advanced HTTP features:<br />
+   - HTTP/2 multiplexing and server push<br />
+   - WebSocket connections for real-time data<br />
+   - Streaming HTTP responses for large datasets<br />
+   - HTTP authentication mechanisms (Basic, Bearer, OAuth)</li>
+</ol>
+<h3 id="exercise-2-ftp-and-secure-file-transfer">Exercise 2: FTP and Secure File Transfer</h3>
+<ol>
+<li id="item-1">Traditional FTP operations:<br />
+   - Connect to FTP servers and navigate directories<br />
+   - Upload and download files with proper error handling<br />
+   - Understand active vs passive FTP modes<br />
+   - Handle binary vs text transfer modes</li>
+<li id="item-2">Secure alternatives:<br />
+   - SFTP (SSH File Transfer Protocol) implementation<br />
+   - FTPS (FTP over SSL/TLS) configuration<br />
+   - SCP (Secure Copy) for simple transfers<br />
+   - rsync for efficient synchronization</li>
+<li id="item-3">Enterprise file transfer:<br />
+   - Managed File Transfer (MFT) solutions<br />
+   - AS2/AS3 protocols for B2B communications<br />
+   - File transfer monitoring and logging</li>
+</ol>
+<h3 id="exercise-3-modern-transfer-protocols">Exercise 3: Modern Transfer Protocols</h3>
+<ol>
+<li id="item-1">REST API data transfer:<br />
+   - Design RESTful endpoints for data exchange<br />
+   - Implement pagination for large datasets<br />
+   - Handle rate limiting and throttling<br />
+   - Version APIs for backward compatibility</li>
+<li id="item-2">GraphQL for flexible data fetching:<br />
+   - Create GraphQL schemas and resolvers<br />
+   - Implement efficient data loading strategies<br />
+   - Handle complex queries and mutations</li>
+<li id="item-3">gRPC for high-performance communication:<br />
+   - Define Protocol Buffer schemas<br />
+   - Implement streaming data transfer<br />
+   - Handle connection management and retries</li>
+</ol>
+<h3 id="exercise-4-asynchronous-and-real-time-transfer">Exercise 4: Asynchronous and Real-time Transfer</h3>
+<ol>
+<li id="item-1">Message queues and brokers:<br />
+   - Implement publish/subscribe patterns<br />
+   - Work with message ordering and durability<br />
+   - Handle backpressure and flow control<br />
+   - Practice with RabbitMQ, Apache Kafka, or Redis</li>
+<li id="item-2">Event-driven architectures:<br />
+   - Design event schemas and versioning<br />
+   - Implement event sourcing patterns<br />
+   - Handle eventual consistency scenarios</li>
+<li id="item-3">Real-time protocols:<br />
+   - WebSocket implementation for live updates<br />
+   - Server-Sent Events (SSE) for one-way streams<br />
+   - WebRTC for peer-to-peer data transfer</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Multi-Protocol Transfer System</strong><br />
+- Build a file transfer system supporting multiple protocols<br />
+- Implement automatic protocol selection based on requirements<br />
+- Add retry mechanisms and resumable transfers<br />
+- Create transfer progress monitoring and reporting<br />
+- Handle different authentication methods per protocol</p>
+<p><strong>Task 2: High-Performance Data Pipeline</strong><br />
+- Design a data pipeline for large-scale transfers<br />
+- Implement parallel and concurrent transfer strategies<br />
+- Add compression and decompression during transfer<br />
+- Create bandwidth throttling and QoS controls<br />
+- Implement data transformation during transfer</p>
+<p><strong>Task 3: Secure Enterprise Transfer Solution</strong><br />
+- Build end-to-end encrypted transfer system<br />
+- Implement audit trails and compliance logging<br />
+- Add user authentication and authorization<br />
+- Create secure key management for encryption<br />
+- Implement data loss prevention (DLP) controls</p>
+<h2 id="network-monitoring-and-analysis">Network Monitoring and Analysis</h2>
+<p><strong>Task 4: Transfer Performance Analysis</strong><br />
+- Monitor network traffic during different transfer types<br />
+- Analyze latency, throughput, and packet loss impacts<br />
+- Compare protocol efficiency under various conditions<br />
+- Optimize transfer parameters for different networks<br />
+- Implement adaptive transfer strategies</p>
+<p><strong>Task 5: Protocol Debugging and Troubleshooting</strong><br />
+- Use network analysis tools (Wireshark, tcpdump)<br />
+- Debug common transfer issues and failures<br />
+- Implement comprehensive logging and monitoring<br />
+- Create diagnostic tools for transfer problems<br />
+- Automate network health checking</p>
+<h2 id="security-implementation">Security Implementation</h2>
+<p><strong>Task 6: Transfer Security Hardening</strong><br />
+- Implement defense-in-depth for data transfers<br />
+- Add intrusion detection for transfer protocols<br />
+- Create secure configuration templates<br />
+- Implement certificate management automation<br />
+- Add security scanning for transfer endpoints</p>
+<p><strong>Task 7: Compliance and Governance</strong><br />
+- Implement data classification and handling policies<br />
+- Add geographic data residency controls<br />
+- Create compliance reporting for data transfers<br />
+- Implement data retention and deletion policies<br />
+- Add privacy controls for sensitive data</p>
+<h2 id="cloud-and-distributed-systems">Cloud and Distributed Systems</h2>
+<p><strong>Task 8: Cloud-Native Transfer Solutions</strong><br />
+- Implement transfers using cloud APIs (AWS S3, Azure Blob, GCP)<br />
+- Create cross-cloud data migration strategies<br />
+- Add serverless transfer processing<br />
+- Implement auto-scaling transfer systems<br />
+- Optimize for cloud economics and pricing</p>
+<p><strong>Task 9: Distributed Transfer Architecture</strong><br />
+- Design globally distributed transfer networks<br />
+- Implement edge caching and CDN integration<br />
+- Add load balancing and failover mechanisms<br />
+- Create disaster recovery procedures<br />
+- Implement cross-region data replication</p>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<p><strong>Task 10: Transfer Optimization Strategies</strong><br />
+- Implement adaptive bitrate for varying conditions<br />
+- Add connection pooling and reuse strategies<br />
+- Optimize buffer sizes and window scaling<br />
+- Implement parallel connection strategies<br />
+- Add predictive prefetching capabilities</p>
+<h2 id="integration-and-automation">Integration and Automation</h2>
+<p><strong>Task 11: Transfer Automation Framework</strong><br />
+- Create workflow automation for complex transfers<br />
+- Implement dependency management for transfer jobs<br />
+- Add scheduling and cron-like functionality<br />
+- Create notification systems for transfer events<br />
+- Implement rollback and recovery procedures</p>
+<p><strong>Task 12: API Integration and Orchestration</strong><br />
+- Integrate with external systems and APIs<br />
+- Implement data transformation and mapping<br />
+- Add support for various data formats during transfer<br />
+- Create adapter patterns for legacy systems<br />
+- Implement business logic integration</p>
+<h2 id="testing-and-validation">Testing and Validation</h2>
+<p><strong>Task 13: Transfer Testing Framework</strong><br />
+- Create automated testing for transfer protocols<br />
+- Implement load testing and stress testing<br />
+- Add chaos engineering for resilience testing<br />
+- Create performance regression testing<br />
+- Implement end-to-end integration testing</p>
+<h2 id="emerging-technologies">Emerging Technologies</h2>
+<p><strong>Task 14: Next-Generation Transfer Protocols</strong><br />
+- Research QUIC protocol and HTTP/3<br />
+- Explore blockchain-based transfer verification<br />
+- Investigate quantum-safe cryptography for transfers<br />
+- Study edge computing impact on data transfer<br />
+- Analyze 5G and IoT transfer requirements</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive data transfer portfolio:<br />
+1. Multi-protocol transfer implementation with source code<br />
+2. Performance benchmarking results across protocols<br />
+3. Security analysis and threat modeling document<br />
+4. Network monitoring and troubleshooting guide<br />
+5. Cloud integration examples and best practices<br />
+6. Automation framework with workflow examples<br />
+7. Testing suite with comprehensive coverage<br />
+8. Future technology research and recommendations<br />
+9. Real-world case study with complete implementation<br />
+10. Documentation and deployment guides</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

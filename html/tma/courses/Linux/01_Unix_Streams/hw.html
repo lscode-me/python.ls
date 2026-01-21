@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Unix as a Language of Data &amp; Streams">
+    <title>HW: Unix as a Language of Data &amp; S | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Unix as a Language of Data &amp; S</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 1 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="unix-as-a-language-of-data-streams-homework">Unix as a Language of Data &amp; Streams - Homework</h1>
+<h2 id="assignment-1-csv-analysis-pipeline">Assignment 1: CSV Analysis Pipeline</h2>
+<p>Fetch a CSV file from a URL (or use a local file) and:
+1. Display the first 10 rows
+2. Count total number of records
+3. Extract a specific column and show unique values
+4. Find the top 5 most frequent values in that column</p>
+<h2 id="assignment-2-log-file-analysis">Assignment 2: Log File Analysis</h2>
+<p>Given an access log or application log:
+1. Filter entries from a specific date or time range
+2. Count how many log entries there are per hour
+3. Identify the most frequent log level (ERROR, WARN, INFO, etc.)
+4. Extract and count unique IP addresses</p>
+<h2 id="assignment-3-data-quality-check">Assignment 3: Data Quality Check</h2>
+<p>For a CSV or TSV file:
+1. Check for duplicate rows
+2. Find rows with empty/missing fields
+3. Count unique values in each column
+4. Identify outliers (values that appear only once)</p>
+<h2 id="assignment-4-stream-processing-pipeline">Assignment 4: Stream Processing Pipeline</h2>
+<p>Build a pipeline that:
+1. Reads data from stdin or a file
+2. Filters rows based on a condition
+3. Transforms values (e.g., convert units, normalize text)
+4. Aggregates results (count, sum, average)
+5. Outputs top 10 results</p>
+<p>Example: Process sales data to find top 10 products by revenue</p>
+<h2 id="assignment-5-multi-source-data-merge">Assignment 5: Multi-Source Data Merge</h2>
+<ol>
+<li id="item-1">Download or create two CSV files with related data</li>
+<li id="item-2">Extract relevant columns from each</li>
+<li id="item-3">Combine them (simple concatenation)</li>
+<li id="item-4">Remove duplicates</li>
+<li id="item-5">Sort by a specific field</li>
+<li id="item-6">Output to a new file</li>
+</ol>
+<h2 id="assignment-6-real-time-log-monitoring">Assignment 6: Real-Time Log Monitoring</h2>
+<ol>
+<li id="item-1">Use <code>tail -f</code> to follow a log file</li>
+<li id="item-2">Filter for specific patterns (errors, warnings)</li>
+<li id="item-3">Count occurrences in real-time</li>
+<li id="item-4">Redirect filtered output to a separate file</li>
+</ol>
+<p>Hint: You may need to use <code>stdbuf</code> for line buffering</p>
+<h2 id="assignment-7-api-data-processing">Assignment 7: API Data Processing</h2>
+<ol>
+<li id="item-1">Use <code>curl</code> to fetch JSON data from a public API</li>
+<li id="item-2">Pipe the output through processing commands</li>
+<li id="item-3">Extract specific fields</li>
+<li id="item-4">Count or aggregate values</li>
+<li id="item-5">Format output as a simple report</li>
+</ol>
+<p>Example APIs:
+- https://api.github.com/users/[username]/repos
+- https://jsonplaceholder.typicode.com/posts</p>
+<h2 id="assignment-8-text-transformation-pipeline">Assignment 8: Text Transformation Pipeline</h2>
+<p>Create a pipeline that:
+1. Reads text data from stdin
+2. Converts to lowercase or uppercase
+3. Removes special characters or punctuation
+4. Splits into words (one per line)
+5. Counts word frequency
+6. Shows top 20 most common words</p>
+<h2 id="assignment-9-data-format-conversion">Assignment 9: Data Format Conversion</h2>
+<ol>
+<li id="item-1">Take a CSV file</li>
+<li id="item-2">Convert it to a different delimiter (e.g., CSV to TSV)</li>
+<li id="item-3">Add a header row if missing</li>
+<li id="item-4">Reorder columns</li>
+<li id="item-5">Save to a new file</li>
+</ol>
+<h2 id="assignment-10-performance-comparison">Assignment 10: Performance Comparison</h2>
+<p>Compare different approaches to the same task:
+1. Count unique values in a column using <code>sort | uniq</code>
+2. Count unique values using <code>awk</code>
+3. Measure execution time for each approach using <code>time</code>
+4. Document which approach is faster and why</p>
+<h2 id="bonus-challenge-build-a-complete-etl-pipeline">Bonus Challenge: Build a Complete ETL Pipeline</h2>
+<p>Create a bash script that:
+1. Downloads data from a URL
+2. Validates the data (checks for required fields)
+3. Cleans the data (removes duplicates, handles missing values)
+4. Transforms the data (extracts, filters, aggregates)
+5. Generates a summary report
+6. Saves processed data and report to files
+7. Includes error handling and logging</p>
+<p>Requirements:
+- Script should be reusable with parameters
+- Include comments explaining each step
+- Handle errors gracefully
+- Output should be reproducible</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<p>For each assignment:
+1. Provide the command(s) or script used
+2. Include sample input data (first few lines)
+3. Show expected output
+4. Explain your approach
+5. Note any challenges or interesting findings</p>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>Test your pipelines on small data samples first</li>
+<li>Use <code>head</code> to limit output during development</li>
+<li>Break complex pipelines into stages</li>
+<li>Save intermediate results when debugging</li>
+<li>Check the exit code: <code>echo $?</code></li>
+</ul></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

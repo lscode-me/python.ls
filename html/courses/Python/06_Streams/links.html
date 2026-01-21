@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Additional resources for Input/Output Streams in Python: The Unix Approach">
+    <title>Input/Output Streams in Python - Resources | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+                    <a href="index.html">Input/Output Streams in Python: The Unix Approach</a> &raquo;
+                    <span>Resources</span>
+                </nav>
+                <div class="lecture-content"><h1 id="inputoutput-streams-in-python-resources">Input/Output Streams in Python - Resources</h1>
+<h2 id="official-documentation">Official Documentation</h2>
+<h3 id="python-standard-library">Python Standard Library</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/sys.html">sys — System-specific parameters and functions</a></li>
+<li><code>sys.stdin</code>, <code>sys.stdout</code>, <code>sys.stderr</code></li>
+<li><code>sys.argv</code>, <code>sys.exit()</code></li>
+<li><a href="https://docs.python.org/3/library/argparse.html">argparse — Parser for command-line options</a></li>
+<li>Creating CLI utilities with arguments</li>
+<li><a href="https://docs.python.org/3/library/subprocess.html">subprocess — Subprocess management</a></li>
+<li>Creating pipelines in Python</li>
+<li><a href="https://docs.python.org/3/library/io.html">io — Core tools for working with streams</a></li>
+<li>Working with buffering</li>
+<li><a href="https://docs.python.org/3/library/signal.html">signal — Set handlers for asynchronous events</a></li>
+<li>Handling SIGINT, SIGTERM</li>
+</ul>
+<h3 id="working-with-data">Working with Data</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/csv.html">csv — CSV File Reading and Writing</a></li>
+<li><a href="https://docs.python.org/3/library/json.html">json — JSON encoder and decoder</a></li>
+<li><a href="https://docs.python.org/3/library/re.html">re — Regular expression operations</a></li>
+</ul>
+<h2 id="articles-and-tutorials">Articles and Tutorials</h2>
+<h3 id="unix-philosophy-python">Unix Philosophy &amp; Python</h3>
+<ul>
+<li><a href="http://www.catb.org/~esr/writings/taoup/html/">The Art of Unix Programming</a></li>
+<li>Classic book on Unix philosophy</li>
+<li><a href="https://realpython.com/command-line-interfaces-python-argparse/">Command Line Tools in Python</a></li>
+<li>Creating CLI tools with argparse</li>
+<li><a href="https://dbader.org/blog/how-to-make-command-line-commands-with-python">Writing Command Line Tools in Python</a></li>
+<li>Best practices for CLI utilities</li>
+</ul>
+<h3 id="streams-and-io">Streams and I/O</h3>
+<ul>
+<li><a href="https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux/">Understanding stdin, stdout, and stderr</a></li>
+<li>Standard streams basics</li>
+<li><a href="https://realpython.com/python-buffering/">Python I/O Performance</a></li>
+<li>Buffering and performance</li>
+<li><a href="https://realpython.com/python-binary-data/">Working with Binary Data in Python</a></li>
+<li>Binary streams</li>
+</ul>
+<h3 id="advanced-topics">Advanced Topics</h3>
+<ul>
+<li><a href="https://realpython.com/python-iterators-iterables/">Building Streaming Data Pipelines</a></li>
+<li>Iterators and generators for streams</li>
+<li><a href="https://docs.python.org/3/library/signal.html#note-on-sigpipe">BrokenPipeError in Python</a></li>
+<li>Why it occurs and how to handle</li>
+<li><a href="https://stackoverflow.com/questions/13332268/how-to-use-subprocess-command-with-pipes">Python subprocess pipelines</a></li>
+<li>Creating complex pipelines</li>
+</ul>
+<h2 id="tools-and-libraries">Tools and Libraries</h2>
+<h3 id="cli-frameworks">CLI Frameworks</h3>
+<ul>
+<li><a href="https://click.palletsprojects.com/">Click</a></li>
+<li>Modern framework for CLI applications<br />
+<code>bash
+  pip install click</code></li>
+<li><a href="https://typer.tiangolo.com/">Typer</a></li>
+<li>CLI with type hints<br />
+<code>bash
+  pip install typer</code></li>
+<li><a href="https://github.com/google/python-fire">Fire</a></li>
+<li>Automatic CLI generation from Google<br />
+<code>bash
+  pip install fire</code></li>
+</ul>
+<h3 id="data-processing">Data Processing</h3>
+<ul>
+<li><a href="https://pandas.pydata.org/">pandas</a></li>
+<li>Powerful library for tabular data<br />
+<code>bash
+  pip install pandas</code></li>
+<li><a href="https://github.com/mwilliamson/jq.py">jq.py</a></li>
+<li>jq for Python<br />
+<code>bash
+  pip install jq</code></li>
+</ul>
+<h3 id="progress-bars">Progress Bars</h3>
+<ul>
+<li><a href="https://github.com/tqdm/tqdm">tqdm</a></li>
+<li>Beautiful progress bars<br />
+<code>bash
+  pip install tqdm</code><br />
+  ```python<br />
+  from tqdm import tqdm<br />
+  import sys</li>
+</ul>
+<p>for line in tqdm(sys.stdin):<br />
+      process(line)<br />
+  ```</p>
+<h3 id="colorized-output">Colorized Output</h3>
+<ul>
+<li><a href="https://github.com/tartley/colorama">colorama</a></li>
+<li>Colored terminal output<br />
+<code>bash
+  pip install colorama</code></li>
+<li><a href="https://github.com/Textualize/rich">rich</a></li>
+<li>Rich terminal formatting<br />
+<code>bash
+  pip install rich</code></li>
+</ul>
+<h2 id="example-projects">Example Projects</h2>
+<h3 id="ready-made-python-utilities">Ready-made Python Utilities</h3>
+<ul>
+<li><a href="https://csvkit.readthedocs.io/">csvkit</a></li>
+<li>Suite of utilities for working with CSV<br />
+<code>bash
+  pip install csvkit
+  csvcut -c 1,3 file.csv | csvlook</code></li>
+<li><a href="https://stedolan.github.io/jq/">jq</a></li>
+<li>JSON processor (written in C, but has Python bindings)</li>
+<li><a href="https://httpie.io/">httpie</a></li>
+<li>HTTP client in Unix style<br />
+<code>bash
+  pip install httpie
+  http GET api.example.com/users | jq .</code></li>
+</ul>
+<h3 id="open-source-examples">Open Source Examples</h3>
+<ul>
+<li><a href="https://github.com/nicolargo/glances">glances</a></li>
+<li>System monitoring</li>
+<li><a href="https://github.com/ytdl-org/youtube-dl">youtube-dl</a></li>
+<li>Video downloader</li>
+<li><a href="https://github.com/dbcli/pgcli">pgcli</a></li>
+<li>PostgreSQL CLI with autocompletion</li>
+</ul>
+<h2 id="books">Books</h2>
+<h3 id="python">Python</h3>
+<ul>
+<li><strong>"Fluent Python" by Luciano Ramalho</strong></li>
+<li>Chapter on iterators and generators</li>
+<li><strong>"Effective Python" by Brett Slatkin</strong></li>
+<li>Best practices for I/O operations</li>
+<li><strong>"Python Cookbook" by David Beazley</strong></li>
+<li>Recipes for working with streams</li>
+</ul>
+<h3 id="unixlinux">Unix/Linux</h3>
+<ul>
+<li><strong>"The Linux Command Line" by William Shotts</strong></li>
+<li>Command line basics</li>
+<li><strong>"Unix Power Tools" by Jerry Peek</strong></li>
+<li>Advanced techniques</li>
+<li><strong>"Classic Shell Scripting" by Arnold Robbins</strong></li>
+<li>Shell integration</li>
+</ul>
+<h2 id="videos-and-courses">Videos and Courses</h2>
+<h3 id="free-courses">Free Courses</h3>
+<ul>
+<li><a href="https://www.youtube.com/results?search_query=python+command+line+tools">Python Command Line Tools (YouTube)</a></li>
+<li><a href="https://realpython.com/courses/python-cli-tools/">Real Python — CLI Applications</a></li>
+</ul>
+<h3 id="conferences">Conferences</h3>
+<ul>
+<li>PyCon talks:</li>
+<li>"Building Command Line Tools with Python"</li>
+<li>"Data Pipelines with Python"</li>
+<li>"Unix Philosophy in Python"</li>
+</ul>
+<h2 id="practical-resources">Practical Resources</h2>
+<h3 id="datasets-for-practice">Datasets for Practice</h3>
+<ul>
+<li><a href="https://github.com/awesomedata/awesome-public-datasets">Awesome Public Datasets</a></li>
+<li>CSV, JSON, logs for experiments</li>
+<li><a href="https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/apache_logs">Sample Web Server Logs</a></li>
+<li>Logs for parsing</li>
+</ul>
+<h3 id="coding-challenges">Coding Challenges</h3>
+<ul>
+<li><a href="https://cmdchallenge.com/">Command Line Challenge</a></li>
+<li>Command line puzzles</li>
+<li><a href="https://adventofcode.com/">Advent of Code</a></li>
+<li>Solve puzzles with Python CLI utilities</li>
+</ul>
+<h3 id="cheat-sheets">Cheat Sheets</h3>
+<ul>
+<li><a href="https://gist.github.com/nloadholtes/c3a09ce76a63a7e4d2d3">Python argparse cheatsheet</a></li>
+<li><a href="https://gist.github.com/kirpit/1306188">Python subprocess cheatsheet</a></li>
+</ul>
+<h2 id="communities-and-forums">Communities and Forums</h2>
+<ul>
+<li><a href="https://www.reddit.com/r/Python/">r/Python</a></li>
+<li>Python project discussions</li>
+<li><a href="https://www.reddit.com/r/commandline/">r/commandline</a></li>
+<li>CLI tools and techniques</li>
+<li><a href="https://stackoverflow.com/questions/tagged/python+command-line">Stack Overflow — Python CLI tag</a></li>
+<li>Questions and answers</li>
+<li><a href="https://pythondiscord.com/">Python Discord</a></li>
+<li>Active community</li>
+</ul>
+<h2 id="debugging-and-profiling">Debugging and Profiling</h2>
+<h3 id="debugging">Debugging</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/pdb.html">pdb — Python Debugger</a><br />
+<code>python
+  import pdb; pdb.set_trace()</code></li>
+<li><a href="https://github.com/gotcha/ipdb">ipdb</a></li>
+<li>IPython debugger<br />
+<code>bash
+  pip install ipdb</code></li>
+</ul>
+<h3 id="profiling">Profiling</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/profile.html">cProfile</a><br />
+<code>bash
+  python -m cProfile -s tottime script.py</code></li>
+<li><a href="https://github.com/pyutils/line_profiler">line_profiler</a></li>
+<li>Line-by-line profiling<br />
+<code>bash
+  pip install line_profiler</code></li>
+</ul>
+<h2 id="testing-cli-applications">Testing CLI Applications</h2>
+<ul>
+<li><a href="https://docs.pytest.org/">pytest</a></li>
+<li>Testing framework<br />
+<code>bash
+  pip install pytest</code></li>
+<li><a href="https://click.palletsprojects.com/en/8.1.x/testing/">Click Testing</a></li>
+<li>Testing Click applications</li>
+<li><a href="https://docs.python.org/3/library/subprocess.html#subprocess.run">subprocess testing patterns</a></li>
+</ul>
+<h2 id="useful-unix-commands-for-combining">Useful UNIX Commands for Combining</h2>
+<p>Learn these commands to create powerful pipelines:</p>
+<ul>
+<li><code>grep</code>, <code>egrep</code>, <code>fgrep</code> — pattern search</li>
+<li><code>sed</code> — stream editor</li>
+<li><code>awk</code> — text processing</li>
+<li><code>cut</code>, <code>paste</code> — working with columns</li>
+<li><code>sort</code>, <code>uniq</code> — sorting and unique values</li>
+<li><code>head</code>, <code>tail</code> — beginning/end of file</li>
+<li><code>wc</code> — count lines/words/characters</li>
+<li><code>tr</code> — character replacement</li>
+<li><code>tee</code> — split stream</li>
+<li><code>xargs</code> — build commands</li>
+</ul>
+<h2 id="alternatives-to-python-for-cli">Alternatives to Python for CLI</h2>
+<p>For comparison and inspiration:</p>
+<ul>
+<li><strong>Bash/Shell</strong> — for simple tasks</li>
+<li><strong>Perl</strong> — classic choice for text processing</li>
+<li><strong>Ruby</strong> — elegant syntax</li>
+<li><strong>Go</strong> — fast compiled utilities</li>
+<li><strong>Rust</strong> — performance and safety</li>
+<li><strong>Node.js</strong> — if you know JavaScript</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>The best way to learn is to <strong>practice</strong>:</p>
+<ol>
+<li id="item-1">Read source code of existing CLI utilities</li>
+<li id="item-2">Solve problems on <a href="https://www.hackerrank.com/domains/python">HackerRank</a> and <a href="https://leetcode.com/">LeetCode</a></li>
+<li id="item-3">Create your own utilities for everyday tasks</li>
+<li id="item-4">Participate in open source projects</li>
+</ol>
+<p><strong>Remember:</strong> Every expert was once a beginner. Write code, experiment, make mistakes, and learn! 🚀</p></div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

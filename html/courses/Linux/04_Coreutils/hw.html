@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Coreutils: Data Transformation Utilities">
+    <title>Coreutils: Data Transformation Utilities - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Coreutils: Data Transformation Utilities</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="coreutils-data-transformation-utilities-homework">Coreutils: Data Transformation Utilities - Homework</h1>
+<h2 id="assignment-1-column-extraction-cut">Assignment 1: Column Extraction (cut)</h2>
+<p>Extract the 2nd and 4th columns from a CSV file.<br />
+- Input: <code>products.csv</code> with columns: id,name,price,category<br />
+- Output: name and category only<br />
+- Hint: Use <code>cut -d',' -f2,4</code></p>
+<h2 id="assignment-2-file-merging-paste">Assignment 2: File Merging (paste)</h2>
+<p>Combine three files into one CSV:<br />
+- <code>ids.txt</code>: user IDs (one per line)<br />
+- <code>names.txt</code>: names<br />
+- <code>ages.txt</code>: ages<br />
+- Output: <code>users.csv</code> with format: id,name,age<br />
+- Hint: Use <code>paste -d','</code></p>
+<h2 id="assignment-3-case-conversion-tr">Assignment 3: Case Conversion (tr)</h2>
+<p>Convert all text to uppercase and remove punctuation.<br />
+- Input: <code>article.txt</code><br />
+- Steps:<br />
+  1. Remove punctuation with <code>tr -d</code><br />
+  2. Convert to uppercase with <code>tr '[:lower:]' '[:upper:]'</code><br />
+- Hint: Chain two <code>tr</code> commands</p>
+<h2 id="assignment-4-frequency-analysis-sort-uniq">Assignment 4: Frequency Analysis (sort + uniq)</h2>
+<p>Find the 10 most frequent words in a text file.<br />
+- Input: <code>book.txt</code><br />
+- Steps:<br />
+  1. Convert to lowercase<br />
+  2. Replace spaces with newlines (one word per line)<br />
+  3. Sort<br />
+  4. Count with <code>uniq -c</code><br />
+  5. Sort numerically and show top 10<br />
+- Hint: <code>tr ' ' '\n' | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -rn | head -10</code></p>
+<h2 id="assignment-5-csv-sorting-sort-t">Assignment 5: CSV Sorting (sort -t)</h2>
+<p>Sort a CSV file by the price column (3rd field) in descending numeric order.<br />
+- Input: <code>products.csv</code> with: id,name,price,category<br />
+- Output: Sorted by price (highest first)<br />
+- Hint: <code>sort -t',' -k3,3nr</code></p>
+<h2 id="assignment-6-deduplication-sort-uniq">Assignment 6: Deduplication (sort + uniq)</h2>
+<p>Remove duplicate lines from a file and save unique lines only.<br />
+- Input: <code>emails.txt</code> with duplicate email addresses<br />
+- Output: <code>unique_emails.txt</code><br />
+- Hint: <code>sort emails.txt | uniq &gt; unique_emails.txt</code></p>
+<h2 id="assignment-7-file-splitting-split">Assignment 7: File Splitting (split)</h2>
+<p>Split a large CSV file into chunks of 1000 lines each.<br />
+- Input: <code>large_dataset.csv</code> (10,000 lines)<br />
+- Output: Files named <code>chunk_00</code>, <code>chunk_01</code>, etc.<br />
+- Hint: <code>split -l 1000 -d large_dataset.csv chunk_</code></p>
+<h2 id="assignment-8-progress-monitoring-pv">Assignment 8: Progress Monitoring (pv)</h2>
+<p>Compress a large file while showing progress.<br />
+- Input: <code>large_file.csv</code><br />
+- Output: <code>large_file.csv.gz</code> with progress bar<br />
+- Hint: <code>pv large_file.csv | gzip &gt; large_file.csv.gz</code></p>
+<h2 id="assignment-9-column-reordering-cut-paste">Assignment 9: Column Reordering (cut + paste)</h2>
+<p>Reorder CSV columns from (id,name,age,city) to (name,city,age,id).<br />
+- Input: <code>people.csv</code><br />
+- Output: <code>reordered.csv</code><br />
+- Hint: Use <code>cut</code> multiple times or <code>awk</code></p>
+<h2 id="assignment-10-real-time-log-monitoring-stdbuf-grep">Assignment 10: Real-Time Log Monitoring (stdbuf + grep)</h2>
+<p>Monitor a log file for ERROR lines with unbuffered output.<br />
+- Command: Tail a log and grep for errors with immediate output<br />
+- Hint: <code>tail -f app.log | stdbuf -oL grep ERROR</code></p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-parallel-file-processing">Bonus 1: Parallel File Processing</h3>
+<p>Split a large CSV into 10 chunks, process each in parallel (e.g., count lines), then merge results.<br />
+- Use <code>split</code>, background jobs with <code>&amp;</code>, <code>wait</code>, and merge with <code>cat</code></p>
+<h3 id="bonus-2-csv-column-statistics">Bonus 2: CSV Column Statistics</h3>
+<p>Calculate min, max, and average of a numeric column in a CSV.<br />
+- Use <code>cut</code> to extract column, <code>sort -n</code>, <code>head</code>/<code>tail</code> for min/max, <code>awk</code> for average</p>
+<h3 id="bonus-3-top-k-frequency-analysis">Bonus 3: Top-K Frequency Analysis</h3>
+<p>Create a script that takes a file and number K, returns the K most frequent lines.<br />
+- Example: <code>top_k_freq.sh file.txt 5</code><br />
+- Use <code>sort | uniq -c | sort -rn | head -n $K</code></p>
+<h3 id="bonus-4-csv-join-simulation">Bonus 4: CSV Join Simulation</h3>
+<p>Given two CSV files with a common key column, create a joined output.<br />
+- <code>users.csv</code>: id,name<br />
+- <code>orders.csv</code>: user_id,amount<br />
+- Output: id,name,amount<br />
+- Hint: Use <code>join</code> command or <code>awk</code></p>
+<h3 id="bonus-5-progress-monitored-etl-pipeline">Bonus 5: Progress-Monitored ETL Pipeline</h3>
+<p>Create a pipeline that:<br />
+1. Reads a large CSV with <code>pv</code><br />
+2. Filters rows with <code>grep</code><br />
+3. Sorts by a column<br />
+4. Removes duplicates<br />
+5. Saves to output<br />
+- Show progress at each step</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ul>
+<li>Submit all scripts and commands used</li>
+<li>Include sample input and output files</li>
+<li>Document performance metrics (time, memory) for large file operations</li>
+<li>Explain any challenges encountered</li>
+</ul></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

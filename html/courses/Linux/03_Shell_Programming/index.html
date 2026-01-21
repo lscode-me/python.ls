@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Shell Programming as a Mini-DSL for Data Processing | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="shell-programming-as-a-mini-dsl-for-data-processing">Shell Programming as a Mini-DSL for Data Processing</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Bash isn't just a command interpreter — it's a powerful programming language designed for text processing and pipeline orchestration. When used correctly, shell scripts become a domain-specific language (DSL) for data transformation.</p>
+<p>In this module, we'll learn to write safe, efficient data-processing scripts that leverage the full power of the shell.</p>
+<hr />
+<h2 id="command-substitution">Command Substitution</h2>
+<p>Command substitution allows you to capture the output of a command and use it as a value.</p>
+<h3 id="modern-syntax">Modern Syntax: <code>$(...)</code></h3>
+<pre class="highlight"><code class="language-bash"># Capture command output
+current_date=$(date +%Y-%m-%d)
+echo &quot;Today is $current_date&quot;
+
+# Use in pipelines
+total_lines=$(cat data.csv | wc -l)
+echo &quot;File has $total_lines lines&quot;
+
+# Nested substitution
+files_count=$(ls -1 $(pwd) | wc -l)
+
+# In arithmetic
+age=$((2024 - $(date +%Y)))
+</code></pre>
+
+<h3 id="old-syntax-backticks-avoid">Old Syntax: Backticks (avoid)</h3>
+<pre class="highlight"><code class="language-bash"># Old style - harder to nest
+result=`command`
+
+# Prefer $(...) instead
+result=$(command)
+</code></pre>
+
+<hr />
+<h2 id="streaming-loops-while-read">Streaming Loops: <code>while read</code></h2>
+<p>The <code>while read</code> loop processes data line by line, perfect for streaming large files without loading everything into memory.</p>
+<h3 id="basic-pattern">Basic Pattern</h3>
+<pre class="highlight"><code class="language-bash"># Read from file
+while read line; do
+    echo &quot;Processing: $line&quot;
+done &lt; data.txt
+
+# Read from pipe
+cat data.txt | while read line; do
+    process &quot;$line&quot;
+done
+
+# Read multiple fields
+while IFS=',' read col1 col2 col3; do
+    echo &quot;$col1: $col2 = $col3&quot;
+done &lt; data.csv
+</code></pre>
+
+<h3 id="practical-examples">Practical Examples</h3>
+<p><strong>Example 1: Calculate average</strong></p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+sum=0
+count=0
+
+while read value; do
+    sum=$((sum + value))
+    count=$((count + 1))
+done &lt; numbers.txt
+
+average=$(echo &quot;scale=2; $sum / $count&quot; | bc)
+echo &quot;Average: $average&quot;
+</code></pre>
+
+<p><strong>Example 2: Filter and transform CSV</strong></p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Extract high-value transactions
+
+while IFS=',' read date amount category; do
+    if [[ $amount -gt 100 ]]; then
+        printf &quot;%s\t%s\t%s\n&quot; &quot;$date&quot; &quot;$amount&quot; &quot;$category&quot;
+    fi
+done &lt; transactions.csv
+</code></pre>
+
+<p><strong>Example 3: JSONL to CSV</strong></p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Convert JSON Lines to CSV
+
+echo &quot;name,age,city&quot;
+while read line; do
+    name=$(echo &quot;$line&quot; | jq -r '.name')
+    age=$(echo &quot;$line&quot; | jq -r '.age')
+    city=$(echo &quot;$line&quot; | jq -r '.city')
+    echo &quot;$name,$age,$city&quot;
+done &lt; data.jsonl
+</code></pre>
+
+<hr />
+<h2 id="arrays-strings-and-arithmetic">Arrays, Strings, and Arithmetic</h2>
+<h3 id="arrays">Arrays</h3>
+<pre class="highlight"><code class="language-bash"># Declare array
+fruits=(&quot;apple&quot; &quot;banana&quot; &quot;cherry&quot;)
+
+# Access elements
+echo &quot;${fruits[0]}&quot;  # apple
+echo &quot;${fruits[@]}&quot;  # all elements
+echo &quot;${#fruits[@]}&quot; # length
+
+# Add elements
+fruits+=(&quot;date&quot;)
+
+# Loop through array
+for fruit in &quot;${fruits[@]}&quot;; do
+    echo &quot;$fruit&quot;
+done
+
+# Read into array
+mapfile -t lines &lt; file.txt
+# or
+readarray -t lines &lt; file.txt
+</code></pre>
+
+<h3 id="string-operations">String Operations</h3>
+<pre class="highlight"><code class="language-bash">text=&quot;Hello, World!&quot;
+
+# Length
+echo &quot;${#text}&quot;  # 13
+
+# Substring
+echo &quot;${text:0:5}&quot;  # Hello
+echo &quot;${text:7}&quot;    # World!
+
+# Replace
+echo &quot;${text/World/Bash}&quot;  # Hello, Bash!
+echo &quot;${text//o/0}&quot;        # Hell0, W0rld!
+
+# Case conversion
+echo &quot;${text^^}&quot;  # HELLO, WORLD!
+echo &quot;${text,,}&quot;  # hello, world!
+
+# Trim whitespace
+text=&quot;  data  &quot;
+trimmed=&quot;${text#&quot;${text%%[![:space:]]*}&quot;}&quot;
+trimmed=&quot;${trimmed%&quot;${trimmed##*[![:space:]]}&quot;}&quot;
+
+# Check if string contains substring
+if [[ &quot;$text&quot; == *&quot;World&quot;* ]]; then
+    echo &quot;Found!&quot;
+fi
+</code></pre>
+
+<h3 id="arithmetic">Arithmetic</h3>
+<pre class="highlight"><code class="language-bash"># Arithmetic expansion
+x=5
+y=3
+echo $((x + y))    # 8
+echo $((x * y))    # 15
+echo $((x ** y))   # 125 (power)
+
+# Increment/decrement
+((x++))
+((y--))
+((x += 10))
+
+# Comparison in arithmetic context
+if ((x &gt; y)); then
+    echo &quot;x is greater&quot;
+fi
+
+# Floating point with bc
+result=$(echo &quot;scale=2; 10 / 3&quot; | bc)
+echo &quot;$result&quot;  # 3.33
+
+# Random numbers
+random=$((RANDOM % 100))  # 0-99
+</code></pre>
+
+<hr />
+<h2 id="functions">Functions</h2>
+<h3 id="basic-functions">Basic Functions</h3>
+<pre class="highlight"><code class="language-bash"># Define function
+greet() {
+    echo &quot;Hello, $1!&quot;
+}
+
+# Call function
+greet &quot;Alice&quot;  # Hello, Alice!
+
+# Function with return value
+add() {
+    local result=$(($1 + $2))
+    echo &quot;$result&quot;
+}
+
+sum=$(add 5 3)
+echo &quot;Sum: $sum&quot;
+
+# Function with multiple outputs
+stats() {
+    local sum=0
+    local count=0
+
+    while read num; do
+        sum=$((sum + num))
+        count=$((count + 1))
+    done
+
+    echo &quot;$sum $count&quot;
+}
+
+read sum count &lt; &lt;(seq 1 10 | stats)
+echo &quot;Sum: $sum, Count: $count&quot;
+</code></pre>
+
+<h3 id="local-variables">Local Variables</h3>
+<pre class="highlight"><code class="language-bash">process_data() {
+    local input_file=&quot;$1&quot;
+    local output_file=&quot;$2&quot;
+    local temp_file=$(mktemp)
+
+    # Process data
+    cat &quot;$input_file&quot; | transform &gt; &quot;$temp_file&quot;
+    mv &quot;$temp_file&quot; &quot;$output_file&quot;
+}
+</code></pre>
+
+<hr />
+<h2 id="exit-codes-and-error-handling">Exit Codes and Error Handling</h2>
+<h3 id="exit-codes">Exit Codes</h3>
+<pre class="highlight"><code class="language-bash"># Check last command exit code
+ls /nonexistent
+echo $?  # Non-zero indicates error
+
+# Successful command
+ls /tmp
+echo $?  # 0 indicates success
+
+# Set exit code in script
+exit 0  # Success
+exit 1  # Error
+</code></pre>
+
+<h3 id="conditional-execution">Conditional Execution</h3>
+<pre class="highlight"><code class="language-bash"># Run if previous command succeeded
+command1 &amp;&amp; command2
+
+# Run if previous command failed
+command1 || command2
+
+# Chain conditionally
+command1 &amp;&amp; command2 || command3
+
+# Multiple conditions
+if command1 &amp;&amp; command2; then
+    echo &quot;Both succeeded&quot;
+fi
+</code></pre>
+
+<h3 id="error-handling-with-set">Error Handling with <code>set</code></h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Exit on error
+set -e
+
+# Exit on undefined variable
+set -u
+
+# Fail on pipe errors
+set -o pipefail
+
+# Combine all (recommended)
+set -euo pipefail
+
+# Now any error stops the script
+curl https://api.example.com/data | jq '.results[]' | process
+</code></pre>
+
+<h3 id="custom-error-handling">Custom Error Handling</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+error_exit() {
+    echo &quot;ERROR: $1&quot; &gt;&amp;2
+    exit 1
+}
+
+# Use in script
+[ -f &quot;data.csv&quot; ] || error_exit &quot;data.csv not found&quot;
+
+# With cleanup
+cleanup() {
+    rm -f &quot;$temp_file&quot;
+}
+
+trap cleanup EXIT
+
+temp_file=$(mktemp)
+process_data &quot;$temp_file&quot; || error_exit &quot;Processing failed&quot;
+</code></pre>
+
+<hr />
+<h2 id="process-substitution">Process Substitution</h2>
+<p>Process substitution creates temporary named pipes for command output, allowing you to use command output as if it were a file.</p>
+<h3 id="syntax">Syntax</h3>
+<pre class="highlight"><code class="language-bash"># Output as file: &lt;(command)
+# Input as file: &gt;(command)
+</code></pre>
+
+<h3 id="reading-from-process-substitution">Reading from Process Substitution</h3>
+<pre class="highlight"><code class="language-bash"># Compare outputs of two commands
+diff &lt;(ls dir1) &lt;(ls dir2)
+
+# Use command output as file
+while read line; do
+    echo &quot;Line: $line&quot;
+done &lt; &lt;(curl -s https://api.example.com/data | jq -r '.[]')
+
+# Multiple inputs
+paste &lt;(cut -d',' -f1 file1.csv) &lt;(cut -d',' -f2 file2.csv)
+</code></pre>
+
+<h3 id="writing-to-process-substitution">Writing to Process Substitution</h3>
+<pre class="highlight"><code class="language-bash"># Split output to multiple processes
+command &gt; &gt;(process1) 2&gt; &gt;(process2)
+
+# Tee to multiple destinations
+echo &quot;data&quot; | tee &gt;(process1) &gt;(process2) &gt;(process3)
+
+# Log and process simultaneously
+./script.sh 2&gt;&amp;1 | tee &gt;(grep ERROR &gt; errors.log) &gt;(wc -l &gt; linecount.txt)
+</code></pre>
+
+<h3 id="practical-examples_1">Practical Examples</h3>
+<p><strong>Example 1: Join transformed data streams</strong></p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Join two CSV files after transformation
+
+join -t',' \
+    &lt;(sort -t',' -k1 file1.csv) \
+    &lt;(sort -t',' -k1 file2.csv)
+</code></pre>
+
+<p><strong>Example 2: Parallel processing</strong></p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Process two data sources in parallel
+
+while read line1 &lt;&amp;3 &amp;&amp; read line2 &lt;&amp;4; do
+    echo &quot;Combined: $line1 + $line2&quot;
+done 3&lt; &lt;(process_source1) 4&lt; &lt;(process_source2)
+</code></pre>
+
+<p><strong>Example 3: Complex pipeline with branches</strong></p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Split pipeline into multiple outputs
+
+curl -s https://api.example.com/data | \
+    jq -r '.results[]' | \
+    tee \
+        &gt;(grep &quot;ERROR&quot; &gt; errors.log) \
+        &gt;(grep &quot;WARN&quot; &gt; warnings.log) \
+        &gt;(grep &quot;INFO&quot; | wc -l &gt; info_count.txt) \
+    &gt; all_logs.txt
+</code></pre>
+
+<hr />
+<h2 id="practical-data-processing-scripts">Practical Data Processing Scripts</h2>
+<h3 id="example-1-csv-filter-and-aggregate">Example 1: CSV Filter and Aggregate</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+# Filter CSV by date range and compute statistics
+
+input_file=&quot;${1:-data.csv}&quot;
+start_date=&quot;${2:-2024-01-01}&quot;
+end_date=&quot;${3:-2024-12-31}&quot;
+
+echo &quot;Processing $input_file from $start_date to $end_date&quot;
+
+# Skip header, filter by date, calculate stats
+tail -n +2 &quot;$input_file&quot; | \
+while IFS=',' read date amount category; do
+    if [[ &quot;$date&quot; &gt; &quot;$start_date&quot; &amp;&amp; &quot;$date&quot; &lt; &quot;$end_date&quot; ]]; then
+        echo &quot;$date,$amount,$category&quot;
+    fi
+done | \
+awk -F',' '{
+    sum += $2
+    count++
+    if ($2 &gt; max) max = $2
+    if (min == 0 || $2 &lt; min) min = $2
+}
+END {
+    printf &quot;Count: %d\n&quot;, count
+    printf &quot;Sum: %.2f\n&quot;, sum
+    printf &quot;Average: %.2f\n&quot;, sum/count
+    printf &quot;Min: %.2f\n&quot;, min
+    printf &quot;Max: %.2f\n&quot;, max
+}'
+</code></pre>
+
+<h3 id="example-2-jsonl-to-csv-converter">Example 2: JSONL to CSV Converter</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+# Convert JSONL to CSV with field selection
+
+input=&quot;${1:-/dev/stdin}&quot;
+fields=&quot;${2:-name,age,city}&quot;
+
+# Extract field names
+IFS=',' read -ra field_array &lt;&lt;&lt; &quot;$fields&quot;
+
+# Print CSV header
+echo &quot;$fields&quot;
+
+# Process each JSON line
+while read -r line; do
+    values=()
+    for field in &quot;${field_array[@]}&quot;; do
+        value=$(echo &quot;$line&quot; | jq -r &quot;.$field // \&quot;\&quot;&quot;)
+        values+=(&quot;$value&quot;)
+    done
+
+    # Join with commas
+    IFS=','
+    echo &quot;${values[*]}&quot;
+done &lt; &quot;$input&quot;
+</code></pre>
+
+<h3 id="example-3-streaming-calculator">Example 3: Streaming Calculator</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+# Calculate mean and median from streaming data
+
+declare -a values=()
+sum=0
+count=0
+
+while read -r num; do
+    values+=(&quot;$num&quot;)
+    sum=$(echo &quot;$sum + $num&quot; | bc)
+    ((count++))
+done
+
+# Calculate mean
+mean=$(echo &quot;scale=2; $sum / $count&quot; | bc)
+
+# Calculate median
+IFS=$'\n' sorted=($(sort -n &lt;&lt;&lt;&quot;${values[*]}&quot;))
+mid=$((count / 2))
+
+if ((count % 2 == 0)); then
+    median=$(echo &quot;scale=2; (${sorted[$mid-1]} + ${sorted[$mid]}) / 2&quot; | bc)
+else
+    median=${sorted[$mid]}
+fi
+
+echo &quot;Count: $count&quot;
+echo &quot;Mean: $mean&quot;
+echo &quot;Median: $median&quot;
+</code></pre>
+
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="1-always-use-quotes">1. Always Use Quotes</h3>
+<pre class="highlight"><code class="language-bash"># BAD: breaks on spaces
+file=$1
+cat $file
+
+# GOOD
+file=&quot;$1&quot;
+cat &quot;$file&quot;
+</code></pre>
+
+<h3 id="2-check-arguments">2. Check Arguments</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+if [ $# -lt 2 ]; then
+    echo &quot;Usage: $0 &lt;input&gt; &lt;output&gt;&quot; &gt;&amp;2
+    exit 1
+fi
+
+input=&quot;$1&quot;
+output=&quot;$2&quot;
+</code></pre>
+
+<h3 id="3-use-meaningful-variable-names">3. Use Meaningful Variable Names</h3>
+<pre class="highlight"><code class="language-bash"># BAD
+f=&quot;data.csv&quot;
+n=$(cat $f | wc -l)
+
+# GOOD
+input_file=&quot;data.csv&quot;
+line_count=$(wc -l &lt; &quot;$input_file&quot;)
+</code></pre>
+
+<h3 id="4-add-comments">4. Add Comments</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Process sales data and generate daily report
+# Usage: ./process_sales.sh &lt;input.csv&gt; &lt;output.txt&gt;
+
+set -euo pipefail
+
+# Configuration
+readonly MIN_AMOUNT=100
+readonly DATE_FORMAT=&quot;%Y-%m-%d&quot;
+
+# Functions
+filter_high_value() {
+    awk -F',' -v min=&quot;$MIN_AMOUNT&quot; '$2 &gt;= min'
+}
+</code></pre>
+
+<h3 id="5-use-readonly-for-constants">5. Use <code>readonly</code> for Constants</h3>
+<pre class="highlight"><code class="language-bash">readonly API_URL=&quot;https://api.example.com&quot;
+readonly MAX_RETRIES=3
+readonly TIMEOUT=30
+</code></pre>
+
+<hr />
+<h2 id="summary">Summary</h2>
+<p>In this module, you learned:</p>
+<ul>
+<li>✅ <strong>Command substitution</strong>: <code>$(...)</code> to capture output</li>
+<li>✅ <strong>Streaming loops</strong>: <code>while read</code> for memory-efficient processing</li>
+<li>✅ <strong>Arrays and strings</strong>: Data structures and manipulation</li>
+<li>✅ <strong>Arithmetic</strong>: Integer and floating-point calculations</li>
+<li>✅ <strong>Functions</strong>: Reusable code blocks</li>
+<li>✅ <strong>Exit codes</strong>: Error detection and handling</li>
+<li>✅ <strong><code>set -euo pipefail</code></strong>: Safe script execution</li>
+<li>✅ <strong>Process substitution</strong>: <code>&lt;(cmd)</code> and <code>&gt;(cmd)</code> for advanced pipelines</li>
+</ul>
+<h3 id="next-steps">Next Steps</h3>
+<p>In the next module, we'll explore <strong>Coreutils</strong> — the essential building blocks for efficient data pipeline construction.</p>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

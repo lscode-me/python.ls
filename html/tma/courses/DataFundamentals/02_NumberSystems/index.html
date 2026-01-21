@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>Number Systems | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Number Systems</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="number-systems">Number Systems</h1>
+<h2 id="bits-bytes-hex-and-data-representation-in-memory">Bits, Bytes, Hex, and Data Representation in Memory</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Understand what data and formats are (module 01_Intro)</li>
+<li>Know basic arithmetic</li>
+<li>Understand that computers work with electrical signals</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Convert numbers between binary, decimal, and hexadecimal systems</li>
+<li>Explain the difference between a bit and a byte</li>
+<li>Work with hex representation of data</li>
+<li>Understand the concept of endianness (byte order)</li>
+<li>Use tools for working with binary data</li>
+<li>Apply these concepts to genomic data and bioinformatics files</li>
+</ul>
+<hr />
+<h2 id="1-why-learn-number-systems">1. Why Learn Number Systems</h2>
+<h3 id="11-why-this-matters-in-it-and-life-sciences">1.1 Why This Matters in IT and Life Sciences</h3>
+<p>In everyday life we use the decimal system (0-9), but computers work differently:</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>IT Usage</th>
+<th>Life Science Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Binary</strong></td>
+<td>Internal data representation</td>
+<td>Base calling in sequencing (A/T/C/G encoded as bits)</td>
+</tr>
+<tr>
+<td><strong>Hexadecimal (hex)</strong></td>
+<td>Compact binary notation</td>
+<td>Viewing binary genomic files (BAM, BCF)</td>
+</tr>
+<tr>
+<td><strong>Decimal</strong></td>
+<td>Human-readable values</td>
+<td>Read counts, gene expression levels</td>
+</tr>
+<tr>
+<td><strong>Octal</strong></td>
+<td>Unix file permissions</td>
+<td>Controlling access to genomic databases</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-where-youll-encounter-this">1.2 Where You'll Encounter This</h3>
+<pre class="highlight"><code class="language-bash"># File permissions in Unix (octal)
+chmod 755 script.sh
+chmod 644 variants.vcf
+
+# MAC address (hex)
+aa:bb:cc:dd:ee:ff
+
+# IP address (decimal + binary under the hood)
+192.168.1.1
+
+# Colors in CSS (hex)
+#FF5733
+
+# UUID (hex)
+550e8400-e29b-41d4-a716-446655440000
+</code></pre>
+
+<p><strong>Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># FASTQ quality scores (Phred+33 ASCII encoding)
+# Quality 40 = ASCII 73 (0x49 in hex)
+
+# BAM file magic numbers (hex)
+xxd -l 4 aligned.bam
+# Output: 42 41 4d 01  (BAM\x01)
+
+# Genomic coordinates (decimal but often hex in memory)
+# chr1:12,345,678
+</code></pre>
+
+<hr />
+<h2 id="2-bits-and-bytes">2. Bits and Bytes</h2>
+<h3 id="21-bit">2.1 Bit</h3>
+<p><strong>Bit</strong> is the smallest unit of information. Can have two values:</p>
+<ul>
+<li><code>0</code> — logical zero, off, false</li>
+<li><code>1</code> — logical one, on, true</li>
+</ul>
+<p>Physically, a bit is implemented as:</p>
+<ul>
+<li>High/low voltage in circuits</li>
+<li>Magnetized/demagnetized area on disk</li>
+<li>Reflects/doesn't reflect light on CD</li>
+<li>Different fluorescence levels in DNA sequencing</li>
+</ul>
+<pre class="highlight"><code>One bit: 0 or 1
+Two bits: 00, 01, 10, 11 (4 combinations)
+Three bits: 000, 001, 010, 011, 100, 101, 110, 111 (8 combinations)
+</code></pre>
+
+<p><strong>Formula:</strong> n bits = 2^n combinations</p>
+<p><strong>Bioinformatics Application:</strong></p>
+<p>DNA bases can be encoded in 2 bits:</p>
+<pre class="highlight"><code>A = 00
+C = 01
+G = 10
+T = 11
+
+Sequence &quot;ACGT&quot; = 00 01 10 11 (1 byte)
+</code></pre>
+
+<p>This is how compressed genomic formats store sequences efficiently!</p>
+<h3 id="22-byte">2.2 Byte</h3>
+<p><strong>Byte</strong> is a group of 8 bits. Standard unit for working with data.</p>
+<pre class="highlight"><code>1 byte = 8 bits
+1 byte = 256 possible values (2^8)
+1 byte = numbers from 0 to 255
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code>Byte:        01001000
+             ||||||||
+Positions:   76543210
+Weights:    128 64 32 16 8 4 2 1
+
+Calculation: 0×128 + 1×64 + 0×32 + 0×16 + 1×8 + 0×4 + 0×2 + 0×1
+          = 64 + 8
+          = 72
+
+72 in ASCII = letter 'H'
+</code></pre>
+
+<p><strong>FASTQ Quality Example:</strong></p>
+<pre class="highlight"><code>Quality byte: 01001001 = 73 in decimal
+ASCII character: 'I'
+Phred score: 73 - 33 = 40 (high quality base call)
+</code></pre>
+
+<h3 id="23-data-measurement-units">2.3 Data Measurement Units</h3>
+<table>
+<thead>
+<tr>
+<th>Unit</th>
+<th>Size</th>
+<th>Example</th>
+<th>Genomics Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 bit</td>
+<td>1 bit</td>
+<td>Yes/No</td>
+<td>One DNA base (2 bits used)</td>
+</tr>
+<tr>
+<td>1 byte (B)</td>
+<td>8 bits</td>
+<td>One ASCII char</td>
+<td>FASTQ quality score</td>
+</tr>
+<tr>
+<td>1 kilobyte (KB)</td>
+<td>1024 bytes</td>
+<td>Short text</td>
+<td>Small gene sequence</td>
+</tr>
+<tr>
+<td>1 megabyte (MB)</td>
+<td>1024 KB</td>
+<td>Photo</td>
+<td>Bacterial genome (E. coli ~4.6 MB)</td>
+</tr>
+<tr>
+<td>1 gigabyte (GB)</td>
+<td>1024 MB</td>
+<td>Movie</td>
+<td>Human genome FASTA (~3.2 GB)</td>
+</tr>
+<tr>
+<td>1 terabyte (TB)</td>
+<td>1024 GB</td>
+<td>Large disk</td>
+<td>Whole genome sequencing project</td>
+</tr>
+<tr>
+<td>1 petabyte (PB)</td>
+<td>1024 TB</td>
+<td>Data center</td>
+<td>NCBI SRA database (~50 PB)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>⚠️ Warning:</strong><br />
+Disk manufacturers use 1000 (SI), not 1024 (IEC):<br />
+1 TB (manufacturer) = 1,000,000,000,000 bytes<br />
+1 TiB (actual) = 1,099,511,627,776 bytes<br />
+So a "1 TB" disk shows as ~931 GiB in the system.</p>
+</blockquote>
+<h3 id="24-nibble-half-byte">2.4 Nibble (Half-byte)</h3>
+<p><strong>Nibble</strong> — 4 bits, half a byte. Convenient for hex representation.</p>
+<pre class="highlight"><code>1 nibble = 4 bits = 16 combinations (0-15)
+1 byte = 2 nibbles
+
+Byte:     01001000
+          |    |
+Nibbles:  0100 1000
+           4    8
+
+Hex:      0x48
+</code></pre>
+
+<hr />
+<h2 id="3-binary-system">3. Binary System</h2>
+<h3 id="31-basics">3.1 Basics</h3>
+<p><strong>Binary system</strong> — base-2 numeral system. Uses only digits 0 and 1.</p>
+<pre class="highlight"><code>Decimal    Binary
+   0         0
+   1         1
+   2         10
+   3         11
+   4         100
+   5         101
+   6         110
+   7         111
+   8         1000
+   9         1001
+   10        1010
+</code></pre>
+
+<h3 id="32-conversion-decimal-binary">3.2 Conversion: Decimal → Binary</h3>
+<p><strong>Division by 2 method:</strong></p>
+<p>Convert 42 to binary:</p>
+<pre class="highlight"><code>42 ÷ 2 = 21, remainder 0  ↑
+21 ÷ 2 = 10, remainder 1  |
+10 ÷ 2 = 5,  remainder 0  | read bottom to top
+5  ÷ 2 = 2,  remainder 1  |
+2  ÷ 2 = 1,  remainder 0  |
+1  ÷ 2 = 0,  remainder 1  ↓
+
+Result: 101010
+</code></pre>
+
+<p><strong>Check in Python:</strong></p>
+<pre class="highlight"><code class="language-python"># Decimal → Binary
+decimal = 42
+print(bin(decimal))
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>0b101010
+</code></pre>
+
+<h3 id="33-conversion-binary-decimal">3.3 Conversion: Binary → Decimal</h3>
+<p><strong>Positional weight method:</strong></p>
+<pre class="highlight"><code>Binary:  1 0 1 0 1 0
+         | | | | | |
+Position:5 4 3 2 1 0
+Weight: 32 16 8 4 2 1
+
+1×32 + 0×16 + 1×8 + 0×4 + 1×2 + 0×1 = 32 + 8 + 2 = 42
+</code></pre>
+
+<p><strong>In Python:</strong></p>
+<pre class="highlight"><code class="language-python"># Binary → Decimal
+binary_str = &quot;101010&quot;
+print(int(binary_str, 2))
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>42
+</code></pre>
+
+<h3 id="34-binary-arithmetic">3.4 Binary Arithmetic</h3>
+<p><strong>Addition:</strong></p>
+<pre class="highlight"><code>    1 1   (carries)
+  0 1 0 1  (5)
++ 0 0 1 1  (3)
+─────────
+  1 0 0 0  (8)
+</code></pre>
+
+<p>Rules:
+- 0 + 0 = 0
+- 0 + 1 = 1
+- 1 + 0 = 1
+- 1 + 1 = 10 (0, carry 1)</p>
+<hr />
+<h2 id="4-hexadecimal-system">4. Hexadecimal System</h2>
+<h3 id="41-basics">4.1 Basics</h3>
+<p><strong>Hex</strong> — base-16 system. Uses digits 0-9 and letters A-F.</p>
+<pre class="highlight"><code>Decimal   Hex   Binary
+   0       0     0000
+   1       1     0001
+   2       2     0010
+   3       3     0011
+   4       4     0100
+   5       5     0101
+   6       6     0110
+   7       7     0111
+   8       8     1000
+   9       9     1001
+   10      A     1010
+   11      B     1011
+   12      C     1100
+   13      D     1101
+   14      E     1110
+   15      F     1111
+</code></pre>
+
+<h3 id="42-why-hex-is-so-convenient">4.2 Why Hex Is So Convenient</h3>
+<p>One hex digit = 4 bits (nibble). Two hex digits = 1 byte.</p>
+<pre class="highlight"><code>Byte in binary: 0100 1000
+Byte in hex:      4    8   = 0x48
+
+Compare:
+Binary:  01001000 01100101 01101100 01101100 01101111
+Hex:     48       65       6C       6C       6F
+ASCII:   H        e        l        l        o
+</code></pre>
+
+<p>Hex is much more compact and easier for humans to read!</p>
+<p><strong>Genomics Example:</strong></p>
+<pre class="highlight"><code class="language-bash"># BAM file header in hex
+xxd -l 32 aligned.bam
+
+00000000: 4241 4d01 3800 0000 4073 510a 4048 4409  BAM.8...@sQ.@HD.
+00000010: 5644 3a31 2e36 0940 5351 0953 4e3a 636f  VD:1.6.@SQ.SN:co
+</code></pre>
+
+<p>Much easier to read than binary!</p>
+<h3 id="43-hex-notations">4.3 Hex Notations</h3>
+<pre class="highlight"><code class="language-python"># Different ways to write hex
+0x48       # Prefix 0x (most common)
+0X48       # Same, but uppercase X
+48h        # Suffix h (assembly language)
+$48        # Prefix $ (some platforms)
+\x48       # In strings (Python, C)
+#48        # Colors in CSS (usually 6 digits)
+</code></pre>
+
+<h3 id="44-conversion-hex-decimal">4.4 Conversion: Hex ↔ Decimal</h3>
+<p><strong>Hex → Decimal:</strong></p>
+<pre class="highlight"><code>0x2A = 2×16¹ + 10×16⁰ = 32 + 10 = 42
+0xFF = 15×16 + 15 = 240 + 15 = 255
+0x100 = 1×256 + 0×16 + 0×1 = 256
+</code></pre>
+
+<p><strong>Python:</strong></p>
+<pre class="highlight"><code class="language-python"># Hex → Decimal
+print(int(&quot;2A&quot;, 16))   # 42
+print(int(&quot;FF&quot;, 16))   # 255
+print(0xFF)            # 255
+
+# Decimal → Hex
+print(hex(42))         # 0x2a
+print(hex(255))        # 0xff
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>42
+255
+255
+0x2a
+0xff
+</code></pre>
+
+<h3 id="45-practical-hex-examples">4.5 Practical Hex Examples</h3>
+<p><strong>RGB Colors:</strong></p>
+<pre class="highlight"><code>#FF5733
+ || || ||
+ RR GG BB
+
+R = FF = 255 (maximum red)
+G = 57 = 87  (some green)
+B = 33 = 51  (little blue)
+
+Result: orange-red color
+</code></pre>
+
+<p><strong>MAC Address:</strong></p>
+<pre class="highlight"><code>aa:bb:cc:dd:ee:ff
+
+Each pair is a byte (0-255)
+Total: 6 bytes = 48 bits
+</code></pre>
+
+<p><strong>Bytes in File:</strong></p>
+<pre class="highlight"><code class="language-bash">echo -n &quot;Hi&quot; | xxd
+</code></pre>
+
+<pre class="highlight"><code>00000000: 4869                                     Hi
+          ||
+          4869 = 'H' (0x48=72) + 'i' (0x69=105)
+</code></pre>
+
+<p><strong>FASTQ Quality:</strong></p>
+<pre class="highlight"><code class="language-bash"># Quality character 'I' in hex
+echo -n &quot;I&quot; | xxd
+# Output: 49  (decimal 73, quality 40 after Phred+33 offset)
+</code></pre>
+
+<hr />
+<h2 id="5-octal-system">5. Octal System</h2>
+<h3 id="51-basics">5.1 Basics</h3>
+<p><strong>Octal</strong> — base-8 system. Uses digits 0-7.</p>
+<pre class="highlight"><code>Decimal   Octal   Binary
+   0        0      000
+   1        1      001
+   2        2      010
+   3        3      011
+   4        4      100
+   5        5      101
+   6        6      110
+   7        7      111
+   8       10     1000
+</code></pre>
+
+<h3 id="52-usage-unix-file-permissions">5.2 Usage: Unix File Permissions</h3>
+<pre class="highlight"><code class="language-bash">chmod 755 script.sh
+chmod 644 data.vcf
+
+7 = 111 (rwx) — owner: read, write, execute
+5 = 101 (r-x) — group: read, execute
+5 = 101 (r-x) — others: read, execute
+</code></pre>
+
+<p><strong>Permission Breakdown:</strong></p>
+<pre class="highlight"><code>rwxr-xr-x in binary: 111 101 101
+                      7   5   5   in octal
+</code></pre>
+
+<pre class="highlight"><code class="language-python"># Octal in Python
+print(0o755)        # 493 in decimal
+print(oct(493))     # '0o755'
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>493
+0o755
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-bash"># Protect sensitive patient data
+chmod 600 patient_variants.vcf  # Only owner can read/write
+chmod 644 public_reference.fasta # Everyone can read
+chmod 755 analysis_pipeline.sh  # Everyone can execute
+</code></pre>
+
+<hr />
+<h2 id="6-byte-order-endianness">6. Byte Order (Endianness)</h2>
+<h3 id="61-multi-byte-number-problem">6.1 Multi-byte Number Problem</h3>
+<p>Number 0x12345678 takes 4 bytes: 12, 34, 56, 78.</p>
+<p>In what order should they be stored in memory?</p>
+<h3 id="62-big-endian-vs-little-endian">6.2 Big-Endian vs Little-Endian</h3>
+<p><strong>Big-Endian (BE):</strong> most significant byte first ("natural" order)</p>
+<pre class="highlight"><code>Number: 0x12345678
+Address: 0x00  0x01  0x02  0x03
+Byte:    0x12  0x34  0x56  0x78
+         ↑
+         Most significant byte (Big end) first
+</code></pre>
+
+<p><strong>Little-Endian (LE):</strong> least significant byte first</p>
+<pre class="highlight"><code>Number: 0x12345678  
+Address: 0x00  0x01  0x02  0x03
+Byte:    0x78  0x56  0x34  0x12
+         ↑
+         Least significant byte (Little end) first
+</code></pre>
+
+<h3 id="63-where-this-matters">6.3 Where This Matters</h3>
+<table>
+<thead>
+<tr>
+<th>Architecture/Protocol</th>
+<th>Endianness</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x86, x86-64 (Intel/AMD)</td>
+<td>Little-Endian</td>
+<td>Most PCs and servers</td>
+</tr>
+<tr>
+<td>ARM (default)</td>
+<td>Little-Endian</td>
+<td>Mobile devices, Apple M1/M2</td>
+</tr>
+<tr>
+<td>Network protocols (TCP/IP)</td>
+<td>Big-Endian</td>
+<td>Internet standard</td>
+</tr>
+<tr>
+<td>Java .class files</td>
+<td>Big-Endian</td>
+<td>JVM specification</td>
+</tr>
+<tr>
+<td>JPEG, PNG, GIF</td>
+<td>Big-Endian</td>
+<td>Image formats</td>
+</tr>
+<tr>
+<td>BMP</td>
+<td>Little-Endian</td>
+<td>Windows bitmap</td>
+</tr>
+<tr>
+<td>BAM files</td>
+<td>Little-Endian</td>
+<td>Bioinformatics binary format</td>
+</tr>
+<tr>
+<td>BCF files</td>
+<td>Little-Endian</td>
+<td>Binary VCF format</td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-practical-example">6.4 Practical Example</h3>
+<pre class="highlight"><code class="language-python">import struct
+
+# Number 0x12345678
+number = 0x12345678
+
+# Pack in Big-Endian
+be = struct.pack('&gt;I', number)  # &gt; = big-endian, I = unsigned int
+print(&quot;Big-Endian:&quot;, be.hex())
+
+# Pack in Little-Endian  
+le = struct.pack('&lt;I', number)  # &lt; = little-endian
+print(&quot;Little-Endian:&quot;, le.hex())
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>Big-Endian: 12345678
+Little-Endian: 78563412
+</code></pre>
+
+<p><strong>Bioinformatics Impact:</strong></p>
+<p>BAM files use Little-Endian for multi-byte integers. If you read them incorrectly:</p>
+<pre class="highlight"><code class="language-python"># Reading BAM reference ID (4 bytes)
+bam_bytes = b'\x05\x00\x00\x00'  # Little-Endian
+
+# Correct: Little-Endian
+ref_id = int.from_bytes(bam_bytes, 'little')
+print(f&quot;Correct reference ID: {ref_id}&quot;)  # 5
+
+# Wrong: Big-Endian
+wrong_id = int.from_bytes(bam_bytes, 'big')
+print(f&quot;Wrong reference ID: {wrong_id}&quot;)  # 83886080 (garbage!)
+</code></pre>
+
+<h3 id="65-network-byte-order">6.5 Network Byte Order</h3>
+<p>Network protocols use Big-Endian (Network Byte Order).</p>
+<pre class="highlight"><code class="language-python">import socket
+
+# Conversion between host and network byte order
+host_int = 0x12345678
+
+# Host → Network (for sending over network)
+network_int = socket.htonl(host_int)
+print(f&quot;Host:    {host_int:#010x}&quot;)
+print(f&quot;Network: {network_int:#010x}&quot;)
+</code></pre>
+
+<p><strong>Output (on Little-Endian system):</strong></p>
+<pre class="highlight"><code>Host:    0x12345678
+Network: 0x78563412
+</code></pre>
+
+<hr />
+<h2 id="7-command-line-tools">7. Command-Line Tools</h2>
+<h3 id="71-xxd-hex-dump">7.1 xxd — hex dump</h3>
+<pre class="highlight"><code class="language-bash"># Create test file
+echo -n &quot;Hello&quot; &gt; test.txt
+
+# Hex dump
+xxd test.txt
+</code></pre>
+
+<pre class="highlight"><code>00000000: 4865 6c6c 6f                             Hello
+</code></pre>
+
+<p><strong>Output Breakdown:</strong></p>
+<pre class="highlight"><code>00000000: 4865 6c6c 6f                             Hello
+    |      |                                        |
+    |      |                                        ASCII
+    |      Hex bytes (in groups of 2)
+    Offset in hex
+</code></pre>
+
+<p><strong>xxd Options:</strong></p>
+<pre class="highlight"><code class="language-bash"># Show only first N bytes
+xxd -l 16 file.bin
+
+# Continuous hex (no spaces)
+xxd -p file.bin
+
+# Reverse conversion: hex → binary
+echo &quot;48656c6c6f&quot; | xxd -r -p
+# Output: Hello
+
+# Show 1 byte per line
+xxd -c 1 test.txt
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-bash"># Examine BAM file structure
+xxd -l 64 aligned.bam
+
+# Extract BAM magic number
+xxd -l 4 -p aligned.bam
+# Output: 42414d01 (BAM format signature)
+
+# View gzipped FASTQ header
+xxd -l 32 reads.fastq.gz
+# Output shows gzip magic: 1f8b...
+</code></pre>
+
+<h3 id="72-hexdump">7.2 hexdump</h3>
+<pre class="highlight"><code class="language-bash">hexdump -C test.txt
+</code></pre>
+
+<pre class="highlight"><code>00000000  48 65 6c 6c 6f                                    |Hello|
+00000005
+</code></pre>
+
+<h3 id="73-od-octal-dump">7.3 od — octal dump</h3>
+<pre class="highlight"><code class="language-bash"># Octal dump
+od -c test.txt      # Characters
+od -x test.txt      # Hex
+od -d test.txt      # Decimal
+</code></pre>
+
+<h3 id="74-python-for-conversions">7.4 Python for Conversions</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+
+# Conversion between systems
+number = 42
+
+print(f&quot;Decimal: {number}&quot;)
+print(f&quot;Binary:  {bin(number)}&quot;)
+print(f&quot;Octal:   {oct(number)}&quot;)
+print(f&quot;Hex:     {hex(number)}&quot;)
+
+# String → bytes
+text = &quot;Hello&quot;
+bytes_data = text.encode('utf-8')
+print(f&quot;\nText: {text}&quot;)
+print(f&quot;Bytes: {bytes_data}&quot;)
+print(f&quot;Hex: {bytes_data.hex()}&quot;)
+
+# Hex string → bytes
+hex_str = &quot;48656c6c6f&quot;
+decoded = bytes.fromhex(hex_str).decode('utf-8')
+print(f&quot;\nHex: {hex_str}&quot;)
+print(f&quot;Decoded: {decoded}&quot;)
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>Decimal: 42
+Binary:  0b101010
+Octal:   0o52
+Hex:     0x2a
+
+Text: Hello
+Bytes: b'Hello'
+Hex: 48656c6c6f
+
+Hex: 48656c6c6f
+Decoded: Hello
+</code></pre>
+
+<p><strong>FASTQ Quality Example:</strong></p>
+<pre class="highlight"><code class="language-python"># Convert quality string to Phred scores
+quality_string = &quot;IIII&quot;  # High quality
+for char in quality_string:
+    ascii_val = ord(char)
+    phred_score = ascii_val - 33
+    print(f&quot;'{char}' = ASCII {ascii_val} (0x{ascii_val:02x}) = Phred {phred_score}&quot;)
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>'I' = ASCII 73 (0x49) = Phred 40
+'I' = ASCII 73 (0x49) = Phred 40
+'I' = ASCII 73 (0x49) = Phred 40
+'I' = ASCII 73 (0x49) = Phred 40
+</code></pre>
+
+<h3 id="75-bash-conversions">7.5 Bash Conversions</h3>
+<pre class="highlight"><code class="language-bash"># Decimal → Hex
+printf &quot;%x\n&quot; 255
+# ff
+
+# Decimal → Octal
+printf &quot;%o\n&quot; 255
+# 377
+
+# Hex → Decimal
+echo $((16#ff))
+# 255
+
+# Octal → Decimal
+echo $((8#755))
+# 493
+
+# Binary → Decimal
+echo $((2#101010))
+# 42
+</code></pre>
+
+<hr />
+<h2 id="8-representing-negative-numbers">8. Representing Negative Numbers</h2>
+<h3 id="81-sign-bit">8.1 Sign Bit</h3>
+<p>In signed integers, the most significant bit is the sign:</p>
+<ul>
+<li>0 = positive number</li>
+<li>1 = negative number</li>
+</ul>
+<p><strong>Problem with sign-magnitude:</strong> two zeros (+0 and -0)</p>
+<h3 id="82-twos-complement">8.2 Two's Complement</h3>
+<p>Modern computers use <strong>two's complement</strong>:</p>
+<p><strong>For 8-bit number:</strong></p>
+<pre class="highlight"><code>+5 =  00000101
+
+To get -5:
+1. Invert bits:     11111010
+2. Add 1:         + 00000001
+                  ──────────
+-5 =                11111011
+</code></pre>
+
+<p><strong>Signed Number Ranges:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Size</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int8</td>
+<td>8 bits</td>
+<td>-128 to 127</td>
+</tr>
+<tr>
+<td>int16</td>
+<td>16 bits</td>
+<td>-32,768 to 32,767</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>32 bits</td>
+<td>-2,147,483,648 to 2,147,483,647</td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-check-in-python">8.3 Check in Python</h3>
+<pre class="highlight"><code class="language-python">import struct
+
+# Unsigned byte
+unsigned = struct.unpack('B', b'\xfb')[0]
+print(f&quot;Unsigned: {unsigned}&quot;)  # 251
+
+# Signed byte
+signed = struct.unpack('b', b'\xfb')[0]
+print(f&quot;Signed: {signed}&quot;)      # -5
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>Unsigned: 251
+Signed: -5
+</code></pre>
+
+<hr />
+<h2 id="9-floating-point-numbers">9. Floating-Point Numbers</h2>
+<h3 id="91-ieee-754">9.1 IEEE 754</h3>
+<p>Computers represent fractional numbers using IEEE 754 standard:</p>
+<pre class="highlight"><code>32-bit float: [1 bit sign][8 bit exponent][23 bit mantissa]
+64-bit double: [1 bit sign][11 bit exponent][52 bit mantissa]
+</code></pre>
+
+<h3 id="92-why-this-matters">9.2 Why This Matters</h3>
+<pre class="highlight"><code class="language-python"># Classic floating point problem
+print(0.1 + 0.2)
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>0.30000000000000004
+</code></pre>
+
+<p>This is not a bug — it's a limitation of binary representation!</p>
+<pre class="highlight"><code class="language-python"># 0.1 in binary is an infinite fraction
+# Like 1/3 = 0.333... in decimal
+
+# For precise calculations, use Decimal
+from decimal import Decimal
+print(Decimal('0.1') + Decimal('0.2'))
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>0.3
+</code></pre>
+
+<p><strong>Bioinformatics Impact:</strong></p>
+<pre class="highlight"><code class="language-python"># Be careful with gene expression fold changes
+fold_change = 2.0 / 3.0
+print(f&quot;Fold change: {fold_change}&quot;)  # 0.6666666666666666
+
+# For precise p-values and statistical calculations
+from decimal import Decimal, getcontext
+getcontext().prec = 50  # 50 decimal places
+
+pvalue = Decimal('0.05') / Decimal('3')
+print(f&quot;Precise p-value: {pvalue}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="10-common-pitfalls">10. Common Pitfalls</h2>
+<h3 id="101-prefix-confusion">10.1 Prefix Confusion</h3>
+<p>❌ <strong>Error:</strong> Confusing hex and decimal</p>
+<pre class="highlight"><code class="language-python"># 10 is ten, 0x10 is sixteen!
+print(10)     # 10
+print(0x10)   # 16
+</code></pre>
+
+<h3 id="102-forgetting-endianness">10.2 Forgetting Endianness</h3>
+<p>❌ <strong>Error:</strong> Reading multi-byte numbers without considering byte order</p>
+<pre class="highlight"><code class="language-python"># Bytes from file (Little-Endian system)
+bytes_data = b'\x78\x56\x34\x12'
+
+# Wrong: interpret as Big-Endian
+wrong = int.from_bytes(bytes_data, 'big')
+print(f&quot;Wrong: {wrong:#x}&quot;)  # 0x78563412
+
+# Correct: use Little-Endian
+correct = int.from_bytes(bytes_data, 'little')
+print(f&quot;Correct: {correct:#x}&quot;)  # 0x12345678
+</code></pre>
+
+<p><strong>BAM File Example:</strong></p>
+<pre class="highlight"><code class="language-python"># BAM uses Little-Endian
+with open('aligned.bam', 'rb') as f:
+    f.read(4)  # Skip magic
+    text_len = int.from_bytes(f.read(4), 'little')  # Must use little!
+</code></pre>
+
+<h3 id="103-overflow">10.3 Overflow</h3>
+<p>❌ <strong>Error:</strong> Not accounting for data type size</p>
+<pre class="highlight"><code class="language-python"># In Python numbers don't overflow
+big = 2 ** 1000
+print(f&quot;Python handles big numbers: {len(str(big))} digits&quot;)
+
+# But in C/other languages uint8_t overflow:
+# 255 + 1 = 0 (not 256!)
+</code></pre>
+
+<h3 id="104-signed-vs-unsigned">10.4 Signed vs Unsigned</h3>
+<p>❌ <strong>Error:</strong> Confusing signed and unsigned types</p>
+<pre class="highlight"><code class="language-python"># Byte 0xFF
+byte = b'\xff'
+
+# As unsigned: 255
+print(struct.unpack('B', byte)[0])  # 255
+
+# As signed: -1
+print(struct.unpack('b', byte)[0])  # -1
+</code></pre>
+
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>Bit = 0 or 1, Byte = 8 bits</strong>: Byte can store numbers 0-255 or one ASCII character. In genomics, 2 bits encode one DNA base.</p>
+</li>
+<li>
+<p><strong>Hex is human-friendly</strong>: One hex digit = 4 bits. <code>0x48</code> is easier to read than <code>01001000</code>. Essential for viewing binary genomic files (BAM, BCF).</p>
+</li>
+<li>
+<p><strong>Octal for Unix permissions</strong>: <code>chmod 755</code> is octal (7=111=rwx). Critical for protecting sensitive genomic and patient data.</p>
+</li>
+<li>
+<p><strong>Endianness matters</strong>: x86 uses Little-Endian, network uses Big-Endian. BAM/BCF use Little-Endian. Mismatch corrupts data!</p>
+</li>
+<li>
+<p><strong>Floating point is imprecise</strong>: <code>0.1 + 0.2 ≠ 0.3</code> is normal. For exact calculations (p-values, fold changes), use Decimal.</p>
+</li>
+<li>
+<p><strong>FASTQ quality uses Phred+33</strong>: ASCII character minus 33 gives quality score. Understanding this requires hex/binary knowledge.</p>
+</li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Related Modules:</strong></p>
+<ul>
+<li><a href="../03_Encodings/">Encodings</a> — how numbers become characters (ASCII, UTF-8, Phred+33)</li>
+<li><a href="../04_FileFormats/">File Formats</a> — using hex to analyze file structures (BAM, VCF, FASTQ)</li>
+</ul>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Write a decimal ↔ binary ↔ hex converter in Python</li>
+<li id="item-2">Analyze a BAM file with <code>xxd</code> and find magic numbers</li>
+<li id="item-3">Create a file with number 0x12345678 and view it in Little-Endian and Big-Endian</li>
+<li id="item-4">Calculate Unix permissions for different rwx combinations</li>
+<li id="item-5">Convert FASTQ quality strings to Phred scores programmatically</li>
+<li id="item-6">Examine compressed FASTQ.GZ files and identify gzip magic numbers</li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>Study IEEE 754 in detail (special values: NaN, Infinity)</li>
+<li>Learn about fixed-point arithmetic</li>
+<li>Understand bitwise operations (AND, OR, XOR, shifts)</li>
+<li>Study how BAM CIGAR strings are encoded in binary</li>
+<li>Learn about BGZF (blocked gzip) used in genomics</li>
+</ul>
+<p><strong>Connections to Other Courses:</strong></p>
+<ul>
+<li><strong>Python Course</strong>: Module 03_Files covers binary file handling</li>
+<li><strong>Linux Course</strong>: Module 04_Coreutils teaches tools like <code>od</code>, <code>xxd</code>, <code>hexdump</code></li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><a href="https://linux.die.net/man/1/xxd">xxd manual</a></li>
+<li><a href="https://www.rapidtables.com/convert/number/">RapidTables Converter</a> — online converter</li>
+<li><a href="http://www.htslib.org/">samtools</a> — binary genomic file tools</li>
+</ul>
+<p><strong>Articles:</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Two%27s_complement">Two's Complement</a></li>
+<li><a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Endianness">Endianness</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FASTQ_format">FASTQ Format</a></li>
+<li><a href="https://samtools.github.io/hts-specs/SAMv1.pdf">SAM/BAM Format Specification</a></li>
+</ul>
+<p><strong>Interactive:</strong></p>
+<ul>
+<li><a href="https://float.exposed/">Float Exposed</a> — IEEE 754 visualization</li>
+<li><a href="https://graphics.stanford.edu/~seander/bithacks.html">Bit Twiddling Hacks</a></li>
+</ul>
+<p><strong>Bioinformatics:</strong></p>
+<ul>
+<li><a href="https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/QualityScoreEncoding_swBS.htm">FASTQ Quality Scores</a></li>
+<li><a href="https://samtools.github.io/hts-specs/SAMv1.pdf">BAM Format</a> — uses Little-Endian</li>
+<li><a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">BCF Format</a> — binary VCF</li>
+</ul>
+<hr />
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

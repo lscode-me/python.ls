@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Python Core Foundations">
+    <title>HW: Objects, References, Memory, T | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Objects, References, Memory, T</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Python for Life Science Developers</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 1 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="objects-references-memory-types-homework">Objects, References, Memory, Types - Homework</h1>
+<ol>
+<li id="item-1">Exploring Basic Data Types
+   Write a script that creates and prints different data types:
+   - Create short strings (e.g., "hello") and long strings (e.g., a paragraph)
+   - Create float numbers (e.g., 3.14, 1.0e10)
+   - Create complex numbers (e.g., 3+4j, complex(2, -5))
+   - Create boolean values (True, False)</li>
+</ol>
+<p>For each object:
+   - Print the value
+   - Print its type using type()
+   - Print its size using sys.getsizeof()</p>
+<p>Your task:
+   - Observe size differences between short and long strings
+   - Notice how different numeric types are represented
+   - Understand basic Python data types</p>
+<p>Your goal:
+   - Familiarize yourself with Python's basic data types
+   - Understand memory usage of different objects
+   - Learn to inspect object properties</p>
+<ol start="2">
+<li id="item-1">
+<p>Understanding References and Identity
+   Write a short script that tests whether two variables refer to the same object.
+   Use the following examples and explain why each result is True or False:
+       a = 256
+       b = 256
+       a is b</p>
+<p>a = 257
+   b = 257
+   a is b</p>
+<p>a = []
+   b = []
+   a is b</p>
+<p>c = a
+   a is c</p>
+</li>
+</ol>
+<p>Your task:
+   - Predict the output before running the code.
+   - Run the script and compare results.
+   - Write a short explanation (1–2 sentences per line).</p>
+<p>Your goal:
+   - Understand the difference between identity (is) and equality (==)
+   - Learn about Python's integer caching optimization
+   - Master the concept of object references vs object values</p>
+<ol start="3">
+<li id="item-1">Demonstrating Mutability and Immutability
+   Write a script that demonstrates the difference between mutable and immutable objects.</li>
+</ol>
+<p>Test the following object types:
+   - Immutable: str, tuple, int, float, bool
+   - Mutable: list, dict, set</p>
+<p>For each type, perform operations and observe the behavior:
+       # Example for string (immutable)
+       s = "hello"
+       print(id(s))
+       s = s + " world"
+       print(id(s))  # Does the id change?</p>
+<pre class="highlight"><code>   # Example for list (mutable)
+   lst = [1, 2, 3]
+   print(id(lst))
+   lst.append(4)
+   print(id(lst))  # Does the id change?
+</code></pre>
+
+<p>Your task:
+   - Test all mentioned types
+   - Explain why the id changes (or doesn't change) for each type
+   - Demonstrate that tuples containing mutable objects have special behavior</p>
+<p>Your goal:
+   - Understand mutability vs immutability in Python
+   - Learn how modifying objects affects their identity
+   - Avoid common bugs related to mutable objects
+   - Understand the implications for function arguments and return values</p>
+<ol start="4">
+<li id="item-1">
+<p>Mutable Default Argument Bug
+   The following function behaves incorrectly:</p>
+<p>def append_item(x, items=[]):
+       items.append(x)
+       return items</p>
+</li>
+</ol>
+<p>Task:
+   - Explain what is wrong with this function.
+   - Rewrite it so that it works correctly.
+   - Show example output of both versions for three calls:
+         append_item(1)
+         append_item(2)
+         append_item(3)</p>
+<p>Your goal:
+   - Understand why mutable default arguments are dangerous
+   - Learn the proper pattern for default arguments
+   - Recognize this common Python pitfall in real code</p>
+<ol start="5">
+<li id="item-1">Inspecting Object Memory and References
+   Write a script that uses:<ul>
+<li id="item-2">type()</li>
+<li id="item-3">id()</li>
+<li id="item-4">sys.getsizeof()</li>
+<li id="item-5">sys.getrefcount()</li>
+<li id="item-6">gc.get_referrers()</li>
+<li id="item-7">gc.get_count()</li>
+</ul>
+</li>
+</ol>
+<p>Perform the following steps:
+       a) Create three objects: an integer, a string, and a list.
+       b) Print their type, size, identity, and reference count.
+       c) Create additional variables referencing the same objects.
+       d) Print updated reference counts and explain what changed.
+       e) Use gc.get_referrers() to see what refers to your objects.
+       f) Use gc.get_count() to see the current garbage collector stats.
+       g) Try gc.collect() and observe changes in gc.get_count().</p>
+<p>Your goal:
+   - Understand how reference counting works.
+   - Observe how Python stores objects of different types.
+   - Learn how the garbage collector tracks objects.</p>
+<ol start="6">
+<li id="item-1">Using help() and dir() for Object Inspection
+   Write a script that explores the difference between types and instances using help() and dir().</li>
+</ol>
+<p>Test the following:
+       # Type vs instance
+       print(type(int))
+       print(type(int()))</p>
+<pre class="highlight"><code>   # Using help on type
+   help(int)
+
+   # Using help on instance
+   help(int())
+
+   # Using dir on type
+   print(dir(int))
+
+   # Using dir on instance
+   print(dir(int()))
+</code></pre>
+
+<p>Your task:
+   - Call help() and dir() on both type and instance for: int, str, list, dict
+   - Explain the difference between int and int()
+   - Find at least 3 interesting methods for each type using dir()
+   - Use help() to understand what one of those methods does
+   - Document your findings in comments</p>
+<p>Your goal:
+   - Master Python's introspection capabilities
+   - Learn to explore unfamiliar objects and modules
+   - Understand the difference between types and instances
+   - Develop self-sufficiency in learning Python's API</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

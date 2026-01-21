@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for 🐍 Pythonic Code: Clarity, Simplicity, and Speed">
+    <title>HW: Pythonic Code - Homework | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Pythonic Code - Homework</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Python for Life Science Developers</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 9 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="pythonic-code-homework">Pythonic Code - Homework</h1>
+<h2 id="task-1-manual-indexing-instead-of-direct-iteration">Task 1 – Manual indexing instead of direct iteration</h2>
+<p>Rewrite this function in a more Pythonic way.</p>
+<pre class="highlight"><code class="language-python">def print_names(names):
+    i = 0
+    while i &lt; len(names):
+        print(&quot;Name:&quot;, names[i])
+        i = i + 1
+</code></pre>
+
+<h2 id="task-2-verbose-filtering-and-mapping">Task 2 – Verbose filtering and mapping</h2>
+<p>Rewrite this code so that it is shorter, clearer, and more Pythonic.</p>
+<pre class="highlight"><code class="language-python">numbers = [3, 10, 15, 20, 21, 30]
+result = []
+for n in numbers:
+    if n % 3 == 0:
+        result.append(n * 2)
+print(result)
+</code></pre>
+
+<h2 id="task-3-building-a-string-with-manual-concatenation">Task 3 – Building a string with manual concatenation</h2>
+<p>Rewrite this code in a more efficient and Pythonic way.</p>
+<pre class="highlight"><code class="language-python">words = [&quot;Python&quot;, &quot;is&quot;, &quot;fun&quot;]
+sentence = &quot;&quot;
+for w in words:
+    if sentence == &quot;&quot;:
+        sentence = w
+    else:
+        sentence = sentence + &quot; &quot; + w
+print(sentence)
+</code></pre>
+
+<h2 id="task-4-using-rangelen-instead-of-enumerate">Task 4 – Using range(len(...)) instead of enumerate</h2>
+<p>Rewrite this function in a cleaner, more idiomatic way.</p>
+<pre class="highlight"><code class="language-python">def print_indexed(items):
+    i = 0
+    while i &lt; len(items):
+        print(i, &quot;-&gt;&quot;, items[i])
+        i = i + 1
+</code></pre>
+
+<h2 id="task-5-manual-dictionary-construction-from-two-lists">Task 5 – Manual dictionary construction from two lists</h2>
+<p>Rewrite this code to make it shorter, clearer, and more Pythonic.</p>
+<pre class="highlight"><code class="language-python">keys = [&quot;name&quot;, &quot;age&quot;, &quot;city&quot;]
+values = [&quot;Alice&quot;, 30, &quot;London&quot;]
+
+result = {}
+i = 0
+while i &lt; len(keys):
+    key = keys[i]
+    value = values[i]
+    result[key] = value
+    i = i + 1
+
+print(result)
+</code></pre>
+
+<h2 id="task-6-file-handling-without-context-manager">Task 6 – File handling without context manager</h2>
+<p>Rewrite this function in a safer and more Pythonic way.</p>
+<pre class="highlight"><code class="language-python">def read_config(path):
+    f = open(path, &quot;r&quot;)
+    data = f.read()
+    f.close()
+    return data
+</code></pre>
+
+<h2 id="task-7-mutable-default-argument-and-non-pythonic-loop">Task 7 – Mutable default argument and non-Pythonic loop</h2>
+<p>Improve both the function signature and the loop body to be more Pythonic and predictable.</p>
+<pre class="highlight"><code class="language-python">def add_item(item, items=[]):
+    i = 0
+    while i &lt; len(items):
+        i = i + 1
+    items.append(item)
+    return items
+</code></pre>
+
+<h2 id="task-8-manual-max-search-with-unnecessary-complexity">Task 8 – Manual max search with unnecessary complexity</h2>
+<p>Rewrite this function in a simpler, more idiomatic way.</p>
+<pre class="highlight"><code class="language-python">def find_max(numbers):
+    if len(numbers) == 0:
+        return None
+    max_value = numbers[0]
+    i = 1
+    while i &lt; len(numbers):
+        if numbers[i] &gt; max_value:
+            max_value = numbers[i]
+        i = i + 1
+    return max_value
+</code></pre>
+
+<h2 id="task-9-lbyl-instead-of-eafp">Task 9 – LBYL instead of EAFP</h2>
+<p>Rewrite this code following the EAFP principle (Easier to Ask for Forgiveness than Permission).</p>
+<pre class="highlight"><code class="language-python">def get_user_age(users, username):
+    if username in users:
+        if 'age' in users[username]:
+            return users[username]['age']
+        else:
+            return None
+    else:
+        return None
+</code></pre>
+
+<h2 id="task-10-non-pythonic-dictionary-comprehension">Task 10 – Non-Pythonic dictionary comprehension</h2>
+<p>Rewrite this code using a dictionary comprehension.</p>
+<pre class="highlight"><code class="language-python">words = [&quot;hello&quot;, &quot;world&quot;, &quot;python&quot;, &quot;is&quot;, &quot;great&quot;]
+word_lengths = {}
+for word in words:
+    if len(word) &gt; 2:
+        word_lengths[word] = len(word)
+</code></pre>
+
+<h2 id="task-11-building-a-list-when-a-generator-would-be-better">Task 11 – Building a list when a generator would be better</h2>
+<p>Rewrite this function to use a generator instead of building a full list in memory.</p>
+<pre class="highlight"><code class="language-python">def get_squares(n):
+    result = []
+    for i in range(n):
+        result.append(i ** 2)
+    return result
+
+# Used like this:
+total = sum(get_squares(1000000))
+</code></pre>
+
+<h2 id="task-12-manual-counter-implementation">Task 12 – Manual counter implementation</h2>
+<p>Rewrite this code using <code>Counter</code> from the <code>collections</code> module.</p>
+<pre class="highlight"><code class="language-python">words = &quot;the quick brown fox jumps over the lazy dog&quot;.split()
+word_count = {}
+for word in words:
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
+</code></pre>
+
+<h2 id="task-13-verbose-string-formatting">Task 13 – Verbose string formatting</h2>
+<p>Rewrite this code using f-strings (Python 3.6+).</p>
+<pre class="highlight"><code class="language-python">name = &quot;Alice&quot;
+age = 25
+city = &quot;NYC&quot;
+
+info = &quot;Name: &quot; + name + &quot;, Age: &quot; + str(age) + &quot;, City: &quot; + city
+</code></pre>
+
+<h2 id="task-14-complex-range-checking">Task 14 – Complex range checking</h2>
+<p>Rewrite this code using chained comparisons.</p>
+<pre class="highlight"><code class="language-python">def is_valid_percentage(value):
+    if value &gt;= 0 and value &lt;= 100:
+        return True
+    else:
+        return False
+</code></pre>
+
+<h2 id="task-15-manual-allany-implementation">Task 15 – Manual all/any implementation</h2>
+<p>Rewrite these functions using built-in <code>all()</code> and <code>any()</code>.</p>
+<pre class="highlight"><code class="language-python">def all_positive(numbers):
+    for num in numbers:
+        if num &lt;= 0:
+            return False
+    return True
+
+def has_even(numbers):
+    for num in numbers:
+        if num % 2 == 0:
+            return True
+    return False
+</code></pre>
+
+<h2 id="task-16-type-checking-instead-of-duck-typing">Task 16 – Type checking instead of duck typing</h2>
+<p>Rewrite this function to be more Pythonic by embracing duck typing.</p>
+<pre class="highlight"><code class="language-python">def process_items(items):
+    if not isinstance(items, list):
+        raise TypeError(&quot;Must provide a list!&quot;)
+
+    total = 0
+    for item in items:
+        total += item
+    return total
+</code></pre>
+
+<h2 id="task-17-manual-unpacking-and-swapping">Task 17 – Manual unpacking and swapping</h2>
+<p>Rewrite this code using tuple unpacking to make it more elegant.</p>
+<pre class="highlight"><code class="language-python">def swap_first_last(items):
+    if len(items) &lt; 2:
+        return items
+
+    temp = items[0]
+    items[0] = items[-1]
+    items[-1] = temp
+    return items
+
+def parse_user_line(line):
+    # line format: &quot;Alice,25,alice@example.com&quot;
+    parts = line.split(',')
+    name = parts[0]
+    age = int(parts[1])
+    email = parts[2]
+    return name, age, email
+</code></pre>
+
+<h2 id="task-18-building-a-set-manually">Task 18 – Building a set manually</h2>
+<p>Rewrite this code using a set comprehension.</p>
+<pre class="highlight"><code class="language-python">text = &quot;the quick brown fox jumps over the lazy dog&quot;
+unique_lengths = set()
+for word in text.split():
+    unique_lengths.add(len(word))
+</code></pre>
+
+<h2 id="task-19-nested-loops-instead-of-zip">Task 19 – Nested loops instead of zip</h2>
+<p>Rewrite this code using <code>zip()</code>.</p>
+<pre class="highlight"><code class="language-python">names = ['Alice', 'Bob', 'Charlie']
+ages = [25, 30, 35]
+
+i = 0
+while i &lt; len(names):
+    print(f&quot;{names[i]} is {ages[i]} years old&quot;)
+    i += 1
+</code></pre>
+
+<h2 id="task-20-manual-defaultdict-behavior">Task 20 – Manual defaultdict behavior</h2>
+<p>Rewrite this code using <code>defaultdict</code> from the <code>collections</code> module.</p>
+<pre class="highlight"><code class="language-python">transactions = [
+    ('food', 50),
+    ('transport', 20),
+    ('food', 30),
+    ('entertainment', 100),
+    ('food', 25)
+]
+
+category_totals = {}
+for category, amount in transactions:
+    if category not in category_totals:
+        category_totals[category] = 0
+    category_totals[category] += amount
+</code></pre></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

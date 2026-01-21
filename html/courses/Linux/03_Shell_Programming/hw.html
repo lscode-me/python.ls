@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Shell Programming as a Mini-DSL for Data Processing">
+    <title>Shell Programming as a Mini-DSL for Data Processing - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Shell Programming as a Mini-DSL for Data Processing</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="shell-programming-as-a-mini-dsl-for-data-processing-homework">Shell Programming as a Mini-DSL for Data Processing - Homework</h1>
+<h2 id="assignment-1-command-substitution">Assignment 1: Command Substitution</h2>
+<ol>
+<li id="item-1">Store current date in a variable using <code>$(date)</code></li>
+<li id="item-2">Count files in a directory and store in variable</li>
+<li id="item-3">Create a script that uses nested command substitution</li>
+<li id="item-4">Calculate disk usage of a directory and format output</li>
+<li id="item-5">Build a filename using today's date: <code>backup_$(date +%Y%m%d).tar.gz</code></li>
+</ol>
+<h2 id="assignment-2-streaming-loop-basic">Assignment 2: Streaming Loop - Basic</h2>
+<p>Write a script using <code>while read</code> that:<br />
+1. Reads lines from a text file<br />
+2. Counts total lines processed<br />
+3. Filters lines matching a pattern<br />
+4. Transforms each line (e.g., uppercase)<br />
+5. Writes results to output file</p>
+<h2 id="assignment-3-csv-processing-with-while-read">Assignment 3: CSV Processing with while read</h2>
+<p>Create a script that:<br />
+1. Reads a CSV file line by line<br />
+2. Splits each line into fields using IFS<br />
+3. Filters rows based on a column value<br />
+4. Calculates sum/average of a numeric column<br />
+5. Generates a summary report</p>
+<h2 id="assignment-4-jsonl-to-csv-converter">Assignment 4: JSONL to CSV Converter</h2>
+<p>Write a bash script that:<br />
+1. Reads JSON Lines from stdin<br />
+2. Uses <code>jq</code> to extract specific fields<br />
+3. Outputs properly formatted CSV with header<br />
+4. Handles missing fields gracefully<br />
+5. Processes large files without loading all into memory</p>
+<h2 id="assignment-5-arrays-and-string-operations">Assignment 5: Arrays and String Operations</h2>
+<ol>
+<li id="item-1">Create an array of filenames</li>
+<li id="item-2">Loop through array and process each file</li>
+<li id="item-3">Use <code>readarray</code> to load file contents into array</li>
+<li id="item-4">Perform string operations: substring, replace, case conversion</li>
+<li id="item-5">Join array elements with a delimiter</li>
+</ol>
+<h2 id="assignment-6-arithmetic-operations">Assignment 6: Arithmetic Operations</h2>
+<p>Write scripts that:<br />
+1. Calculate sum of numbers from 1 to N<br />
+2. Compute average of values in a file<br />
+3. Use <code>bc</code> for floating-point calculations<br />
+4. Generate random numbers in a range<br />
+5. Implement simple calculator with +, -, *, /</p>
+<h2 id="assignment-7-functions-and-modularity">Assignment 7: Functions and Modularity</h2>
+<p>Create a script with functions for:<br />
+1. Reading configuration from a file<br />
+2. Logging messages with timestamps<br />
+3. Validating input parameters<br />
+4. Processing data (reusable function)<br />
+5. Main function that orchestrates everything</p>
+<h2 id="assignment-8-error-handling">Assignment 8: Error Handling</h2>
+<p>Write a robust script that:<br />
+1. Uses <code>set -euo pipefail</code><br />
+2. Checks if required files exist<br />
+3. Validates number of arguments<br />
+4. Has meaningful error messages<br />
+5. Exits with appropriate exit codes<br />
+6. Uses <code>trap</code> for cleanup</p>
+<h2 id="assignment-9-process-substitution-basic">Assignment 9: Process Substitution - Basic</h2>
+<ol>
+<li id="item-1">Compare outputs of two commands using <code>diff &lt;(cmd1) &lt;(cmd2)</code></li>
+<li id="item-2">Join two sorted data streams</li>
+<li id="item-3">Use <code>paste</code> with process substitution</li>
+<li id="item-4">Feed command output to <code>while read</code> with <code>&lt; &lt;(command)</code></li>
+<li id="item-5">Split output to multiple processes with <code>tee</code></li>
+</ol>
+<h2 id="assignment-10-process-substitution-advanced">Assignment 10: Process Substitution - Advanced</h2>
+<p>Create pipelines using process substitution:<br />
+1. Join two CSV files after transformation<br />
+2. Process multiple data sources in parallel<br />
+3. Branch pipeline output to multiple destinations<br />
+4. Implement map-reduce pattern with process substitution<br />
+5. Combine results from independent transformations</p>
+<h2 id="bonus-challenge-1-complete-etl-script">Bonus Challenge 1: Complete ETL Script</h2>
+<p>Build a production-ready script that:<br />
+1. Fetches data from an API or file<br />
+2. Validates and cleans the data<br />
+3. Transforms data format (JSON to CSV, etc.)<br />
+4. Calculates statistics<br />
+5. Generates a report<br />
+6. Includes logging and error handling<br />
+7. Uses functions for modularity<br />
+8. Accepts configuration via arguments/env vars</p>
+<p>Requirements:<br />
+- Use <code>set -euo pipefail</code><br />
+- Add proper error messages<br />
+- Include usage information<br />
+- Handle edge cases<br />
+- Add comments</p>
+<h2 id="bonus-challenge-2-streaming-statistics">Bonus Challenge 2: Streaming Statistics</h2>
+<p>Write a script that:<br />
+1. Reads numeric data from stdin<br />
+2. Calculates running statistics (mean, median, min, max, stdev)<br />
+3. Updates statistics as data arrives (streaming)<br />
+4. Outputs results every N lines<br />
+5. Uses efficient algorithms (don't store all data)<br />
+6. Handles large datasets</p>
+<h2 id="bonus-challenge-3-configuration-file-parser">Bonus Challenge 3: Configuration File Parser</h2>
+<p>Create a script that:<br />
+1. Reads key=value configuration from a file<br />
+2. Validates configuration values<br />
+3. Sets defaults for missing values<br />
+4. Exports as environment variables<br />
+5. Supports comments and blank lines in config<br />
+6. Has error handling for invalid syntax</p>
+<p>Example config:</p>
+<pre class="highlight"><code># Database configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=mydb
+</code></pre>
+
+<h2 id="bonus-challenge-4-parallel-file-processor">Bonus Challenge 4: Parallel File Processor</h2>
+<p>Build a script that:<br />
+1. Takes a directory of files as input<br />
+2. Processes each file independently<br />
+3. Uses background jobs for parallelism<br />
+4. Limits concurrent jobs (e.g., max 4 at a time)<br />
+5. Collects results from all jobs<br />
+6. Handles failures gracefully<br />
+7. Shows progress</p>
+<p>Hint: Use <code>wait</code>, background jobs <code>&amp;</code>, job control</p>
+<h2 id="bonus-challenge-5-template-engine">Bonus Challenge 5: Template Engine</h2>
+<p>Implement a simple template processor:<br />
+1. Reads template file with placeholders: <code>{{VARIABLE}}</code><br />
+2. Replaces placeholders with values from environment/config<br />
+3. Supports default values: <code>{{VARIABLE:default}}</code><br />
+4. Handles multiple templates<br />
+5. Can read values from CSV/JSON<br />
+6. Outputs processed files</p>
+<p>Example template:</p>
+<pre class="highlight"><code>Hello {{NAME}},
+Your order {{ORDER_ID:UNKNOWN}} is ready.
+</code></pre>
+
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<p>For each assignment:<br />
+1. Write clean, commented code<br />
+2. Include usage examples<br />
+3. Test with various inputs<br />
+4. Handle errors appropriately<br />
+5. Document any assumptions<br />
+6. Show sample output</p>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>Always quote variables: <code>"$var"</code></li>
+<li>Use <code>shellcheck</code> to validate scripts</li>
+<li>Test edge cases: empty input, missing files, etc.</li>
+<li>Use meaningful variable and function names</li>
+<li>Start simple, add features incrementally</li>
+<li>Read man pages: <code>man bash</code>, <code>man read</code>, <code>man test</code></li>
+</ul></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Files, I-nodes &amp; File Descriptors | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Files, I-nodes &amp; File Descriptors</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="files-i-nodes-file-descriptors">Files, I-nodes &amp; File Descriptors</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>In Unix, <strong>"everything is a file"</strong> — regular files, directories, devices, sockets, and pipes are all represented as files. Understanding how Unix manages files at the system level is crucial for advanced data processing and system administration.</p>
+<p>In this module, we'll explore:
+- <strong>I-nodes</strong>: The metadata structure behind every file
+- <strong>File descriptors</strong>: How processes access files
+- <strong>File types</strong>: The different kinds of "files" in Unix
+- <strong>Permissions</strong>: Who can do what with files
+- <strong>Special files</strong>: stdin, stdout, stderr, and device files</p>
+<hr />
+<h2 id="i-nodes-index-nodes">I-nodes (Index Nodes)</h2>
+<h3 id="what-is-an-i-node">What is an I-node?</h3>
+<p>An <strong>i-node</strong> (index node) is a data structure that stores metadata about a file:</p>
+<ul>
+<li>File type and permissions</li>
+<li>Owner (user and group)</li>
+<li>File size</li>
+<li>Timestamps (creation, modification, access)</li>
+<li>Number of hard links</li>
+<li><strong>Pointers to data blocks</strong> (where file content is stored)</li>
+</ul>
+<p><strong>Important</strong>: The i-node does NOT contain:
+- The filename (stored in the directory)
+- The file content itself (stored in data blocks)</p>
+<h3 id="viewing-i-node-numbers">Viewing I-node Numbers</h3>
+<pre class="highlight"><code class="language-bash"># Show i-node numbers
+ls -i
+
+# Example output:
+# 123456 file1.txt
+# 123457 file2.txt
+# 123456 file1_link.txt  # Same i-node as file1.txt!
+</code></pre>
+
+<h3 id="detailed-i-node-information-with-stat">Detailed I-node Information with <code>stat</code></h3>
+<pre class="highlight"><code class="language-bash">stat filename
+
+# Example output:
+#   File: myfile.txt
+#   Size: 1024          Blocks: 8          IO Block: 4096   regular file
+# Device: 802h/2050d    Inode: 123456      Links: 2
+# Access: (0644/-rw-r--r--)  Uid: ( 1000/   user)   Gid: ( 1000/   user)
+# Access: 2024-11-27 10:23:45.000000000 +0000
+# Modify: 2024-11-27 10:20:12.000000000 +0000
+# Change: 2024-11-27 10:20:12.000000000 +0000
+#  Birth: -
+</code></pre>
+
+<h3 id="hard-links-vs-symbolic-links">Hard Links vs Symbolic Links</h3>
+<p><strong>Hard Link</strong>: Multiple directory entries pointing to the same i-node</p>
+<pre class="highlight"><code class="language-bash"># Create hard link
+ln original.txt hardlink.txt
+
+# Both files point to the same i-node
+ls -i original.txt hardlink.txt
+# 123456 original.txt
+# 123456 hardlink.txt
+
+# Deleting one doesn't affect the other
+rm original.txt
+cat hardlink.txt  # Still works!
+</code></pre>
+
+<p><strong>Symbolic Link</strong>: A special file containing a path to another file</p>
+<pre class="highlight"><code class="language-bash"># Create symbolic link
+ln -s original.txt symlink.txt
+
+# Different i-nodes
+ls -i original.txt symlink.txt
+# 123456 original.txt
+# 789012 symlink.txt
+
+# Deleting original breaks the symlink
+rm original.txt
+cat symlink.txt  # Error: No such file or directory
+</code></pre>
+
+<hr />
+<h2 id="file-descriptors">File Descriptors</h2>
+<h3 id="what-is-a-file-descriptor">What is a File Descriptor?</h3>
+<p>A <strong>file descriptor</strong> is a non-negative integer that identifies an open file in a process. It's essentially a handle or reference to an open file.</p>
+<p>Every process maintains a <strong>file descriptor table</strong> mapping integers to open files.</p>
+<h3 id="standard-file-descriptors">Standard File Descriptors</h3>
+<p>Every process starts with three standard file descriptors:</p>
+<table>
+<thead>
+<tr>
+<th>FD</th>
+<th>Name</th>
+<th>Purpose</th>
+<th>Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>stdin</td>
+<td>Standard input</td>
+<td><code>/dev/stdin</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td>stdout</td>
+<td>Standard output</td>
+<td><code>/dev/stdout</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>stderr</td>
+<td>Standard error</td>
+<td><code>/dev/stderr</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="viewing-open-file-descriptors">Viewing Open File Descriptors</h3>
+<pre class="highlight"><code class="language-bash"># View FDs for current shell
+ls -l /proc/self/fd/
+
+# Example output:
+# lrwx------ 1 user user 64 Nov 27 10:23 0 -&gt; /dev/pts/0
+# lrwx------ 1 user user 64 Nov 27 10:23 1 -&gt; /dev/pts/0
+# lrwx------ 1 user user 64 Nov 27 10:23 2 -&gt; /dev/pts/0
+# lr-x------ 1 user user 64 Nov 27 10:23 3 -&gt; /proc/12345/fd
+
+# View FDs for a specific process
+lsof -p &lt;PID&gt;
+
+# Or
+ls -l /proc/&lt;PID&gt;/fd/
+</code></pre>
+
+<h3 id="redirecting-file-descriptors">Redirecting File Descriptors</h3>
+<pre class="highlight"><code class="language-bash"># Redirect stdout to file
+command &gt; output.txt
+# Same as: command 1&gt; output.txt
+
+# Redirect stderr to file
+command 2&gt; errors.txt
+
+# Redirect stderr to stdout
+command 2&gt;&amp;1
+
+# Redirect stdout to stderr
+command 1&gt;&amp;2
+
+# Redirect both to same file
+command &amp;&gt; all_output.txt
+# Same as: command &gt; all_output.txt 2&gt;&amp;1
+
+# Redirect both to separate files
+command &gt; output.txt 2&gt; errors.txt
+</code></pre>
+
+<h3 id="custom-file-descriptors">Custom File Descriptors</h3>
+<p>You can create custom file descriptors (FD 3 and above):</p>
+<pre class="highlight"><code class="language-bash"># Open file for reading on FD 3
+exec 3&lt; input.txt
+
+# Read from FD 3
+read line &lt;&amp;3
+echo &quot;$line&quot;
+
+# Close FD 3
+exec 3&lt;&amp;-
+
+# Open file for writing on FD 4
+exec 4&gt; output.txt
+
+# Write to FD 4
+echo &quot;Hello&quot; &gt;&amp;4
+
+# Close FD 4
+exec 4&gt;&amp;-
+</code></pre>
+
+<h3 id="practical-example-separate-stdout-and-stderr">Practical Example: Separate Stdout and Stderr</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Redirect stdout and stderr to different files
+exec 1&gt; output.log
+exec 2&gt; error.log
+
+echo &quot;This goes to output.log&quot;
+echo &quot;This goes to error.log&quot; &gt;&amp;2
+
+# Run commands - output is logged
+ls /existing/path      # Goes to output.log
+ls /nonexistent/path   # Goes to error.log
+</code></pre>
+
+<h3 id="advanced-example-splitting-data-into-multiple-streams">Advanced Example: Splitting Data into Multiple Streams</h3>
+<p>You can use custom file descriptors to split data by type and process each stream separately:</p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Open separate file descriptors for different log levels
+exec 3&gt; info.log
+exec 4&gt; warnings.log
+exec 5&gt; errors.log
+
+# Function to process and route log lines
+process_logs() {
+  while IFS= read -r line; do
+    case &quot;$line&quot; in
+      *INFO*)
+        echo &quot;$line&quot; &gt;&amp;3  # Write to FD 3 (info.log)
+        ;;
+      *WARNING*)
+        echo &quot;$line&quot; &gt;&amp;4  # Write to FD 4 (warnings.log)
+        ;;
+      *ERROR*)
+        echo &quot;$line&quot; &gt;&amp;5  # Write to FD 5 (errors.log)
+        ;;
+    esac
+  done
+}
+
+# Process application logs
+cat app.log | process_logs
+
+# Close file descriptors
+exec 3&gt;&amp;-
+exec 4&gt;&amp;-
+exec 5&gt;&amp;-
+
+# Now process each stream separately
+echo &quot;Processing info logs...&quot;
+wc -l info.log
+
+echo &quot;Processing warnings...&quot;
+wc -l warnings.log
+
+echo &quot;Critical errors found:&quot;
+cat errors.log
+</code></pre>
+
+<p><strong>Alternative: Using Named Pipes (More Efficient)</strong></p>
+<p>For parallel processing, named pipes are often more convenient:</p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Create named pipes
+mkfifo info_pipe warning_pipe error_pipe
+
+# Start background processors for each stream
+grep &quot;INFO&quot; &lt; info_pipe | process_info &gt; info_results.txt &amp;
+grep &quot;WARNING&quot; &lt; warning_pipe | process_warnings &gt; warning_results.txt &amp;
+grep &quot;ERROR&quot; &lt; error_pipe | send_alerts &amp;
+
+# Split input into multiple streams simultaneously
+tee info_pipe warning_pipe error_pipe &lt; app.log &gt; /dev/null
+
+# Wait for all processors to complete
+wait
+
+# Cleanup
+rm info_pipe warning_pipe error_pipe
+</code></pre>
+
+<p><strong>Key differences:</strong>
+- <strong>File descriptors</strong>: Sequential processing, simpler for small datasets
+- <strong>Named pipes</strong>: Parallel processing, better for large datasets and real-time streaming
+- Named pipes enable multiple processes to read/write concurrently
+- File descriptors are easier for simple splitting and routing</p>
+<h3 id="more-examples-saving-and-restoring-standard-streams">More Examples: Saving and Restoring Standard Streams</h3>
+<p>You can temporarily redirect stdout/stderr and then restore them:</p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Save original stdout and stderr
+exec 3&gt;&amp;1  # FD 3 = copy of original stdout
+exec 4&gt;&amp;2  # FD 4 = copy of original stderr
+
+# Redirect to files
+exec 1&gt; output.log
+exec 2&gt; error.log
+
+echo &quot;This goes to output.log&quot;
+echo &quot;This goes to error.log&quot; &gt;&amp;2
+
+# Restore original stdout and stderr
+exec 1&gt;&amp;3  # Restore stdout
+exec 2&gt;&amp;4  # Restore stderr
+
+# Close backup descriptors
+exec 3&gt;&amp;-
+exec 4&gt;&amp;-
+
+# Now output goes to terminal again
+echo &quot;This goes to terminal&quot;
+</code></pre>
+
+<p><strong>Use case</strong>: Temporarily capture output in a function, then restore normal behavior.</p>
+<h3 id="example-dual-logging-screen-file">Example: Dual Logging (Screen + File)</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Open log file on FD 3
+exec 3&gt; script.log
+
+# Function that logs to both screen and file
+log() {
+  echo &quot;$@&quot; | tee /dev/fd/3
+}
+
+# Alternative: direct dual write
+log_dual() {
+  echo &quot;$@&quot;      # To stdout (screen)
+  echo &quot;$@&quot; &gt;&amp;3  # To FD 3 (file)
+}
+
+log &quot;Starting data processing...&quot;
+log &quot;Processing 1000 records...&quot;
+log_dual &quot;Completed!&quot;
+
+exec 3&gt;&amp;-
+</code></pre>
+
+<h3 id="example-read-and-write-same-file">Example: Read and Write Same File</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Open file for both reading and writing
+exec 3&lt;&gt; data.txt
+
+# Read current content
+while IFS= read -r line &lt;&amp;3; do
+  echo &quot;Read: $line&quot;
+done
+
+# Write new data (appends after read position)
+echo &quot;New line added at $(date)&quot; &gt;&amp;3
+
+# Close descriptor
+exec 3&gt;&amp;-
+</code></pre>
+
+<h3 id="example-file-locking-with-flock">Example: File Locking with flock</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Open file on FD 3
+exec 3&gt; /tmp/critical_section.lock
+
+# Acquire exclusive lock (blocks if another process has it)
+flock -x 3
+
+echo &quot;Lock acquired, doing critical work...&quot;
+# Perform operations that must not run concurrently
+sleep 2
+echo &quot;Critical work done&quot;
+
+# Release lock (automatic on FD close, but explicit is clearer)
+flock -u 3
+exec 3&gt;&amp;-
+</code></pre>
+
+<p><strong>Use case</strong>: Prevent multiple instances of a script from running simultaneously.</p>
+<h3 id="example-network-communication-with-devtcp">Example: Network Communication with /dev/tcp</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Open TCP connection to web server on FD 3
+exec 3&lt;&gt; /dev/tcp/example.com/80
+
+# Send HTTP request
+echo -e &quot;GET / HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n&quot; &gt;&amp;3
+
+# Read response
+while read -r line &lt;&amp;3; do
+  echo &quot;$line&quot;
+done
+
+# Close connection
+exec 3&gt;&amp;-
+</code></pre>
+
+<p><strong>Note</strong>: <code>/dev/tcp</code> is a Bash feature, not available in all shells.</p>
+<h3 id="example-timestamped-logging">Example: Timestamped Logging</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Open descriptors for different log types
+exec 3&gt; activity.log
+exec 4&gt; timing.log
+
+log_with_time() {
+  local msg=&quot;$1&quot;
+  local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+  echo &quot;[$timestamp] $msg&quot; &gt;&amp;3
+}
+
+time_operation() {
+  local start=$(date +%s)
+  &quot;$@&quot;
+  local end=$(date +%s)
+  local duration=$((end - start))
+  echo &quot;Operation '$*' took ${duration}s&quot; &gt;&amp;4
+}
+
+log_with_time &quot;Starting backup&quot;
+time_operation sleep 2
+log_with_time &quot;Backup complete&quot;
+
+exec 3&gt;&amp;-
+exec 4&gt;&amp;-
+</code></pre>
+
+<h3 id="example-multiple-input-sources">Example: Multiple Input Sources</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+# Open multiple input files
+exec 3&lt; source1.txt
+exec 4&lt; source2.txt
+exec 5&lt; source3.txt
+
+# Merge and process
+{
+  cat &lt;&amp;3
+  cat &lt;&amp;4
+  cat &lt;&amp;5
+} | sort | uniq &gt; merged_output.txt
+
+# Close all descriptors
+exec 3&gt;&amp;- 4&gt;&amp;- 5&gt;&amp;-
+</code></pre>
+
+<h3 id="when-to-use-custom-file-descriptors">When to Use Custom File Descriptors</h3>
+<p><strong>Use custom FDs when:</strong>
+- ✅ You need to preserve original stdin/stdout/stderr
+- ✅ Managing multiple input/output streams in one script
+- ✅ Implementing file locking
+- ✅ Creating reusable logging utilities
+- ✅ Building transaction-like operations (save state, rollback if needed)</p>
+<p><strong>Avoid when:</strong>
+- ❌ Simple one-time redirections (<code>command &gt; file</code> is simpler)
+- ❌ Need for parallel processing (use named pipes or subshells)
+- ❌ Script is already complex (adds mental overhead)</p>
+<hr />
+<h2 id="file-types-in-unix">File Types in Unix</h2>
+<p>Unix supports several file types, identified by the first character in <code>ls -l</code> output:</p>
+<h3 id="regular-files-">Regular Files (<code>-</code>)</h3>
+<pre class="highlight"><code class="language-bash">-rw-r--r-- 1 user group 1024 Nov 27 10:23 file.txt
+</code></pre>
+
+<p>Ordinary files containing data (text, binary, etc.)</p>
+<h3 id="directories-d">Directories (<code>d</code>)</h3>
+<pre class="highlight"><code class="language-bash">drwxr-xr-x 2 user group 4096 Nov 27 10:23 mydir
+</code></pre>
+
+<p>Special files containing directory entries (filenames + i-node numbers)</p>
+<h3 id="symbolic-links-l">Symbolic Links (<code>l</code>)</h3>
+<pre class="highlight"><code class="language-bash">lrwxrwxrwx 1 user group 10 Nov 27 10:23 link -&gt; target.txt
+</code></pre>
+
+<p>Files containing paths to other files</p>
+<h3 id="named-pipesfifos-p">Named Pipes/FIFOs (<code>p</code>)</h3>
+<pre class="highlight"><code class="language-bash">prw-r--r-- 1 user group 0 Nov 27 10:23 mypipe
+</code></pre>
+
+<p>Special files for inter-process communication</p>
+<pre class="highlight"><code class="language-bash"># Create named pipe
+mkfifo mypipe
+
+# Terminal 1: Write to pipe
+echo &quot;Hello&quot; &gt; mypipe
+
+# Terminal 2: Read from pipe
+cat &lt; mypipe
+</code></pre>
+
+<h3 id="sockets-s">Sockets (<code>s</code>)</h3>
+<pre class="highlight"><code class="language-bash">srwxrwxrwx 1 user group 0 Nov 27 10:23 mysocket
+</code></pre>
+
+<p>Files for network or local inter-process communication</p>
+<h3 id="character-devices-c">Character Devices (<code>c</code>)</h3>
+<pre class="highlight"><code class="language-bash">crw-rw-rw- 1 root tty 5, 0 Nov 27 10:23 /dev/tty
+</code></pre>
+
+<p>Devices that transfer data character by character (terminals, serial ports)</p>
+<h3 id="block-devices-b">Block Devices (<code>b</code>)</h3>
+<pre class="highlight"><code class="language-bash">brw-rw---- 1 root disk 8, 0 Nov 27 10:23 /dev/sda
+</code></pre>
+
+<p>Devices that transfer data in blocks (hard drives, USB drives)</p>
+<h3 id="counting-file-types">Counting File Types</h3>
+<pre class="highlight"><code class="language-bash"># Count file types in /dev
+ls -l /dev | cut -c1 | sort | uniq -c
+
+# Example output:
+#    245 b  # Block devices
+#    156 c  # Character devices
+#     12 d  # Directories
+#     45 l  # Symbolic links
+#      8 p  # Named pipes
+#      3 s  # Sockets
+</code></pre>
+
+<hr />
+<h2 id="file-permissions">File Permissions</h2>
+<h3 id="permission-structure">Permission Structure</h3>
+<pre class="highlight"><code>-rwxr-xr--
+│└┬┘└┬┘└┬┘
+│ │  │  └── Other: r-- (read only)
+│ │  └───── Group: r-x (read + execute)
+│ └──────── User:  rwx (read + write + execute)
+└────────── File type: - (regular file)
+</code></pre>
+
+<h3 id="permission-bits">Permission Bits</h3>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Symbol</th>
+<th>Octal</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td>r</td>
+<td>4</td>
+<td>View file content</td>
+</tr>
+<tr>
+<td>Write</td>
+<td>w</td>
+<td>2</td>
+<td>Modify file content</td>
+</tr>
+<tr>
+<td>Execute</td>
+<td>x</td>
+<td>1</td>
+<td>Run file as program</td>
+</tr>
+<tr>
+<td>None</td>
+<td>-</td>
+<td>0</td>
+<td>No permission</td>
+</tr>
+</tbody>
+</table>
+<h3 id="octal-notation">Octal Notation</h3>
+<pre class="highlight"><code class="language-bash">chmod 755 script.sh
+# 7 = 4+2+1 = rwx (user)
+# 5 = 4+0+1 = r-x (group)
+# 5 = 4+0+1 = r-x (other)
+
+chmod 644 file.txt
+# 6 = 4+2+0 = rw- (user)
+# 4 = 4+0+0 = r-- (group)
+# 4 = 4+0+0 = r-- (other)
+</code></pre>
+
+<h3 id="symbolic-notation">Symbolic Notation</h3>
+<pre class="highlight"><code class="language-bash"># Add execute permission for user
+chmod u+x script.sh
+
+# Remove write permission for group and other
+chmod go-w file.txt
+
+# Set exact permissions
+chmod u=rwx,g=rx,o=r file.txt
+
+# Add read permission for all
+chmod a+r file.txt
+
+# Recursive change
+chmod -R 755 directory/
+</code></pre>
+
+<h3 id="special-permission-bits">Special Permission Bits</h3>
+<p><strong>Setuid (4000)</strong>: Run as file owner</p>
+<pre class="highlight"><code class="language-bash">chmod 4755 program
+# -rwsr-xr-x  # Note the 's' instead of 'x'
+</code></pre>
+
+<p><strong>Setgid (2000)</strong>: Run as file group / inherit directory group</p>
+<pre class="highlight"><code class="language-bash">chmod 2755 directory
+# drwxr-sr-x  # Note the 's' in group position
+</code></pre>
+
+<p><strong>Sticky bit (1000)</strong>: Only owner can delete files</p>
+<pre class="highlight"><code class="language-bash">chmod 1777 /tmp
+# drwxrwxrwt  # Note the 't' at the end
+</code></pre>
+
+<h3 id="umask-default-permission-mask">umask — Default Permission Mask</h3>
+<pre class="highlight"><code class="language-bash"># View current umask
+umask
+# 0022
+
+# Umask 022 means:
+# - Default file: 666 - 022 = 644 (rw-r--r--)
+# - Default dir:  777 - 022 = 755 (rwxr-xr-x)
+
+# Set new umask
+umask 027
+# Files: 640 (rw-r-----)
+# Dirs:  750 (rwxr-x---)
+
+# Test it
+touch newfile.txt
+ls -l newfile.txt
+# -rw-r----- 1 user group 0 Nov 27 10:23 newfile.txt
+</code></pre>
+
+<hr />
+<h2 id="stdinstdoutstderr-as-files">stdin/stdout/stderr as Files</h2>
+<h3 id="special-device-files">Special Device Files</h3>
+<pre class="highlight"><code class="language-bash"># These are symlinks to file descriptors
+ls -l /dev/std*
+
+# /dev/stdin  -&gt; /proc/self/fd/0
+# /dev/stdout -&gt; /proc/self/fd/1
+# /dev/stderr -&gt; /proc/self/fd/2
+</code></pre>
+
+<h3 id="the-black-hole-devnull">The Black Hole: /dev/null</h3>
+<pre class="highlight"><code class="language-bash"># Discard output
+command &gt; /dev/null
+
+# Discard errors
+command 2&gt; /dev/null
+
+# Discard everything
+command &amp;&gt; /dev/null
+
+# Use as empty input
+program &lt; /dev/null
+</code></pre>
+
+<h3 id="random-data-sources">Random Data Sources</h3>
+<p><strong><code>/dev/zero</code></strong>: Infinite stream of null bytes</p>
+<pre class="highlight"><code class="language-bash"># Create 1MB file of zeros
+dd if=/dev/zero of=zeros.dat bs=1M count=1
+
+# Test disk write speed
+dd if=/dev/zero of=testfile bs=1M count=1024
+</code></pre>
+
+<p><strong><code>/dev/random</code></strong>: Cryptographically secure random (may block)</p>
+<pre class="highlight"><code class="language-bash"># Generate 32 random bytes
+head -c 32 /dev/random | base64
+</code></pre>
+
+<p><strong><code>/dev/urandom</code></strong>: Non-blocking pseudo-random</p>
+<pre class="highlight"><code class="language-bash"># Generate random password
+head -c 16 /dev/urandom | base64
+
+# Generate random numbers
+od -An -N4 -tu4 &lt; /dev/urandom
+</code></pre>
+
+<hr />
+<h2 id="file-data-formats">File Data Formats</h2>
+<h3 id="text-vs-binary-files">Text vs Binary Files</h3>
+<pre class="highlight"><code class="language-bash"># Identify file type
+file document.txt
+# document.txt: ASCII text
+
+file image.png
+# image.png: PNG image data, 1024 x 768, 8-bit/color RGB
+
+file program
+# program: ELF 64-bit LSB executable
+</code></pre>
+
+<h3 id="line-endings">Line Endings</h3>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Line Ending</th>
+<th>Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unix/Linux/Mac</td>
+<td>LF</td>
+<td><code>\n</code></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>CRLF</td>
+<td><code>\r\n</code></td>
+</tr>
+<tr>
+<td>Old Mac</td>
+<td>CR</td>
+<td><code>\r</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-bash"># Convert Windows to Unix
+dos2unix file.txt
+
+# Convert Unix to Windows
+unix2dos file.txt
+
+# Manual conversion
+tr -d '\r' &lt; windows.txt &gt; unix.txt
+</code></pre>
+
+<h3 id="character-encoding">Character Encoding</h3>
+<pre class="highlight"><code class="language-bash"># Detect encoding
+file -i document.txt
+# document.txt: text/plain; charset=utf-8
+
+# Convert encoding
+iconv -f ISO-8859-1 -t UTF-8 input.txt &gt; output.txt
+
+# Handle UTF-8 in scripts
+export LC_ALL=en_US.UTF-8
+</code></pre>
+
+<h3 id="magic-bytes-and-file-signatures">Magic Bytes and File Signatures</h3>
+<p>Many file formats start with specific bytes:</p>
+<pre class="highlight"><code class="language-bash"># View first bytes (hex)
+xxd -l 16 file.pdf
+# 00000000: 2550 4446 2d31 2e34 0a25 e2e3 cfd3 0a  %PDF-1.4.%......
+
+# Common signatures:
+# PDF:  %PDF
+# PNG:  \x89PNG
+# JPEG: \xFF\xD8\xFF
+# ZIP:  PK\x03\x04
+# ELF:  \x7FELF
+</code></pre>
+
+<hr />
+<h2 id="practical-examples">Practical Examples</h2>
+<h3 id="example-1-find-files-by-i-node">Example 1: Find Files by I-node</h3>
+<pre class="highlight"><code class="language-bash"># Find all hard links to an i-node
+find /path -inum 123456
+</code></pre>
+
+<h3 id="example-2-monitor-file-descriptor-usage">Example 2: Monitor File Descriptor Usage</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Monitor FDs while running a command
+
+# Run command in background
+sleep 100 &amp;
+PID=$!
+
+# Watch FDs
+watch -n 1 &quot;ls -l /proc/$PID/fd/&quot;
+</code></pre>
+
+<h3 id="example-3-safe-temporary-files">Example 3: Safe Temporary Files</h3>
+<pre class="highlight"><code class="language-bash"># Create temp file with FD
+exec 3&gt; $(mktemp)
+
+# Write to it
+echo &quot;data&quot; &gt;&amp;3
+
+# Read from it (rewind first)
+exec 3&lt;&amp;-
+exec 3&lt; /path/to/temp/file
+cat &lt;&amp;3
+
+# Clean up
+rm /path/to/temp/file
+exec 3&lt;&amp;-
+</code></pre>
+
+<h3 id="example-4-permission-audit">Example 4: Permission Audit</h3>
+<pre class="highlight"><code class="language-bash"># Find world-writable files (security risk)
+find /path -type f -perm -002 -ls
+
+# Find files with setuid bit (security sensitive)
+find /usr/bin -perm -4000 -ls
+
+# Find files with no owner
+find /path -nouser -o -nogroup
+</code></pre>
+
+<hr />
+<h2 id="summary">Summary</h2>
+<p>In this module, you learned:</p>
+<ul>
+<li>✅ <strong>I-nodes</strong>: Metadata structures, hard links vs symlinks</li>
+<li>✅ <strong>File descriptors</strong>: Process file handles, standard descriptors (0, 1, 2)</li>
+<li>✅ <strong>File types</strong>: Regular, directory, link, pipe, socket, device</li>
+<li>✅ <strong>Permissions</strong>: rwx, octal notation, chmod, umask, special bits</li>
+<li>✅ <strong>Special files</strong>: stdin/stdout/stderr, /dev/null, /dev/random</li>
+<li>✅ <strong>File formats</strong>: Text vs binary, encodings, line endings, magic bytes</li>
+</ul>
+<h3 id="next-steps">Next Steps</h3>
+<p>In the next module, we'll explore <strong>Shell Programming</strong> to build reusable data-processing scripts using these concepts.</p>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

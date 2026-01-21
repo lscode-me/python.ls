@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Structured Data Processing (JSON, CSV, Y | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Structured Data Processing (JSON, CSV, Y</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="structured-data-processing-json-csv-yaml-xml">Structured Data Processing (JSON, CSV, YAML, XML)</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Modern data comes in structured formats. This lecture covers tools for processing JSON, CSV, YAML, and XML in Unix pipelines.</p>
+<h2 id="json-processing-with-jq">JSON Processing with jq</h2>
+<h3 id="basic-jq-usage">Basic jq Usage</h3>
+<pre class="highlight"><code class="language-bash"># Pretty print
+echo '{&quot;name&quot;:&quot;John&quot;,&quot;age&quot;:30}' | jq '.'
+
+# Extract field
+echo '{&quot;name&quot;:&quot;John&quot;,&quot;age&quot;:30}' | jq '.name'
+
+# Array access
+echo '[1,2,3,4,5]' | jq '.[2]'  # 3
+
+# Pipe data
+cat users.json | jq '.[] | .name'
+</code></pre>
+
+<h3 id="jq-filters">jq Filters</h3>
+<pre class="highlight"><code class="language-bash"># Select specific fields
+jq '.[] | {name: .name, age: .age}' users.json
+
+# Filter by condition
+jq '.[] | select(.age &gt; 25)' users.json
+
+# Map operation
+jq '[.[] | .price * 1.1]' products.json
+
+# Group by
+jq 'group_by(.category)' products.json
+
+# Sort
+jq 'sort_by(.age)' users.json
+</code></pre>
+
+<h3 id="jsonl-json-lines">JSONL (JSON Lines)</h3>
+<pre class="highlight"><code class="language-bash"># Stream processing
+cat events.jsonl | jq -c 'select(.type == &quot;error&quot;)'
+
+# Convert JSON array to JSONL
+jq -c '.[]' users.json &gt; users.jsonl
+
+# Convert JSONL to JSON array
+jq -s '.' users.jsonl &gt; users.json
+
+# Aggregate
+cat sales.jsonl | jq -s 'map(.amount) | add'
+</code></pre>
+
+<h2 id="csv-processing">CSV Processing</h2>
+<h3 id="csvkit-suite">csvkit Suite</h3>
+<pre class="highlight"><code class="language-bash"># csvstat - Summary statistics
+csvstat data.csv
+
+# csvlook - Pretty print
+csvlook data.csv | head
+
+# csvcut - Extract columns
+csvcut -c 1,3,5 data.csv
+
+# csvgrep - Filter rows
+csvgrep -c status -m &quot;active&quot; users.csv
+
+# csvsort - Sort
+csvsort -c age -r data.csv
+
+# csvjoin - Join files
+csvjoin -c id file1.csv file2.csv
+</code></pre>
+
+<h3 id="miller-mlr">Miller (mlr)</h3>
+<pre class="highlight"><code class="language-bash"># Pretty print
+mlr --csv --opprint cat data.csv
+
+# Filter
+mlr --csv filter '$age &gt; 30' users.csv
+
+# Select columns
+mlr --csv cut -f name,age users.csv
+
+# Stats
+mlr --csv stats1 -a sum,mean -f price sales.csv
+
+# Group by
+mlr --csv stats1 -a sum -f amount -g customer sales.csv
+
+# Convert CSV to JSON
+mlr --csv --ojson cat data.csv &gt; data.json
+
+# Convert JSON to CSV
+mlr --json --ocsv cat data.json &gt; data.csv
+</code></pre>
+
+<h3 id="awk-for-csv">awk for CSV</h3>
+<pre class="highlight"><code class="language-bash"># Safe CSV parsing (handles quoted fields)
+mlr --csv cat data.csv | awk -F',' '{print $2}'
+
+# Sum column
+mlr --csv cut -f amount sales.csv | awk 'NR&gt;1 {sum+=$1} END {print sum}'
+</code></pre>
+
+<h2 id="duckdb-sql-for-files">DuckDB: SQL for Files</h2>
+<p>DuckDB is an embedded analytical database that can query CSV, JSON, and Parquet files directly using SQL. It's like SQLite but optimized for analytics.</p>
+<h3 id="installation">Installation</h3>
+<pre class="highlight"><code class="language-bash"># macOS
+brew install duckdb
+
+# Ubuntu/Debian
+wget https://github.com/duckdb/duckdb/releases/latest/download/duckdb_cli-linux-amd64.zip
+unzip duckdb_cli-linux-amd64.zip
+
+# Check installation
+duckdb --version
+</code></pre>
+
+<h3 id="basic-usage">Basic Usage</h3>
+<pre class="highlight"><code class="language-bash"># Query CSV directly
+duckdb -c &quot;SELECT * FROM 'users.csv' WHERE status = 'active'&quot;
+
+# Pretty output
+duckdb -c &quot;SELECT * FROM 'users.csv'&quot; -markdown
+
+# JSON output
+duckdb -c &quot;SELECT * FROM 'users.csv'&quot; -json
+</code></pre>
+
+<h3 id="reading-different-formats">Reading Different Formats</h3>
+<pre class="highlight"><code class="language-bash"># CSV with auto-detection
+duckdb -c &quot;SELECT * FROM read_csv_auto('users.csv')&quot;
+
+# JSON files
+duckdb -c &quot;SELECT * FROM read_json_auto('users.json')&quot;
+
+# JSONL (newline-delimited JSON)
+duckdb -c &quot;SELECT * FROM read_json_auto('events.jsonl', format='newline_delimited')&quot;
+
+# Parquet files
+duckdb -c &quot;SELECT * FROM read_parquet('data.parquet')&quot;
+</code></pre>
+
+<h3 id="data-transformations">Data Transformations</h3>
+<pre class="highlight"><code class="language-bash"># Select specific columns
+duckdb -c &quot;SELECT name, email FROM 'users.csv'&quot;
+
+# Filter rows
+duckdb -c &quot;SELECT * FROM 'users.csv' WHERE city = 'Moscow' AND status = 'active'&quot;
+
+# Aggregations
+duckdb -c &quot;SELECT category, COUNT(*), AVG(price) FROM 'products.csv' GROUP BY category&quot;
+
+# Order results
+duckdb -c &quot;SELECT * FROM 'products.csv' ORDER BY price DESC LIMIT 5&quot;
+</code></pre>
+
+<h3 id="joins-across-files">Joins Across Files</h3>
+<pre class="highlight"><code class="language-bash"># Join CSV files
+duckdb -c &quot;
+  SELECT u.name, u.email, o.amount, o.date
+  FROM 'users.csv' u
+  JOIN 'orders.csv' o ON u.id = o.customer_id
+  WHERE u.status = 'active'
+&quot;
+
+# Left join
+duckdb -c &quot;
+  SELECT u.*, o.amount
+  FROM 'users.csv' u
+  LEFT JOIN 'orders.csv' o ON u.id = o.customer_id
+&quot;
+</code></pre>
+
+<h3 id="advanced-analytics">Advanced Analytics</h3>
+<pre class="highlight"><code class="language-bash"># Window functions
+duckdb -c &quot;
+  SELECT 
+    name, 
+    price,
+    ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) as rank
+  FROM 'products.csv'
+&quot;
+
+# Common Table Expressions (CTE)
+duckdb -c &quot;
+  WITH active_users AS (
+    SELECT * FROM 'users.csv' WHERE status = 'active'
+  )
+  SELECT city, COUNT(*) as user_count
+  FROM active_users
+  GROUP BY city
+  ORDER BY user_count DESC
+&quot;
+
+# Percentiles
+duckdb -c &quot;
+  SELECT 
+    category,
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY price) as median_price,
+    PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY price) as p95_price
+  FROM 'products.csv'
+  GROUP BY category
+&quot;
+</code></pre>
+
+<h3 id="export-results">Export Results</h3>
+<pre class="highlight"><code class="language-bash"># Export to CSV
+duckdb -c &quot;COPY (
+  SELECT * FROM 'users.csv' WHERE status = 'active'
+) TO 'active_users.csv' (HEADER, DELIMITER ',')&quot;
+
+# Export to JSON
+duckdb -c &quot;COPY (
+  SELECT * FROM 'users.csv'
+) TO 'users_export.json'&quot;
+
+# Export to Parquet (compressed, fast)
+duckdb -c &quot;COPY (
+  SELECT * FROM 'users.csv'
+) TO 'users.parquet' (FORMAT PARQUET)&quot;
+</code></pre>
+
+<h3 id="interactive-mode">Interactive Mode</h3>
+<pre class="highlight"><code class="language-bash"># Start interactive shell
+duckdb
+
+# Inside DuckDB shell
+D SELECT * FROM 'users.csv';
+D .mode markdown
+D SELECT city, COUNT(*) FROM 'users.csv' GROUP BY city;
+D .quit
+</code></pre>
+
+<h3 id="duckdb-vs-other-tools">DuckDB vs Other Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>DuckDB</th>
+<th>mlr</th>
+<th>csvkit</th>
+<th>jq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query Language</td>
+<td>SQL</td>
+<td>DSL</td>
+<td>CLI</td>
+<td>JSON DSL</td>
+</tr>
+<tr>
+<td>Joins</td>
+<td>✅ Complex</td>
+<td>✅ Basic</td>
+<td>✅ Basic</td>
+<td>❌ Manual</td>
+</tr>
+<tr>
+<td>Window Functions</td>
+<td>✅ Full</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Performance (GB+)</td>
+<td>✅ Fast</td>
+<td>✅ Fast</td>
+<td>⚠️ Slow</td>
+<td>⚠️ Slow</td>
+</tr>
+<tr>
+<td>Memory Usage</td>
+<td>✅ Low</td>
+<td>✅ Low</td>
+<td>❌ High</td>
+<td>❌ High</td>
+</tr>
+<tr>
+<td>Learning Curve</td>
+<td>⚠️ SQL</td>
+<td>⚠️ Medium</td>
+<td>✅ Easy</td>
+<td>⚠️ Medium</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-to-use-duckdb">When to Use DuckDB</h3>
+<p><strong>Use DuckDB when:</strong>
+- Complex joins across multiple files
+- Analytical queries (GROUP BY, window functions)
+- Working with large datasets (GB+)
+- Need SQL interface
+- Want to cache results in a database</p>
+<p><strong>Use mlr/csvkit when:</strong>
+- Simple filtering/transformation
+- Quick one-liners
+- Prefer command-line DSL over SQL</p>
+<p><strong>Use jq when:</strong>
+- Working primarily with JSON
+- Need streaming processing
+- Complex JSON transformations</p>
+<h2 id="yaml-processing-with-yq">YAML Processing with yq</h2>
+<pre class="highlight"><code class="language-bash"># View YAML
+yq '.' config.yaml
+
+# Extract field
+yq '.database.host' config.yaml
+
+# Modify field
+yq '.database.port = 5432' config.yaml
+
+# Convert YAML to JSON
+yq -o json '.' config.yaml
+
+# Convert JSON to YAML
+yq -P '.' data.json
+</code></pre>
+
+<h2 id="xml-processing">XML Processing</h2>
+<h3 id="xmlstarlet">xmlstarlet</h3>
+<pre class="highlight"><code class="language-bash"># Pretty print
+xmlstarlet format data.xml
+
+# Extract elements
+xmlstarlet sel -t -v &quot;//user/name&quot; -n data.xml
+
+# Count elements
+xmlstarlet sel -t -v &quot;count(//user)&quot; data.xml
+
+# Filter
+xmlstarlet sel -t -m &quot;//user[age&gt;25]&quot; -v &quot;name&quot; -n data.xml
+
+# Transform
+xmlstarlet ed -u &quot;//user[@id='1']/name&quot; -v &quot;NewName&quot; data.xml
+</code></pre>
+
+<h3 id="xq-yq-for-xml">xq (yq for XML)</h3>
+<pre class="highlight"><code class="language-bash"># XML to JSON
+xq '.' data.xml
+
+# Extract data
+xq '.root.users.user[] | .name' data.xml
+</code></pre>
+
+<h2 id="practical-examples">Practical Examples</h2>
+<h3 id="example-1-json-api-csv">Example 1: JSON API → CSV</h3>
+<pre class="highlight"><code class="language-bash">curl -s 'https://api.example.com/users' | \
+  jq -r '.[] | [.id, .name, .email] | @csv' &gt; users.csv
+</code></pre>
+
+<h3 id="example-2-csv-json-filter-csv">Example 2: CSV → JSON → Filter → CSV</h3>
+<pre class="highlight"><code class="language-bash">mlr --csv --ojson cat input.csv | \
+  jq '.[] | select(.status == &quot;active&quot;)' | \
+  jq -s '.' | \
+  mlr --json --ocsv cat &gt; output.csv
+</code></pre>
+
+<h3 id="example-3-aggregate-json-stream">Example 3: Aggregate JSON Stream</h3>
+<pre class="highlight"><code class="language-bash">cat events.jsonl | \
+  jq -s 'group_by(.user_id) | map({user: .[0].user_id, count: length})'
+</code></pre>
+
+<h3 id="example-4-multi-file-json-merge">Example 4: Multi-File JSON Merge</h3>
+<pre class="highlight"><code class="language-bash">jq -s 'add' file1.json file2.json file3.json &gt; merged.json
+</code></pre>
+
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li id="item-1"><strong>Use jq for JSON</strong>: Most powerful and widespread</li>
+<li id="item-2"><strong>Use mlr for CSV</strong>: Handles edge cases better than awk</li>
+<li id="item-3"><strong>JSONL for streaming</strong>: One object per line</li>
+<li id="item-4"><strong>Validate data</strong> before processing</li>
+<li id="item-5"><strong>Use --null-data</strong> in jq for streaming</li>
+<li id="item-6"><strong>Quote field names</strong> in jq filters</li>
+<li id="item-7"><strong>Test filters</strong> on small samples first</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Tool</th>
+<th>Key Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON</td>
+<td>jq</td>
+<td><code>jq '.[] \| select(.age &gt; 30)'</code></td>
+</tr>
+<tr>
+<td>CSV</td>
+<td>mlr</td>
+<td><code>mlr --csv filter '$age &gt; 30'</code></td>
+</tr>
+<tr>
+<td>CSV/JSON/Parquet</td>
+<td>DuckDB</td>
+<td><code>duckdb -c "SELECT * FROM 'data.csv' WHERE age &gt; 30"</code></td>
+</tr>
+<tr>
+<td>YAML</td>
+<td>yq</td>
+<td><code>yq '.database.host'</code></td>
+</tr>
+<tr>
+<td>XML</td>
+<td>xmlstarlet</td>
+<td><code>xmlstarlet sel -t -v "//name"</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Practice jq filters and transformations</li>
+<li>Explore mlr verbs (cut, filter, stats, join)</li>
+<li>Learn DuckDB SQL for analytical queries</li>
+<li>Compare performance: DuckDB vs mlr vs pandas</li>
+<li>Learn schema validation (jsonschema, csvlint)</li>
+<li>Study data serialization formats (Parquet, Arrow)</li>
+</ul>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

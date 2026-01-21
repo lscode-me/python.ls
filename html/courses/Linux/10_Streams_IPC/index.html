@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Streams, IPC &amp; Unix Sockets | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="streams-ipc-unix-sockets">Streams, IPC &amp; Unix Sockets</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Advanced stream handling: stdin/stdout as pseudo-files, named pipes (FIFOs), Unix sockets, and inter-process communication between shell and Python.</p>
+<h2 id="standard-streams-as-files">Standard Streams as Files</h2>
+<h3 id="using-for-stdinstdout">Using <code>-</code> for stdin/stdout</h3>
+<pre class="highlight"><code class="language-bash"># Read from stdin
+cat - | grep ERROR  # Same as: grep ERROR
+
+# Write to stdout
+echo &quot;data&quot; | cat - &gt; output.txt
+
+# Mix stdin and files
+cat file1.txt - file2.txt &lt;&lt;&lt; &quot;middle content&quot;
+</code></pre>
+
+<h2 id="named-pipes-fifos">Named Pipes (FIFOs)</h2>
+<h3 id="creating-and-using-fifos">Creating and Using FIFOs</h3>
+<pre class="highlight"><code class="language-bash"># Create named pipe
+mkfifo mypipe
+
+# Writer (in one terminal)
+echo &quot;Hello from pipe&quot; &gt; mypipe
+
+# Reader (in another terminal)
+cat &lt; mypipe
+
+# Both in background
+cat &lt; mypipe &amp;
+echo &quot;Data&quot; &gt; mypipe
+</code></pre>
+
+<h3 id="pipeline-with-fifos">Pipeline with FIFOs</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+mkfifo pipe1 pipe2
+
+# Producer
+producer.sh &gt; pipe1 &amp;
+
+# Processor
+cat &lt; pipe1 | process.sh &gt; pipe2 &amp;
+
+# Consumer
+cat &lt; pipe2
+
+# Cleanup
+rm pipe1 pipe2
+</code></pre>
+
+<h2 id="unix-domain-sockets">Unix Domain Sockets</h2>
+<h3 id="using-netcat-with-unix-sockets">Using netcat with Unix sockets</h3>
+<pre class="highlight"><code class="language-bash"># Server
+nc -lU /tmp/my.sock
+
+# Client
+echo &quot;Hello&quot; | nc -U /tmp/my.sock
+</code></pre>
+
+<h2 id="shell-python-ipc">Shell ↔ Python IPC</h2>
+<h3 id="python-reads-from-stdin">Python reads from stdin</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+import sys
+for line in sys.stdin:
+    print(line.strip().upper())
+</code></pre>
+
+<pre class="highlight"><code class="language-bash"># Use in pipeline
+echo &quot;hello&quot; | python3 uppercase.py
+</code></pre>
+
+<h3 id="python-writes-to-stdout">Python writes to stdout</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+import json
+data = [{&quot;id&quot;: i, &quot;value&quot;: i*2} for i in range(10)]
+for item in data:
+    print(json.dumps(item))
+</code></pre>
+
+<pre class="highlight"><code class="language-bash"># Process in bash
+python3 generate.py | jq -c 'select(.value &gt; 10)'
+</code></pre>
+
+<h3 id="bidirectional-python-subprocess">Bidirectional: Python subprocess</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Feed data to Python, get results back
+echo -e &quot;5\n10\n15&quot; | python3 -c &quot;
+import sys
+for line in sys.stdin:
+    num = int(line.strip())
+    print(num * 2)
+&quot;
+</code></pre>
+
+<h2 id="complex-ipc-patterns">Complex IPC Patterns</h2>
+<h3 id="pattern-1-shell-python-shell">Pattern 1: Shell → Python → Shell</h3>
+<pre class="highlight"><code class="language-bash"># Generate data in shell
+seq 1 100 | \
+  # Process in Python
+  python3 -c &quot;import sys; [print(int(x)**2) for x in sys.stdin]&quot; | \
+  # Aggregate in shell
+  awk '{sum+=$1} END {print sum}'
+</code></pre>
+
+<h3 id="pattern-2-parallel-python-processors">Pattern 2: Parallel Python Processors</h3>
+<pre class="highlight"><code class="language-bash"># Split work among Python instances
+seq 1 1000 | parallel -j 4 --pipe python3 process.py
+</code></pre>
+
+<h3 id="pattern-3-named-pipe-for-async-processing">Pattern 3: Named Pipe for Async Processing</h3>
+<pre class="highlight"><code class="language-bash">mkfifo datastream
+
+# Producer (async)
+./generate_data.sh &gt; datastream &amp;
+
+# Consumer (Python)
+python3 analyze.py &lt; datastream
+
+rm datastream
+</code></pre>
+
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li id="item-1"><strong>Use <code>-</code> for stdin/stdout</strong>: Standard convention</li>
+<li id="item-2"><strong>Named pipes for async</strong>: Producer and consumer run independently</li>
+<li id="item-3"><strong>Unix sockets for IPC</strong>: Better than TCP for local communication</li>
+<li id="item-4"><strong>Stream with Python</strong>: Use sys.stdin/stdout, not files</li>
+<li id="item-5"><strong>Clean up FIFOs</strong>: Remove with <code>rm</code> when done</li>
+<li id="item-6"><strong>Buffer control</strong>: Use <code>sys.stdout.flush()</code> in Python</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Use Case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-</code> pseudo-file</td>
+<td>stdin/stdout</td>
+<td><code>cat - \| grep ERROR</code></td>
+</tr>
+<tr>
+<td>mkfifo</td>
+<td>Async pipelines</td>
+<td><code>mkfifo p; cat &lt; p &amp; echo x &gt; p</code></td>
+</tr>
+<tr>
+<td>Unix socket</td>
+<td>Local IPC</td>
+<td><code>nc -lU /tmp/s</code></td>
+</tr>
+<tr>
+<td>Python stdin</td>
+<td>Shell → Python</td>
+<td><code>echo "x" \| python3 script.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Practice named pipes</li>
+<li>Build Python stream filters</li>
+<li>Study process substitution</li>
+<li>Explore message queues</li>
+</ul>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

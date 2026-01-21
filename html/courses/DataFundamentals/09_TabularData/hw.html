@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Tabular Data">
+    <title>Homework: Tabular Data | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/DataFundamentals/">Data Fundamentals for Life Sciences</a> &raquo;
+                    <a href="index.html">Tabular Data</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="homework-tabular-data">Homework: Tabular Data</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-csv-format-mastery">Exercise 1: CSV Format Mastery</h3>
+<ol>
+<li id="item-1">Create CSV files with various complexities:<br />
+   - Simple comma-separated data<br />
+   - Data containing commas (proper quoting)<br />
+   - Multi-line field values<br />
+   - Different delimiter types (semicolon, tab, pipe)<br />
+   - Various encoding formats (UTF-8, Latin-1)</li>
+<li id="item-2">Practice proper escaping of special characters</li>
+<li id="item-3">Handle empty values and NULL representation</li>
+<li id="item-4">Test with different CSV parsing libraries</li>
+</ol>
+<h3 id="exercise-2-data-quality-assessment">Exercise 2: Data Quality Assessment</h3>
+<ol>
+<li id="item-1">Analyze real-world datasets for quality issues:<br />
+   - Missing values and inconsistent formatting<br />
+   - Duplicate records and data entry errors<br />
+   - Inconsistent data types and formats<br />
+   - Outliers and anomalous values</li>
+<li id="item-2">Document data quality metrics</li>
+<li id="item-3">Create data quality reports with recommendations</li>
+<li id="item-4">Implement data validation rules</li>
+</ol>
+<h3 id="exercise-3-format-conversion-practice">Exercise 3: Format Conversion Practice</h3>
+<ol>
+<li id="item-1">Convert data between formats while preserving information:<br />
+   - CSV ↔ Excel (.xlsx)<br />
+   - CSV ↔ JSON (nested and flat structures)<br />
+   - CSV ↔ XML with proper schema design<br />
+   - CSV ↔ Parquet for big data applications</li>
+<li id="item-2">Handle data type preservation during conversion</li>
+<li id="item-3">Optimize for file size and performance</li>
+<li id="item-4">Validate data integrity after conversion</li>
+</ol>
+<h3 id="exercise-4-advanced-csv-handling">Exercise 4: Advanced CSV Handling</h3>
+<ol>
+<li id="item-1">Work with large CSV files (&gt;1GB):<br />
+   - Streaming processing techniques<br />
+   - Memory-efficient parsing<br />
+   - Chunked processing strategies</li>
+<li id="item-2">Handle problematic CSV files:<br />
+   - Inconsistent column counts<br />
+   - Mixed encoding within single file<br />
+   - Embedded binary data<br />
+   - Malformed quoting and escaping</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Data Pipeline Implementation</strong><br />
+- Build an ETL pipeline for CSV data processing<br />
+- Include data validation, transformation, and loading<br />
+- Handle error cases gracefully<br />
+- Implement data lineage tracking<br />
+- Create monitoring and alerting for data issues</p>
+<p><strong>Task 2: Excel Integration</strong><br />
+- Read complex Excel files with multiple sheets<br />
+- Handle merged cells, formulas, and formatting<br />
+- Create Excel files with charts and pivot tables<br />
+- Implement Excel template-based reporting<br />
+- Handle password-protected Excel files</p>
+<p><strong>Task 3: Database Integration</strong><br />
+- Import CSV data into SQL databases efficiently<br />
+- Handle data type mapping and constraints<br />
+- Implement bulk loading strategies<br />
+- Create database schemas from CSV structure<br />
+- Export query results to various tabular formats</p>
+<h2 id="data-analysis-tasks">Data Analysis Tasks</h2>
+<p><strong>Task 4: Statistical Analysis</strong><br />
+- Import tabular data into analysis tools (R, Python pandas, Excel)<br />
+- Perform exploratory data analysis (EDA)<br />
+- Generate summary statistics and visualizations<br />
+- Identify correlations and patterns<br />
+- Create automated data profiling reports</p>
+<p><strong>Task 5: Data Cleaning Automation</strong><br />
+- Develop automated data cleaning workflows<br />
+- Standardize date formats and categorical values<br />
+- Handle missing data with appropriate strategies<br />
+- Detect and resolve duplicate records<br />
+- Implement data validation frameworks</p>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<p><strong>Task 6: Big Data Handling</strong><br />
+- Compare performance of different CSV libraries<br />
+- Implement parallel processing for large datasets<br />
+- Use columnar storage formats for analytics<br />
+- Optimize memory usage for streaming processing<br />
+- Benchmark I/O performance optimizations</p>
+<h2 id="real-world-applications">Real-World Applications</h2>
+<p><strong>Task 7: Industry-Specific Scenarios</strong><br />
+1. Financial data with precise decimal handling<br />
+2. Scientific measurements with units and precision<br />
+3. Geographic data with coordinate systems<br />
+4. Time series data with irregular intervals<br />
+5. Log file analysis and structured extraction</p>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p><strong>Task 8: Specialized Formats</strong><br />
+- Work with TSV (tab-separated values)<br />
+- Handle fixed-width format files<br />
+- Process delimited files with custom separators<br />
+- Deal with hierarchical data in flat formats<br />
+- Implement schema evolution strategies</p>
+<h2 id="tools-and-libraries-exploration">Tools and Libraries Exploration</h2>
+<p><strong>Task 9: Tool Comparison</strong><br />
+Evaluate and compare tools for tabular data:<br />
+- pandas (Python) vs data.table (R)<br />
+- OpenRefine vs Excel for data cleaning<br />
+- Apache Spark vs traditional tools for big data<br />
+- Command-line tools (csvkit, Miller, q)<br />
+- Cloud services (AWS Glue, Google BigQuery)</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive tabular data portfolio:<br />
+1. Sample datasets in multiple formats<br />
+2. Data quality assessment reports<br />
+3. Working code for all conversion scenarios<br />
+4. Performance benchmarking results<br />
+5. Best practices documentation<br />
+6. Tool comparison matrix with recommendations<br />
+7. Real-world case study implementation</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

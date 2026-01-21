@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="{{ base_url }}/">Home</a> &raquo;
+        <a href="{{ base_url }}/courses/">Courses</a> &raquo;
+        <a href="{{ base_url }}/courses/{{ course_id }}/">{{ course_title }}</a> &raquo;
+        <a href="{{ lecture_url }}">{{ module_title }}</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>{{ title }}</h1>
+        <p class="quiz-description">{{ description }}</p>
+        <div class="quiz-meta">
+            <span class="question-count">{{ question_count }} questions</span>
+            <span class="time-estimate">⏱️ ~{{ time_estimate }} min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of {{ question_count }}</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            {% for question in questions %}
+            <div class="question-card" data-question="{{ question.number }}" {% if not loop.first %}style="display: none;"{% endif %}>
+                <div class="question-number">Question {{ question.number }}</div>
+                <h3 class="question-text">{{ question.text }}</h3>
+                
+                {% if question.code %}
+                <pre class="question-code"><code>{{ question.code }}</code></pre>
+                {% endif %}
+
+                <div class="answers">
+                    {% for answer in question.answers %}
+                    <label class="answer-option" data-answer="{{ answer.letter }}">
+                        <input type="radio" name="q{{ question.number }}" value="{{ answer.letter }}" required>
+                        <span class="answer-letter">{{ answer.letter }}</span>
+                        <span class="answer-text">{{ answer.text }}</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ {{ question_count }}</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="{{ lecture_url }}" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {{ quiz_data_json | safe }};
+</script>
+<script src="{{ base_url }}/static/js/quiz.js"></script>
+{% endblock %}

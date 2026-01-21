@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>Data Compression | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Data Compression</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="data-compression">Data Compression</h1>
+<h2 id="gzip-bzip2-xz-and-archiving-for-bioinformatics">gzip, bzip2, xz and Archiving for Bioinformatics</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Understand file formats (Module 04_FileFormats)</li>
+<li>Have experience working with command line</li>
+<li>Know basics of file operations</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Compress and decompress files with gzip, bzip2, xz</li>
+<li>Create and extract tar archives</li>
+<li>Choose appropriate compression algorithm</li>
+<li>Work with compressed data in Python</li>
+<li>Handle compressed bioinformatics data formats (FASTQ.gz, BAM, VCF.gz)</li>
+</ul>
+<hr />
+<h2 id="1-compression-basics">1. Compression Basics</h2>
+<h3 id="11-lossless-vs-lossy">1.1 Lossless vs Lossy</h3>
+<p><strong>Lossless (no data loss):</strong></p>
+<ul>
+<li>gzip, bzip2, xz, ZIP</li>
+<li>Complete data recovery</li>
+<li>For text, code, biological data</li>
+</ul>
+<p><strong>Lossy (with data loss):</strong></p>
+<ul>
+<li>JPEG, MP3, H.264</li>
+<li>Smaller size, quality loss</li>
+<li>For media (not for biological data!)</li>
+</ul>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<p>FASTQ, BAM, CRAM files use <strong>lossless</strong> compression to preserve sequence data integrity. Lossy compression is never acceptable for genomic data.</p>
+<h3 id="12-sizespeed-tradeoff">1.2 Size/Speed Tradeoff</h3>
+<pre class="highlight"><code>Compression Speed                    Compression Ratio
+←─────────────────────────────────────────────────→
+lz4   gzip   bzip2   xz/lzma
+fast  ←──────────────────→  slow
+</code></pre>
+
+<p><strong>🧬 Common in Bioinformatics:</strong></p>
+<ul>
+<li><strong>FASTQ.gz</strong>: gzip-compressed (standard)</li>
+<li><strong>BAM</strong>: BGZF (blocked gzip, allows random access)</li>
+<li><strong>CRAM</strong>: Advanced compression with reference genome</li>
+<li><strong>VCF.gz</strong>: gzip or bgzip compressed</li>
+</ul>
+<hr />
+<h2 id="2-gzip">2. gzip</h2>
+<h3 id="21-gzip-basics">2.1 gzip Basics</h3>
+<pre class="highlight"><code class="language-bash"># Compress (replaces original!)
+gzip file.txt
+# Result: file.txt.gz
+
+# Decompress
+gunzip file.txt.gz
+# or
+gzip -d file.txt.gz
+
+# Keep original
+gzip -k file.txt
+# Result: file.txt and file.txt.gz
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Compress FASTQ file
+gzip sample_R1.fastq
+# Result: sample_R1.fastq.gz
+
+# Decompress for processing
+gunzip sample_R1.fastq.gz
+
+# Keep original (safer for valuable data)
+gzip -k sample_R1.fastq
+</code></pre>
+
+<h3 id="22-gzip-options">2.2 gzip Options</h3>
+<pre class="highlight"><code class="language-bash"># Compression level (1-9, default=6)
+gzip -9 file.txt    # Maximum compression
+gzip -1 file.txt    # Fast compression
+
+# Recursive
+gzip -r directory/
+
+# View information
+gzip -l file.txt.gz
+</code></pre>
+
+<p><strong>🧬 Bioinformatics:</strong></p>
+<pre class="highlight"><code class="language-bash"># Maximum compression for archival
+gzip -9 old_experiment.fastq
+
+# Fast compression for intermediate files
+gzip -1 temp_results.txt
+
+# Compress all FASTQ files in directory
+gzip -k *.fastq
+
+# Check compression ratio
+gzip -l sample_R1.fastq.gz
+</code></pre>
+
+<h3 id="23-reading-compressed-files">2.3 Reading Compressed Files</h3>
+<pre class="highlight"><code class="language-bash"># View without decompressing
+zcat file.txt.gz
+zless file.txt.gz
+zgrep &quot;pattern&quot; file.txt.gz
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># View first sequences in FASTQ.gz
+zcat sample_R1.fastq.gz | head -20
+
+# Search for adapter sequences
+zgrep &quot;AGATCGGAAGAGC&quot; sample_R1.fastq.gz
+
+# Count reads in compressed FASTQ
+zcat sample_R1.fastq.gz | wc -l
+# Divide by 4 for number of reads
+
+# Filter quality scores
+zcat sample_R1.fastq.gz | awk 'NR%4==0' | head -1000
+</code></pre>
+
+<hr />
+<h2 id="3-bzip2">3. bzip2</h2>
+<h3 id="31-usage">3.1 Usage</h3>
+<pre class="highlight"><code class="language-bash"># Compress
+bzip2 file.txt
+# Result: file.txt.bz2
+
+# Decompress
+bunzip2 file.txt.bz2
+bzip2 -d file.txt.bz2
+
+# Keep original
+bzip2 -k file.txt
+</code></pre>
+
+<h3 id="32-comparison-with-gzip">3.2 Comparison with gzip</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>gzip</th>
+<th>bzip2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compression</td>
+<td>~70%</td>
+<td>~60%</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Faster</td>
+<td>Slower</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Less</td>
+<td>More</td>
+</tr>
+<tr>
+<td>Extension</td>
+<td>.gz</td>
+<td>.bz2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<p>bzip2 provides better compression but is slower. Less common than gzip for sequencing data. Sometimes used for long-term archival of analysis results.</p>
+<hr />
+<h2 id="4-xz-lzma">4. xz (LZMA)</h2>
+<h3 id="41-usage">4.1 Usage</h3>
+<pre class="highlight"><code class="language-bash"># Compress
+xz file.txt
+# Result: file.txt.xz
+
+# Decompress
+unxz file.txt.xz
+xz -d file.txt.xz
+
+# Keep original
+xz -k file.txt
+
+# View
+xzcat file.txt.xz
+</code></pre>
+
+<h3 id="42-xz-advantages">4.2 xz Advantages</h3>
+<ul>
+<li>Best compression</li>
+<li>Used for Linux distributions</li>
+<li>Slower but smaller result</li>
+</ul>
+<p><strong>🧬 Bioinformatics:</strong></p>
+<p>xz is excellent for archiving old sequencing data when storage is expensive and decompression time is not critical.</p>
+<pre class="highlight"><code class="language-bash"># Archive old experiment data
+xz -9 -k old_rnaseq_results.fastq
+# Excellent compression for rarely-accessed data
+</code></pre>
+
+<hr />
+<h2 id="5-tar-archiving">5. tar (Archiving)</h2>
+<h3 id="51-what-is-tar">5.1 What is tar</h3>
+<p><strong>tar</strong> (tape archive) — combines files into one archive WITHOUT compression.</p>
+<pre class="highlight"><code class="language-bash"># Create archive
+tar -cvf archive.tar file1.txt file2.txt directory/
+# c = create, v = verbose, f = file
+
+# View contents
+tar -tvf archive.tar
+
+# Extract
+tar -xvf archive.tar
+# x = extract
+
+# Extract to specific directory
+tar -xvf archive.tar -C /destination/
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Archive entire experiment
+tar -cvf experiment_PAT001.tar fastq/ alignments/ variants/
+
+# View archive contents
+tar -tvf experiment_PAT001.tar
+
+# Extract specific sample
+tar -xvf experiment_PAT001.tar fastq/PAT001_R1.fastq.gz
+</code></pre>
+
+<h3 id="52-tar-compression">5.2 tar + Compression</h3>
+<pre class="highlight"><code class="language-bash"># tar.gz (gzip)
+tar -czvf archive.tar.gz directory/
+tar -xzvf archive.tar.gz
+
+# tar.bz2 (bzip2)
+tar -cjvf archive.tar.bz2 directory/
+tar -xjvf archive.tar.bz2
+
+# tar.xz (xz)
+tar -cJvf archive.tar.xz directory/
+tar -xJvf archive.tar.xz
+</code></pre>
+
+<p><strong>Compression flags:</strong></p>
+<ul>
+<li><code>-z</code> = gzip</li>
+<li><code>-j</code> = bzip2</li>
+<li><code>-J</code> = xz</li>
+</ul>
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Archive and compress experiment (most common)
+tar -czvf RNA_Seq_2024_01.tar.gz \
+    raw_data/ \
+    aligned/ \
+    results/ \
+    metadata.csv
+
+# Maximum compression for archival
+tar -cJvf old_experiment_archive.tar.xz old_data/
+
+# Extract compressed archive
+tar -xzvf RNA_Seq_2024_01.tar.gz
+
+# Extract to specific location
+tar -xzvf RNA_Seq_2024_01.tar.gz -C /archive/2024/
+</code></pre>
+
+<hr />
+<h2 id="6-zip">6. ZIP</h2>
+<h3 id="61-usage">6.1 Usage</h3>
+<pre class="highlight"><code class="language-bash"># Create
+zip archive.zip file1.txt file2.txt
+zip -r archive.zip directory/  # Recursive
+
+# Extract
+unzip archive.zip
+unzip archive.zip -d /destination/
+
+# View
+unzip -l archive.zip
+</code></pre>
+
+<h3 id="62-zip-vs-targz">6.2 ZIP vs tar.gz</h3>
+<table>
+<thead>
+<tr>
+<th>ZIP</th>
+<th>tar.gz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single file</td>
+<td>tar + gzip separate</td>
+</tr>
+<tr>
+<td>Random access</td>
+<td>Sequential</td>
+</tr>
+<tr>
+<td>Windows standard</td>
+<td>Unix standard</td>
+</tr>
+<tr>
+<td>Built-in compression</td>
+<td>Separate compression</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<p>ZIP is useful for sharing data with Windows users or for archives with many small files that need random access.</p>
+<pre class="highlight"><code class="language-bash"># Create ZIP of results for collaborators
+zip -r analysis_results.zip reports/ figures/ tables/
+
+# Extract specific file
+unzip analysis_results.zip reports/summary.pdf
+</code></pre>
+
+<hr />
+<h2 id="7-python-and-compression">7. Python and Compression</h2>
+<h3 id="71-gzip">7.1 gzip</h3>
+<pre class="highlight"><code class="language-python">import gzip
+
+# Write
+with gzip.open('file.txt.gz', 'wt', encoding='utf-8') as f:
+    f.write('Hello, World!')
+
+# Read
+with gzip.open('file.txt.gz', 'rt', encoding='utf-8') as f:
+    content = f.read()
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import gzip
+
+# Read compressed FASTQ
+with gzip.open('sample_R1.fastq.gz', 'rt') as f:
+    for i, line in enumerate(f):
+        if i % 4 == 0:  # Header lines
+            print(line.strip())
+        if i &gt;= 20:  # First 5 reads
+            break
+
+# Write filtered reads to compressed file
+with gzip.open('filtered_R1.fastq.gz', 'wt') as out:
+    with gzip.open('sample_R1.fastq.gz', 'rt') as in_file:
+        for i, line in enumerate(in_file):
+            if some_filter_condition(line):
+                out.write(line)
+
+# Process VCF.gz file
+import csv
+with gzip.open('variants.vcf.gz', 'rt') as f:
+    for line in f:
+        if line.startswith('#'):  # Skip headers
+            continue
+        fields = line.strip().split('\t')
+        chrom, pos, ref, alt = fields[0], fields[1], fields[3], fields[4]
+        print(f&quot;{chrom}:{pos} {ref}&gt;{alt}&quot;)
+</code></pre>
+
+<h3 id="72-tarfile">7.2 tarfile</h3>
+<pre class="highlight"><code class="language-python">import tarfile
+
+# Create tar.gz
+with tarfile.open('archive.tar.gz', 'w:gz') as tar:
+    tar.add('directory/')
+    tar.add('file.txt')
+
+# Extract
+with tarfile.open('archive.tar.gz', 'r:gz') as tar:
+    tar.extractall('destination/')
+
+# View contents
+with tarfile.open('archive.tar.gz', 'r:gz') as tar:
+    for member in tar.getmembers():
+        print(member.name)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import tarfile
+import os
+
+# Archive experiment data
+def archive_experiment(experiment_id, output_dir='/archive'):
+    archive_name = f&quot;{output_dir}/{experiment_id}.tar.gz&quot;
+
+    with tarfile.open(archive_name, 'w:gz') as tar:
+        tar.add(f'raw_data/{experiment_id}')
+        tar.add(f'results/{experiment_id}')
+        tar.add(f'metadata/{experiment_id}.csv')
+
+    print(f&quot;Archived to {archive_name}&quot;)
+    return archive_name
+
+# Extract specific sample from archive
+def extract_sample(archive_path, sample_id, output_dir='.'):
+    with tarfile.open(archive_path, 'r:gz') as tar:
+        # Extract only files matching sample_id
+        members = [m for m in tar.getmembers() if sample_id in m.name]
+        tar.extractall(output_dir, members=members)
+
+    print(f&quot;Extracted {len(members)} files for {sample_id}&quot;)
+
+# List archive contents
+def list_archive(archive_path):
+    with tarfile.open(archive_path, 'r:gz') as tar:
+        for member in tar.getmembers():
+            size_mb = member.size / (1024 * 1024)
+            print(f&quot;{member.name}: {size_mb:.2f} MB&quot;)
+</code></pre>
+
+<h3 id="73-zipfile">7.3 zipfile</h3>
+<pre class="highlight"><code class="language-python">import zipfile
+
+# Create
+with zipfile.ZipFile('archive.zip', 'w') as zf:
+    zf.write('file.txt')
+    zf.write('directory/file.txt', arcname='renamed.txt')
+
+# Read
+with zipfile.ZipFile('archive.zip', 'r') as zf:
+    print(zf.namelist())
+    content = zf.read('file.txt')
+</code></pre>
+
+<hr />
+<h2 id="8-format-comparison">8. Format Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Compression</th>
+<th>Speed</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gzip</td>
+<td>Good</td>
+<td>Fast</td>
+<td>Web, logs, FASTQ</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>Better</td>
+<td>Medium</td>
+<td>Archives</td>
+</tr>
+<tr>
+<td>xz</td>
+<td>Best</td>
+<td>Slow</td>
+<td>Distributions</td>
+</tr>
+<tr>
+<td>lz4</td>
+<td>Medium</td>
+<td>Very fast</td>
+<td>Real-time</td>
+</tr>
+<tr>
+<td>zstd</td>
+<td>Excellent</td>
+<td>Fast</td>
+<td>Modern standard</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 Bioinformatics Recommendations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>gzip (.gz)</strong></td>
+<td>FASTQ files, VCF files (standard)</td>
+</tr>
+<tr>
+<td><strong>bgzip</strong></td>
+<td>BAM files, VCF for tabix indexing</td>
+</tr>
+<tr>
+<td><strong>CRAM</strong></td>
+<td>Maximum compression with reference</td>
+</tr>
+<tr>
+<td><strong>tar.gz</strong></td>
+<td>Archiving entire experiments</td>
+</tr>
+<tr>
+<td><strong>xz</strong></td>
+<td>Long-term cold storage</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>tar — archiving, not compression</strong>: tar combines files, gzip/bzip2/xz compress.</p>
+</li>
+<li>
+<p><strong>Algorithm choice</strong>: gzip for speed (standard for FASTQ), xz for size, zstd for balance.</p>
+</li>
+<li>
+<p><strong>tar flags</strong>: <code>-z</code> (gzip), <code>-j</code> (bzip2), <code>-J</code> (xz).</p>
+</li>
+<li>
+<p><strong>ZIP for cross-platform</strong>: If Windows compatibility needed.</p>
+</li>
+<li>
+<p><strong>🧬 Bioinformatics</strong>: FASTQ.gz and BAM (bgzip) are universal standards. Always compress sequencing data.</p>
+</li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Related Modules:</strong></p>
+<ul>
+<li><a href="../11_Checksums/">11_Checksums</a> — Checksums and hashing</li>
+<li><a href="../12_DataTransfer/">12_DataTransfer</a> — Data transfer and encoding</li>
+</ul>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Compare compression ratios of gzip, bzip2, xz on FASTQ files</li>
+<li id="item-2">Create tar.gz archive of experiment and extract it</li>
+<li id="item-3">Measure compression time vs size for different algorithms</li>
+<li id="item-4">Process compressed FASTQ files without decompression</li>
+<li id="item-5">Archive old sequencing data with maximum compression</li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>Learn about BGZF (Blocked Gzip Format) used in BAM files</li>
+<li>Study CRAM format for maximum genomic data compression</li>
+<li>Explore zstd (Zstandard) as modern alternative</li>
+<li>Investigate lz4 for fast compression of intermediate files</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<p><strong>General:</strong></p>
+<ul>
+<li><a href="https://www.gnu.org/software/gzip/">GNU gzip</a></li>
+<li><a href="https://tukaani.org/xz/">XZ Utils</a></li>
+<li><a href="https://facebook.github.io/zstd/">Zstandard</a></li>
+</ul>
+<p><strong>Bioinformatics:</strong></p>
+<ul>
+<li><a href="https://samtools.github.io/hts-specs/">SAM/BAM/CRAM Format Specification</a></li>
+<li><a href="https://samtools.github.io/hts-specs/SAMv1.pdf">BGZF Format</a></li>
+<li><a href="http://www.htslib.org/">samtools Documentation</a></li>
+<li><a href="https://pysam.readthedocs.io/">pysam Python library</a></li>
+</ul>
+<hr />
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

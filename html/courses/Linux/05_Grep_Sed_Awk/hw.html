@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Grep, Sed &amp; Awk: Text Processing Power Tools">
+    <title>Grep, Sed &amp; Awk: Text Processing Power Tools - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Grep, Sed & Awk: Text Processing Power Tools</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="grep-sed-awk-text-processing-power-tools-homework">Grep, Sed &amp; Awk: Text Processing Power Tools - Homework</h1>
+<h2 id="assignment-1-grep-pattern-matching">Assignment 1: Grep - Pattern Matching</h2>
+<p>Search a log file for all ERROR and FATAL lines.<br />
+- Input: <code>app.log</code><br />
+- Command: Use <code>grep -E</code> to match both patterns<br />
+- Output: Save to <code>errors.txt</code><br />
+- Hint: <code>grep -E "ERROR|FATAL" app.log &gt; errors.txt</code></p>
+<h2 id="assignment-2-grep-extract-ip-addresses">Assignment 2: Grep - Extract IP Addresses</h2>
+<p>Extract all IP addresses from an access log.<br />
+- Input: <code>access.log</code><br />
+- Pattern: <code>\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b</code><br />
+- Command: Use <code>grep -Eo</code><br />
+- Hint: The <code>-o</code> flag shows only the matching part</p>
+<h2 id="assignment-3-sed-replace-in-file">Assignment 3: Sed - Replace in File</h2>
+<p>Replace all occurrences of "http://" with "https://" in a file.<br />
+- Input: <code>urls.txt</code><br />
+- Command: Use <code>sed 's|http://|https://|g'</code><br />
+- Save to <code>urls_https.txt</code></p>
+<h2 id="assignment-4-sed-remove-html-tags">Assignment 4: Sed - Remove HTML Tags</h2>
+<p>Strip all HTML tags from a web page.<br />
+- Input: <code>page.html</code><br />
+- Pattern: <code>&lt;[^&gt;]*&gt;</code><br />
+- Command: Use <code>sed 's/&lt;[^&gt;]*&gt;//g'</code><br />
+- Output: Plain text</p>
+<h2 id="assignment-5-awk-extract-columns">Assignment 5: Awk - Extract Columns</h2>
+<p>From a CSV file with (id,name,price,quantity), extract name and price.<br />
+- Input: <code>products.csv</code><br />
+- Command: <code>awk -F',' '{print $2, $3}' products.csv</code><br />
+- Output: Two columns only</p>
+<h2 id="assignment-6-awk-calculate-sum">Assignment 6: Awk - Calculate Sum</h2>
+<p>Calculate the total revenue from a sales CSV.<br />
+- Input: <code>sales.csv</code> with columns: date,product,price,quantity<br />
+- Task: Sum price × quantity for all rows<br />
+- Hint: <code>awk -F',' 'NR &gt; 1 {sum += $3 * $4} END {print sum}'</code></p>
+<h2 id="assignment-7-awk-group-by">Assignment 7: Awk - Group By</h2>
+<p>Count the number of orders per customer from an orders CSV.<br />
+- Input: <code>orders.csv</code> with: order_id,customer_id,amount<br />
+- Task: Count orders per customer_id<br />
+- Hint: Use associative arrays in awk</p>
+<h2 id="assignment-8-combined-email-domain-analysis">Assignment 8: Combined - Email Domain Analysis</h2>
+<p>Extract all email addresses, get their domains, and count frequency.<br />
+- Input: <code>users.txt</code> with text containing email addresses<br />
+- Steps:<br />
+  1. Use <code>grep -Eo</code> to extract emails<br />
+  2. Use <code>sed</code> to extract domains (everything after @)<br />
+  3. Use <code>sort | uniq -c</code> to count<br />
+  4. Sort by frequency<br />
+- Output: List of domains with counts</p>
+<h2 id="assignment-9-combined-log-analysis">Assignment 9: Combined - Log Analysis</h2>
+<p>From an Apache/Nginx access log, find the top 10 IP addresses by request count.<br />
+- Input: <code>access.log</code> (standard format)<br />
+- Steps:<br />
+  1. Use <code>awk</code> to extract IP (first field)<br />
+  2. Use <code>sort | uniq -c</code><br />
+  3. Sort numerically and get top 10<br />
+- Hint: <code>awk '{print $1}' access.log | sort | uniq -c | sort -rn | head -10</code></p>
+<h2 id="assignment-10-combined-data-cleaning-pipeline">Assignment 10: Combined - Data Cleaning Pipeline</h2>
+<p>Clean a messy CSV file:<br />
+- Remove empty lines<br />
+- Remove lines with "NULL" values<br />
+- Convert all text to lowercase<br />
+- Replace multiple spaces with single space<br />
+- Input: <code>messy_data.csv</code><br />
+- Use combination of <code>sed</code>, <code>tr</code>, and <code>grep</code></p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-regex-validator">Bonus 1: Regex Validator</h3>
+<p>Create a script that validates email addresses using grep.<br />
+- Input: list of email addresses<br />
+- Output: "Valid" or "Invalid" for each<br />
+- Use comprehensive email regex pattern</p>
+<h3 id="bonus-2-log-parser">Bonus 2: Log Parser</h3>
+<p>Parse a log file to extract:<br />
+- Timestamp<br />
+- Log level (INFO, ERROR, etc.)<br />
+- Message<br />
+- Convert to CSV format<br />
+- Use awk with complex field parsing</p>
+<h3 id="bonus-3-text-report-generator">Bonus 3: Text Report Generator</h3>
+<p>From a CSV with sales data, generate a formatted text report:</p>
+<pre class="highlight"><code># Sales Report
+
+Total Revenue: $12,345.67
+Total Orders: 150
+Average Order: $82.30
+Top Product: Widget A
+</code></pre>
+
+<p>Use awk to calculate all metrics and printf for formatting.</p>
+<h3 id="bonus-4-sed-script-file">Bonus 4: Sed Script File</h3>
+<p>Create a sed script file (<code>transform.sed</code>) that:<br />
+1. Removes HTML tags<br />
+2. Converts to lowercase<br />
+3. Removes punctuation<br />
+4. Replaces multiple spaces with one<br />
+Run it with: <code>sed -f transform.sed input.html</code></p>
+<h3 id="bonus-5-advanced-awk-pivot-table">Bonus 5: Advanced Awk - Pivot Table</h3>
+<p>Create a simple pivot table from sales data:<br />
+- Rows: Products<br />
+- Columns: Months<br />
+- Values: Sum of sales<br />
+- Input: <code>sales.csv</code> with: date,product,amount<br />
+- Output: Pivot table showing product sales by month</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ul>
+<li>Submit all commands and scripts</li>
+<li>Include sample input and output files</li>
+<li>Document regex patterns used</li>
+<li>Explain any complex awk logic</li>
+<li>Test on various input sizes</li>
+</ul></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

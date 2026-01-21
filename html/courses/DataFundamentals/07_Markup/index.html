@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>Markup Languages | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="markup-languages">Markup Languages</h1>
+<h2 id="html-xml-and-markdown-for-bioinformatics-documentation">HTML, XML, and Markdown for Bioinformatics Documentation</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Understand text formats (Module 04_FileFormats)</li>
+<li>Know JSON and YAML (Modules 05, 06)</li>
+<li>Have basic understanding of web pages</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Understand HTML structure and its purpose</li>
+<li>Work with XML and understand its differences from HTML</li>
+<li>Write documentation in Markdown</li>
+<li>Choose the right markup format for the task</li>
+<li>Document bioinformatics pipelines and analyses effectively</li>
+</ul>
+<hr />
+<h2 id="1-what-is-a-markup-language">1. What is a Markup Language</h2>
+<h3 id="11-definition">1.1 Definition</h3>
+<p><strong>Markup Language</strong> — a system for annotating text where markup is syntactically distinguishable from content.</p>
+<pre class="highlight"><code class="language-html">&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt; text.&lt;/p&gt;
+</code></pre>
+
+<p>Here:</p>
+<ul>
+<li><code>&lt;p&gt;</code>, <code>&lt;strong&gt;</code> — markup (tags)</li>
+<li>"This is important text." — content</li>
+</ul>
+<h3 id="12-types-of-markup">1.2 Types of Markup</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Presentational</td>
+<td>HTML</td>
+<td>Defines display</td>
+</tr>
+<tr>
+<td>Descriptive</td>
+<td>DocBook</td>
+<td>Describes structure</td>
+</tr>
+<tr>
+<td>Procedural</td>
+<td>TeX</td>
+<td>Processing instructions</td>
+</tr>
+<tr>
+<td>Lightweight</td>
+<td>Markdown</td>
+<td>Ease of writing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data exchange</td>
+<td>XML (GFF, SBML)</td>
+<td>Structured biological data</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>Markdown</td>
+<td>README, protocols, analysis reports</td>
+</tr>
+<tr>
+<td>Web interfaces</td>
+<td>HTML</td>
+<td>Galaxy, UCSC Genome Browser</td>
+</tr>
+<tr>
+<td>Publications</td>
+<td>LaTeX</td>
+<td>Scientific papers</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-html">2. HTML</h2>
+<h3 id="21-html-basics">2.1 HTML Basics</h3>
+<p><strong>HTML</strong> (HyperText Markup Language) — the standard language for web pages.</p>
+<pre class="highlight"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="22-document-structure">2.2 Document Structure</h3>
+<pre class="highlight"><code>&lt;!DOCTYPE html&gt;          ← Document type declaration
+&lt;html&gt;                   ← Root element
+├── &lt;head&gt;              ← Metadata
+│   ├── &lt;meta&gt;          ← Encoding, viewport
+│   ├── &lt;title&gt;         ← Tab title
+│   └── &lt;link&gt;          ← Styles, icons
+└── &lt;body&gt;              ← Visible content
+    ├── &lt;header&gt;        ← Header
+    ├── &lt;main&gt;          ← Main content
+    └── &lt;footer&gt;        ← Footer
+</code></pre>
+
+<h3 id="23-basic-tags">2.3 Basic Tags</h3>
+<pre class="highlight"><code class="language-html">&lt;!-- Headings --&gt;
+&lt;h1&gt;Main heading&lt;/h1&gt;
+&lt;h2&gt;Subheading&lt;/h2&gt;
+&lt;h3&gt;Third-level heading&lt;/h3&gt;
+
+&lt;!-- Text --&gt;
+&lt;p&gt;Paragraph of text.&lt;/p&gt;
+&lt;strong&gt;Bold text&lt;/strong&gt;
+&lt;em&gt;Italic&lt;/em&gt;
+&lt;code&gt;Code&lt;/code&gt;
+
+&lt;!-- Lists --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Bullet point&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+    &lt;li&gt;Numbered item&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Links and images --&gt;
+&lt;a href=&quot;https://example.com&quot;&gt;Link&lt;/a&gt;
+&lt;img src=&quot;image.png&quot; alt=&quot;Description&quot;&gt;
+
+&lt;!-- Tables --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Header&lt;/th&gt;
+        &lt;td&gt;Cell&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Forms --&gt;
+&lt;form action=&quot;/submit&quot; method=&quot;POST&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Analysis Report):</strong></p>
+<pre class="highlight"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;RNA-Seq Analysis Report&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;RNA-Seq Analysis Report&lt;/h1&gt;
+        &lt;p&gt;Sample: PAT001 | Date: 2024-01-15&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Quality Control&lt;/h2&gt;
+            &lt;p&gt;Total reads: &lt;strong&gt;50,234,567&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;Phred score: &lt;code&gt;Q35&lt;/code&gt;&lt;/p&gt;
+            &lt;img src=&quot;fastqc_plot.png&quot; alt=&quot;FastQC quality plot&quot;&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Alignment Statistics&lt;/h2&gt;
+            &lt;table&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;Metric&lt;/th&gt;
+                    &lt;th&gt;Value&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Mapped reads&lt;/td&gt;
+                    &lt;td&gt;47,823,456 (95.2%)&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Uniquely mapped&lt;/td&gt;
+                    &lt;td&gt;45,123,789 (89.8%)&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Differentially Expressed Genes&lt;/h2&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href=&quot;#BRCA1&quot;&gt;BRCA1&lt;/a&gt; (log2FC: 2.5, padj: 0.001)&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#TP53&quot;&gt;TP53&lt;/a&gt; (log2FC: -1.8, padj: 0.005)&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;Generated by RNA-Seq Pipeline v2.1.0&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="24-semantic-html5">2.4 Semantic HTML5</h3>
+<pre class="highlight"><code class="language-html">&lt;!-- Semantic elements --&gt;
+&lt;header&gt;Page header&lt;/header&gt;
+&lt;nav&gt;Navigation&lt;/nav&gt;
+&lt;main&gt;Main content&lt;/main&gt;
+&lt;article&gt;Self-contained article&lt;/article&gt;
+&lt;section&gt;Content section&lt;/section&gt;
+&lt;aside&gt;Sidebar&lt;/aside&gt;
+&lt;footer&gt;Page footer&lt;/footer&gt;
+
+&lt;!-- Instead of &lt;div class=&quot;header&quot;&gt; use &lt;header&gt; --&gt;
+</code></pre>
+
+<h3 id="25-attributes">2.5 Attributes</h3>
+<pre class="highlight"><code class="language-html">&lt;!-- Global attributes --&gt;
+&lt;div id=&quot;unique-id&quot;&gt;Unique ID&lt;/div&gt;
+&lt;div class=&quot;my-class&quot;&gt;CSS class&lt;/div&gt;
+&lt;div style=&quot;color: red;&quot;&gt;Inline style&lt;/div&gt;
+&lt;div data-user-id=&quot;123&quot;&gt;Data attribute&lt;/div&gt;
+
+&lt;!-- Specific attributes --&gt;
+&lt;a href=&quot;url&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Link&lt;/a&gt;
+&lt;img src=&quot;img.png&quot; alt=&quot;Description&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+&lt;input type=&quot;email&quot; required placeholder=&quot;Email&quot;&gt;
+</code></pre>
+
+<hr />
+<h2 id="3-xml">3. XML</h2>
+<h3 id="31-what-is-xml">3.1 What is XML</h3>
+<p><strong>XML</strong> (eXtensible Markup Language) — a universal format for structured data.</p>
+<pre class="highlight"><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;library&gt;
+    &lt;book id=&quot;1&quot;&gt;
+        &lt;title&gt;The Pragmatic Programmer&lt;/title&gt;
+        &lt;author&gt;David Thomas&lt;/author&gt;
+        &lt;year&gt;2019&lt;/year&gt;
+    &lt;/book&gt;
+    &lt;book id=&quot;2&quot;&gt;
+        &lt;title&gt;Clean Code&lt;/title&gt;
+        &lt;author&gt;Robert C. Martin&lt;/author&gt;
+        &lt;year&gt;2008&lt;/year&gt;
+    &lt;/book&gt;
+&lt;/library&gt;
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Gene Annotation):</strong></p>
+<pre class="highlight"><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;genes&gt;
+    &lt;gene id=&quot;ENSG00000139618&quot;&gt;
+        &lt;name&gt;BRCA2&lt;/name&gt;
+        &lt;chromosome&gt;13&lt;/chromosome&gt;
+        &lt;start&gt;32889611&lt;/start&gt;
+        &lt;end&gt;32973805&lt;/end&gt;
+        &lt;strand&gt;+&lt;/strand&gt;
+        &lt;biotype&gt;protein_coding&lt;/biotype&gt;
+        &lt;description&gt;BRCA2 DNA repair associated&lt;/description&gt;
+        &lt;variants&gt;
+            &lt;variant id=&quot;rs80359550&quot;&gt;
+                &lt;position&gt;32912299&lt;/position&gt;
+                &lt;ref&gt;A&lt;/ref&gt;
+                &lt;alt&gt;G&lt;/alt&gt;
+                &lt;significance&gt;pathogenic&lt;/significance&gt;
+            &lt;/variant&gt;
+        &lt;/variants&gt;
+    &lt;/gene&gt;
+&lt;/genes&gt;
+</code></pre>
+
+<h3 id="32-xml-vs-html">3.2 XML vs HTML</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>XML</th>
+<th>HTML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tags</td>
+<td>Arbitrary</td>
+<td>Predefined</td>
+</tr>
+<tr>
+<td>Tag closing</td>
+<td>Mandatory</td>
+<td>Sometimes optional</td>
+</tr>
+<tr>
+<td>Case sensitivity</td>
+<td>Sensitive</td>
+<td>Insensitive</td>
+</tr>
+<tr>
+<td>Purpose</td>
+<td>Data</td>
+<td>Display</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>DTD, XSD</td>
+<td>Loose</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-xml-rules">3.3 XML Rules</h3>
+<pre class="highlight"><code class="language-xml">&lt;!-- 1. One root element --&gt;
+&lt;root&gt;
+    &lt;child&gt;Content&lt;/child&gt;
+&lt;/root&gt;
+
+&lt;!-- 2. Tags must be closed --&gt;
+&lt;element&gt;text&lt;/element&gt;
+&lt;empty-element /&gt;
+
+&lt;!-- 3. Case matters --&gt;
+&lt;Tag&gt;Not same as&lt;/tag&gt;  &lt;!-- ERROR! --&gt;
+
+&lt;!-- 4. Proper nesting --&gt;
+&lt;a&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;  &lt;!-- OK --&gt;
+&lt;a&gt;&lt;b&gt;&lt;/a&gt;&lt;/b&gt;  &lt;!-- ERROR! --&gt;
+
+&lt;!-- 5. Attributes in quotes --&gt;
+&lt;element attr=&quot;value&quot;&gt;
+
+&lt;!-- 6. Special characters --&gt;
+&amp;lt;   &lt;!-- &lt; --&gt;
+&amp;gt;   &lt;!-- &gt; --&gt;
+&amp;amp;  &lt;!-- &amp; --&gt;
+&amp;apos; &lt;!-- ' --&gt;
+&amp;quot; &lt;!-- &quot; --&gt;
+</code></pre>
+
+<h3 id="34-xml-in-bioinformatics">3.4 XML in Bioinformatics</h3>
+<p><strong>GFF3 (Gene Finding Format) — often XML-like:</strong></p>
+<pre class="highlight"><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;gff&gt;
+    &lt;feature&gt;
+        &lt;seqid&gt;chr13&lt;/seqid&gt;
+        &lt;source&gt;Ensembl&lt;/source&gt;
+        &lt;type&gt;gene&lt;/type&gt;
+        &lt;start&gt;32889611&lt;/start&gt;
+        &lt;end&gt;32973805&lt;/end&gt;
+        &lt;score&gt;.&lt;/score&gt;
+        &lt;strand&gt;+&lt;/strand&gt;
+        &lt;phase&gt;.&lt;/phase&gt;
+        &lt;attributes&gt;
+            &lt;attribute name=&quot;ID&quot; value=&quot;ENSG00000139618&quot;/&gt;
+            &lt;attribute name=&quot;Name&quot; value=&quot;BRCA2&quot;/&gt;
+        &lt;/attributes&gt;
+    &lt;/feature&gt;
+&lt;/gff&gt;
+</code></pre>
+
+<p><strong>SBML (Systems Biology Markup Language):</strong></p>
+<pre class="highlight"><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;sbml xmlns=&quot;http://www.sbml.org/sbml/level3/version2/core&quot; level=&quot;3&quot; version=&quot;2&quot;&gt;
+    &lt;model id=&quot;glycolysis&quot;&gt;
+        &lt;listOfSpecies&gt;
+            &lt;species id=&quot;glucose&quot; compartment=&quot;cytoplasm&quot; initialAmount=&quot;10&quot;/&gt;
+            &lt;species id=&quot;glucose6phosphate&quot; compartment=&quot;cytoplasm&quot; initialAmount=&quot;0&quot;/&gt;
+        &lt;/listOfSpecies&gt;
+        &lt;listOfReactions&gt;
+            &lt;reaction id=&quot;hexokinase&quot; reversible=&quot;false&quot;&gt;
+                &lt;listOfReactants&gt;
+                    &lt;speciesReference species=&quot;glucose&quot; stoichiometry=&quot;1&quot;/&gt;
+                &lt;/listOfReactants&gt;
+                &lt;listOfProducts&gt;
+                    &lt;speciesReference species=&quot;glucose6phosphate&quot; stoichiometry=&quot;1&quot;/&gt;
+                &lt;/listOfProducts&gt;
+            &lt;/reaction&gt;
+        &lt;/listOfReactions&gt;
+    &lt;/model&gt;
+&lt;/sbml&gt;
+</code></pre>
+
+<h3 id="35-xml-in-python">3.5 XML in Python</h3>
+<pre class="highlight"><code class="language-python">import xml.etree.ElementTree as ET
+
+# Parsing XML
+xml_string = &quot;&quot;&quot;
+&lt;users&gt;
+    &lt;user id=&quot;1&quot;&gt;
+        &lt;name&gt;Alice&lt;/name&gt;
+        &lt;email&gt;alice@example.com&lt;/email&gt;
+    &lt;/user&gt;
+&lt;/users&gt;
+&quot;&quot;&quot;
+
+root = ET.fromstring(xml_string)
+
+# Navigation
+for user in root.findall('user'):
+    name = user.find('name').text
+    email = user.find('email').text
+    user_id = user.get('id')
+    print(f&quot;{name} ({user_id}): {email}&quot;)
+
+# Creating XML
+root = ET.Element('books')
+book = ET.SubElement(root, 'book')
+ET.SubElement(book, 'title').text = 'Python Guide'
+
+xml_str = ET.tostring(root, encoding='unicode')
+print(xml_str)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import xml.etree.ElementTree as ET
+
+# Parse gene annotation XML
+xml_data = &quot;&quot;&quot;
+&lt;genes&gt;
+    &lt;gene id=&quot;ENSG00000139618&quot;&gt;
+        &lt;name&gt;BRCA2&lt;/name&gt;
+        &lt;chromosome&gt;13&lt;/chromosome&gt;
+        &lt;start&gt;32889611&lt;/start&gt;
+        &lt;end&gt;32973805&lt;/end&gt;
+    &lt;/gene&gt;
+&lt;/genes&gt;
+&quot;&quot;&quot;
+
+root = ET.fromstring(xml_data)
+
+# Extract gene information
+for gene in root.findall('gene'):
+    gene_id = gene.get('id')
+    name = gene.find('name').text
+    chrom = gene.find('chromosome').text
+    start = int(gene.find('start').text)
+    end = int(gene.find('end').text)
+    length = end - start
+
+    print(f&quot;{name} ({gene_id})&quot;)
+    print(f&quot;  Location: chr{chrom}:{start}-{end}&quot;)
+    print(f&quot;  Length: {length:,} bp&quot;)
+</code></pre>
+
+<hr />
+<h2 id="4-markdown">4. Markdown</h2>
+<h3 id="41-what-is-markdown">4.1 What is Markdown</h3>
+<p><strong>Markdown</strong> — a lightweight markup language for formatting text.</p>
+<ul>
+<li>Created by John Gruber in 2004</li>
+<li>Readable as plain text</li>
+<li>Easily converts to HTML</li>
+<li>Standard for documentation (GitHub, GitLab, Stack Overflow)</li>
+</ul>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<ul>
+<li>README files for pipelines and tools</li>
+<li>Analysis protocols and methods</li>
+<li>Lab notebooks and experimental notes</li>
+<li>GitHub/GitLab project documentation</li>
+<li>Jupyter Notebook markdown cells</li>
+</ul>
+<h3 id="42-basic-syntax">4.2 Basic Syntax</h3>
+<pre class="highlight"><code class="language-markdown"># Heading 1
+## Heading 2
+### Heading 3
+
+Regular paragraph text.
+
+**Bold text** and *italic*.
+Also __bold__ and _italic_.
+***Bold italic***
+
+~~Strikethrough text~~
+
+---
+
+&gt; Quote
+&gt; Multi-line quote
+
+- Bullet list
+- Another item
+  - Nested item
+
+1. Numbered list
+2. Second item
+   1. Nested
+
+`Inline code`
+</code></pre>
+
+<p>Code block with indentation<br />
+(4 spaces)</p>
+<pre class="highlight"><code>[Link](https://example.com)
+[Link with title](https://example.com &quot;Title&quot;)
+
+![Image](image.png)
+![Alt text](image.png &quot;Title&quot;)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Protocol):</strong></p>
+<pre class="highlight"><code class="language-markdown"># RNA-Seq Data Analysis Protocol
+
+## Overview
+
+This protocol describes the standard RNA-Seq analysis pipeline for differential gene expression.
+
+## Prerequisites
+
+- Raw FASTQ files (paired-end)
+- Reference genome (GRCh38)
+- Gene annotation (GENCODE v42)
+
+## Steps
+
+### 1. Quality Control
+
+Run FastQC on raw reads:
+
+```bash
+fastqc -t 4 sample_R1.fastq.gz sample_R2.fastq.gz
+</code></pre>
+
+<p><strong>Expected output:</strong><br />
+- Per base sequence quality &gt; Q30<br />
+- No adapter contamination</p>
+<h3 id="2-read-alignment">2. Read Alignment</h3>
+<p>Align reads using STAR:</p>
+<pre class="highlight"><code class="language-bash">STAR --runThreadN 8 \
+     --genomeDir /data/star_index \
+     --readFilesIn sample_R1.fastq.gz sample_R2.fastq.gz \
+     --outFileNamePrefix sample_
+</code></pre>
+
+<p><strong>Parameters:</strong><br />
+- <code>--runThreadN 8</code>: Use 8 CPU threads<br />
+- <code>--genomeDir</code>: Path to STAR index<br />
+- <code>--readFilesIn</code>: Input FASTQ files</p>
+<h3 id="3-gene-quantification">3. Gene Quantification</h3>
+<p>Count reads per gene using featureCounts:</p>
+<pre class="highlight"><code class="language-bash">featureCounts -T 4 -p -t exon -g gene_id \
+              -a gencode.v42.gtf \
+              -o counts.txt \
+              sample_Aligned.out.bam
+</code></pre>
+
+<h2 id="quality-metrics">Quality Metrics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Threshold</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total reads</td>
+<td>&gt; 20M</td>
+<td>Adequate depth</td>
+</tr>
+<tr>
+<td>Mapping rate</td>
+<td>&gt; 85%</td>
+<td>Good alignment</td>
+</tr>
+<tr>
+<td>Duplicate rate</td>
+<td>&lt; 30%</td>
+<td>Acceptable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="references">References</h2>
+<ul>
+<li>Dobin et al. (2013). STAR: ultrafast universal RNA-seq aligner. <em>Bioinformatics</em>.</li>
+<li>Love et al. (2014). Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. <em>Genome Biology</em>.</li>
+</ul>
+<hr />
+<p><strong>Author:</strong> Bioinformatics Core<br />
+<strong>Date:</strong> 2024-01-15<br />
+<strong>Version:</strong> 2.1.0</p>
+<pre class="highlight"><code>### 4.3 Extended Syntax (GitHub Flavored Markdown)
+
+````markdown
+```python
+# Code block with syntax highlighting
+def hello():
+    print(&quot;Hello, World!&quot;)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Column 1</th>
+<th style="text-align: center;">Column 2</th>
+<th style="text-align: right;">Column 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left</td>
+<td style="text-align: center;">Center</td>
+<td style="text-align: right;">Right</td>
+</tr>
+<tr>
+<td>aligned</td>
+<td style="text-align: center;">aligned</td>
+<td style="text-align: right;">aligned</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[x] Completed task</li>
+<li>[ ] Incomplete task</li>
+</ul>
+<p>Footnote reference[^1]</p>
+<p>[^1]: Footnote content.</p>
+<p>Autolinks: https://example.com</p>
+<p>:emoji: (on GitHub: :smile:)</p>
+<pre class="highlight"><code>**🧬 Bioinformatics Example (Analysis Checklist):**
+
+````markdown
+# RNA-Seq Analysis Checklist
+
+## Quality Control
+- [x] Run FastQC on raw reads
+- [x] Check adapter contamination
+- [x] Verify Phred scores &gt; Q30
+- [ ] Generate MultiQC report
+
+## Alignment
+- [x] Build STAR index
+- [x] Align reads to reference
+- [ ] Check mapping rates
+- [ ] Sort and index BAM files
+
+## Quantification
+- [ ] Run featureCounts
+- [ ] Generate count matrix
+- [ ] Check for batch effects
+
+## Differential Expression
+- [ ] Run DESeq2
+- [ ] Generate MA plots
+- [ ] Export results table
+
+## Visualization
+- [ ] Create volcano plot
+- [ ] Generate heatmap of top genes
+- [ ] Pathway enrichment analysis
+
+---
+
+**Note:** All steps must achieve QC thresholds before proceeding[^1].
+
+[^1]: See QC thresholds in `docs/quality_standards.md`
+</code></pre>
+
+<h3 id="44-markdown-for-documentation">4.4 Markdown for Documentation</h3>
+<pre class="highlight"><code class="language-markdown"># Project Name
+
+Brief description of the project.
+
+## Installation
+
+```bash
+pip install myproject
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+<pre class="highlight"><code class="language-python">from myproject import main
+main()
+</code></pre>
+
+<h2 id="api-reference">API Reference</h2>
+<h3 id="function_nameparam1-param2"><code>function_name(param1, param2)</code></h3>
+<p>Description of the function.</p>
+<p><strong>Parameters:</strong><br />
+- <code>param1</code> (str): Description<br />
+- <code>param2</code> (int): Description</p>
+<p><strong>Returns:</strong><br />
+- <code>bool</code>: Description</p>
+<h2 id="license">License</h2>
+<p>MIT License</p>
+<pre class="highlight"><code>**🧬 Bioinformatics Tool README:**
+
+```markdown
+# VariantCaller
+
+A fast and accurate variant calling tool for next-generation sequencing data.
+
+## Features
+
+- Multi-threaded variant calling
+- Support for BAM/CRAM input
+- VCF 4.2 output format
+- Quality filtering and annotation
+
+## Installation
+
+```bash
+conda install -c bioconda variantcaller
+</code></pre>
+
+<p>Or from source:</p>
+<pre class="highlight"><code class="language-bash">git clone https://github.com/user/variantcaller.git
+cd variantcaller
+pip install .
+</code></pre>
+
+<h2 id="quick-start">Quick Start</h2>
+<pre class="highlight"><code class="language-bash"># Call variants from BAM file
+variantcaller call \
+  --input sample.bam \
+  --reference GRCh38.fa \
+  --output variants.vcf.gz \
+  --threads 8
+</code></pre>
+
+<h2 id="usage_1">Usage</h2>
+<h3 id="basic-variant-calling">Basic Variant Calling</h3>
+<pre class="highlight"><code class="language-bash">variantcaller call -i input.bam -r reference.fa -o output.vcf
+</code></pre>
+
+<h3 id="advanced-options">Advanced Options</h3>
+<pre class="highlight"><code class="language-bash">variantcaller call \
+  --input sample.bam \
+  --reference GRCh38.fa \
+  --output variants.vcf.gz \
+  --min-base-quality 20 \
+  --min-mapping-quality 30 \
+  --ploidy 2 \
+  --threads 8
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--min-base-quality</code></td>
+<td>int</td>
+<td>20</td>
+<td>Minimum base quality score</td>
+</tr>
+<tr>
+<td><code>--min-mapping-quality</code></td>
+<td>int</td>
+<td>30</td>
+<td>Minimum mapping quality</td>
+</tr>
+<tr>
+<td><code>--ploidy</code></td>
+<td>int</td>
+<td>2</td>
+<td>Sample ploidy</td>
+</tr>
+<tr>
+<td><code>--threads</code></td>
+<td>int</td>
+<td>1</td>
+<td>Number of threads</td>
+</tr>
+</tbody>
+</table>
+<h2 id="output-format">Output Format</h2>
+<p>VCF 4.2 format with the following INFO fields:</p>
+<ul>
+<li><code>DP</code>: Total depth</li>
+<li><code>AF</code>: Allele frequency</li>
+<li><code>QD</code>: Quality by depth</li>
+</ul>
+<h2 id="citation">Citation</h2>
+<p>If you use VariantCaller, please cite:</p>
+<blockquote>
+<p>Smith J, et al. (2024). VariantCaller: Fast and accurate variant detection. <em>Bioinformatics</em>.</p>
+</blockquote>
+<h2 id="license_1">License</h2>
+<p>MIT License</p>
+<h2 id="contact">Contact</h2>
+<ul>
+<li>Issues: https://github.com/user/variantcaller/issues</li>
+<li>Email: support@variantcaller.org</li>
+</ul>
+<pre class="highlight"><code>### 4.5 Converting Markdown
+
+```bash
+# pandoc — universal converter
+pandoc README.md -o README.html
+pandoc README.md -o README.pdf
+
+# marked (Node.js)
+npx marked README.md &gt; README.html
+
+# Python markdown
+python -m markdown README.md &gt; README.html
+</code></pre>
+
+<pre class="highlight"><code class="language-python"># Python
+import markdown
+
+md_text = &quot;# Hello\n\nThis is **bold**.&quot;
+html = markdown.markdown(md_text)
+print(html)
+# &lt;h1&gt;Hello&lt;/h1&gt;
+# &lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt;.&lt;/p&gt;
+</code></pre>
+
+<hr />
+<h2 id="5-format-comparison">5. Format Comparison</h2>
+<h3 id="51-when-to-use">5.1 When to Use</h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>Web pages, email templates, analysis reports</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>Configurations (legacy), data exchange, SBML, GFF</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td>Documentation, README, protocols, lab notebooks</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>APIs, modern configurations, metadata</td>
+</tr>
+<tr>
+<td>YAML</td>
+<td>Pipelines (Snakemake), Conda environments</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 Bioinformatics Specific:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Use Case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Markdown</td>
+<td>Tool documentation</td>
+<td>README.md, protocols</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>Analysis reports</td>
+<td>MultiQC, FastQC reports</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>Legacy formats</td>
+<td>GFF3, SBML, BioPAX</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Modern APIs</td>
+<td>Ensembl REST, NCBI E-utilities</td>
+</tr>
+<tr>
+<td>YAML</td>
+<td>Pipeline configs</td>
+<td>Snakemake, Nextflow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-readability-vs-functionality">5.2 Readability vs Functionality</h3>
+<pre class="highlight"><code>Simplicity          Power
+←─────────────────────────────→
+Markdown  HTML  XML  LaTeX
+</code></pre>
+
+<h3 id="53-format-conversion">5.3 Format Conversion</h3>
+<pre class="highlight"><code class="language-bash"># Markdown → HTML
+pandoc input.md -o output.html
+
+# HTML → Markdown
+pandoc input.html -o output.md
+
+# XML → JSON (with xq)
+xq '.' input.xml
+
+# Markdown → PDF
+pandoc input.md -o output.pdf
+</code></pre>
+
+<hr />
+<h2 id="6-practical-examples">6. Practical Examples</h2>
+<h3 id="61-readmemd-template">6.1 README.md Template</h3>
+<pre class="highlight"><code class="language-markdown"># Project Name
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build](https://github.com/user/repo/workflows/CI/badge.svg)](actions)
+
+Short description.
+
+## Features
+
+- Feature 1
+- Feature 2
+
+## Quick Start
+
+```bash
+git clone https://github.com/user/repo.git
+cd repo
+make install
+</code></pre>
+
+<h2 id="documentation">Documentation</h2>
+<p>See <a href="docs/">docs/</a> for detailed documentation.</p>
+<h2 id="contributing">Contributing</h2>
+<ol>
+<li id="item-1">Fork the repository</li>
+<li id="item-2">Create feature branch (<code>git checkout -b feature/name</code>)</li>
+<li id="item-3">Commit changes (<code>git commit -am 'Add feature'</code>)</li>
+<li id="item-4">Push to branch (<code>git push origin feature/name</code>)</li>
+<li id="item-5">Open Pull Request</li>
+</ol>
+<h2 id="license_2">License</h2>
+<p>MIT © <a href="https://github.com/author">Author</a></p>
+<pre class="highlight"><code>### 6.2 HTML Analysis Report
+
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Variant Calling Report&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+        .pass { color: green; font-weight: bold; }
+        .fail { color: red; font-weight: bold; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Variant Calling Report: PAT001&lt;/h1&gt;
+
+    &lt;h2&gt;Sample Information&lt;/h2&gt;
+    &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Field&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Sample ID&lt;/td&gt;&lt;td&gt;PAT001&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Platform&lt;/td&gt;&lt;td&gt;Illumina NovaSeq&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Coverage&lt;/td&gt;&lt;td&gt;30.5x&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;QC Status&lt;/td&gt;&lt;td class=&quot;pass&quot;&gt;PASS&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+
+    &lt;h2&gt;Variant Statistics&lt;/h2&gt;
+    &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Count&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;SNPs&lt;/td&gt;&lt;td&gt;4,523,789&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Indels&lt;/td&gt;&lt;td&gt;567,234&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Pathogenic&lt;/td&gt;&lt;td&gt;12&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+
+    &lt;h2&gt;Pathogenic Variants&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;strong&gt;BRCA2&lt;/strong&gt; chr13:32912299 A&gt;G (rs80359550)&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;TP53&lt;/strong&gt; chr17:7577548 C&gt;T (rs28934576)&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;Generated: 2024-01-15 | Pipeline v2.1.0&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="63-xml-configuration-bioinformatics-pipeline">6.3 XML Configuration (Bioinformatics Pipeline)</h3>
+<pre class="highlight"><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;pipeline&gt;
+    &lt;metadata&gt;
+        &lt;name&gt;RNA-Seq Analysis&lt;/name&gt;
+        &lt;version&gt;2.1.0&lt;/version&gt;
+        &lt;author&gt;Bioinformatics Core&lt;/author&gt;
+    &lt;/metadata&gt;
+
+    &lt;reference&gt;
+        &lt;genome path=&quot;/data/genomes/GRCh38.fa&quot;/&gt;
+        &lt;annotation path=&quot;/data/annotations/gencode.v42.gtf&quot;/&gt;
+    &lt;/reference&gt;
+
+    &lt;samples&gt;
+        &lt;sample id=&quot;PAT001&quot;&gt;
+            &lt;fastq_r1&gt;PAT001_R1.fastq.gz&lt;/fastq_r1&gt;
+            &lt;fastq_r2&gt;PAT001_R2.fastq.gz&lt;/fastq_r2&gt;
+            &lt;condition&gt;control&lt;/condition&gt;
+        &lt;/sample&gt;
+        &lt;sample id=&quot;PAT002&quot;&gt;
+            &lt;fastq_r1&gt;PAT002_R1.fastq.gz&lt;/fastq_r1&gt;
+            &lt;fastq_r2&gt;PAT002_R2.fastq.gz&lt;/fastq_r2&gt;
+            &lt;condition&gt;treatment&lt;/condition&gt;
+        &lt;/sample&gt;
+    &lt;/samples&gt;
+
+    &lt;tools&gt;
+        &lt;tool name=&quot;fastqc&quot;&gt;
+            &lt;threads&gt;4&lt;/threads&gt;
+        &lt;/tool&gt;
+        &lt;tool name=&quot;star&quot;&gt;
+            &lt;threads&gt;8&lt;/threads&gt;
+            &lt;genome_dir&gt;/data/star_index&lt;/genome_dir&gt;
+        &lt;/tool&gt;
+        &lt;tool name=&quot;featurecounts&quot;&gt;
+            &lt;threads&gt;4&lt;/threads&gt;
+            &lt;feature_type&gt;exon&lt;/feature_type&gt;
+        &lt;/tool&gt;
+    &lt;/tools&gt;
+
+    &lt;quality_control&gt;
+        &lt;min_phred_score&gt;30&lt;/min_phred_score&gt;
+        &lt;min_read_length&gt;50&lt;/min_read_length&gt;
+        &lt;adapter_trimming&gt;true&lt;/adapter_trimming&gt;
+    &lt;/quality_control&gt;
+&lt;/pipeline&gt;
+</code></pre>
+
+<hr />
+<h2 id="7-common-pitfalls">7. Common Pitfalls</h2>
+<h3 id="71-html-unclosed-tags">7.1 HTML: Unclosed Tags</h3>
+<p>❌ <strong>Error:</strong></p>
+<pre class="highlight"><code class="language-html">&lt;p&gt;Paragraph without closing tag
+&lt;div&gt;Another element
+</code></pre>
+
+<p>✅ <strong>Correct:</strong></p>
+<pre class="highlight"><code class="language-html">&lt;p&gt;Paragraph with closing tag&lt;/p&gt;
+&lt;div&gt;Another element&lt;/div&gt;
+</code></pre>
+
+<h3 id="72-xml-tag-case">7.2 XML: Tag Case</h3>
+<p>❌ <strong>Error:</strong></p>
+<pre class="highlight"><code class="language-xml">&lt;User&gt;
+    &lt;Name&gt;Alice&lt;/name&gt;
+&lt;/user&gt;
+</code></pre>
+
+<p>✅ <strong>Correct:</strong></p>
+<pre class="highlight"><code class="language-xml">&lt;user&gt;
+    &lt;name&gt;Alice&lt;/name&gt;
+&lt;/user&gt;
+</code></pre>
+
+<h3 id="73-markdown-spaces-for-line-breaks">7.3 Markdown: Spaces for Line Breaks</h3>
+<pre class="highlight"><code class="language-markdown">Line 1
+Line 2 (will be on the same line!)
+
+Line 1  
+Line 2 (two spaces at end = &lt;br&gt;)
+
+Line 1
+
+Line 2 (empty line = new paragraph)
+</code></pre>
+
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>HTML — for the web</strong>: Semantic tags, attributes, forms, analysis reports.</p>
+</li>
+<li>
+<p><strong>XML — strict format</strong>: Mandatory tag closing, case-sensitive, legacy bioinformatics formats.</p>
+</li>
+<li>
+<p><strong>Markdown — for humans</strong>: Simple syntax, excellent for documentation and protocols.</p>
+</li>
+<li>
+<p><strong>Choose format</strong>: HTML for display, XML for data (legacy), Markdown for documents.</p>
+</li>
+<li>
+<p><strong>🧬 Bioinformatics</strong>: Markdown for documentation, HTML for reports, XML for legacy formats (GFF, SBML).</p>
+</li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Related Modules:</strong></p>
+<ul>
+<li><a href="../08_ConfigFiles/">Config Files</a> — INI, TOML</li>
+<li><a href="../05_JSON/">JSON</a> — alternative to XML</li>
+</ul>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Write a README.md for your bioinformatics pipeline</li>
+<li id="item-2">Create an HTML analysis report template</li>
+<li id="item-3">Convert XML gene annotations to JSON</li>
+<li id="item-4">Document a protocol in Markdown with code examples</li>
+<li id="item-5">Set up automatic documentation generation from Markdown</li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>Learn Jupyter Notebook for combining Markdown and code</li>
+<li>Explore R Markdown for reproducible research</li>
+<li>Study LaTeX for scientific publications</li>
+<li>Investigate Sphinx for Python documentation</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<p><strong>General:</strong></p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN HTML Reference</a></li>
+<li><a href="https://www.markdownguide.org/">Markdown Guide</a></li>
+<li><a href="https://commonmark.org/">CommonMark Spec</a></li>
+<li><a href="https://www.w3.org/XML/">W3C XML</a></li>
+</ul>
+<p><strong>Bioinformatics:</strong></p>
+<ul>
+<li><a href="https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.html">GFF3 Specification</a></li>
+<li><a href="http://sbml.org/">SBML (Systems Biology Markup Language)</a></li>
+<li><a href="http://www.biopax.org/">BioPAX (Biological Pathway Exchange)</a></li>
+<li><a href="https://jupyter-notebook.readthedocs.io/">Jupyter Notebook Documentation</a></li>
+</ul>
+<hr />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

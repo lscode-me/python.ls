@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Final Project: Build a Complete ETL Pipeline | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="final-project-build-a-complete-etl-pipeline">Final Project: Build a Complete ETL Pipeline</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="project-overview">Project Overview</h2>
+<p>Build a production-ready ETL pipeline that processes a 5GB dataset using Unix command-line tools and Python.</p>
+<h2 id="requirements">Requirements</h2>
+<h3 id="1-data-source">1. Data Source</h3>
+<p>Choose one:<br />
+- Public API (e.g., GitHub API, OpenWeather, JSONPlaceholder)<br />
+- Large CSV dataset (e.g., Kaggle datasets)<br />
+- Web scraping (with permission)<br />
+- Simulated data generation</p>
+<h3 id="2-pipeline-components">2. Pipeline Components</h3>
+<h4 id="extract">Extract</h4>
+<ul>
+<li>Fetch data from API or file</li>
+<li>Handle pagination if applicable</li>
+<li>Store raw data in JSONL or CSV format</li>
+<li>Include error handling and retries</li>
+</ul>
+<h4 id="transform">Transform</h4>
+<ul>
+<li>Clean data (remove nulls, duplicates)</li>
+<li>Filter relevant records</li>
+<li>Enrich data (join with lookup tables)</li>
+<li>Convert formats (JSON → CSV, etc.)</li>
+<li>Aggregate statistics</li>
+</ul>
+<h4 id="load">Load</h4>
+<ul>
+<li>Generate markdown report</li>
+<li>Create CSV summary files</li>
+<li>Optionally: Load to database (SQLite)</li>
+</ul>
+<h3 id="3-technical-requirements">3. Technical Requirements</h3>
+<p>Must include:<br />
+- [ ] At least 3 distinct processing stages<br />
+- [ ] Parallel processing (GNU parallel or xargs -P)<br />
+- [ ] Error handling (set -euo pipefail, trap)<br />
+- [ ] Progress monitoring (pv)<br />
+- [ ] Temporary file management (mktemp)<br />
+- [ ] Checkpoints for resumability<br />
+- [ ] Makefile for orchestration<br />
+- [ ] Logging to file<br />
+- [ ] Configuration via .env<br />
+- [ ] Performance profiling (time command)</p>
+<p>Must use at least 5 of these tools:<br />
+- grep, sed, awk<br />
+- jq, mlr, csvkit<br />
+- sort, uniq, cut, paste<br />
+- curl, wget<br />
+- gzip, zcat<br />
+- Python (for complex logic)</p>
+<h3 id="4-performance-goals">4. Performance Goals</h3>
+<ul>
+<li>Process 5GB of data</li>
+<li>Complete in under 30 minutes</li>
+<li>Use &lt; 2GB RAM</li>
+<li>Utilize multiple CPU cores</li>
+</ul>
+<h3 id="5-documentation">5. Documentation</h3>
+<p>Create README.md with:<br />
+- Project overview<br />
+- Data source description<br />
+- Pipeline architecture diagram<br />
+- Installation instructions<br />
+- Usage examples<br />
+- Performance benchmarks<br />
+- Known limitations</p>
+<h2 id="example-project-ideas">Example Project Ideas</h2>
+<h3 id="idea-1-github-repository-analytics">Idea 1: GitHub Repository Analytics</h3>
+<ul>
+<li>Fetch commits from popular repos</li>
+<li>Analyze commit patterns</li>
+<li>Generate contributor statistics</li>
+<li>Create markdown report with top contributors, commit trends</li>
+</ul>
+<h3 id="idea-2-weather-data-analysis">Idea 2: Weather Data Analysis</h3>
+<ul>
+<li>Fetch historical weather data</li>
+<li>Process temperature trends</li>
+<li>Aggregate by location/month</li>
+<li>Generate climate report</li>
+</ul>
+<h3 id="idea-3-log-analytics-dashboard">Idea 3: Log Analytics Dashboard</h3>
+<ul>
+<li>Process application logs (5GB)</li>
+<li>Extract error patterns</li>
+<li>Calculate response time percentiles</li>
+<li>Generate performance report</li>
+</ul>
+<h3 id="idea-4-e-commerce-sales-pipeline">Idea 4: E-commerce Sales Pipeline</h3>
+<ul>
+<li>Load order data (CSV)</li>
+<li>Calculate revenue by product/category</li>
+<li>Find top customers</li>
+<li>Generate sales report with visualizations (ASCII charts)</li>
+</ul>
+<h2 id="evaluation-criteria">Evaluation Criteria</h2>
+<h3 id="functionality-40">Functionality (40%)</h3>
+<ul>
+<li>Pipeline executes successfully</li>
+<li>Produces correct output</li>
+<li>Handles edge cases</li>
+</ul>
+<h3 id="performance-20">Performance (20%)</h3>
+<ul>
+<li>Efficient use of parallelism</li>
+<li>Streaming vs loading</li>
+<li>Memory usage</li>
+</ul>
+<h3 id="code-quality-20">Code Quality (20%)</h3>
+<ul>
+<li>Error handling</li>
+<li>Logging</li>
+<li>Code organization</li>
+<li>Comments</li>
+</ul>
+<h3 id="documentation-20">Documentation (20%)</h3>
+<ul>
+<li>Clear README</li>
+<li>Usage examples</li>
+<li>Performance analysis</li>
+</ul>
+<hr />
+<h2 id="detailed-evaluation-framework">Detailed Evaluation Framework</h2>
+<h3 id="1-functionality-assessment-40-points">1. Functionality Assessment (40 points)</h3>
+<p><strong>Core Pipeline Operations:</strong><br />
+- Does the extraction component successfully pull data from multiple sources?<br />
+- Are transformations applied correctly with proper data validation?<br />
+- Does the loading component generate all required outputs?<br />
+- Is the pipeline orchestration working end-to-end?</p>
+<p><strong>Data Quality Verification:</strong><br />
+- Are data integrity checks implemented and working?<br />
+- Does the pipeline handle missing, malformed, and duplicate data correctly?<br />
+- Are business rules applied consistently across the dataset?<br />
+- Is data lineage properly tracked and documented?</p>
+<p><strong>Error Handling and Recovery:</strong><br />
+- How gracefully does the pipeline handle various failure scenarios?<br />
+- Are appropriate error messages and logging provided?<br />
+- Can the pipeline recover from partial failures?<br />
+- Is retry logic implemented for transient failures?</p>
+<h3 id="2-performance-evaluation-20-points">2. Performance Evaluation (20 points)</h3>
+<p><strong>Processing Efficiency:</strong><br />
+- Does the pipeline process 5GB+ data within reasonable time limits?<br />
+- Is memory usage optimized for large datasets?<br />
+- Are parallel processing capabilities utilized effectively?<br />
+- Is I/O performance optimized for the target hardware?</p>
+<p><strong>Scalability Assessment:</strong><br />
+- How does performance scale with increasing data volumes?<br />
+- Are resource bottlenecks identified and addressed?<br />
+- Is the architecture suitable for production workloads?<br />
+- Are caching and optimization strategies implemented?</p>
+<p><strong>Benchmarking Criteria:</strong><br />
+- Processing throughput (GB/hour)<br />
+- Memory efficiency (peak usage vs. data size)<br />
+- CPU utilization patterns<br />
+- Storage optimization (compression, indexing)</p>
+<h3 id="3-code-quality-analysis-20-points">3. Code Quality Analysis (20 points)</h3>
+<p><strong>Code Organization and Structure:</strong><br />
+- Is the codebase well-organized with clear separation of concerns?<br />
+- Are modules and functions appropriately sized and focused?<br />
+- Is there evidence of good software engineering practices?<br />
+- Are coding standards consistently applied?</p>
+<p><strong>Maintainability Factors:</strong><br />
+- Code readability and self-documenting practices<br />
+- Appropriate use of comments and docstrings<br />
+- Modular design enabling easy testing and debugging<br />
+- Configuration management and environment separation</p>
+<p><strong>Testing Coverage:</strong><br />
+- Unit tests for core processing functions<br />
+- Integration tests for pipeline components<br />
+- End-to-end tests for complete workflows<br />
+- Performance and load testing implementations</p>
+<h3 id="4-documentation-quality-20-points">4. Documentation Quality (20 points)</h3>
+<p><strong>Technical Documentation:</strong><br />
+- Architecture overview with clear data flow diagrams<br />
+- API documentation for custom components<br />
+- Configuration and deployment procedures<br />
+- Troubleshooting guides and common issues</p>
+<p><strong>User Documentation:</strong><br />
+- Clear installation and setup instructions<br />
+- Usage examples and command references<br />
+- Performance tuning recommendations<br />
+- Operational procedures and monitoring guides</p>
+<p><strong>Project Management:</strong><br />
+- README with comprehensive project overview<br />
+- Change log and version history<br />
+- Contribution guidelines and development setup<br />
+- License and dependency information</p>
+<hr />
+<h2 id="assessment-methodology">Assessment Methodology</h2>
+<h3 id="automated-testing-30-of-evaluation">Automated Testing (30% of evaluation)</h3>
+<ul>
+<li><strong>Functional Tests</strong>: Verify core pipeline operations</li>
+<li><strong>Performance Tests</strong>: Measure processing speed and resource usage</li>
+<li><strong>Integration Tests</strong>: Validate end-to-end workflows</li>
+<li><strong>Security Tests</strong>: Check for vulnerabilities and best practices</li>
+</ul>
+<h3 id="code-review-40-of-evaluation">Code Review (40% of evaluation)</h3>
+<ul>
+<li><strong>Architecture Review</strong>: Evaluate system design decisions</li>
+<li><strong>Code Quality</strong>: Assess readability, maintainability, and standards</li>
+<li><strong>Best Practices</strong>: Check adherence to industry standards</li>
+<li><strong>Innovation</strong>: Recognize creative solutions and optimizations</li>
+</ul>
+<h3 id="live-demonstration-30-of-evaluation">Live Demonstration (30% of evaluation)</h3>
+<ul>
+<li><strong>System Walkthrough</strong>: Present architecture and design decisions</li>
+<li><strong>Pipeline Execution</strong>: Demonstrate live processing of sample data</li>
+<li><strong>Problem-Solving</strong>: Handle unexpected issues or questions</li>
+<li><strong>Knowledge Assessment</strong>: Answer questions about implementation choices</li>
+</ul>
+<hr />
+<h2 id="grading-rubric">Grading Rubric</h2>
+<h3 id="excellent-90-100">Excellent (90-100%)</h3>
+<ul>
+<li>Pipeline handles all requirements flawlessly with superior performance</li>
+<li>Code demonstrates advanced techniques and optimization strategies</li>
+<li>Documentation is comprehensive, clear, and professional quality</li>
+<li>Architecture shows deep understanding of systems engineering principles</li>
+<li>Implementation includes innovative features and robust error handling</li>
+</ul>
+<h3 id="good-80-89">Good (80-89%)</h3>
+<ul>
+<li>Pipeline meets all core requirements with good performance</li>
+<li>Code is well-structured, readable, and follows best practices</li>
+<li>Documentation covers all essential aspects with good clarity</li>
+<li>Architecture demonstrates solid understanding of course concepts</li>
+<li>Implementation includes most advanced features with proper testing</li>
+</ul>
+<h3 id="satisfactory-70-79">Satisfactory (70-79%)</h3>
+<ul>
+<li>Pipeline meets basic requirements with acceptable performance</li>
+<li>Code is functional and reasonably organized</li>
+<li>Documentation covers core aspects but may lack detail</li>
+<li>Architecture shows understanding of basic concepts</li>
+<li>Implementation includes essential features with basic testing</li>
+</ul>
+<h3 id="needs-improvement-60-69">Needs Improvement (60-69%)</h3>
+<ul>
+<li>Pipeline has some functionality but misses key requirements</li>
+<li>Code works but has organizational or efficiency issues</li>
+<li>Documentation is incomplete or unclear in important areas</li>
+<li>Architecture shows partial understanding of concepts</li>
+<li>Implementation is basic with limited error handling</li>
+</ul>
+<h3 id="unsatisfactory-below-60">Unsatisfactory (Below 60%)</h3>
+<ul>
+<li>Pipeline fails to meet minimum functional requirements</li>
+<li>Code has significant issues or doesn't execute properly</li>
+<li>Documentation is severely lacking or missing</li>
+<li>Architecture shows fundamental misunderstandings</li>
+<li>Implementation is incomplete or non-functional</li>
+</ul>
+<hr />
+<h2 id="self-assessment-checklist">Self-Assessment Checklist</h2>
+<h3 id="before-submission">Before Submission</h3>
+<p><strong>Functional Verification:</strong><br />
+- [ ] Pipeline processes full dataset without errors<br />
+- [ ] All output files are generated correctly<br />
+- [ ] Data quality checks pass validation<br />
+- [ ] Error handling works for various failure scenarios</p>
+<p><strong>Performance Validation:</strong><br />
+- [ ] Processing completes within time constraints<br />
+- [ ] Memory usage remains within acceptable limits<br />
+- [ ] Resource utilization is optimized<br />
+- [ ] Parallel processing is working effectively</p>
+<p><strong>Code Quality Check:</strong><br />
+- [ ] Code follows consistent style guidelines<br />
+- [ ] All functions and modules are properly documented<br />
+- [ ] Test suite provides adequate coverage<br />
+- [ ] Version control history shows good practices</p>
+<p><strong>Documentation Review:</strong><br />
+- [ ] README provides clear project overview<br />
+- [ ] Installation instructions are complete and tested<br />
+- [ ] Architecture documentation includes diagrams<br />
+- [ ] API documentation is comprehensive</p>
+<h3 id="during-demonstration">During Demonstration</h3>
+<p><strong>Preparation Items:</strong><br />
+- [ ] Environment is set up and tested<br />
+- [ ] Sample data is prepared and validated<br />
+- [ ] Demo script is practiced and timed<br />
+- [ ] Backup plans are ready for technical issues</p>
+<p><strong>Key Presentation Points:</strong><br />
+- [ ] Architecture overview with visual aids<br />
+- [ ] Live pipeline execution with explanation<br />
+- [ ] Performance metrics and optimization discussion<br />
+- [ ] Error handling demonstration<br />
+- [ ] Q&amp;A preparation for technical questions</p>
+<hr />
+<h2 id="common-assessment-criteria">Common Assessment Criteria</h2>
+<h3 id="red-flags-automatic-deductions">Red Flags (Automatic Deductions)</h3>
+<ul>
+<li><strong>Plagiarism</strong>: Unattributed code or documentation from other sources</li>
+<li><strong>Non-functional Code</strong>: Major components that don't execute</li>
+<li><strong>Missing Components</strong>: Core requirements that are not implemented</li>
+<li><strong>Security Issues</strong>: Hardcoded credentials or unsafe practices</li>
+<li><strong>Data Corruption</strong>: Output that doesn't match input semantics</li>
+</ul>
+<h3 id="excellence-indicators-bonus-consideration">Excellence Indicators (Bonus Consideration)</h3>
+<ul>
+<li><strong>Innovation</strong>: Novel solutions or creative approaches</li>
+<li><strong>Optimization</strong>: Superior performance or efficiency</li>
+<li><strong>Robustness</strong>: Exceptional error handling and edge case coverage</li>
+<li><strong>Professional Quality</strong>: Production-ready code and documentation</li>
+<li><strong>Advanced Features</strong>: Implementation beyond basic requirements</li>
+</ul>
+<hr />
+<h2 id="final-project-success-strategies">Final Project Success Strategies</h2>
+<h3 id="technical-excellence">Technical Excellence</h3>
+<ol>
+<li id="item-1"><strong>Start with Architecture</strong>: Design before coding</li>
+<li id="item-2"><strong>Implement Incrementally</strong>: Build and test in small pieces</li>
+<li id="item-3"><strong>Optimize Early</strong>: Profile and optimize as you go</li>
+<li id="item-4"><strong>Test Thoroughly</strong>: Unit, integration, and end-to-end testing</li>
+<li id="item-5"><strong>Document Continuously</strong>: Write docs as you code</li>
+</ol>
+<h3 id="project-management">Project Management</h3>
+<ol>
+<li id="item-1"><strong>Plan Realistically</strong>: Account for complexity and debugging time</li>
+<li id="item-2"><strong>Version Control</strong>: Commit frequently with meaningful messages</li>
+<li id="item-3"><strong>Backup Everything</strong>: Use multiple backup strategies</li>
+<li id="item-4"><strong>Monitor Progress</strong>: Track against milestones regularly</li>
+<li id="item-5"><strong>Seek Feedback</strong>: Get early feedback on architecture and approach</li>
+</ol>
+<h3 id="presentation-preparation">Presentation Preparation</h3>
+<ol>
+<li id="item-1"><strong>Practice Demo</strong>: Rehearse the demonstration multiple times</li>
+<li id="item-2"><strong>Prepare for Questions</strong>: Anticipate technical questions</li>
+<li id="item-3"><strong>Have Backups</strong>: Prepare for technical difficulties</li>
+<li id="item-4"><strong>Tell a Story</strong>: Present a coherent narrative about your solution</li>
+<li id="item-5"><strong>Show Passion</strong>: Demonstrate enthusiasm for your work</li>
+</ol>
+<hr />
+<h2 id="resources-for-excellence">Resources for Excellence</h2>
+<h3 id="technical-references">Technical References</h3>
+<ul>
+<li>Course materials and example implementations</li>
+<li>Industry best practices and design patterns</li>
+<li>Open source ETL frameworks for inspiration</li>
+<li>Performance optimization guides and tools</li>
+</ul>
+<h3 id="quality-assurance">Quality Assurance</h3>
+<ul>
+<li>Code review checklists and static analysis tools</li>
+<li>Testing frameworks and coverage analysis</li>
+<li>Documentation templates and style guides</li>
+<li>Security scanning and vulnerability assessment</li>
+</ul>
+<h3 id="professional-development">Professional Development</h3>
+<ul>
+<li>Industry case studies and real-world implementations</li>
+<li>Technical blog posts and community discussions</li>
+<li>Conference talks and educational videos</li>
+<li>Open source contributions and code examples</li>
+</ul>
+<p><strong>Remember</strong>: This project is your opportunity to demonstrate mastery of everything learned throughout the course. Approach it as a professional would approach a real-world data engineering challenge. Good luck! 🎓</p>
+<hr />
+<h2 id="deliverables">Deliverables</h2>
+<ol>
+<li id="item-1">
+<p><strong>Source Code</strong><br />
+   - All scripts (.sh, .py, etc.)<br />
+   - Makefile<br />
+   - .env.example</p>
+</li>
+<li id="item-2">
+<p><strong>Documentation</strong><br />
+   - README.md<br />
+   - ARCHITECTURE.md (pipeline design)</p>
+</li>
+<li id="item-3">
+<p><strong>Sample Output</strong><br />
+   - Generated reports<br />
+   - Log files<br />
+   - Performance metrics</p>
+</li>
+<li id="item-4">
+<p><strong>Presentation</strong> (optional)<br />
+   - 5-minute demo video<br />
+   - OR<br />
+   - Written walkthrough</p>
+</li>
+</ol>
+<h2 id="example-pipeline-structure">Example Pipeline Structure</h2>
+<pre class="highlight"><code>project/
+├── Makefile
+├── README.md
+├── .env.example
+├── bin/
+│   ├── extract.sh
+│   ├── transform.sh
+│   └── load.sh
+├── lib/
+│   ├── python_filter.py
+│   └── enrichment.py
+├── data/
+│   └── .gitkeep
+├── output/
+│   └── .gitkeep
+└── logs/
+    └── .gitkeep
+</code></pre>
+
+<h2 id="getting-started">Getting Started</h2>
+<ol>
+<li id="item-1"><strong>Choose a dataset</strong>: Find 5GB+ data source</li>
+<li id="item-2"><strong>Design pipeline</strong>: Sketch 3-5 stages</li>
+<li id="item-3"><strong>Build incrementally</strong>: Start with 100MB sample</li>
+<li id="item-4"><strong>Add features</strong>: Parallelism, checkpoints, etc.</li>
+<li id="item-5"><strong>Optimize</strong>: Profile and improve performance</li>
+<li id="item-6"><strong>Document</strong>: Write README and comments</li>
+</ol>
+<h2 id="tips">Tips</h2>
+<ul>
+<li><strong>Start small</strong>: Test on 100MB before 5GB</li>
+<li><strong>Checkpoint frequently</strong>: Don't lose progress</li>
+<li><strong>Profile early</strong>: Identify bottlenecks</li>
+<li><strong>Use existing data</strong>: Kaggle, data.gov</li>
+<li><strong>Ask for help</strong>: Use course resources</li>
+</ul>
+<h2 id="submission">Submission</h2>
+<p>Submit via:<br />
+- GitHub repository (public or private)<br />
+- ZIP file with all code and docs</p>
+<p>Include:<br />
+- Link to data source (if public)<br />
+- Instructions to run pipeline<br />
+- Expected runtime and resource usage</p>
+<h2 id="timeline">Timeline</h2>
+<ul>
+<li><strong>Week 1</strong>: Choose project, design pipeline</li>
+<li><strong>Week 2</strong>: Implement core functionality</li>
+<li><strong>Week 3</strong>: Add parallelism and optimization</li>
+<li><strong>Week 4</strong>: Documentation and testing</li>
+</ul>
+<p>Good luck! 🚀</p>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

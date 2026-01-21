@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The iteration protocol defines how objects can be iterated over.">
+    <title>Iteration Protocol | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="iteration-protocol">Iteration Protocol</h1>
+<h2 id="iterators-generators-itertools">Iterators, Generators, Itertools</h2>
+<hr />
+<h2 id="1-what-is-the-iteration-protocol">1. What is the Iteration Protocol?</h2>
+<p>The iteration protocol defines how objects can be iterated over.</p>
+<p>Two components:<br />
+1. <strong>Iterable</strong>: Has <code>__iter__()</code> method that returns an iterator<br />
+2. <strong>Iterator</strong>: Has <code>__next__()</code> method and <code>__iter__()</code> (returns self)</p>
+<pre class="highlight"><code class="language-python"># Built-in iterables
+for item in [1, 2, 3]:      # list is iterable
+    print(item)
+
+for char in &quot;hello&quot;:        # string is iterable
+    print(char)
+
+for key in {&quot;a&quot;: 1}:        # dict is iterable
+    print(key)
+</code></pre>
+
+<hr />
+<h2 id="2-understanding-iterators">2. Understanding Iterators</h2>
+<p>Iterators are objects that produce values one at a time.</p>
+<pre class="highlight"><code class="language-python">numbers = [1, 2, 3, 4, 5]
+
+# Get iterator from iterable
+iterator = iter(numbers)
+
+# Get values using next()
+print(next(iterator))    # 1
+print(next(iterator))    # 2
+print(next(iterator))    # 3
+
+# StopIteration raised when exhausted
+# next(iterator) ... eventually raises StopIteration
+</code></pre>
+
+<h3 id="using-next-with-default-value">Using next() with Default Value</h3>
+<pre class="highlight"><code class="language-python">iterator = iter([1, 2, 3])
+print(next(iterator))           # 1
+print(next(iterator))           # 2
+print(next(iterator))           # 3
+print(next(iterator, 'END'))    # 'END' instead of StopIteration
+
+# Useful for safe iteration
+def safe_next(iterable, default=None):
+    return next(iter(iterable), default)
+</code></pre>
+
+<h3 id="iter-with-sentinel-value">iter() with Sentinel Value</h3>
+<p>The <code>iter()</code> function has a two-argument form: <code>iter(callable, sentinel)</code></p>
+<p>It calls the callable repeatedly until it returns the sentinel value.</p>
+<pre class="highlight"><code class="language-python"># Reading file until empty line
+with open('data.txt') as f:
+    for line in iter(f.readline, '\n'):
+        print(line.rstrip())
+
+# Reading input until 'quit'
+for line in iter(input, 'quit'):
+    print(f&quot;You entered: {line}&quot;)
+
+# Random numbers until we get 5
+import random
+for num in iter(lambda: random.randint(1, 6), 5):
+    print(num)
+print(&quot;Got 5!&quot;)
+</code></pre>
+
+<hr />
+<h2 id="21-how-for-loop-works-internally">2.1 How for Loop Works Internally</h2>
+<p>The <code>for</code> loop is syntactic sugar for iterator protocol.</p>
+<pre class="highlight"><code class="language-python"># This for loop:
+for item in iterable:
+    print(item)
+
+# Is equivalent to:
+iterator = iter(iterable)
+while True:
+    try:
+        item = next(iterator)
+        print(item)
+    except StopIteration:
+        break
+</code></pre>
+
+<h3 id="example-reimplementing-for">Example: Reimplementing for</h3>
+<pre class="highlight"><code class="language-python">def my_for(iterable, func):
+    &quot;&quot;&quot;Custom for loop implementation&quot;&quot;&quot;
+    iterator = iter(iterable)
+    while True:
+        try:
+            item = next(iterator)
+            func(item)
+        except StopIteration:
+            break
+
+# Usage
+my_for([1, 2, 3, 4], lambda x: print(x * 2))
+# 2
+# 4
+# 6
+# 8
+</code></pre>
+
+<hr />
+<h2 id="22-practical-examples-with-next-and-enumerate">2.2 Practical Examples with next() and enumerate()</h2>
+<h3 id="finding-index-of-element">Finding Index of Element</h3>
+<p>Implement <code>index()</code> using <code>next()</code> and <code>enumerate()</code>:</p>
+<pre class="highlight"><code class="language-python">def index(iterable, element):
+    &quot;&quot;&quot;Return index of first occurrence or raise ValueError&quot;&quot;&quot;
+    for i, value in enumerate(iterable):
+        if value == element:
+            return i
+    raise ValueError(f&quot;{element} not in iterable&quot;)
+
+# Examples
+print(index([10, 20, 30, 40], 30))    # 2
+print(index(&quot;hello&quot;, &quot;l&quot;))             # 2
+print(index(range(100), 50))           # 50
+# index([1, 2, 3], 5)                  # ValueError
+</code></pre>
+
+<h3 id="finding-first-match">Finding First Match</h3>
+<pre class="highlight"><code class="language-python">def first(iterable, condition, default=None):
+    &quot;&quot;&quot;Return first item matching condition&quot;&quot;&quot;
+    return next((x for x in iterable if condition(x)), default)
+
+# Examples
+numbers = [1, 3, 5, 8, 9, 10]
+print(first(numbers, lambda x: x % 2 == 0))     # 8
+print(first(numbers, lambda x: x &gt; 100, -1))    # -1
+
+words = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;date&quot;]
+print(first(words, lambda w: len(w) &gt; 5))       # &quot;banana&quot;
+</code></pre>
+
+<hr />
+<h2 id="3-creating-custom-iterators">3. Creating Custom Iterators</h2>
+<h3 id="basic-iterator-class">Basic Iterator Class</h3>
+<pre class="highlight"><code class="language-python">class CountUp:
+    def __init__(self, max_count):
+        self.max_count = max_count
+        self.current = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current &gt;= self.max_count:
+            raise StopIteration
+        self.current += 1
+        return self.current
+
+counter = CountUp(5)
+for num in counter:
+    print(num)    # 1, 2, 3, 4, 5
+</code></pre>
+
+<h3 id="separate-iterator-and-iterable">Separate Iterator and Iterable</h3>
+<pre class="highlight"><code class="language-python">class CountUpIterator:
+    def __init__(self, max_count):
+        self.max_count = max_count
+        self.current = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current &gt;= self.max_count:
+            raise StopIteration
+        self.current += 1
+        return self.current
+
+class CountUp:
+    def __init__(self, max_count):
+        self.max_count = max_count
+
+    def __iter__(self):
+        return CountUpIterator(self.max_count)
+
+# Can iterate multiple times
+counter = CountUp(3)
+print(list(counter))    # [1, 2, 3]
+print(list(counter))    # [1, 2, 3]
+</code></pre>
+
+<h3 id="advanced-iterable-integer-class">Advanced: Iterable Integer Class</h3>
+<p>Create a class that behaves like an integer but is also iterable.</p>
+<pre class="highlight"><code class="language-python">class iter_int(int):
+    &quot;&quot;&quot;Integer that can be iterated over&quot;&quot;&quot;
+
+    def __iter__(self):
+        &quot;&quot;&quot;Iterate from 0 to self (exclusive)&quot;&quot;&quot;
+        return iter(range(self))
+
+    # All arithmetic operations inherited from int work!
+
+# Usage
+n = iter_int(5)
+
+# Works as integer
+print(n + 2)           # 7
+print(n * 3)           # 15
+print(n ** 2)          # 25
+
+# Works as iterable
+print(list(n))         # [0, 1, 2, 3, 4]
+for i in n:
+    print(i)           # 0, 1, 2, 3, 4
+
+# Combines both!
+print(list(iter_int(4) + 2))    # [0, 1, 2, 3, 4, 5]
+print(iter_int(3) * 2)          # 6
+
+# Practical usage
+for i in iter_int(5):
+    print(f&quot;Iteration {i}&quot;)
+
+# Works with comprehensions
+squares = [x**2 for x in iter_int(10)]
+print(squares)    # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</code></pre>
+
+<h3 id="iterator-with-state">Iterator with State</h3>
+<pre class="highlight"><code class="language-python">class FibonacciIterator:
+    &quot;&quot;&quot;Iterator that generates Fibonacci numbers&quot;&quot;&quot;
+
+    def __init__(self, max_count):
+        self.max_count = max_count
+        self.count = 0
+        self.a, self.b = 0, 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.count &gt;= self.max_count:
+            raise StopIteration
+        result = self.a
+        self.a, self.b = self.b, self.a + self.b
+        self.count += 1
+        return result
+
+fib = FibonacciIterator(10)
+print(list(fib))    # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+</code></pre>
+
+<hr />
+<h2 id="4-generators-simple-iterators">4. Generators: Simple Iterators</h2>
+<p>Generators are functions that use <code>yield</code> to produce values lazily.</p>
+<pre class="highlight"><code class="language-python">def count_up(max_count):
+    current = 1
+    while current &lt;= max_count:
+        yield current
+        current += 1
+
+for num in count_up(5):
+    print(num)    # 1, 2, 3, 4, 5
+</code></pre>
+
+<h3 id="generator-vs-regular-function">Generator vs Regular Function</h3>
+<pre class="highlight"><code class="language-python"># Regular function - returns all at once
+def get_numbers():
+    return [1, 2, 3, 4, 5]
+
+# Generator - returns one at a time
+def generate_numbers():
+    yield 1
+    yield 2
+    yield 3
+    yield 4
+    yield 5
+
+print(get_numbers())        # [1, 2, 3, 4, 5]
+print(generate_numbers())   # &lt;generator object&gt;
+print(list(generate_numbers()))  # [1, 2, 3, 4, 5]
+</code></pre>
+
+<hr />
+<h2 id="5-generator-expressions">5. Generator Expressions</h2>
+<p>Lightweight generators using comprehension syntax.</p>
+<pre class="highlight"><code class="language-python"># List comprehension - creates entire list
+squares_list = [x**2 for x in range(10)]
+
+# Generator expression - lazy evaluation
+squares_gen = (x**2 for x in range(10))
+
+print(squares_list)    # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+print(squares_gen)     # &lt;generator object&gt;
+
+# Use in sum, max, etc.
+print(sum(x**2 for x in range(10)))    # 285
+</code></pre>
+
+<h3 id="memory-efficiency">Memory Efficiency</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+# List comprehension - all in memory
+big_list = [x for x in range(1000000)]
+print(sys.getsizeof(big_list))    # ~8MB
+
+# Generator - minimal memory
+big_gen = (x for x in range(1000000))
+print(sys.getsizeof(big_gen))     # ~200 bytes
+</code></pre>
+
+<hr />
+<h2 id="51-lazy-evaluation-gotchas">5.1 Lazy Evaluation Gotchas</h2>
+<p>Understanding when and how expressions are evaluated.</p>
+<h3 id="list-comprehension-vs-generator-closure-capture">List Comprehension vs Generator - Closure Capture</h3>
+<p><strong>Surprising behavior with lambda and list comprehension:</strong></p>
+<pre class="highlight"><code class="language-python"># List comprehension - lambdas created immediately
+funcs_list = [lambda x: x**y for y in range(5)]
+
+# What do you expect?
+for f in funcs_list:
+    print(f(2))
+
+# Output: 16, 16, 16, 16, 16  (all use y=4!)
+# Why? All lambdas share the same 'y' variable from the enclosing scope
+# After the list comprehension, y=4, so all lambdas use that value
+</code></pre>
+
+<pre class="highlight"><code class="language-python"># Generator expression - lambdas created lazily
+funcs_gen = (lambda x: x**y for y in range(5))
+
+# What do you expect?
+for f in funcs_gen:
+    print(f(2))
+
+# Output: 16, 16, 16, 16, 16  (same problem!)
+# Actually, even worse! The generator yields lambdas one by one,
+# but they all still capture 'y' by reference, not by value
+</code></pre>
+
+<p><strong>Solution: Capture by value using default argument:</strong></p>
+<pre class="highlight"><code class="language-python"># Fix: capture y by value
+funcs_fixed = [lambda x, y=y: x**y for y in range(5)]
+
+for f in funcs_fixed:
+    print(f(2))
+
+# Output: 1, 2, 4, 8, 16  (correct!)
+</code></pre>
+
+<p><strong>Full comparison:</strong></p>
+<pre class="highlight"><code class="language-python"># List comprehension with closure
+print(&quot;List comprehension (closure):&quot;)
+funcs_list = [lambda x: x**y for y in range(5)]
+for i, f in enumerate(funcs_list):
+    print(f&quot;  2**{i} = {f(2)}&quot;)
+# All print: 2**0 = 16, 2**1 = 16, ...
+
+# Generator expression with closure  
+print(&quot;\nGenerator expression (closure):&quot;)
+funcs_gen = (lambda x: x**y for y in range(5))
+for i, f in enumerate(funcs_gen):
+    print(f&quot;  2**{i} = {f(2)}&quot;)
+# All print: 2**0 = 16, 2**1 = 16, ...
+
+# Fixed with default argument
+print(&quot;\nFixed (default argument):&quot;)
+funcs_fixed = [lambda x, y=y: x**y for y in range(5)]
+for i, f in enumerate(funcs_fixed):
+    print(f&quot;  2**{i} = {f(2)}&quot;)
+# Correctly prints: 2**0 = 1, 2**1 = 2, 2**2 = 4, ...
+</code></pre>
+
+<h3 id="iterator-consumption-gotcha">Iterator Consumption Gotcha</h3>
+<p><strong>Iterators can only be used once!</strong></p>
+<pre class="highlight"><code class="language-python">numbers = list(range(7))
+
+# Using slicing - creates new lists
+first_three = numbers[:3]      # [0, 1, 2]
+remaining = numbers[3:]        # [3, 4, 5, 6]
+
+print(list(zip(first_three, remaining)))
+# [(0, 3), (1, 4), (2, 5)]
+
+print(list(zip(first_three, remaining)))
+# [(0, 3), (1, 4), (2, 5)]  - works again!
+</code></pre>
+
+<pre class="highlight"><code class="language-python"># Using iterator - consumed after first use!
+numbers = list(range(7))
+numbers_iter = iter(numbers)
+
+first_three = numbers[:3]      # Still a list
+remaining = numbers[3:]        # Still a list
+
+# First zip consumes the iterator
+print(list(zip(numbers_iter, first_three)))
+# [(0, 0), (1, 1), (2, 2)]  - consumed 3 items from iterator
+
+# Second zip starts where first left off!
+print(list(zip(numbers_iter, remaining)))
+# [(3, 3), (4, 4), (5, 5), (6, 6)]  - remaining items!
+</code></pre>
+
+<p><strong>Deeper example:</strong></p>
+<pre class="highlight"><code class="language-python">numbers = list(range(10))
+it = iter(numbers)
+
+# Consume first 3 items
+print(list(zip(it, range(3))))
+# [(0, 0), (1, 1), (2, 2)]
+
+# Consume next 3 items
+print(list(zip(it, range(3))))
+# [(3, 0), (4, 1), (5, 2)]
+
+# Iterator continues from where it left off
+print(next(it))  # 6
+print(next(it))  # 7
+</code></pre>
+
+<h3 id="multiple-iterators-from-same-iterable">Multiple Iterators from Same Iterable</h3>
+<pre class="highlight"><code class="language-python">numbers = [1, 2, 3, 4, 5]
+
+# Each iter() call creates NEW iterator
+it1 = iter(numbers)
+it2 = iter(numbers)
+
+print(next(it1))  # 1
+print(next(it2))  # 1  (independent!)
+print(next(it1))  # 2
+print(next(it1))  # 3
+print(next(it2))  # 2  (continues from its position)
+</code></pre>
+
+<hr />
+<h2 id="6-generator-methods">6. Generator Methods</h2>
+<h3 id="send">send()</h3>
+<p>Send values to a generator.</p>
+<pre class="highlight"><code class="language-python">def echo():
+    while True:
+        value = yield
+        print(f&quot;Received: {value}&quot;)
+
+gen = echo()
+next(gen)           # Prime the generator
+gen.send(&quot;Hello&quot;)   # Received: Hello
+gen.send(&quot;World&quot;)   # Received: World
+</code></pre>
+
+<h3 id="throw">throw()</h3>
+<p>Throw an exception into a generator.</p>
+<pre class="highlight"><code class="language-python">def generator():
+    try:
+        yield 1
+        yield 2
+        yield 3
+    except ValueError:
+        yield &quot;Error caught!&quot;
+
+gen = generator()
+print(next(gen))         # 1
+print(gen.throw(ValueError))  # Error caught!
+</code></pre>
+
+<h3 id="close">close()</h3>
+<p>Close a generator.</p>
+<pre class="highlight"><code class="language-python">def counter():
+    try:
+        count = 0
+        while True:
+            yield count
+            count += 1
+    finally:
+        print(&quot;Generator closed&quot;)
+
+gen = counter()
+print(next(gen))    # 0
+print(next(gen))    # 1
+gen.close()         # Generator closed
+</code></pre>
+
+<hr />
+<h2 id="7-generator-delegation-with-yield-from">7. Generator Delegation with yield from</h2>
+<p>Delegate to another generator or iterable.</p>
+<pre class="highlight"><code class="language-python">def generator1():
+    yield 1
+    yield 2
+
+def generator2():
+    yield 3
+    yield 4
+
+def combined():
+    yield from generator1()
+    yield from generator2()
+
+print(list(combined()))    # [1, 2, 3, 4]
+</code></pre>
+
+<h3 id="practical-example-flatten-nested-lists">Practical Example: Flatten Nested Lists</h3>
+<pre class="highlight"><code class="language-python">def flatten(nested):
+    for item in nested:
+        if isinstance(item, list):
+            yield from flatten(item)
+        else:
+            yield item
+
+nested_list = [1, [2, 3, [4, 5]], 6, [7, [8, 9]]]
+print(list(flatten(nested_list)))    # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+</code></pre>
+
+<hr />
+<h2 id="8-infinite-generators">8. Infinite Generators</h2>
+<p>Generators that never end.</p>
+<pre class="highlight"><code class="language-python">def infinite_counter(start=0):
+    count = start
+    while True:
+        yield count
+        count += 1
+
+counter = infinite_counter()
+print(next(counter))    # 0
+print(next(counter))    # 1
+print(next(counter))    # 2
+
+# Use with itertools.islice to limit
+from itertools import islice
+print(list(islice(infinite_counter(), 5)))    # [0, 1, 2, 3, 4]
+</code></pre>
+
+<h3 id="fibonacci-generator">Fibonacci Generator</h3>
+<pre class="highlight"><code class="language-python">def fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+fib = fibonacci()
+print([next(fib) for _ in range(10)])
+# [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+</code></pre>
+
+<hr />
+<h2 id="9-itertools-module">9. itertools Module</h2>
+<p>Powerful tools for creating iterators.</p>
+<h3 id="infinite-iterators">Infinite Iterators</h3>
+<pre class="highlight"><code class="language-python">from itertools import count, cycle, repeat
+
+# count - infinite counter
+for i in count(10):
+    if i &gt; 15:
+        break
+    print(i)    # 10, 11, 12, 13, 14, 15
+
+# cycle - repeat sequence infinitely
+counter = 0
+for item in cycle(['A', 'B', 'C']):
+    if counter &gt; 6:
+        break
+    print(item)
+    counter += 1
+# A, B, C, A, B, C, A
+
+# repeat - repeat value
+for item in repeat('Hello', 3):
+    print(item)    # Hello, Hello, Hello
+</code></pre>
+
+<h3 id="combinatoric-iterators">Combinatoric Iterators</h3>
+<pre class="highlight"><code class="language-python">from itertools import product, permutations, combinations
+
+# product - cartesian product
+print(list(product([1, 2], ['A', 'B'])))
+# [(1, 'A'), (1, 'B'), (2, 'A'), (2, 'B')]
+
+# permutations - all orderings
+print(list(permutations([1, 2, 3], 2)))
+# [(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)]
+
+# combinations - unique selections
+print(list(combinations([1, 2, 3, 4], 2)))
+# [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+</code></pre>
+
+<h3 id="iterators-for-filtering">Iterators for Filtering</h3>
+<pre class="highlight"><code class="language-python">from itertools import filterfalse, takewhile, dropwhile, compress
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+# filterfalse - opposite of filter
+evens = list(filterfalse(lambda x: x % 2, numbers))
+print(evens)    # [2, 4, 6, 8]
+
+# takewhile - take while condition is true
+print(list(takewhile(lambda x: x &lt; 5, numbers)))
+# [1, 2, 3, 4]
+
+# dropwhile - drop while condition is true
+print(list(dropwhile(lambda x: x &lt; 5, numbers)))
+# [5, 6, 7, 8]
+
+# compress - filter by selector
+selectors = [1, 0, 1, 0, 1, 0, 1, 0]
+print(list(compress(numbers, selectors)))
+# [1, 3, 5, 7]
+</code></pre>
+
+<h3 id="iterators-for-grouping">Iterators for Grouping</h3>
+<pre class="highlight"><code class="language-python">from itertools import groupby, islice, chain
+
+# groupby - group consecutive items
+data = [1, 1, 2, 2, 2, 3, 3, 1, 1]
+for key, group in groupby(data):
+    print(key, list(group))
+# 1 [1, 1]
+# 2 [2, 2, 2]
+# 3 [3, 3]
+# 1 [1, 1]
+
+# islice - slice an iterator
+print(list(islice(range(100), 5, 10)))
+# [5, 6, 7, 8, 9]
+
+# chain - chain iterables
+print(list(chain([1, 2], [3, 4], [5, 6])))
+# [1, 2, 3, 4, 5, 6]
+</code></pre>
+
+<h3 id="accumulating-and-reducing">Accumulating and Reducing</h3>
+<pre class="highlight"><code class="language-python">from itertools import accumulate
+import operator
+
+numbers = [1, 2, 3, 4, 5]
+
+# accumulate - running totals
+print(list(accumulate(numbers)))
+# [1, 3, 6, 10, 15]
+
+# accumulate with operator
+print(list(accumulate(numbers, operator.mul)))
+# [1, 2, 6, 24, 120]
+</code></pre>
+
+<hr />
+<h2 id="10-pipelining-iterators">10. Pipelining Iterators</h2>
+<p>Chain multiple iterators for data processing.</p>
+<pre class="highlight"><code class="language-python">def read_data():
+    &quot;&quot;&quot;Simulate reading data&quot;&quot;&quot;
+    yield from [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+def filter_even(numbers):
+    &quot;&quot;&quot;Filter even numbers&quot;&quot;&quot;
+    for num in numbers:
+        if num % 2 == 0:
+            yield num
+
+def square(numbers):
+    &quot;&quot;&quot;Square numbers&quot;&quot;&quot;
+    for num in numbers:
+        yield num ** 2
+
+# Pipeline: read -&gt; filter -&gt; square
+pipeline = square(filter_even(read_data()))
+print(list(pipeline))    # [4, 16, 36, 64, 100]
+</code></pre>
+
+<hr />
+<h2 id="11-lazy-evaluation-benefits">11. Lazy Evaluation Benefits</h2>
+<p>Generators enable lazy evaluation for efficiency.</p>
+<pre class="highlight"><code class="language-python"># Eager evaluation - all computed immediately
+def process_eager(data):
+    filtered = [x for x in data if x % 2 == 0]
+    squared = [x ** 2 for x in filtered]
+    return sum(squared)
+
+# Lazy evaluation - computed on demand
+def process_lazy(data):
+    filtered = (x for x in data if x % 2 == 0)
+    squared = (x ** 2 for x in filtered)
+    return sum(squared)
+
+# Works with infinite or very large sequences
+from itertools import count, islice
+
+result = process_lazy(islice(count(), 1000000))
+print(result)    # Very large number, but memory efficient
+</code></pre>
+
+<hr />
+<h2 id="12-custom-iterable-classes">12. Custom Iterable Classes</h2>
+<p>Make your classes iterable.</p>
+<pre class="highlight"><code class="language-python">class Fibonacci:
+    def __init__(self, max_count):
+        self.max_count = max_count
+
+    def __iter__(self):
+        a, b = 0, 1
+        count = 0
+        while count &lt; self.max_count:
+            yield a
+            a, b = b, a + b
+            count += 1
+
+fib = Fibonacci(10)
+print(list(fib))    # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+# Can iterate multiple times
+for num in fib:
+    print(num)
+</code></pre>
+
+<hr />
+<h2 id="13-reverse-iteration">13. Reverse Iteration</h2>
+<p>Implement <code>__reversed__()</code> for reverse iteration.</p>
+<pre class="highlight"><code class="language-python">class Countdown:
+    def __init__(self, start):
+        self.start = start
+
+    def __iter__(self):
+        for i in range(self.start, 0, -1):
+            yield i
+
+    def __reversed__(self):
+        for i in range(1, self.start + 1):
+            yield i
+
+countdown = Countdown(5)
+print(list(countdown))              # [5, 4, 3, 2, 1]
+print(list(reversed(countdown)))    # [1, 2, 3, 4, 5]
+</code></pre>
+
+<hr />
+<h2 id="14-context-managers-with-generators">14. Context Managers with Generators</h2>
+<p>Use generators to create context managers.</p>
+<pre class="highlight"><code class="language-python">from contextlib import contextmanager
+
+@contextmanager
+def timer():
+    import time
+    start = time.time()
+    yield
+    end = time.time()
+    print(f&quot;Elapsed: {end - start:.2f} seconds&quot;)
+
+with timer():
+    sum(range(1000000))
+</code></pre>
+
+<hr />
+<h2 id="15-advanced-generator-patterns">15. Advanced Generator Patterns</h2>
+<h3 id="coroutines">Coroutines</h3>
+<pre class="highlight"><code class="language-python">def moving_average():
+    total = 0
+    count = 0
+    average = None
+
+    while True:
+        value = yield average
+        total += value
+        count += 1
+        average = total / count
+
+ma = moving_average()
+next(ma)  # Prime
+print(ma.send(10))    # 10.0
+print(ma.send(20))    # 15.0
+print(ma.send(30))    # 20.0
+</code></pre>
+
+<h3 id="generator-based-state-machines">Generator-based State Machines</h3>
+<pre class="highlight"><code class="language-python">def traffic_light():
+    while True:
+        yield &quot;Green&quot;
+        yield &quot;Yellow&quot;
+        yield &quot;Red&quot;
+
+light = traffic_light()
+for _ in range(6):
+    print(next(light))
+# Green, Yellow, Red, Green, Yellow, Red
+</code></pre>
+
+<hr />
+<h2 id="16-best-practices">16. Best Practices</h2>
+<h3 id="1-use-generators-for-large-data">1. Use Generators for Large Data</h3>
+<pre class="highlight"><code class="language-python"># Bad - loads everything in memory
+def read_large_file_bad(filename):
+    with open(filename) as f:
+        return f.readlines()
+
+# Good - lazy loading
+def read_large_file_good(filename):
+    with open(filename) as f:
+        for line in f:
+            yield line.strip()
+</code></pre>
+
+<h3 id="2-generator-expressions-over-list-comprehensions">2. Generator Expressions Over List Comprehensions</h3>
+<pre class="highlight"><code class="language-python"># When you only iterate once
+total = sum(x**2 for x in range(1000000))  # Generator
+# Not: sum([x**2 for x in range(1000000)])  # List
+</code></pre>
+
+<h3 id="3-use-itertools-for-complex-iterations">3. Use itertools for Complex Iterations</h3>
+<pre class="highlight"><code class="language-python">from itertools import chain, islice
+
+# Instead of manual iteration
+result = chain([1, 2], [3, 4], [5, 6])
+</code></pre>
+
+<hr />
+<h2 id="17-common-patterns-summary">17. Common Patterns Summary</h2>
+<h3 id="pattern-1-file-processing">Pattern 1: File Processing</h3>
+<pre class="highlight"><code class="language-python"># Always use generators for files
+def process_file(filename):
+    with open(filename) as f:
+        for line in f:  # File object is already an iterator!
+            yield process_line(line)
+</code></pre>
+
+<h3 id="pattern-2-infinite-sequences">Pattern 2: Infinite Sequences</h3>
+<pre class="highlight"><code class="language-python"># Use itertools for infinite sequences
+from itertools import count, cycle, repeat
+
+# Counter: 0, 1, 2, 3, ...
+count(0)
+
+# Cycle: 1, 2, 3, 1, 2, 3, ...
+cycle([1, 2, 3])
+
+# Repeat: 'x', 'x', 'x', ...
+repeat('x', times=10)
+</code></pre>
+
+<h3 id="pattern-3-pipeline-composition">Pattern 3: Pipeline Composition</h3>
+<pre class="highlight"><code class="language-python"># Chain transformations
+data = read_source()
+filtered = filter_func(data)
+transformed = transform_func(filtered)
+result = aggregate_func(transformed)
+</code></pre>
+
+<h3 id="pattern-4-two-argument-iter">Pattern 4: Two-Argument iter()</h3>
+<pre class="highlight"><code class="language-python"># Read until sentinel
+with open('file.txt') as f:
+    for line in iter(f.readline, '\n'):
+        process(line)
+
+# Generate until value
+import random
+for num in iter(lambda: random.randint(1, 6), 6):
+    print(num)
+</code></pre>
+
+<h3 id="pattern-5-generator-expressions-in-functions">Pattern 5: Generator Expressions in Functions</h3>
+<pre class="highlight"><code class="language-python"># No need for intermediate list
+sum(x**2 for x in range(1000000))
+max(len(word) for word in words)
+any(x &gt; 100 for x in numbers)
+all(x &gt; 0 for x in numbers)
+</code></pre>
+
+<hr />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

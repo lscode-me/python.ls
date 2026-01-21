@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Functions and Functional Programming">
+    <title>Functions and Functional Programming - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+                    <a href="index.html">Functions and Functional Programming</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="functions-and-functional-programming-homework">Functions and Functional Programming - Homework</h1>
+<ol>
+<li id="item-1">Function Basics and Arguments<br />
+   Create a flexible data processing function:</li>
+</ol>
+<p>Function: <code>process_data(data, *transforms, reverse=False, **options)</code><br />
+   - data: list of numbers<br />
+   - transforms: variable number of transformation functions<br />
+   - reverse: whether to reverse the result<br />
+   - options: additional options like 'filter_negatives', 'round_to'</p>
+<p>Your task:<br />
+   - Apply all transforms in sequence to the data<br />
+   - Filter negatives if filter_negatives=True<br />
+   - Round results if round_to is specified<br />
+   - Reverse if reverse=True<br />
+   - Test with multiple scenarios</p>
+<p>Example:<br />
+       process_data([1, 2, 3], lambda x: x * 2, lambda x: x + 1)<br />
+       # [3, 5, 7]</p>
+<p>Your goal:<br />
+   - Master all argument types (<em>args, </em>*kwargs)<br />
+   - Understand argument order and precedence<br />
+   - Practice functional composition</p>
+<ol start="2">
+<li id="item-1">Closures and Function Factories<br />
+   Create function factories for common operations:</li>
+</ol>
+<p>a) create_multiplier(n) - returns function that multiplies by n<br />
+   b) create_formatter(prefix, suffix) - returns function that formats strings<br />
+   c) create_validator(min_val, max_val) - returns validation function<br />
+   d) create_accumulator(initial=0) - returns function that accumulates values</p>
+<p>Your task:<br />
+   - Implement all four factories using closures<br />
+   - Each should maintain internal state if needed<br />
+   - Test with multiple instances<br />
+   - Show that each instance has independent state</p>
+<p>Example:<br />
+       times_2 = create_multiplier(2)<br />
+       times_5 = create_multiplier(5)<br />
+       times_2(10)  # 20<br />
+       times_5(10)  # 50</p>
+<p>Your goal:<br />
+   - Understand closures and variable capture<br />
+   - Master nonlocal keyword for state management<br />
+   - Learn factory pattern with closures</p>
+<ol start="3">
+<li id="item-1">Custom Decorators<br />
+   Create the following decorators:</li>
+</ol>
+<p>a) @timer - measure function execution time<br />
+   b) @cache - cache function results (memoization)<br />
+   c) @validate_types - validate argument types using annotations<br />
+   d) @retry(max_attempts=3) - retry function on exception<br />
+   e) @log_calls(filename) - log all function calls to a file</p>
+<p>Your task:<br />
+   - Implement all decorators with proper wrapping<br />
+   - Use functools.wraps to preserve metadata<br />
+   - Handle <em>args and </em>*kwargs correctly<br />
+   - Test each decorator thoroughly<br />
+   - Combine multiple decorators on one function</p>
+<p>Example:<br />
+       @timer<br />
+       @cache<br />
+       def fibonacci(n):<br />
+           if n &lt;= 1: return n<br />
+           return fibonacci(n-1) + fibonacci(n-2)</p>
+<p>Your goal:<br />
+   - Master decorator syntax and patterns<br />
+   - Understand decorator composition<br />
+   - Learn practical decorator use cases<br />
+   - Practice working with function metadata</p>
+<ol start="4">
+<li id="item-1">Higher-Order Functions and Functional Tools<br />
+   Implement your own versions of built-in functional tools:</li>
+</ol>
+<p>a) my_map(func, iterable) - like map()<br />
+   b) my_filter(predicate, iterable) - like filter()<br />
+   c) my_reduce(func, iterable, initial=None) - like reduce()<br />
+   d) compose(<em>functions) - compose multiple functions<br />
+   e) pipe(value, </em>functions) - pipe value through functions</p>
+<p>Your task:<br />
+   - Implement each function as a generator where appropriate<br />
+   - Handle edge cases (empty iterables, None values)<br />
+   - Test with various data types and functions<br />
+   - Compare performance with built-in versions</p>
+<p>Example:<br />
+       compose(str.upper, str.strip)("  hello  ")  # "HELLO"<br />
+       pipe(5, lambda x: x * 2, lambda x: x + 1)   # 11</p>
+<p>Your goal:<br />
+   - Understand functional programming principles<br />
+   - Master generator patterns<br />
+   - Learn function composition techniques</p>
+<ol start="5">
+<li id="item-1">Generators and Lazy Evaluation<br />
+   Create the following generators:</li>
+</ol>
+<p>a) fibonacci_gen(max_count) - generate Fibonacci numbers<br />
+   b) prime_gen(max_num) - generate prime numbers up to max_num<br />
+   c) batch(iterable, size) - yield batches of items<br />
+   d) sliding_window(iterable, window_size) - yield sliding windows<br />
+   e) chain(*iterables) - chain multiple iterables (like itertools.chain)</p>
+<p>Your task:<br />
+   - Implement as generators using yield<br />
+   - Ensure lazy evaluation (don't compute all at once)<br />
+   - Handle infinite sequences where appropriate<br />
+   - Test memory efficiency with large sequences</p>
+<p>Example:<br />
+       for batch in batch([1,2,3,4,5], 2):<br />
+           print(batch)  # [1,2], [3,4], [5]</p>
+<p>Your goal:<br />
+   - Master generator functions and yield<br />
+   - Understand lazy evaluation benefits<br />
+   - Learn to work with iterables efficiently</p>
+<ol start="6">
+<li id="item-1">Recursion and Memoization<br />
+   Implement recursive solutions with optimization:</li>
+</ol>
+<p>a) Binary search (recursive)<br />
+   b) Merge sort (recursive)<br />
+   c) Directory tree walker (recursive)<br />
+   d) Memoized Fibonacci<br />
+   e) Tower of Hanoi solver</p>
+<p>Your task:<br />
+   - Implement recursive versions<br />
+   - Add memoization using decorators<br />
+   - Compare performance with/without memoization<br />
+   - Handle base cases correctly<br />
+   - Visualize recursion depth if possible</p>
+<p>Your goal:<br />
+   - Master recursive thinking<br />
+   - Understand recursion vs iteration trade-offs<br />
+   - Learn memoization techniques<br />
+   - Practice divide-and-conquer algorithms</p>
+<ol start="7">
+<li id="item-1">Functional Data Processing<br />
+   Create a data processing pipeline using functional programming:</li>
+</ol>
+<p>Given a list of dictionaries representing people:<br />
+       people = [<br />
+           {"name": "Alice", "age": 30, "salary": 50000},<br />
+           {"name": "Bob", "age": 25, "salary": 45000},<br />
+           ...<br />
+       ]</p>
+<p>Tasks:<br />
+   a) Filter people by age range using filter()<br />
+   b) Extract and transform data using map()<br />
+   c) Calculate statistics using reduce()<br />
+   d) Create complex pipelines combining multiple operations<br />
+   e) Implement using only functional programming (no loops)</p>
+<p>Your task:<br />
+   - Use map, filter, reduce exclusively<br />
+   - No for/while loops<br />
+   - No list mutations<br />
+   - Chain operations functionally<br />
+   - Compare with imperative version</p>
+<p>Your goal:<br />
+   - Think functionally<br />
+   - Understand declarative vs imperative<br />
+   - Master functional data transformations<br />
+   - Learn pure function patterns</p>
+<ol start="8">
+<li id="item-1">Advanced Function Techniques<br />
+   Implement advanced function patterns:</li>
+</ol>
+<p>a) Currying: convert multi-arg function to chain of single-arg functions<br />
+   b) Partial application: create specialized functions from general ones<br />
+   c) Function pipeline: create data processing pipelines<br />
+   d) Lazy evaluation: implement lazy properties and computations<br />
+   e) Trampolines: optimize tail recursion</p>
+<p>Your task:<br />
+   - Implement curry(func) decorator<br />
+   - Use functools.partial for specialization<br />
+   - Create a Pipeline class for chaining operations<br />
+   - Implement lazy evaluation for expensive computations<br />
+   - Demonstrate tail call optimization workaround</p>
+<p>Example:<br />
+       @curry<br />
+       def add(a, b, c):<br />
+           return a + b + c</p>
+<pre class="highlight"><code>   add(1)(2)(3)  # 6
+</code></pre>
+
+<p>Your goal:<br />
+   - Master advanced functional patterns<br />
+   - Understand function transformation techniques<br />
+   - Learn optimization strategies<br />
+   - Practice metaprogramming with functions</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

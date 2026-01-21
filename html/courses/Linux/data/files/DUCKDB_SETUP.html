@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DuckDB is a fast in-process analytical database that can query CSV, JSON, and Parquet files directly.">
+    <title>DuckDB Setup Guide | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+                <article class="lecture-page">
+                    <nav class="breadcrumb">
+                        <a href="../../../../">Home</a> &raquo;
+                        <a href="../../../../courses/">Courses</a> &raquo;
+                        <a href="../../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                        <span>DuckDB Setup Guide</span>
+                    </nav>
+                    <div class="lecture-content"><h1 id="duckdb-setup-guide">DuckDB Setup Guide</h1>
+<p>DuckDB is a fast in-process analytical database that can query CSV, JSON, and Parquet files directly.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="macos">macOS</h3>
+<pre class="highlight"><code class="language-bash">brew install duckdb
+</code></pre>
+
+<h3 id="linux-ubuntudebian">Linux (Ubuntu/Debian)</h3>
+<pre class="highlight"><code class="language-bash"># Download latest release
+wget https://github.com/duckdb/duckdb/releases/latest/download/duckdb_cli-linux-amd64.zip
+unzip duckdb_cli-linux-amd64.zip
+sudo mv duckdb /usr/local/bin/
+</code></pre>
+
+<h3 id="linux-alternative-using-apt">Linux (Alternative - using apt)</h3>
+<pre class="highlight"><code class="language-bash"># Install via apt (Ubuntu 22.04+)
+curl -fsSL https://duckdb.org/ubuntu/duckdb.gpg | sudo gpg --dearmor -o /usr/share/keyrings/duckdb-archive-keyring.gpg
+echo &quot;deb [signed-by=/usr/share/keyrings/duckdb-archive-keyring.gpg] https://duckdb.org/ubuntu $(lsb_release -cs) main&quot; | sudo tee /etc/apt/sources.list.d/duckdb.list
+sudo apt update
+sudo apt install duckdb
+</code></pre>
+
+<h3 id="verify-installation">Verify Installation</h3>
+<pre class="highlight"><code class="language-bash">duckdb --version
+</code></pre>
+
+<p>Expected output:</p>
+<pre class="highlight"><code>v0.x.x xxxxxxxx
+</code></pre>
+
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="1-query-a-csv-file">1. Query a CSV file</h3>
+<pre class="highlight"><code class="language-bash">duckdb -c &quot;SELECT * FROM 'users.csv' WHERE status = 'active'&quot;
+</code></pre>
+
+<h3 id="2-run-aggregations">2. Run aggregations</h3>
+<pre class="highlight"><code class="language-bash">duckdb -c &quot;SELECT category, COUNT(*), AVG(price) FROM 'products.csv' GROUP BY category&quot;
+</code></pre>
+
+<h3 id="3-join-files">3. Join files</h3>
+<pre class="highlight"><code class="language-bash">duckdb -c &quot;
+  SELECT u.name, COUNT(o.order_id) as orders
+  FROM 'users.csv' u
+  JOIN 'orders.csv' o ON u.id = o.customer_id
+  GROUP BY u.name
+&quot;
+</code></pre>
+
+<h3 id="4-interactive-mode">4. Interactive mode</h3>
+<pre class="highlight"><code class="language-bash">duckdb
+
+# Inside DuckDB shell:
+D SELECT * FROM 'users.csv' LIMIT 5;
+D .mode markdown
+D SELECT * FROM 'products.csv';
+D .quit
+</code></pre>
+
+<h2 id="output-formats">Output Formats</h2>
+<pre class="highlight"><code class="language-bash"># Markdown table
+duckdb -markdown -c &quot;SELECT * FROM 'users.csv'&quot;
+
+# JSON
+duckdb -json -c &quot;SELECT * FROM 'users.csv'&quot;
+
+# CSV (default)
+duckdb -c &quot;SELECT * FROM 'users.csv'&quot;
+
+# Box drawing (pretty)
+duckdb -box -c &quot;SELECT * FROM 'users.csv'&quot;
+</code></pre>
+
+<h2 id="common-commands">Common Commands</h2>
+<h3 id="export-to-csv">Export to CSV</h3>
+<pre class="highlight"><code class="language-bash">duckdb -c &quot;COPY (SELECT * FROM 'data.csv' WHERE condition) TO 'output.csv' (HEADER)&quot;
+</code></pre>
+
+<h3 id="export-to-parquet">Export to Parquet</h3>
+<pre class="highlight"><code class="language-bash">duckdb -c &quot;COPY (SELECT * FROM 'data.csv') TO 'output.parquet' (FORMAT PARQUET)&quot;
+</code></pre>
+
+<h3 id="read-json">Read JSON</h3>
+<pre class="highlight"><code class="language-bash">duckdb -c &quot;SELECT * FROM read_json_auto('data.json')&quot;
+</code></pre>
+
+<h3 id="read-jsonl-newline-delimited">Read JSONL (newline-delimited)</h3>
+<pre class="highlight"><code class="language-bash">duckdb -c &quot;SELECT * FROM read_json_auto('events.jsonl', format='newline_delimited')&quot;
+</code></pre>
+
+<h2 id="try-the-examples">Try the Examples</h2>
+<p>Run the example script to see DuckDB in action:</p>
+<pre class="highlight"><code class="language-bash">./duckdb_examples.sh
+</code></pre>
+
+<h2 id="resources">Resources</h2>
+<ul>
+<li>Official Website: https://duckdb.org/</li>
+<li>Documentation: https://duckdb.org/docs/</li>
+<li>SQL Reference: https://duckdb.org/docs/sql/introduction</li>
+<li>GitHub: https://github.com/duckdb/duckdb</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="command-not-found">Command not found</h3>
+<p>If you get "command not found", make sure DuckDB is in your PATH:</p>
+<pre class="highlight"><code class="language-bash">which duckdb
+echo $PATH
+</code></pre>
+
+<h3 id="permission-denied">Permission denied</h3>
+<p>Make the binary executable:</p>
+<pre class="highlight"><code class="language-bash">chmod +x /usr/local/bin/duckdb
+</code></pre>
+
+<h3 id="slow-performance">Slow performance</h3>
+<p>For large files, consider:<br />
+- Using Parquet format (much faster than CSV)<br />
+- Creating temporary database with indexes<br />
+- Using appropriate WHERE clauses to filter early</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>After installation, explore:<br />
+1. Module 06: Structured Data Processing<br />
+2. Module 07: Streaming Analytics<br />
+3. Practice with homework assignments<br />
+4. Compare DuckDB vs mlr vs awk for different tasks</p>
+<p>Happy querying! 🦆</p></div>
+                </article>
+                
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

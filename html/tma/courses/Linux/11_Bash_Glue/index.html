@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Bash as Glue: Combining Tools &amp; Error Ha | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Bash as Glue: Combining Tools &amp; Error Ha</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="bash-as-glue-combining-tools-error-handling">Bash as Glue: Combining Tools &amp; Error Handling</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Use bash to combine tools, handle errors with <code>trap</code>, manage configuration with <code>.env</code>, and work with temporary files.</p>
+<h2 id="combining-tools">Combining Tools</h2>
+<h3 id="chaining-commands">Chaining Commands</h3>
+<pre class="highlight"><code class="language-bash"># Sequential execution
+command1 &amp;&amp; command2 &amp;&amp; command3
+
+# Execute regardless of success
+command1; command2; command3
+
+# Execute if previous fails
+command1 || command2
+
+# Pipeline
+command1 | command2 | command3
+</code></pre>
+
+<h3 id="complex-pipelines">Complex Pipelines</h3>
+<pre class="highlight"><code class="language-bash"># Multi-stage processing
+cat data.csv | \
+  grep -v &quot;^#&quot; | \
+  cut -d',' -f2,3 | \
+  sort | uniq -c | \
+  sort -rn | \
+  head -10
+</code></pre>
+
+<h2 id="error-handling-with-trap">Error Handling with trap</h2>
+<h3 id="basic-trap-usage">Basic trap Usage</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -e  # Exit on error
+
+trap 'echo &quot;Error on line $LINENO&quot;' ERR
+trap 'echo &quot;Cleaning up...&quot;; rm -f /tmp/tempfile' EXIT
+trap 'echo &quot;Interrupted&quot;; exit 1' INT
+
+# Your code here
+</code></pre>
+
+<h3 id="cleanup-with-trap">Cleanup with trap</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+TEMPFILE=$(mktemp)
+
+trap 'rm -f &quot;$TEMPFILE&quot;' EXIT
+
+# Use tempfile
+echo &quot;data&quot; &gt; &quot;$TEMPFILE&quot;
+process &quot;$TEMPFILE&quot;
+
+# Automatic cleanup on exit
+</code></pre>
+
+<h2 id="configuration-with-env">Configuration with .env</h2>
+<h3 id="load-environment-variables">Load Environment Variables</h3>
+<pre class="highlight"><code class="language-bash"># .env file
+DATABASE_URL=&quot;postgres://localhost/mydb&quot;
+API_KEY=&quot;secret123&quot;
+LOG_LEVEL=&quot;INFO&quot;
+
+# Load in script
+set -a  # Auto-export variables
+source .env
+set +a
+
+echo &quot;Connecting to $DATABASE_URL&quot;
+</code></pre>
+
+<h3 id="safe-env-loading">Safe env Loading</h3>
+<pre class="highlight"><code class="language-bash">if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+</code></pre>
+
+<h2 id="temporary-files">Temporary Files</h2>
+<h3 id="mktemp-for-safe-temp-files">mktemp for Safe Temp Files</h3>
+<pre class="highlight"><code class="language-bash"># Create temp file
+TMPFILE=$(mktemp)
+echo &quot;data&quot; &gt; &quot;$TMPFILE&quot;
+# Process...
+rm &quot;$TMPFILE&quot;
+
+# Create temp directory
+TMPDIR=$(mktemp -d)
+# Use directory...
+rm -rf &quot;$TMPDIR&quot;
+
+# With trap for cleanup
+TMPFILE=$(mktemp)
+trap 'rm -f &quot;$TMPFILE&quot;' EXIT
+</code></pre>
+
+<h3 id="temp-file-patterns">Temp File Patterns</h3>
+<pre class="highlight"><code class="language-bash"># Named pattern
+TMPFILE=$(mktemp /tmp/myapp.XXXXXX)
+
+# In temp directory
+TMPFILE=$(mktemp -p /fast/tmp)
+</code></pre>
+
+<h2 id="complete-script-example">Complete Script Example</h2>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail  # Exit on error, undefined var, pipe failure
+
+# Load config
+if [ -f .env ]; then
+    set -a
+    source .env
+    set +a
+fi
+
+# Setup temp files
+TMPFILE=$(mktemp)
+TMPDIR=$(mktemp -d)
+
+# Cleanup on exit
+trap 'rm -f &quot;$TMPFILE&quot;; rm -rf &quot;$TMPDIR&quot;' EXIT
+
+# Error handler
+trap 'echo &quot;Error on line $LINENO&quot;; exit 1' ERR
+
+# Main logic
+curl -s &quot;$API_URL&quot; | \
+    jq -c '.[]' &gt; &quot;$TMPFILE&quot;
+
+cat &quot;$TMPFILE&quot; | \
+    jq -r '.id' | \
+    while read -r id; do
+        process_id &quot;$id&quot;
+    done
+
+echo &quot;Done&quot;
+</code></pre>
+
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li id="item-1"><strong>Use <code>set -euo pipefail</code></strong>: Fail fast</li>
+<li id="item-2"><strong>Always trap EXIT</strong>: Cleanup temp files</li>
+<li id="item-3"><strong>Use mktemp</strong>: Never hardcode temp paths</li>
+<li id="item-4"><strong>Load .env safely</strong>: Use <code>set -a</code></li>
+<li id="item-5"><strong>Quote variables</strong>: <code>"$VAR"</code> not <code>$VAR</code></li>
+<li id="item-6"><strong>Check file exists</strong>: <code>[ -f file ]</code></li>
+<li id="item-7"><strong>Validate input</strong>: Check arguments</li>
+<li id="item-8"><strong>Log errors</strong>: Echo to stderr with <code>&gt;&amp;2</code></li>
+</ol>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>Chain on success</td>
+<td><code>cmd1 &amp;&amp; cmd2</code></td>
+</tr>
+<tr>
+<td><code>trap</code></td>
+<td>Error handling</td>
+<td><code>trap 'cleanup' EXIT</code></td>
+</tr>
+<tr>
+<td><code>.env</code></td>
+<td>Configuration</td>
+<td><code>source .env</code></td>
+</tr>
+<tr>
+<td><code>mktemp</code></td>
+<td>Safe temp files</td>
+<td><code>TMPFILE=$(mktemp)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Practice error handling</li>
+<li>Build robust scripts</li>
+<li>Study bash best practices</li>
+<li>Explore logging patterns</li>
+</ul>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

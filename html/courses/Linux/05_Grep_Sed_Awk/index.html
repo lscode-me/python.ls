@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Grep, Sed &amp; Awk: Text Processing Power Tools | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="grep-sed-awk-text-processing-power-tools">Grep, Sed &amp; Awk: Text Processing Power Tools</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>The trio of <code>grep</code>, <code>sed</code>, and <code>awk</code> form the foundation of Unix text processing. Each tool excels at different tasks:<br />
+- <strong>grep</strong>: Search and filter lines<br />
+- <strong>sed</strong>: Stream editor for transformations<br />
+- <strong>awk</strong>: Pattern scanning and data extraction</p>
+<h2 id="what-is-regex">What is Regex?</h2>
+<p><strong>Regular Expressions (regex)</strong> are a formal language for describing text patterns. Regex is used for searching, validating, and manipulating textual data.</p>
+<h3 id="core-concept">Core Concept</h3>
+<p>Regex allows you to describe a <strong>pattern</strong>, not a specific string:<br />
+- <code>cat</code> — matches only the word "cat"<br />
+- <code>c.t</code> — matches "cat", "cot", "cut", "c3t", etc.<br />
+- <code>[Cc]at</code> — matches "cat" or "Cat"<br />
+- <code>^cat$</code> — matches a line containing only "cat"</p>
+<h3 id="regex-vs-shell-globbing">Regex vs Shell Globbing</h3>
+<p>⚠️ <strong>Important!</strong> Regex and shell globbing are <strong>different systems</strong> with different syntax:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Shell Globbing</th>
+<th>Regex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>File matching</td>
+<td>Text pattern matching</td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td>Command line (ls, cp, rm)</td>
+<td>grep, sed, awk, editors</td>
+</tr>
+<tr>
+<td><strong><code>*</code> meaning</strong></td>
+<td>Any characters</td>
+<td>Zero or more of <strong>previous</strong></td>
+</tr>
+<tr>
+<td><strong><code>?</code> meaning</strong></td>
+<td>Single character</td>
+<td>Zero or one of <strong>previous</strong></td>
+</tr>
+<tr>
+<td><strong><code>.</code> meaning</strong></td>
+<td>Literal dot</td>
+<td>Any single character</td>
+</tr>
+<tr>
+<td><strong>Character class</strong></td>
+<td><code>[abc]</code> ✓</td>
+<td><code>[abc]</code> ✓</td>
+</tr>
+<tr>
+<td><strong>Range</strong></td>
+<td><code>[a-z]</code> ✓</td>
+<td><code>[a-z]</code> ✓</td>
+</tr>
+<tr>
+<td><strong>Negation</strong></td>
+<td><code>[!abc]</code></td>
+<td><code>[^abc]</code></td>
+</tr>
+<tr>
+<td><strong>Anchors</strong></td>
+<td>❌</td>
+<td><code>^</code> start, <code>$</code> end</td>
+</tr>
+<tr>
+<td><strong>Alternation</strong></td>
+<td><code>{txt,md}</code></td>
+<td><code>(txt\|md)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples-comparison">Examples Comparison</h3>
+<pre class="highlight"><code class="language-bash"># Shell Globbing (file matching)
+ls *.txt          # All files ending in .txt
+rm file?.log      # file1.log, fileA.log (? = one char)
+cp *.{py,js} dir/ # Copy .py and .js files
+
+# Regex (text pattern matching)
+grep &quot;.*\.txt$&quot;   # Lines ending in .txt (. = any char, * = zero or more)
+grep &quot;file.&quot;      # &quot;file&quot; + any one character
+grep -E &quot;(py|js)&quot; # Lines containing &quot;py&quot; or &quot;js&quot;
+</code></pre>
+
+<h3 id="common-confusion">Common Confusion</h3>
+<pre class="highlight"><code class="language-bash"># ❌ Wrong: using globbing syntax in regex
+grep &quot;*.txt&quot; file       # Wrong! Means zero or more '*', then &quot;.txt&quot;
+
+# ✓ Correct: proper regex
+grep &quot;.*\.txt&quot; file     # Matches: anything + &quot;.txt&quot;
+
+# ❌ Wrong: using regex in shell
+ls .*\.txt              # Wrong! Shell sees: .*.txt (hidden files, literal backslash)
+
+# ✓ Correct: proper globbing  
+ls *.txt                # Matches: any files ending in .txt
+</code></pre>
+
+<h3 id="when-to-use-what">When to Use What?</h3>
+<pre class="highlight"><code class="language-bash"># Use Shell Globbing for files:
+rm *.tmp
+cp src/*.py dest/
+for file in *.{jpg,png}; do ...; done
+
+# Use Regex for text content:
+grep -E &quot;^[A-Z].*\.$&quot; file.txt      # Lines starting with capital, ending with period
+sed 's/[0-9]\{4\}-[0-9]\{2\}/XXXX-XX/' file.txt  # Mask dates
+awk '/^ERROR/ {print $0}' app.log    # Lines starting with ERROR
+</code></pre>
+
+<h2 id="regular-expressions-primer">Regular Expressions Primer</h2>
+<h3 id="basic-patterns">Basic Patterns</h3>
+<pre class="highlight"><code class="language-bash">.       # Any single character
+^       # Start of line
+$       # End of line
+*       # Zero or more of previous
++       # One or more (ERE)
+?       # Zero or one (ERE)
+[abc]   # Character class
+[^abc]  # Negated class
+[a-z]   # Range
+\       # Escape special char
+</code></pre>
+
+<h3 id="extended-patterns-ere">Extended Patterns (ERE)</h3>
+<pre class="highlight"><code class="language-bash">(pattern)     # Grouping
+|             # Alternation (OR)
+{n}           # Exactly n times
+{n,}          # n or more
+{n,m}         # Between n and m
+\b            # Word boundary
+\d \w \s      # Digit, word, space (in some tools)
+</code></pre>
+
+<h2 id="grep-pattern-matching">Grep: Pattern Matching</h2>
+<h3 id="basic-usage">Basic Usage</h3>
+<pre class="highlight"><code class="language-bash"># Search for pattern
+grep &quot;ERROR&quot; app.log
+
+# Case-insensitive
+grep -i &quot;error&quot; app.log
+
+# Show line numbers
+grep -n &quot;ERROR&quot; app.log
+
+# Invert match (exclude)
+grep -v &quot;DEBUG&quot; app.log
+
+# Count matches
+grep -c &quot;ERROR&quot; app.log
+
+# Show only matching part
+grep -o &quot;ERROR&quot; app.log
+</code></pre>
+
+<h3 id="extended-grep-grep-e-or-egrep">Extended Grep (grep -E or egrep)</h3>
+<pre class="highlight"><code class="language-bash"># Match multiple patterns
+grep -E &quot;ERROR|FATAL|CRITICAL&quot; app.log
+
+# Match IP addresses
+grep -E '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b' access.log
+
+# Match email addresses
+grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' users.txt
+
+# Date pattern (YYYY-MM-DD)
+grep -E '[0-9]{4}-[0-9]{2}-[0-9]{2}' logs.txt
+</code></pre>
+
+<h3 id="context-and-file-options">Context and File Options</h3>
+<pre class="highlight"><code class="language-bash"># Show 3 lines before match
+grep -B 3 &quot;ERROR&quot; app.log
+
+# Show 3 lines after match
+grep -A 3 &quot;ERROR&quot; app.log
+
+# Show 3 lines before and after
+grep -C 3 &quot;ERROR&quot; app.log
+
+# Recursive search in directory
+grep -r &quot;TODO&quot; src/
+
+# Search in specific file types
+grep -r --include=&quot;*.py&quot; &quot;import pandas&quot; src/
+
+# Search multiple files
+grep &quot;ERROR&quot; *.log
+</code></pre>
+
+<h3 id="practical-grep-examples">Practical Grep Examples</h3>
+<pre class="highlight"><code class="language-bash"># Find all Python imports
+grep -rh &quot;^import\|^from&quot; --include=&quot;*.py&quot; src/ | sort -u
+
+# Extract all URLs
+grep -Eo 'https?://[^ ]+' page.html
+
+# Find failed login attempts
+grep &quot;Failed password&quot; /var/log/auth.log | wc -l
+
+# Search for credit card patterns (testing only!)
+grep -E '\b[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}\b' data.txt
+</code></pre>
+
+<h2 id="sed-stream-editor">Sed: Stream Editor</h2>
+<h3 id="basic-substitution">Basic Substitution</h3>
+<pre class="highlight"><code class="language-bash"># Replace first occurrence per line
+sed 's/old/new/' file.txt
+
+# Replace all occurrences (global)
+sed 's/old/new/g' file.txt
+
+# Replace in-place (modify file)
+sed -i 's/old/new/g' file.txt  # GNU sed
+sed -i '' 's/old/new/g' file.txt  # BSD sed (macOS)
+
+# Replace only on lines matching pattern
+sed '/ERROR/s/old/new/g' file.txt
+</code></pre>
+
+<h3 id="advanced-substitution">Advanced Substitution</h3>
+<pre class="highlight"><code class="language-bash"># Use different delimiter (when pattern contains /)
+sed 's|/old/path|/new/path|g' file.txt
+
+# Backreferences
+sed 's/\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\)/\3\/\2\/\1/' dates.txt
+# 2024-03-15 → 15/03/2024
+
+# Case conversion (GNU sed)
+sed 's/.*/\U&amp;/' file.txt  # Uppercase
+sed 's/.*/\L&amp;/' file.txt  # Lowercase
+
+# Multiple substitutions
+sed -e 's/cat/dog/g' -e 's/mouse/rat/g' file.txt
+</code></pre>
+
+<h3 id="line-operations">Line Operations</h3>
+<pre class="highlight"><code class="language-bash"># Delete lines
+sed '/pattern/d' file.txt        # Delete matching lines
+sed '5d' file.txt                 # Delete line 5
+sed '2,5d' file.txt               # Delete lines 2-5
+sed '/^$/d' file.txt              # Delete empty lines
+
+# Print lines
+sed -n '/pattern/p' file.txt      # Print only matching lines
+sed -n '10,20p' file.txt          # Print lines 10-20
+
+# Insert/Append
+sed '5i\New line before' file.txt   # Insert before line 5
+sed '5a\New line after' file.txt    # Append after line 5
+
+# Change lines
+sed '/pattern/c\Replacement line' file.txt
+</code></pre>
+
+<h3 id="practical-sed-examples">Practical Sed Examples</h3>
+<pre class="highlight"><code class="language-bash"># Remove HTML tags
+sed 's/&lt;[^&gt;]*&gt;//g' page.html
+
+# Convert DOS to Unix line endings
+sed 's/\r$//' dos_file.txt
+
+# Add line numbers
+sed = file.txt | sed 'N;s/\n/\t/'
+
+# Extract text between patterns
+sed -n '/START/,/END/p' file.txt
+
+# Comment out lines
+sed 's/^/#/' file.txt
+
+# Remove comments
+sed 's/#.*//' file.txt
+</code></pre>
+
+<h2 id="awk-pattern-scanning-and-processing">Awk: Pattern Scanning and Processing</h2>
+<h3 id="basic-awk-syntax">Basic Awk Syntax</h3>
+<pre class="highlight"><code class="language-bash"># Print entire line
+awk '{print}' file.txt
+
+# Print specific fields
+awk '{print $1, $3}' file.txt
+
+# Field separator
+awk -F',' '{print $2}' data.csv
+
+# Pattern matching
+awk '/ERROR/ {print $0}' app.log
+
+# Pattern + action
+awk '/ERROR/ {print $1, $3}' app.log
+</code></pre>
+
+<h3 id="built-in-variables">Built-in Variables</h3>
+<pre class="highlight"><code class="language-bash">$0      # Entire line
+$1, $2  # Fields 1, 2, etc.
+NF      # Number of fields
+NR      # Current record number (line number)
+FS      # Field separator (default: whitespace)
+OFS     # Output field separator
+RS      # Record separator (default: newline)
+ORS     # Output record separator
+</code></pre>
+
+<h3 id="awk-programming-constructs">Awk Programming Constructs</h3>
+<pre class="highlight"><code class="language-bash"># BEGIN and END blocks
+awk 'BEGIN {print &quot;Start&quot;} {print $1} END {print &quot;Done&quot;}' file.txt
+
+# Conditionals
+awk '{if ($3 &gt; 100) print $1, $3}' data.txt
+
+# Calculations
+awk '{sum += $3} END {print sum}' numbers.txt
+
+# Average
+awk '{sum += $1; count++} END {print sum/count}' numbers.txt
+
+# String operations
+awk '{print length($0)}' file.txt    # Line length
+awk '{print tolower($1)}' file.txt   # Lowercase
+awk '{print substr($1, 1, 5)}' file.txt  # Substring
+</code></pre>
+
+<h3 id="csv-processing-with-awk">CSV Processing with Awk</h3>
+<pre class="highlight"><code class="language-bash"># Print specific columns
+awk -F',' '{print $2, $4}' data.csv
+
+# Skip header
+awk -F',' 'NR &gt; 1 {print $0}' data.csv
+
+# Sum column
+awk -F',' 'NR &gt; 1 {sum += $3} END {print sum}' sales.csv
+
+# Filter rows
+awk -F',' '$3 &gt; 1000 {print $0}' sales.csv
+
+# Group by (simple)
+awk -F',' '{sum[$2] += $3} END {for (key in sum) print key, sum[key]}' data.csv
+</code></pre>
+
+<h3 id="log-analysis-with-awk">Log Analysis with Awk</h3>
+<pre class="highlight"><code class="language-bash"># Count by status code
+awk '{print $9}' access.log | sort | uniq -c
+
+# Extract IP and status
+awk '{print $1, $9}' access.log
+
+# Calculate response time average
+awk '{sum += $10; count++} END {print sum/count}' access.log
+
+# Top 10 IPs by request count
+awk '{ip[$1]++} END {for (i in ip) print ip[i], i}' access.log | sort -rn | head -10
+
+# Requests per minute
+awk '{print substr($4, 2, 16)}' access.log | uniq -c
+</code></pre>
+
+<h3 id="practical-awk-examples">Practical Awk Examples</h3>
+<h4 id="example-1-generate-sql-insert-statements">Example 1: Generate SQL INSERT Statements</h4>
+<pre class="highlight"><code class="language-bash">awk -F',' 'NR &gt; 1 {printf &quot;INSERT INTO users VALUES (\&quot;%s\&quot;, \&quot;%s\&quot;, %s);\n&quot;, $1, $2, $3}' users.csv
+</code></pre>
+
+<h4 id="example-2-convert-csv-to-json">Example 2: Convert CSV to JSON</h4>
+<pre class="highlight"><code class="language-bash">awk -F',' 'NR &gt; 1 {printf &quot;{\&quot;id\&quot;: \&quot;%s\&quot;, \&quot;name\&quot;: \&quot;%s\&quot;, \&quot;age\&quot;: %s}\n&quot;, $1, $2, $3}' users.csv
+</code></pre>
+
+<h4 id="example-3-column-statistics">Example 3: Column Statistics</h4>
+<pre class="highlight"><code class="language-bash">awk -F',' '
+  NR &gt; 1 {
+    sum += $3
+    if ($3 &lt; min || NR == 2) min = $3
+    if ($3 &gt; max) max = $3
+  }
+  END {
+    print &quot;Sum:&quot;, sum
+    print &quot;Avg:&quot;, sum/(NR-1)
+    print &quot;Min:&quot;, min
+    print &quot;Max:&quot;, max
+  }
+' data.csv
+</code></pre>
+
+<h2 id="combining-grep-sed-awk">Combining Grep, Sed, Awk</h2>
+<h3 id="pattern-filter-transform-aggregate">Pattern: Filter → Transform → Aggregate</h3>
+<pre class="highlight"><code class="language-bash"># Find errors, extract timestamps, count per hour
+grep &quot;ERROR&quot; app.log | \
+  sed 's/.*\[\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}\):.*/\1/' | \
+  sort | uniq -c
+</code></pre>
+
+<h3 id="pattern-multi-step-extraction">Pattern: Multi-Step Extraction</h3>
+<pre class="highlight"><code class="language-bash"># Extract email domains and count
+grep -Eo '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' users.txt | \
+  sed 's/.*@//' | \
+  sort | uniq -c | sort -rn
+</code></pre>
+
+<h3 id="pattern-data-cleaning">Pattern: Data Cleaning</h3>
+<pre class="highlight"><code class="language-bash"># Remove HTML, extract text, count words
+sed 's/&lt;[^&gt;]*&gt;//g' page.html | \
+  tr '[:upper:]' '[:lower:]' | \
+  tr -cs '[:alnum:]' '\n' | \
+  sort | uniq -c | sort -rn | head -20
+</code></pre>
+
+<h2 id="performance-tips">Performance Tips</h2>
+<ol>
+<li id="item-1"><strong>Grep is fastest</strong> for simple line filtering</li>
+<li id="item-2"><strong>Sed is best</strong> for line-by-line transformations</li>
+<li id="item-3"><strong>Awk is powerful</strong> for field processing and calculations</li>
+<li id="item-4"><strong>Use grep first</strong> to reduce data volume before sed/awk</li>
+<li id="item-5"><strong>Avoid nested loops</strong> in awk for large files</li>
+<li id="item-6"><strong>Use -F option</strong> instead of setting FS in awk BEGIN</li>
+<li id="item-7"><strong>Compile regex</strong> when possible (<code>grep -P</code> for PCRE)</li>
+</ol>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li id="item-1"><strong>Test on small samples</strong> before running on large files</li>
+<li id="item-2"><strong>Use <code>-n</code> with sed</strong> to print only what you want</li>
+<li id="item-3"><strong>Quote patterns</strong> to avoid shell expansion</li>
+<li id="item-4"><strong>Escape special characters</strong> properly</li>
+<li id="item-5"><strong>Use extended regex</strong> (<code>grep -E</code>, <code>sed -E</code>) for readability</li>
+<li id="item-6"><strong>Combine tools</strong> for complex tasks</li>
+<li id="item-7"><strong>Document regex patterns</strong> with comments in scripts</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Best For</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>grep</code></td>
+<td>Line filtering</td>
+<td><code>grep -E "ERROR\|WARN" app.log</code></td>
+</tr>
+<tr>
+<td><code>sed</code></td>
+<td>Line transformations</td>
+<td><code>sed 's/old/new/g' file.txt</code></td>
+</tr>
+<tr>
+<td><code>awk</code></td>
+<td>Field processing</td>
+<td><code>awk -F',' '{sum+=$3} END {print sum}'</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Practice regex on regex101.com</li>
+<li>Study awk programming language features</li>
+<li>Learn Perl for more complex text processing</li>
+<li>Explore ripgrep (rg) for faster searching</li>
+</ul>
+<hr />
+<h2 id="ready-to-use-regex-patterns">Ready-to-Use Regex Patterns</h2>
+<p>A collection of tested regular expressions for common tasks.</p>
+<h3 id="network-web">Network &amp; Web</h3>
+<h4 id="ip-address-ipv4">IP Address (IPv4)</h4>
+<pre class="highlight"><code class="language-bash"># Basic (permissive)
+grep -E '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b' file.txt
+
+# Strict (validates 0-255 range)
+grep -E '\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b' file.txt
+
+# Examples matched: 192.168.1.1, 10.0.0.255, 172.16.0.1
+</code></pre>
+
+<h4 id="email-address">Email Address</h4>
+<pre class="highlight"><code class="language-bash"># Basic (permissive)
+grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' file.txt
+
+# More strict
+grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(com|org|net|edu|gov|io|dev)\b' file.txt
+
+# Examples matched: user@example.com, john.doe+filter@company.co.uk
+</code></pre>
+
+<h4 id="url">URL</h4>
+<pre class="highlight"><code class="language-bash"># HTTP/HTTPS URLs
+grep -Eo 'https?://[A-Za-z0-9./_-]+' file.txt
+
+# With query parameters
+grep -Eo 'https?://[A-Za-z0-9./?&amp;=_-]+' file.txt
+
+# Full URL with fragments
+grep -Eo 'https?://[A-Za-z0-9./?&amp;=_#%-]+' file.txt
+
+# Examples matched: 
+# https://example.com/path
+# http://site.com/page?id=123&amp;name=test
+</code></pre>
+
+<h4 id="domain-name">Domain Name</h4>
+<pre class="highlight"><code class="language-bash"># Basic domain
+grep -E '\b[a-z0-9-]+\.[a-z]{2,}\b' file.txt
+
+# With subdomains
+grep -E '\b([a-z0-9-]+\.)+[a-z]{2,}\b' file.txt
+
+# Examples matched: example.com, sub.domain.co.uk, my-site.io
+</code></pre>
+
+<h4 id="mac-address">MAC Address</h4>
+<pre class="highlight"><code class="language-bash"># Colon-separated
+grep -E '\b([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}\b' file.txt
+
+# Hyphen-separated
+grep -E '\b([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}\b' file.txt
+
+# Examples matched: 00:1A:2B:3C:4D:5E, 00-1A-2B-3C-4D-5E
+</code></pre>
+
+<h3 id="date-time">Date &amp; Time</h3>
+<h4 id="date-yyyy-mm-dd">Date (YYYY-MM-DD)</h4>
+<pre class="highlight"><code class="language-bash"># ISO 8601 format
+grep -E '\b[0-9]{4}-[0-9]{2}-[0-9]{2}\b' file.txt
+
+# With validation (basic)
+grep -E '\b[12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\b' file.txt
+
+# Examples matched: 2024-12-02, 2023-01-15
+</code></pre>
+
+<h4 id="date-ddmmyyyy-or-mmddyyyy">Date (DD/MM/YYYY or MM/DD/YYYY)</h4>
+<pre class="highlight"><code class="language-bash"># DD/MM/YYYY or MM/DD/YYYY
+grep -E '\b[0-9]{2}/[0-9]{2}/[0-9]{4}\b' file.txt
+
+# Examples matched: 02/12/2024, 12/25/2023
+</code></pre>
+
+<h4 id="time-hhmmss">Time (HH:MM:SS)</h4>
+<pre class="highlight"><code class="language-bash"># 24-hour format
+grep -E '\b([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\b' file.txt
+
+# With optional seconds
+grep -E '\b([01][0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?\b' file.txt
+
+# Examples matched: 14:30:00, 09:05:23
+</code></pre>
+
+<h4 id="timestamp-iso-8601">Timestamp (ISO 8601)</h4>
+<pre class="highlight"><code class="language-bash"># Full ISO timestamp
+grep -E '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}' file.txt
+
+# With timezone
+grep -E '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([+-][0-9]{2}:[0-9]{2}|Z)' file.txt
+
+# Examples matched: 
+# 2024-12-02T14:30:00
+# 2024-12-02T14:30:00Z
+# 2024-12-02T14:30:00+03:00
+</code></pre>
+
+<h3 id="financial">Financial</h3>
+<h4 id="credit-card-generic">Credit Card (Generic)</h4>
+<pre class="highlight"><code class="language-bash"># Generic card number (16 digits with optional separators)
+grep -E '\b[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}\b' file.txt
+
+# ⚠️ Use only for testing/education, never log real card numbers!
+# Examples matched: 1234-5678-9012-3456, 1234 5678 9012 3456
+</code></pre>
+
+<h4 id="currency-amount">Currency Amount</h4>
+<pre class="highlight"><code class="language-bash"># USD format with optional cents
+grep -E '\$[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?' file.txt
+
+# Generic currency (digits with optional cents)
+grep -E '\b[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?\b' file.txt
+
+# Examples matched: $1,234.56, $999, 1,234,567.89
+</code></pre>
+
+<h3 id="phone-numbers">Phone Numbers</h3>
+<h4 id="us-phone-number">US Phone Number</h4>
+<pre class="highlight"><code class="language-bash"># Various US formats
+grep -E '\b(\+1[-. ]?)?\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}\b' file.txt
+
+# Examples matched:
+# +1-555-123-4567
+# (555) 123-4567
+# 555.123.4567
+# 5551234567
+</code></pre>
+
+<h4 id="international-format">International Format</h4>
+<pre class="highlight"><code class="language-bash"># E.164 format
+grep -E '\+[0-9]{1,3}[0-9]{4,14}' file.txt
+
+# Examples matched: +1234567890, +79161234567
+</code></pre>
+
+<h3 id="bioinformatics">Bioinformatics</h3>
+<h4 id="dna-sequence">DNA Sequence</h4>
+<pre class="highlight"><code class="language-bash"># DNA nucleotides (A, T, G, C)
+grep -E '^[ATGC]+$' sequence.txt
+
+# With length constraint (at least 10bp)
+grep -E '^[ATGC]{10,}$' sequence.txt
+
+# Case-insensitive
+grep -iE '^[ATGC]+$' sequence.txt
+
+# Examples matched: ATGCTAGCTAGC, GGCCAATTGGCC
+</code></pre>
+
+<h4 id="rna-sequence">RNA Sequence</h4>
+<pre class="highlight"><code class="language-bash"># RNA nucleotides (A, U, G, C)
+grep -E '^[AUGC]+$' sequence.txt
+
+# With length constraint
+grep -E '^[AUGC]{10,}$' sequence.txt
+
+# Examples matched: AUGCUAGCUAGC, GGCCAAUUGGCC
+</code></pre>
+
+<h4 id="protein-sequence-amino-acids">Protein Sequence (Amino Acids)</h4>
+<pre class="highlight"><code class="language-bash"># Single-letter amino acid codes
+grep -E '^[ACDEFGHIKLMNPQRSTVWY]+$' protein.txt
+
+# Including ambiguous codes (B, Z, X)
+grep -E '^[ACDEFGHIKLMNPQRSTVWYBZX]+$' protein.txt
+
+# Examples matched: MKTAYIAKQR, ACDEFGHIKLMNPQRSTVWY
+</code></pre>
+
+<h4 id="fasta-header">FASTA Header</h4>
+<pre class="highlight"><code class="language-bash"># Extract FASTA IDs
+grep -E '^&gt;[A-Za-z0-9_|.-]+' sequences.fasta
+
+# Extract full header with description
+grep -E '^&gt;.*' sequences.fasta
+
+# Examples matched: &gt;seq1, &gt;gi|12345|ref|NM_000001
+</code></pre>
+
+<h4 id="genetic-coordinates">Genetic Coordinates</h4>
+<pre class="highlight"><code class="language-bash"># Format: chr:start-end
+grep -E 'chr[0-9XYM]+:[0-9]+-[0-9]+' coordinates.txt
+
+# Examples matched: chr1:1000-2000, chrX:123456-234567
+</code></pre>
+
+<h3 id="file-path">File &amp; Path</h3>
+<h4 id="file-extensions">File Extensions</h4>
+<pre class="highlight"><code class="language-bash"># Common programming files
+grep -E '\.(py|js|java|cpp|c|h|go|rs)$' filelist.txt
+
+# Data files
+grep -E '\.(csv|json|xml|yaml|txt)$' filelist.txt
+
+# Image files
+grep -E '\.(jpg|jpeg|png|gif|svg|webp)$' filelist.txt
+</code></pre>
+
+<h4 id="unix-path">Unix Path</h4>
+<pre class="highlight"><code class="language-bash"># Absolute path
+grep -E '^/([^/]+/)*[^/]+$' paths.txt
+
+# Relative path
+grep -E '^[^/]([^/]+/)*[^/]+$' paths.txt
+
+# Examples matched: /usr/local/bin, ./src/main.py
+</code></pre>
+
+<h3 id="identifiers">Identifiers</h3>
+<h4 id="uuid-universally-unique-identifier">UUID (Universally Unique Identifier)</h4>
+<pre class="highlight"><code class="language-bash"># Standard UUID format
+grep -E '\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b' file.txt
+
+# Examples matched: 550e8400-e29b-41d4-a716-446655440000
+</code></pre>
+
+<h4 id="hex-color-code">Hex Color Code</h4>
+<pre class="highlight"><code class="language-bash"># 3 or 6 digit hex colors
+grep -Eo '#[0-9A-Fa-f]{6}\b|#[0-9A-Fa-f]{3}\b' styles.css
+
+# Examples matched: #FF5733, #f00, #BADA55
+</code></pre>
+
+<h4 id="social-security-number-us">Social Security Number (US)</h4>
+<pre class="highlight"><code class="language-bash"># SSN format (XXX-XX-XXXX)
+grep -E '\b[0-9]{3}-[0-9]{2}-[0-9]{4}\b' file.txt
+
+# ⚠️ Use only for testing, never log real SSNs!
+# Examples matched: 123-45-6789
+</code></pre>
+
+<h3 id="log-code-patterns">Log &amp; Code Patterns</h3>
+<h4 id="log-level">Log Level</h4>
+<pre class="highlight"><code class="language-bash"># Common log levels
+grep -E '\b(DEBUG|INFO|WARN(ING)?|ERROR|FATAL|CRITICAL)\b' app.log
+
+# With timestamp context
+grep -E '\[[^\]]+\] (DEBUG|INFO|WARN|ERROR|FATAL)' app.log
+</code></pre>
+
+<h4 id="ipv4-cidr-notation">IPv4 CIDR Notation</h4>
+<pre class="highlight"><code class="language-bash"># IP with subnet mask
+grep -E '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/[0-9]{1,2}\b' networks.txt
+
+# Examples matched: 192.168.1.0/24, 10.0.0.0/8
+</code></pre>
+
+<h4 id="git-commit-hash">Git Commit Hash</h4>
+<pre class="highlight"><code class="language-bash"># Short hash (7 chars)
+grep -E '\b[0-9a-f]{7}\b' commits.txt
+
+# Full hash (40 chars)
+grep -E '\b[0-9a-f]{40}\b' commits.txt
+
+# Examples matched: a3d5f7e, 1234567890abcdef1234567890abcdef12345678
+</code></pre>
+
+<h3 id="practical-usage-examples">Practical Usage Examples</h3>
+<pre class="highlight"><code class="language-bash"># Extract all emails from text
+grep -Eo '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' document.txt &gt; emails.txt
+
+# Find all IP addresses in logs
+grep -Eo '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b' access.log | sort -u
+
+# Extract URLs from HTML
+grep -Eo 'https?://[^&quot;&lt;&gt;]+' page.html
+
+# Validate DNA sequences
+grep -vE '^[ATGC]+$' sequences.txt  # Show invalid sequences
+
+# Find all dates in logs
+grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' app.log | sort -u
+
+# Extract credit card numbers (for security audit)
+grep -Eo '\b[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}\b' suspicious.txt
+</code></pre>
+
+<h3 id="testing-your-regex">Testing Your Regex</h3>
+<pre class="highlight"><code class="language-bash"># Test regex interactively
+echo &quot;test@example.com&quot; | grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
+
+# Show only matching part
+echo &quot;IP: 192.168.1.1&quot; | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+
+# Test with multiple patterns
+echo -e &quot;ATGC\nATGX\nGGCC&quot; | grep -E '^[ATGC]+$'
+
+# Use online tools for complex patterns:
+# - regex101.com (with explanation)
+# - regexr.com (visual testing)
+# - debuggex.com (railroad diagrams)
+</code></pre>
+
+<h3 id="tips-for-creating-your-own-patterns">Tips for Creating Your Own Patterns</h3>
+<ol>
+<li id="item-1"><strong>Start simple</strong> — gradually increase pattern complexity</li>
+<li id="item-2"><strong>Test on real data</strong> — validate with actual examples</li>
+<li id="item-3"><strong>Consider edge cases</strong> — account for boundary conditions</li>
+<li id="item-4"><strong>Use anchors</strong> — <code>^</code> and <code>$</code> for precise positioning</li>
+<li id="item-5"><strong>Escape properly</strong> — escape special characters correctly</li>
+<li id="item-6"><strong>Document complex patterns</strong> — add comments in scripts</li>
+<li id="item-7"><strong>Balance strictness</strong> — find balance between precision and flexibility</li>
+</ol>
+<hr />
+<h2 id="quick-reference-common-regex-patterns">Quick Reference: Common Regex Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Regex</th>
+<th>Example Matches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Email</strong></td>
+<td><code>\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b</code></td>
+<td><code>user@example.com</code>, <code>john.doe@company.co.uk</code></td>
+</tr>
+<tr>
+<td><strong>IPv4 Address</strong></td>
+<td><code>\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b</code></td>
+<td><code>192.168.1.1</code>, <code>10.0.0.1</code></td>
+</tr>
+<tr>
+<td><strong>URL (HTTP/HTTPS)</strong></td>
+<td><code>https?://[A-Za-z0-9./?&amp;=_-]+</code></td>
+<td><code>https://example.com/path?id=123</code></td>
+</tr>
+<tr>
+<td><strong>Domain Name</strong></td>
+<td><code>\b([a-z0-9-]+\.)+[a-z]{2,}\b</code></td>
+<td><code>example.com</code>, <code>sub.domain.io</code></td>
+</tr>
+<tr>
+<td><strong>MAC Address</strong></td>
+<td><code>([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}</code></td>
+<td><code>00:1A:2B:3C:4D:5E</code></td>
+</tr>
+<tr>
+<td><strong>Date (ISO 8601)</strong></td>
+<td><code>[0-9]{4}-[0-9]{2}-[0-9]{2}</code></td>
+<td><code>2024-12-02</code>, <code>2023-01-15</code></td>
+</tr>
+<tr>
+<td><strong>Date (US/UK)</strong></td>
+<td><code>[0-9]{2}/[0-9]{2}/[0-9]{4}</code></td>
+<td><code>12/02/2024</code>, <code>02/12/2024</code></td>
+</tr>
+<tr>
+<td><strong>Time (24h)</strong></td>
+<td><code>([01][0-9]\|2[0-3]):[0-5][0-9]:[0-5][0-9]</code></td>
+<td><code>14:30:00</code>, <code>09:05:23</code></td>
+</tr>
+<tr>
+<td><strong>Timestamp (ISO)</strong></td>
+<td><code>[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}</code></td>
+<td><code>2024-12-02T14:30:00</code></td>
+</tr>
+<tr>
+<td><strong>Phone (US)</strong></td>
+<td><code>\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}</code></td>
+<td><code>(555) 123-4567</code>, <code>555-123-4567</code></td>
+</tr>
+<tr>
+<td><strong>Credit Card</strong></td>
+<td><code>[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}</code></td>
+<td><code>1234-5678-9012-3456</code></td>
+</tr>
+<tr>
+<td><strong>Currency (USD)</strong></td>
+<td><code>\$[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{2})?</code></td>
+<td><code>$1,234.56</code>, <code>$999</code></td>
+</tr>
+<tr>
+<td><strong>DNA Sequence</strong></td>
+<td><code>^[ATGC]+$</code></td>
+<td><code>ATGCTAGC</code>, <code>GGCCAATT</code></td>
+</tr>
+<tr>
+<td><strong>RNA Sequence</strong></td>
+<td><code>^[AUGC]+$</code></td>
+<td><code>AUGCUAGC</code>, <code>GGCCAAUU</code></td>
+</tr>
+<tr>
+<td><strong>Protein Sequence</strong></td>
+<td><code>^[ACDEFGHIKLMNPQRSTVWY]+$</code></td>
+<td><code>MKTAYIAKQR</code>, <code>ACDEFGH</code></td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td><code>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}</code></td>
+<td><code>550e8400-e29b-41d4-a716-446655440000</code></td>
+</tr>
+<tr>
+<td><strong>Hex Color</strong></td>
+<td><code>#[0-9A-Fa-f]{6}\|#[0-9A-Fa-f]{3}</code></td>
+<td><code>#FF5733</code>, <code>#f00</code></td>
+</tr>
+<tr>
+<td><strong>IPv4 CIDR</strong></td>
+<td><code>[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/[0-9]{1,2}</code></td>
+<td><code>192.168.1.0/24</code>, <code>10.0.0.0/8</code></td>
+</tr>
+<tr>
+<td><strong>Git Hash (short)</strong></td>
+<td><code>\b[0-9a-f]{7}\b</code></td>
+<td><code>a3d5f7e</code>, <code>1234567</code></td>
+</tr>
+<tr>
+<td><strong>Git Hash (full)</strong></td>
+<td><code>\b[0-9a-f]{40}\b</code></td>
+<td><code>1234567890abcdef...</code></td>
+</tr>
+<tr>
+<td><strong>Log Level</strong></td>
+<td><code>\b(DEBUG\|INFO\|WARN(ING)?\|ERROR\|FATAL\|CRITICAL)\b</code></td>
+<td><code>ERROR</code>, <code>WARNING</code>, <code>INFO</code></td>
+</tr>
+<tr>
+<td><strong>SSN (US)</strong></td>
+<td><code>[0-9]{3}-[0-9]{2}-[0-9]{4}</code></td>
+<td><code>123-45-6789</code></td>
+</tr>
+<tr>
+<td><strong>Unix Path</strong></td>
+<td><code>^/([^/]+/)*[^/]+$</code></td>
+<td><code>/usr/local/bin</code>, <code>/home/user/file.txt</code></td>
+</tr>
+<tr>
+<td><strong>File Extension</strong></td>
+<td><code>\.(txt\|csv\|json\|xml\|yaml)$</code></td>
+<td><code>.txt</code>, <code>.json</code>, <code>.csv</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="usage-with-grep">Usage with grep</h3>
+<pre class="highlight"><code class="language-bash"># Use -E for extended regex (recommended)
+grep -E 'pattern' file.txt
+
+# Case-insensitive
+grep -iE 'pattern' file.txt
+
+# Extract only matching parts
+grep -Eo 'pattern' file.txt
+
+# Show line numbers
+grep -nE 'pattern' file.txt
+
+# Invert match (exclude)
+grep -vE 'pattern' file.txt
+</code></pre>
+
+<h3 id="quick-syntax-reminder">Quick Syntax Reminder</h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>Any single character</td>
+<td><code>c.t</code> matches <code>cat</code>, <code>cot</code>, <code>c5t</code></td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>Start of line</td>
+<td><code>^Hello</code> matches lines starting with "Hello"</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>End of line</td>
+<td><code>world$</code> matches lines ending with "world"</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Zero or more</td>
+<td><code>ab*c</code> matches <code>ac</code>, <code>abc</code>, <code>abbc</code></td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>One or more</td>
+<td><code>ab+c</code> matches <code>abc</code>, <code>abbc</code> (not <code>ac</code>)</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>Zero or one</td>
+<td><code>ab?c</code> matches <code>ac</code>, <code>abc</code></td>
+</tr>
+<tr>
+<td><code>[abc]</code></td>
+<td>Character class</td>
+<td>Matches <code>a</code>, <code>b</code>, or <code>c</code></td>
+</tr>
+<tr>
+<td><code>[^abc]</code></td>
+<td>Negated class</td>
+<td>Matches anything except <code>a</code>, <code>b</code>, <code>c</code></td>
+</tr>
+<tr>
+<td><code>[a-z]</code></td>
+<td>Range</td>
+<td>Matches any lowercase letter</td>
+</tr>
+<tr>
+<td><code>\|</code></td>
+<td>Alternation (OR)</td>
+<td><code>cat\|dog</code> matches <code>cat</code> or <code>dog</code></td>
+</tr>
+<tr>
+<td><code>()</code></td>
+<td>Grouping</td>
+<td><code>(ab)+</code> matches <code>ab</code>, <code>abab</code>, <code>ababab</code></td>
+</tr>
+<tr>
+<td><code>{n}</code></td>
+<td>Exactly n times</td>
+<td><code>[0-9]{3}</code> matches exactly 3 digits</td>
+</tr>
+<tr>
+<td><code>{n,}</code></td>
+<td>n or more times</td>
+<td><code>[0-9]{3,}</code> matches 3+ digits</td>
+</tr>
+<tr>
+<td><code>{n,m}</code></td>
+<td>Between n and m</td>
+<td><code>[0-9]{2,4}</code> matches 2-4 digits</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Word boundary</td>
+<td><code>\bcat\b</code> matches "cat" but not "category"</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>Digit (some tools)</td>
+<td>Equivalent to <code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Word character</td>
+<td>Equivalent to <code>[A-Za-z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Whitespace</td>
+<td>Matches space, tab, newline</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>Escape character</td>
+<td><code>\.</code> matches literal dot</td>
+</tr>
+</tbody>
+</table>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

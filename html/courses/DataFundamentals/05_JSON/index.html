@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>JSON | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="json">JSON</h1>
+<h2 id="syntax-validation-and-processing-tools-for-bioinformatics">Syntax, Validation, and Processing Tools for Bioinformatics</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Understand text formats (Module 04_FileFormats)</li>
+<li>Know the basics of character encodings (UTF-8)</li>
+<li>Have a basic understanding of data structures</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Read and write valid JSON</li>
+<li>Validate JSON and find syntax errors</li>
+<li>Use <code>jq</code> for processing JSON on the command line</li>
+<li>Work with JSON in Python and other languages</li>
+<li>Understand JSON limitations and workarounds</li>
+<li>Process biological data stored in JSON format</li>
+</ul>
+<hr />
+<h2 id="1-what-is-json">1. What is JSON</h2>
+<h3 id="11-definition">1.1 Definition</h3>
+<p><strong>JSON</strong> (JavaScript Object Notation) — a text-based data interchange format.</p>
+<ul>
+<li>Invented by Douglas Crockford in the early 2000s</li>
+<li>Standardized: ECMA-404, RFC 8259</li>
+<li>Language-independent</li>
+<li>Human-readable</li>
+</ul>
+<h3 id="12-where-json-is-used">1.2 Where JSON is Used</h3>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web APIs</td>
+<td>REST API requests and responses</td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td>package.json, tsconfig.json, tool configs</td>
+</tr>
+<tr>
+<td>Databases</td>
+<td>MongoDB, PostgreSQL JSONB columns</td>
+</tr>
+<tr>
+<td>Logging</td>
+<td>Structured logging</td>
+</tr>
+<tr>
+<td>Data Exchange</td>
+<td>Between services, client-server communication</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APIs</td>
+<td>NCBI E-utilities, Ensembl REST API, UniProt API</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Experimental metadata, sample descriptions</td>
+</tr>
+<tr>
+<td>Tool Config</td>
+<td>Bioinformatics pipeline configurations</td>
+</tr>
+<tr>
+<td>Annotations</td>
+<td>Gene annotations, variant annotations</td>
+</tr>
+<tr>
+<td>Results</td>
+<td>Analysis results from tools like bcftools, bedtools</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-example-json">1.3 Example JSON</h3>
+<p><strong>Generic Example:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;name&quot;: &quot;Alice&quot;,
+  &quot;age&quot;: 30,
+  &quot;isActive&quot;: true,
+  &quot;balance&quot;: null,
+  &quot;skills&quot;: [&quot;Python&quot;, &quot;SQL&quot;, &quot;Docker&quot;],
+  &quot;address&quot;: {
+    &quot;city&quot;: &quot;Boston&quot;,
+    &quot;zip&quot;: &quot;02101&quot;
+  }
+}
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Sample Metadata):</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;sample_id&quot;: &quot;PAT001&quot;,
+  &quot;patient_age&quot;: 45,
+  &quot;diagnosis&quot;: &quot;Type 2 Diabetes&quot;,
+  &quot;sequenced&quot;: true,
+  &quot;coverage&quot;: 30.5,
+  &quot;platform&quot;: &quot;Illumina NovaSeq&quot;,
+  &quot;tissue_types&quot;: [&quot;blood&quot;, &quot;liver&quot;],
+  &quot;quality_metrics&quot;: {
+    &quot;phred_score&quot;: 35,
+    &quot;gc_content&quot;: 0.42
+  },
+  &quot;variants_called&quot;: null
+}
+</code></pre>
+
+<hr />
+<h2 id="2-json-syntax">2. JSON Syntax</h2>
+<h3 id="21-data-types">2.1 Data Types</h3>
+<p>JSON supports <strong>6 data types</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String</td>
+<td><code>"hello"</code></td>
+<td>String in double quotes</td>
+</tr>
+<tr>
+<td>Number</td>
+<td><code>42</code>, <code>3.14</code>, <code>-5</code>, <code>1e10</code></td>
+<td>Integer or floating-point</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><code>true</code>, <code>false</code></td>
+<td>Boolean value</td>
+</tr>
+<tr>
+<td>Null</td>
+<td><code>null</code></td>
+<td>Absence of value</td>
+</tr>
+<tr>
+<td>Array</td>
+<td><code>[1, 2, 3]</code></td>
+<td>Ordered list</td>
+</tr>
+<tr>
+<td>Object</td>
+<td><code>{"key": "value"}</code></td>
+<td>Set of key-value pairs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-strings">2.2 Strings</h3>
+<pre class="highlight"><code class="language-json">{
+  &quot;simple&quot;: &quot;Hello, World!&quot;,
+  &quot;unicode&quot;: &quot;Привет, мир! 你好 🎉&quot;,
+  &quot;escaped&quot;: &quot;Line 1\nLine 2\tTabbed&quot;,
+  &quot;quotes&quot;: &quot;He said \&quot;Hello\&quot;&quot;,
+  &quot;path&quot;: &quot;C:\\Users\\name&quot;,
+  &quot;special&quot;: &quot;\u0041&quot;,
+  &quot;gene&quot;: &quot;TNF-α&quot;
+}
+</code></pre>
+
+<p><strong>Escape sequences:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\"</code></td>
+<td>Double quote</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>Backslash</td>
+</tr>
+<tr>
+<td><code>\/</code></td>
+<td>Forward slash (optional)</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>Newline</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>Carriage return</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>Tab</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Backspace</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>Form feed</td>
+</tr>
+<tr>
+<td><code>\uXXXX</code></td>
+<td>Unicode character</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 Bioinformatics Note:</strong><br />
+Gene names often contain special characters (TNF-α, IL-1β). UTF-8 encoding in JSON handles these naturally without escape sequences.</p>
+<h3 id="23-numbers">2.3 Numbers</h3>
+<pre class="highlight"><code class="language-json">{
+  &quot;integer&quot;: 42,
+  &quot;negative&quot;: -17,
+  &quot;float&quot;: 3.14159,
+  &quot;exponent&quot;: 1.5e10,
+  &quot;negativeExp&quot;: 2.5e-3,
+  &quot;coverage&quot;: 30.5,
+  &quot;quality_score&quot;: 35
+}
+</code></pre>
+
+<p><strong>Not supported:</strong></p>
+<ul>
+<li>Leading zeros: <code>007</code> ❌</li>
+<li>Hexadecimal: <code>0xFF</code> ❌</li>
+<li>Infinity, NaN ❌</li>
+<li>Octal: <code>0o755</code> ❌</li>
+</ul>
+<p><strong>🧬 Note:</strong> Quality scores, coverage values, and p-values are commonly stored as JSON numbers.</p>
+<h3 id="24-arrays">2.4 Arrays</h3>
+<pre class="highlight"><code class="language-json">{
+  &quot;numbers&quot;: [1, 2, 3, 4, 5],
+  &quot;strings&quot;: [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;],
+  &quot;mixed&quot;: [1, &quot;two&quot;, true, null],
+  &quot;nested&quot;: [[1, 2], [3, 4]],
+  &quot;empty&quot;: [],
+  &quot;chromosomes&quot;: [&quot;chr1&quot;, &quot;chr2&quot;, &quot;chr3&quot;],
+  &quot;gene_ids&quot;: [&quot;ENSG00000139618&quot;, &quot;ENSG00000141510&quot;],
+  &quot;phred_scores&quot;: [35, 37, 39, 40]
+}
+</code></pre>
+
+<h3 id="25-objects">2.5 Objects</h3>
+<pre class="highlight"><code class="language-json">{
+  &quot;patient&quot;: {
+    &quot;id&quot;: &quot;PAT001&quot;,
+    &quot;age&quot;: 45,
+    &quot;diagnosis&quot;: &quot;Type 2 Diabetes&quot;
+  },
+  &quot;sequencing&quot;: {
+    &quot;platform&quot;: &quot;Illumina&quot;,
+    &quot;quality&quot;: {
+      &quot;phred&quot;: 35,
+      &quot;gc_content&quot;: 0.42
+    }
+  }
+}
+</code></pre>
+
+<p><strong>Rules:</strong></p>
+<ul>
+<li>Keys ALWAYS in double quotes</li>
+<li>Key order is not guaranteed</li>
+<li>Duplicate keys — undefined behavior</li>
+</ul>
+<h3 id="26-complete-example-gene-annotation">2.6 Complete Example (Gene Annotation)</h3>
+<pre class="highlight"><code class="language-json">{
+  &quot;gene_id&quot;: &quot;ENSG00000139618&quot;,
+  &quot;gene_name&quot;: &quot;BRCA2&quot;,
+  &quot;chromosome&quot;: &quot;chr13&quot;,
+  &quot;start&quot;: 32889611,
+  &quot;end&quot;: 32973805,
+  &quot;strand&quot;: &quot;+&quot;,
+  &quot;biotype&quot;: &quot;protein_coding&quot;,
+  &quot;is_canonical&quot;: true,
+  &quot;expression_level&quot;: 125.5,
+  &quot;aliases&quot;: [&quot;FANCD1&quot;, &quot;BRCC2&quot;],
+  &quot;description&quot;: &quot;BRCA2 DNA repair associated&quot;,
+  &quot;go_terms&quot;: null,
+  &quot;variants&quot;: [
+    {
+      &quot;variant_id&quot;: &quot;rs80359550&quot;,
+      &quot;position&quot;: 32912299,
+      &quot;ref&quot;: &quot;A&quot;,
+      &quot;alt&quot;: &quot;G&quot;,
+      &quot;clinical_significance&quot;: &quot;pathogenic&quot;
+    },
+    {
+      &quot;variant_id&quot;: &quot;rs80359505&quot;,
+      &quot;position&quot;: 32913055,
+      &quot;ref&quot;: &quot;C&quot;,
+      &quot;alt&quot;: &quot;T&quot;,
+      &quot;clinical_significance&quot;: &quot;likely_pathogenic&quot;
+    }
+  ]
+}
+</code></pre>
+
+<hr />
+<h2 id="3-common-errors">3. Common Errors</h2>
+<h3 id="31-trailing-comma">3.1 Trailing Comma</h3>
+<p>❌ <strong>Error:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;name&quot;: &quot;Alice&quot;,
+  &quot;age&quot;: 30,
+}
+</code></pre>
+
+<p>✅ <strong>Correct:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;name&quot;: &quot;Alice&quot;,
+  &quot;age&quot;: 30
+}
+</code></pre>
+
+<h3 id="32-single-quotes">3.2 Single Quotes</h3>
+<p>❌ <strong>Error:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  'name': 'Alice'
+}
+</code></pre>
+
+<p>✅ <strong>Correct:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;name&quot;: &quot;Alice&quot;
+}
+</code></pre>
+
+<h3 id="33-comments">3.3 Comments</h3>
+<p>❌ <strong>Error:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;name&quot;: &quot;Alice&quot;,  // patient name
+  /* multi-line comment */
+  &quot;age&quot;: 30
+}
+</code></pre>
+
+<p>✅ <strong>JSON does not support comments!</strong></p>
+<blockquote>
+<p><strong>💡 Pro Tip:</strong><br />
+For configurations with comments, use YAML, JSONC (VS Code), or JSON5.</p>
+</blockquote>
+<h3 id="34-unquoted-keys">3.4 Unquoted Keys</h3>
+<p>❌ <strong>Error:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  name: &quot;Alice&quot;
+}
+</code></pre>
+
+<p>✅ <strong>Correct:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;name&quot;: &quot;Alice&quot;
+}
+</code></pre>
+
+<h3 id="35-special-numbers">3.5 Special Numbers</h3>
+<p>❌ <strong>Error:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;value&quot;: NaN,
+  &quot;max&quot;: Infinity
+}
+</code></pre>
+
+<p>✅ <strong>Alternatives:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;value&quot;: null,
+  &quot;max&quot;: 1e308
+}
+</code></pre>
+
+<hr />
+<h2 id="4-json-validation">4. JSON Validation</h2>
+<h3 id="41-command-line">4.1 Command Line</h3>
+<pre class="highlight"><code class="language-bash"># jq — validation and formatting
+echo '{&quot;name&quot;:&quot;Alice&quot;}' | jq .
+# {
+#   &quot;name&quot;: &quot;Alice&quot;
+# }
+
+# Validate a file
+jq . config.json
+
+# If JSON is invalid — error
+echo '{&quot;name&quot;:}' | jq .
+# parse error: Invalid numeric literal at line 1, column 9
+
+# python -m json.tool
+echo '{&quot;name&quot;:&quot;Alice&quot;}' | python3 -m json.tool
+
+# Syntax check
+python3 -m json.tool config.json &gt; /dev/null &amp;&amp; echo &quot;Valid JSON&quot;
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-bash"># Validate gene annotation JSON
+jq . gene_annotations.json
+
+# Validate API response from Ensembl
+curl -s &quot;https://rest.ensembl.org/lookup/id/ENSG00000139618?content-type=application/json&quot; | jq .
+
+# Check experimental metadata
+jq . experiment_metadata.json &gt; /dev/null &amp;&amp; echo &quot;Metadata is valid&quot;
+</code></pre>
+
+<h3 id="42-online-tools">4.2 Online Tools</h3>
+<ul>
+<li><a href="https://jsonlint.com/">JSONLint</a> — validation</li>
+<li><a href="https://jsonformatter.org/">JSON Formatter</a> — formatting</li>
+<li><a href="https://jqplay.org/">jq play</a> — testing jq queries</li>
+</ul>
+<h3 id="43-python-validation">4.3 Python Validation</h3>
+<pre class="highlight"><code class="language-python">import json
+
+def validate_json(json_string):
+    &quot;&quot;&quot;Validates a JSON string.&quot;&quot;&quot;
+    try:
+        json.loads(json_string)
+        return True, None
+    except json.JSONDecodeError as e:
+        return False, str(e)
+
+# Examples
+valid, error = validate_json('{&quot;name&quot;: &quot;Alice&quot;}')
+print(f&quot;Valid: {valid}&quot;)  # Valid: True
+
+valid, error = validate_json('{&quot;name&quot;: }')
+print(f&quot;Valid: {valid}, Error: {error}&quot;)
+# Valid: False, Error: Expecting value: line 1 column 10 (char 9)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">def validate_sample_metadata(metadata_str):
+    &quot;&quot;&quot;Validates sample metadata JSON.&quot;&quot;&quot;
+    try:
+        data = json.loads(metadata_str)
+
+        # Additional validation
+        required_fields = ['sample_id', 'platform', 'coverage']
+        missing = [f for f in required_fields if f not in data]
+
+        if missing:
+            return False, f&quot;Missing required fields: {missing}&quot;
+
+        return True, None
+    except json.JSONDecodeError as e:
+        return False, f&quot;JSON syntax error: {e}&quot;
+
+# Example
+metadata = '{&quot;sample_id&quot;: &quot;PAT001&quot;, &quot;platform&quot;: &quot;Illumina&quot;, &quot;coverage&quot;: 30.5}'
+valid, error = validate_sample_metadata(metadata)
+print(f&quot;Valid: {valid}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="5-jq-powerful-json-tool">5. jq — Powerful JSON Tool</h2>
+<h3 id="51-jq-basics">5.1 jq Basics</h3>
+<pre class="highlight"><code class="language-bash"># Pretty print
+cat data.json | jq .
+
+# Compact output
+jq -c . data.json
+
+# Extract field
+echo '{&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:30}' | jq '.name'
+# &quot;Alice&quot;
+
+# Raw output (no quotes)
+echo '{&quot;name&quot;:&quot;Alice&quot;}' | jq -r '.name'
+# Alice
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Extract gene name
+echo '{&quot;gene_id&quot;:&quot;ENSG00000139618&quot;,&quot;gene_name&quot;:&quot;BRCA2&quot;}' | jq -r '.gene_name'
+# BRCA2
+
+# Get quality score
+echo '{&quot;sample&quot;:&quot;PAT001&quot;,&quot;phred_score&quot;:35}' | jq '.phred_score'
+# 35
+</code></pre>
+
+<h3 id="52-navigating-structure">5.2 Navigating Structure</h3>
+<pre class="highlight"><code class="language-bash"># Nested fields
+echo '{&quot;user&quot;:{&quot;name&quot;:&quot;Alice&quot;}}' | jq '.user.name'
+# &quot;Alice&quot;
+
+# Array element
+echo '{&quot;items&quot;:[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]}' | jq '.items[0]'
+# &quot;a&quot;
+
+# All array elements
+echo '{&quot;items&quot;:[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]}' | jq '.items[]'
+# &quot;a&quot;
+# &quot;b&quot;
+# &quot;c&quot;
+
+# Last element
+echo '[1,2,3,4,5]' | jq '.[-1]'
+# 5
+
+# Slice
+echo '[1,2,3,4,5]' | jq '.[1:3]'
+# [2, 3]
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Extract nested annotation
+echo '{&quot;gene&quot;:{&quot;annotation&quot;:{&quot;function&quot;:&quot;DNA repair&quot;}}}' | jq '.gene.annotation.function'
+# &quot;DNA repair&quot;
+
+# Get first variant
+echo '{&quot;variants&quot;:[{&quot;id&quot;:&quot;rs123&quot;},{&quot;id&quot;:&quot;rs456&quot;}]}' | jq '.variants[0].id'
+# &quot;rs123&quot;
+
+# List all chromosomes
+echo '{&quot;data&quot;:[{&quot;chr&quot;:&quot;chr1&quot;},{&quot;chr&quot;:&quot;chr2&quot;}]}' | jq '.data[].chr'
+# &quot;chr1&quot;
+# &quot;chr2&quot;
+</code></pre>
+
+<h3 id="53-filtering-and-transformation">5.3 Filtering and Transformation</h3>
+<pre class="highlight"><code class="language-bash"># Sample data
+cat &gt; samples.json &lt;&lt; 'EOF'
+[
+  {&quot;sample_id&quot;: &quot;PAT001&quot;, &quot;coverage&quot;: 30, &quot;qc_pass&quot;: true},
+  {&quot;sample_id&quot;: &quot;PAT002&quot;, &quot;coverage&quot;: 15, &quot;qc_pass&quot;: false},
+  {&quot;sample_id&quot;: &quot;PAT003&quot;, &quot;coverage&quot;: 35, &quot;qc_pass&quot;: true}
+]
+EOF
+
+# Filter by condition
+jq '.[] | select(.qc_pass == true)' samples.json
+# {&quot;sample_id&quot;: &quot;PAT001&quot;, &quot;coverage&quot;: 30, &quot;qc_pass&quot;: true}
+# {&quot;sample_id&quot;: &quot;PAT003&quot;, &quot;coverage&quot;: 35, &quot;qc_pass&quot;: true}
+
+# Extract fields
+jq '.[].sample_id' samples.json
+# &quot;PAT001&quot;
+# &quot;PAT002&quot;
+# &quot;PAT003&quot;
+
+# Create new object
+jq '.[] | {id: .sample_id, cov: .coverage}' samples.json
+
+# Convert to array
+jq '[.[] | .sample_id]' samples.json
+# [&quot;PAT001&quot;, &quot;PAT002&quot;, &quot;PAT003&quot;]
+
+# High coverage samples
+jq '[.[] | select(.coverage &gt; 20)]' samples.json
+</code></pre>
+
+<p><strong>🧬 Advanced Filtering:</strong></p>
+<pre class="highlight"><code class="language-bash"># Genes on specific chromosome
+cat &gt; genes.json &lt;&lt; 'EOF'
+[
+  {&quot;gene&quot;: &quot;BRCA1&quot;, &quot;chr&quot;: &quot;chr17&quot;, &quot;length&quot;: 81189},
+  {&quot;gene&quot;: &quot;BRCA2&quot;, &quot;chr&quot;: &quot;chr13&quot;, &quot;length&quot;: 84195},
+  {&quot;gene&quot;: &quot;TP53&quot;, &quot;chr&quot;: &quot;chr17&quot;, &quot;length&quot;: 19149}
+]
+EOF
+
+jq '[.[] | select(.chr == &quot;chr17&quot;)]' genes.json
+
+# Long genes (&gt; 50kb)
+jq '[.[] | select(.length &gt; 50000) | .gene]' genes.json
+# [&quot;BRCA1&quot;, &quot;BRCA2&quot;]
+</code></pre>
+
+<h3 id="54-data-modification">5.4 Data Modification</h3>
+<pre class="highlight"><code class="language-bash"># Add field
+echo '{&quot;name&quot;:&quot;Alice&quot;}' | jq '. + {age: 30}'
+# {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}
+
+# Update field
+echo '{&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:30}' | jq '.age = 31'
+# {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 31}
+
+# Delete field
+echo '{&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:30}' | jq 'del(.age)'
+# {&quot;name&quot;: &quot;Alice&quot;}
+
+# Update nested
+echo '{&quot;user&quot;:{&quot;name&quot;:&quot;Alice&quot;}}' | jq '.user.name = &quot;Bob&quot;'
+# {&quot;user&quot;: {&quot;name&quot;: &quot;Bob&quot;}}
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Add QC status
+echo '{&quot;sample&quot;:&quot;PAT001&quot;,&quot;coverage&quot;:30}' | jq '. + {qc_status: &quot;pass&quot;}'
+
+# Update annotation
+echo '{&quot;gene&quot;:&quot;BRCA2&quot;,&quot;function&quot;:null}' | jq '.function = &quot;DNA repair&quot;'
+
+# Add calculated field
+echo '{&quot;reads&quot;:1000000,&quot;mapped&quot;:950000}' | \
+  jq '. + {mapping_rate: (.mapped / .reads * 100)}'
+</code></pre>
+
+<h3 id="55-aggregation">5.5 Aggregation</h3>
+<pre class="highlight"><code class="language-bash"># Count elements
+jq 'length' samples.json
+# 3
+
+# Sum
+echo '[1,2,3,4,5]' | jq 'add'
+# 15
+
+# Average coverage
+jq '[.[].coverage] | add / length' samples.json
+# 26.67
+
+# Sort
+jq 'sort_by(.coverage)' samples.json
+
+# Group
+jq 'group_by(.qc_pass)' samples.json
+
+# Unique values
+echo '[&quot;chr1&quot;,&quot;chr2&quot;,&quot;chr1&quot;,&quot;chr3&quot;,&quot;chr2&quot;]' | jq 'unique'
+# [&quot;chr1&quot;, &quot;chr2&quot;, &quot;chr3&quot;]
+</code></pre>
+
+<p><strong>🧬 Statistical Analysis:</strong></p>
+<pre class="highlight"><code class="language-bash"># Total sequencing coverage
+cat &gt; experiments.json &lt;&lt; 'EOF'
+[
+  {&quot;sample&quot;: &quot;S1&quot;, &quot;reads&quot;: 1000000},
+  {&quot;sample&quot;: &quot;S2&quot;, &quot;reads&quot;: 1500000},
+  {&quot;sample&quot;: &quot;S3&quot;, &quot;reads&quot;: 1200000}
+]
+EOF
+
+jq '[.[].reads] | add' experiments.json
+# 3700000
+
+# Average read count
+jq '[.[].reads] | add / length' experiments.json
+# 1233333.33
+
+# Samples with above-average reads
+jq 'map(select(.reads &gt; 1233333))' experiments.json
+</code></pre>
+
+<h3 id="56-practical-examples">5.6 Practical Examples</h3>
+<pre class="highlight"><code class="language-bash"># Extract all emails from API response
+curl -s https://api.example.com/users | jq '.[].email'
+
+# Convert JSON to CSV
+jq -r '.[] | [.sample_id, .coverage] | @csv' samples.json
+# &quot;PAT001&quot;,30
+# &quot;PAT002&quot;,15
+# &quot;PAT003&quot;,35
+
+# Find high coverage samples
+jq '[.[] | select(.coverage &gt; 25)]' samples.json
+
+# Count by condition
+jq '[.[] | select(.qc_pass)] | length' samples.json
+# 2
+
+# Format for report
+jq -r '.[] | &quot;Sample: \(.sample_id), Coverage: \(.coverage)x&quot;' samples.json
+# Sample: PAT001, Coverage: 30x
+# Sample: PAT002, Coverage: 15x
+# Sample: PAT003, Coverage: 35x
+</code></pre>
+
+<p><strong>🧬 Real Bioinformatics Workflows:</strong></p>
+<pre class="highlight"><code class="language-bash"># Query Ensembl API and extract gene info
+curl -s &quot;https://rest.ensembl.org/lookup/id/ENSG00000139618?content-type=application/json&quot; | \
+  jq '{gene: .display_name, chr: .seq_region_name, start: .start, end: .end}'
+
+# Process variant calling results
+jq '[.variants[] | select(.quality &gt; 30 and .depth &gt; 20)]' variants.json
+
+# Extract pathogenic variants
+jq '[.variants[] | select(.clinical_significance == &quot;pathogenic&quot;)]' clinvar.json
+
+# Generate sample summary
+jq 'group_by(.qc_pass) | map({status: .[0].qc_pass, count: length})' samples.json
+</code></pre>
+
+<hr />
+<h2 id="6-json-in-python">6. JSON in Python</h2>
+<h3 id="61-basic-operations">6.1 Basic Operations</h3>
+<pre class="highlight"><code class="language-python">import json
+
+# Python dict → JSON string
+data = {
+    &quot;name&quot;: &quot;Alice&quot;,
+    &quot;age&quot;: 30,
+    &quot;skills&quot;: [&quot;Python&quot;, &quot;SQL&quot;]
+}
+
+json_string = json.dumps(data)
+print(json_string)
+# {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30, &quot;skills&quot;: [&quot;Python&quot;, &quot;SQL&quot;]}
+
+# With formatting
+pretty_json = json.dumps(data, indent=2)
+print(pretty_json)
+# {
+#   &quot;name&quot;: &quot;Alice&quot;,
+#   &quot;age&quot;: 30,
+#   &quot;skills&quot;: [&quot;Python&quot;, &quot;SQL&quot;]
+# }
+
+# JSON string → Python dict
+parsed = json.loads(json_string)
+print(parsed[&quot;name&quot;])  # Alice
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python"># Sample metadata
+sample = {
+    &quot;sample_id&quot;: &quot;PAT001&quot;,
+    &quot;age&quot;: 45,
+    &quot;diagnosis&quot;: &quot;Type 2 Diabetes&quot;,
+    &quot;sequencing_platform&quot;: &quot;Illumina NovaSeq&quot;,
+    &quot;coverage&quot;: 30.5,
+    &quot;qc_pass&quot;: True
+}
+
+# Export to JSON
+json_string = json.dumps(sample, indent=2)
+print(json_string)
+
+# Parse from string
+parsed_sample = json.loads(json_string)
+print(f&quot;Sample {parsed_sample['sample_id']} coverage: {parsed_sample['coverage']}x&quot;)
+</code></pre>
+
+<h3 id="62-working-with-files">6.2 Working with Files</h3>
+<pre class="highlight"><code class="language-python">import json
+
+# Write to file
+data = {&quot;samples&quot;: [{&quot;id&quot;: &quot;PAT001&quot;}, {&quot;id&quot;: &quot;PAT002&quot;}]}
+
+with open(&quot;data.json&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+
+# Read from file
+with open(&quot;data.json&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    loaded = json.load(f)
+    print(loaded)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python"># Save gene annotations
+annotations = {
+    &quot;gene_id&quot;: &quot;ENSG00000139618&quot;,
+    &quot;gene_name&quot;: &quot;BRCA2&quot;,
+    &quot;chromosome&quot;: &quot;chr13&quot;,
+    &quot;variants&quot;: [
+        {&quot;id&quot;: &quot;rs80359550&quot;, &quot;clinical_significance&quot;: &quot;pathogenic&quot;},
+        {&quot;id&quot;: &quot;rs80359505&quot;, &quot;clinical_significance&quot;: &quot;likely_pathogenic&quot;}
+    ]
+}
+
+with open(&quot;brca2_annotation.json&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    json.dump(annotations, f, indent=2, ensure_ascii=False)
+
+# Load annotations
+with open(&quot;brca2_annotation.json&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    gene_data = json.load(f)
+    print(f&quot;Gene: {gene_data['gene_name']}&quot;)
+    print(f&quot;Variants: {len(gene_data['variants'])}&quot;)
+</code></pre>
+
+<h3 id="63-error-handling">6.3 Error Handling</h3>
+<pre class="highlight"><code class="language-python">import json
+
+def safe_parse_json(json_string):
+    &quot;&quot;&quot;Safely parse JSON.&quot;&quot;&quot;
+    try:
+        return json.loads(json_string), None
+    except json.JSONDecodeError as e:
+        return None, {
+            &quot;error&quot;: str(e),
+            &quot;line&quot;: e.lineno,
+            &quot;column&quot;: e.colno,
+            &quot;position&quot;: e.pos
+        }
+
+# Example
+data, error = safe_parse_json('{&quot;name&quot;: invalid}')
+if error:
+    print(f&quot;Error at line {error['line']}, column {error['column']}: {error['error']}&quot;)
+</code></pre>
+
+<h3 id="64-custom-serialization">6.4 Custom Serialization</h3>
+<pre class="highlight"><code class="language-python">import json
+from datetime import datetime, date
+from decimal import Decimal
+
+class CustomEncoder(json.JSONEncoder):
+    &quot;&quot;&quot;Custom encoder for types not natively supported by JSON.&quot;&quot;&quot;
+
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        if isinstance(obj, date):
+            return obj.isoformat()
+        if isinstance(obj, Decimal):
+            return float(obj)
+        if isinstance(obj, bytes):
+            return obj.decode('utf-8')
+        if isinstance(obj, set):
+            return list(obj)
+        return super().default(obj)
+
+# Usage
+data = {
+    &quot;timestamp&quot;: datetime.now(),
+    &quot;price&quot;: Decimal(&quot;19.99&quot;),
+    &quot;tags&quot;: {&quot;python&quot;, &quot;json&quot;}
+}
+
+json_string = json.dumps(data, cls=CustomEncoder, indent=2)
+print(json_string)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">from datetime import datetime
+from decimal import Decimal
+
+class BioinfoEncoder(json.JSONEncoder):
+    &quot;&quot;&quot;Encoder for bioinformatics data types.&quot;&quot;&quot;
+
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        if isinstance(obj, Decimal):
+            return float(obj)
+        if isinstance(obj, set):
+            return sorted(list(obj))  # Sort for reproducibility
+        return super().default(obj)
+
+# Experimental results
+experiment = {
+    &quot;experiment_id&quot;: &quot;EXP001&quot;,
+    &quot;date&quot;: datetime.now(),
+    &quot;p_value&quot;: Decimal(&quot;0.00123&quot;),
+    &quot;significant_genes&quot;: {&quot;BRCA1&quot;, &quot;BRCA2&quot;, &quot;TP53&quot;},
+    &quot;fold_changes&quot;: [1.5, 2.3, -1.8]
+}
+
+json_output = json.dumps(experiment, cls=BioinfoEncoder, indent=2)
+print(json_output)
+</code></pre>
+
+<h3 id="65-working-with-large-files">6.5 Working with Large Files</h3>
+<pre class="highlight"><code class="language-python">import json
+
+# For very large files — line-by-line reading (JSON Lines)
+def read_jsonl(filepath):
+    &quot;&quot;&quot;Reads a JSON Lines file (one JSON object per line).&quot;&quot;&quot;
+    with open(filepath, 'r', encoding='utf-8') as f:
+        for line in f:
+            if line.strip():
+                yield json.loads(line)
+
+# Write JSON Lines
+def write_jsonl(filepath, items):
+    &quot;&quot;&quot;Writes an iterable as JSON Lines.&quot;&quot;&quot;
+    with open(filepath, 'w', encoding='utf-8') as f:
+        for item in items:
+            f.write(json.dumps(item) + '\n')
+
+# Usage
+users = [{&quot;name&quot;: &quot;Alice&quot;}, {&quot;name&quot;: &quot;Bob&quot;}]
+write_jsonl(&quot;users.jsonl&quot;, users)
+
+for user in read_jsonl(&quot;users.jsonl&quot;):
+    print(user)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Processing Large Variant Files):</strong></p>
+<pre class="highlight"><code class="language-python">def process_variants_jsonl(input_file, output_file, min_quality=30):
+    &quot;&quot;&quot;
+    Filter variants from JSON Lines format.
+    Useful for large variant calling results.
+    &quot;&quot;&quot;
+    filtered_count = 0
+
+    with open(output_file, 'w', encoding='utf-8') as out:
+        for variant in read_jsonl(input_file):
+            if variant.get('quality', 0) &gt;= min_quality:
+                out.write(json.dumps(variant) + '\n')
+                filtered_count += 1
+
+    return filtered_count
+
+# Usage
+# Process millions of variants without loading all into memory
+count = process_variants_jsonl(&quot;all_variants.jsonl&quot;, &quot;high_quality_variants.jsonl&quot;)
+print(f&quot;Filtered {count} high-quality variants&quot;)
+</code></pre>
+
+<hr />
+<h2 id="7-json-schema">7. JSON Schema</h2>
+<h3 id="71-what-is-json-schema">7.1 What is JSON Schema</h3>
+<p><strong>JSON Schema</strong> — a way to describe the structure of a JSON document for validation.</p>
+<pre class="highlight"><code class="language-json">{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;name&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1
+    },
+    &quot;age&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 0,
+      &quot;maximum&quot;: 150
+    },
+    &quot;email&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;format&quot;: &quot;email&quot;
+    }
+  },
+  &quot;required&quot;: [&quot;name&quot;, &quot;email&quot;]
+}
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Sample Metadata Schema):</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,
+  &quot;title&quot;: &quot;Sample Metadata&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;sample_id&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;pattern&quot;: &quot;^[A-Z]{3}[0-9]{3}$&quot;
+    },
+    &quot;patient_age&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 0,
+      &quot;maximum&quot;: 120
+    },
+    &quot;coverage&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;minimum&quot;: 0
+    },
+    &quot;platform&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [&quot;Illumina NovaSeq&quot;, &quot;Illumina HiSeq&quot;, &quot;PacBio&quot;, &quot;Oxford Nanopore&quot;]
+    },
+    &quot;qc_pass&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;
+    }
+  },
+  &quot;required&quot;: [&quot;sample_id&quot;, &quot;platform&quot;, &quot;coverage&quot;]
+}
+</code></pre>
+
+<h3 id="72-schema-validation-in-python">7.2 Schema Validation in Python</h3>
+<pre class="highlight"><code class="language-python">from jsonschema import validate, ValidationError
+
+schema = {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+        &quot;name&quot;: {&quot;type&quot;: &quot;string&quot;},
+        &quot;age&quot;: {&quot;type&quot;: &quot;integer&quot;, &quot;minimum&quot;: 0}
+    },
+    &quot;required&quot;: [&quot;name&quot;]
+}
+
+# Valid data
+valid_data = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}
+validate(valid_data, schema)  # OK
+
+# Invalid data
+invalid_data = {&quot;age&quot;: -5}
+try:
+    validate(invalid_data, schema)
+except ValidationError as e:
+    print(f&quot;Validation error: {e.message}&quot;)
+    # Validation error: 'name' is a required property
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">from jsonschema import validate, ValidationError
+
+sample_schema = {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;properties&quot;: {
+        &quot;sample_id&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;pattern&quot;: &quot;^[A-Z]{3}[0-9]{3}$&quot;
+        },
+        &quot;coverage&quot;: {
+            &quot;type&quot;: &quot;number&quot;,
+            &quot;minimum&quot;: 10,
+            &quot;maximum&quot;: 100
+        },
+        &quot;platform&quot;: {
+            &quot;type&quot;: &quot;string&quot;,
+            &quot;enum&quot;: [&quot;Illumina NovaSeq&quot;, &quot;Illumina HiSeq&quot;, &quot;PacBio&quot;]
+        }
+    },
+    &quot;required&quot;: [&quot;sample_id&quot;, &quot;platform&quot;, &quot;coverage&quot;]
+}
+
+# Valid sample
+valid_sample = {
+    &quot;sample_id&quot;: &quot;PAT001&quot;,
+    &quot;platform&quot;: &quot;Illumina NovaSeq&quot;,
+    &quot;coverage&quot;: 30.5
+}
+
+try:
+    validate(valid_sample, sample_schema)
+    print(&quot;✓ Sample metadata is valid&quot;)
+except ValidationError as e:
+    print(f&quot;✗ Validation error: {e.message}&quot;)
+
+# Invalid sample (bad sample ID format)
+invalid_sample = {
+    &quot;sample_id&quot;: &quot;invalid_id&quot;,
+    &quot;platform&quot;: &quot;Illumina NovaSeq&quot;,
+    &quot;coverage&quot;: 30.5
+}
+
+try:
+    validate(invalid_sample, sample_schema)
+except ValidationError as e:
+    print(f&quot;✗ Validation error: {e.message}&quot;)
+    # 'invalid_id' does not match '^[A-Z]{3}[0-9]{3}$'
+</code></pre>
+
+<hr />
+<h2 id="8-alternatives-to-json">8. Alternatives to JSON</h2>
+<h3 id="81-when-json-is-not-suitable">8.1 When JSON is Not Suitable</h3>
+<table>
+<thead>
+<tr>
+<th>Limitation</th>
+<th>Alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No comments</td>
+<td>YAML, TOML, JSON5</td>
+</tr>
+<tr>
+<td>Verbose for configs</td>
+<td>YAML, TOML</td>
+</tr>
+<tr>
+<td>No binary data</td>
+<td>Base64 encoding, BSON</td>
+</tr>
+<tr>
+<td>Slow parsing</td>
+<td>MessagePack, Protocol Buffers</td>
+</tr>
+<tr>
+<td>No schema</td>
+<td>JSON Schema, TypeScript types</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Format</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large genomic data</td>
+<td>Binary (BAM, BCF)</td>
+<td>Compact, fast</td>
+</tr>
+<tr>
+<td>Pipeline configs</td>
+<td>YAML</td>
+<td>Readable, comments</td>
+</tr>
+<tr>
+<td>API responses</td>
+<td>JSON</td>
+<td>Standard, interoperable</td>
+</tr>
+<tr>
+<td>Metadata exchange</td>
+<td>JSON</td>
+<td>Universal support</td>
+</tr>
+<tr>
+<td>High-performance data transfer</td>
+<td>Protocol Buffers, MessagePack</td>
+<td>Speed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-json5">8.2 JSON5</h3>
+<pre class="highlight"><code class="language-javascript">// JSON5 supports:
+{
+  // Comments
+  name: 'Alice',  // Single quotes
+  age: 30,        // Trailing comma OK
+  'special-key': true,
+}
+</code></pre>
+
+<h3 id="83-jsonc-json-with-comments">8.3 JSONC (JSON with Comments)</h3>
+<pre class="highlight"><code class="language-jsonc">{
+  // VS Code uses JSONC for settings.json
+  &quot;editor.fontSize&quot;: 14,
+  /* Multi-line
+     comments too */
+  &quot;editor.tabSize&quot;: 2,
+}
+</code></pre>
+
+<hr />
+<h2 id="9-best-practices">9. Best Practices</h2>
+<h3 id="91-key-naming">9.1 Key Naming</h3>
+<pre class="highlight"><code class="language-json">// ✅ camelCase (JavaScript style)
+{&quot;firstName&quot;: &quot;Alice&quot;, &quot;lastName&quot;: &quot;Smith&quot;}
+
+// ✅ snake_case (Python style)
+{&quot;first_name&quot;: &quot;Alice&quot;, &quot;last_name&quot;: &quot;Smith&quot;}
+
+// ❌ Mixing styles
+{&quot;firstName&quot;: &quot;Alice&quot;, &quot;last_name&quot;: &quot;Smith&quot;}
+
+// ❌ Spaces in keys
+{&quot;first name&quot;: &quot;Alice&quot;}
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Convention:</strong><br />
+Use <code>snake_case</code> for consistency with file formats (VCF, GFF) and Python code.</p>
+<pre class="highlight"><code class="language-json">{
+  &quot;sample_id&quot;: &quot;PAT001&quot;,
+  &quot;gene_name&quot;: &quot;BRCA2&quot;,
+  &quot;clinical_significance&quot;: &quot;pathogenic&quot;
+}
+</code></pre>
+
+<h3 id="92-dates-and-times">9.2 Dates and Times</h3>
+<pre class="highlight"><code class="language-json">// ✅ ISO 8601 format
+{
+  &quot;created_at&quot;: &quot;2024-01-15T10:30:00Z&quot;,
+  &quot;updated_at&quot;: &quot;2024-01-15T10:30:00+03:00&quot;,
+  &quot;experiment_date&quot;: &quot;2024-01-15&quot;
+}
+
+// ❌ Non-standard formats
+{
+  &quot;date&quot;: &quot;01/15/2024&quot;,
+  &quot;time&quot;: &quot;10:30 AM&quot;
+}
+</code></pre>
+
+<h3 id="93-nullable-fields">9.3 Nullable Fields</h3>
+<pre class="highlight"><code class="language-json">// ✅ Explicit null
+{
+  &quot;middle_name&quot;: null,
+  &quot;variants_called&quot;: null
+}
+
+// ✅ Or omit the field
+{
+  &quot;first_name&quot;: &quot;Alice&quot;
+}
+
+// ❌ Empty string instead of null
+{
+  &quot;middle_name&quot;: &quot;&quot;
+}
+</code></pre>
+
+<h3 id="94-numeric-ids">9.4 Numeric IDs</h3>
+<pre class="highlight"><code class="language-json">// ⚠️ Large numbers may lose precision in JavaScript
+{
+  &quot;id&quot;: 9007199254740993
+}
+
+// ✅ String IDs for large numbers
+{
+  &quot;id&quot;: &quot;9007199254740993&quot;,
+  &quot;gene_id&quot;: &quot;ENSG00000139618&quot;
+}
+</code></pre>
+
+<p><strong>🧬 Note:</strong> Gene IDs, transcript IDs, and patient IDs should always be strings to preserve leading zeros and avoid precision issues.</p>
+<hr />
+<h2 id="10-common-pitfalls">10. Common Pitfalls</h2>
+<h3 id="101-file-encoding">10.1 File Encoding</h3>
+<p>❌ <strong>Error:</strong> Saving JSON in non-UTF-8 encoding</p>
+<pre class="highlight"><code class="language-python"># Always specify encoding
+with open(&quot;data.json&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    json.dump(data, f, ensure_ascii=False)
+</code></pre>
+
+<p><strong>🧬 Important for Bioinformatics:</strong><br />
+Gene names with Greek letters (TNF-α, IL-1β) and patient names with diacritics require UTF-8.</p>
+<h3 id="102-unescaped-strings">10.2 Unescaped Strings</h3>
+<p>❌ <strong>Error:</strong></p>
+<pre class="highlight"><code class="language-json">{&quot;message&quot;: &quot;Line 1
+Line 2&quot;}
+</code></pre>
+
+<p>✅ <strong>Correct:</strong></p>
+<pre class="highlight"><code class="language-json">{&quot;message&quot;: &quot;Line 1\nLine 2&quot;}
+</code></pre>
+
+<h3 id="103-decimal-and-float">10.3 Decimal and Float</h3>
+<p>❌ <strong>Problem:</strong></p>
+<pre class="highlight"><code class="language-python">import json
+from decimal import Decimal
+
+# Error!
+json.dumps({&quot;price&quot;: Decimal(&quot;19.99&quot;)})
+# TypeError: Object of type Decimal is not JSON serializable
+</code></pre>
+
+<p>✅ <strong>Solution:</strong></p>
+<pre class="highlight"><code class="language-python">json.dumps({&quot;price&quot;: Decimal(&quot;19.99&quot;)}, default=str)
+# or use CustomEncoder from section 6.4
+</code></pre>
+
+<p><strong>🧬 Important for p-values:</strong></p>
+<pre class="highlight"><code class="language-python"># P-values and statistical results
+results = {
+    &quot;p_value&quot;: Decimal(&quot;0.00000123&quot;),
+    &quot;fold_change&quot;: Decimal(&quot;2.5&quot;)
+}
+
+# Convert to float for JSON
+json.dumps(results, default=float)
+</code></pre>
+
+<h3 id="104-circular-references">10.4 Circular References</h3>
+<p>❌ <strong>Problem:</strong></p>
+<pre class="highlight"><code class="language-python">a = {&quot;b&quot;: None}
+b = {&quot;a&quot;: a}
+a[&quot;b&quot;] = b
+
+json.dumps(a)
+# ValueError: Circular reference detected
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Avoid circular structures or use specialized libraries.</p>
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>JSON is a simple format</strong>: 6 data types, strict syntax, no comments.</p>
+</li>
+<li>
+<p><strong>Validation is important</strong>: Use <code>jq .</code> or <code>python -m json.tool</code> for validation.</p>
+</li>
+<li>
+<p><strong>jq is powerful</strong>: Filtering, transformation, aggregation on the command line.</p>
+</li>
+<li>
+<p><strong>Encoding — UTF-8</strong>: Always use UTF-8 and <code>ensure_ascii=False</code> for non-Latin characters.</p>
+</li>
+<li>
+<p><strong>Dates — ISO 8601</strong>: Standard format <code>2024-01-15T10:30:00Z</code>.</p>
+</li>
+<li>
+<p><strong>🧬 Bioinformatics Applications</strong>:</p>
+</li>
+<li>API responses from NCBI, Ensembl, UniProt</li>
+<li>Experimental metadata and sample tracking</li>
+<li>Tool configuration files</li>
+<li>Structured logging for pipelines</li>
+<li>Gene and variant annotations</li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Related Modules:</strong></p>
+<ul>
+<li><a href="../06_YAML/">YAML</a> — more readable alternative for configurations</li>
+<li><a href="../12_DataTransfer/">Data Transfer</a> — Base64 for binary data in JSON</li>
+</ul>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Write a JSON validator for sample metadata with informative error messages</li>
+<li id="item-2">Create jq filters to process real APIs (Ensembl, NCBI E-utilities)</li>
+<li id="item-3">Implement a JSON → CSV converter for variant calling results</li>
+<li id="item-4">Write a JSON Schema for your bioinformatics project metadata</li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>Learn JSON Patch (RFC 6902) for partial updates</li>
+<li>Explore JSONPath as an alternative to jq</li>
+<li>Study BSON (Binary JSON) used in MongoDB for genomic databases</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<p><strong>Documentation:</strong></p>
+<ul>
+<li><a href="https://www.json.org/">JSON.org</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8259">RFC 8259</a></li>
+<li><a href="https://stedolan.github.io/jq/manual/">jq Manual</a></li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><a href="https://jqplay.org/">jq play</a></li>
+<li><a href="https://json-schema.org/">JSON Schema</a></li>
+<li><a href="https://jsonlint.com/">JSONLint</a></li>
+</ul>
+<p><strong>Bioinformatics APIs:</strong></p>
+<ul>
+<li><a href="https://rest.ensembl.org/">Ensembl REST API</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/books/NBK25501/">NCBI E-utilities</a></li>
+<li><a href="https://www.uniprot.org/help/api">UniProt REST API</a></li>
+</ul>
+<p><strong>Learning:</strong></p>
+<ul>
+<li><a href="https://github.com/stedolan/jq/wiki/Cookbook">jq Cookbook</a></li>
+<li><a href="https://json-schema.org/learn/getting-started-step-by-step">JSON Schema Tutorial</a></li>
+</ul>
+<hr />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

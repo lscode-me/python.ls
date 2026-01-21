@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for File Handling in Python">
+    <title>File Handling - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+                    <a href="index.html">File Handling in Python</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="file-handling-homework">File Handling - Homework</h1>
+<ol>
+<li id="item-1">Basic File Operations<br />
+   Create a file manager script with the following functions:</li>
+</ol>
+<p>a) read_file(filename) - read and return file contents<br />
+   b) write_file(filename, content) - write content to file<br />
+   c) append_to_file(filename, content) - append content<br />
+   d) count_lines(filename) - return number of lines<br />
+   e) count_words(filename) - return number of words<br />
+   f) find_in_file(filename, search_term) - return line numbers</p>
+<p>Your task:<br />
+   - Implement all functions with proper error handling<br />
+   - Use context managers for all file operations<br />
+   - Handle different encodings (UTF-8, ASCII)<br />
+   - Test with various file types and sizes</p>
+<p>Your goal:<br />
+   - Master basic file I/O operations<br />
+   - Understand file modes and encodings<br />
+   - Practice error handling with files</p>
+<ol start="2">
+<li id="item-1">Log File Analyzer<br />
+   Create a log file analyzer that processes web server logs:</li>
+</ol>
+<p>Log format example:<br />
+       192.168.1.1 - - [26/Nov/2025:10:15:23] "GET /index.html HTTP/1.1" 200 2326</p>
+<p>Functions to implement:<br />
+   a) parse_log_entry(line) - extract IP, timestamp, request, status, size<br />
+   b) analyze_log(filename) - return statistics:<br />
+      - Total requests<br />
+      - Unique IPs<br />
+      - Most common endpoints<br />
+      - Status code distribution<br />
+      - Total bandwidth<br />
+   c) filter_by_status(filename, status_code)<br />
+   d) find_errors(filename) - return 4xx and 5xx entries</p>
+<p>Your task:<br />
+   - Read large log files efficiently (line by line)<br />
+   - Parse complex log format<br />
+   - Generate comprehensive statistics<br />
+   - Export results to JSON and CSV</p>
+<p>Your goal:<br />
+   - Practice reading large files efficiently<br />
+   - Learn text parsing and pattern matching<br />
+   - Understand data aggregation from files</p>
+<ol start="3">
+<li id="item-1">CSV Data Processing<br />
+   Create a CSV data processor for tabular data:</li>
+</ol>
+<p>Features:<br />
+   a) Read CSV with headers<br />
+   b) Filter rows by conditions<br />
+   c) Sort by columns<br />
+   d) Calculate statistics (sum, average, min, max)<br />
+   e) Add computed columns<br />
+   f) Merge multiple CSV files<br />
+   g) Export filtered/processed data</p>
+<p>Example operations:<br />
+   - Filter employees with salary &gt; 50000<br />
+   - Sort by age descending<br />
+   - Add "bonus" column (10% of salary)<br />
+   - Calculate average salary by department</p>
+<p>Your task:<br />
+   - Use csv module for reading/writing<br />
+   - Implement flexible filtering system<br />
+   - Handle missing/invalid data<br />
+   - Support large CSV files</p>
+<p>Your goal:<br />
+   - Master CSV file operations<br />
+   - Practice data transformation<br />
+   - Learn data validation and cleaning</p>
+<ol start="4">
+<li id="item-1">JSON Configuration Manager<br />
+   Create a configuration management system using JSON:</li>
+</ol>
+<p>Features:<br />
+   a) load_config(filename) - load configuration<br />
+   b) save_config(filename, config) - save configuration<br />
+   c) get_value(key_path) - get nested value (e.g., "database.host")<br />
+   d) set_value(key_path, value) - set nested value<br />
+   e) validate_config(config, schema) - validate structure<br />
+   f) merge_configs(config1, config2) - merge configurations</p>
+<p>Your task:<br />
+   - Support nested configuration structures<br />
+   - Implement dot-notation for nested access<br />
+   - Add validation against schema<br />
+   - Handle default values<br />
+   - Support environment variable substitution</p>
+<p>Your goal:<br />
+   - Master JSON file operations<br />
+   - Learn configuration management patterns<br />
+   - Practice nested data structure manipulation</p>
+<ol start="5">
+<li id="item-1">Directory Tree Processor<br />
+   Create tools for processing directory structures:</li>
+</ol>
+<p>Features:<br />
+   a) list_files(path, pattern) - list files matching pattern<br />
+   b) calculate_dir_size(path) - total size recursively<br />
+   c) find_duplicates(path) - find duplicate files by content<br />
+   d) organize_by_type(path) - organize files by extension<br />
+   e) clean_empty_dirs(path) - remove empty directories<br />
+   f) generate_tree(path) - create visual tree structure</p>
+<p>Your task:<br />
+   - Use pathlib for path operations<br />
+   - Implement recursive directory traversal<br />
+   - Calculate file hashes for duplicate detection<br />
+   - Create tree visualization (like Unix <code>tree</code> command)<br />
+   - Handle symbolic links and permissions errors</p>
+<p>Your goal:<br />
+   - Master directory operations<br />
+   - Learn recursive file system traversal<br />
+   - Practice file system manipulation</p>
+<ol start="6">
+<li id="item-1">Binary File Processor<br />
+   Work with binary files and formats:</li>
+</ol>
+<p>Tasks:<br />
+   a) Image file header reader (PNG, JPEG, GIF)<br />
+   b) File type detector by magic numbers<br />
+   c) Binary file splitter/merger<br />
+   d) Simple hex viewer<br />
+   e) Binary file comparison tool</p>
+<p>Your task:<br />
+   - Read and interpret binary data<br />
+   - Understand file format structures<br />
+   - Work with bytes and bytearray<br />
+   - Implement chunked reading for large files</p>
+<p>Example formats:<br />
+   - PNG: starts with 89 50 4E 47<br />
+   - JPEG: starts with FF D8 FF<br />
+   - PDF: starts with 25 50 44 46</p>
+<p>Your goal:<br />
+   - Master binary file operations<br />
+   - Understand file formats<br />
+   - Practice low-level data manipulation</p>
+<ol start="7">
+<li id="item-1">File Compression and Archiving<br />
+   Create archive management tools:</li>
+</ol>
+<p>Features:<br />
+   a) create_archive(files, output_name) - create ZIP<br />
+   b) extract_archive(archive_path, destination)<br />
+   c) list_archive_contents(archive_path)<br />
+   d) add_to_archive(archive_path, files)<br />
+   e) compress_directory(path) - compress entire directory<br />
+   f) compare_with_gzip(file) - compare regular vs compressed size</p>
+<p>Your task:<br />
+   - Work with zipfile module<br />
+   - Handle compression with gzip<br />
+   - Support tar.gz format<br />
+   - Preserve file metadata (timestamps, permissions)<br />
+   - Show compression ratios</p>
+<p>Your goal:<br />
+   - Master file compression<br />
+   - Learn archive formats<br />
+   - Understand compression benefits and trade-offs</p>
+<ol start="8">
+<li id="item-1">Text File Converter<br />
+   Create converters between different text formats:</li>
+</ol>
+<p>Conversions:<br />
+   a) CSV ↔ JSON<br />
+   b) CSV ↔ Markdown table<br />
+   c) JSON ↔ YAML (use pyyaml)<br />
+   d) Plain text ↔ HTML<br />
+   e) Markdown ↔ HTML (basic)</p>
+<p>Your task:<br />
+   - Parse source format correctly<br />
+   - Generate valid target format<br />
+   - Preserve data structure<br />
+   - Handle edge cases (special characters, empty fields)<br />
+   - Support bidirectional conversion</p>
+<p>Your goal:<br />
+   - Practice format conversion<br />
+   - Learn multiple file formats<br />
+   - Master data transformation</p>
+<ol start="9">
+<li id="item-1">Temporary File Management<br />
+   Work with temporary files and directories:</li>
+</ol>
+<p>Tasks:<br />
+   a) Create temp file for processing large datasets<br />
+   b) Implement temp directory for batch operations<br />
+   c) Create secure temp files for sensitive data<br />
+   d) Clean up temp files on error<br />
+   e) Implement temp file rotation system</p>
+<p>Your task:<br />
+   - Use tempfile module<br />
+   - Ensure cleanup with context managers<br />
+   - Handle cleanup in exception scenarios<br />
+   - Implement automatic cleanup after time period<br />
+   - Create temp file naming strategy</p>
+<p>Your goal:<br />
+   - Master temporary file handling<br />
+   - Learn cleanup strategies<br />
+   - Practice resource management</p>
+<ol start="10">
+<li id="item-1">
+<p>Advanced File I/O Project<br />
+    Create a complete file-based database system:</p>
+<p>Features:<br />
+- Store records in JSON files<br />
+- Index for fast lookups<br />
+- Support CRUD operations<br />
+- Query with filtering and sorting<br />
+- Transaction support (rollback on error)<br />
+- Backup and restore<br />
+- Export to various formats</p>
+<p>Your task:<br />
+- Design file-based storage structure<br />
+- Implement efficient read/write operations<br />
+- Add indexing for performance<br />
+- Support concurrent access (file locking)<br />
+- Create backup mechanism<br />
+- Optimize for large datasets</p>
+<p>Your goal:<br />
+- Apply all file I/O knowledge<br />
+- Build real-world application<br />
+- Learn database concepts<br />
+- Practice system design</p>
+</li>
+</ol></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

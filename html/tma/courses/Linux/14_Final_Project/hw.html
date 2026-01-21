@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Final Project: Build a Complete ETL Pipeline">
+    <title>HW: Final Project: Build a Complet | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Final Project: Build a Complet</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 14 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="final-project-build-a-complete-etl-pipeline-homework">Final Project: Build a Complete ETL Pipeline - Homework</h1>
+<h2 id="project-overview">Project Overview</h2>
+<p>Build a production-ready ETL (Extract, Transform, Load) pipeline that processes large-scale data (5GB+) using Linux command-line tools, shell scripting, and Python integration. This capstone project demonstrates mastery of all course concepts.</p>
+<h2 id="core-requirements">Core Requirements</h2>
+<h3 id="1-data-extraction-25-points">1. Data Extraction (25 points)</h3>
+<p><strong>Multiple Data Sources:</strong>
+- <strong>API Integration</strong>: Pull data from REST APIs with proper authentication
+- <strong>File Processing</strong>: Handle CSV, JSON, XML, and compressed formats
+- <strong>Database Connectivity</strong>: Extract from SQL databases (MySQL, PostgreSQL)
+- <strong>Web Scraping</strong>: Collect data from web sources (with proper rate limiting)
+- <strong>Stream Processing</strong>: Handle real-time data feeds</p>
+<p><strong>Technical Specifications:</strong>
+- Minimum 5GB of processed data across all sources
+- Handle multiple file formats and encodings
+- Implement robust error handling and retry mechanisms
+- Support incremental data extraction
+- Validate data integrity during extraction</p>
+<h3 id="2-data-transformation-30-points">2. Data Transformation (30 points)</h3>
+<p><strong>Data Processing Pipeline:</strong>
+- <strong>Cleaning</strong>: Remove duplicates, handle missing values, fix encoding issues
+- <strong>Filtering</strong>: Apply complex business rules and data validation
+- <strong>Aggregation</strong>: Calculate statistics, groupings, and summary metrics
+- <strong>Enrichment</strong>: Join datasets, lookup external data, add computed fields
+- <strong>Normalization</strong>: Standardize formats, units, and categorical values</p>
+<p><strong>Performance Requirements:</strong>
+- Process 5GB+ data in under 30 minutes on standard hardware
+- Use memory-efficient streaming processing where appropriate
+- Implement parallel processing for CPU-intensive operations
+- Support checkpoint/restart for long-running operations
+- Monitor memory usage and prevent out-of-memory errors</p>
+<h3 id="3-data-loading-20-points">3. Data Loading (20 points)</h3>
+<p><strong>Output Generation:</strong>
+- <strong>Reports</strong>: Generate comprehensive HTML/PDF reports with visualizations
+- <strong>Summaries</strong>: Create executive dashboards and key metrics
+- <strong>Data Exports</strong>: Output cleaned data in multiple formats (CSV, Parquet, JSON)
+- <strong>Database Loading</strong>: Insert processed data into target databases
+- <strong>API Publishing</strong>: Expose results through REST endpoints</p>
+<p><strong>Quality Assurance:</strong>
+- Validate all output data against defined schemas
+- Generate data quality reports and metrics
+- Implement data lineage tracking
+- Create audit trails for all transformations</p>
+<h3 id="4-orchestration-and-automation-25-points">4. Orchestration and Automation (25 points)</h3>
+<p><strong>Build System:</strong>
+- <strong>Makefile</strong>: Comprehensive build automation with proper dependency management
+- <strong>Configuration</strong>: External config files for all environments (dev/staging/prod)
+- <strong>Scheduling</strong>: Cron jobs or systemd timers for automated execution
+- <strong>Monitoring</strong>: Health checks and performance metrics collection
+- <strong>Alerting</strong>: Notification system for failures and performance issues</p>
+<p><strong>Error Handling and Recovery:</strong>
+- Graceful failure handling with detailed error reporting
+- Automatic retry mechanisms with exponential backoff
+- Data validation at each pipeline stage
+- Recovery procedures for partial failures
+- Transaction rollback capabilities where applicable</p>
+<h2 id="advanced-features-bonus-points">Advanced Features (Bonus Points)</h2>
+<h3 id="performance-optimization-10-bonus-points">Performance Optimization (10 bonus points)</h3>
+<ul>
+<li><strong>Parallel Processing</strong>: Utilize multiple CPU cores effectively</li>
+<li><strong>Memory Management</strong>: Implement streaming for large datasets</li>
+<li><strong>Caching</strong>: Cache intermediate results and expensive computations</li>
+<li><strong>Indexing</strong>: Create indexes for fast data lookups</li>
+<li><strong>Compression</strong>: Use compression to reduce storage and transfer costs</li>
+</ul>
+<h3 id="security-implementation-10-bonus-points">Security Implementation (10 bonus points)</h3>
+<ul>
+<li><strong>Credential Management</strong>: Secure storage of API keys and passwords</li>
+<li><strong>Data Encryption</strong>: Encrypt sensitive data at rest and in transit</li>
+<li><strong>Access Control</strong>: Implement proper file permissions and user management</li>
+<li><strong>Audit Logging</strong>: Log all access and modifications for security auditing</li>
+<li><strong>Input Validation</strong>: Prevent injection attacks and data poisoning</li>
+</ul>
+<h3 id="cloud-integration-10-bonus-points">Cloud Integration (10 bonus points)</h3>
+<ul>
+<li><strong>Cloud Storage</strong>: Integration with AWS S3, Google Cloud Storage, or Azure Blob</li>
+<li><strong>Serverless Functions</strong>: Use cloud functions for event-driven processing</li>
+<li><strong>Container Deployment</strong>: Docker containerization with orchestration</li>
+<li><strong>CI/CD Pipeline</strong>: Automated testing and deployment workflows</li>
+<li><strong>Infrastructure as Code</strong>: Terraform or CloudFormation templates</li>
+</ul>
+<h2 id="technical-architecture">Technical Architecture</h2>
+<h3 id="required-components">Required Components</h3>
+<ol>
+<li id="item-1"><strong>Shell Scripts</strong>: Main orchestration and system interaction</li>
+<li id="item-2"><strong>Python Scripts</strong>: Data processing and complex transformations</li>
+<li id="item-3"><strong>SQL Scripts</strong>: Database operations and queries</li>
+<li id="item-4"><strong>Makefile</strong>: Build automation and dependency management</li>
+<li id="item-5"><strong>Configuration Files</strong>: Environment-specific settings</li>
+<li id="item-6"><strong>Documentation</strong>: Architecture, deployment, and user guides</li>
+</ol>
+<h3 id="data-processing-patterns">Data Processing Patterns</h3>
+<ul>
+<li><strong>Stream Processing</strong>: For real-time data and large files</li>
+<li><strong>Batch Processing</strong>: For historical data and complex aggregations</li>
+<li><strong>Micro-batching</strong>: For near-real-time processing with bounded latency</li>
+<li><strong>Lambda Architecture</strong>: Combine batch and stream processing</li>
+</ul>
+<h2 id="deliverables-and-structure">Deliverables and Structure</h2>
+<h3 id="source-code-organization">Source Code Organization</h3>
+<pre class="highlight"><code>project-root/
+├── Makefile                 # Main build automation
+├── README.md               # Project overview and setup
+├── ARCHITECTURE.md         # Technical architecture document
+├── requirements.txt        # Python dependencies
+├── config/                 # Configuration files
+│   ├── dev.conf
+│   ├── staging.conf
+│   └── prod.conf
+├── scripts/                # Shell scripts
+│   ├── extract.sh
+│   ├── transform.sh
+│   ├── load.sh
+│   └── deploy.sh
+├── src/                    # Python source code
+│   ├── extractors/
+│   ├── transformers/
+│   ├── loaders/
+│   ├── utils/
+│   └── tests/
+├── sql/                    # SQL scripts and schemas
+├── data/                   # Sample and test data
+├── logs/                   # Log files and monitoring
+├── output/                 # Generated reports and exports
+└── docs/                   # Additional documentation
+</code></pre>
+
+<h3 id="documentation-requirements">Documentation Requirements</h3>
+<ol>
+<li id="item-1"><strong>README.md</strong>: Project overview, installation, and quick start</li>
+<li id="item-2"><strong>ARCHITECTURE.md</strong>: Technical design and data flow diagrams</li>
+<li id="item-3"><strong>DEPLOYMENT.md</strong>: Production deployment procedures</li>
+<li id="item-4"><strong>API.md</strong>: API documentation if applicable</li>
+<li id="item-5"><strong>TROUBLESHOOTING.md</strong>: Common issues and solutions</li>
+</ol>
+<h3 id="sample-output-requirements">Sample Output Requirements</h3>
+<ul>
+<li><strong>Executive Dashboard</strong>: High-level metrics and KPIs</li>
+<li><strong>Data Quality Report</strong>: Completeness, accuracy, and consistency metrics</li>
+<li><strong>Performance Report</strong>: Processing times, throughput, and resource usage</li>
+<li><strong>Error Analysis</strong>: Failed records and processing issues</li>
+<li><strong>Trend Analysis</strong>: Historical patterns and anomaly detection</li>
+</ul>
+<h2 id="evaluation-criteria">Evaluation Criteria</h2>
+<h3 id="functionality-40">Functionality (40%)</h3>
+<ul>
+<li><strong>Correctness</strong>: Pipeline produces accurate and complete results</li>
+<li><strong>Robustness</strong>: Handles edge cases and error conditions gracefully</li>
+<li><strong>Completeness</strong>: All required features are implemented and working</li>
+<li><strong>Data Quality</strong>: Output data meets quality standards and requirements</li>
+</ul>
+<h3 id="performance-20">Performance (20%)</h3>
+<ul>
+<li><strong>Efficiency</strong>: Processes 5GB+ data within time constraints</li>
+<li><strong>Scalability</strong>: Can handle larger datasets with minimal modifications</li>
+<li><strong>Resource Usage</strong>: Optimal use of CPU, memory, and storage</li>
+<li><strong>Throughput</strong>: High data processing rates and low latency</li>
+</ul>
+<h3 id="code-quality-20">Code Quality (20%)</h3>
+<ul>
+<li><strong>Structure</strong>: Well-organized, modular, and maintainable code</li>
+<li><strong>Standards</strong>: Follows coding best practices and style guidelines</li>
+<li><strong>Testing</strong>: Comprehensive unit and integration tests</li>
+<li><strong>Version Control</strong>: Proper git workflow with meaningful commits</li>
+</ul>
+<h3 id="documentation-20">Documentation (20%)</h3>
+<ul>
+<li><strong>Clarity</strong>: Clear and comprehensive documentation</li>
+<li><strong>Completeness</strong>: All aspects of the system are documented</li>
+<li><strong>Usability</strong>: Easy to follow setup and usage instructions</li>
+<li><strong>Technical Depth</strong>: Architecture and design decisions explained</li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="phase-1-planning-and-design-week-1">Phase 1: Planning and Design (Week 1)</h3>
+<ul>
+<li>Define data sources and processing requirements</li>
+<li>Design system architecture and data flow</li>
+<li>Create project structure and initial documentation</li>
+<li>Set up development environment and version control</li>
+</ul>
+<h3 id="phase-2-core-implementation-weeks-2-3">Phase 2: Core Implementation (Weeks 2-3)</h3>
+<ul>
+<li>Implement extraction modules for each data source</li>
+<li>Build transformation pipeline with all required operations</li>
+<li>Create loading mechanisms for all output formats</li>
+<li>Develop basic Makefile for build automation</li>
+</ul>
+<h3 id="phase-3-integration-and-testing-week-4">Phase 3: Integration and Testing (Week 4)</h3>
+<ul>
+<li>Integrate all components into complete pipeline</li>
+<li>Implement comprehensive error handling and logging</li>
+<li>Add performance monitoring and optimization</li>
+<li>Create full test suite and documentation</li>
+</ul>
+<h3 id="phase-4-advanced-features-week-5">Phase 4: Advanced Features (Week 5)</h3>
+<ul>
+<li>Add security and performance optimizations</li>
+<li>Implement monitoring and alerting systems</li>
+<li>Add cloud integration if pursuing bonus points</li>
+<li>Finalize documentation and prepare submission</li>
+</ul>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<h3 id="required-deliverables">Required Deliverables</h3>
+<ol>
+<li id="item-1"><strong>Source Code</strong>: Complete codebase with proper organization</li>
+<li id="item-2"><strong>Build System</strong>: Working Makefile that builds entire pipeline</li>
+<li id="item-3"><strong>Documentation</strong>: All required documentation files</li>
+<li id="item-4"><strong>Sample Data</strong>: Representative sample input and output data</li>
+<li id="item-5"><strong>Demo Video</strong>: 10-minute demonstration of pipeline execution</li>
+<li id="item-6"><strong>Performance Report</strong>: Benchmark results and optimization analysis</li>
+</ol>
+<h3 id="submission-format">Submission Format</h3>
+<ul>
+<li><strong>GitHub Repository</strong>: Public repository with all project files</li>
+<li><strong>Release Package</strong>: Tagged release with installation instructions</li>
+<li><strong>Demo Recording</strong>: Unlisted YouTube video or equivalent platform</li>
+<li><strong>Written Report</strong>: PDF summary of implementation and results</li>
+</ul>
+<h3 id="due-date-and-timeline">Due Date and Timeline</h3>
+<ul>
+<li><strong>Proposal Due</strong>: End of Week 1 (architecture and plan)</li>
+<li><strong>Progress Check</strong>: End of Week 3 (core functionality demo)</li>
+<li><strong>Final Submission</strong>: End of Week 5 (complete project)</li>
+<li><strong>Peer Review</strong>: Week 6 (review other projects)</li>
+</ul>
+<h2 id="resources-and-support">Resources and Support</h2>
+<h3 id="technical-resources">Technical Resources</h3>
+<ul>
+<li>Course lecture materials and code examples</li>
+<li>Linux command reference and documentation</li>
+<li>Python libraries and frameworks documentation</li>
+<li>Sample datasets and API endpoints</li>
+</ul>
+<h3 id="getting-help">Getting Help</h3>
+<ul>
+<li>Office hours: Every Tuesday and Thursday 2-4 PM</li>
+<li>Discussion forum: Course Slack channel</li>
+<li>Peer collaboration: Encouraged for learning, not code sharing</li>
+<li>Technical support: Email instructor for infrastructure issues</li>
+</ul>
+<h2 id="success-tips">Success Tips</h2>
+<ol>
+<li id="item-1"><strong>Start Early</strong>: Begin with simple implementations and iterate</li>
+<li id="item-2"><strong>Test Continuously</strong>: Test each component as you build it</li>
+<li id="item-3"><strong>Monitor Performance</strong>: Profile your code and optimize bottlenecks</li>
+<li id="item-4"><strong>Document Everything</strong>: Good documentation saves time later</li>
+<li id="item-5"><strong>Ask Questions</strong>: Don't hesitate to ask for help when stuck</li>
+<li id="item-6"><strong>Review Examples</strong>: Study real-world ETL implementations</li>
+<li id="item-7"><strong>Plan for Failures</strong>: Build robust error handling from the start</li>
+<li id="item-8"><strong>Think Production</strong>: Consider scalability and maintainability</li>
+</ol>
+<p>Good luck building your ETL masterpiece! 🚀</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

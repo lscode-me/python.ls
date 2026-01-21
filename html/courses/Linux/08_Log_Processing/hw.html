@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Log Processing &amp; Real-World Pipelines">
+    <title>Log Processing &amp; Real-World Pipelines - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Log Processing & Real-World Pipelines</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="log-processing-real-world-pipelines-homework">Log Processing &amp; Real-World Pipelines - Homework</h1>
+<h2 id="assignment-1-filter-jsonl-errors">Assignment 1: Filter JSONL Errors</h2>
+<p>Extract all ERROR level entries from a JSONL log file.<br />
+- Input: <code>app.jsonl</code><br />
+- Command: <code>jq -c 'select(.level == "ERROR")' app.jsonl &gt; errors.jsonl</code></p>
+<h2 id="assignment-2-compressed-log-analysis">Assignment 2: Compressed Log Analysis</h2>
+<p>Count ERROR occurrences in a compressed log.<br />
+- Input: <code>app.log.gz</code><br />
+- Command: <code>zcat app.log.gz | grep -c ERROR</code></p>
+<h2 id="assignment-3-api-data-fetch">Assignment 3: API Data Fetch</h2>
+<p>Fetch users from JSONPlaceholder API and extract names.<br />
+- URL: <code>https://jsonplaceholder.typicode.com/users</code><br />
+- Command: <code>curl -s 'https://jsonplaceholder.typicode.com/users' | jq -r '.[].name'</code></p>
+<h2 id="assignment-4-generate-markdown-table">Assignment 4: Generate Markdown Table</h2>
+<p>Convert CSV to markdown table format.<br />
+- Input: <code>data.csv</code><br />
+- Output: Markdown table with headers and rows</p>
+<h2 id="assignment-5-time-based-log-filtering">Assignment 5: Time-Based Log Filtering</h2>
+<p>Extract log entries from a specific hour.<br />
+- Input: <code>app.jsonl</code> with timestamp field<br />
+- Filter: entries from 10:00-11:00<br />
+- Use: <code>jq -c 'select(.timestamp | startswith("2024-03-15T10"))'</code></p>
+<h2 id="assignment-6-error-aggregation">Assignment 6: Error Aggregation</h2>
+<p>Count errors by error_type from JSONL.<br />
+- Input: <code>errors.jsonl</code><br />
+- Command: <code>jq -r '.error_type' errors.jsonl | sort | uniq -c | sort -rn</code></p>
+<h2 id="assignment-7-multi-file-processing">Assignment 7: Multi-File Processing</h2>
+<p>Process all gzip logs in a directory, count total errors.<br />
+- Command: <code>zcat logs/*.gz | grep -c ERROR</code></p>
+<h2 id="assignment-8-api-pagination">Assignment 8: API Pagination</h2>
+<p>Fetch multiple pages from an API (pages 1-5).<br />
+- Use: for loop with curl and jq<br />
+- Combine results into single array</p>
+<h2 id="assignment-9-daily-report-generator">Assignment 9: Daily Report Generator</h2>
+<p>Create script that generates markdown report with:<br />
+- Total log lines<br />
+- Error count<br />
+- Top 5 error types<br />
+- Timestamp</p>
+<h2 id="assignment-10-complete-etl-pipeline">Assignment 10: Complete ETL Pipeline</h2>
+<p>Build pipeline that:<br />
+1. Fetches data from API<br />
+2. Filters relevant fields<br />
+3. Aggregates statistics<br />
+4. Generates markdown report<br />
+5. Saves to file</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-real-time-log-monitor">Bonus 1: Real-Time Log Monitor</h3>
+<p>Create script that tails a JSONL log and prints ERROR entries in real-time.<br />
+- Use: <code>tail -f | stdbuf -oL jq</code></p>
+<h3 id="bonus-2-multi-source-aggregation">Bonus 2: Multi-Source Aggregation</h3>
+<p>Combine data from:<br />
+- API endpoint<br />
+- Compressed log file<br />
+- CSV file<br />
+Generate unified markdown report.</p>
+<h3 id="bonus-3-rate-limited-api-crawler">Bonus 3: Rate-Limited API Crawler</h3>
+<p>Fetch data from paginated API with rate limit (2 req/sec).<br />
+- Use: sleep or GNU parallel<br />
+- Handle errors gracefully</p>
+<h3 id="bonus-4-log-rotation-analyzer">Bonus 4: Log Rotation Analyzer</h3>
+<p>Analyze all rotated logs (app.log, app.log.1.gz, app.log.2.gz, ...).<br />
+- Find error trends over time<br />
+- Generate time-series report</p>
+<h3 id="bonus-5-automated-daily-report">Bonus 5: Automated Daily Report</h3>
+<p>Create cron-ready script that:<br />
+- Processes yesterday's logs<br />
+- Generates markdown report<br />
+- Emails report (using mail command)<br />
+- Archives old reports</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ul>
+<li>Submit all scripts and commands</li>
+<li>Include sample input/output</li>
+<li>Test with real APIs (JSONPlaceholder, GitHub API)</li>
+<li>Document rate limits and error handling</li>
+</ul></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

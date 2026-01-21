@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>Configuration Files | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Configuration Files</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="configuration-files">Configuration Files</h1>
+<h2 id="ini-toml-env-and-linux-specific-formats-for-bioinformatics">INI, TOML, .env, and Linux-Specific Formats for Bioinformatics</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Know JSON and YAML (Modules 05, 06)</li>
+<li>Understand environment variables</li>
+<li>Have experience with applications and their settings</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Work with INI files and understand their use in systemd</li>
+<li>Use TOML for modern configurations</li>
+<li>Manage environment variables through .env files</li>
+<li>Understand Linux-specific formats: passwd, sshd_config, fstab, nginx</li>
+<li>Choose the appropriate configuration format for different tasks</li>
+<li>Configure bioinformatics tools and pipelines effectively</li>
+</ul>
+<hr />
+<h2 id="1-overview-of-configuration-formats">1. Overview of Configuration Formats</h2>
+<h3 id="11-evolution-of-formats">1.1 Evolution of Formats</h3>
+<pre class="highlight"><code>Universal formats:
+1980s     1990s      2000s      2010s      2020s
+INI  →  XML  →  JSON  →  YAML  →  TOML
+                              ↓
+                           .env (parallel)
+
+Linux/UNIX formats (since 1970s, still relevant):
+passwd, group → sshd_config, sudoers → systemd units → nginx/apache
+    (DSV)         (keyword-value)        (INI)         (block-based)
+</code></pre>
+
+<h3 id="12-format-comparison">1.2 Format Comparison</h3>
+<p><strong>Universal formats (cross-platform):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Comments</th>
+<th>Nesting</th>
+<th>Data Types</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INI</td>
+<td><code>;</code> or <code>#</code></td>
+<td>Sections</td>
+<td>Strings</td>
+<td>Windows, Git, systemd</td>
+</tr>
+<tr>
+<td>TOML</td>
+<td><code>#</code></td>
+<td>Tables</td>
+<td>Yes</td>
+<td>Rust, Python</td>
+</tr>
+<tr>
+<td>.env</td>
+<td><code>#</code></td>
+<td>No</td>
+<td>Strings</td>
+<td>Docker, Node.js</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>No</td>
+<td>Full</td>
+<td>Yes</td>
+<td>API, Web</td>
+</tr>
+<tr>
+<td>YAML</td>
+<td><code>#</code></td>
+<td>Full</td>
+<td>Yes</td>
+<td>DevOps</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Linux-specific formats:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Comments</th>
+<th>Delimiter</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Colon-separated</td>
+<td>No</td>
+<td><code>:</code></td>
+<td>passwd, group, shadow</td>
+</tr>
+<tr>
+<td>Keyword-value</td>
+<td><code>#</code></td>
+<td>Spaces</td>
+<td>sshd_config, sudoers</td>
+</tr>
+<tr>
+<td>Space-separated</td>
+<td><code>#</code></td>
+<td>Spaces/tabs</td>
+<td>fstab, hosts</td>
+</tr>
+<tr>
+<td>Apache-style</td>
+<td><code>#</code></td>
+<td>Blocks <code>&lt;&gt;</code></td>
+<td>httpd.conf, nginx</td>
+</tr>
+<tr>
+<td>Shell-style</td>
+<td><code>#</code></td>
+<td><code>=</code></td>
+<td>/etc/environment, profile</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Config Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLAST</td>
+<td>INI-like</td>
+<td>blast.rc</td>
+</tr>
+<tr>
+<td>BWA</td>
+<td>Command-line args</td>
+<td>(no config file)</td>
+</tr>
+<tr>
+<td>GATK</td>
+<td>Properties/JSON</td>
+<td>gatk.properties</td>
+</tr>
+<tr>
+<td>Snakemake</td>
+<td>YAML</td>
+<td>config.yaml</td>
+</tr>
+<tr>
+<td>Nextflow</td>
+<td>Groovy/config</td>
+<td>nextflow.config</td>
+</tr>
+<tr>
+<td>Galaxy</td>
+<td>YAML/INI</td>
+<td>galaxy.yml</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-ini-files">2. INI Files</h2>
+<h3 id="21-ini-format">2.1 INI Format</h3>
+<p><strong>INI</strong> (Initialization) — one of the oldest configuration formats, appearing in MS-DOS and early Windows. Despite its age, the format remains popular due to its simplicity and readability. INI files are used in Git (<code>.gitconfig</code>), PHP (<code>php.ini</code>), MySQL (<code>my.cnf</code>), and many other applications.</p>
+<pre class="highlight"><code class="language-ini">; This is a comment
+# This is also a comment
+
+[section]
+key = value
+another_key = another value
+
+[database]
+host = localhost
+port = 5432
+username = admin
+; password stored in environment variables
+
+[server]
+debug = true
+max_connections = 100
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (BLAST Configuration):</strong></p>
+<pre class="highlight"><code class="language-ini">; ~/.ncbirc or blast.rc
+[BLAST]
+BLASTDB=/data/blast/databases
+BLASTMAT=/usr/share/blast/data
+
+[NET_SERV]
+SRV_CONN_MODE=FIREWALL
+SRV_HTTP_PROXY_HOST=proxy.example.com
+SRV_HTTP_PROXY_PORT=8080
+</code></pre>
+
+<h3 id="22-ini-rules">2.2 INI Rules</h3>
+<p>INI format has no strict specification, so different parsers may interpret it differently. However, basic rules are the same everywhere:</p>
+<ul>
+<li><strong>Sections</strong> in square brackets <code>[section]</code></li>
+<li><strong>Key-value pairs</strong>: <code>key = value</code></li>
+<li><strong>Comments</strong>: <code>;</code> or <code>#</code></li>
+<li><strong>Values</strong> — always strings (parser may convert to types)</li>
+<li><strong>No nesting</strong> (only sections, but some implementations support <code>[parent.child]</code>)</li>
+</ul>
+<h3 id="23-ini-in-python">2.3 INI in Python</h3>
+<pre class="highlight"><code class="language-python">import configparser
+
+# Reading
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+# Accessing values
+host = config['database']['host']
+port = config.getint('database', 'port')
+debug = config.getboolean('server', 'debug')
+
+print(f&quot;Database: {host}:{port}&quot;)
+
+# Writing
+config['new_section'] = {
+    'key1': 'value1',
+    'key2': 'value2'
+}
+
+with open('config.ini', 'w') as f:
+    config.write(f)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import configparser
+
+# Read bioinformatics tool configuration
+config = configparser.ConfigParser()
+config.read('pipeline.ini')
+
+# Extract parameters
+reference_genome = config['reference']['genome']
+threads = config.getint('alignment', 'threads')
+min_quality = config.getint('variant_calling', 'min_base_quality')
+
+print(f&quot;Using reference: {reference_genome}&quot;)
+print(f&quot;Threads: {threads}, Min quality: {min_quality}&quot;)
+</code></pre>
+
+<h3 id="24-ini-examples">2.4 INI Examples</h3>
+<pre class="highlight"><code class="language-ini">; .gitconfig
+[user]
+    name = John Doe
+    email = john@example.com
+
+[core]
+    editor = vim
+    autocrlf = input
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+</code></pre>
+
+<pre class="highlight"><code class="language-ini">; php.ini
+[PHP]
+engine = On
+memory_limit = 128M
+max_execution_time = 30
+
+[Date]
+date.timezone = America/New_York
+</code></pre>
+
+<h3 id="25-ini-in-systemd">2.5 INI in systemd</h3>
+<p><strong>systemd</strong> — the init system in modern Linux distributions — uses an extended INI format for its unit files. This is one of the most important uses of INI in modern Linux. All services, timers, mount points, and other systemd units are described in this format.</p>
+<pre class="highlight"><code class="language-ini"># /etc/systemd/system/myapp.service
+[Unit]
+Description=My Application Service
+Documentation=https://example.com/docs
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=myapp
+Group=myapp
+WorkingDirectory=/opt/myapp
+ExecStart=/opt/myapp/bin/server --config /etc/myapp/config.toml
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+EnvironmentFile=-/etc/myapp/env
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<p><strong>systemd INI features:</strong></p>
+<ul>
+<li>Sections <code>[Unit]</code>, <code>[Service]</code>, <code>[Install]</code> — standard for services</li>
+<li>Variable support: <code>$MAINPID</code>, <code>%u</code> (user), <code>%h</code> (home)</li>
+<li>Lists via spaces or key repetition</li>
+<li>Prefix <code>-</code> means "ignore error" (e.g., <code>-/etc/myapp/env</code>)</li>
+</ul>
+<p><strong>🧬 Bioinformatics Example (Galaxy Service):</strong></p>
+<pre class="highlight"><code class="language-ini"># /etc/systemd/system/galaxy.service
+[Unit]
+Description=Galaxy Bioinformatics Platform
+Documentation=https://galaxyproject.org/
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=galaxy
+Group=galaxy
+WorkingDirectory=/srv/galaxy
+ExecStart=/srv/galaxy/.venv/bin/python /srv/galaxy/lib/galaxy/main.py
+Restart=on-failure
+RestartSec=10
+Environment=GALAXY_CONFIG_FILE=/srv/galaxy/config/galaxy.yml
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<hr />
+<h2 id="2-toml">2. TOML</h2>
+<h3 id="31-what-is-toml">3.1 What is TOML</h3>
+<p><strong>TOML</strong> (Tom's Obvious Minimal Language) — a modern configuration format.</p>
+<ul>
+<li>Created by Tom Preston-Werner (GitHub)</li>
+<li>Obvious syntax</li>
+<li>Data type support</li>
+<li>Standard for Rust (Cargo.toml), Python (pyproject.toml)</li>
+</ul>
+<h3 id="32-toml-syntax">3.2 TOML Syntax</h3>
+<pre class="highlight"><code class="language-toml"># This is a comment
+
+# Basic types
+title = &quot;TOML Example&quot;
+enabled = true
+count = 42
+price = 19.99
+date = 2024-01-15
+datetime = 2024-01-15T10:30:00Z
+
+# Strings
+simple = &quot;Hello&quot;
+multiline = &quot;&quot;&quot;
+First line
+Second line&quot;&quot;&quot;
+literal = 'C:\path\to\file'
+
+# Arrays
+numbers = [1, 2, 3]
+mixed = [&quot;string&quot;, 42, true]
+nested = [[1, 2], [3, 4]]
+
+# Tables (objects)
+[server]
+host = &quot;localhost&quot;
+port = 8080
+
+[database]
+host = &quot;db.example.com&quot;
+port = 5432
+username = &quot;admin&quot;
+
+# Nested tables
+[database.pool]
+min = 5
+max = 20
+
+# Array of tables
+[[users]]
+name = &quot;Alice&quot;
+role = &quot;admin&quot;
+
+[[users]]
+name = &quot;Bob&quot;
+role = &quot;user&quot;
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Pipeline Configuration):</strong></p>
+<pre class="highlight"><code class="language-toml">[pipeline]
+name = &quot;RNA-Seq Analysis&quot;
+version = &quot;2.1.0&quot;
+author = &quot;Bioinformatics Core&quot;
+
+[reference]
+genome = &quot;/data/genomes/GRCh38.fa&quot;
+annotation = &quot;/data/annotations/gencode.v42.gtf&quot;
+star_index = &quot;/data/star_index&quot;
+
+[quality_control]
+min_phred_score = 30
+min_read_length = 50
+adapter_trimming = true
+
+[alignment]
+tool = &quot;STAR&quot;
+threads = 8
+max_mismatches = 2
+
+[variant_calling]
+tool = &quot;bcftools&quot;
+min_base_quality = 20
+min_mapping_quality = 30
+ploidy = 2
+
+[[samples]]
+sample_id = &quot;PAT001&quot;
+condition = &quot;control&quot;
+fastq_r1 = &quot;/data/fastq/PAT001_R1.fastq.gz&quot;
+fastq_r2 = &quot;/data/fastq/PAT001_R2.fastq.gz&quot;
+
+[[samples]]
+sample_id = &quot;PAT002&quot;
+condition = &quot;treatment&quot;
+fastq_r1 = &quot;/data/fastq/PAT002_R1.fastq.gz&quot;
+fastq_r2 = &quot;/data/fastq/PAT002_R2.fastq.gz&quot;
+</code></pre>
+
+<h3 id="33-toml-in-python">3.3 TOML in Python</h3>
+<pre class="highlight"><code class="language-python"># Built-in module (Python 3.11+)
+import tomllib
+
+with open('config.toml', 'rb') as f:
+    config = tomllib.load(f)
+
+print(config['server']['host'])
+print(config['users'][0]['name'])
+
+# For writing, use toml or tomli-w
+import tomli_w
+
+with open('output.toml', 'wb') as f:
+    tomli_w.dump(config, f)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import tomllib
+
+# Load pipeline configuration
+with open('pipeline.toml', 'rb') as f:
+    config = tomllib.load(f)
+
+# Extract parameters
+pipeline_name = config['pipeline']['name']
+reference_genome = config['reference']['genome']
+threads = config['alignment']['threads']
+
+# Process samples
+for sample in config['samples']:
+    print(f&quot;Processing {sample['sample_id']} ({sample['condition']})&quot;)
+    print(f&quot;  R1: {sample['fastq_r1']}&quot;)
+    print(f&quot;  R2: {sample['fastq_r2']}&quot;)
+</code></pre>
+
+<h3 id="34-pyprojecttoml">3.4 pyproject.toml</h3>
+<pre class="highlight"><code class="language-toml">[project]
+name = &quot;myproject&quot;
+version = &quot;1.0.0&quot;
+description = &quot;My awesome project&quot;
+readme = &quot;README.md&quot;
+requires-python = &quot;&gt;=3.8&quot;
+license = {text = &quot;MIT&quot;}
+authors = [
+    {name = &quot;Author&quot;, email = &quot;author@example.com&quot;}
+]
+dependencies = [
+    &quot;requests&gt;=2.28&quot;,
+    &quot;pydantic&gt;=2.0&quot;,
+]
+
+[project.optional-dependencies]
+dev = [
+    &quot;pytest&gt;=7.0&quot;,
+    &quot;black&gt;=23.0&quot;,
+]
+
+[project.scripts]
+myapp = &quot;myproject:main&quot;
+
+[build-system]
+requires = [&quot;setuptools&gt;=61.0&quot;]
+build-backend = &quot;setuptools.build_meta&quot;
+
+[tool.black]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = [&quot;tests&quot;]
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Tool Example:</strong></p>
+<pre class="highlight"><code class="language-toml">[project]
+name = &quot;variantcaller&quot;
+version = &quot;1.0.0&quot;
+description = &quot;Fast variant calling for NGS data&quot;
+readme = &quot;README.md&quot;
+requires-python = &quot;&gt;=3.9&quot;
+license = {text = &quot;MIT&quot;}
+authors = [
+    {name = &quot;Bioinformatics Team&quot;, email = &quot;bioinfo@example.org&quot;}
+]
+dependencies = [
+    &quot;pysam&gt;=0.21&quot;,
+    &quot;numpy&gt;=1.24&quot;,
+    &quot;pandas&gt;=2.0&quot;,
+    &quot;biopython&gt;=1.81&quot;,
+]
+
+[project.optional-dependencies]
+dev = [
+    &quot;pytest&gt;=7.0&quot;,
+    &quot;pytest-cov&gt;=4.0&quot;,
+    &quot;black&gt;=23.0&quot;,
+]
+
+[project.scripts]
+variantcaller = &quot;variantcaller.cli:main&quot;
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311']
+</code></pre>
+
+<hr />
+<h2 id="4-env-files">4. .env Files</h2>
+<h3 id="41-env-format">4.1 .env Format</h3>
+<pre class="highlight"><code class="language-bash"># .env file
+# Comments start with #
+
+DATABASE_URL=postgresql://localhost/mydb
+SECRET_KEY=your-secret-key-here
+DEBUG=true
+
+# Quotes are optional
+API_KEY=&quot;key-with-spaces and special=chars&quot;
+
+# Multi-line values
+PRIVATE_KEY=&quot;-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA...
+-----END RSA PRIVATE KEY-----&quot;
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-bash"># .env for bioinformatics pipeline
+REFERENCE_GENOME=/data/genomes/GRCh38.fa
+STAR_INDEX=/data/star_index
+ANNOTATION_GTF=/data/annotations/gencode.v42.gtf
+
+# Database credentials
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=variants_db
+DB_USER=bioinfo
+DB_PASSWORD=secret-password-here
+
+# API keys
+NCBI_API_KEY=your-ncbi-api-key
+ENSEMBL_API_URL=https://rest.ensembl.org
+
+# Processing parameters
+MAX_THREADS=16
+MIN_QUALITY=30
+MIN_COVERAGE=10
+</code></pre>
+
+<h3 id="42-env-rules">4.2 .env Rules</h3>
+<ul>
+<li><strong>Format</strong>: <code>KEY=value</code></li>
+<li><strong>Comments</strong>: <code>#</code></li>
+<li><strong>Quotes</strong>: optional (needed for spaces)</li>
+<li><strong>No sections</strong> — flat structure</li>
+<li><strong>DO NOT commit to Git</strong> — add to .gitignore</li>
+</ul>
+<h3 id="43-env-in-python">4.3 .env in Python</h3>
+<pre class="highlight"><code class="language-python"># With python-dotenv library
+from dotenv import load_dotenv
+import os
+
+# Load .env file
+load_dotenv()  # Looks for .env in current directory
+# or
+load_dotenv('/path/to/.env')
+
+# Usage
+database_url = os.getenv('DATABASE_URL')
+debug = os.getenv('DEBUG', 'false').lower() == 'true'
+port = int(os.getenv('PORT', '8080'))
+
+print(f&quot;Connecting to {database_url}&quot;)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">from dotenv import load_dotenv
+import os
+
+# Load environment variables
+load_dotenv()
+
+# Get configuration
+reference_genome = os.getenv('REFERENCE_GENOME')
+star_index = os.getenv('STAR_INDEX')
+threads = int(os.getenv('MAX_THREADS', '8'))
+min_quality = int(os.getenv('MIN_QUALITY', '30'))
+
+# Get API keys
+ncbi_api_key = os.getenv('NCBI_API_KEY')
+ensembl_api_url = os.getenv('ENSEMBL_API_URL', 'https://rest.ensembl.org')
+
+print(f&quot;Reference: {reference_genome}&quot;)
+print(f&quot;Threads: {threads}, Min quality: {min_quality}&quot;)
+</code></pre>
+
+<h3 id="44-env-and-docker">4.4 .env and Docker</h3>
+<pre class="highlight"><code class="language-yaml"># docker-compose.yml
+services:
+  app:
+    image: myapp
+    env_file:
+      - .env
+    environment:
+      - EXTRA_VAR=value  # Additional variables
+</code></pre>
+
+<pre class="highlight"><code class="language-dockerfile"># Dockerfile
+# DO NOT copy .env into image!
+ENV NODE_ENV=production
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-yaml"># docker-compose.yml for bioinformatics pipeline
+services:
+  pipeline:
+    image: rnaseq-pipeline:latest
+    env_file:
+      - .env
+    volumes:
+      - /data:/data:ro
+      - /results:/results:rw
+    environment:
+      - PIPELINE_MODE=production
+</code></pre>
+
+<h3 id="45-example-structure">4.5 Example Structure</h3>
+<pre class="highlight"><code>project/
+├── .env              # Local secrets (in .gitignore)
+├── .env.example      # Template (in Git)
+├── .env.production   # Production settings
+└── .env.test         # Test settings
+</code></pre>
+
+<pre class="highlight"><code class="language-bash"># .env.example
+DATABASE_URL=postgresql://localhost/mydb
+SECRET_KEY=change-me-in-production
+DEBUG=true
+REFERENCE_GENOME=/data/genomes/GRCh38.fa
+NCBI_API_KEY=your-api-key-here
+</code></pre>
+
+<hr />
+<h2 id="5-linux-specific-formats">5. Linux-Specific Formats</h2>
+<p>Linux historically uses many proprietary configuration formats that differ from universal formats (JSON, YAML, INI). These formats are optimized for specific tasks and often exist since early UNIX versions.</p>
+<h3 id="51-colon-separated-values-dsv">5.1 Colon-Separated Values (DSV)</h3>
+<p><strong>Delimiter-separated values</strong> — format where fields are separated by colon (<code>:</code>). This is one of the oldest UNIX formats, used for system databases. Very compact and efficient for machine processing, though less human-readable.</p>
+<pre class="highlight"><code class="language-bash"># /etc/passwd — user database
+# username:password:UID:GID:GECOS:home:shell
+root:x:0:0:root:/root:/bin/bash
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+john:x:1000:1000:John Doe:/home/john:/bin/bash
+</code></pre>
+
+<p><strong>Fields in <code>/etc/passwd</code>:</strong></p>
+<ol>
+<li id="item-1">Username</li>
+<li id="item-2">Password (<code>x</code> = in /etc/shadow)</li>
+<li id="item-3">UID — numeric identifier</li>
+<li id="item-4">GID — default group</li>
+<li id="item-5">GECOS — full name and comment</li>
+<li id="item-6">Home directory</li>
+<li id="item-7">Login shell</li>
+</ol>
+<pre class="highlight"><code class="language-bash"># /etc/group — group database
+# groupname:password:GID:members
+root:x:0:
+wheel:x:10:john,admin
+docker:x:998:john,deploy
+</code></pre>
+
+<p><strong>Parsing in Python:</strong></p>
+<pre class="highlight"><code class="language-python"># Reading /etc/passwd
+def parse_passwd():
+    users = []
+    with open('/etc/passwd') as f:
+        for line in f:
+            if line.strip() and not line.startswith('#'):
+                fields = line.strip().split(':')
+                users.append({
+                    'username': fields[0],
+                    'uid': int(fields[2]),
+                    'gid': int(fields[3]),
+                    'gecos': fields[4],
+                    'home': fields[5],
+                    'shell': fields[6]
+                })
+    return users
+
+# Or via standard module
+import pwd
+import grp
+
+user = pwd.getpwnam('john')
+print(f&quot;{user.pw_name}: UID={user.pw_uid}, home={user.pw_dir}&quot;)
+
+group = grp.getgrnam('docker')
+print(f&quot;{group.gr_name}: members={group.gr_mem}&quot;)
+</code></pre>
+
+<h3 id="52-keyword-argument-format">5.2 Keyword-Argument Format</h3>
+<p><strong>Keyword-argument</strong> (or keyword-value) — format where each line contains a directive and its value, separated by spaces. Widely used in security and network service configurations.</p>
+<pre class="highlight"><code class="language-bash"># /etc/ssh/sshd_config — SSH server configuration
+# Basic security settings
+Port 22
+AddressFamily any
+ListenAddress 0.0.0.0
+ListenAddress ::
+
+# Authentication
+PermitRootLogin prohibit-password
+PubkeyAuthentication yes
+PasswordAuthentication no
+PermitEmptyPasswords no
+
+# Restrictions
+MaxAuthTries 3
+MaxSessions 10
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+# Subsystems
+Subsystem sftp /usr/lib/openssh/sftp-server
+
+# Conditional blocks
+Match User deploy
+    PasswordAuthentication no
+    AllowTcpForwarding no
+    X11Forwarding no
+    ForceCommand /usr/local/bin/deploy-only.sh
+
+Match Group developers
+    AllowTcpForwarding yes
+    PermitTunnel yes
+</code></pre>
+
+<p><strong>Format features:</strong></p>
+<ul>
+<li>Directive and value separated by spaces</li>
+<li>Case-insensitive keywords</li>
+<li><code>Match</code> — conditional blocks</li>
+<li>No quotes for strings with spaces (context-dependent)</li>
+</ul>
+<hr />
+<h2 id="6-best-practices">6. Best Practices</h2>
+<h3 id="61-security">6.1 Security</h3>
+<pre class="highlight"><code class="language-bash"># .gitignore
+.env
+*.pem
+*_secret*
+config/local.toml
+</code></pre>
+
+<h3 id="62-configuration-structure">6.2 Configuration Structure</h3>
+<pre class="highlight"><code class="language-python"># config.py
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class Config:
+    # With defaults
+    DEBUG = os.getenv('DEBUG', 'false').lower() == 'true'
+    PORT = int(os.getenv('PORT', '8080'))
+
+    # Required
+    DATABASE_URL = os.environ['DATABASE_URL']  # Fails if missing
+    SECRET_KEY = os.environ['SECRET_KEY']
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python"># pipeline_config.py
+import os
+from dotenv import load_dotenv
+from pathlib import Path
+
+load_dotenv()
+
+class PipelineConfig:
+    # Reference data (required)
+    REFERENCE_GENOME = Path(os.environ['REFERENCE_GENOME'])
+    STAR_INDEX = Path(os.environ['STAR_INDEX'])
+    ANNOTATION_GTF = Path(os.environ['ANNOTATION_GTF'])
+
+    # Processing parameters (with defaults)
+    MAX_THREADS = int(os.getenv('MAX_THREADS', '8'))
+    MIN_QUALITY = int(os.getenv('MIN_QUALITY', '30'))
+    MIN_COVERAGE = int(os.getenv('MIN_COVERAGE', '10'))
+
+    # API keys (optional)
+    NCBI_API_KEY = os.getenv('NCBI_API_KEY')
+    ENSEMBL_API_URL = os.getenv('ENSEMBL_API_URL', 'https://rest.ensembl.org')
+
+    # Validate paths exist
+    def __post_init__(self):
+        if not self.REFERENCE_GENOME.exists():
+            raise FileNotFoundError(f&quot;Reference genome not found: {self.REFERENCE_GENOME}&quot;)
+        if not self.STAR_INDEX.exists():
+            raise FileNotFoundError(f&quot;STAR index not found: {self.STAR_INDEX}&quot;)
+</code></pre>
+
+<h3 id="63-configuration-validation">6.3 Configuration Validation</h3>
+<pre class="highlight"><code class="language-python">from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    database_url: str
+    secret_key: str
+    debug: bool = False
+    port: int = 8080
+
+    class Config:
+        env_file = '.env'
+
+settings = Settings()  # Automatic validation
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">from pydantic_settings import BaseSettings
+from pathlib import Path
+from typing import Optional
+
+class PipelineSettings(BaseSettings):
+    # Reference data
+    reference_genome: Path
+    star_index: Path
+    annotation_gtf: Path
+
+    # Processing parameters
+    max_threads: int = 8
+    min_quality: int = 30
+    min_coverage: int = 10
+    min_mapping_quality: int = 30
+
+    # API keys
+    ncbi_api_key: Optional[str] = None
+    ensembl_api_url: str = &quot;https://rest.ensembl.org&quot;
+
+    class Config:
+        env_file = '.env'
+        env_file_encoding = 'utf-8'
+
+# Automatic validation and type conversion
+settings = PipelineSettings()
+print(f&quot;Reference: {settings.reference_genome}&quot;)
+print(f&quot;Threads: {settings.max_threads}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>INI — simple but alive</strong>: Used in Git, PHP, systemd. Sections, string values, extensions in different implementations.</p>
+</li>
+<li>
+<p><strong>TOML — modern standard</strong>: Data types, readability, pyproject.toml, Cargo.toml.</p>
+</li>
+<li>
+<p><strong>.env — for secrets</strong>: Environment variables, DO NOT commit to Git.</p>
+</li>
+<li>
+<p><strong>Linux formats are diverse</strong>: Colon-separated (/etc/passwd), keyword-value (sshd_config), tabular (fstab), block-based (nginx). Each optimized for its task.</p>
+</li>
+<li>
+<p><strong>man pages are critical</strong>: <code>man 5 passwd</code>, <code>man sshd_config</code>, <code>man fstab</code> — always up-to-date documentation.</p>
+</li>
+<li>
+<p><strong>Format choice</strong>: Python → TOML, DevOps → YAML, secrets → .env, Linux system → specific formats.</p>
+</li>
+<li>
+<p><strong>🧬 Bioinformatics</strong>: TOML for pipeline configs, .env for credentials, YAML for Snakemake/Nextflow.</p>
+</li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Create pyproject.toml for your Python bioinformatics project</li>
+<li id="item-2">Set up .env for a Docker Compose bioinformatics pipeline</li>
+<li id="item-3">Write a script to convert INI → TOML</li>
+<li id="item-4">Create a systemd unit file for a bioinformatics service (e.g., Galaxy)</li>
+<li id="item-5">Explore <code>/etc/passwd</code> and <code>/etc/group</code> on your system with Python</li>
+<li id="item-6">Configure a bioinformatics pipeline using TOML with validation</li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>Learn about Pydantic for configuration validation</li>
+<li>Study systemd unit files for complex services</li>
+<li>Explore Nextflow config DSL</li>
+<li>Investigate Snakemake configuration patterns</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<p><strong>Formats:</strong></p>
+<ul>
+<li><a href="https://toml.io/">TOML Specification</a></li>
+<li><a href="https://github.com/theskumar/python-dotenv">python-dotenv</a></li>
+<li><a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/">Pydantic Settings</a></li>
+</ul>
+<p><strong>Linux man pages (section 5 — file formats):</strong></p>
+<ul>
+<li><code>man 5 passwd</code> — /etc/passwd format</li>
+<li><code>man 5 shadow</code> — /etc/shadow format</li>
+<li><code>man 5 fstab</code> — filesystem table</li>
+<li><code>man 5 hosts</code> — /etc/hosts format</li>
+<li><code>man sshd_config</code> — SSH server configuration</li>
+<li><code>man 5 sudoers</code> — sudoers file format</li>
+<li><code>man 5 crontab</code> — crontab format</li>
+<li><code>man systemd.unit</code> — systemd unit file format</li>
+</ul>
+<p><strong>Bioinformatics:</strong></p>
+<ul>
+<li><a href="https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html">Snakemake Configuration</a></li>
+<li><a href="https://www.nextflow.io/docs/latest/config.html">Nextflow Configuration</a></li>
+<li><a href="https://galaxyproject.org/admin/config/">Galaxy Configuration</a></li>
+</ul>
+<hr />
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

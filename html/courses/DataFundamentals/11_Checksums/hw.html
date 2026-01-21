@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Hashes and Checksums">
+    <title>Homework: Checksums and Data Integrity | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/DataFundamentals/">Data Fundamentals for Life Sciences</a> &raquo;
+                    <a href="index.html">Hashes and Checksums</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="homework-checksums-and-data-integrity">Homework: Checksums and Data Integrity</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-hash-algorithm-comparison">Exercise 1: Hash Algorithm Comparison</h3>
+<ol>
+<li id="item-1">Calculate and compare different hash functions:<br />
+   - MD5, SHA-1 (deprecated but still encountered)<br />
+   - SHA-256, SHA-512 (current standards)<br />
+   - Blake2, SHA-3 (modern alternatives)<br />
+   - CRC32 (fast but weak)</li>
+<li id="item-2">Test hash calculation for:<br />
+   - Small text files<br />
+   - Large binary files<br />
+   - Identical content in different formats<br />
+   - Files with single bit differences</li>
+<li id="item-3">Document performance characteristics of each algorithm</li>
+<li id="item-4">Understand security implications and appropriate use cases</li>
+</ol>
+<h3 id="exercise-2-file-integrity-verification">Exercise 2: File Integrity Verification</h3>
+<ol>
+<li id="item-1">Create integrity verification workflows:<br />
+   - Generate checksums for file collections<br />
+   - Verify integrity after file transfers<br />
+   - Detect corruption in stored files<br />
+   - Automate integrity checking in scripts</li>
+<li id="item-2">Practice with different checksum file formats:<br />
+   - md5sum, sha256sum output formats<br />
+   - Custom checksum manifests<br />
+   - Integration with version control systems</li>
+<li id="item-3">Handle edge cases:<br />
+   - Missing files<br />
+   - Permission issues<br />
+   - Path differences across systems</li>
+</ol>
+<h3 id="exercise-3-data-transmission-verification">Exercise 3: Data Transmission Verification</h3>
+<ol>
+<li id="item-1">Implement end-to-end data integrity:<br />
+   - Calculate checksums before transmission<br />
+   - Verify checksums after reception<br />
+   - Handle checksum mismatches gracefully<br />
+   - Implement retry mechanisms for failed transfers</li>
+<li id="item-2">Practice with different protocols:<br />
+   - HTTP with ETag headers<br />
+   - FTP with hash verification<br />
+   - Email attachments with checksums<br />
+   - Cloud storage integrity checking</li>
+</ol>
+<h3 id="exercise-4-digital-signatures-and-authentication">Exercise 4: Digital Signatures and Authentication</h3>
+<ol>
+<li id="item-1">Learn about cryptographic signatures:<br />
+   - Public/private key concepts<br />
+   - Message Authentication Codes (HMAC)<br />
+   - Digital signature verification<br />
+   - Certificate chain validation</li>
+<li id="item-2">Practical signature implementation:<br />
+   - Sign files with GPG/PGP<br />
+   - Verify software package signatures<br />
+   - Create and verify JWT tokens<br />
+   - Implement HMAC for API authentication</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Automated Integrity System</strong><br />
+- Build a file integrity monitoring system<br />
+- Generate baseline checksums for important files<br />
+- Detect unauthorized modifications<br />
+- Implement alerting for integrity violations<br />
+- Create restoration procedures for corrupted files</p>
+<p><strong>Task 2: Software Distribution Verification</strong><br />
+- Download and verify software packages<br />
+- Check GPG signatures for open source software<br />
+- Verify container image signatures<br />
+- Implement package integrity in deployment pipelines<br />
+- Create custom package signing workflows</p>
+<p><strong>Task 3: Database Integrity Checking</strong><br />
+- Implement database backup verification<br />
+- Create checksums for database exports<br />
+- Verify data consistency across replicas<br />
+- Monitor data corruption in production systems<br />
+- Implement point-in-time integrity validation</p>
+<h2 id="programming-implementation">Programming Implementation</h2>
+<p><strong>Task 4: Checksum Utilities Development</strong><br />
+Create comprehensive checksum utilities:<br />
+- Multi-algorithm hash calculation<br />
+- Recursive directory processing<br />
+- Parallel processing for large files<br />
+- Progress reporting for long operations<br />
+- Resume capability for interrupted operations</p>
+<p><strong>Task 5: Integrity APIs</strong><br />
+- Implement RESTful APIs for integrity verification<br />
+- Create libraries for common programming languages<br />
+- Integrate with existing file management systems<br />
+- Provide webhook notifications for integrity events<br />
+- Support for distributed integrity verification</p>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p><strong>Task 6: Merkle Trees and Blockchain Concepts</strong><br />
+- Understand Merkle tree construction<br />
+- Implement efficient bulk verification<br />
+- Learn about blockchain integrity concepts<br />
+- Create tamper-evident log systems<br />
+- Implement incremental verification strategies</p>
+<p><strong>Task 7: Hardware Security Modules (HSM)</strong><br />
+- Research hardware-based integrity verification<br />
+- Understand TPM (Trusted Platform Module) concepts<br />
+- Learn about secure boot and measured boot<br />
+- Explore hardware root of trust implementations</p>
+<h2 id="security-considerations">Security Considerations</h2>
+<p><strong>Task 8: Cryptographic Best Practices</strong><br />
+1. Understand hash function vulnerabilities:<br />
+   - Collision attacks (MD5, SHA-1)<br />
+   - Length extension attacks<br />
+   - Rainbow table attacks<br />
+2. Implement secure random number generation<br />
+3. Use appropriate key derivation functions<br />
+4. Understand timing attack prevention<br />
+5. Implement secure comparison operations</p>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<p><strong>Task 9: High-Performance Hashing</strong><br />
+- Optimize hash calculation for large files<br />
+- Implement streaming hash computation<br />
+- Use hardware acceleration (AES-NI, SHA extensions)<br />
+- Compare software vs hardware implementations<br />
+- Optimize for different storage types (SSD, HDD, network)</p>
+<h2 id="real-world-applications">Real-World Applications</h2>
+<p><strong>Task 10: Industry Use Cases</strong><br />
+1. Digital forensics and evidence integrity<br />
+2. Software supply chain security<br />
+3. Financial transaction verification<br />
+4. Medical data integrity in healthcare<br />
+5. Legal document authenticity<br />
+6. Scientific data reproducibility<br />
+7. Media content verification</p>
+<h2 id="monitoring-and-alerting">Monitoring and Alerting</h2>
+<p><strong>Task 11: Production Monitoring</strong><br />
+- Implement real-time integrity monitoring<br />
+- Create dashboards for integrity metrics<br />
+- Set up alerting for integrity violations<br />
+- Integrate with existing monitoring systems<br />
+- Implement automated response to integrity issues</p>
+<h2 id="compliance-and-standards">Compliance and Standards</h2>
+<p><strong>Task 12: Regulatory Compliance</strong><br />
+- Research compliance requirements (FIPS, Common Criteria)<br />
+- Implement audit trails for integrity operations<br />
+- Create compliance reporting mechanisms<br />
+- Understand legal implications of integrity failures<br />
+- Document integrity verification procedures</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive data integrity portfolio:<br />
+1. Hash algorithm performance comparison<br />
+2. Working integrity verification system<br />
+3. Security analysis and threat modeling<br />
+4. Implementation of digital signature workflows<br />
+5. Performance optimization documentation<br />
+6. Real-world case study implementation<br />
+7. Compliance and best practices guide<br />
+8. Tools and utilities for practical use<br />
+9. Automated testing and validation framework</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Protocols define interfaces through method signatures without explicit inheritance.">
+    <title>Protocols and Interfaces | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="protocols-and-interfaces">Protocols and Interfaces</h1>
+<h2 id="duck-typing-protocols-abstract-base-classes">Duck Typing, Protocols, Abstract Base Classes</h2>
+<hr />
+<h2 id="1-what-are-protocols">1. What are Protocols?</h2>
+<p>Protocols define interfaces through method signatures without explicit inheritance.</p>
+<p>In Python, protocols are based on <strong>duck typing</strong>:</p>
+<blockquote>
+<p>"If it walks like a duck and quacks like a duck, it's a duck."</p>
+</blockquote>
+<pre class="highlight"><code class="language-python"># No inheritance needed
+class Duck:
+    def quack(self):
+        return &quot;Quack!&quot;
+
+class Person:
+    def quack(self):
+        return &quot;I'm imitating a duck!&quot;
+
+def make_it_quack(thing):
+    print(thing.quack())
+
+make_it_quack(Duck())      # Quack!
+make_it_quack(Person())    # I'm imitating a duck!
+</code></pre>
+
+<hr />
+<h2 id="2-duck-typing-vs-static-typing">2. Duck Typing vs Static Typing</h2>
+<h3 id="duck-typing-dynamic">Duck Typing (Dynamic)</h3>
+<pre class="highlight"><code class="language-python">def process(item):
+    # Just call the method - if it exists, it works
+    return item.process()
+
+class DataProcessor:
+    def process(self):
+        return &quot;Processing data&quot;
+
+class ImageProcessor:
+    def process(self):
+        return &quot;Processing image&quot;
+
+# Both work without inheritance
+print(process(DataProcessor()))
+print(process(ImageProcessor()))
+</code></pre>
+
+<h3 id="static-typing-traditional">Static Typing (Traditional)</h3>
+<pre class="highlight"><code class="language-java">// Java example - requires explicit interface
+interface Processor {
+    String process();
+}
+
+class DataProcessor implements Processor {
+    public String process() {
+        return &quot;Processing data&quot;;
+    }
+}
+</code></pre>
+
+<hr />
+<h2 id="3-common-built-in-protocols">3. Common Built-in Protocols</h2>
+<h3 id="sequence-protocol">Sequence Protocol</h3>
+<p>Requires: <code>__len__()</code> and <code>__getitem__()</code></p>
+<pre class="highlight"><code class="language-python">class MySequence:
+    def __init__(self, data):
+        self._data = data
+
+    def __len__(self):
+        return len(self._data)
+
+    def __getitem__(self, index):
+        return self._data[index]
+
+seq = MySequence([1, 2, 3, 4, 5])
+print(len(seq))        # 5
+print(seq[2])          # 3
+print(seq[1:4])        # [2, 3, 4]
+
+# Works with built-in functions
+for item in seq:
+    print(item)
+</code></pre>
+
+<h3 id="container-protocol">Container Protocol</h3>
+<p>Requires: <code>__contains__()</code></p>
+<pre class="highlight"><code class="language-python">class MyContainer:
+    def __init__(self, items):
+        self._items = items
+
+    def __contains__(self, item):
+        return item in self._items
+
+container = MyContainer([1, 2, 3, 4, 5])
+print(3 in container)     # True
+print(10 in container)    # False
+</code></pre>
+
+<h3 id="sized-protocol">Sized Protocol</h3>
+<p>Requires: <code>__len__()</code></p>
+<pre class="highlight"><code class="language-python">class MyCollection:
+    def __init__(self, items):
+        self._items = items
+
+    def __len__(self):
+        return len(self._items)
+
+collection = MyCollection([1, 2, 3])
+print(len(collection))    # 3
+</code></pre>
+
+<hr />
+<h2 id="4-iterator-protocol">4. Iterator Protocol</h2>
+<p>Requires: <code>__iter__()</code> and <code>__next__()</code></p>
+<pre class="highlight"><code class="language-python">class CountDown:
+    def __init__(self, start):
+        self.current = start
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current &lt;= 0:
+            raise StopIteration
+        self.current -= 1
+        return self.current + 1
+
+for num in CountDown(5):
+    print(num)    # 5, 4, 3, 2, 1
+</code></pre>
+
+<hr />
+<h2 id="5-context-manager-protocol">5. Context Manager Protocol</h2>
+<p>Requires: <code>__enter__()</code> and <code>__exit__()</code></p>
+<pre class="highlight"><code class="language-python">class FileManager:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
+
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+        return False
+
+with FileManager('test.txt', 'w') as f:
+    f.write('Hello, World!')
+</code></pre>
+
+<hr />
+<h2 id="6-callable-protocol">6. Callable Protocol</h2>
+<p>Requires: <code>__call__()</code></p>
+<pre class="highlight"><code class="language-python">class Multiplier:
+    def __init__(self, factor):
+        self.factor = factor
+
+    def __call__(self, x):
+        return x * self.factor
+
+times_5 = Multiplier(5)
+print(times_5(10))    # 50
+print(times_5(7))     # 35
+
+# Check if callable
+print(callable(times_5))    # True
+</code></pre>
+
+<hr />
+<h2 id="7-numeric-protocols">7. Numeric Protocols</h2>
+<h3 id="arithmetic-operators">Arithmetic Operators</h3>
+<pre class="highlight"><code class="language-python">class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        return Vector(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, scalar):
+        return Vector(self.x * scalar, self.y * scalar)
+
+    def __repr__(self):
+        return f&quot;Vector({self.x}, {self.y})&quot;
+
+v1 = Vector(2, 3)
+v2 = Vector(1, 1)
+
+print(v1 + v2)    # Vector(3, 4)
+print(v1 - v2)    # Vector(1, 2)
+print(v1 * 3)     # Vector(6, 9)
+</code></pre>
+
+<h3 id="comparison-operators">Comparison Operators</h3>
+<pre class="highlight"><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __eq__(self, other):
+        return self.age == other.age
+
+    def __lt__(self, other):
+        return self.age &lt; other.age
+
+    def __le__(self, other):
+        return self.age &lt;= other.age
+
+    def __repr__(self):
+        return f&quot;Person({self.name}, {self.age})&quot;
+
+people = [Person(&quot;Alice&quot;, 30), Person(&quot;Bob&quot;, 25), Person(&quot;Charlie&quot;, 35)]
+sorted_people = sorted(people)
+print(sorted_people)    # [Person(Bob, 25), Person(Alice, 30), Person(Charlie, 35)]
+</code></pre>
+
+<hr />
+<h2 id="8-typing-protocols-python-38">8. Typing Protocols (Python 3.8+)</h2>
+<p>Type hints for structural subtyping using <code>Protocol</code>.</p>
+<pre class="highlight"><code class="language-python">from typing import Protocol
+
+class Drawable(Protocol):
+    def draw(self) -&gt; str:
+        ...
+
+class Circle:
+    def draw(self) -&gt; str:
+        return &quot;Drawing a circle&quot;
+
+class Square:
+    def draw(self) -&gt; str:
+        return &quot;Drawing a square&quot;
+
+def render(obj: Drawable) -&gt; None:
+    print(obj.draw())
+
+# No inheritance needed - just matching interface
+render(Circle())    # Drawing a circle
+render(Square())    # Drawing a square
+</code></pre>
+
+<h3 id="protocol-with-properties">Protocol with Properties</h3>
+<pre class="highlight"><code class="language-python">from typing import Protocol
+
+class Named(Protocol):
+    @property
+    def name(self) -&gt; str:
+        ...
+
+class Person:
+    def __init__(self, name: str):
+        self._name = name
+
+    @property
+    def name(self) -&gt; str:
+        return self._name
+
+def print_name(obj: Named) -&gt; None:
+    print(obj.name)
+
+person = Person(&quot;Alice&quot;)
+print_name(person)    # Alice
+</code></pre>
+
+<hr />
+<h2 id="9-abstract-base-classes-abc">9. Abstract Base Classes (ABC)</h2>
+<p>ABCs enforce interface implementation through inheritance.</p>
+<pre class="highlight"><code class="language-python">from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self) -&gt; float:
+        pass
+
+    @abstractmethod
+    def perimeter(self) -&gt; float:
+        pass
+
+    def describe(self) -&gt; str:
+        return f&quot;Shape with area {self.area()}&quot;
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self) -&gt; float:
+        return self.width * self.height
+
+    def perimeter(self) -&gt; float:
+        return 2 * (self.width + self.height)
+
+# shape = Shape()    # TypeError: Can't instantiate abstract class
+
+rect = Rectangle(5, 10)
+print(rect.area())        # 50
+print(rect.describe())    # Shape with area 50
+</code></pre>
+
+<hr />
+<h2 id="10-collections-abcs">10. Collections ABCs</h2>
+<p>Python provides abstract base classes for common collection types.</p>
+<pre class="highlight"><code class="language-python">from collections.abc import Sequence, MutableSequence
+
+class MyList(MutableSequence):
+    def __init__(self):
+        self._items = []
+
+    def __getitem__(self, index):
+        return self._items[index]
+
+    def __setitem__(self, index, value):
+        self._items[index] = value
+
+    def __delitem__(self, index):
+        del self._items[index]
+
+    def __len__(self):
+        return len(self._items)
+
+    def insert(self, index, value):
+        self._items.insert(index, value)
+
+my_list = MyList()
+my_list.append(1)      # Inherited from MutableSequence
+my_list.extend([2, 3]) # Inherited from MutableSequence
+print(len(my_list))    # 3
+</code></pre>
+
+<h3 id="common-collections-abcs">Common Collections ABCs</h3>
+<pre class="highlight"><code class="language-python">from collections.abc import (
+    Container,      # __contains__
+    Iterable,       # __iter__
+    Iterator,       # __iter__, __next__
+    Sized,          # __len__
+    Callable,       # __call__
+    Sequence,       # __getitem__, __len__
+    MutableSequence,# __setitem__, __delitem__, insert
+    Set,            # __contains__, __iter__, __len__
+    MutableSet,     # add, discard
+    Mapping,        # __getitem__, __iter__, __len__
+    MutableMapping, # __setitem__, __delitem__
+)
+</code></pre>
+
+<hr />
+<h2 id="11-implementing-multiple-protocols">11. Implementing Multiple Protocols</h2>
+<pre class="highlight"><code class="language-python">class SmartList:
+    def __init__(self, items=None):
+        self._items = list(items) if items else []
+
+    # Sequence protocol
+    def __len__(self):
+        return len(self._items)
+
+    def __getitem__(self, index):
+        return self._items[index]
+
+    def __setitem__(self, index, value):
+        self._items[index] = value
+
+    # Container protocol
+    def __contains__(self, item):
+        return item in self._items
+
+    # Iterator protocol
+    def __iter__(self):
+        return iter(self._items)
+
+    # String representation
+    def __repr__(self):
+        return f&quot;SmartList({self._items})&quot;
+
+    # Callable protocol
+    def __call__(self):
+        return len(self._items)
+
+smart = SmartList([1, 2, 3, 4, 5])
+print(len(smart))       # 5
+print(smart[2])         # 3
+print(3 in smart)       # True
+print(smart())          # 5
+for item in smart:
+    print(item)
+</code></pre>
+
+<hr />
+<h2 id="12-runtime-protocol-checking">12. Runtime Protocol Checking</h2>
+<p>Check if an object implements a protocol.</p>
+<pre class="highlight"><code class="language-python">from collections.abc import Iterable, Sized, Callable
+
+class MyClass:
+    def __init__(self):
+        self._items = [1, 2, 3]
+
+    def __iter__(self):
+        return iter(self._items)
+
+    def __len__(self):
+        return len(self._items)
+
+obj = MyClass()
+
+print(isinstance(obj, Iterable))    # True
+print(isinstance(obj, Sized))       # True
+print(isinstance(obj, Callable))    # False
+</code></pre>
+
+<hr />
+<h2 id="13-protocol-composition">13. Protocol Composition</h2>
+<p>Combine multiple protocols for complex interfaces.</p>
+<pre class="highlight"><code class="language-python">from typing import Protocol
+
+class Comparable(Protocol):
+    def __lt__(self, other) -&gt; bool:
+        ...
+
+class Printable(Protocol):
+    def __str__(self) -&gt; str:
+        ...
+
+class ComparablePrintable(Comparable, Printable, Protocol):
+    pass
+
+class Person:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+    def __lt__(self, other) -&gt; bool:
+        return self.age &lt; other.age
+
+    def __str__(self) -&gt; str:
+        return f&quot;{self.name}, {self.age}&quot;
+
+def process(item: ComparablePrintable) -&gt; None:
+    print(str(item))
+
+person = Person(&quot;Alice&quot;, 30)
+process(person)
+</code></pre>
+
+<hr />
+<h2 id="14-protocols-vs-abc-when-to-use">14. Protocols vs ABC: When to Use</h2>
+<h3 id="use-protocols-when">Use Protocols When:</h3>
+<ul>
+<li>You want structural subtyping (duck typing with type checking)</li>
+<li>You don't control the classes being used</li>
+<li>You want flexibility without inheritance</li>
+<li>Working with third-party code</li>
+</ul>
+<h3 id="use-abc-when">Use ABC When:</h3>
+<ul>
+<li>You want to enforce implementation</li>
+<li>You control the class hierarchy</li>
+<li>You want to provide default implementations</li>
+<li>You need runtime enforcement</li>
+</ul>
+<pre class="highlight"><code class="language-python"># Protocol - no inheritance needed
+from typing import Protocol
+
+class Drawable(Protocol):
+    def draw(self) -&gt; str: ...
+
+# ABC - inheritance required
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def draw(self) -&gt; str:
+        pass
+</code></pre>
+
+<hr />
+<h2 id="15-best-practices">15. Best Practices</h2>
+<h3 id="1-keep-protocols-small-and-focused">1. Keep Protocols Small and Focused</h3>
+<pre class="highlight"><code class="language-python"># Good - single responsibility
+class Readable(Protocol):
+    def read(self) -&gt; str: ...
+
+class Writable(Protocol):
+    def write(self, data: str) -&gt; None: ...
+
+# Can combine when needed
+class ReadWritable(Readable, Writable, Protocol):
+    pass
+</code></pre>
+
+<h3 id="2-use-meaningful-names">2. Use Meaningful Names</h3>
+<pre class="highlight"><code class="language-python"># Good
+class Serializable(Protocol):
+    def to_json(self) -&gt; str: ...
+
+# Bad
+class X(Protocol):
+    def f(self) -&gt; str: ...
+</code></pre>
+
+<h3 id="3-document-expected-behavior">3. Document Expected Behavior</h3>
+<pre class="highlight"><code class="language-python">class Comparable(Protocol):
+    &quot;&quot;&quot;Objects that can be compared for ordering.
+
+    Implementations must provide consistent ordering
+    where a &lt; b and b &lt; c implies a &lt; c.
+    &quot;&quot;&quot;
+    def __lt__(self, other) -&gt; bool:
+        &quot;&quot;&quot;Return True if self is less than other.&quot;&quot;&quot;
+        ...
+</code></pre>
+
+<hr />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="This lecture explores the difference between writing code that merely runs on Python and writing code that embraces the language&#39;s core philosophy and">
+    <title>🐍 Pythonic Code: Clarity, Simplicity, an | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">🐍 Pythonic Code: Clarity, Simplicity, an</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="pythonic-code-clarity-simplicity-and-speed">🐍 Pythonic Code: Clarity, Simplicity, and Speed</h1>
+<p>This lecture explores the difference between writing code that merely runs on Python and writing code that embraces the language's core philosophy and best practices — what we call <strong>"Pythonic" code</strong>.</p>
+<hr />
+<h2 id="1-written-on-python-vs-written-in-the-spirit-of-python">1. ✍️ Written on Python vs. Written in the Spirit of Python</h2>
+<p>The distinction between these two styles goes beyond syntax; it defines the quality, maintainability, and efficiency of your code.</p>
+<hr />
+<h3 id="a-written-on-python-syntactically-correct">A. Written on Python (Syntactically Correct)</h3>
+<p>This refers to code that adheres to Python's syntax rules and successfully executes.<br />
+Often, this style is characterized by:</p>
+<ul>
+<li><strong>Mechanical Translation</strong>: Directly translating idioms from languages like C, Java, or PHP.  </li>
+<li><strong>Verbosity</strong>: Manual indexing, explicit counters, <code>while</code> loops instead of direct iteration.  </li>
+<li><strong>Focus</strong>: Functionality and correctness (“does it run?”).</li>
+</ul>
+<h4 id="non-pythonic-example-manual-indexing">Non-Pythonic Example (Manual Indexing)</h4>
+<pre class="highlight"><code class="language-python">i = 0
+while i &lt; len(my_list):
+    print(my_list[i])
+    i += 1
+</code></pre>
+
+<h4 id="pythonic-equivalent-direct-iteration">Pythonic Equivalent (Direct Iteration)</h4>
+<pre class="highlight"><code class="language-python">for item in my_list:
+    print(item)
+</code></pre>
+
+<hr />
+<h3 id="b-written-in-the-spirit-of-python-pythonic">B. Written in the Spirit of Python (Pythonic)</h3>
+<p>Pythonic code is <strong>idiomatic</strong>.<br />
+It follows the principles of the <strong>Zen of Python</strong> and uses built-in features to create code that is clean, readable, elegant, and maintainable.</p>
+<p><strong>Core Principle:</strong> <em>Readability counts.</em></p>
+<p><strong>Key Idioms:</strong></p>
+<ul>
+<li>List comprehensions  </li>
+<li>Context managers (<code>with</code>)  </li>
+<li>Generators  </li>
+<li>Tuple unpacking  </li>
+<li>Built-ins: <code>enumerate</code>, <code>zip</code>, <code>map</code>, <code>sorted</code></li>
+</ul>
+<h4 id="non-pythonic-example-filtering-mapping">Non-Pythonic Example (Filtering &amp; Mapping)</h4>
+<pre class="highlight"><code class="language-python">new_list = []
+for x in numbers:
+    if x % 2 == 0:
+        new_list.append(x * 2)
+</code></pre>
+
+<h4 id="pythonic-equivalent-list-comprehension">Pythonic Equivalent (List Comprehension)</h4>
+<pre class="highlight"><code class="language-python">new_list = [x * 2 for x in numbers if x % 2 == 0]
+</code></pre>
+
+<hr />
+<h2 id="2-pythonic-speed-readability-simplicity-predictability">2. 🚀 "Pythonic Speed": Readability → Simplicity → Predictability</h2>
+<p>The idea of <strong>"Pythonic Speed"</strong> is that optimizing for <em>developer time</em> provides the biggest performance gains.<br />
+Readable and simple code reduces bugs and speeds up maintenance far more than micro-optimizing tiny loops.</p>
+<hr />
+<h3 id="a-readability-top-priority">A. Readability (Top Priority)</h3>
+<p><strong>Goal:</strong> Code should be immediately understandable.</p>
+<p><strong>Why:</strong><br />
+Readable code is faster to debug, review, modify, and extend.</p>
+<p><strong>Zen principle:</strong> <em>Beautiful is better than ugly.</em></p>
+<hr />
+<h3 id="b-simplicity-second-priority">B. Simplicity (Second Priority)</h3>
+<p><strong>Goal:</strong> Use the clearest and most direct constructs.</p>
+<p><strong>Why:</strong><br />
+Simple code leads to fewer bugs and fewer hidden side effects.</p>
+<p><strong>Zen principles:</strong><br />
+- <em>Simple is better than complex.</em><br />
+- <em>Explicit is better than implicit.</em></p>
+<hr />
+<h3 id="c-predictability-third-priority">C. Predictability (Third Priority)</h3>
+<p><strong>Goal:</strong> Code should behave exactly as expected, including edge cases.</p>
+<p><strong>Examples of unpredictable patterns:</strong><br />
+- Mutable default arguments (<code>def f(x, items=[])</code>)<br />
+- Mutating function arguments accidentally<br />
+- Relying on implementation-specific behavior</p>
+<p><strong>Why:</strong><br />
+Predictable code produces fewer surprises and reduces testing and integration time.</p>
+<hr />
+<h2 id="3-eafp-vs-lbyl-ask-forgiveness-not-permission">3. 🤸 EAFP vs LBYL: Ask Forgiveness, Not Permission</h2>
+<p>One of the most distinctive Python philosophies is <strong>EAFP</strong> (Easier to Ask for Forgiveness than Permission) vs <strong>LBYL</strong> (Look Before You Leap).</p>
+<hr />
+<h3 id="a-lbyl-look-before-you-leap-non-pythonic">A. LBYL (Look Before You Leap) — Non-Pythonic</h3>
+<p>Check conditions before making calls or accessing resources.</p>
+<pre class="highlight"><code class="language-python"># Non-Pythonic: Check first
+if key in my_dict:
+    value = my_dict[key]
+else:
+    value = default_value
+
+# Non-Pythonic: File existence check
+import os
+if os.path.exists('file.txt'):
+    with open('file.txt') as f:
+        data = f.read()
+</code></pre>
+
+<p><strong>Problems:</strong>
+- Race conditions (file could be deleted between check and open)
+- Verbose and cluttered
+- Multiple checks needed</p>
+<hr />
+<h3 id="b-eafp-easier-to-ask-for-forgiveness-than-permission-pythonic">B. EAFP (Easier to Ask for Forgiveness than Permission) — Pythonic</h3>
+<p>Try the operation, handle exceptions if they occur.</p>
+<pre class="highlight"><code class="language-python"># Pythonic: Just try it
+try:
+    value = my_dict[key]
+except KeyError:
+    value = default_value
+
+# Even more Pythonic: Use .get()
+value = my_dict.get(key, default_value)
+
+# Pythonic: File handling
+try:
+    with open('file.txt') as f:
+        data = f.read()
+except FileNotFoundError:
+    data = None
+</code></pre>
+
+<p><strong>Benefits:</strong>
+- No race conditions
+- Cleaner code
+- Handles edge cases naturally
+- More performant (one operation instead of two)</p>
+<hr />
+<h2 id="4-duck-typing-if-it-walks-like-a-duck">4. 🎯 Duck Typing: "If It Walks Like a Duck..."</h2>
+<p>Python doesn't care about types, it cares about <strong>behavior</strong>.</p>
+<h3 id="non-pythonic-type-checking">Non-Pythonic: Type Checking</h3>
+<pre class="highlight"><code class="language-python"># Non-Pythonic: Explicit type checking
+def process_items(items):
+    if not isinstance(items, list):
+        raise TypeError(&quot;Must be a list!&quot;)
+    for item in items:
+        print(item)
+</code></pre>
+
+<h3 id="pythonic-accept-any-iterable">Pythonic: Accept Any Iterable</h3>
+<pre class="highlight"><code class="language-python"># Pythonic: Duck typing
+def process_items(items):
+    &quot;&quot;&quot;Works with lists, tuples, sets, generators, etc.&quot;&quot;&quot;
+    for item in items:
+        print(item)
+
+# Now works with anything iterable
+process_items([1, 2, 3])           # list
+process_items((1, 2, 3))           # tuple
+process_items({1, 2, 3})           # set
+process_items(range(1, 4))         # range
+process_items(x for x in [1,2,3])  # generator
+</code></pre>
+
+<p><strong>Philosophy:</strong> Accept interfaces, not types.</p>
+<hr />
+<h2 id="5-unpacking-and-multiple-assignment">5. 📦 Unpacking and Multiple Assignment</h2>
+<p>Python excels at elegant data unpacking.</p>
+<h3 id="basic-unpacking">Basic Unpacking</h3>
+<pre class="highlight"><code class="language-python"># Swap variables (no temp needed!)
+a, b = b, a
+
+# Multiple assignment
+x, y, z = 1, 2, 3
+
+# Function returns multiple values
+def get_user():
+    return &quot;Alice&quot;, 25, &quot;alice@example.com&quot;
+
+name, age, email = get_user()
+</code></pre>
+
+<h3 id="advanced-unpacking-python-3">Advanced Unpacking (Python 3+)</h3>
+<pre class="highlight"><code class="language-python"># Star unpacking: first, *rest, last
+first, *middle, last = [1, 2, 3, 4, 5]
+# first=1, middle=[2,3,4], last=5
+
+# Ignore values with _
+name, _, email = get_user()  # ignore age
+
+# Nested unpacking
+data = [(&quot;Alice&quot;, 25), (&quot;Bob&quot;, 30)]
+for name, age in data:
+    print(f&quot;{name} is {age}&quot;)
+
+# Dictionary unpacking
+person = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25}
+other = {&quot;email&quot;: &quot;alice@example.com&quot;}
+merged = {**person, **other}
+# {'name': 'Alice', 'age': 25, 'email': 'alice@example.com'}
+</code></pre>
+
+<hr />
+<h2 id="6-comprehensions-beyond-lists">6. 🔄 Comprehensions: Beyond Lists</h2>
+<p>List comprehensions are famous, but Python offers more.</p>
+<h3 id="list-comprehensions">List Comprehensions</h3>
+<pre class="highlight"><code class="language-python"># Non-Pythonic
+squares = []
+for x in range(10):
+    if x % 2 == 0:
+        squares.append(x ** 2)
+
+# Pythonic
+squares = [x**2 for x in range(10) if x % 2 == 0]
+</code></pre>
+
+<h3 id="dictionary-comprehensions">Dictionary Comprehensions</h3>
+<pre class="highlight"><code class="language-python"># Create a lookup dictionary
+words = [&quot;hello&quot;, &quot;world&quot;, &quot;python&quot;]
+lengths = {word: len(word) for word in words}
+# {'hello': 5, 'world': 5, 'python': 6}
+
+# Invert a dictionary
+original = {'a': 1, 'b': 2, 'c': 3}
+inverted = {v: k for k, v in original.items()}
+# {1: 'a', 2: 'b', 3: 'c'}
+
+# Filter and transform
+data = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+evens = {k: v*2 for k, v in data.items() if v % 2 == 0}
+# {'b': 4, 'd': 8}
+</code></pre>
+
+<h3 id="set-comprehensions">Set Comprehensions</h3>
+<pre class="highlight"><code class="language-python"># Unique word lengths
+text = &quot;the quick brown fox jumps over the lazy dog&quot;
+unique_lengths = {len(word) for word in text.split()}
+# {3, 4, 5}
+</code></pre>
+
+<h3 id="generator-expressions-memory-efficient">Generator Expressions (Memory-Efficient)</h3>
+<pre class="highlight"><code class="language-python"># List comprehension: creates full list in memory
+big_list = [x**2 for x in range(1000000)]
+
+# Generator expression: lazy evaluation
+big_gen = (x**2 for x in range(1000000))
+
+# Use directly in functions
+total = sum(x**2 for x in range(1000000))  # no intermediate list
+</code></pre>
+
+<hr />
+<h2 id="7-generators-lazy-evaluation-power">7. 🌊 Generators: Lazy Evaluation Power</h2>
+<p>Generators produce values on-demand, saving memory and enabling infinite sequences.</p>
+<h3 id="generator-functions">Generator Functions</h3>
+<pre class="highlight"><code class="language-python"># Non-Pythonic: Build entire list
+def get_numbers(n):
+    result = []
+    for i in range(n):
+        result.append(i ** 2)
+    return result
+
+# Pythonic: Yield values one at a time
+def get_numbers(n):
+    for i in range(n):
+        yield i ** 2
+
+# Use it
+for num in get_numbers(1000000):  # memory-efficient!
+    print(num)
+</code></pre>
+
+<h3 id="infinite-generators">Infinite Generators</h3>
+<pre class="highlight"><code class="language-python">def fibonacci():
+    &quot;&quot;&quot;Infinite Fibonacci sequence&quot;&quot;&quot;
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+# Use with itertools
+from itertools import islice
+first_10 = list(islice(fibonacci(), 10))
+# [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+</code></pre>
+
+<h3 id="generator-pipelines">Generator Pipelines</h3>
+<pre class="highlight"><code class="language-python"># Process data in stages without intermediate lists
+def read_lines(filename):
+    with open(filename) as f:
+        for line in f:
+            yield line.strip()
+
+def filter_comments(lines):
+    for line in lines:
+        if not line.startswith('#'):
+            yield line
+
+def parse_values(lines):
+    for line in lines:
+        yield int(line)
+
+# Chain them together
+total = sum(parse_values(filter_comments(read_lines('data.txt'))))
+</code></pre>
+
+<hr />
+<h2 id="8-built-in-tools-use-the-standard-library">8. 🛠️ Built-in Tools: Use the Standard Library</h2>
+<p>Python's standard library is rich. Don't reinvent the wheel.</p>
+<h3 id="enumerate-get-index-and-value">enumerate() — Get Index and Value</h3>
+<pre class="highlight"><code class="language-python"># Non-Pythonic
+for i in range(len(items)):
+    print(f&quot;{i}: {items[i]}&quot;)
+
+# Pythonic
+for i, item in enumerate(items):
+    print(f&quot;{i}: {item}&quot;)
+
+# Start from different index
+for i, item in enumerate(items, start=1):
+    print(f&quot;{i}: {item}&quot;)
+</code></pre>
+
+<h3 id="zip-parallel-iteration">zip() — Parallel Iteration</h3>
+<pre class="highlight"><code class="language-python">names = ['Alice', 'Bob', 'Charlie']
+ages = [25, 30, 35]
+cities = ['NYC', 'LA', 'Chicago']
+
+# Non-Pythonic
+for i in range(len(names)):
+    print(f&quot;{names[i]}, {ages[i]}, {cities[i]}&quot;)
+
+# Pythonic
+for name, age, city in zip(names, ages, cities):
+    print(f&quot;{name}, {age}, {city}&quot;)
+
+# Create dictionary
+person_dict = dict(zip(names, ages))
+# {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+</code></pre>
+
+<h3 id="reversed-and-sorted">reversed() and sorted()</h3>
+<pre class="highlight"><code class="language-python"># Reverse iteration (no copy needed)
+for item in reversed(my_list):
+    print(item)
+
+# Sort without modifying original
+for item in sorted(my_list):
+    print(item)
+
+# Sort by key
+users = [{'name': 'Alice', 'age': 30}, {'name': 'Bob', 'age': 25}]
+by_age = sorted(users, key=lambda u: u['age'])
+</code></pre>
+
+<h3 id="any-and-all">any() and all()</h3>
+<pre class="highlight"><code class="language-python"># Non-Pythonic
+has_even = False
+for num in numbers:
+    if num % 2 == 0:
+        has_even = True
+        break
+
+# Pythonic
+has_even = any(num % 2 == 0 for num in numbers)
+all_positive = all(num &gt; 0 for num in numbers)
+</code></pre>
+
+<h3 id="collections-module">collections Module</h3>
+<pre class="highlight"><code class="language-python">from collections import defaultdict, Counter, namedtuple
+
+# defaultdict: No more KeyError
+word_count = defaultdict(int)
+for word in text.split():
+    word_count[word] += 1  # No need to check if key exists
+
+# Counter: Count things easily
+from collections import Counter
+counts = Counter(['a', 'b', 'a', 'c', 'b', 'a'])
+# Counter({'a': 3, 'b': 2, 'c': 1})
+most_common = counts.most_common(2)  # [('a', 3), ('b', 2)]
+
+# namedtuple: Lightweight objects
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(10, 20)
+print(p.x, p.y)  # More readable than p[0], p[1]
+</code></pre>
+
+<hr />
+<h2 id="9-context-managers-clean-resource-management">9. 🎭 Context Managers: Clean Resource Management</h2>
+<p>Use <code>with</code> for automatic setup and teardown.</p>
+<h3 id="file-handling">File Handling</h3>
+<pre class="highlight"><code class="language-python"># Non-Pythonic: Manual cleanup
+f = open('file.txt')
+try:
+    data = f.read()
+finally:
+    f.close()
+
+# Pythonic: Automatic cleanup
+with open('file.txt') as f:
+    data = f.read()
+# File is automatically closed, even if exception occurs
+</code></pre>
+
+<h3 id="custom-context-managers">Custom Context Managers</h3>
+<pre class="highlight"><code class="language-python">from contextlib import contextmanager
+import time
+
+@contextmanager
+def timer(name):
+    &quot;&quot;&quot;Time a block of code&quot;&quot;&quot;
+    start = time.time()
+    yield
+    end = time.time()
+    print(f&quot;{name} took {end - start:.2f}s&quot;)
+
+# Use it
+with timer(&quot;Data processing&quot;):
+    # ... some expensive operation
+    result = sum(range(1000000))
+</code></pre>
+
+<h3 id="multiple-context-managers">Multiple Context Managers</h3>
+<pre class="highlight"><code class="language-python"># Pythonic: Multiple resources
+with open('input.txt') as infile, open('output.txt', 'w') as outfile:
+    for line in infile:
+        outfile.write(line.upper())
+</code></pre>
+
+<hr />
+<h2 id="10-string-formatting-evolution">10. 🎨 String Formatting: Evolution</h2>
+<p>String formatting has evolved. Use modern tools.</p>
+<h3 id="old-style-avoid">Old Style (Avoid)</h3>
+<pre class="highlight"><code class="language-python"># C-style (old, avoid)
+msg = &quot;Hello, %s. You are %d years old.&quot; % (name, age)
+</code></pre>
+
+<h3 id="modern-style">Modern Style</h3>
+<pre class="highlight"><code class="language-python"># .format() (acceptable)
+msg = &quot;Hello, {}. You are {} years old.&quot;.format(name, age)
+msg = &quot;Hello, {name}. You are {age} years old.&quot;.format(name=name, age=age)
+
+# f-strings (Python 3.6+, BEST)
+msg = f&quot;Hello, {name}. You are {age} years old.&quot;
+
+# Expressions in f-strings
+result = f&quot;The sum of {a} and {b} is {a + b}&quot;
+formatted = f&quot;Price: ${price:.2f}&quot;  # Format specifiers work
+
+# Debug with f-strings (Python 3.8+)
+x = 42
+print(f&quot;{x=}&quot;)  # Prints: x=42
+</code></pre>
+
+<hr />
+<h2 id="11-chaining-comparisons">11. 🔗 Chaining Comparisons</h2>
+<p>Python allows natural mathematical comparisons.</p>
+<pre class="highlight"><code class="language-python"># Non-Pythonic
+if x &gt;= 0 and x &lt;= 100:
+    print(&quot;Valid percentage&quot;)
+
+# Pythonic
+if 0 &lt;= x &lt;= 100:
+    print(&quot;Valid percentage&quot;)
+
+# Multiple conditions
+if a &lt; b &lt; c &lt; d:
+    print(&quot;Strictly increasing&quot;)
+
+if x == y == z:
+    print(&quot;All equal&quot;)
+</code></pre>
+
+<hr />
+<h2 id="12-function-arguments-args-and-kwargs">12. 🎁 Function Arguments: <em>args and </em>*kwargs</h2>
+<p>Handle variable arguments elegantly.</p>
+<h3 id="flexible-function-signatures">Flexible Function Signatures</h3>
+<pre class="highlight"><code class="language-python">def greet(greeting, *names):
+    &quot;&quot;&quot;Greet multiple people&quot;&quot;&quot;
+    for name in names:
+        print(f&quot;{greeting}, {name}!&quot;)
+
+greet(&quot;Hello&quot;, &quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;)
+
+def configure(**options):
+    &quot;&quot;&quot;Accept arbitrary keyword arguments&quot;&quot;&quot;
+    for key, value in options.items():
+        print(f&quot;{key} = {value}&quot;)
+
+configure(debug=True, timeout=30, retries=3)
+</code></pre>
+
+<h3 id="unpacking-arguments">Unpacking Arguments</h3>
+<pre class="highlight"><code class="language-python">def calculate(x, y, z):
+    return x + y * z
+
+values = [2, 3, 4]
+result = calculate(*values)  # Unpack list
+
+options = {'x': 2, 'y': 3, 'z': 4}
+result = calculate(**options)  # Unpack dict
+</code></pre>
+
+<hr />
+<h2 id="the-pythonic-mindset-key-takeaways">💡 The Pythonic Mindset: Key Takeaways</h2>
+<p>Writing Pythonic code is not just about syntax — it's a <strong>philosophy</strong> that values clarity, simplicity, and maintainability.</p>
+<h3 id="1-readability-is-the-foundation">1. Readability Is the Foundation</h3>
+<p><strong>Code is read far more often than it is written.</strong></p>
+<ul>
+<li>Optimize for the human reader, not the machine</li>
+<li>Use descriptive names, clear structure, idiomatic patterns</li>
+<li>If someone else (or future you) can't understand it quickly, rewrite it</li>
+</ul>
+<h3 id="2-embrace-pythons-power-tools">2. Embrace Python's Power Tools</h3>
+<p>Don't reinvent the wheel. Python's standard library is incredibly rich:</p>
+<ul>
+<li><strong>Collections</strong>: <code>Counter</code>, <code>defaultdict</code>, <code>namedtuple</code></li>
+<li><strong>Iteration</strong>: <code>enumerate</code>, <code>zip</code>, <code>itertools</code></li>
+<li><strong>Functions</strong>: <code>any</code>, <code>all</code>, <code>sum</code>, <code>sorted</code></li>
+<li><strong>Generators</strong>: Memory-efficient lazy evaluation</li>
+<li><strong>Comprehensions</strong>: Concise data transformations</li>
+</ul>
+<h3 id="3-eafp-over-lbyl">3. EAFP Over LBYL</h3>
+<p><strong>"It's easier to ask for forgiveness than permission."</strong></p>
+<ul>
+<li>Try the operation, handle exceptions if they occur</li>
+<li>More Pythonic, more robust, fewer race conditions</li>
+<li>Trust duck typing: accept interfaces, not types</li>
+</ul>
+<h3 id="4-let-python-do-the-work">4. Let Python Do the Work</h3>
+<p>Python was designed to be expressive. Use it:</p>
+<ul>
+<li><code>a, b = b, a</code> instead of temp variables</li>
+<li><code>for item in items:</code> instead of manual indexing</li>
+<li><code>with open(file):</code> instead of manual cleanup</li>
+<li><code>[x**2 for x in nums if x &gt; 0]</code> instead of loops</li>
+</ul>
+<h3 id="5-avoid-micro-optimization">5. Avoid Micro-Optimization</h3>
+<p><strong>Don't sacrifice clarity for negligible performance gains.</strong></p>
+<ul>
+<li>Profile first, optimize second</li>
+<li>Readable code is easier to maintain and actually optimize later</li>
+<li>If speed is critical, use specialized tools (NumPy, Pandas, Cython)</li>
+</ul>
+<hr />
+<h2 id="the-path-to-pythonic-mastery">🎯 The Path to Pythonic Mastery</h2>
+<h3 id="stage-1-make-it-work">Stage 1: Make It Work</h3>
+<p>Get the functionality right. Don't worry about style yet.</p>
+<h3 id="stage-2-make-it-pythonic">Stage 2: Make It Pythonic</h3>
+<p>Refactor using idiomatic patterns:
+- Replace loops with comprehensions
+- Use context managers for resources
+- Embrace generators for large data
+- Apply EAFP principles
+- Leverage built-in functions</p>
+<h3 id="stage-3-make-it-fast-only-if-needed">Stage 3: Make It Fast (Only If Needed)</h3>
+<p>Profile to find bottlenecks, then:
+- Use appropriate data structures (set vs list)
+- Apply specialized libraries (NumPy for numerical work)
+- Consider Cython/C extensions for critical paths
+- But always <strong>measure</strong> before optimizing</p>
+<hr />
+<h2 id="the-golden-rule">🧭 The Golden Rule</h2>
+<pre class="highlight"><code class="language-python"># First, make it work.
+# Second, make it Pythonic.
+# Third — and only if necessary — make it fast.
+</code></pre>
+
+<hr />
+<h2 id="final-thoughts">🌟 Final Thoughts</h2>
+<p><strong>Pythonic code is not about being clever — it's about being clear.</strong></p>
+<p>When you write code:
+- Ask: "Will someone else understand this in 6 months?"
+- Ask: "Am I using Python's strengths, or fighting against them?"
+- Ask: "Is there a simpler, more obvious way?"</p>
+<p><strong>Remember:</strong> Python's philosophy is encoded in <code>import this</code>. Read it often. Live it daily.</p>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<ol>
+<li id="item-1"><strong>Read</strong> other people's Pythonic code (stdlib, popular libraries)</li>
+<li id="item-2"><strong>Practice</strong> refactoring non-Pythonic code to Pythonic style</li>
+<li id="item-3"><strong>Review</strong> your old code — see how much you've grown</li>
+<li id="item-4"><strong>Share</strong> knowledge — teach others what makes code Pythonic</li>
+<li id="item-5"><strong>Experiment</strong> — try new Python features and idioms</li>
+</ol>
+<p><strong>The journey to writing beautiful Python never ends. Enjoy every step.</strong> 🐍</p>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Streaming Analytics: Join, Group-By, Map/Reduce">
+    <title>Streaming Analytics: Join, Group-By, Map/Reduce - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Streaming Analytics: Join, Group-By, Map/Reduce</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="streaming-analytics-join-group-by-mapreduce-homework">Streaming Analytics: Join, Group-By, Map/Reduce - Homework</h1>
+<h2 id="assignment-1-inner-join">Assignment 1: Inner Join</h2>
+<p>Join two CSV files on a common ID column.<br />
+- Input: <code>customers.csv</code> (id,name), <code>orders.csv</code> (order_id,customer_id,amount)<br />
+- Command: Sort and use <code>join</code> or <code>mlr join</code><br />
+- Output: Combined data</p>
+<h2 id="assignment-2-group-by-sum">Assignment 2: Group-By Sum</h2>
+<p>Calculate total orders per customer.<br />
+- Input: <code>orders.csv</code><br />
+- Command: <code>mlr --csv stats1 -a sum -f amount -g customer_id orders.csv</code><br />
+- Output: customer_id, amount_sum</p>
+<h2 id="assignment-3-top-k-by-group">Assignment 3: Top-K by Group</h2>
+<p>Find top 3 products by revenue in each category.<br />
+- Input: <code>sales.csv</code> (product,category,revenue)<br />
+- Use: <code>mlr --csv top -n 3 -f revenue -g category</code></p>
+<h2 id="assignment-4-hash-join-with-awk">Assignment 4: Hash Join with awk</h2>
+<p>Implement a hash join using awk.<br />
+- Input: <code>lookup.csv</code> (id,name), <code>data.csv</code> (id,value)<br />
+- Load lookup into hash, join with data<br />
+- Hint: <code>awk 'NR==FNR {h[$1]=$2;next} {print $0","h[$1]}'</code></p>
+<h2 id="assignment-5-running-total">Assignment 5: Running Total</h2>
+<p>Calculate cumulative sum of a column.<br />
+- Input: <code>daily_sales.txt</code> (one number per line)<br />
+- Command: <code>awk '{sum += $1; print $0, sum}'</code><br />
+- Output: Original value and running total</p>
+<h2 id="assignment-6-moving-average">Assignment 6: Moving Average</h2>
+<p>Calculate 5-day moving average.<br />
+- Input: <code>prices.txt</code><br />
+- Use: awk with circular buffer<br />
+- Output: Moving average for each day</p>
+<h2 id="assignment-7-aggregate-json-stream">Assignment 7: Aggregate JSON Stream</h2>
+<p>From JSONL events, calculate total revenue per user.<br />
+- Input: <code>events.jsonl</code> with user_id and amount<br />
+- Use: jq with <code>-s</code> and <code>group_by</code><br />
+- Output: user_id, total_amount</p>
+<h2 id="assignment-8-time-series-aggregation">Assignment 8: Time-Series Aggregation</h2>
+<p>Count events per hour from log file.<br />
+- Input: <code>access.log</code><br />
+- Extract hour from timestamp<br />
+- Use: <code>awk</code> to extract, <code>sort | uniq -c</code></p>
+<h2 id="assignment-9-multi-key-aggregation">Assignment 9: Multi-Key Aggregation</h2>
+<p>Calculate average order value per customer per month.<br />
+- Input: <code>orders.csv</code> (customer_id, date, amount)<br />
+- Group by customer_id and month<br />
+- Calculate average<br />
+- Use: mlr or awk</p>
+<h2 id="assignment-10-left-outer-join">Assignment 10: Left Outer Join</h2>
+<p>Perform left outer join to find customers with no orders.<br />
+- Input: <code>customers.csv</code>, <code>orders.csv</code><br />
+- Use: <code>mlr --csv join --ul -f customers.csv -j id orders.csv</code><br />
+- Filter for NULL order_id</p>
+<h2 id="duckdb-analytics-assignments">DuckDB Analytics Assignments</h2>
+<h3 id="assignment-11-multi-way-join-with-duckdb">Assignment 11: Multi-Way Join with DuckDB</h3>
+<p>Join users, orders, and products in one query.<br />
+- Input: <code>users.csv</code>, <code>orders.csv</code>, <code>products.csv</code><br />
+- Command: Three-way join using DuckDB<br />
+- Output: Complete order details with customer and product names<br />
+- Hint: <code>SELECT u.name, p.name as product, o.amount FROM 'users.csv' u JOIN 'orders.csv' o ON ... JOIN 'products.csv' p ON ...</code></p>
+<h3 id="assignment-12-window-functions-ranking">Assignment 12: Window Functions - Ranking</h3>
+<p>Rank products by price within each category.<br />
+- Input: <code>products.csv</code><br />
+- Use: <code>ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC)</code><br />
+- Output: Products with rank column</p>
+<h3 id="assignment-13-running-totals-with-duckdb">Assignment 13: Running Totals with DuckDB</h3>
+<p>Calculate cumulative revenue per customer over time.<br />
+- Input: <code>orders.csv</code><br />
+- Use: <code>SUM(amount) OVER (PARTITION BY customer_id ORDER BY date)</code><br />
+- Output: Each order with running total</p>
+<h3 id="assignment-14-top-n-per-group">Assignment 14: Top-N per Group</h3>
+<p>Find top 2 most expensive products in each category.<br />
+- Input: <code>products.csv</code><br />
+- Use: CTE with ROW_NUMBER and WHERE clause<br />
+- Output: Top 2 products per category</p>
+<h3 id="assignment-15-time-series-analytics">Assignment 15: Time-Series Analytics</h3>
+<p>Analyze daily order trends.<br />
+- Input: <code>orders.csv</code><br />
+- Calculate: daily totals, moving averages, day-over-day changes<br />
+- Use: LAG function for previous day comparison<br />
+- Output: Daily analytics report</p>
+<h3 id="assignment-16-percentile-calculations">Assignment 16: Percentile Calculations</h3>
+<p>Calculate price percentiles per category.<br />
+- Input: <code>products.csv</code><br />
+- Use: <code>PERCENTILE_CONT(0.5)</code> for median, <code>PERCENTILE_CONT(0.95)</code> for 95th percentile<br />
+- Output: Category-level price statistics</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-cohort-analysis">Bonus 1: Cohort Analysis</h3>
+<p>Calculate user retention by signup cohort.<br />
+- Input: User activity data with signup_date and activity_date<br />
+- Group by signup_month and activity_month<br />
+- Count active users per cohort</p>
+<h3 id="bonus-2-window-function-rank">Bonus 2: Window Function - Rank</h3>
+<p>Rank products by sales within each category.<br />
+- Add rank column (1 = highest sales in category)<br />
+- Use awk or mlr</p>
+<h3 id="bonus-3-self-join">Bonus 3: Self-Join</h3>
+<p>Find pairs of products often bought together.<br />
+- Input: <code>transactions.csv</code> (transaction_id, product_id)<br />
+- Join table with itself on transaction_id<br />
+- Count product pairs</p>
+<h3 id="bonus-4-pivot-table">Bonus 4: Pivot Table</h3>
+<p>Create pivot table: rows=products, columns=months, values=sum of sales.<br />
+- Input: <code>sales.csv</code> (date, product, amount)<br />
+- Output: Matrix with products and monthly totals<br />
+- Use: awk with 2D hash</p>
+<h3 id="bonus-5-streaming-percentiles">Bonus 5: Streaming Percentiles</h3>
+<p>Calculate median and 95th percentile from streaming data.<br />
+- Use: qsort or approximate algorithms<br />
+- Implement in awk</p>
+<h3 id="bonus-6-duckdb-vs-awk-performance">Bonus 6: DuckDB vs awk Performance</h3>
+<p>Compare DuckDB and awk for large dataset:<br />
+- Create 10M row CSV file<br />
+- Perform complex aggregation (multi-key GROUP BY)<br />
+- Measure time and memory<br />
+- Document when to use each tool</p>
+<h3 id="bonus-7-complex-window-analytics">Bonus 7: Complex Window Analytics</h3>
+<p>Implement advanced analytics pipeline:<br />
+- Calculate customer lifetime value (CLV)<br />
+- Identify churn patterns (gaps in order dates)<br />
+- Rank customers by recency, frequency, monetary value (RFM)<br />
+- Use multiple window functions in single query<br />
+- Input: <code>orders.csv</code><br />
+- Output: Customer analytics table</p>
+<h3 id="bonus-8-gap-analysis-with-generate_series">Bonus 8: Gap Analysis with GENERATE_SERIES</h3>
+<p>Find missing dates in time series data.<br />
+- Generate complete date range<br />
+- LEFT JOIN with actual data<br />
+- Identify gaps (dates with no orders)<br />
+- Use: <code>GENERATE_SERIES</code> and <code>UNNEST</code> in DuckDB<br />
+- Output: Report of inactive days</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ul>
+<li>Submit all commands and scripts</li>
+<li>Include sample input/output</li>
+<li>Document join keys and aggregation logic</li>
+<li>Test on various data sizes</li>
+</ul></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

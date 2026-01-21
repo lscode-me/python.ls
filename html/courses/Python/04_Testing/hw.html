@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Testing in Python">
+    <title>Testing in Python - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+                    <a href="index.html">Testing in Python</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="testing-in-python-homework">Testing in Python - Homework</h1>
+<h2 id="assignment-1-basic-unit-tests">Assignment 1: Basic Unit Tests ⭐</h2>
+<p>Create a module <code>calculator.py</code> with basic math functions and write comprehensive tests.</p>
+<p><strong>Requirements:</strong><br />
+- Implement functions: <code>add()</code>, <code>subtract()</code>, <code>multiply()</code>, <code>divide()</code><br />
+- Create <code>test_calculator.py</code> with pytest<br />
+- Test normal cases, edge cases, and error cases<br />
+- Handle division by zero with appropriate exception</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python"># calculator.py
+def divide(a, b):
+    if b == 0:
+        raise ValueError(&quot;Cannot divide by zero&quot;)
+    return a / b
+
+# test_calculator.py
+import pytest
+from calculator import divide
+
+def test_divide_normal():
+    assert divide(10, 2) == 5
+
+def test_divide_by_zero():
+    with pytest.raises(ValueError):
+        divide(10, 0)
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Master basic pytest syntax<br />
+- Understand assertion patterns<br />
+- Learn exception testing</p>
+<hr />
+<h2 id="assignment-2-fixtures-and-setup">Assignment 2: Fixtures and Setup ⭐⭐</h2>
+<p>Create a <code>StringProcessor</code> class and test it using fixtures.</p>
+<p><strong>Requirements:</strong><br />
+- Class with methods: <code>reverse()</code>, <code>capitalize()</code>, <code>count_words()</code>, <code>remove_spaces()</code><br />
+- Use fixtures to provide test data<br />
+- Test with different scope (function, module)<br />
+- Implement setup and teardown</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">@pytest.fixture
+def processor():
+    return StringProcessor()
+
+@pytest.fixture
+def sample_texts():
+    return [
+        &quot;hello world&quot;,
+        &quot;Python Testing&quot;,
+        &quot;  spaces  everywhere  &quot;
+    ]
+
+def test_reverse(processor):
+    assert processor.reverse(&quot;abc&quot;) == &quot;cba&quot;
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Master pytest fixtures<br />
+- Understand fixture scope<br />
+- Learn to reuse test data</p>
+<hr />
+<h2 id="assignment-3-parametrized-tests">Assignment 3: Parametrized Tests ⭐⭐</h2>
+<p>Test a <code>validate_email()</code> function with multiple test cases.</p>
+<p><strong>Requirements:</strong><br />
+- Implement email validation function<br />
+- Use <code>@pytest.mark.parametrize</code> for multiple test cases<br />
+- Test valid emails: <code>user@domain.com</code>, <code>user.name@sub.domain.co.uk</code><br />
+- Test invalid emails: <code>invalid</code>, <code>@domain.com</code>, <code>user@</code>, <code>user domain.com</code></p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">@pytest.mark.parametrize(&quot;email,expected&quot;, [
+    (&quot;user@example.com&quot;, True),
+    (&quot;invalid-email&quot;, False),
+    (&quot;user@&quot;, False),
+    (&quot;@domain.com&quot;, False),
+    (&quot;user.name+tag@example.co.uk&quot;, True),
+])
+def test_validate_email(email, expected):
+    assert validate_email(email) == expected
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Master parametrized tests<br />
+- Reduce code duplication<br />
+- Test multiple scenarios efficiently</p>
+<hr />
+<h2 id="assignment-4-testing-with-files">Assignment 4: Testing with Files ⭐⭐⭐</h2>
+<p>Create a CSV processor and test file operations.</p>
+<p><strong>Requirements:</strong><br />
+- Implement <code>CSVProcessor</code> class<br />
+- Methods: <code>read_csv()</code>, <code>write_csv()</code>, <code>filter_rows()</code>, <code>get_column()</code><br />
+- Use <code>tempfile</code> for test files<br />
+- Test with various CSV formats<br />
+- Handle missing files, empty files, malformed CSV</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">import tempfile
+import os
+
+@pytest.fixture
+def temp_csv():
+    content = &quot;name,age\nAlice,30\nBob,25&quot;
+    fd, path = tempfile.mkstemp(suffix='.csv')
+    with open(path, 'w') as f:
+        f.write(content)
+    yield path
+    os.close(fd)
+    os.remove(path)
+
+def test_read_csv(temp_csv):
+    processor = CSVProcessor()
+    data = processor.read_csv(temp_csv)
+    assert len(data) == 2
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Test file I/O operations<br />
+- Use temporary files properly<br />
+- Handle cleanup with fixtures</p>
+<hr />
+<h2 id="assignment-5-mocking-external-dependencies">Assignment 5: Mocking External Dependencies ⭐⭐⭐</h2>
+<p>Test a weather API client without making real API calls.</p>
+<p><strong>Requirements:</strong><br />
+- Create <code>WeatherAPI</code> class with method <code>get_temperature(city)</code><br />
+- Mock HTTP requests using <code>unittest.mock</code> or <code>pytest-mock</code><br />
+- Test successful API response<br />
+- Test API errors (404, 500, timeout)<br />
+- Verify API is called with correct parameters</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">from unittest.mock import Mock, patch
+
+@patch('requests.get')
+def test_get_temperature(mock_get):
+    mock_response = Mock()
+    mock_response.json.return_value = {&quot;temp&quot;: 25}
+    mock_response.status_code = 200
+    mock_get.return_value = mock_response
+
+    api = WeatherAPI()
+    temp = api.get_temperature(&quot;London&quot;)
+
+    assert temp == 25
+    mock_get.assert_called_once()
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Master mocking and patching<br />
+- Test without external dependencies<br />
+- Verify function calls and arguments</p>
+<hr />
+<h2 id="assignment-6-test-driven-development-tdd">Assignment 6: Test-Driven Development (TDD) ⭐⭐⭐</h2>
+<p>Build a shopping cart using TDD methodology.</p>
+<p><strong>Requirements:</strong><br />
+- Start by writing tests FIRST<br />
+- Implement <code>ShoppingCart</code> class with TDD<br />
+- Methods: <code>add_item()</code>, <code>remove_item()</code>, <code>get_total()</code>, <code>apply_discount()</code>, <code>clear()</code><br />
+- Follow Red → Green → Refactor cycle<br />
+- Document each TDD iteration</p>
+<p><strong>TDD Steps:</strong></p>
+<pre class="highlight"><code class="language-python"># Step 1: Write failing test
+def test_empty_cart_total():
+    cart = ShoppingCart()
+    assert cart.get_total() == 0
+
+# Step 2: Minimal implementation to pass
+class ShoppingCart:
+    def get_total(self):
+        return 0
+
+# Step 3: Refactor (if needed)
+# Step 4: Next test
+def test_add_single_item():
+    cart = ShoppingCart()
+    cart.add_item(&quot;Book&quot;, 10.99)
+    assert cart.get_total() == 10.99
+
+# Continue...
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Practice TDD workflow<br />
+- Write tests before code<br />
+- Experience benefits of TDD</p>
+<hr />
+<h2 id="assignment-7-testing-a-user-authentication-system">Assignment 7: Testing a User Authentication System ⭐⭐⭐⭐</h2>
+<p>Create and test a complete user authentication system.</p>
+<p><strong>Requirements:</strong><br />
+- Implement <code>UserAuth</code> class<br />
+- Methods: <code>register()</code>, <code>login()</code>, <code>logout()</code>, <code>reset_password()</code><br />
+- Hash passwords (use <code>hashlib</code>)<br />
+- Mock database operations<br />
+- Test successful and failed scenarios<br />
+- Test security: password strength, SQL injection attempts</p>
+<p><strong>Test scenarios:</strong><br />
+- Successful registration<br />
+- Registration with existing email<br />
+- Login with correct credentials<br />
+- Login with wrong password<br />
+- Password hashing (never store plaintext)<br />
+- Password reset workflow</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">@pytest.fixture
+def mock_db(mocker):
+    return mocker.Mock()
+
+def test_register_new_user(mock_db):
+    auth = UserAuth(mock_db)
+    result = auth.register(&quot;alice@example.com&quot;, &quot;SecurePass123!&quot;)
+
+    assert result.success is True
+    mock_db.save_user.assert_called_once()
+
+    # Verify password is hashed
+    saved_user = mock_db.save_user.call_args[0][0]
+    assert saved_user.password != &quot;SecurePass123!&quot;
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Test complex business logic<br />
+- Mock database dependencies<br />
+- Test security requirements<br />
+- Handle multiple test scenarios</p>
+<hr />
+<h2 id="assignment-8-coverage-analysis">Assignment 8: Coverage Analysis ⭐⭐⭐</h2>
+<p>Achieve 100% test coverage for a data processing module.</p>
+<p><strong>Requirements:</strong><br />
+- Implement <code>DataProcessor</code> module with 5+ functions<br />
+- Write comprehensive tests<br />
+- Run coverage analysis with <code>pytest-cov</code><br />
+- Achieve 100% coverage<br />
+- Generate HTML coverage report</p>
+<p><strong>Functions to implement:</strong><br />
+- <code>clean_data()</code> - remove nulls, trim strings<br />
+- <code>transform_data()</code> - apply transformations<br />
+- <code>validate_schema()</code> - check data structure<br />
+- <code>aggregate_data()</code> - group and summarize<br />
+- <code>export_data()</code> - save to file</p>
+<p><strong>Commands:</strong></p>
+<pre class="highlight"><code class="language-bash">pytest --cov=data_processor tests/
+pytest --cov=data_processor --cov-report=html tests/
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Achieve high test coverage<br />
+- Identify untested code paths<br />
+- Understand coverage metrics<br />
+- Write thorough test suites</p>
+<hr />
+<h2 id="assignment-9-integration-testing">Assignment 9: Integration Testing ⭐⭐⭐⭐</h2>
+<p>Test a complete ETL (Extract-Transform-Load) pipeline.</p>
+<p><strong>Requirements:</strong><br />
+- Create pipeline: CSV → Process → Database<br />
+- Test each component individually (unit tests)<br />
+- Test components together (integration tests)<br />
+- Mock external resources (files, database)<br />
+- Test error handling at each stage</p>
+<p><strong>Pipeline stages:</strong><br />
+1. Extract: Read data from CSV<br />
+2. Transform: Clean, validate, enrich data<br />
+3. Load: Save to database</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">class TestETLPipeline:
+    @pytest.fixture
+    def pipeline(self, tmp_path, mock_db):
+        return ETLPipeline(
+            input_path=tmp_path / &quot;input.csv&quot;,
+            database=mock_db
+        )
+
+    def test_end_to_end(self, pipeline, tmp_path):
+        # Create test CSV
+        csv_file = tmp_path / &quot;input.csv&quot;
+        csv_file.write_text(&quot;name,age\nAlice,30&quot;)
+
+        # Run pipeline
+        result = pipeline.run()
+
+        # Verify results
+        assert result.records_processed == 1
+        assert result.errors == 0
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Test integration between components<br />
+- Handle complex test scenarios<br />
+- Mock multiple dependencies<br />
+- Test complete workflows</p>
+<hr />
+<h2 id="assignment-10-advanced-testing-property-based-testing">Assignment 10: Advanced Testing - Property-Based Testing ⭐⭐⭐⭐⭐</h2>
+<p>Use Hypothesis library for property-based testing.</p>
+<p><strong>Requirements:</strong><br />
+- Install <code>hypothesis</code><br />
+- Test mathematical properties (commutativity, associativity)<br />
+- Test string processing with random inputs<br />
+- Test data structure invariants<br />
+- Find edge cases automatically</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">from hypothesis import given
+from hypothesis.strategies import integers, text
+
+@given(integers(), integers())
+def test_add_commutative(a, b):
+    &quot;&quot;&quot;Addition is commutative: a + b == b + a&quot;&quot;&quot;
+    assert add(a, b) == add(b, a)
+
+@given(integers(), integers(), integers())
+def test_add_associative(a, b, c):
+    &quot;&quot;&quot;Addition is associative: (a+b)+c == a+(b+c)&quot;&quot;&quot;
+    assert add(add(a, b), c) == add(a, add(b, c))
+
+@given(text())
+def test_reverse_twice(s):
+    &quot;&quot;&quot;Reversing twice returns original&quot;&quot;&quot;
+    assert reverse(reverse(s)) == s
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Learn property-based testing<br />
+- Let computer find edge cases<br />
+- Test invariants and properties<br />
+- Discover bugs you didn't think of</p>
+<hr />
+<h2 id="assignment-11-testing-cli-applications">Assignment 11: Testing CLI Applications ⭐⭐⭐⭐</h2>
+<p>Test a command-line todo list application.</p>
+<p><strong>Requirements:</strong><br />
+- Create CLI app with commands: <code>add</code>, <code>list</code>, <code>complete</code>, <code>delete</code><br />
+- Use <code>click</code> or <code>argparse</code><br />
+- Test with <code>click.testing.CliRunner</code><br />
+- Test stdin/stdout<br />
+- Test exit codes<br />
+- Test with various command-line arguments</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">from click.testing import CliRunner
+
+def test_add_todo():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['add', 'Buy milk'])
+
+    assert result.exit_code == 0
+    assert 'Added: Buy milk' in result.output
+
+def test_list_todos():
+    runner = CliRunner()
+    runner.invoke(cli, ['add', 'Task 1'])
+    runner.invoke(cli, ['add', 'Task 2'])
+
+    result = runner.invoke(cli, ['list'])
+    assert 'Task 1' in result.output
+    assert 'Task 2' in result.output
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Test command-line interfaces<br />
+- Handle stdin/stdout testing<br />
+- Test exit codes<br />
+- Verify output formatting</p>
+<hr />
+<h2 id="assignment-12-performance-testing">Assignment 12: Performance Testing ⭐⭐⭐⭐</h2>
+<p>Test that functions meet performance requirements.</p>
+<p><strong>Requirements:</strong><br />
+- Implement sorting algorithm<br />
+- Test correctness (functional tests)<br />
+- Test performance (non-functional tests)<br />
+- Use <code>pytest-benchmark</code> or manual timing<br />
+- Set performance thresholds</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code class="language-python">import time
+
+def test_sort_large_list_performance():
+    large_list = list(range(10000, 0, -1))
+
+    start = time.time()
+    result = quick_sort(large_list)
+    duration = time.time() - start
+
+    assert result == list(range(1, 10001))
+    assert duration &lt; 1.0, f&quot;Took {duration}s, expected &lt; 1s&quot;
+
+# Using pytest-benchmark
+def test_sort_benchmark(benchmark):
+    large_list = list(range(1000, 0, -1))
+    result = benchmark(quick_sort, large_list)
+    assert result == list(range(1, 1001))
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Test performance requirements<br />
+- Use benchmarking tools<br />
+- Set performance thresholds<br />
+- Profile slow tests</p>
+<hr />
+<h2 id="bonus-assignment-build-a-testing-framework">Bonus Assignment: Build a Testing Framework ⭐⭐⭐⭐⭐</h2>
+<p>Create your own minimal testing framework to understand how pytest works.</p>
+<p><strong>Requirements:</strong><br />
+- Discover test files and functions<br />
+- Run tests and collect results<br />
+- Report passes and failures<br />
+- Support basic assertions<br />
+- Support setup/teardown<br />
+- Colorful output</p>
+<p><strong>Example usage:</strong></p>
+<pre class="highlight"><code class="language-python"># my_test_framework.py
+class TestRunner:
+    def discover_tests(self, path):
+        &quot;&quot;&quot;Find all test_*.py files&quot;&quot;&quot;
+        pass
+
+    def run_test(self, test_func):
+        &quot;&quot;&quot;Run single test function&quot;&quot;&quot;
+        pass
+
+    def report_results(self):
+        &quot;&quot;&quot;Print test results&quot;&quot;&quot;
+        pass
+
+# Usage
+runner = TestRunner()
+runner.discover_tests('tests/')
+runner.run_all()
+runner.report_results()
+</code></pre>
+
+<p><strong>Your goal:</strong><br />
+- Understand testing frameworks internals<br />
+- Practice meta-programming<br />
+- Gain deeper understanding of pytest<br />
+- Build something challenging and fun</p>
+<hr />
+<h2 id="grading-criteria">Grading Criteria</h2>
+<ul>
+<li>⭐ — Basic (required)</li>
+<li>⭐⭐ — Intermediate (recommended)</li>
+<li>⭐⭐⭐ — Advanced (for deeper understanding)</li>
+<li>⭐⭐⭐⭐ — Expert (for ambitious learners)</li>
+<li>⭐⭐⭐⭐⭐ — Master (creative and challenging)</li>
+</ul>
+<p><strong>What we're evaluating:</strong><br />
+1. Test coverage (all cases covered)<br />
+2. Proper use of fixtures and parametrization<br />
+3. Appropriate mocking<br />
+4. Code organization and naming<br />
+5. Following TDD when requested<br />
+6. Clear and maintainable tests<br />
+7. Edge case handling</p>
+<p>Good luck! Remember: good tests are as important as good code! 🧪</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

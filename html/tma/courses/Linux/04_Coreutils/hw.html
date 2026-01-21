@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Coreutils: Data Transformation Utilities">
+    <title>HW: Coreutils: Data Transformation | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Coreutils: Data Transformation</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 4 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="coreutils-data-transformation-utilities-homework">Coreutils: Data Transformation Utilities - Homework</h1>
+<h2 id="assignment-1-column-extraction-cut">Assignment 1: Column Extraction (cut)</h2>
+<p>Extract the 2nd and 4th columns from a CSV file.
+- Input: <code>products.csv</code> with columns: id,name,price,category
+- Output: name and category only
+- Hint: Use <code>cut -d',' -f2,4</code></p>
+<h2 id="assignment-2-file-merging-paste">Assignment 2: File Merging (paste)</h2>
+<p>Combine three files into one CSV:
+- <code>ids.txt</code>: user IDs (one per line)
+- <code>names.txt</code>: names
+- <code>ages.txt</code>: ages
+- Output: <code>users.csv</code> with format: id,name,age
+- Hint: Use <code>paste -d','</code></p>
+<h2 id="assignment-3-case-conversion-tr">Assignment 3: Case Conversion (tr)</h2>
+<p>Convert all text to uppercase and remove punctuation.
+- Input: <code>article.txt</code>
+- Steps:
+  1. Remove punctuation with <code>tr -d</code>
+  2. Convert to uppercase with <code>tr '[:lower:]' '[:upper:]'</code>
+- Hint: Chain two <code>tr</code> commands</p>
+<h2 id="assignment-4-frequency-analysis-sort-uniq">Assignment 4: Frequency Analysis (sort + uniq)</h2>
+<p>Find the 10 most frequent words in a text file.
+- Input: <code>book.txt</code>
+- Steps:
+  1. Convert to lowercase
+  2. Replace spaces with newlines (one word per line)
+  3. Sort
+  4. Count with <code>uniq -c</code>
+  5. Sort numerically and show top 10
+- Hint: <code>tr ' ' '\n' | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -rn | head -10</code></p>
+<h2 id="assignment-5-csv-sorting-sort-t">Assignment 5: CSV Sorting (sort -t)</h2>
+<p>Sort a CSV file by the price column (3rd field) in descending numeric order.
+- Input: <code>products.csv</code> with: id,name,price,category
+- Output: Sorted by price (highest first)
+- Hint: <code>sort -t',' -k3,3nr</code></p>
+<h2 id="assignment-6-deduplication-sort-uniq">Assignment 6: Deduplication (sort + uniq)</h2>
+<p>Remove duplicate lines from a file and save unique lines only.
+- Input: <code>emails.txt</code> with duplicate email addresses
+- Output: <code>unique_emails.txt</code>
+- Hint: <code>sort emails.txt | uniq &gt; unique_emails.txt</code></p>
+<h2 id="assignment-7-file-splitting-split">Assignment 7: File Splitting (split)</h2>
+<p>Split a large CSV file into chunks of 1000 lines each.
+- Input: <code>large_dataset.csv</code> (10,000 lines)
+- Output: Files named <code>chunk_00</code>, <code>chunk_01</code>, etc.
+- Hint: <code>split -l 1000 -d large_dataset.csv chunk_</code></p>
+<h2 id="assignment-8-progress-monitoring-pv">Assignment 8: Progress Monitoring (pv)</h2>
+<p>Compress a large file while showing progress.
+- Input: <code>large_file.csv</code>
+- Output: <code>large_file.csv.gz</code> with progress bar
+- Hint: <code>pv large_file.csv | gzip &gt; large_file.csv.gz</code></p>
+<h2 id="assignment-9-column-reordering-cut-paste">Assignment 9: Column Reordering (cut + paste)</h2>
+<p>Reorder CSV columns from (id,name,age,city) to (name,city,age,id).
+- Input: <code>people.csv</code>
+- Output: <code>reordered.csv</code>
+- Hint: Use <code>cut</code> multiple times or <code>awk</code></p>
+<h2 id="assignment-10-real-time-log-monitoring-stdbuf-grep">Assignment 10: Real-Time Log Monitoring (stdbuf + grep)</h2>
+<p>Monitor a log file for ERROR lines with unbuffered output.
+- Command: Tail a log and grep for errors with immediate output
+- Hint: <code>tail -f app.log | stdbuf -oL grep ERROR</code></p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-parallel-file-processing">Bonus 1: Parallel File Processing</h3>
+<p>Split a large CSV into 10 chunks, process each in parallel (e.g., count lines), then merge results.
+- Use <code>split</code>, background jobs with <code>&amp;</code>, <code>wait</code>, and merge with <code>cat</code></p>
+<h3 id="bonus-2-csv-column-statistics">Bonus 2: CSV Column Statistics</h3>
+<p>Calculate min, max, and average of a numeric column in a CSV.
+- Use <code>cut</code> to extract column, <code>sort -n</code>, <code>head</code>/<code>tail</code> for min/max, <code>awk</code> for average</p>
+<h3 id="bonus-3-top-k-frequency-analysis">Bonus 3: Top-K Frequency Analysis</h3>
+<p>Create a script that takes a file and number K, returns the K most frequent lines.
+- Example: <code>top_k_freq.sh file.txt 5</code>
+- Use <code>sort | uniq -c | sort -rn | head -n $K</code></p>
+<h3 id="bonus-4-csv-join-simulation">Bonus 4: CSV Join Simulation</h3>
+<p>Given two CSV files with a common key column, create a joined output.
+- <code>users.csv</code>: id,name
+- <code>orders.csv</code>: user_id,amount
+- Output: id,name,amount
+- Hint: Use <code>join</code> command or <code>awk</code></p>
+<h3 id="bonus-5-progress-monitored-etl-pipeline">Bonus 5: Progress-Monitored ETL Pipeline</h3>
+<p>Create a pipeline that:
+1. Reads a large CSV with <code>pv</code>
+2. Filters rows with <code>grep</code>
+3. Sorts by a column
+4. Removes duplicates
+5. Saves to output
+- Show progress at each step</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ul>
+<li>Submit all scripts and commands used</li>
+<li>Include sample input and output files</li>
+<li>Document performance metrics (time, memory) for large file operations</li>
+<li>Explain any challenges encountered</li>
+</ul></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

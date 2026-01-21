@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Protocols and Interfaces">
+    <title>Protocols and Interfaces - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+                    <a href="index.html">Protocols and Interfaces</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="protocols-and-interfaces-homework">Protocols and Interfaces - Homework</h1>
+<ol>
+<li id="item-1">Implementing Common Protocols<br />
+   Create a <code>Deck</code> class representing a deck of playing cards:</li>
+</ol>
+<p>Implement these protocols:<br />
+   - Sequence protocol: <strong>len</strong>, <strong>getitem</strong><br />
+   - Container protocol: <strong>contains</strong><br />
+   - Iterator protocol: <strong>iter</strong><br />
+   - Callable protocol: <strong>call</strong> (shuffle the deck)<br />
+   - String representation: <strong>str</strong>, <strong>repr</strong></p>
+<p>Your task:<br />
+   - Support len(deck)<br />
+   - Support deck[index] and slicing<br />
+   - Support "card in deck"<br />
+   - Support iteration: for card in deck<br />
+   - Support deck() to shuffle<br />
+   - Create Card class with suit and rank</p>
+<p>Your goal:<br />
+   - Master protocol implementation<br />
+   - Understand duck typing<br />
+   - Practice making objects behave like built-ins</p>
+<ol start="2">
+<li id="item-1">Numeric Protocol Implementation<br />
+   Create a <code>Fraction</code> class for rational numbers:</li>
+</ol>
+<p>Implement:<br />
+   - Arithmetic: <strong>add</strong>, <strong>sub</strong>, <strong>mul</strong>, <strong>truediv</strong><br />
+   - Comparison: <strong>eq</strong>, <strong>lt</strong>, <strong>le</strong>, <strong>gt</strong>, <strong>ge</strong><br />
+   - Conversion: <strong>int</strong>, <strong>float</strong>, <strong>str</strong><br />
+   - Simplification: reduce to lowest terms automatically</p>
+<p>Your task:<br />
+   - Handle operations between Fraction and int<br />
+   - Implement proper fraction arithmetic<br />
+   - Auto-simplify (e.g., 2/4 becomes 1/2)<br />
+   - Support mixed operations: Fraction(1,2) + 3</p>
+<p>Example:<br />
+       f1 = Fraction(1, 2)<br />
+       f2 = Fraction(1, 3)<br />
+       print(f1 + f2)  # 5/6</p>
+<p>Your goal:<br />
+   - Master numeric protocols<br />
+   - Understand operator overloading<br />
+   - Practice mathematical correctness</p>
+<ol start="3">
+<li id="item-1">Custom Collections with ABCs<br />
+   Create custom collection classes using collections.abc:</li>
+</ol>
+<p>a) UniqueList - list that doesn't allow duplicates<br />
+      Inherit from: collections.abc.MutableSequence</p>
+<p>b) OrderedSet - set that maintains insertion order<br />
+      Inherit from: collections.abc.MutableSet</p>
+<p>c) DefaultDict - dict with default factory<br />
+      Inherit from: collections.abc.MutableMapping</p>
+<p>Your task:<br />
+   - Implement all required abstract methods<br />
+   - Add custom behavior for each collection<br />
+   - Test that they work with built-in functions<br />
+   - Compare performance with built-in types</p>
+<p>Your goal:<br />
+   - Understand collections ABCs<br />
+   - Learn abstract method implementation<br />
+   - Practice creating custom collections</p>
+<ol start="4">
+<li id="item-1">Context Manager Protocol<br />
+   Create the following context managers:</li>
+</ol>
+<p>a) Timer - measure execution time with optional logging<br />
+   b) TemporaryDirectory - create/cleanup temp directory<br />
+   c) DatabaseConnection - manage DB connection lifecycle<br />
+   d) SuppressException - suppress specific exceptions<br />
+   e) ChangeDirectory - temporarily change working directory</p>
+<p>Your task:<br />
+   - Implement using <strong>enter</strong> and <strong>exit</strong><br />
+   - Handle exceptions properly in <strong>exit</strong><br />
+   - Test with various scenarios<br />
+   - Also implement using @contextmanager decorator</p>
+<p>Your goal:<br />
+   - Master context manager protocol<br />
+   - Understand resource management<br />
+   - Practice cleanup and exception handling</p>
+<ol start="5">
+<li id="item-1">Typing Protocols<br />
+   Create a plugin system using typing.Protocol:</li>
+</ol>
+<p>Define protocols for:<br />
+   - DataLoader: load(filename: str) -&gt; Any<br />
+   - DataProcessor: process(data: Any) -&gt; Any<br />
+   - DataSaver: save(data: Any, filename: str) -&gt; None</p>
+<p>Implement concrete classes:<br />
+   - CSVLoader, JSONLoader, XMLLoader<br />
+   - FilterProcessor, TransformProcessor<br />
+   - CSVSaver, JSONSaver</p>
+<p>Your task:<br />
+   - Define protocols with type hints<br />
+   - Implement multiple concrete classes<br />
+   - Create pipeline combining all three protocols<br />
+   - No inheritance required (duck typing)</p>
+<p>Your goal:<br />
+   - Master typing.Protocol<br />
+   - Understand structural subtyping<br />
+   - Practice type-safe duck typing<br />
+   - Learn plugin architecture patterns</p>
+<ol start="6">
+<li id="item-1">Comparable Protocol<br />
+   Create a system for sorting and comparing custom objects:</li>
+</ol>
+<p>Implement for:<br />
+   - Student (by grade, then name)<br />
+   - Task (by priority, then deadline)<br />
+   - File (by size, then name)</p>
+<p>Requirements:<br />
+   - Implement <strong>eq</strong>, <strong>lt</strong>, <strong>le</strong>, <strong>gt</strong>, <strong>ge</strong>, <strong>ne</strong><br />
+   - Support sorting with sorted()<br />
+   - Support min(), max()<br />
+   - Implement using functools.total_ordering</p>
+<p>Your task:<br />
+   - Implement complete comparison protocol<br />
+   - Test sorting in different scenarios<br />
+   - Handle edge cases (None values, equal items)<br />
+   - Demonstrate functools.total_ordering usage</p>
+<p>Your goal:<br />
+   - Master comparison protocols<br />
+   - Understand total ordering<br />
+   - Practice sorting algorithms</p>
+<ol start="7">
+<li id="item-1">Callable Objects and Function-like Classes<br />
+   Create callable classes for different use cases:</li>
+</ol>
+<p>a) Memoizer - cache function results<br />
+   b) RateLimiter - limit function call rate<br />
+   c) Validator - validate input with custom rules<br />
+   d) EventHandler - handle events with callbacks<br />
+   e) StateMachine - implement state transitions</p>
+<p>Your task:<br />
+   - Implement <strong>call</strong> for each class<br />
+   - Maintain internal state<br />
+   - Support function-like behavior<br />
+   - Add useful methods beyond <strong>call</strong></p>
+<p>Example:<br />
+       @Memoizer<br />
+       def expensive_function(n):<br />
+           return n ** 2</p>
+<p>Your goal:<br />
+   - Master callable protocol<br />
+   - Create function-like objects<br />
+   - Practice decorator patterns with classes</p>
+<ol start="8">
+<li id="item-1">Multi-Protocol Implementation<br />
+   Create a <code>Matrix</code> class implementing multiple protocols:</li>
+</ol>
+<p>Protocols to implement:<br />
+   - Sequence: indexing, slicing, length<br />
+   - Numeric: addition, subtraction, multiplication<br />
+   - Comparison: equality<br />
+   - Iterator: row-wise iteration<br />
+   - Context manager: temporary matrix transformations<br />
+   - Callable: apply function to all elements</p>
+<p>Your task:<br />
+   - Support matrix[i][j] and matrix[i] access<br />
+   - Implement matrix arithmetic correctly<br />
+   - Allow: for row in matrix<br />
+   - Support: matrix(lambda x: x * 2)<br />
+   - Test with various operations</p>
+<p>Your goal:<br />
+   - Combine multiple protocols in one class<br />
+   - Understand protocol interactions<br />
+   - Create rich, Pythonic interfaces</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Structured Data Processing (JSON, CSV, YAML, XML)">
+    <title>HW: Structured Data Processing (JS | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Structured Data Processing (JS</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 6 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="structured-data-processing-json-csv-yaml-xml-homework">Structured Data Processing (JSON, CSV, YAML, XML) - Homework</h1>
+<h2 id="assignment-1-extract-json-fields">Assignment 1: Extract JSON Fields</h2>
+<p>Extract the "name" and "age" fields from a JSON array of users.
+- Input: <code>users.json</code> with array of user objects
+- Command: Use <code>jq '.[] | {name, age}'</code>
+- Output: JSON objects with only name and age</p>
+<h2 id="assignment-2-filter-json-by-condition">Assignment 2: Filter JSON by Condition</h2>
+<p>Filter users older than 25 years.
+- Input: <code>users.json</code>
+- Command: <code>jq '.[] | select(.age &gt; 25)'</code>
+- Output: Filtered JSON array</p>
+<h2 id="assignment-3-json-to-csv-conversion">Assignment 3: JSON to CSV Conversion</h2>
+<p>Convert a JSON array to CSV format.
+- Input: <code>products.json</code> with: id, name, price
+- Command: <code>jq -r '.[] | [.id, .name, .price] | @csv' products.json &gt; products.csv</code>
+- Output: CSV file</p>
+<h2 id="assignment-4-csv-column-selection">Assignment 4: CSV Column Selection</h2>
+<p>Extract specific columns from a CSV file.
+- Input: <code>data.csv</code> with many columns
+- Command: Use <code>csvcut -c name,age,city data.csv</code> or <code>mlr --csv cut -f name,age,city data.csv</code>
+- Output: CSV with 3 columns</p>
+<h2 id="assignment-5-csv-filtering">Assignment 5: CSV Filtering</h2>
+<p>Filter CSV rows where price &gt; 100.
+- Input: <code>sales.csv</code>
+- Command: <code>mlr --csv filter '$price &gt; 100' sales.csv</code>
+- Output: Filtered rows</p>
+<h2 id="assignment-6-csv-group-by-aggregation">Assignment 6: CSV Group-By Aggregation</h2>
+<p>Calculate total sales per customer.
+- Input: <code>orders.csv</code> with: order_id, customer_id, amount
+- Command: <code>mlr --csv stats1 -a sum -f amount -g customer_id orders.csv</code>
+- Output: customer_id, amount_sum</p>
+<h2 id="assignment-7-jsonl-processing">Assignment 7: JSONL Processing</h2>
+<p>Process a JSON Lines file to extract error events.
+- Input: <code>events.jsonl</code>
+- Command: <code>jq -c 'select(.type == "error")' events.jsonl</code>
+- Output: JSONL with errors only</p>
+<h2 id="assignment-8-multi-format-pipeline">Assignment 8: Multi-Format Pipeline</h2>
+<p>Download JSON from API, filter, convert to CSV.
+- Steps:
+  1. <code>curl -s 'https://jsonplaceholder.typicode.com/users'</code>
+  2. Filter users from specific city: <code>jq '.[] | select(.address.city == "Gwenborough")'</code>
+  3. Convert to CSV: <code>jq -r '[.id, .name, .email] | @csv'</code>
+- Output: CSV file</p>
+<h2 id="assignment-9-xml-data-extraction">Assignment 9: XML Data Extraction</h2>
+<p>Extract all names from an XML file.
+- Input: <code>users.xml</code>
+- Command: <code>xmlstarlet sel -t -v "//user/name" -n users.xml</code>
+- Output: List of names</p>
+<h2 id="assignment-10-csv-to-json-and-back">Assignment 10: CSV to JSON and Back</h2>
+<p>Convert CSV to JSON, filter, convert back to CSV.
+- Input: <code>products.csv</code>
+- Steps:
+  1. CSV → JSON: <code>mlr --csv --ojson cat products.csv</code>
+  2. Filter: <code>jq '.[] | select(.price &lt; 50)'</code>
+  3. JSON → CSV: <code>jq -r '[.id, .name, .price] | @csv'</code></p>
+<h2 id="duckdb-assignments">DuckDB Assignments</h2>
+<h3 id="assignment-11-query-csv-with-sql">Assignment 11: Query CSV with SQL</h3>
+<p>Use DuckDB to query a CSV file with SQL.
+- Input: <code>users.csv</code>
+- Command: <code>duckdb -c "SELECT name, city FROM 'users.csv' WHERE status = 'active'"</code>
+- Output: Active users with their cities</p>
+<h3 id="assignment-12-aggregate-with-duckdb">Assignment 12: Aggregate with DuckDB</h3>
+<p>Calculate statistics per category using SQL.
+- Input: <code>products.csv</code>
+- Command: <code>duckdb -c "SELECT category, COUNT(*), AVG(price), MAX(price) FROM 'products.csv' GROUP BY category"</code>
+- Output: Category statistics</p>
+<h3 id="assignment-13-join-with-duckdb">Assignment 13: Join with DuckDB</h3>
+<p>Join users and orders using SQL.
+- Input: <code>users.csv</code>, <code>orders.csv</code>
+- Command: <code>duckdb -c "SELECT u.name, COUNT(o.order_id) as orders, SUM(o.amount) as total FROM 'users.csv' u JOIN 'orders.csv' o ON u.id = o.customer_id GROUP BY u.name"</code>
+- Output: User statistics with order counts</p>
+<h3 id="assignment-14-export-to-parquet">Assignment 14: Export to Parquet</h3>
+<p>Convert CSV to Parquet format.
+- Input: <code>users.csv</code>
+- Command: <code>duckdb -c "COPY (SELECT * FROM 'users.csv') TO 'users.parquet' (FORMAT PARQUET)"</code>
+- Output: <code>users.parquet</code> file</p>
+<h3 id="assignment-15-complex-query">Assignment 15: Complex Query</h3>
+<p>Find top spending customers by city.
+- Input: <code>users.csv</code>, <code>orders.csv</code>
+- Use: CTE (Common Table Expression) in DuckDB
+- Output: Ranked customers per city</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-json-aggregation">Bonus 1: JSON Aggregation</h3>
+<p>From a JSONL file of sales, calculate:
+- Total revenue
+- Average order value
+- Number of orders
+Use jq with <code>-s</code> flag.</p>
+<h3 id="bonus-2-csv-join">Bonus 2: CSV Join</h3>
+<p>Join two CSV files on a common column.
+- <code>customers.csv</code>: customer_id, name
+- <code>orders.csv</code>: order_id, customer_id, amount
+- Output: order_id, name, amount
+- Hint: Use <code>csvjoin</code> or <code>mlr join</code></p>
+<h3 id="bonus-3-complex-jq-filter">Bonus 3: Complex jq Filter</h3>
+<p>From a nested JSON API response:
+1. Extract specific fields
+2. Flatten nested objects
+3. Filter by multiple conditions
+4. Convert to CSV</p>
+<h3 id="bonus-4-data-validation">Bonus 4: Data Validation</h3>
+<p>Validate that a JSON file conforms to a schema.
+- Use <code>jsonschema</code> or jq to check:
+  - Required fields present
+  - Data types correct
+  - Value ranges valid</p>
+<h3 id="bonus-5-multi-file-aggregation">Bonus 5: Multi-File Aggregation</h3>
+<p>Aggregate data from multiple JSON files:
+- Read all <code>.json</code> files in a directory
+- Merge into single array
+- Group by category
+- Calculate statistics per category</p>
+<h3 id="bonus-6-duckdb-performance-comparison">Bonus 6: DuckDB Performance Comparison</h3>
+<p>Compare DuckDB vs mlr performance:
+- Create a large CSV file (1M+ rows)
+- Perform same aggregation with both tools
+- Measure execution time using <code>time</code> command
+- Compare memory usage
+- Document results</p>
+<h3 id="bonus-7-window-functions-with-duckdb">Bonus 7: Window Functions with DuckDB</h3>
+<p>Use DuckDB window functions:
+- Input: <code>orders.csv</code>
+- Calculate running total per customer
+- Add row numbers within customer groups
+- Find previous and next order amounts (LAG/LEAD)
+- Output: Enhanced dataset with analytical columns</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ul>
+<li>Submit all commands and scripts</li>
+<li>Include sample input/output files</li>
+<li>Test with various data formats</li>
+<li>Document any edge cases handled</li>
+</ul></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

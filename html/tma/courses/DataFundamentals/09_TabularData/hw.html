@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Tabular Data">
+    <title>HW: Homework: Tabular Data | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Homework: Tabular Data</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Data Fundamentals for Life Sciences</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 9 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="homework-tabular-data">Homework: Tabular Data</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-csv-format-mastery">Exercise 1: CSV Format Mastery</h3>
+<ol>
+<li id="item-1">Create CSV files with various complexities:
+   - Simple comma-separated data
+   - Data containing commas (proper quoting)
+   - Multi-line field values
+   - Different delimiter types (semicolon, tab, pipe)
+   - Various encoding formats (UTF-8, Latin-1)</li>
+<li id="item-2">Practice proper escaping of special characters</li>
+<li id="item-3">Handle empty values and NULL representation</li>
+<li id="item-4">Test with different CSV parsing libraries</li>
+</ol>
+<h3 id="exercise-2-data-quality-assessment">Exercise 2: Data Quality Assessment</h3>
+<ol>
+<li id="item-1">Analyze real-world datasets for quality issues:
+   - Missing values and inconsistent formatting
+   - Duplicate records and data entry errors
+   - Inconsistent data types and formats
+   - Outliers and anomalous values</li>
+<li id="item-2">Document data quality metrics</li>
+<li id="item-3">Create data quality reports with recommendations</li>
+<li id="item-4">Implement data validation rules</li>
+</ol>
+<h3 id="exercise-3-format-conversion-practice">Exercise 3: Format Conversion Practice</h3>
+<ol>
+<li id="item-1">Convert data between formats while preserving information:
+   - CSV ↔ Excel (.xlsx)
+   - CSV ↔ JSON (nested and flat structures)
+   - CSV ↔ XML with proper schema design
+   - CSV ↔ Parquet for big data applications</li>
+<li id="item-2">Handle data type preservation during conversion</li>
+<li id="item-3">Optimize for file size and performance</li>
+<li id="item-4">Validate data integrity after conversion</li>
+</ol>
+<h3 id="exercise-4-advanced-csv-handling">Exercise 4: Advanced CSV Handling</h3>
+<ol>
+<li id="item-1">Work with large CSV files (&gt;1GB):
+   - Streaming processing techniques
+   - Memory-efficient parsing
+   - Chunked processing strategies</li>
+<li id="item-2">Handle problematic CSV files:
+   - Inconsistent column counts
+   - Mixed encoding within single file
+   - Embedded binary data
+   - Malformed quoting and escaping</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Data Pipeline Implementation</strong>
+- Build an ETL pipeline for CSV data processing
+- Include data validation, transformation, and loading
+- Handle error cases gracefully
+- Implement data lineage tracking
+- Create monitoring and alerting for data issues</p>
+<p><strong>Task 2: Excel Integration</strong>
+- Read complex Excel files with multiple sheets
+- Handle merged cells, formulas, and formatting
+- Create Excel files with charts and pivot tables
+- Implement Excel template-based reporting
+- Handle password-protected Excel files</p>
+<p><strong>Task 3: Database Integration</strong>
+- Import CSV data into SQL databases efficiently
+- Handle data type mapping and constraints
+- Implement bulk loading strategies
+- Create database schemas from CSV structure
+- Export query results to various tabular formats</p>
+<h2 id="data-analysis-tasks">Data Analysis Tasks</h2>
+<p><strong>Task 4: Statistical Analysis</strong>
+- Import tabular data into analysis tools (R, Python pandas, Excel)
+- Perform exploratory data analysis (EDA)
+- Generate summary statistics and visualizations
+- Identify correlations and patterns
+- Create automated data profiling reports</p>
+<p><strong>Task 5: Data Cleaning Automation</strong>
+- Develop automated data cleaning workflows
+- Standardize date formats and categorical values
+- Handle missing data with appropriate strategies
+- Detect and resolve duplicate records
+- Implement data validation frameworks</p>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<p><strong>Task 6: Big Data Handling</strong>
+- Compare performance of different CSV libraries
+- Implement parallel processing for large datasets
+- Use columnar storage formats for analytics
+- Optimize memory usage for streaming processing
+- Benchmark I/O performance optimizations</p>
+<h2 id="real-world-applications">Real-World Applications</h2>
+<p><strong>Task 7: Industry-Specific Scenarios</strong>
+1. Financial data with precise decimal handling
+2. Scientific measurements with units and precision
+3. Geographic data with coordinate systems
+4. Time series data with irregular intervals
+5. Log file analysis and structured extraction</p>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p><strong>Task 8: Specialized Formats</strong>
+- Work with TSV (tab-separated values)
+- Handle fixed-width format files
+- Process delimited files with custom separators
+- Deal with hierarchical data in flat formats
+- Implement schema evolution strategies</p>
+<h2 id="tools-and-libraries-exploration">Tools and Libraries Exploration</h2>
+<p><strong>Task 9: Tool Comparison</strong>
+Evaluate and compare tools for tabular data:
+- pandas (Python) vs data.table (R)
+- OpenRefine vs Excel for data cleaning
+- Apache Spark vs traditional tools for big data
+- Command-line tools (csvkit, Miller, q)
+- Cloud services (AWS Glue, Google BigQuery)</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive tabular data portfolio:
+1. Sample datasets in multiple formats
+2. Data quality assessment reports
+3. Working code for all conversion scenarios
+4. Performance benchmarking results
+5. Best practices documentation
+6. Tool comparison matrix with recommendations
+7. Real-world case study implementation</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

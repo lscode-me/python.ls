@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This course covers fundamental data concepts that every life science professional should understand. We explore essential topics that are often sources of problems and confusion: character encodings, ">
+    <title>Data Fundamentals for Life Sciences | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="data-fundamentals-for-life-sciences">Data Fundamentals for Life Sciences</h1>
+<h2 id="essential-concepts-data-formats-encodings-and-file-handling">Essential Concepts: Data Formats, Encodings, and File Handling</h2>
+<hr />
+<h2 id="about-this-course">📚 About This Course</h2>
+<p>This course covers fundamental data concepts that every life science professional should understand. We explore essential topics that are often sources of problems and confusion: character encodings, file formats, structured data, compression, and more.</p>
+<p>Understanding these fundamentals is crucial for bioinformatics, healthcare data engineering, and computational biology work, where data integrity and proper format handling can make or break your analysis pipeline.</p>
+<h3 id="target-audience">Target Audience</h3>
+<ul>
+<li><strong>Bioinformaticians</strong> - Work with genomic data files (FASTA, FASTQ, VCF, BAM)</li>
+<li><strong>Life Science Researchers</strong> - Process experimental data and lab results</li>
+<li><strong>Healthcare Data Engineers</strong> - Handle medical records and clinical data</li>
+<li><strong>Computational Biologists</strong> - Build data analysis pipelines</li>
+<li><strong>Data Scientists in Life Sciences</strong> - Analyze biological and medical datasets</li>
+</ul>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Basic computer literacy</li>
+<li>Command-line experience (recommended)</li>
+<li>Understanding of basic programming concepts (recommended)</li>
+<li>No biology background required - we'll explain biological context where needed</li>
+</ul>
+<hr />
+<h2 id="course-structure">🗺️ Course Structure</h2>
+<h3 id="section-1-data-representation-fundamentals">Section 1: Data Representation Fundamentals</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Topic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./01_Intro/">01_Intro</a></td>
+<td>Introduction</td>
+<td>What are data, information, and formats</td>
+</tr>
+<tr>
+<td><a href="./02_NumberSystems/">02_NumberSystems</a></td>
+<td>Number Systems</td>
+<td>Bits, bytes, hex, binary, endianness</td>
+</tr>
+<tr>
+<td><a href="./03_Encodings/">03_Encodings</a></td>
+<td>Character Encodings</td>
+<td>ASCII, Unicode, UTF-8, history and problems</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-2-file-formats">Section 2: File Formats</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Topic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./04_FileFormats/">04_FileFormats</a></td>
+<td>File Formats</td>
+<td>Text vs binary, magic numbers, MIME types</td>
+</tr>
+<tr>
+<td><a href="./05_JSON/">05_JSON</a></td>
+<td>JSON</td>
+<td>Syntax, validation, tools (jq)</td>
+</tr>
+<tr>
+<td><a href="./06_YAML/">06_YAML</a></td>
+<td>YAML</td>
+<td>Syntax, features, comparison with JSON</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-3-markup-and-configuration">Section 3: Markup and Configuration</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Topic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./07_Markup/">07_Markup</a></td>
+<td>Markup Languages</td>
+<td>HTML, XML, Markdown</td>
+</tr>
+<tr>
+<td><a href="./08_ConfigFiles/">08_ConfigFiles</a></td>
+<td>Configuration Files</td>
+<td>INI, TOML, .env, properties</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-4-working-with-data">Section 4: Working with Data</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Topic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./09_TabularData/">09_TabularData</a></td>
+<td>Tabular Data</td>
+<td>CSV, TSV, parsing and generation</td>
+</tr>
+<tr>
+<td><a href="./10_Compression/">10_Compression</a></td>
+<td>Data Compression</td>
+<td>gzip, bzip2, tar, archives</td>
+</tr>
+<tr>
+<td><a href="./11_Checksums/">11_Checksums</a></td>
+<td>Hashes and Checksums</td>
+<td>MD5, SHA, applications</td>
+</tr>
+<tr>
+<td><a href="./12_DataTransfer/">12_DataTransfer</a></td>
+<td>Transfer Encoding</td>
+<td>Base64, URL encoding, MIME types</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="learning-path">🎯 Learning Path</h2>
+<pre class="highlight"><code>┌─────────────────────────────────────────────────────────────────┐
+│                  Data Fundamentals Course                        │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+         ┌────────────────────┼────────────────────┐
+         ▼                    ▼                    ▼
+    ┌─────────┐         ┌─────────┐         ┌─────────┐
+    │  Intro  │─────────│ Number  │─────────│Encodings│
+    │  Data   │         │ Systems │         │ (UTF-8) │
+    └─────────┘         └─────────┘         └─────────┘
+                              │
+         ┌────────────────────┼────────────────────┐
+         ▼                    ▼                    ▼
+    ┌─────────┐         ┌─────────┐         ┌─────────┐
+    │  File   │─────────│  JSON   │─────────│  YAML   │
+    │ Formats │         │         │         │         │
+    └─────────┘         └─────────┘         └─────────┘
+                              │
+         ┌────────────────────┼────────────────────┐
+         ▼                    ▼                    ▼
+    ┌─────────┐         ┌─────────┐         ┌─────────┐
+    │ Markup  │─────────│ Config  │─────────│ Tabular │
+    │(HTML/MD)│         │ Files   │         │  Data   │
+    └─────────┘         └─────────┘         └─────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+        ┌───────────┐   ┌───────────┐   ┌───────────┐
+        │Compression│   │ Checksums │   │  Data     │
+        │ (gzip/tar)│   │  (SHA256) │   │ Transfer  │
+        └───────────┘   └───────────┘   └───────────┘
+                              │
+                              ▼
+                    ┌──────────────────┐
+                    │  Apply to Life   │
+                    │  Science Data    │
+                    │  (Python/Linux)  │
+                    └──────────────────┘
+</code></pre>
+
+<hr />
+<h2 id="module-format">📋 Module Format</h2>
+<p>Each module contains:</p>
+<pre class="highlight"><code>XX_ModuleName/
+├── lecture.md    # Main lecture material
+└── quiz.md       # Self-assessment questions
+</code></pre>
+
+<h3 id="lecture-structure">Lecture Structure</h3>
+<ul>
+<li><strong>Prerequisites</strong> — What you need to know before starting</li>
+<li><strong>Learning Objectives</strong> — What you'll learn</li>
+<li><strong>Main Content</strong> — Theory with practical examples</li>
+<li><strong>Life Science Applications</strong> — How this applies to bioinformatics</li>
+<li><strong>Key Takeaways</strong> — Main conclusions</li>
+<li><strong>Next Steps</strong> — What to study next</li>
+<li><strong>Additional Resources</strong> — Further reading and tools</li>
+</ul>
+<h3 id="quiz">Quiz</h3>
+<ul>
+<li>15-20 multiple-choice questions</li>
+<li>Answers with explanations</li>
+<li>Performance recommendations</li>
+</ul>
+<hr />
+<h2 id="life-science-applications">🔬 Life Science Applications</h2>
+<h3 id="why-data-fundamentals-matter-in-life-sciences">Why Data Fundamentals Matter in Life Sciences</h3>
+<h4 id="genomic-data-formats">Genomic Data Formats</h4>
+<ul>
+<li><strong>FASTA/FASTQ</strong> files use ASCII encoding - encoding errors corrupt sequences</li>
+<li><strong>VCF/BCF</strong> files use text and binary formats - understanding both is crucial</li>
+<li><strong>BAM/SAM</strong> files are compressed binary - compression knowledge is essential</li>
+</ul>
+<h4 id="clinical-and-lab-data">Clinical and Lab Data</h4>
+<ul>
+<li><strong>Electronic Health Records</strong> often use JSON/XML - format knowledge is critical</li>
+<li><strong>Laboratory instruments</strong> output CSV/TSV - proper parsing prevents analysis errors</li>
+<li><strong>Configuration files</strong> for bioinformatics tools use YAML/TOML - understanding formats enables customization</li>
+</ul>
+<h4 id="data-integrity">Data Integrity</h4>
+<ul>
+<li><strong>Checksums (MD5/SHA256)</strong> verify data integrity in genomic databases</li>
+<li><strong>Compression</strong> reduces storage costs for large sequencing datasets</li>
+<li><strong>Encoding issues</strong> can corrupt patient names and medical records</li>
+</ul>
+<hr />
+<h2 id="practical-requirements">🛠️ Practical Requirements</h2>
+<h3 id="recommended-environment">Recommended Environment</h3>
+<ul>
+<li>Linux, macOS, or WSL on Windows</li>
+<li>Terminal with bash or zsh</li>
+<li>Text editor (VS Code, Vim, etc.)</li>
+</ul>
+<h3 id="command-reference">Command Reference</h3>
+<p>This course uses Linux/Unix commands. Below is a brief description of each:</p>
+<h4 id="file-viewing">File Viewing</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cat</code></td>
+<td>Display entire file contents</td>
+</tr>
+<tr>
+<td><code>head</code></td>
+<td>Show first N lines of a file (default 10)</td>
+</tr>
+<tr>
+<td><code>tail</code></td>
+<td>Show last N lines of a file</td>
+</tr>
+<tr>
+<td><code>less</code></td>
+<td>Paginated viewing with scrolling (exit: <code>q</code>)</td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td>Determine file type by contents (magic numbers)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hex-viewing-and-editing">Hex Viewing and Editing</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>xxd</code></td>
+<td>Create hex dump of a file (show bytes in hexadecimal)</td>
+</tr>
+<tr>
+<td><code>hexdump</code></td>
+<td>Alternative to xxd for hex viewing</td>
+</tr>
+<tr>
+<td><code>od</code></td>
+<td>Octal dump - view file in octal, hex, or other bases</td>
+</tr>
+<tr>
+<td><code>hexedit</code></td>
+<td>Interactive binary file editor in hex mode</td>
+</tr>
+</tbody>
+</table>
+<h4 id="encodings-and-text">Encodings and Text</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iconv</code></td>
+<td>Convert file from one encoding to another</td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td>Show current system locale settings</td>
+</tr>
+<tr>
+<td><code>dos2unix</code></td>
+<td>Convert Windows line endings (CRLF) to Unix (LF)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="data-processing">Data Processing</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jq</code></td>
+<td>JSON parser and processor - filter, extract, transform</td>
+</tr>
+<tr>
+<td><code>yq</code></td>
+<td>YAML processor (like jq for YAML files)</td>
+</tr>
+<tr>
+<td><code>sed</code></td>
+<td>Stream editor - search and replace text in files</td>
+</tr>
+</tbody>
+</table>
+<h4 id="compression-and-archiving">Compression and Archiving</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gzip</code> / <code>gunzip</code></td>
+<td>Compress/decompress files with gzip (.gz)</td>
+</tr>
+<tr>
+<td><code>bzip2</code> / <code>bunzip2</code></td>
+<td>Compress/decompress with bzip2 (.bz2) - better compression, slower</td>
+</tr>
+<tr>
+<td><code>xz</code> / <code>unxz</code></td>
+<td>Compress/decompress with LZMA (.xz) - best compression</td>
+</tr>
+<tr>
+<td><code>zcat</code></td>
+<td>View contents of .gz file without decompressing</td>
+</tr>
+<tr>
+<td><code>tar</code></td>
+<td>Combine files into archive (no compression), often with gzip/bzip2/xz</td>
+</tr>
+<tr>
+<td><code>zip</code> / <code>unzip</code></td>
+<td>Create/extract ZIP archives</td>
+</tr>
+<tr>
+<td><code>zipinfo</code></td>
+<td>Show information about ZIP archive contents</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hashes-and-checksums">Hashes and Checksums</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>md5sum</code></td>
+<td>Calculate MD5 hash of file (128-bit, deprecated)</td>
+</tr>
+<tr>
+<td><code>sha1sum</code></td>
+<td>Calculate SHA-1 hash (160-bit, deprecated)</td>
+</tr>
+<tr>
+<td><code>sha256sum</code></td>
+<td>Calculate SHA-256 hash - recommended standard</td>
+</tr>
+<tr>
+<td><code>sha512sum</code></td>
+<td>Calculate SHA-512 hash (512-bit)</td>
+</tr>
+<tr>
+<td><code>shasum</code></td>
+<td>Universal SHA command (macOS), use <code>-a</code> flag to select algorithm</td>
+</tr>
+</tbody>
+</table>
+<h4 id="file-operations">File Operations</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chmod</code></td>
+<td>Change file permissions (rwx for owner/group/others)</td>
+</tr>
+<tr>
+<td><code>cp</code></td>
+<td>Copy files and directories</td>
+</tr>
+<tr>
+<td><code>mv</code></td>
+<td>Move or rename files</td>
+</tr>
+<tr>
+<td><code>find</code></td>
+<td>Search for files by name, type, size, and other criteria</td>
+</tr>
+<tr>
+<td><code>strings</code></td>
+<td>Extract text strings from binary files</td>
+</tr>
+</tbody>
+</table>
+<h4 id="binary-file-analysis">Binary File Analysis</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>binwalk</code></td>
+<td>Analyze binary files, find embedded files and signatures</td>
+</tr>
+<tr>
+<td><code>exiftool</code></td>
+<td>Read and edit metadata from images and media files</td>
+</tr>
+<tr>
+<td><code>readelf</code></td>
+<td>Show information about ELF files (Linux executables)</td>
+</tr>
+<tr>
+<td><code>objdump</code></td>
+<td>Disassembler and object file analyzer</td>
+</tr>
+<tr>
+<td><code>nm</code></td>
+<td>Show symbols (functions, variables) in object files</td>
+</tr>
+</tbody>
+</table>
+<h4 id="output-and-formatting">Output and Formatting</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>echo</code></td>
+<td>Print text to terminal</td>
+</tr>
+<tr>
+<td><code>printf</code></td>
+<td>Formatted text output (like C)</td>
+</tr>
+<tr>
+<td><code>man</code></td>
+<td>Show manual page for a command (exit: <code>q</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="network-and-download">Network and Download</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>curl</code></td>
+<td>HTTP client for downloading files and working with APIs</td>
+</tr>
+<tr>
+<td><code>wget</code></td>
+<td>Download files from the internet</td>
+</tr>
+</tbody>
+</table>
+<h4 id="data-encoding">Data Encoding</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base64</code></td>
+<td>Encode/decode data in Base64</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>💡 Tip:</strong> Use <code>man &lt;command&gt;</code> for detailed help on any command, e.g., <code>man tar</code>.</p>
+</blockquote>
+<h3 id="tool-installation">Tool Installation</h3>
+<pre class="highlight"><code class="language-bash"># Ubuntu/Debian
+sudo apt update
+sudo apt install -y jq file xxd coreutils vim-common  # vim-common contains xxd
+sudo apt install -y dos2unix exiftool binwalk         # additional utilities
+
+# macOS
+brew install jq coreutils exiftool binwalk
+
+# yq (YAML processor) - install separately
+# https://github.com/mikefarah/yq/releases
+
+# Python libraries (optional, for practice)
+pip install chardet pyyaml
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> Most basic commands (<code>cat</code>, <code>head</code>, <code>tail</code>, <code>tar</code>, <code>gzip</code>, <code>file</code>, <code>chmod</code>, <code>find</code>, <code>md5sum</code>, <code>sha256sum</code>) are pre-installed on Linux and macOS.</p>
+</blockquote>
+<hr />
+<h2 id="time-commitment">⏱️ Time Commitment</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Modules</th>
+<th>Reading Time</th>
+<th>Practice Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Representation Fundamentals</td>
+<td>1-3</td>
+<td>2-3 hours</td>
+<td>2-3 hours</td>
+</tr>
+<tr>
+<td>File Formats</td>
+<td>4-6</td>
+<td>2-3 hours</td>
+<td>3-4 hours</td>
+</tr>
+<tr>
+<td>Markup and Configuration</td>
+<td>7-8</td>
+<td>1.5-2 hours</td>
+<td>2-3 hours</td>
+</tr>
+<tr>
+<td>Working with Data</td>
+<td>9-12</td>
+<td>2-3 hours</td>
+<td>3-4 hours</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total Time:</strong> ~18-25 hours (including practice)</p>
+<hr />
+<h2 id="after-completing-this-course">🎓 After Completing This Course</h2>
+<p>You will be able to:</p>
+<p>✅ Explain differences between encodings and choose the correct one</p>
+<p>✅ Diagnose and fix encoding problems (mojibake/garbled text)</p>
+<p>✅ Distinguish and work with text and binary files</p>
+<p>✅ Read, edit, and validate JSON and YAML</p>
+<p>✅ Understand and use HTML, XML, and Markdown</p>
+<p>✅ Work with configuration files in different formats</p>
+<p>✅ Parse and generate CSV files</p>
+<p>✅ Compress and decompress data</p>
+<p>✅ Calculate and verify checksums</p>
+<p>✅ Encode data in Base64 and understand MIME types</p>
+<hr />
+<h2 id="connections-to-other-courses">🔗 Connections to Other Courses</h2>
+<h3 id="python-course">→ Python Course</h3>
+<p>After completing Data Fundamentals, the Python course teaches you to:<br />
+- Parse and manipulate these file formats programmatically<br />
+- Handle encoding issues in Python<br />
+- Build data processing pipelines<br />
+- Work with BioPython for genomic file formats (FASTA, FASTQ, GenBank)</p>
+<p><strong>Recommended modules:</strong> 03_Files, 06_Streams, 11_Bioinformatics</p>
+<h3 id="linux-course">→ Linux Course</h3>
+<p>Data Fundamentals prepares you for the Linux course where you'll:<br />
+- Process structured data with command-line tools (jq, yq, csvkit)<br />
+- Build streaming ETL pipelines for large datasets<br />
+- Compress and archive genomic data efficiently<br />
+- Validate data integrity with checksums in pipelines</p>
+<p><strong>Recommended modules:</strong> 06_Structured_Data, 08_Log_Processing, 10_Streams_IPC</p>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<h3 id="books">Books</h3>
+<ul>
+<li>"The Absolute Minimum Every Software Developer Must Know About Unicode" — Joel Spolsky</li>
+<li>"Pro Git" by Scott Chacon — excellent explanation of binary formats</li>
+<li>"Bioinformatics Data Skills" by Vince Buffalo — data formats in bioinformatics</li>
+</ul>
+<h3 id="online-resources">Online Resources</h3>
+<ul>
+<li><a href="https://unicode.org/">Unicode Consortium</a></li>
+<li><a href="https://www.json.org/">JSON.org</a></li>
+<li><a href="https://yaml.org/spec/">YAML Specification</a></li>
+<li><a href="https://developer.mozilla.org/">MDN Web Docs</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/sra/docs/submitformats/">NCBI File Formats</a> - Genomic data formats</li>
+</ul>
+<h3 id="tools">Tools</h3>
+<ul>
+<li><a href="https://jqplay.org/">jq play</a> — Online sandbox for jq</li>
+<li><a href="https://www.yamllint.com/">YAML Lint</a> — YAML validator</li>
+<li><a href="https://www.base64encode.org/">Base64 Encode/Decode</a></li>
+<li><a href="https://hexed.it/">Hex Editor</a> — Online hex editor</li>
+</ul>
+<hr />
+<h2 id="version-and-updates">📝 Version and Updates</h2>
+<p><strong>Version:</strong> 1.0<br />
+<strong>Created:</strong> December 2024<br />
+<strong>Last Updated:</strong> December 2024</p>
+<p>This course is maintained and kept up to date. If you find outdated information, please create an issue or pull request.</p>
+<hr />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../courses/Python/">Python</a></li>
+                    <li><a href="../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

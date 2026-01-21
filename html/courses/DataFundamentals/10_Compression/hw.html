@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Data Compression">
+    <title>Homework: Data Compression | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/DataFundamentals/">Data Fundamentals for Life Sciences</a> &raquo;
+                    <a href="index.html">Data Compression</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="homework-data-compression">Homework: Data Compression</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-compression-algorithm-comparison">Exercise 1: Compression Algorithm Comparison</h3>
+<ol>
+<li id="item-1">Test different compression algorithms on various data types:<br />
+   - Text files (source code, documents, logs)<br />
+   - Binary files (images, executables, databases)<br />
+   - Structured data (CSV, JSON, XML)<br />
+   - Random data and already compressed files</li>
+<li id="item-2">Measure compression ratios for each algorithm:<br />
+   - gzip, bzip2, xz, lz4, zstd<br />
+   - Compare with built-in OS compression (zip, rar)</li>
+<li id="item-3">Document compression speed vs ratio trade-offs</li>
+<li id="item-4">Analyze which algorithms work best for different data types</li>
+</ol>
+<h3 id="exercise-2-lossless-vs-lossy-compression">Exercise 2: Lossless vs Lossy Compression</h3>
+<ol>
+<li id="item-1">Experiment with image compression:<br />
+   - PNG (lossless) vs JPEG (lossy) at different quality levels<br />
+   - WebP format for modern web applications<br />
+   - TIFF compression options for scientific data</li>
+<li id="item-2">Audio compression comparison:<br />
+   - FLAC (lossless) vs MP3/AAC (lossy)<br />
+   - Analyze quality vs file size trade-offs</li>
+<li id="item-3">Video compression concepts:<br />
+   - Research H.264, H.265, AV1 codecs<br />
+   - Understand bitrate, quality, and compatibility</li>
+</ol>
+<h3 id="exercise-3-compression-performance-analysis">Exercise 3: Compression Performance Analysis</h3>
+<ol>
+<li id="item-1">Benchmark compression algorithms:<br />
+   - Compression speed (MB/s)<br />
+   - Decompression speed (MB/s)<br />
+   - Memory usage during compression<br />
+   - CPU utilization patterns</li>
+<li id="item-2">Test with different compression levels</li>
+<li id="item-3">Analyze the impact of file size on performance</li>
+<li id="item-4">Compare single-threaded vs multi-threaded compression</li>
+</ol>
+<h3 id="exercise-4-streaming-and-archive-compression">Exercise 4: Streaming and Archive Compression</h3>
+<ol>
+<li id="item-1">Practice with tar archives combined with compression:<br />
+   - tar.gz, tar.bz2, tar.xz formats<br />
+   - Create and extract archives with various options<br />
+   - Handle symbolic links, permissions, and metadata</li>
+<li id="item-2">Streaming compression scenarios:<br />
+   - Compress data on-the-fly during network transfer<br />
+   - Database backup compression<br />
+   - Log file rotation with compression</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Automated Backup System</strong><br />
+- Design a backup system with intelligent compression<br />
+- Choose appropriate algorithms based on data type<br />
+- Implement compression level optimization<br />
+- Handle incremental backups with compression<br />
+- Create verification and integrity checking</p>
+<p><strong>Task 2: Web Performance Optimization</strong><br />
+- Implement HTTP compression (gzip, brotli)<br />
+- Optimize static asset compression<br />
+- Configure server-side compression settings<br />
+- Measure impact on page load times<br />
+- Balance compression vs server CPU usage</p>
+<p><strong>Task 3: Database Storage Optimization</strong><br />
+- Analyze database compression options:<br />
+  - PostgreSQL TOAST compression<br />
+  - MySQL InnoDB compression<br />
+  - SQLite compression extensions<br />
+- Measure storage savings vs query performance<br />
+- Implement application-level compression strategies</p>
+<h2 id="programming-implementation">Programming Implementation</h2>
+<p><strong>Task 4: Compression Library Integration</strong><br />
+Implement compression in your preferred language:<br />
+- File compression/decompression utilities<br />
+- In-memory data compression for caching<br />
+- Stream processing with compression<br />
+- Error handling and recovery mechanisms<br />
+- Progress reporting for large files</p>
+<p><strong>Task 5: Custom Compression Solutions</strong><br />
+1. Implement dictionary-based compression for logs<br />
+2. Create domain-specific compression for structured data<br />
+3. Develop adaptive compression based on data characteristics<br />
+4. Implement compression with encryption for security</p>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p><strong>Task 6: Specialized Compression Formats</strong><br />
+- Scientific data compression (HDF5, NetCDF)<br />
+- Geospatial data compression (GeoTIFF, MBTiles)<br />
+- Time series compression (specialized algorithms)<br />
+- Document format compression (PDF, DOCX internals)</p>
+<p><strong>Task 7: Big Data Compression</strong><br />
+- Columnar compression in data warehouses<br />
+- Hadoop compression codecs (Snappy, LZO)<br />
+- Apache Parquet compression options<br />
+- Compression in distributed systems</p>
+<h2 id="performance-testing">Performance Testing</h2>
+<p><strong>Task 8: Comprehensive Benchmarking</strong><br />
+1. Create a testing framework for compression algorithms<br />
+2. Test with various file sizes (KB to GB)<br />
+3. Measure impact on different hardware configurations<br />
+4. Test network transfer scenarios with compression<br />
+5. Analyze compression effectiveness over time</p>
+<h2 id="real-world-scenarios">Real-World Scenarios</h2>
+<p><strong>Task 9: Industry Applications</strong><br />
+1. Media streaming compression strategies<br />
+2. Cloud storage cost optimization through compression<br />
+3. Mobile application asset compression<br />
+4. Scientific data archival with long-term accessibility<br />
+5. Log aggregation and storage optimization</p>
+<h2 id="security-considerations">Security Considerations</h2>
+<p><strong>Task 10: Compression Security</strong><br />
+- Research compression-based attacks (ZIP bombs, compression oracles)<br />
+- Implement safe decompression with resource limits<br />
+- Combine compression with encryption securely<br />
+- Handle malicious compressed files safely</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive compression analysis portfolio:<br />
+1. Algorithm comparison matrix with performance data<br />
+2. Real-world compression strategy recommendations<br />
+3. Working implementations of compression utilities<br />
+4. Benchmark results across different scenarios<br />
+5. Security best practices documentation<br />
+6. Cost-benefit analysis for various use cases<br />
+7. Future trends and emerging compression technologies</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

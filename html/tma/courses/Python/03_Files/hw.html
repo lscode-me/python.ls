@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for File Handling in Python">
+    <title>HW: File Handling - Homework | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: File Handling - Homework</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Python for Life Science Developers</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 3 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="file-handling-homework">File Handling - Homework</h1>
+<ol>
+<li id="item-1">Basic File Operations
+   Create a file manager script with the following functions:</li>
+</ol>
+<p>a) read_file(filename) - read and return file contents
+   b) write_file(filename, content) - write content to file
+   c) append_to_file(filename, content) - append content
+   d) count_lines(filename) - return number of lines
+   e) count_words(filename) - return number of words
+   f) find_in_file(filename, search_term) - return line numbers</p>
+<p>Your task:
+   - Implement all functions with proper error handling
+   - Use context managers for all file operations
+   - Handle different encodings (UTF-8, ASCII)
+   - Test with various file types and sizes</p>
+<p>Your goal:
+   - Master basic file I/O operations
+   - Understand file modes and encodings
+   - Practice error handling with files</p>
+<ol start="2">
+<li id="item-1">Log File Analyzer
+   Create a log file analyzer that processes web server logs:</li>
+</ol>
+<p>Log format example:
+       192.168.1.1 - - [26/Nov/2025:10:15:23] "GET /index.html HTTP/1.1" 200 2326</p>
+<p>Functions to implement:
+   a) parse_log_entry(line) - extract IP, timestamp, request, status, size
+   b) analyze_log(filename) - return statistics:
+      - Total requests
+      - Unique IPs
+      - Most common endpoints
+      - Status code distribution
+      - Total bandwidth
+   c) filter_by_status(filename, status_code)
+   d) find_errors(filename) - return 4xx and 5xx entries</p>
+<p>Your task:
+   - Read large log files efficiently (line by line)
+   - Parse complex log format
+   - Generate comprehensive statistics
+   - Export results to JSON and CSV</p>
+<p>Your goal:
+   - Practice reading large files efficiently
+   - Learn text parsing and pattern matching
+   - Understand data aggregation from files</p>
+<ol start="3">
+<li id="item-1">CSV Data Processing
+   Create a CSV data processor for tabular data:</li>
+</ol>
+<p>Features:
+   a) Read CSV with headers
+   b) Filter rows by conditions
+   c) Sort by columns
+   d) Calculate statistics (sum, average, min, max)
+   e) Add computed columns
+   f) Merge multiple CSV files
+   g) Export filtered/processed data</p>
+<p>Example operations:
+   - Filter employees with salary &gt; 50000
+   - Sort by age descending
+   - Add "bonus" column (10% of salary)
+   - Calculate average salary by department</p>
+<p>Your task:
+   - Use csv module for reading/writing
+   - Implement flexible filtering system
+   - Handle missing/invalid data
+   - Support large CSV files</p>
+<p>Your goal:
+   - Master CSV file operations
+   - Practice data transformation
+   - Learn data validation and cleaning</p>
+<ol start="4">
+<li id="item-1">JSON Configuration Manager
+   Create a configuration management system using JSON:</li>
+</ol>
+<p>Features:
+   a) load_config(filename) - load configuration
+   b) save_config(filename, config) - save configuration
+   c) get_value(key_path) - get nested value (e.g., "database.host")
+   d) set_value(key_path, value) - set nested value
+   e) validate_config(config, schema) - validate structure
+   f) merge_configs(config1, config2) - merge configurations</p>
+<p>Your task:
+   - Support nested configuration structures
+   - Implement dot-notation for nested access
+   - Add validation against schema
+   - Handle default values
+   - Support environment variable substitution</p>
+<p>Your goal:
+   - Master JSON file operations
+   - Learn configuration management patterns
+   - Practice nested data structure manipulation</p>
+<ol start="5">
+<li id="item-1">Directory Tree Processor
+   Create tools for processing directory structures:</li>
+</ol>
+<p>Features:
+   a) list_files(path, pattern) - list files matching pattern
+   b) calculate_dir_size(path) - total size recursively
+   c) find_duplicates(path) - find duplicate files by content
+   d) organize_by_type(path) - organize files by extension
+   e) clean_empty_dirs(path) - remove empty directories
+   f) generate_tree(path) - create visual tree structure</p>
+<p>Your task:
+   - Use pathlib for path operations
+   - Implement recursive directory traversal
+   - Calculate file hashes for duplicate detection
+   - Create tree visualization (like Unix <code>tree</code> command)
+   - Handle symbolic links and permissions errors</p>
+<p>Your goal:
+   - Master directory operations
+   - Learn recursive file system traversal
+   - Practice file system manipulation</p>
+<ol start="6">
+<li id="item-1">Binary File Processor
+   Work with binary files and formats:</li>
+</ol>
+<p>Tasks:
+   a) Image file header reader (PNG, JPEG, GIF)
+   b) File type detector by magic numbers
+   c) Binary file splitter/merger
+   d) Simple hex viewer
+   e) Binary file comparison tool</p>
+<p>Your task:
+   - Read and interpret binary data
+   - Understand file format structures
+   - Work with bytes and bytearray
+   - Implement chunked reading for large files</p>
+<p>Example formats:
+   - PNG: starts with 89 50 4E 47
+   - JPEG: starts with FF D8 FF
+   - PDF: starts with 25 50 44 46</p>
+<p>Your goal:
+   - Master binary file operations
+   - Understand file formats
+   - Practice low-level data manipulation</p>
+<ol start="7">
+<li id="item-1">File Compression and Archiving
+   Create archive management tools:</li>
+</ol>
+<p>Features:
+   a) create_archive(files, output_name) - create ZIP
+   b) extract_archive(archive_path, destination)
+   c) list_archive_contents(archive_path)
+   d) add_to_archive(archive_path, files)
+   e) compress_directory(path) - compress entire directory
+   f) compare_with_gzip(file) - compare regular vs compressed size</p>
+<p>Your task:
+   - Work with zipfile module
+   - Handle compression with gzip
+   - Support tar.gz format
+   - Preserve file metadata (timestamps, permissions)
+   - Show compression ratios</p>
+<p>Your goal:
+   - Master file compression
+   - Learn archive formats
+   - Understand compression benefits and trade-offs</p>
+<ol start="8">
+<li id="item-1">Text File Converter
+   Create converters between different text formats:</li>
+</ol>
+<p>Conversions:
+   a) CSV ↔ JSON
+   b) CSV ↔ Markdown table
+   c) JSON ↔ YAML (use pyyaml)
+   d) Plain text ↔ HTML
+   e) Markdown ↔ HTML (basic)</p>
+<p>Your task:
+   - Parse source format correctly
+   - Generate valid target format
+   - Preserve data structure
+   - Handle edge cases (special characters, empty fields)
+   - Support bidirectional conversion</p>
+<p>Your goal:
+   - Practice format conversion
+   - Learn multiple file formats
+   - Master data transformation</p>
+<ol start="9">
+<li id="item-1">Temporary File Management
+   Work with temporary files and directories:</li>
+</ol>
+<p>Tasks:
+   a) Create temp file for processing large datasets
+   b) Implement temp directory for batch operations
+   c) Create secure temp files for sensitive data
+   d) Clean up temp files on error
+   e) Implement temp file rotation system</p>
+<p>Your task:
+   - Use tempfile module
+   - Ensure cleanup with context managers
+   - Handle cleanup in exception scenarios
+   - Implement automatic cleanup after time period
+   - Create temp file naming strategy</p>
+<p>Your goal:
+   - Master temporary file handling
+   - Learn cleanup strategies
+   - Practice resource management</p>
+<ol start="10">
+<li id="item-1">
+<p>Advanced File I/O Project
+    Create a complete file-based database system:</p>
+<p>Features:
+- Store records in JSON files
+- Index for fast lookups
+- Support CRUD operations
+- Query with filtering and sorting
+- Transaction support (rollback on error)
+- Backup and restore
+- Export to various formats</p>
+<p>Your task:
+- Design file-based storage structure
+- Implement efficient read/write operations
+- Add indexing for performance
+- Support concurrent access (file locking)
+- Create backup mechanism
+- Optimize for large datasets</p>
+<p>Your goal:
+- Apply all file I/O knowledge
+- Build real-world application
+- Learn database concepts
+- Practice system design</p>
+</li>
+</ol></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

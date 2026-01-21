@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Python Core Foundations">
+    <title>Objects, References, Memory, Types - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+                    <a href="index.html">Python Core Foundations</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="objects-references-memory-types-homework">Objects, References, Memory, Types - Homework</h1>
+<ol>
+<li id="item-1">Exploring Basic Data Types<br />
+   Write a script that creates and prints different data types:<br />
+   - Create short strings (e.g., "hello") and long strings (e.g., a paragraph)<br />
+   - Create float numbers (e.g., 3.14, 1.0e10)<br />
+   - Create complex numbers (e.g., 3+4j, complex(2, -5))<br />
+   - Create boolean values (True, False)</li>
+</ol>
+<p>For each object:<br />
+   - Print the value<br />
+   - Print its type using type()<br />
+   - Print its size using sys.getsizeof()</p>
+<p>Your task:<br />
+   - Observe size differences between short and long strings<br />
+   - Notice how different numeric types are represented<br />
+   - Understand basic Python data types</p>
+<p>Your goal:<br />
+   - Familiarize yourself with Python's basic data types<br />
+   - Understand memory usage of different objects<br />
+   - Learn to inspect object properties</p>
+<ol start="2">
+<li id="item-1">
+<p>Understanding References and Identity<br />
+   Write a short script that tests whether two variables refer to the same object.<br />
+   Use the following examples and explain why each result is True or False:<br />
+       a = 256<br />
+       b = 256<br />
+       a is b</p>
+<p>a = 257<br />
+   b = 257<br />
+   a is b</p>
+<p>a = []<br />
+   b = []<br />
+   a is b</p>
+<p>c = a<br />
+   a is c</p>
+</li>
+</ol>
+<p>Your task:<br />
+   - Predict the output before running the code.<br />
+   - Run the script and compare results.<br />
+   - Write a short explanation (1–2 sentences per line).</p>
+<p>Your goal:<br />
+   - Understand the difference between identity (is) and equality (==)<br />
+   - Learn about Python's integer caching optimization<br />
+   - Master the concept of object references vs object values</p>
+<ol start="3">
+<li id="item-1">Demonstrating Mutability and Immutability<br />
+   Write a script that demonstrates the difference between mutable and immutable objects.</li>
+</ol>
+<p>Test the following object types:<br />
+   - Immutable: str, tuple, int, float, bool<br />
+   - Mutable: list, dict, set</p>
+<p>For each type, perform operations and observe the behavior:<br />
+       # Example for string (immutable)<br />
+       s = "hello"<br />
+       print(id(s))<br />
+       s = s + " world"<br />
+       print(id(s))  # Does the id change?</p>
+<pre class="highlight"><code>   # Example for list (mutable)
+   lst = [1, 2, 3]
+   print(id(lst))
+   lst.append(4)
+   print(id(lst))  # Does the id change?
+</code></pre>
+
+<p>Your task:<br />
+   - Test all mentioned types<br />
+   - Explain why the id changes (or doesn't change) for each type<br />
+   - Demonstrate that tuples containing mutable objects have special behavior</p>
+<p>Your goal:<br />
+   - Understand mutability vs immutability in Python<br />
+   - Learn how modifying objects affects their identity<br />
+   - Avoid common bugs related to mutable objects<br />
+   - Understand the implications for function arguments and return values</p>
+<ol start="4">
+<li id="item-1">
+<p>Mutable Default Argument Bug<br />
+   The following function behaves incorrectly:</p>
+<p>def append_item(x, items=[]):<br />
+       items.append(x)<br />
+       return items</p>
+</li>
+</ol>
+<p>Task:<br />
+   - Explain what is wrong with this function.<br />
+   - Rewrite it so that it works correctly.<br />
+   - Show example output of both versions for three calls:<br />
+         append_item(1)<br />
+         append_item(2)<br />
+         append_item(3)</p>
+<p>Your goal:<br />
+   - Understand why mutable default arguments are dangerous<br />
+   - Learn the proper pattern for default arguments<br />
+   - Recognize this common Python pitfall in real code</p>
+<ol start="5">
+<li id="item-1">Inspecting Object Memory and References<br />
+   Write a script that uses:<ul>
+<li id="item-2">type()</li>
+<li id="item-3">id()</li>
+<li id="item-4">sys.getsizeof()</li>
+<li id="item-5">sys.getrefcount()</li>
+<li id="item-6">gc.get_referrers()</li>
+<li id="item-7">gc.get_count()</li>
+</ul>
+</li>
+</ol>
+<p>Perform the following steps:<br />
+       a) Create three objects: an integer, a string, and a list.<br />
+       b) Print their type, size, identity, and reference count.<br />
+       c) Create additional variables referencing the same objects.<br />
+       d) Print updated reference counts and explain what changed.<br />
+       e) Use gc.get_referrers() to see what refers to your objects.<br />
+       f) Use gc.get_count() to see the current garbage collector stats.<br />
+       g) Try gc.collect() and observe changes in gc.get_count().</p>
+<p>Your goal:<br />
+   - Understand how reference counting works.<br />
+   - Observe how Python stores objects of different types.<br />
+   - Learn how the garbage collector tracks objects.</p>
+<ol start="6">
+<li id="item-1">Using help() and dir() for Object Inspection<br />
+   Write a script that explores the difference between types and instances using help() and dir().</li>
+</ol>
+<p>Test the following:<br />
+       # Type vs instance<br />
+       print(type(int))<br />
+       print(type(int()))</p>
+<pre class="highlight"><code>   # Using help on type
+   help(int)
+
+   # Using help on instance
+   help(int())
+
+   # Using dir on type
+   print(dir(int))
+
+   # Using dir on instance
+   print(dir(int()))
+</code></pre>
+
+<p>Your task:<br />
+   - Call help() and dir() on both type and instance for: int, str, list, dict<br />
+   - Explain the difference between int and int()<br />
+   - Find at least 3 interesting methods for each type using dir()<br />
+   - Use help() to understand what one of those methods does<br />
+   - Document your findings in comments</p>
+<p>Your goal:<br />
+   - Master Python's introspection capabilities<br />
+   - Learn to explore unfamiliar objects and modules<br />
+   - Understand the difference between types and instances<br />
+   - Develop self-sufficiency in learning Python's API</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Performance &amp; Parallelism">
+    <title>Performance &amp; Parallelism - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Performance & Parallelism</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="performance-parallelism-homework">Performance &amp; Parallelism - Homework</h1>
+<h2 id="assignment-1-basic-parallel-execution">Assignment 1: Basic Parallel Execution</h2>
+<p>Use GNU parallel to process 100 files in parallel.<br />
+- Create 100 test files: <code>seq 1 100 | xargs -I {} touch file_{}.txt</code><br />
+- Task: Count lines in each file and sum results<br />
+- Command: <code>ls file_*.txt | parallel wc -l {} | awk '{sum+=$1} END {print sum}'</code><br />
+- Requirement: Use 4 parallel jobs with <code>-j 4</code></p>
+<h2 id="assignment-2-sort-optimization">Assignment 2: Sort Optimization</h2>
+<p>Sort a large CSV file (100MB+) with optimization flags.<br />
+- Input: Generate test data with <code>seq 1 1000000 | awk '{print rand()","rand()","rand()}' &gt; large.csv</code><br />
+- Task: Sort by second column numerically<br />
+- Requirements:<br />
+  - Use <code>--parallel=4</code> for parallel sorting<br />
+  - Use <code>-S 2G</code> to allocate 2GB memory<br />
+  - Set <code>TMPDIR</code> to fast storage<br />
+  - Measure time with <code>/usr/bin/time -v</code><br />
+- Compare: Sort with and without optimization, document speedup</p>
+<h2 id="assignment-3-parallel-api-fetching">Assignment 3: Parallel API Fetching</h2>
+<p>Fetch data from JSONPlaceholder API in parallel.<br />
+- Task: Fetch users 1-50 from <code>https://jsonplaceholder.typicode.com/users/{id}</code><br />
+- Requirements:<br />
+  - Use GNU parallel with <code>-j 10</code> (10 concurrent requests)<br />
+  - Add <code>--delay 0.1</code> to rate-limit (100ms between starts)<br />
+  - Save each response to <code>user_{id}.json</code><br />
+  - Use <code>--bar</code> to show progress<br />
+- Command template: <code>seq 1 50 | parallel -j 10 --delay 0.1 --bar 'curl -s "https://jsonplaceholder.typicode.com/users/{}" &gt; user_{}.json'</code></p>
+<h2 id="assignment-4-xargs-parallelism">Assignment 4: xargs Parallelism</h2>
+<p>Use xargs with <code>-P</code> flag to process files in parallel.<br />
+- Task: Find all <code>.txt</code> files and count words in each<br />
+- Command: <code>find . -name "*.txt" -print0 | xargs -0 -P 4 -I {} wc -w {}</code><br />
+- Requirements:<br />
+  - Use <code>-print0</code> and <code>-0</code> for safe filename handling<br />
+  - Process 4 files at a time<br />
+  - Aggregate total word count</p>
+<h2 id="assignment-5-performance-profiling">Assignment 5: Performance Profiling</h2>
+<p>Profile a pipeline to identify bottlenecks.<br />
+- Pipeline: <code>cat large.csv | grep "pattern" | sort | uniq -c | sort -rn &gt; output.txt</code><br />
+- Tasks:<br />
+  1. Use <code>/usr/bin/time -v</code> to measure overall performance<br />
+  2. Add <code>pv</code> to monitor throughput at each stage<br />
+  3. Document: CPU time, wall time, max memory (RSS)<br />
+  4. Identify bottleneck (CPU vs I/O bound)<br />
+- Hint: Use <code>time</code> on each component separately</p>
+<h2 id="assignment-6-csv-split-process-merge">Assignment 6: CSV Split-Process-Merge</h2>
+<p>Implement parallel processing of a large CSV.<br />
+- Input: Create 100,000 line CSV: <code>seq 1 100000 | awk -F',' '{print NR","rand()*100","rand()*1000}' &gt; data.csv</code><br />
+- Steps:<br />
+  1. Split into 10 chunks: <code>split -l 10000 -d data.csv chunk_</code><br />
+  2. Process each chunk in parallel (calculate sum of column 3)<br />
+  3. Merge results: sum all chunk totals<br />
+- Use: <code>ls chunk_* | parallel "mlr --csv stats1 -a sum -f 3 {} &gt; {}.result"</code><br />
+- Requirement: Show progress with <code>pv</code> or <code>--bar</code></p>
+<h2 id="assignment-7-optimized-grep">Assignment 7: Optimized Grep</h2>
+<p>Speed up grep by using parallel processing.<br />
+- Task: Search for "ERROR" in 20 log files<br />
+- Compare:<br />
+  - Sequential: <code>grep "ERROR" *.log | wc -l</code><br />
+  - Parallel: <code>ls *.log | parallel grep "ERROR" {} | wc -l</code><br />
+  - Parallel with threads: <code>grep -r --include="*.log" "ERROR" .</code> (uses threads internally)<br />
+- Measure time for each approach<br />
+- Document: Which is fastest and why?</p>
+<h2 id="assignment-8-memory-efficient-sort">Assignment 8: Memory-Efficient Sort</h2>
+<p>Sort a file larger than available RAM using external sort.<br />
+- Input: Generate 500MB file<br />
+- Task: Sort without loading entire file into memory<br />
+- Commands:<br />
+  - <code>sort --parallel=4 -S 100M huge.txt &gt; sorted.txt</code> (limits memory to 100MB)<br />
+  - Set <code>TMPDIR=/fast/tmp</code> for temp files<br />
+- Monitor: Use <code>iostat -x 2</code> during sort to watch I/O<br />
+- Document: Temp file usage and I/O patterns</p>
+<h2 id="assignment-9-parallel-data-download">Assignment 9: Parallel Data Download</h2>
+<p>Download multiple files in parallel with rate limiting.<br />
+- Task: Download 20 files from a website<br />
+- Requirements:<br />
+  - Use GNU parallel with <code>-j 5</code> (5 concurrent downloads)<br />
+  - Add retry logic: <code>--retries 3</code><br />
+  - Show progress: <code>--bar</code><br />
+  - Log errors: <code>2&gt; errors.log</code><br />
+- Example: <code>cat urls.txt | parallel -j 5 --retries 3 --bar wget -q {}</code></p>
+<h2 id="assignment-10-pipeline-optimization-challenge">Assignment 10: Pipeline Optimization Challenge</h2>
+<p>Optimize a slow pipeline.<br />
+- Given pipeline:<br />
+<code>bash
+  for file in *.csv; do
+    cat "$file" | grep "active" | cut -d',' -f2 | sort | uniq &gt;&gt; results.txt
+  done
+  sort results.txt | uniq &gt; final.txt</code><br />
+- Task: Rewrite using parallelism and optimization<br />
+- Requirements:<br />
+  - Use parallel processing<br />
+  - Eliminate unnecessary intermediate files<br />
+  - Use efficient sorting<br />
+  - Measure before/after performance<br />
+- Hint: <code>ls *.csv | parallel "grep active {} | cut -d',' -f2" | sort -u &gt; final.txt</code></p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-dynamic-load-balancing">Bonus 1: Dynamic Load Balancing</h3>
+<p>Use GNU parallel's <code>--load</code> option to avoid overloading system.<br />
+- Task: Process 1000 tasks with automatic load balancing<br />
+- Command: <code>seq 1 1000 | parallel --load 80% --bar heavy_task.sh {}</code><br />
+- Requirement: Parallel should pause when system load &gt; 80%<br />
+- Monitor: Watch <code>uptime</code> or <code>htop</code> during execution</p>
+<h3 id="bonus-2-parallel-pipeline-with-named-pipes">Bonus 2: Parallel Pipeline with Named Pipes</h3>
+<p>Create a parallel pipeline using FIFOs.<br />
+- Architecture:<br />
+<code>Producer → FIFO1 → Worker1 ─┐
+  Producer → FIFO2 → Worker2 ─┼→ Aggregator
+  Producer → FIFO3 → Worker3 ─┘</code><br />
+- Implementation:<br />
+  - Create 3 named pipes<br />
+  - Distribute work among 3 workers<br />
+  - Aggregate results<br />
+- Use: Round-robin distribution or hash-based partitioning</p>
+<h3 id="bonus-3-benchmark-sorting-algorithms">Bonus 3: Benchmark Sorting Algorithms</h3>
+<p>Compare performance of different sort optimizations.<br />
+- Test cases:<br />
+  1. Default sort: <code>sort data.txt</code><br />
+  2. Parallel sort: <code>sort --parallel=8 data.txt</code><br />
+  3. Memory-optimized: <code>sort --parallel=8 -S 4G data.txt</code><br />
+  4. Fast TMPDIR: <code>TMPDIR=/fast/ssd sort --parallel=8 -S 4G data.txt</code><br />
+- Measure: Time, memory, I/O for each<br />
+- Graph: Create comparison chart (ASCII or real chart)</p>
+<h3 id="bonus-4-parallel-log-analysis">Bonus 4: Parallel Log Analysis</h3>
+<p>Analyze 1 year of logs (365 files) in parallel.<br />
+- Task: Extract statistics from each log file<br />
+  - Total requests<br />
+  - Error count<br />
+  - Unique IPs<br />
+  - Average response time<br />
+- Requirements:<br />
+  - Process all files in parallel<br />
+  - Generate daily statistics<br />
+  - Aggregate into monthly summary<br />
+  - Create markdown report<br />
+- Use: GNU parallel for per-file processing, mlr for aggregation</p>
+<h3 id="bonus-5-resource-aware-parallel-execution">Bonus 5: Resource-Aware Parallel Execution</h3>
+<p>Create a script that adapts parallelism based on available resources.<br />
+- Auto-detect:<br />
+  - Number of CPU cores: <code>nproc</code><br />
+  - Available memory: <code>free -m</code><br />
+  - Current load: <code>uptime</code><br />
+- Logic:<br />
+<code>bash
+  CPUS=$(nproc)
+  LOAD=$(uptime | awk '{print $(NF-2)}' | sed 's/,//')
+  if (( $(echo "$LOAD &lt; $CPUS * 0.7" | bc -l) )); then
+    JOBS=$CPUS
+  else
+    JOBS=$(( CPUS / 2 ))
+  fi
+  parallel -j $JOBS command {}</code><br />
+- Test: Run under different load conditions</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<h3 id="required-deliverables">Required Deliverables</h3>
+<ol>
+<li id="item-1"><strong>All scripts and commands</strong> used for each assignment</li>
+<li id="item-2"><strong>Performance measurements</strong>:<br />
+   - Execution time (wall clock and CPU time)<br />
+   - Memory usage (peak RSS)<br />
+   - I/O statistics (if applicable)</li>
+<li id="item-3"><strong>Before/after comparisons</strong> for optimization tasks</li>
+<li id="item-4"><strong>Documentation</strong>:<br />
+   - What was the bottleneck?<br />
+   - What optimization was applied?<br />
+   - What was the speedup achieved?</li>
+</ol>
+<h3 id="performance-report-template">Performance Report Template</h3>
+<pre class="highlight"><code class="language-markdown">## Assignment X: [Title]
+
+### Original Approach
+- Command: `...`
+- Time: X.XX seconds
+- Memory: XXX MB
+- CPU usage: XX%
+
+### Optimized Approach
+- Command: `...`
+- Time: X.XX seconds
+- Memory: XXX MB
+- CPU usage: XX%
+
+### Speedup
+- Time improvement: XX%
+- Analysis: [Why was it faster?]
+</code></pre>
+
+<h3 id="testing-requirements">Testing Requirements</h3>
+<ul>
+<li>Test on datasets of varying sizes: 1MB, 100MB, 1GB</li>
+<li>Run each test 3 times, report average</li>
+<li>Use consistent hardware for all tests</li>
+<li>Document: CPU cores, RAM, disk type (HDD/SSD)</li>
+</ul>
+<h3 id="bonus-points-for">Bonus Points For</h3>
+<ul>
+<li>Automated benchmarking scripts</li>
+<li>Visualization of performance metrics</li>
+<li>Comparison with alternative approaches</li>
+<li>Real-world use case examples</li>
+<li>Creative optimization techniques</li>
+</ul></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Python in Pipelines: Hybrid Shell-Python | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Python in Pipelines: Hybrid Shell-Python</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="python-in-pipelines-hybrid-shell-python-workflows">Python in Pipelines: Hybrid Shell-Python Workflows</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Integrate Python into Unix pipelines as stream filters, compare pandas vs command-line tools, and build hybrid pipelines.</p>
+<h2 id="python-as-stream-filter">Python as Stream Filter</h2>
+<h3 id="reading-from-stdin">Reading from stdin</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+import sys
+
+for line in sys.stdin:
+    # Process line
+    print(line.strip().upper())
+</code></pre>
+
+<pre class="highlight"><code class="language-bash">echo &quot;hello world&quot; | python3 filter.py
+</code></pre>
+
+<h3 id="writing-to-stdout">Writing to stdout</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+import sys
+import json
+
+for i in range(10):
+    data = {&quot;id&quot;: i, &quot;value&quot;: i * 2}
+    print(json.dumps(data), flush=True)
+</code></pre>
+
+<pre class="highlight"><code class="language-bash">python3 generate.py | jq -c 'select(.value &gt; 10)'
+</code></pre>
+
+<h2 id="python-for-complex-processing">Python for Complex Processing</h2>
+<h3 id="when-to-use-python">When to Use Python</h3>
+<pre class="highlight"><code class="language-bash"># Simple filtering: use grep
+grep &quot;ERROR&quot; app.log
+
+# Complex logic: use Python
+cat app.log | python3 -c &quot;
+import sys, json
+for line in sys.stdin:
+    try:
+        obj = json.loads(line)
+        if obj['level'] == 'ERROR' and obj['code'] &gt;= 500:
+            print(json.dumps(obj))
+    except:
+        pass
+&quot;
+</code></pre>
+
+<h2 id="pandas-vs-command-line-tools">pandas vs Command-Line Tools</h2>
+<h3 id="reading-csv-in-pandas">Reading CSV in pandas</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+import pandas as pd
+import sys
+
+df = pd.read_csv(sys.stdin)
+# Process
+result = df.groupby('category')['amount'].sum()
+print(result.to_csv())
+</code></pre>
+
+<pre class="highlight"><code class="language-bash">cat data.csv | python3 pandas_process.py
+</code></pre>
+
+<h3 id="when-to-use-pandas">When to Use pandas</h3>
+<ul>
+<li>Complex joins</li>
+<li>Window functions</li>
+<li>Statistical analysis</li>
+<li>Data cleaning with ML</li>
+</ul>
+<h3 id="when-to-use-cli-tools">When to Use CLI Tools</h3>
+<ul>
+<li>Simple filtering/aggregation</li>
+<li>Large files (streaming)</li>
+<li>Quick one-liners</li>
+<li>Low memory environments</li>
+</ul>
+<h2 id="hybrid-pipeline-patterns">Hybrid Pipeline Patterns</h2>
+<h3 id="pattern-1-shell-python-shell">Pattern 1: Shell → Python → Shell</h3>
+<pre class="highlight"><code class="language-bash"># Generate data in shell
+seq 1 1000 | \
+  # Complex processing in Python
+  python3 -c &quot;
+import sys
+for line in sys.stdin:
+    n = int(line.strip())
+    if n % 17 == 0:  # Complex condition
+        print(n ** 2)
+&quot; | \
+  # Aggregate in shell
+  awk '{sum+=$1} END {print sum}'
+</code></pre>
+
+<h3 id="pattern-2-python-for-enrichment">Pattern 2: Python for Enrichment</h3>
+<pre class="highlight"><code class="language-bash"># Extract IDs
+cut -d',' -f1 users.csv | \
+  # Enrich with API (Python)
+  python3 enrich.py | \
+  # Convert to markdown
+  awk -F',' '{printf &quot;| %s | %s |\n&quot;, $1, $2}'
+</code></pre>
+
+<h3 id="pattern-3-pandas-for-complex-analysis">Pattern 3: pandas for Complex Analysis</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Heavy analytics with pandas
+cat sales.csv | python3 - &lt;&lt;'PYTHON'
+import pandas as pd
+import sys
+
+df = pd.read_csv(sys.stdin)
+
+# Complex analysis
+result = df.groupby(['category', 'month']).agg({
+    'amount': ['sum', 'mean', 'count'],
+    'customer_id': 'nunique'
+}).reset_index()
+
+result.to_csv(sys.stdout, index=False)
+PYTHON
+</code></pre>
+
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li id="item-1"><strong>Flush output</strong>: <code>print(..., flush=True)</code> or <code>sys.stdout.flush()</code></li>
+<li id="item-2"><strong>Stream data</strong>: Don't load entire file if possible</li>
+<li id="item-3"><strong>Use CLI for simple tasks</strong>: Faster and less memory</li>
+<li id="item-4"><strong>Use Python for complex logic</strong>: Regex, ML, APIs</li>
+<li id="item-5"><strong>Handle encoding</strong>: <code>sys.stdin.reconfigure(encoding='utf-8')</code></li>
+<li id="item-6"><strong>Error handling</strong>: Try-except blocks for robustness</li>
+<li id="item-7"><strong>Test incrementally</strong>: Start with small samples</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Tool Choice</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filter by keyword</td>
+<td>grep</td>
+<td>Fastest</td>
+</tr>
+<tr>
+<td>Complex conditions</td>
+<td>Python</td>
+<td>Logic flexibility</td>
+</tr>
+<tr>
+<td>Group-by sum</td>
+<td>mlr/awk</td>
+<td>Memory efficient</td>
+</tr>
+<tr>
+<td>Statistical analysis</td>
+<td>pandas</td>
+<td>Rich functionality</td>
+</tr>
+<tr>
+<td>API calls</td>
+<td>Python</td>
+<td>Libraries available</td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Build Python stream filters</li>
+<li>Practice hybrid pipelines</li>
+<li>Compare performance: CLI vs pandas</li>
+<li>Study streaming libraries (ijson, streamz)</li>
+</ul>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

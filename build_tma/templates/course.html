@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="course-container">
+    <div class="course-header">
+        <span class="course-icon-large">{{ course_icon }}</span>
+        <h1>{{ course_title }}</h1>
+        <p class="course-desc">{{ course_description }}</p>
+        <span class="course-meta">{{ module_count }} modules</span>
+    </div>
+
+    <div class="modules-list">
+        {% for module in modules %}
+        <a href="{{ module.url }}" class="module-item" data-module="{{ module.number }}">
+            <div class="module-num">{{ module.number }}</div>
+            <div class="module-content">
+                <h3>{{ module.title }}</h3>
+                <p>{{ module.description }}</p>
+            </div>
+            <div class="module-status" id="status-{{ module.number }}">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const courseId = "{{ course_id }}";
+    try {
+        const quizResults = await TMAStorage.getCourseQuizResults(courseId);
+        
+        for (const [moduleId, result] of Object.entries(quizResults)) {
+            const moduleNum = moduleId.match(/(\d+)/)?.[1];
+            if (moduleNum) {
+                const statusEl = document.getElementById(`status-${moduleNum}`);
+                if (statusEl) {
+                    const icon = statusEl.querySelector('.status-icon');
+                    if (result.percentage >= 80) {
+                        icon.textContent = '✓';
+                        icon.classList.add('completed');
+                    } else if (result.percentage >= 50) {
+                        icon.textContent = '◐';
+                        icon.classList.add('partial');
+                    } else {
+                        icon.textContent = '○';
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('Could not load course progress:', e);
+    }
+});
+</script>
+{% endblock %}

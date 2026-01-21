@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="OOP is a programming paradigm based on the concept of &#34;objects&#34; that contain: - **Data** (attributes) - **Behavior** (methods)">
+    <title>Object-Oriented Programming | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Object-Oriented Programming</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="object-oriented-programming">Object-Oriented Programming</h1>
+<h2 id="oop-basics-classes-inheritance-polymorphism">OOP Basics: Classes, Inheritance, Polymorphism</h2>
+<hr />
+<h2 id="1-introduction-to-object-oriented-programming">1. Introduction to Object-Oriented Programming</h2>
+<p>OOP is a programming paradigm based on the concept of "objects" that contain:
+- <strong>Data</strong> (attributes)
+- <strong>Behavior</strong> (methods)</p>
+<h3 id="key-oop-principles">Key OOP Principles</h3>
+<ol>
+<li id="item-1"><strong>Encapsulation</strong> - bundling data and methods together</li>
+<li id="item-2"><strong>Inheritance</strong> - creating new classes from existing ones</li>
+<li id="item-3"><strong>Polymorphism</strong> - same interface, different implementations</li>
+<li id="item-4"><strong>Abstraction</strong> - hiding complex implementation details</li>
+</ol>
+<hr />
+<h2 id="2-classes-and-objects">2. Classes and Objects</h2>
+<p>A <strong>class</strong> is a blueprint for creating objects.<br />
+An <strong>object</strong> is an instance of a class.</p>
+<pre class="highlight"><code class="language-python">class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def bark(self):
+        return f&quot;{self.name} says Woof!&quot;
+
+# Creating objects
+dog1 = Dog(&quot;Rex&quot;, 3)
+dog2 = Dog(&quot;Max&quot;, 5)
+
+print(dog1.bark())    # Rex says Woof!
+print(dog2.bark())    # Max says Woof!
+</code></pre>
+
+<hr />
+<h2 id="3-the-__init__-method-constructor">3. The <code>__init__</code> Method (Constructor)</h2>
+<p>The <code>__init__</code> method is called automatically when an object is created.</p>
+<pre class="highlight"><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name        # instance attribute
+        self.age = age          # instance attribute
+        self.created = True     # default attribute
+
+    def introduce(self):
+        return f&quot;Hi, I'm {self.name}, {self.age} years old&quot;
+
+person = Person(&quot;Alice&quot;, 30)
+print(person.introduce())    # Hi, I'm Alice, 30 years old
+</code></pre>
+
+<hr />
+<h2 id="4-what-are-attributes">4. What are Attributes?</h2>
+<p>Attributes are variables attached to an object. They store data or references to other objects.</p>
+<pre class="highlight"><code class="language-python">class Person:
+    pass
+
+p = Person()
+p.name = &quot;Alice&quot;    # create attribute 'name'
+p.age = 30          # create attribute 'age'
+
+print(p.name)       # Alice
+print(p.age)        # 30
+</code></pre>
+
+<p>Attributes can be added dynamically in Python (for most objects).</p>
+<hr />
+<h2 id="5-what-are-methods">5. What are Methods?</h2>
+<p>Methods are functions attached to an object. They can access and modify the object's state through attributes.</p>
+<pre class="highlight"><code class="language-python">class Person:
+    def greet(self):
+        return f&quot;Hello, I'm {self.name}&quot;
+
+p = Person()
+p.name = &quot;Alice&quot;
+print(p.greet())    # Hello, I'm Alice
+</code></pre>
+
+<p>The first parameter <code>self</code> refers to the instance calling the method.</p>
+<hr />
+<h2 id="6-instance-vs-class-attributes">6. Instance vs Class Attributes</h2>
+<h3 id="instance-attributes">Instance Attributes</h3>
+<p>Unique to each instance. Defined with <code>self</code> in <code>__init__</code> or added later.</p>
+<pre class="highlight"><code class="language-python">class Dog:
+    def __init__(self, name):
+        self.name = name    # instance attribute
+
+dog1 = Dog(&quot;Rex&quot;)
+dog2 = Dog(&quot;Max&quot;)
+
+print(dog1.name)    # Rex
+print(dog2.name)    # Max
+</code></pre>
+
+<h3 id="class-attributes">Class Attributes</h3>
+<p>Shared across all instances. Defined at class level.</p>
+<pre class="highlight"><code class="language-python">class Dog:
+    species = &quot;Canis familiaris&quot;    # class attribute
+
+    def __init__(self, name):
+        self.name = name
+
+dog1 = Dog(&quot;Rex&quot;)
+dog2 = Dog(&quot;Max&quot;)
+
+print(dog1.species)    # Canis familiaris
+print(dog2.species)    # Canis familiaris
+print(Dog.species)     # Canis familiaris
+</code></pre>
+
+<hr />
+<h2 id="7-attribute-lookup-order">7. Attribute Lookup Order</h2>
+<p>Python searches for attributes in this order:</p>
+<ol>
+<li id="item-1">Instance attributes</li>
+<li id="item-2">Class attributes</li>
+<li id="item-3">Parent class attributes (inheritance)</li>
+</ol>
+<pre class="highlight"><code class="language-python">class Animal:
+    category = &quot;Living being&quot;
+
+class Dog(Animal):
+    species = &quot;Canis familiaris&quot;
+
+    def __init__(self, name):
+        self.name = name
+
+dog = Dog(&quot;Rex&quot;)
+
+print(dog.name)      # 1. Found in instance
+print(dog.species)   # 2. Found in class
+print(dog.category)  # 3. Found in parent class
+</code></pre>
+
+<hr />
+<h2 id="8-modifying-class-attributes">8. Modifying Class Attributes</h2>
+<p>Modifying a class attribute affects all instances (unless shadowed).</p>
+<pre class="highlight"><code class="language-python">class Counter:
+    count = 0
+
+c1 = Counter()
+c2 = Counter()
+
+print(c1.count, c2.count)    # 0 0
+
+Counter.count = 5
+print(c1.count, c2.count)    # 5 5
+</code></pre>
+
+<p>But assigning to an instance creates an instance attribute that shadows the class attribute.</p>
+<pre class="highlight"><code class="language-python">c1.count = 10
+print(c1.count)              # 10 (instance attribute)
+print(c2.count)              # 5  (class attribute)
+print(Counter.count)         # 5  (class attribute)
+</code></pre>
+
+<hr />
+<h2 id="9-instance-methods-class-methods-static-methods">9. Instance Methods, Class Methods, Static Methods</h2>
+<h3 id="instance-methods">Instance Methods</h3>
+<p>Access and modify instance state. Take <code>self</code> as first parameter.</p>
+<pre class="highlight"><code class="language-python">class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+c = Circle(5)
+print(c.area())    # 78.5
+</code></pre>
+
+<h3 id="class-methods">Class Methods</h3>
+<p>Work with class-level data. Take <code>cls</code> as first parameter. Decorated with <code>@classmethod</code>.</p>
+<pre class="highlight"><code class="language-python">class Circle:
+    pi = 3.14159
+
+    @classmethod
+    def set_precision(cls, digits):
+        if digits == 2:
+            cls.pi = 3.14
+        elif digits == 5:
+            cls.pi = 3.14159
+
+Circle.set_precision(2)
+print(Circle.pi)    # 3.14
+</code></pre>
+
+<h3 id="static-methods">Static Methods</h3>
+<p>Don't access instance or class data. No <code>self</code> or <code>cls</code> parameter. Decorated with <code>@staticmethod</code>.</p>
+<pre class="highlight"><code class="language-python">class Math:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+    @staticmethod
+    def multiply(a, b):
+        return a * b
+
+print(Math.add(3, 5))       # 8
+print(Math.multiply(4, 6))  # 24
+</code></pre>
+
+<hr />
+<h2 id="10-inheritance">10. Inheritance</h2>
+<p>Inheritance allows a class to inherit attributes and methods from another class.</p>
+<pre class="highlight"><code class="language-python">class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return &quot;Some sound&quot;
+
+class Dog(Animal):
+    def speak(self):
+        return f&quot;{self.name} barks&quot;
+
+class Cat(Animal):
+    def speak(self):
+        return f&quot;{self.name} meows&quot;
+
+dog = Dog(&quot;Rex&quot;)
+cat = Cat(&quot;Whiskers&quot;)
+
+print(dog.speak())    # Rex barks
+print(cat.speak())    # Whiskers meows
+</code></pre>
+
+<hr />
+<h2 id="11-method-overriding">11. Method Overriding</h2>
+<p>Child classes can override methods from parent classes.</p>
+<pre class="highlight"><code class="language-python">class Shape:
+    def area(self):
+        return 0
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+rect = Rectangle(5, 10)
+circle = Circle(7)
+
+print(rect.area())      # 50
+print(circle.area())    # 153.86
+</code></pre>
+
+<hr />
+<h2 id="12-the-super-function">12. The <code>super()</code> Function</h2>
+<p><code>super()</code> allows you to call methods from the parent class.</p>
+<pre class="highlight"><code class="language-python">class Vehicle:
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+
+    def info(self):
+        return f&quot;{self.brand}, {self.year}&quot;
+
+class Car(Vehicle):
+    def __init__(self, brand, year, doors):
+        super().__init__(brand, year)
+        self.doors = doors
+
+    def info(self):
+        return f&quot;{super().info()}, {self.doors} doors&quot;
+
+car = Car(&quot;Toyota&quot;, 2020, 4)
+print(car.info())    # Toyota, 2020, 4 doors
+</code></pre>
+
+<hr />
+<h2 id="13-multiple-inheritance">13. Multiple Inheritance</h2>
+<p>Python supports multiple inheritance (inheriting from multiple parent classes).</p>
+<pre class="highlight"><code class="language-python">class Flyable:
+    def fly(self):
+        return &quot;Flying in the sky&quot;
+
+class Swimmable:
+    def swim(self):
+        return &quot;Swimming in water&quot;
+
+class Duck(Flyable, Swimmable):
+    def __init__(self, name):
+        self.name = name
+
+duck = Duck(&quot;Donald&quot;)
+print(duck.fly())     # Flying in the sky
+print(duck.swim())    # Swimming in water
+</code></pre>
+
+<h3 id="method-resolution-order-mro">Method Resolution Order (MRO)</h3>
+<p>Python uses C3 linearization to determine the order in which methods are resolved.</p>
+<pre class="highlight"><code class="language-python">class A:
+    def method(self):
+        return &quot;A&quot;
+
+class B(A):
+    def method(self):
+        return &quot;B&quot;
+
+class C(A):
+    def method(self):
+        return &quot;C&quot;
+
+class D(B, C):
+    pass
+
+d = D()
+print(d.method())       # B
+print(D.__mro__)        # Shows the method resolution order
+</code></pre>
+
+<hr />
+<h2 id="14-polymorphism">14. Polymorphism</h2>
+<p>Polymorphism allows different classes to implement the same interface.</p>
+<pre class="highlight"><code class="language-python">class Bird:
+    def sound(self):
+        return &quot;Chirp&quot;
+
+class Dog:
+    def sound(self):
+        return &quot;Bark&quot;
+
+class Cat:
+    def sound(self):
+        return &quot;Meow&quot;
+
+def animal_sound(animal):
+    print(animal.sound())
+
+bird = Bird()
+dog = Dog()
+cat = Cat()
+
+animal_sound(bird)    # Chirp
+animal_sound(dog)     # Bark
+animal_sound(cat)     # Meow
+</code></pre>
+
+<hr />
+<h2 id="15-encapsulation-and-access-control">15. Encapsulation and Access Control</h2>
+<p>Python uses naming conventions to indicate access levels.</p>
+<h3 id="public-attributes">Public Attributes</h3>
+<p>No prefix. Accessible from anywhere.</p>
+<pre class="highlight"><code class="language-python">class Person:
+    def __init__(self, name):
+        self.name = name    # public
+</code></pre>
+
+<h3 id="protected-attributes">Protected Attributes</h3>
+<p>Single underscore <code>_</code>. Convention: "internal use only" or "don't use outside the class".</p>
+<pre class="highlight"><code class="language-python">class Person:
+    def __init__(self, name):
+        self._internal_id = 12345    # protected
+</code></pre>
+
+<h3 id="private-attributes">Private Attributes</h3>
+<p>Double underscore <code>__</code>. Name mangling applied.</p>
+<pre class="highlight"><code class="language-python">class Person:
+    def __init__(self, name):
+        self.__secret = &quot;password&quot;    # private
+
+p = Person(&quot;Alice&quot;)
+# print(p.__secret)            # AttributeError
+print(p._Person__secret)       # password (name mangling)
+</code></pre>
+
+<p>Name mangling transforms <code>__secret</code> to <code>_ClassName__secret</code> to avoid conflicts in inheritance.</p>
+<hr />
+<h2 id="16-properties-and-getterssetters">16. Properties and Getters/Setters</h2>
+<p>Properties provide controlled access to attributes. They allow you to add logic when getting, setting, or deleting attributes.</p>
+<pre class="highlight"><code class="language-python">class Employee:
+    def __init__(self, name, salary):
+        self._name = name
+        self._salary = salary
+
+    @property
+    def salary(self):
+        return self._salary
+
+    @salary.setter
+    def salary(self, value):
+        if value &lt; 0:
+            raise ValueError(&quot;Salary cannot be negative&quot;)
+        self._salary = value
+
+    @property
+    def name(self):
+        return self._name
+
+emp = Employee(&quot;Alice&quot;, 50000)
+print(emp.salary)       # 50000
+
+emp.salary = 60000
+print(emp.salary)       # 60000
+
+# emp.salary = -1000    # ValueError
+</code></pre>
+
+<h3 id="example-with-temperature-conversion">Example with Temperature Conversion</h3>
+<pre class="highlight"><code class="language-python">class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius
+
+    @property
+    def celsius(self):
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        if value &lt; -273.15:
+            raise ValueError(&quot;Temperature below absolute zero&quot;)
+        self._celsius = value
+
+    @property
+    def fahrenheit(self):
+        return self._celsius * 9/5 + 32
+
+t = Temperature(25)
+print(t.celsius)        # 25
+print(t.fahrenheit)     # 77.0
+
+t.celsius = 30
+print(t.celsius)        # 30
+
+# t.celsius = -300      # ValueError: Temperature below absolute zero
+</code></pre>
+
+<p>Properties make attributes look like regular attributes but with validation logic.</p>
+<hr />
+<h2 id="17-special-methods-magic-methods">17. Special Methods (Magic Methods)</h2>
+<p>Special methods start and end with double underscores <code>__</code>. They define how objects behave with built-in operations.</p>
+<h3 id="__str__-and-__repr__"><code>__str__</code> and <code>__repr__</code></h3>
+<pre class="highlight"><code class="language-python">class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+    def __str__(self):
+        return f&quot;{self.title} by {self.author}&quot;
+
+    def __repr__(self):
+        return f&quot;Book('{self.title}', '{self.author}')&quot;
+
+book = Book(&quot;1984&quot;, &quot;George Orwell&quot;)
+print(str(book))     # 1984 by George Orwell
+print(repr(book))    # Book('1984', 'George Orwell')
+</code></pre>
+
+<h3 id="__eq__-and-__lt__"><code>__eq__</code> and <code>__lt__</code></h3>
+<pre class="highlight"><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __eq__(self, other):
+        return self.age == other.age
+
+    def __lt__(self, other):
+        return self.age &lt; other.age
+
+p1 = Person(&quot;Alice&quot;, 30)
+p2 = Person(&quot;Bob&quot;, 25)
+
+print(p1 == p2)    # False
+print(p2 &lt; p1)     # True
+</code></pre>
+
+<hr />
+<h2 id="18-composition-vs-inheritance">18. Composition vs Inheritance</h2>
+<p><strong>Composition</strong>: "has-a" relationship<br />
+<strong>Inheritance</strong>: "is-a" relationship</p>
+<pre class="highlight"><code class="language-python"># Inheritance: Car IS A Vehicle
+class Vehicle:
+    pass
+
+class Car(Vehicle):
+    pass
+
+# Composition: Car HAS AN Engine
+class Engine:
+    def __init__(self, horsepower):
+        self.horsepower = horsepower
+
+    def start(self):
+        return &quot;Engine started&quot;
+
+class Car:
+    def __init__(self, engine):
+        self.engine = engine
+
+    def start(self):
+        return self.engine.start()
+
+engine = Engine(200)
+car = Car(engine)
+print(car.start())    # Engine started
+</code></pre>
+
+<p>Prefer composition when you want flexibility and avoid deep inheritance hierarchies.</p>
+<hr />
+<h2 id="19-modules-vs-classes-organizing-code-in-namespaces">19. Modules vs Classes: Organizing Code in Namespaces</h2>
+<p>Both modules and classes provide namespaces for organizing code, but they serve different purposes.</p>
+<h3 id="modules-as-namespaces">Modules as Namespaces</h3>
+<p>Modules are Python files that group related functions, classes, and variables.</p>
+<pre class="highlight"><code class="language-python"># math_utils.py
+PI = 3.14159
+
+def calculate_area(radius):
+    return PI * radius ** 2
+
+def calculate_circumference(radius):
+    return 2 * PI * radius
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+</code></pre>
+
+<pre class="highlight"><code class="language-python"># Usage
+import math_utils
+
+print(math_utils.PI)                          # 3.14159
+print(math_utils.calculate_area(5))          # 78.53975
+circle = math_utils.Circle(10)
+</code></pre>
+
+<h3 id="classes-as-namespaces">Classes as Namespaces</h3>
+<p>Classes group related data and behavior, creating instances with state.</p>
+<pre class="highlight"><code class="language-python"># Using a class to organize related constants and methods
+class MathConstants:
+    PI = 3.14159
+    E = 2.71828
+    GOLDEN_RATIO = 1.61803
+
+    @staticmethod
+    def circle_area(radius):
+        return MathConstants.PI * radius ** 2
+
+# Usage
+print(MathConstants.PI)                       # 3.14159
+print(MathConstants.circle_area(5))           # 78.53975
+</code></pre>
+
+<h3 id="when-to-use-modules-vs-classes">When to Use Modules vs Classes</h3>
+<p><strong>Use Modules when:</strong>
+- Organizing related functions and constants
+- No need for state or multiple instances
+- Sharing utilities across the application
+- Creating a library or API</p>
+<pre class="highlight"><code class="language-python"># config.py - module for configuration
+DATABASE_URL = &quot;postgresql://localhost/mydb&quot;
+DEBUG = True
+MAX_CONNECTIONS = 100
+
+def get_connection():
+    # return database connection
+    pass
+</code></pre>
+
+<p><strong>Use Classes when:</strong>
+- You need to maintain state
+- Creating multiple instances with different data
+- Implementing OOP principles (inheritance, polymorphism)
+- Modeling real-world entities</p>
+<pre class="highlight"><code class="language-python"># Configuration as a class (when you need multiple configs)
+class Config:
+    def __init__(self, env=&quot;development&quot;):
+        self.env = env
+        self.debug = env == &quot;development&quot;
+        self.database_url = self._get_database_url()
+
+    def _get_database_url(self):
+        if self.env == &quot;production&quot;:
+            return &quot;postgresql://prod-server/db&quot;
+        return &quot;postgresql://localhost/dev-db&quot;
+
+dev_config = Config(&quot;development&quot;)
+prod_config = Config(&quot;production&quot;)
+</code></pre>
+
+<h3 id="hybrid-approach">Hybrid Approach</h3>
+<p>Often, modules contain multiple classes and functions:</p>
+<pre class="highlight"><code class="language-python"># shapes.py module
+PI = 3.14159
+
+class Shape:
+    &quot;&quot;&quot;Base class for all shapes&quot;&quot;&quot;
+    def area(self):
+        raise NotImplementedError
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return PI * self.radius ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+def total_area(shapes):
+    &quot;&quot;&quot;Utility function to calculate total area of multiple shapes&quot;&quot;&quot;
+    return sum(shape.area() for shape in shapes)
+</code></pre>
+
+<p><strong>Key Principle</strong>: Use modules to organize code by topic/functionality, use classes to create objects with state and behavior.</p>
+<hr />
+<h2 id="20-classes-vs-functions-callable-objects">20. Classes vs Functions: Callable Objects</h2>
+<p>Both classes and functions are callable in Python, but they serve different purposes.</p>
+<h3 id="functions-as-callables">Functions as Callables</h3>
+<p>Functions are the simplest callable objects.</p>
+<pre class="highlight"><code class="language-python">def greet(name):
+    return f&quot;Hello, {name}!&quot;
+
+print(greet(&quot;Alice&quot;))    # Hello, Alice!
+print(callable(greet))   # True
+</code></pre>
+
+<h3 id="classes-as-callable-factories">Classes as Callable Factories</h3>
+<p>Classes are callable - calling them creates instances.</p>
+<pre class="highlight"><code class="language-python">class Greeter:
+    def __init__(self, greeting):
+        self.greeting = greeting
+
+    def greet(self, name):
+        return f&quot;{self.greeting}, {name}!&quot;
+
+# Class is callable - creates instances
+greeter = Greeter(&quot;Hello&quot;)
+print(greeter.greet(&quot;Alice&quot;))    # Hello, Alice!
+
+print(callable(Greeter))         # True
+print(callable(greeter))         # False (instance is not callable by default)
+</code></pre>
+
+<h3 id="making-instances-callable-with-__call__">Making Instances Callable with <code>__call__</code></h3>
+<p>You can make class instances callable by defining <code>__call__</code> method.</p>
+<pre class="highlight"><code class="language-python">class Greeter:
+    def __init__(self, greeting):
+        self.greeting = greeting
+
+    def __call__(self, name):
+        return f&quot;{self.greeting}, {name}!&quot;
+
+greeter = Greeter(&quot;Hello&quot;)
+print(greeter(&quot;Alice&quot;))          # Hello, Alice! (calling the instance)
+print(callable(greeter))         # True
+</code></pre>
+
+<h3 id="when-to-use-functions-vs-classes">When to Use Functions vs Classes</h3>
+<p><strong>Use Functions when:</strong>
+- Simple, stateless operations
+- Single responsibility
+- No need to maintain state between calls
+- Functional programming style</p>
+<pre class="highlight"><code class="language-python"># Simple transformation - function is perfect
+def double(x):
+    return x * 2
+
+numbers = [1, 2, 3, 4, 5]
+doubled = list(map(double, numbers))
+</code></pre>
+
+<p><strong>Use Classes when:</strong>
+- Need to maintain state
+- Complex behavior with multiple related methods
+- Configuration or context needed
+- Reusable, customizable behavior</p>
+<pre class="highlight"><code class="language-python"># Stateful operation - class is better
+class Multiplier:
+    def __init__(self, factor):
+        self.factor = factor
+        self.call_count = 0
+
+    def __call__(self, x):
+        self.call_count += 1
+        return x * self.factor
+
+double = Multiplier(2)
+triple = Multiplier(3)
+
+print(double(5))           # 10
+print(triple(5))           # 15
+print(double.call_count)   # 1
+</code></pre>
+
+<h3 id="closures-vs-classes">Closures vs Classes</h3>
+<p>Closures (functions with state) can sometimes replace simple classes:</p>
+<pre class="highlight"><code class="language-python"># Using closure
+def make_multiplier(factor):
+    def multiply(x):
+        return x * factor
+    return multiply
+
+double = make_multiplier(2)
+print(double(5))    # 10
+
+# Using class
+class Multiplier:
+    def __init__(self, factor):
+        self.factor = factor
+
+    def __call__(self, x):
+        return x * self.factor
+
+triple = Multiplier(3)
+print(triple(5))    # 15
+</code></pre>
+
+<p><strong>Closures are good for:</strong>
+- Simple state
+- Single operation
+- Functional style</p>
+<p><strong>Classes are better for:</strong>
+- Multiple methods
+- Complex state
+- Inheritance
+- Clear intent</p>
+<h3 id="practical-example-validators">Practical Example: Validators</h3>
+<pre class="highlight"><code class="language-python"># Function approach
+def validate_age(age):
+    if not isinstance(age, int):
+        raise TypeError(&quot;Age must be an integer&quot;)
+    if age &lt; 0 or age &gt; 150:
+        raise ValueError(&quot;Age must be between 0 and 150&quot;)
+    return True
+
+# Class approach (more flexible)
+class RangeValidator:
+    def __init__(self, min_value, max_value, field_name=&quot;value&quot;):
+        self.min_value = min_value
+        self.max_value = max_value
+        self.field_name = field_name
+
+    def __call__(self, value):
+        if not isinstance(value, (int, float)):
+            raise TypeError(f&quot;{self.field_name} must be a number&quot;)
+        if value &lt; self.min_value or value &gt; self.max_value:
+            raise ValueError(
+                f&quot;{self.field_name} must be between {self.min_value} and {self.max_value}&quot;
+            )
+        return True
+
+# Reusable validators
+age_validator = RangeValidator(0, 150, &quot;Age&quot;)
+temperature_validator = RangeValidator(-273.15, 1000000, &quot;Temperature&quot;)
+
+age_validator(30)           # True
+temperature_validator(25)   # True
+</code></pre>
+
+<h3 id="decorators-functions-returning-callables">Decorators: Functions Returning Callables</h3>
+<p>Decorators often use this pattern - functions that return classes or closures:</p>
+<pre class="highlight"><code class="language-python"># Decorator returning a class instance
+def repeat(times):
+    class Repeater:
+        def __init__(self, func):
+            self.func = func
+            self.times = times
+
+        def __call__(self, *args, **kwargs):
+            for _ in range(self.times):
+                result = self.func(*args, **kwargs)
+            return result
+
+    return Repeater
+
+@repeat(3)
+def greet(name):
+    print(f&quot;Hello, {name}!&quot;)
+
+greet(&quot;Alice&quot;)
+# Output:
+# Hello, Alice!
+# Hello, Alice!
+# Hello, Alice!
+</code></pre>
+
+<p><strong>Key Principle</strong>: Use functions for simple operations, classes when you need state, multiple methods, or want to leverage OOP features.</p>
+<hr />
+<h2 id="21-built-in-functions-for-attributes">21. Built-in Functions for Attributes</h2>
+<h3 id="hasattr-check-if-attribute-exists"><code>hasattr()</code>: Check if attribute exists</h3>
+<pre class="highlight"><code class="language-python">class Person:
+    def __init__(self, name):
+        self.name = name
+
+p = Person(&quot;Alice&quot;)
+print(hasattr(p, &quot;name&quot;))    # True
+print(hasattr(p, &quot;age&quot;))     # False
+</code></pre>
+
+<h3 id="getattr-get-attribute-value-with-optional-default"><code>getattr()</code>: Get attribute value (with optional default)</h3>
+<pre class="highlight"><code class="language-python">p = Person(&quot;Alice&quot;)
+print(getattr(p, &quot;name&quot;))           # Alice
+print(getattr(p, &quot;age&quot;, &quot;N/A&quot;))     # N/A (default)
+</code></pre>
+
+<h3 id="setattr-set-attribute-value"><code>setattr()</code>: Set attribute value</h3>
+<pre class="highlight"><code class="language-python">p = Person(&quot;Alice&quot;)
+setattr(p, &quot;age&quot;, 30)
+print(p.age)    # 30
+</code></pre>
+
+<h3 id="delattr-delete-attribute"><code>delattr()</code>: Delete attribute</h3>
+<pre class="highlight"><code class="language-python">p = Person(&quot;Alice&quot;)
+p.age = 30
+delattr(p, &quot;age&quot;)
+print(hasattr(p, &quot;age&quot;))    # False
+</code></pre>
+
+<hr />
+<h2 id="22-the-__dict__-attribute">22. The <code>__dict__</code> Attribute</h2>
+<p>Every object has a <code>__dict__</code> that stores its attributes as a dictionary.</p>
+<pre class="highlight"><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+p = Person(&quot;Alice&quot;, 30)
+print(p.__dict__)    # {'name': 'Alice', 'age': 30}
+
+p.city = &quot;New York&quot;
+print(p.__dict__)    # {'name': 'Alice', 'age': 30, 'city': 'New York'}
+</code></pre>
+
+<p>You can directly modify <code>__dict__</code>:</p>
+<pre class="highlight"><code class="language-python">p.__dict__[&quot;country&quot;] = &quot;USA&quot;
+print(p.country)    # USA
+</code></pre>
+
+<hr />
+<h2 id="23-attribute-access-methods">23. Attribute Access Methods</h2>
+<h3 id="__getattr__-called-when-attribute-is-not-found"><code>__getattr__</code>: Called when attribute is not found</h3>
+<pre class="highlight"><code class="language-python">class Dynamic:
+    def __getattr__(self, name):
+        return f&quot;Attribute '{name}' not found&quot;
+
+d = Dynamic()
+print(d.anything)    # Attribute 'anything' not found
+</code></pre>
+
+<h3 id="__setattr__-called-when-setting-an-attribute"><code>__setattr__</code>: Called when setting an attribute</h3>
+<pre class="highlight"><code class="language-python">class Validated:
+    def __setattr__(self, name, value):
+        if name == &quot;age&quot; and value &lt; 0:
+            raise ValueError(&quot;Age cannot be negative&quot;)
+        self.__dict__[name] = value
+
+v = Validated()
+v.age = 30     # OK
+# v.age = -5   # ValueError: Age cannot be negative
+</code></pre>
+
+<h3 id="__delattr__-called-when-deleting-an-attribute"><code>__delattr__</code>: Called when deleting an attribute</h3>
+<pre class="highlight"><code class="language-python">class Protected:
+    def __delattr__(self, name):
+        if name == &quot;important&quot;:
+            raise AttributeError(&quot;Cannot delete important attribute&quot;)
+        del self.__dict__[name]
+
+p = Protected()
+p.temp = &quot;value&quot;
+del p.temp    # OK
+# del p.important   # AttributeError
+</code></pre>
+
+<hr />
+<h2 id="24-abstract-classes">24. Abstract Classes</h2>
+<p>Abstract classes cannot be instantiated and are meant to be inherited. They define interfaces that subclasses must implement.</p>
+<pre class="highlight"><code class="language-python">from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
+    def sound(self):
+        pass
+
+    @abstractmethod
+    def move(self):
+        pass
+
+class Dog(Animal):
+    def sound(self):
+        return &quot;Bark&quot;
+
+    def move(self):
+        return &quot;Run&quot;
+
+# animal = Animal()    # TypeError: Can't instantiate abstract class
+
+dog = Dog()
+print(dog.sound())     # Bark
+print(dog.move())      # Run
+</code></pre>
+
+<h3 id="advanced-abc-example">Advanced ABC Example</h3>
+<pre class="highlight"><code class="language-python">from abc import ABC, abstractmethod
+
+class PaymentProcessor(ABC):
+    @abstractmethod
+    def process_payment(self, amount):
+        pass
+
+    @abstractmethod
+    def refund(self, transaction_id):
+        pass
+
+    def log_transaction(self, message):
+        print(f&quot;Transaction: {message}&quot;)
+
+class CreditCardProcessor(PaymentProcessor):
+    def process_payment(self, amount):
+        return f&quot;Processing ${amount} via Credit Card&quot;
+
+    def refund(self, transaction_id):
+        return f&quot;Refunding transaction {transaction_id}&quot;
+
+# processor = PaymentProcessor()    # TypeError: Can't instantiate abstract class
+
+processor = CreditCardProcessor()
+print(processor.process_payment(100))
+processor.log_transaction(&quot;Payment completed&quot;)
+</code></pre>
+
+<hr />
+<h1 id="advanced-oop-concepts">Advanced OOP Concepts</h1>
+<hr />
+<h2 id="25-decorators-in-oop">25. Decorators in OOP</h2>
+<p>Decorators modify or enhance functions and methods.</p>
+<h3 id="function-decorators">Function Decorators</h3>
+<pre class="highlight"><code class="language-python">def log_call(func):
+    def wrapper(*args, **kwargs):
+        print(f&quot;Calling {func.__name__}&quot;)
+        result = func(*args, **kwargs)
+        print(f&quot;Finished {func.__name__}&quot;)
+        return result
+    return wrapper
+
+@log_call
+def greet(name):
+    return f&quot;Hello, {name}&quot;
+
+greet(&quot;Alice&quot;)
+# Output:
+# Calling greet
+# Finished greet
+</code></pre>
+
+<h3 id="method-decorators">Method Decorators</h3>
+<pre class="highlight"><code class="language-python">class Logger:
+    @staticmethod
+    def log(message):
+        print(f&quot;[LOG] {message}&quot;)
+
+    @classmethod
+    def create_logger(cls, name):
+        return cls()
+
+    @property
+    def timestamp(self):
+        from datetime import datetime
+        return datetime.now()
+</code></pre>
+
+<hr />
+<h2 id="26-class-decorators">26. Class Decorators</h2>
+<p>Class decorators modify entire classes.</p>
+<pre class="highlight"><code class="language-python">def add_str_method(cls):
+    def __str__(self):
+        return f&quot;{cls.__name__} instance&quot;
+    cls.__str__ = __str__
+    return cls
+
+@add_str_method
+class MyClass:
+    pass
+
+obj = MyClass()
+print(obj)    # MyClass instance
+</code></pre>
+
+<hr />
+<h2 id="27-dataclasses">27. Dataclasses</h2>
+<p>Dataclasses reduce boilerplate code for classes that primarily store data.</p>
+<pre class="highlight"><code class="language-python">from dataclasses import dataclass, field
+from typing import List
+
+@dataclass
+class Student:
+    name: str
+    age: int
+    grades: List[float] = field(default_factory=list)
+
+    def average_grade(self):
+        return sum(self.grades) / len(self.grades) if self.grades else 0
+
+student = Student(&quot;Alice&quot;, 20, [85.5, 90.0, 88.5])
+print(student)
+print(f&quot;Average: {student.average_grade()}&quot;)
+</code></pre>
+
+<p>Benefits:
+- Automatic <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code>
+- Type hints
+- Default values
+- Immutable options with <code>frozen=True</code></p>
+<hr />
+<h2 id="28-named-tuples">28. Named Tuples</h2>
+<p>Named tuples are lightweight, immutable data structures.</p>
+<pre class="highlight"><code class="language-python">from collections import namedtuple
+
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(10, 20)
+
+print(p.x, p.y)        # 10 20
+print(p[0], p[1])      # 10 20
+
+# Immutable
+# p.x = 15    # AttributeError
+</code></pre>
+
+<p>Modern alternative with type hints:</p>
+<pre class="highlight"><code class="language-python">from typing import NamedTuple
+
+class Point(NamedTuple):
+    x: float
+    y: float
+
+    def distance_from_origin(self):
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+
+p = Point(3.0, 4.0)
+print(p.distance_from_origin())    # 5.0
+</code></pre>
+
+<hr />
+<h2 id="29-slots-for-memory-optimization">29. Slots for Memory Optimization</h2>
+<p><code>__slots__</code> restricts attributes and reduces memory usage.</p>
+<pre class="highlight"><code class="language-python">class RegularClass:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+class SlottedClass:
+    __slots__ = ['x', 'y']
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+# Regular class uses more memory
+import sys
+regular = RegularClass(1, 2)
+slotted = SlottedClass(1, 2)
+
+print(sys.getsizeof(regular.__dict__))    # ~240 bytes
+print(sys.getsizeof(slotted))             # ~64 bytes
+
+# Slots prevent dynamic attribute creation
+# slotted.z = 3    # AttributeError
+</code></pre>
+
+<p>Use slots when:
+- Creating many instances
+- Memory is a constraint
+- You know all attributes in advance</p>
+<hr />
+<h2 id="30-descriptors">30. Descriptors</h2>
+<p>Descriptors control attribute access at the class level.</p>
+<pre class="highlight"><code class="language-python">class Validator:
+    def __init__(self, min_value=None, max_value=None):
+        self.min_value = min_value
+        self.max_value = max_value
+
+    def __set_name__(self, owner, name):
+        self.name = name
+
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        return obj.__dict__.get(self.name)
+
+    def __set__(self, obj, value):
+        if self.min_value is not None and value &lt; self.min_value:
+            raise ValueError(f&quot;{self.name} must be &gt;= {self.min_value}&quot;)
+        if self.max_value is not None and value &gt; self.max_value:
+            raise ValueError(f&quot;{self.name} must be &lt;= {self.max_value}&quot;)
+        obj.__dict__[self.name] = value
+
+class Person:
+    age = Validator(min_value=0, max_value=150)
+
+    def __init__(self, age):
+        self.age = age
+
+person = Person(30)
+print(person.age)    # 30
+
+# person.age = 200   # ValueError: age must be &lt;= 150
+</code></pre>
+
+<hr />
+<h2 id="31-context-managers">31. Context Managers</h2>
+<p>Context managers manage resources using <code>with</code> statement.</p>
+<h3 id="using-__enter__-and-__exit__">Using <code>__enter__</code> and <code>__exit__</code></h3>
+<pre class="highlight"><code class="language-python">class FileManager:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
+
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+        # Return False to propagate exceptions
+        return False
+
+with FileManager('test.txt', 'w') as f:
+    f.write('Hello World')
+</code></pre>
+
+<h3 id="using-contextlib">Using <code>contextlib</code></h3>
+<pre class="highlight"><code class="language-python">from contextlib import contextmanager
+
+@contextmanager
+def file_manager(filename, mode):
+    f = open(filename, mode)
+    try:
+        yield f
+    finally:
+        f.close()
+
+with file_manager('test.txt', 'w') as f:
+    f.write('Hello World')
+</code></pre>
+
+<hr />
+<h2 id="32-mixins">32. Mixins</h2>
+<p>Mixins add functionality to classes through multiple inheritance.</p>
+<pre class="highlight"><code class="language-python">class JSONMixin:
+    def to_json(self):
+        import json
+        return json.dumps(self.__dict__)
+
+class LogMixin:
+    def log(self, message):
+        print(f&quot;[{self.__class__.__name__}] {message}&quot;)
+
+class User(JSONMixin, LogMixin):
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+user = User(&quot;Alice&quot;, &quot;alice@example.com&quot;)
+print(user.to_json())      # {&quot;name&quot;: &quot;Alice&quot;, &quot;email&quot;: &quot;alice@example.com&quot;}
+user.log(&quot;User created&quot;)   # [User] User created
+</code></pre>
+
+<p>Mixins should:
+- Provide specific functionality
+- Not have <code>__init__</code> (or be very careful)
+- Be small and focused</p>
+<hr />
+<h2 id="33-protocols-structural-subtyping">33. Protocols (Structural Subtyping)</h2>
+<p>Protocols define interfaces without explicit inheritance (duck typing with type checking).</p>
+<pre class="highlight"><code class="language-python">from typing import Protocol
+
+class Drawable(Protocol):
+    def draw(self) -&gt; str:
+        ...
+
+class Circle:
+    def draw(self) -&gt; str:
+        return &quot;Drawing a circle&quot;
+
+class Square:
+    def draw(self) -&gt; str:
+        return &quot;Drawing a square&quot;
+
+def render(obj: Drawable) -&gt; None:
+    print(obj.draw())
+
+circle = Circle()
+square = Square()
+
+render(circle)    # Drawing a circle
+render(square)    # Drawing a square
+</code></pre>
+
+<hr />
+<h2 id="34-metaclasses">34. Metaclasses</h2>
+<p>Metaclasses control class creation itself.</p>
+<pre class="highlight"><code class="language-python">class SingletonMeta(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+class Database(metaclass=SingletonMeta):
+    def __init__(self):
+        print(&quot;Initializing database&quot;)
+
+db1 = Database()
+db2 = Database()
+
+print(db1 is db2)    # True (same instance)
+</code></pre>
+
+<p>Common use cases:
+- Singletons
+- Registration of classes
+- Validation of class structure
+- Automatic method generation</p>
+<hr />
+<h2 id="35-operator-overloading">35. Operator Overloading</h2>
+<p>Special methods allow custom behavior for operators.</p>
+<pre class="highlight"><code class="language-python">class Money:
+    def __init__(self, amount, currency=&quot;USD&quot;):
+        self.amount = amount
+        self.currency = currency
+
+    def __add__(self, other):
+        if self.currency != other.currency:
+            raise ValueError(&quot;Cannot add different currencies&quot;)
+        return Money(self.amount + other.amount, self.currency)
+
+    def __sub__(self, other):
+        if self.currency != other.currency:
+            raise ValueError(&quot;Cannot subtract different currencies&quot;)
+        return Money(self.amount - other.amount, self.currency)
+
+    def __mul__(self, scalar):
+        return Money(self.amount * scalar, self.currency)
+
+    def __eq__(self, other):
+        return self.amount == other.amount and self.currency == other.currency
+
+    def __lt__(self, other):
+        if self.currency != other.currency:
+            raise ValueError(&quot;Cannot compare different currencies&quot;)
+        return self.amount &lt; other.amount
+
+    def __repr__(self):
+        return f&quot;Money({self.amount}, '{self.currency}')&quot;
+
+m1 = Money(100)
+m2 = Money(50)
+
+print(m1 + m2)    # Money(150, 'USD')
+print(m1 - m2)    # Money(50, 'USD')
+print(m1 * 2)     # Money(200, 'USD')
+print(m1 &gt; m2)    # True
+</code></pre>
+
+<hr />
+<h2 id="36-composition-design-pattern">36. Composition Design Pattern</h2>
+<p>Prefer composition over inheritance for flexibility.</p>
+<pre class="highlight"><code class="language-python">class Engine:
+    def __init__(self, horsepower):
+        self.horsepower = horsepower
+
+    def start(self):
+        return f&quot;Engine with {self.horsepower}hp started&quot;
+
+class Transmission:
+    def __init__(self, gear_type):
+        self.gear_type = gear_type
+
+    def shift(self, gear):
+        return f&quot;Shifting {self.gear_type} to gear {gear}&quot;
+
+class Car:
+    def __init__(self, engine, transmission):
+        self.engine = engine
+        self.transmission = transmission
+
+    def start(self):
+        return self.engine.start()
+
+    def drive(self):
+        return f&quot;{self.start()}\n{self.transmission.shift(1)}&quot;
+
+engine = Engine(200)
+transmission = Transmission(&quot;automatic&quot;)
+car = Car(engine, transmission)
+
+print(car.drive())
+</code></pre>
+
+<hr />
+<h2 id="37-factory-pattern">37. Factory Pattern</h2>
+<p>Factory pattern creates objects without specifying exact classes.</p>
+<pre class="highlight"><code class="language-python">class Animal:
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        return &quot;Woof!&quot;
+
+class Cat(Animal):
+    def speak(self):
+        return &quot;Meow!&quot;
+
+class AnimalFactory:
+    @staticmethod
+    def create_animal(animal_type):
+        if animal_type == &quot;dog&quot;:
+            return Dog()
+        elif animal_type == &quot;cat&quot;:
+            return Cat()
+        else:
+            raise ValueError(f&quot;Unknown animal type: {animal_type}&quot;)
+
+dog = AnimalFactory.create_animal(&quot;dog&quot;)
+cat = AnimalFactory.create_animal(&quot;cat&quot;)
+
+print(dog.speak())    # Woof!
+print(cat.speak())    # Meow!
+</code></pre>
+
+<hr />
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

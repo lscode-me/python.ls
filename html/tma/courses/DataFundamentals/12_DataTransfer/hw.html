@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Data Transfer Encoding">
+    <title>HW: Homework: Data Transfer Protoc | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Homework: Data Transfer Protoc</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Data Fundamentals for Life Sciences</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 12 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="homework-data-transfer-protocols">Homework: Data Transfer Protocols</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-httphttps-deep-dive">Exercise 1: HTTP/HTTPS Deep Dive</h3>
+<ol>
+<li id="item-1">Master HTTP request/response cycle:
+   - Understand HTTP methods (GET, POST, PUT, DELETE, PATCH)
+   - Practice with HTTP headers (Content-Type, Authorization, Cache-Control)
+   - Work with different response codes and their meanings
+   - Implement proper error handling for HTTP responses</li>
+<li id="item-2">HTTPS security implementation:
+   - Understand SSL/TLS handshake process
+   - Practice certificate validation and pinning
+   - Implement secure HTTP client configurations
+   - Handle certificate errors and security warnings</li>
+<li id="item-3">Advanced HTTP features:
+   - HTTP/2 multiplexing and server push
+   - WebSocket connections for real-time data
+   - Streaming HTTP responses for large datasets
+   - HTTP authentication mechanisms (Basic, Bearer, OAuth)</li>
+</ol>
+<h3 id="exercise-2-ftp-and-secure-file-transfer">Exercise 2: FTP and Secure File Transfer</h3>
+<ol>
+<li id="item-1">Traditional FTP operations:
+   - Connect to FTP servers and navigate directories
+   - Upload and download files with proper error handling
+   - Understand active vs passive FTP modes
+   - Handle binary vs text transfer modes</li>
+<li id="item-2">Secure alternatives:
+   - SFTP (SSH File Transfer Protocol) implementation
+   - FTPS (FTP over SSL/TLS) configuration
+   - SCP (Secure Copy) for simple transfers
+   - rsync for efficient synchronization</li>
+<li id="item-3">Enterprise file transfer:
+   - Managed File Transfer (MFT) solutions
+   - AS2/AS3 protocols for B2B communications
+   - File transfer monitoring and logging</li>
+</ol>
+<h3 id="exercise-3-modern-transfer-protocols">Exercise 3: Modern Transfer Protocols</h3>
+<ol>
+<li id="item-1">REST API data transfer:
+   - Design RESTful endpoints for data exchange
+   - Implement pagination for large datasets
+   - Handle rate limiting and throttling
+   - Version APIs for backward compatibility</li>
+<li id="item-2">GraphQL for flexible data fetching:
+   - Create GraphQL schemas and resolvers
+   - Implement efficient data loading strategies
+   - Handle complex queries and mutations</li>
+<li id="item-3">gRPC for high-performance communication:
+   - Define Protocol Buffer schemas
+   - Implement streaming data transfer
+   - Handle connection management and retries</li>
+</ol>
+<h3 id="exercise-4-asynchronous-and-real-time-transfer">Exercise 4: Asynchronous and Real-time Transfer</h3>
+<ol>
+<li id="item-1">Message queues and brokers:
+   - Implement publish/subscribe patterns
+   - Work with message ordering and durability
+   - Handle backpressure and flow control
+   - Practice with RabbitMQ, Apache Kafka, or Redis</li>
+<li id="item-2">Event-driven architectures:
+   - Design event schemas and versioning
+   - Implement event sourcing patterns
+   - Handle eventual consistency scenarios</li>
+<li id="item-3">Real-time protocols:
+   - WebSocket implementation for live updates
+   - Server-Sent Events (SSE) for one-way streams
+   - WebRTC for peer-to-peer data transfer</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Multi-Protocol Transfer System</strong>
+- Build a file transfer system supporting multiple protocols
+- Implement automatic protocol selection based on requirements
+- Add retry mechanisms and resumable transfers
+- Create transfer progress monitoring and reporting
+- Handle different authentication methods per protocol</p>
+<p><strong>Task 2: High-Performance Data Pipeline</strong>
+- Design a data pipeline for large-scale transfers
+- Implement parallel and concurrent transfer strategies
+- Add compression and decompression during transfer
+- Create bandwidth throttling and QoS controls
+- Implement data transformation during transfer</p>
+<p><strong>Task 3: Secure Enterprise Transfer Solution</strong>
+- Build end-to-end encrypted transfer system
+- Implement audit trails and compliance logging
+- Add user authentication and authorization
+- Create secure key management for encryption
+- Implement data loss prevention (DLP) controls</p>
+<h2 id="network-monitoring-and-analysis">Network Monitoring and Analysis</h2>
+<p><strong>Task 4: Transfer Performance Analysis</strong>
+- Monitor network traffic during different transfer types
+- Analyze latency, throughput, and packet loss impacts
+- Compare protocol efficiency under various conditions
+- Optimize transfer parameters for different networks
+- Implement adaptive transfer strategies</p>
+<p><strong>Task 5: Protocol Debugging and Troubleshooting</strong>
+- Use network analysis tools (Wireshark, tcpdump)
+- Debug common transfer issues and failures
+- Implement comprehensive logging and monitoring
+- Create diagnostic tools for transfer problems
+- Automate network health checking</p>
+<h2 id="security-implementation">Security Implementation</h2>
+<p><strong>Task 6: Transfer Security Hardening</strong>
+- Implement defense-in-depth for data transfers
+- Add intrusion detection for transfer protocols
+- Create secure configuration templates
+- Implement certificate management automation
+- Add security scanning for transfer endpoints</p>
+<p><strong>Task 7: Compliance and Governance</strong>
+- Implement data classification and handling policies
+- Add geographic data residency controls
+- Create compliance reporting for data transfers
+- Implement data retention and deletion policies
+- Add privacy controls for sensitive data</p>
+<h2 id="cloud-and-distributed-systems">Cloud and Distributed Systems</h2>
+<p><strong>Task 8: Cloud-Native Transfer Solutions</strong>
+- Implement transfers using cloud APIs (AWS S3, Azure Blob, GCP)
+- Create cross-cloud data migration strategies
+- Add serverless transfer processing
+- Implement auto-scaling transfer systems
+- Optimize for cloud economics and pricing</p>
+<p><strong>Task 9: Distributed Transfer Architecture</strong>
+- Design globally distributed transfer networks
+- Implement edge caching and CDN integration
+- Add load balancing and failover mechanisms
+- Create disaster recovery procedures
+- Implement cross-region data replication</p>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<p><strong>Task 10: Transfer Optimization Strategies</strong>
+- Implement adaptive bitrate for varying conditions
+- Add connection pooling and reuse strategies
+- Optimize buffer sizes and window scaling
+- Implement parallel connection strategies
+- Add predictive prefetching capabilities</p>
+<h2 id="integration-and-automation">Integration and Automation</h2>
+<p><strong>Task 11: Transfer Automation Framework</strong>
+- Create workflow automation for complex transfers
+- Implement dependency management for transfer jobs
+- Add scheduling and cron-like functionality
+- Create notification systems for transfer events
+- Implement rollback and recovery procedures</p>
+<p><strong>Task 12: API Integration and Orchestration</strong>
+- Integrate with external systems and APIs
+- Implement data transformation and mapping
+- Add support for various data formats during transfer
+- Create adapter patterns for legacy systems
+- Implement business logic integration</p>
+<h2 id="testing-and-validation">Testing and Validation</h2>
+<p><strong>Task 13: Transfer Testing Framework</strong>
+- Create automated testing for transfer protocols
+- Implement load testing and stress testing
+- Add chaos engineering for resilience testing
+- Create performance regression testing
+- Implement end-to-end integration testing</p>
+<h2 id="emerging-technologies">Emerging Technologies</h2>
+<p><strong>Task 14: Next-Generation Transfer Protocols</strong>
+- Research QUIC protocol and HTTP/3
+- Explore blockchain-based transfer verification
+- Investigate quantum-safe cryptography for transfers
+- Study edge computing impact on data transfer
+- Analyze 5G and IoT transfer requirements</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive data transfer portfolio:
+1. Multi-protocol transfer implementation with source code
+2. Performance benchmarking results across protocols
+3. Security analysis and threat modeling document
+4. Network monitoring and troubleshooting guide
+5. Cloud integration examples and best practices
+6. Automation framework with workflow examples
+7. Testing suite with comprehensive coverage
+8. Future technology research and recommendations
+9. Real-world case study with complete implementation
+10. Documentation and deployment guides</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

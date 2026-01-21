@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Object-Oriented Programming">
+    <title>HW: Object-Oriented Programming -  | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Object-Oriented Programming - </h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Python for Life Science Developers</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 8 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="object-oriented-programming-homework">Object-Oriented Programming - Homework</h1>
+<ol>
+<li id="item-1">Creating Basic Classes
+   Create a class hierarchy for a library system with the following requirements:</li>
+</ol>
+<p>Base class: <code>LibraryItem</code>
+   - Attributes: title, item_id, available (boolean)
+   - Methods: <strong>init</strong>, checkout(), return_item(), <strong>str</strong></p>
+<p>Derived classes: <code>Book</code>, <code>Magazine</code>, <code>DVD</code>
+   - Book: add author, isbn, pages
+   - Magazine: add issue_number, month
+   - DVD: add duration, director</p>
+<p>Your task:
+   - Implement all three classes with proper inheritance
+   - Override <strong>str</strong> in each derived class
+   - Create instances and test checkout/return functionality</p>
+<p>Your goal:
+   - Understand class inheritance
+   - Practice method overriding
+   - Learn to create object hierarchies</p>
+<ol start="2">
+<li id="item-1">Properties and Validation
+   Create a <code>BankAccount</code> class with the following requirements:</li>
+</ol>
+<p>Attributes:
+   - account_number (read-only)
+   - holder_name (read-only)
+   - balance (controlled access)</p>
+<p>Methods:
+   - deposit(amount): add money to balance
+   - withdraw(amount): remove money from balance
+   - Use @property for balance with validation:
+     * Balance cannot be negative after withdrawal
+     * Deposit/withdrawal amounts must be positive</p>
+<p>Your task:
+   - Implement the class with properties
+   - Add proper validation
+   - Test with various scenarios (valid/invalid operations)
+   - Handle errors gracefully with exceptions</p>
+<p>Your goal:
+   - Master property decorators
+   - Implement data validation
+   - Understand encapsulation principles
+   - Practice exception handling</p>
+<ol start="3">
+<li id="item-1">Polymorphism in Action
+   Create a shape calculator system:</li>
+</ol>
+<p>Base class: <code>Shape</code> (abstract)
+   - Abstract methods: area(), perimeter()</p>
+<p>Derived classes:
+   - Rectangle(width, height)
+   - Circle(radius)
+   - Triangle(side_a, side_b, side_c)</p>
+<p>Function: <code>print_shape_info(shape)</code>
+   - Takes any Shape object
+   - Prints its area and perimeter</p>
+<p>Your task:
+   - Use abc module for abstract base class
+   - Implement all three shapes
+   - Create a list of different shapes
+   - Calculate total area of all shapes</p>
+<p>Your goal:
+   - Understand polymorphism
+   - Work with abstract classes
+   - Practice working with collections of objects</p>
+<ol start="4">
+<li id="item-1">Composition vs Inheritance
+   Model a computer system using composition:</li>
+</ol>
+<p>Component classes:
+   - CPU(brand, cores, speed)
+   - RAM(size_gb, speed)
+   - Storage(type, capacity_gb)</p>
+<p>Main class: <code>Computer</code>
+   - Has-a CPU, RAM, and Storage
+   - Methods: 
+     * get_specs(): return formatted string with all component info
+     * upgrade_ram(new_ram): replace RAM
+     * add_storage(storage): add additional storage</p>
+<p>Your task:
+   - Implement using composition (not inheritance)
+   - Create multiple computers with different configurations
+   - Demonstrate upgrading components
+   - Show why composition is better than inheritance here</p>
+<p>Your goal:
+   - Understand "has-a" vs "is-a" relationships
+   - Practice composition pattern
+   - Learn when to use composition over inheritance</p>
+<ol start="5">
+<li id="item-1">Multiple Inheritance and MRO
+   Create a system demonstrating multiple inheritance:</li>
+</ol>
+<p>Mixin classes:
+   - Flyable: fly() method
+   - Swimmable: swim() method
+   - Walkable: walk() method</p>
+<p>Animal classes using mixins:
+   - Duck(Flyable, Swimmable, Walkable)
+   - Fish(Swimmable)
+   - Bird(Flyable, Walkable)
+   - Human(Swimmable, Walkable)</p>
+<p>Your task:
+   - Implement all mixins and classes
+   - Print the MRO for each animal class using <strong>mro</strong>
+   - Create a function that tests all capabilities of an object
+   - Handle cases where an object doesn't have certain capabilities</p>
+<p>Your goal:
+   - Understand multiple inheritance
+   - Learn about Method Resolution Order
+   - Practice duck typing (if it can fly, call fly())</p>
+<ol start="6">
+<li id="item-1">Special Methods (Magic Methods)
+   Create a <code>Vector2D</code> class representing a 2D vector:</li>
+</ol>
+<p>Implement these special methods:
+   - <strong>init</strong>(x, y)
+   - <strong>str</strong>: "Vector(x, y)"
+   - <strong>repr</strong>: "Vector2D(x, y)"
+   - <strong>add</strong>: vector addition
+   - <strong>sub</strong>: vector subtraction
+   - <strong>mul</strong>: scalar multiplication
+   - <strong>eq</strong>: equality comparison
+   - <strong>abs</strong>: magnitude of vector
+   - <strong>len</strong>: return 2 (dimensions)</p>
+<p>Your task:
+   - Implement all listed special methods
+   - Test with various operations:
+     * v1 + v2
+     * v1 - v2
+     * v1 * 3
+     * v1 == v2
+     * abs(v1)
+     * len(v1)</p>
+<p>Your goal:
+   - Master special methods
+   - Make objects behave like built-in types
+   - Understand operator overloading</p>
+<ol start="7">
+<li id="item-1">Class Methods and Static Methods
+   Create a <code>Person</code> class with class and static methods:</li>
+</ol>
+<p>Instance attributes: name, birth_year
+   Class attribute: population (track total persons created)</p>
+<p>Methods:
+   - <strong>init</strong>(name, birth_year): increment population
+   - get_age(): return current age
+   - @classmethod from_birth_year(cls, name, birth_year): alternative constructor
+   - @classmethod get_population(cls): return total population
+   - @staticmethod is_adult(age): return True if age &gt;= 18</p>
+<p>Your task:
+   - Implement all methods correctly
+   - Create several Person instances using both constructors
+   - Test class method to get population count
+   - Use static method to check if persons are adults</p>
+<p>Your goal:
+   - Understand instance vs class vs static methods
+   - Learn alternative constructors pattern
+   - Practice class-level state management</p>
+<ol start="8">
+<li id="item-1">Advanced OOP: Context Managers
+   Create a <code>FileManager</code> class that works as a context manager:</li>
+</ol>
+<p>Requirements:
+   - <strong>init</strong>(filename, mode)
+   - <strong>enter</strong>: open file, return file object
+   - <strong>exit</strong>: close file, handle exceptions
+   - Should track: number of files opened, total bytes read/written</p>
+<p>Usage:
+       with FileManager('data.txt', 'w') as f:
+           f.write('Hello World')</p>
+<p>Your task:
+   - Implement the context manager protocol
+   - Add class-level statistics (total files opened)
+   - Handle exceptions properly in <strong>exit</strong>
+   - Test with reading and writing files
+   - Demonstrate exception handling</p>
+<p>Your goal:
+   - Understand context managers
+   - Master <strong>enter</strong> and <strong>exit</strong> methods
+   - Learn resource management patterns
+   - Practice exception handling in context managers</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

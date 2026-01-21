@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Additional resources for Files, I-nodes &amp; File Descriptors">
+    <title>Files, I-nodes &amp; File Descriptors - Resources | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Files, I-nodes & File Descriptors</a> &raquo;
+                    <span>Resources</span>
+                </nav>
+                <div class="lecture-content"><h1 id="files-i-nodes-file-descriptors-resources">Files, I-nodes &amp; File Descriptors - Resources</h1>
+<h2 id="i-nodes-and-file-system">I-nodes and File System</h2>
+<p>Understanding Unix I-nodes<br />
+https://www.grymoire.com/Unix/Inodes.html</p>
+<p>The Inode and the Unix File System<br />
+https://www.linux.com/training-tutorials/understanding-linux-links/</p>
+<p>Hard Links and Symbolic Links<br />
+https://linuxgazette.net/105/pitcher.html</p>
+<p>File System Hierarchy<br />
+https://www.pathname.com/fhs/</p>
+<p>ext4 File System<br />
+https://ext4.wiki.kernel.org/</p>
+<h2 id="file-descriptors">File Descriptors</h2>
+<p>Understanding File Descriptors<br />
+https://www.bottomupcs.com/file_descriptors.xhtml</p>
+<p>Linux File Descriptors Explained<br />
+https://www.computerhope.com/jargon/f/file-descriptor.htm</p>
+<p>Advanced I/O Redirection<br />
+https://tldp.org/LDP/abs/html/io-redirection.html</p>
+<p>/proc/[pid]/fd Directory<br />
+https://man7.org/linux/man-pages/man5/proc.5.html</p>
+<p>Using lsof Command<br />
+https://www.howtogeek.com/426031/how-to-use-the-linux-lsof-command/</p>
+<h2 id="file-types">File Types</h2>
+<p>Unix File Types Overview<br />
+https://www.gnu.org/software/libc/manual/html_node/Testing-File-Type.html</p>
+<p>Named Pipes (FIFOs)<br />
+https://www.linuxjournal.com/article/2156</p>
+<p>Unix Domain Sockets<br />
+https://beej.us/guide/bgipc/html/single/bgipc.html#unixsock</p>
+<p>Character and Block Devices<br />
+https://www.kernel.org/doc/html/latest/admin-guide/devices.html</p>
+<p>Special Files in /dev<br />
+https://tldp.org/LDP/sag/html/dev-fs.html</p>
+<h2 id="file-permissions">File Permissions</h2>
+<p>Linux File Permissions Explained<br />
+https://www.linode.com/docs/guides/linux-users-and-groups/</p>
+<p>Understanding chmod<br />
+https://www.guru99.com/file-permissions.html</p>
+<p>Octal Permissions Calculator<br />
+https://chmod-calculator.com/</p>
+<p>umask Tutorial<br />
+https://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html</p>
+<p>Special Permission Bits (setuid, setgid, sticky)<br />
+https://www.redhat.com/sysadmin/suid-sgid-sticky-bit</p>
+<p>POSIX Permissions<br />
+https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html</p>
+<p>Access Control Lists (ACLs)<br />
+https://www.redhat.com/sysadmin/linux-access-control-lists</p>
+<h2 id="standard-streams">Standard Streams</h2>
+<p>stdin, stdout, stderr Explained<br />
+https://www.howtogeek.com/435903/what-are-stdin-stdout-and-stderr-on-linux/</p>
+<p>I/O Redirection Tutorial<br />
+https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-i-o-redirection</p>
+<p>Advanced Redirection Techniques<br />
+https://catonmat.net/bash-one-liners-explained-part-three</p>
+<p>Here Documents and Here Strings<br />
+https://tldp.org/LDP/abs/html/here-docs.html</p>
+<h2 id="special-device-files">Special Device Files</h2>
+<p>/dev/null - The Black Hole<br />
+https://www.putorius.net/introduction-to-dev-null.html</p>
+<p>/dev/zero and /dev/random<br />
+https://www.redhat.com/sysadmin/redirect-to-dev-null</p>
+<p>/dev/urandom vs /dev/random<br />
+https://unix.stackexchange.com/questions/324209/when-to-use-dev-random-vs-dev-urandom</p>
+<p>Pseudo-Terminal Devices (/dev/pts)<br />
+https://www.kernel.org/doc/Documentation/filesystems/devpts.txt</p>
+<h2 id="file-formats-and-encoding">File Formats and Encoding</h2>
+<p>File Command Magic Database<br />
+https://www.darwinsys.com/file/</p>
+<p>Magic Bytes - File Signatures<br />
+https://en.wikipedia.org/wiki/List_of_file_signatures</p>
+<p>Character Encoding Guide<br />
+https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/</p>
+<p>UTF-8 Everywhere Manifesto<br />
+http://utf8everywhere.org/</p>
+<p>iconv - Character Set Conversion<br />
+https://www.gnu.org/software/libc/manual/html_node/iconv-Examples.html</p>
+<p>Line Ending Conversions<br />
+https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/</p>
+<h2 id="tools-and-utilities">Tools and Utilities</h2>
+<p>stat Command Tutorial<br />
+https://www.geeksforgeeks.org/stat-command-in-linux-with-examples/</p>
+<p>ln Command - Creating Links<br />
+https://www.computerhope.com/unix/uln.htm</p>
+<p>chmod Command Examples<br />
+https://www.computerhope.com/unix/uchmod.htm</p>
+<p>lsof - List Open Files<br />
+https://www.tecmint.com/10-lsof-command-examples-in-linux/</p>
+<p>file Command Examples<br />
+https://www.tecmint.com/find-linux-file-types/</p>
+<p>xxd - Hex Dump<br />
+https://www.tutorialspoint.com/unix_commands/xxd.htm</p>
+<p>dd Command Tutorial<br />
+https://www.geeksforgeeks.org/dd-command-linux/</p>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p>File System Internals<br />
+https://www.kernel.org/doc/html/latest/filesystems/</p>
+<p>Virtual File Systems (VFS)<br />
+https://www.kernel.org/doc/html/latest/filesystems/vfs.html</p>
+<p>Process File Descriptors in /proc<br />
+https://www.kernel.org/doc/html/latest/filesystems/proc.html</p>
+<p>File Locking (flock)<br />
+https://www.gnu.org/software/libc/manual/html_node/File-Locks.html</p>
+<p>Memory-Mapped Files (mmap)<br />
+https://man7.org/linux/man-pages/man2/mmap.2.html</p>
+<p>Sparse Files<br />
+https://www.kernel.org/doc/html/latest/filesystems/ext4/dynamic.html</p>
+<h2 id="debugging-and-monitoring">Debugging and Monitoring</h2>
+<p>strace - Trace System Calls<br />
+https://strace.io/</p>
+<p>ltrace - Library Call Tracer<br />
+https://man7.org/linux/man-pages/man1/ltrace.1.html</p>
+<p>inotify - Monitor File System Events<br />
+https://man7.org/linux/man-pages/man7/inotify.7.html</p>
+<p>Monitoring File Descriptor Usage<br />
+https://www.cyberciti.biz/tips/linux-procfs-file-descriptors.html</p>
+<h2 id="security">Security</h2>
+<p>Linux File Permissions and Security<br />
+https://www.redhat.com/sysadmin/linux-file-permissions-explained</p>
+<p>Understanding setuid<br />
+https://www.hackingarticles.in/linux-privilege-escalation-using-suid-binaries/</p>
+<p>Finding Security Vulnerabilities<br />
+https://gtfobins.github.io/</p>
+<p>File Integrity Monitoring<br />
+https://www.tripwire.com/</p>
+<h2 id="books">Books</h2>
+<p>"The Linux Programming Interface" by Michael Kerrisk<br />
+https://man7.org/tlpi/</p>
+<p>"Advanced Programming in the UNIX Environment" by Stevens &amp; Rago<br />
+https://www.apuebook.com/</p>
+<p>"Understanding the Linux Kernel" by Bovet &amp; Cesati<br />
+https://www.oreilly.com/library/view/understanding-the-linux/0596005652/</p>
+<h2 id="man-pages">Man Pages</h2>
+<p>stat(1) - Display File Status<br />
+https://man7.org/linux/man-pages/man1/stat.1.html</p>
+<p>stat(2) - Get File Status (System Call)<br />
+https://man7.org/linux/man-pages/man2/stat.2.html</p>
+<p>open(2) - Open File Descriptor<br />
+https://man7.org/linux/man-pages/man2/open.2.html</p>
+<p>chmod(1) - Change File Mode<br />
+https://man7.org/linux/man-pages/man1/chmod.1.html</p>
+<p>umask(2) - Set File Mode Creation Mask<br />
+https://man7.org/linux/man-pages/man2/umask.2.html</p>
+<p>ln(1) - Make Links<br />
+https://man7.org/linux/man-pages/man1/ln.1.html</p>
+<p>lsof(8) - List Open Files<br />
+https://man7.org/linux/man-pages/man8/lsof.8.html</p>
+<p>file(1) - Determine File Type<br />
+https://man7.org/linux/man-pages/man1/file.1.html</p>
+<p>mkfifo(1) - Make FIFOs<br />
+https://man7.org/linux/man-pages/man1/mkfifo.1.html</p>
+<h2 id="interactive-learning">Interactive Learning</h2>
+<p>Linux File System Exercises<br />
+https://linuxjourney.com/lesson/filesystem-hierarchy</p>
+<p>Over The Wire - Bandit Challenges<br />
+https://overthewire.org/wargames/bandit/</p>
+<p>Linux Survival<br />
+https://linuxsurvival.com/</p>
+<h2 id="community">Community</h2>
+<p>Unix &amp; Linux Stack Exchange<br />
+https://unix.stackexchange.com/</p>
+<p>r/linuxquestions<br />
+https://www.reddit.com/r/linuxquestions/</p>
+<p>Linux Questions Forum<br />
+https://www.linuxquestions.org/</p></div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

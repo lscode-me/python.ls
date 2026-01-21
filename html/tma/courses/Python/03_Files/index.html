@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="```python file = open(&#39;data.txt&#39;, &#39;r&#39;) content = file.read() file.close()">
+    <title>File Handling in Python | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">File Handling in Python</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="file-handling-in-python">File Handling in Python</h1>
+<h2 id="reading-writing-and-processing-files">Reading, Writing, and Processing Files</h2>
+<hr />
+<h2 id="1-opening-and-closing-files">1. Opening and Closing Files</h2>
+<h3 id="basic-file-operations">Basic File Operations</h3>
+<pre class="highlight"><code class="language-python"># Open a file
+file = open('data.txt', 'r')
+content = file.read()
+file.close()
+
+# Better: using with statement (automatic cleanup)
+with open('data.txt', 'r') as file:
+    content = file.read()
+# File is automatically closed
+</code></pre>
+
+<h3 id="file-modes">File Modes</h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'r'</code></td>
+<td>Read (default) - file must exist</td>
+</tr>
+<tr>
+<td><code>'w'</code></td>
+<td>Write - creates new or truncates existing</td>
+</tr>
+<tr>
+<td><code>'a'</code></td>
+<td>Append - creates new or appends to existing</td>
+</tr>
+<tr>
+<td><code>'x'</code></td>
+<td>Exclusive creation - fails if file exists</td>
+</tr>
+<tr>
+<td><code>'r+'</code></td>
+<td>Read and write</td>
+</tr>
+<tr>
+<td><code>'w+'</code></td>
+<td>Write and read (truncates)</td>
+</tr>
+<tr>
+<td><code>'a+'</code></td>
+<td>Append and read</td>
+</tr>
+<tr>
+<td><code>'b'</code></td>
+<td>Binary mode (e.g., <code>'rb'</code>, <code>'wb'</code>)</td>
+</tr>
+<tr>
+<td><code>'t'</code></td>
+<td>Text mode (default, e.g., <code>'rt'</code>)</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python"># Text mode
+with open('text.txt', 'r') as f:
+    content = f.read()
+
+# Binary mode
+with open('image.png', 'rb') as f:
+    data = f.read()
+
+# Write mode
+with open('output.txt', 'w') as f:
+    f.write('Hello, World!')
+
+# Append mode
+with open('log.txt', 'a') as f:
+    f.write('New log entry\n')
+</code></pre>
+
+<hr />
+<h2 id="2-reading-files">2. Reading Files</h2>
+<h3 id="read-read-entire-file">read() - Read Entire File</h3>
+<pre class="highlight"><code class="language-python">with open('data.txt', 'r') as file:
+    content = file.read()
+    print(content)
+
+# Read specific number of characters
+with open('data.txt', 'r') as file:
+    chunk = file.read(100)  # Read first 100 characters
+</code></pre>
+
+<h3 id="readline-read-one-line">readline() - Read One Line</h3>
+<pre class="highlight"><code class="language-python">with open('data.txt', 'r') as file:
+    first_line = file.readline()
+    second_line = file.readline()
+    print(first_line)
+    print(second_line)
+</code></pre>
+
+<h3 id="readlines-read-all-lines-as-list">readlines() - Read All Lines as List</h3>
+<pre class="highlight"><code class="language-python">with open('data.txt', 'r') as file:
+    lines = file.readlines()
+    for line in lines:
+        print(line.strip())
+</code></pre>
+
+<h3 id="iterating-over-file-best-practice">Iterating Over File (Best Practice)</h3>
+<pre class="highlight"><code class="language-python"># Most memory-efficient way
+with open('large_file.txt', 'r') as file:
+    for line in file:
+        process(line.strip())
+</code></pre>
+
+<hr />
+<h2 id="3-writing-files">3. Writing Files</h2>
+<h3 id="write-write-string">write() - Write String</h3>
+<pre class="highlight"><code class="language-python">with open('output.txt', 'w') as file:
+    file.write('Hello, World!\n')
+    file.write('Second line\n')
+</code></pre>
+
+<h3 id="writelines-write-list-of-strings">writelines() - Write List of Strings</h3>
+<pre class="highlight"><code class="language-python">lines = ['First line\n', 'Second line\n', 'Third line\n']
+
+with open('output.txt', 'w') as file:
+    file.writelines(lines)
+</code></pre>
+
+<h3 id="appending-to-files">Appending to Files</h3>
+<pre class="highlight"><code class="language-python">with open('log.txt', 'a') as file:
+    file.write('New log entry\n')
+</code></pre>
+
+<hr />
+<h2 id="4-file-positions-and-seeking">4. File Positions and Seeking</h2>
+<h3 id="tell-get-current-position">tell() - Get Current Position</h3>
+<pre class="highlight"><code class="language-python">with open('data.txt', 'r') as file:
+    print(file.tell())      # 0
+    file.read(10)
+    print(file.tell())      # 10
+</code></pre>
+
+<h3 id="seek-move-to-position">seek() - Move to Position</h3>
+<pre class="highlight"><code class="language-python">with open('data.txt', 'r') as file:
+    file.seek(10)           # Move to byte 10
+    data = file.read(5)     # Read 5 bytes
+
+    file.seek(0)            # Move to beginning
+
+    file.seek(0, 2)         # Move to end (0 bytes from end)
+</code></pre>
+
+<p>Seek reference points:
+- <code>0</code> - beginning of file
+- <code>1</code> - current position
+- <code>2</code> - end of file</p>
+<hr />
+<h2 id="5-working-with-text-encodings">5. Working with Text Encodings</h2>
+<h3 id="specifying-encoding">Specifying Encoding</h3>
+<pre class="highlight"><code class="language-python"># UTF-8 (default in Python 3)
+with open('data.txt', 'r', encoding='utf-8') as file:
+    content = file.read()
+
+# Other encodings
+with open('legacy.txt', 'r', encoding='latin-1') as file:
+    content = file.read()
+
+# Handle encoding errors
+with open('data.txt', 'r', encoding='utf-8', errors='ignore') as file:
+    content = file.read()
+</code></pre>
+
+<h3 id="common-encoding-error-handlers">Common Encoding Error Handlers</h3>
+<ul>
+<li><code>'strict'</code> - raise UnicodeDecodeError (default)</li>
+<li><code>'ignore'</code> - ignore errors</li>
+<li><code>'replace'</code> - replace with <code>�</code></li>
+<li><code>'backslashreplace'</code> - replace with escape sequences</li>
+</ul>
+<hr />
+<h2 id="6-binary-files">6. Binary Files</h2>
+<h3 id="reading-binary-data">Reading Binary Data</h3>
+<pre class="highlight"><code class="language-python">with open('image.png', 'rb') as file:
+    data = file.read()
+    print(f&quot;File size: {len(data)} bytes&quot;)
+    print(f&quot;First 10 bytes: {data[:10]}&quot;)
+</code></pre>
+
+<h3 id="writing-binary-data">Writing Binary Data</h3>
+<pre class="highlight"><code class="language-python">data = bytes([0x89, 0x50, 0x4E, 0x47])  # PNG header
+
+with open('test.png', 'wb') as file:
+    file.write(data)
+</code></pre>
+
+<h3 id="copying-binary-files">Copying Binary Files</h3>
+<pre class="highlight"><code class="language-python">def copy_file(source, destination):
+    with open(source, 'rb') as src:
+        with open(destination, 'wb') as dst:
+            dst.write(src.read())
+
+copy_file('image.png', 'image_copy.png')
+</code></pre>
+
+<h3 id="encoding-and-decoding-binary-data">Encoding and Decoding Binary Data</h3>
+<pre class="highlight"><code class="language-python"># Read binary data and decode to text
+with open('data.txt', 'rb') as file:
+    binary_data = file.read()
+    text = binary_data.decode('utf-8')
+    print(f&quot;Binary: {binary_data[:20]}&quot;)
+    print(f&quot;Text: {text[:20]}&quot;)
+
+# Encode text to binary and write
+text = &quot;Привет, мир! Hello, World!&quot;
+binary_data = text.encode('utf-8')
+
+with open('encoded.bin', 'wb') as file:
+    file.write(binary_data)
+
+# Read binary, decode with different encodings
+with open('data.txt', 'rb') as file:
+    data = file.read()
+
+    # Try UTF-8
+    try:
+        text_utf8 = data.decode('utf-8')
+        print(f&quot;UTF-8: {text_utf8}&quot;)
+    except UnicodeDecodeError:
+        print(&quot;Not valid UTF-8&quot;)
+
+    # Try Latin-1 (always succeeds)
+    text_latin1 = data.decode('latin-1')
+    print(f&quot;Latin-1: {text_latin1}&quot;)
+</code></pre>
+
+<h3 id="encoding-with-error-handling">Encoding with Error Handling</h3>
+<pre class="highlight"><code class="language-python"># Read binary with error handling
+with open('data.txt', 'rb') as file:
+    binary_data = file.read()
+
+    # Ignore errors
+    text = binary_data.decode('utf-8', errors='ignore')
+
+    # Replace errors with �
+    text = binary_data.decode('utf-8', errors='replace')
+
+    # Replace with escape sequences
+    text = binary_data.decode('utf-8', errors='backslashreplace')
+    print(text)
+
+# Encode with error handling
+text = &quot;Hello 🌍 World&quot;
+
+# Strict (raises error for incompatible chars)
+try:
+    binary = text.encode('ascii')
+except UnicodeEncodeError as e:
+    print(f&quot;Cannot encode: {e}&quot;)
+
+# Ignore incompatible characters
+binary = text.encode('ascii', errors='ignore')
+print(binary)  # b'Hello  World'
+
+# Replace with ?
+binary = text.encode('ascii', errors='replace')
+print(binary)  # b'Hello ? World'
+
+# Use XML entities
+binary = text.encode('ascii', errors='xmlcharrefreplace')
+print(binary)  # b'Hello &amp;#127757; World'
+</code></pre>
+
+<h3 id="converting-between-encodings">Converting Between Encodings</h3>
+<pre class="highlight"><code class="language-python"># Read file in one encoding, write in another
+with open('input_cp1251.txt', 'rb') as file:
+    data = file.read()
+    text = data.decode('cp1251')  # Windows Cyrillic
+
+# Write as UTF-8
+with open('output_utf8.txt', 'wb') as file:
+    utf8_data = text.encode('utf-8')
+    file.write(utf8_data)
+
+# One-liner conversion
+with open('old.txt', 'rb') as f:
+    content = f.read().decode('latin-1').encode('utf-8')
+    with open('new.txt', 'wb') as out:
+        out.write(content)
+</code></pre>
+
+<h3 id="working-with-binary-strings">Working with Binary Strings</h3>
+<pre class="highlight"><code class="language-python"># Creating bytes objects
+b1 = b'Hello'                          # Bytes literal
+b2 = bytes([72, 101, 108, 108, 111])   # From list of integers
+b3 = 'Hello'.encode('utf-8')           # From string
+
+print(b1 == b2 == b3)  # True
+
+# Bytes operations
+data = b'Hello, World!'
+print(data[0])           # 72 (ASCII code for 'H')
+print(data[0:5])         # b'Hello'
+print(data.split(b','))  # [b'Hello', b' World!']
+
+# Converting bytes to string
+binary = b'\xd0\x9f\xd1\x80\xd0\xb8\xd0\xb2\xd0\xb5\xd1\x82'
+text = binary.decode('utf-8')
+print(text)  # Привет
+
+# Hex representation
+data = b'\x00\x01\x02\xff'
+print(data.hex())           # 000102ff
+print(bytes.fromhex('48656c6c6f'))  # b'Hello'
+</code></pre>
+
+<hr />
+<h2 id="7-the-io-module-and-file-objects">7. The io Module and File Objects</h2>
+<h3 id="understanding-open-and-ioopen">Understanding open() and io.open()</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# open() is actually io.open() in Python 3
+# These are equivalent:
+file1 = open('data.txt', 'r')
+file2 = io.open('data.txt', 'r')
+
+# open is an alias to io.open
+print(open is io.open)  # True in Python 3
+</code></pre>
+
+<h3 id="io-module-classes-hierarchy">io Module Classes Hierarchy</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# io.IOBase - Base class for all I/O classes
+# ├── io.RawIOBase - Raw binary I/O
+# │   └── io.FileIO - Low-level file I/O
+# ├── io.BufferedIOBase - Buffered binary I/O
+# │   ├── io.BufferedReader - Buffered reading
+# │   ├── io.BufferedWriter - Buffered writing
+# │   └── io.BufferedRandom - Buffered random access
+# └── io.TextIOBase - Text I/O
+#     └── io.TextIOWrapper - Text wrapper around binary streams
+
+# What open() actually returns:
+text_file = open('data.txt', 'r')
+print(type(text_file))  # &lt;class '_io.TextIOWrapper'&gt;
+
+binary_file = open('data.bin', 'rb')
+print(type(binary_file))  # &lt;class '_io.BufferedReader'&gt;
+
+write_file = open('out.txt', 'w')
+print(type(write_file))  # &lt;class '_io.TextIOWrapper'&gt;
+</code></pre>
+
+<h3 id="working-with-stringio-in-memory-text-streams">Working with StringIO (In-Memory Text Streams)</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# Create in-memory text stream
+output = io.StringIO()
+output.write('First line\n')
+output.write('Second line\n')
+
+# Get the entire contents
+contents = output.getvalue()
+print(contents)
+
+# Seek and read
+output.seek(0)
+print(output.read())
+
+# Close when done
+output.close()
+
+# Using with statement
+with io.StringIO() as f:
+    f.write('Hello, World!')
+    f.seek(0)
+    print(f.read())
+
+# Initialize with existing string
+input_stream = io.StringIO('Line 1\nLine 2\nLine 3')
+for line in input_stream:
+    print(line.strip())
+</code></pre>
+
+<h3 id="working-with-bytesio-in-memory-binary-streams">Working with BytesIO (In-Memory Binary Streams)</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# Create in-memory binary stream
+output = io.BytesIO()
+output.write(b'Binary data\n')
+output.write(b'\x00\x01\x02\x03')
+
+# Get contents
+data = output.getvalue()
+print(data)
+print(f&quot;Size: {len(data)} bytes&quot;)
+
+# Seek and read
+output.seek(0)
+chunk = output.read(6)
+print(chunk)  # b'Binary'
+
+output.close()
+
+# Initialize with existing bytes
+binary_input = io.BytesIO(b'\x89PNG\r\n\x1a\n')
+header = binary_input.read(4)
+print(header)  # b'\x89PNG'
+</code></pre>
+
+<h3 id="practical-use-cases-for-stringio-and-bytesio">Practical Use Cases for StringIO and BytesIO</h3>
+<pre class="highlight"><code class="language-python">import io
+import csv
+
+# CSV writing to string instead of file
+output = io.StringIO()
+writer = csv.writer(output)
+writer.writerow(['Name', 'Age', 'City'])
+writer.writerow(['Alice', 30, 'NYC'])
+csv_string = output.getvalue()
+print(csv_string)
+
+# Testing file operations without actual files
+def process_file(file_obj):
+    &quot;&quot;&quot;Function that works with file-like objects&quot;&quot;&quot;
+    for line in file_obj:
+        print(line.upper().strip())
+
+# Test with StringIO instead of real file
+test_data = io.StringIO('line 1\nline 2\nline 3')
+process_file(test_data)
+
+# Converting between formats
+import json
+data = {'name': 'Alice', 'age': 30}
+json_str = json.dumps(data)
+json_file = io.StringIO(json_str)
+loaded_data = json.load(json_file)
+print(loaded_data)
+</code></pre>
+
+<h3 id="textiowrapper-wrapping-binary-streams">TextIOWrapper - Wrapping Binary Streams</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# Open binary file and wrap with text interface
+binary_file = open('data.txt', 'rb')
+text_wrapper = io.TextIOWrapper(binary_file, encoding='utf-8')
+
+for line in text_wrapper:
+    print(line.strip())
+
+text_wrapper.close()
+
+# Custom text wrapper with specific encoding
+with open('legacy.txt', 'rb') as binary_stream:
+    text_stream = io.TextIOWrapper(
+        binary_stream,
+        encoding='cp1251',
+        errors='replace',
+        newline='\r\n'
+    )
+    content = text_stream.read()
+    print(content)
+</code></pre>
+
+<h3 id="bufferedreader-and-bufferedwriter">BufferedReader and BufferedWriter</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# Low-level file I/O (unbuffered)
+raw = io.FileIO('data.bin', 'r')
+print(type(raw))  # &lt;class '_io.FileIO'&gt;
+
+# Wrap with buffered reader
+buffered = io.BufferedReader(raw, buffer_size=8192)
+data = buffered.read(100)
+buffered.close()
+
+# Buffered writer
+with io.FileIO('output.bin', 'w') as raw_file:
+    buffered_writer = io.BufferedWriter(raw_file)
+    buffered_writer.write(b'Hello, World!')
+    buffered_writer.flush()  # Ensure data is written
+    buffered_writer.close()
+</code></pre>
+
+<h3 id="file-like-objects-and-duck-typing">File-like Objects and Duck Typing</h3>
+<pre class="highlight"><code class="language-python">import io
+
+class UpperCaseFile:
+    &quot;&quot;&quot;Custom file-like object that converts to uppercase&quot;&quot;&quot;
+    def __init__(self, filename):
+        self.file = open(filename, 'r')
+
+    def read(self, size=-1):
+        return self.file.read(size).upper()
+
+    def readline(self):
+        return self.file.readline().upper()
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        line = self.file.readline()
+        if not line:
+            raise StopIteration
+        return line.upper()
+
+    def close(self):
+        self.file.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
+        return False
+
+# Use custom file object
+with UpperCaseFile('data.txt') as f:
+    for line in f:
+        print(line.strip())
+</code></pre>
+
+<h3 id="checking-file-object-properties">Checking File Object Properties</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# Check what type of file object you have
+def inspect_file_object(f):
+    print(f&quot;Type: {type(f)}&quot;)
+    print(f&quot;Readable: {f.readable()}&quot;)
+    print(f&quot;Writable: {f.writable()}&quot;)
+    print(f&quot;Seekable: {f.seekable()}&quot;)
+    print(f&quot;Closed: {f.closed}&quot;)
+    if hasattr(f, 'mode'):
+        print(f&quot;Mode: {f.mode}&quot;)
+    if hasattr(f, 'name'):
+        print(f&quot;Name: {f.name}&quot;)
+    if hasattr(f, 'encoding'):
+        print(f&quot;Encoding: {f.encoding}&quot;)
+
+# Inspect different file types
+with open('data.txt', 'r') as f:
+    inspect_file_object(f)
+
+with io.StringIO('test') as f:
+    inspect_file_object(f)
+
+with open('data.bin', 'rb') as f:
+    inspect_file_object(f)
+</code></pre>
+
+<h3 id="advanced-creating-custom-streams">Advanced: Creating Custom Streams</h3>
+<pre class="highlight"><code class="language-python">import io
+
+class CountingIO(io.StringIO):
+    &quot;&quot;&quot;StringIO that counts bytes written&quot;&quot;&quot;
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.bytes_written = 0
+
+    def write(self, s):
+        result = super().write(s)
+        self.bytes_written += len(s)
+        return result
+
+# Use custom stream
+stream = CountingIO()
+stream.write('Hello')
+stream.write(' ')
+stream.write('World')
+print(f&quot;Total characters written: {stream.bytes_written}&quot;)
+print(f&quot;Content: {stream.getvalue()}&quot;)
+</code></pre>
+
+<h3 id="sockets-as-file-like-objects">Sockets as File-like Objects</h3>
+<pre class="highlight"><code class="language-python">import socket
+import io
+
+# Create a socket - it's a file-like object
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Check file-like properties
+print(f&quot;Has fileno: {hasattr(sock, 'fileno')}&quot;)  # True
+print(f&quot;File descriptor: {sock.fileno()}&quot;)
+
+# Socket can be used with makefile() to get a file object
+# Example: HTTP client
+sock.connect(('example.com', 80))
+
+# Wrap socket in file object for easier reading/writing
+file_obj = sock.makefile('rwb')
+print(type(file_obj))  # &lt;class '_io.BufferedRWPair'&gt;
+
+# Write HTTP request
+file_obj.write(b'GET / HTTP/1.0\r\nHost: example.com\r\n\r\n')
+file_obj.flush()
+
+# Read response line by line
+for i, line in enumerate(file_obj):
+    print(line.decode('utf-8', errors='ignore').strip())
+    if i &gt; 10:  # Print first few lines
+        break
+
+file_obj.close()
+sock.close()
+</code></pre>
+
+<h3 id="socket-file-objects-text-mode">Socket File Objects - Text Mode</h3>
+<pre class="highlight"><code class="language-python">import socket
+
+# Create socket connection
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect(('example.com', 80))
+
+# Text mode wrapper
+with sock.makefile('r', encoding='utf-8', newline='\r\n') as f:
+    # Write request (need to access socket directly for writing)
+    sock.sendall(b'GET / HTTP/1.0\r\nHost: example.com\r\n\r\n')
+
+    # Read response as text
+    status_line = f.readline()
+    print(f&quot;Status: {status_line.strip()}&quot;)
+
+    # Read headers
+    headers = []
+    while True:
+        line = f.readline().strip()
+        if not line:
+            break
+        headers.append(line)
+
+    print(f&quot;Found {len(headers)} headers&quot;)
+
+sock.close()
+</code></pre>
+
+<h3 id="socket-with-textiowrapper">Socket with TextIOWrapper</h3>
+<pre class="highlight"><code class="language-python">import socket
+import io
+
+# Create socket and wrap with text interface
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect(('httpbin.org', 80))
+
+# Wrap socket's binary stream with text wrapper
+sock_file = sock.makefile('rwb')
+text_wrapper = io.TextIOWrapper(
+    sock_file,
+    encoding='utf-8',
+    line_buffering=True
+)
+
+# Send HTTP request
+text_wrapper.write('GET /get HTTP/1.1\r\n')
+text_wrapper.write('Host: httpbin.org\r\n')
+text_wrapper.write('Connection: close\r\n')
+text_wrapper.write('\r\n')
+text_wrapper.flush()
+
+# Read response
+response = text_wrapper.read()
+print(response[:500])  # Print first 500 characters
+
+text_wrapper.close()
+sock.close()
+</code></pre>
+
+<h3 id="using-sockets-with-file-operations">Using Sockets with File Operations</h3>
+<pre class="highlight"><code class="language-python">import socket
+import os
+
+def send_file_over_socket(filename, host, port):
+    &quot;&quot;&quot;Send a file over a socket connection&quot;&quot;&quot;
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.connect((host, port))
+
+        with open(filename, 'rb') as f:
+            # Read and send in chunks
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                sock.sendall(chunk)
+
+    print(f&quot;Sent {filename} to {host}:{port}&quot;)
+
+def receive_file_from_socket(output_filename, host, port):
+    &quot;&quot;&quot;Receive a file from a socket connection&quot;&quot;&quot;
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.bind((host, port))
+        sock.listen(1)
+        conn, addr = sock.accept()
+
+        with conn:
+            with open(output_filename, 'wb') as f:
+                while True:
+                    data = conn.recv(8192)
+                    if not data:
+                        break
+                    f.write(data)
+
+    print(f&quot;Received file saved as {output_filename}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="8-context-managers-for-files">8. Context Managers for Files</h2>
+<h3 id="multiple-files">Multiple Files</h3>
+<pre class="highlight"><code class="language-python">with open('input.txt', 'r') as infile, open('output.txt', 'w') as outfile:
+    for line in infile:
+        outfile.write(line.upper())
+</code></pre>
+
+<h3 id="custom-file-context-manager">Custom File Context Manager</h3>
+<pre class="highlight"><code class="language-python">class FileManager:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
+
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+        return False
+
+with FileManager('data.txt', 'r') as file:
+    content = file.read()
+</code></pre>
+
+<hr />
+<h2 id="9-file-system-operations-with-pathlib">9. File System Operations with pathlib</h2>
+<h3 id="path-objects">Path Objects</h3>
+<pre class="highlight"><code class="language-python">from pathlib import Path
+
+# Create path objects
+path = Path('data.txt')
+path = Path('/home/user/documents/file.txt')
+path = Path.home() / 'documents' / 'file.txt'
+
+# Path properties
+print(path.name)        # file.txt
+print(path.stem)        # file
+print(path.suffix)      # .txt
+print(path.parent)      # /home/user/documents
+print(path.absolute())  # absolute path
+</code></pre>
+
+<h3 id="reading-and-writing-with-pathlib">Reading and Writing with pathlib</h3>
+<pre class="highlight"><code class="language-python">from pathlib import Path
+
+path = Path('data.txt')
+
+# Read text
+content = path.read_text(encoding='utf-8')
+
+# Read bytes
+data = path.read_bytes()
+
+# Write text
+path.write_text('Hello, World!', encoding='utf-8')
+
+# Write bytes
+path.write_bytes(b'\x00\x01\x02')
+</code></pre>
+
+<h3 id="checking-file-properties">Checking File Properties</h3>
+<pre class="highlight"><code class="language-python">from pathlib import Path
+
+path = Path('data.txt')
+
+print(path.exists())        # True/False
+print(path.is_file())       # True/False
+print(path.is_dir())        # True/False
+print(path.stat().st_size)  # File size in bytes
+print(path.stat().st_mtime) # Modification time
+</code></pre>
+
+<hr />
+<h2 id="10-directory-operations">10. Directory Operations</h2>
+<h3 id="creating-directories">Creating Directories</h3>
+<pre class="highlight"><code class="language-python">from pathlib import Path
+
+# Create directory
+path = Path('new_directory')
+path.mkdir()
+
+# Create with parents
+path = Path('parent/child/grandchild')
+path.mkdir(parents=True, exist_ok=True)
+</code></pre>
+
+<h3 id="listing-directory-contents">Listing Directory Contents</h3>
+<pre class="highlight"><code class="language-python">from pathlib import Path
+
+path = Path('.')
+
+# List all items
+for item in path.iterdir():
+    print(item)
+
+# List only files
+for file in path.glob('*.txt'):
+    print(file)
+
+# Recursive search
+for file in path.rglob('*.py'):
+    print(file)
+</code></pre>
+
+<h3 id="walking-directory-tree">Walking Directory Tree</h3>
+<pre class="highlight"><code class="language-python">from pathlib import Path
+
+def walk_directory(path):
+    for item in Path(path).rglob('*'):
+        if item.is_file():
+            print(f&quot;File: {item}&quot;)
+        elif item.is_dir():
+            print(f&quot;Dir:  {item}&quot;)
+
+walk_directory('.')
+</code></pre>
+
+<hr />
+<h2 id="11-file-and-directory-operations-with-os">11. File and Directory Operations with os</h2>
+<h3 id="basic-operations">Basic Operations</h3>
+<pre class="highlight"><code class="language-python">import os
+
+# Get current directory
+print(os.getcwd())
+
+# Change directory
+os.chdir('/home/user')
+
+# List directory
+print(os.listdir('.'))
+
+# Create directory
+os.mkdir('new_dir')
+os.makedirs('parent/child', exist_ok=True)
+
+# Remove file
+os.remove('file.txt')
+
+# Remove directory
+os.rmdir('empty_dir')
+
+# Rename/move
+os.rename('old.txt', 'new.txt')
+</code></pre>
+
+<h3 id="file-information">File Information</h3>
+<pre class="highlight"><code class="language-python">import os
+
+# Check existence
+print(os.path.exists('file.txt'))
+print(os.path.isfile('file.txt'))
+print(os.path.isdir('directory'))
+
+# Get file info
+print(os.path.getsize('file.txt'))      # Size in bytes
+print(os.path.getmtime('file.txt'))     # Modification time
+print(os.path.getatime('file.txt'))     # Access time
+
+# Path operations
+print(os.path.join('dir', 'subdir', 'file.txt'))
+print(os.path.split('/path/to/file.txt'))
+print(os.path.splitext('file.txt'))     # ('file', '.txt')
+print(os.path.basename('/path/to/file.txt'))  # file.txt
+print(os.path.dirname('/path/to/file.txt'))   # /path/to
+</code></pre>
+
+<hr />
+<h2 id="12-working-with-csv-files">12. Working with CSV Files</h2>
+<h3 id="reading-csv">Reading CSV</h3>
+<pre class="highlight"><code class="language-python">import csv
+
+# Read with csv.reader
+with open('data.csv', 'r') as file:
+    reader = csv.reader(file)
+    header = next(reader)
+    for row in reader:
+        print(row)
+
+# Read with csv.DictReader
+with open('data.csv', 'r') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        print(row['name'], row['age'])
+</code></pre>
+
+<h3 id="writing-csv">Writing CSV</h3>
+<pre class="highlight"><code class="language-python">import csv
+
+# Write with csv.writer
+with open('output.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Name', 'Age', 'City'])
+    writer.writerow(['Alice', 30, 'NYC'])
+    writer.writerow(['Bob', 25, 'LA'])
+
+# Write with csv.DictWriter
+with open('output.csv', 'w', newline='') as file:
+    fieldnames = ['name', 'age', 'city']
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+    writer.writeheader()
+    writer.writerow({'name': 'Alice', 'age': 30, 'city': 'NYC'})
+    writer.writerow({'name': 'Bob', 'age': 25, 'city': 'LA'})
+</code></pre>
+
+<hr />
+<h2 id="13-working-with-json-files">13. Working with JSON Files</h2>
+<h3 id="reading-json">Reading JSON</h3>
+<pre class="highlight"><code class="language-python">import json
+
+# Read JSON file
+with open('data.json', 'r') as file:
+    data = json.load(file)
+    print(data)
+
+# Parse JSON string
+json_string = '{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}'
+data = json.loads(json_string)
+</code></pre>
+
+<h3 id="writing-json">Writing JSON</h3>
+<pre class="highlight"><code class="language-python">import json
+
+data = {
+    'name': 'Alice',
+    'age': 30,
+    'city': 'NYC',
+    'hobbies': ['reading', 'hiking']
+}
+
+# Write JSON file
+with open('output.json', 'w') as file:
+    json.dump(data, file, indent=2)
+
+# Convert to JSON string
+json_string = json.dumps(data, indent=2)
+print(json_string)
+</code></pre>
+
+<h3 id="custom-json-encoding">Custom JSON Encoding</h3>
+<pre class="highlight"><code class="language-python">import json
+from datetime import datetime
+
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        return super().default(obj)
+
+data = {'timestamp': datetime.now()}
+json_string = json.dumps(data, cls=DateTimeEncoder)
+</code></pre>
+
+<hr />
+<h2 id="14-temporary-files">14. Temporary Files</h2>
+<h3 id="using-tempfile-module">Using tempfile Module</h3>
+<pre class="highlight"><code class="language-python">import tempfile
+
+# Temporary file
+with tempfile.TemporaryFile(mode='w+') as temp:
+    temp.write('Hello, World!')
+    temp.seek(0)
+    print(temp.read())
+# File is deleted automatically
+
+# Named temporary file
+with tempfile.NamedTemporaryFile(mode='w+', delete=False) as temp:
+    temp.write('Hello')
+    temp_name = temp.name
+
+# Temporary directory
+with tempfile.TemporaryDirectory() as temp_dir:
+    print(f&quot;Created temporary directory: {temp_dir}&quot;)
+    # Use temp_dir
+# Directory is deleted automatically
+</code></pre>
+
+<hr />
+<h2 id="15-file-compression">15. File Compression</h2>
+<h3 id="working-with-zip-files">Working with ZIP Files</h3>
+<pre class="highlight"><code class="language-python">import zipfile
+
+# Create ZIP archive
+with zipfile.ZipFile('archive.zip', 'w') as zipf:
+    zipf.write('file1.txt')
+    zipf.write('file2.txt')
+    zipf.write('folder/file3.txt')
+
+# Extract ZIP archive
+with zipfile.ZipFile('archive.zip', 'r') as zipf:
+    zipf.extractall('extracted_files')
+
+# List contents
+with zipfile.ZipFile('archive.zip', 'r') as zipf:
+    print(zipf.namelist())
+</code></pre>
+
+<h3 id="working-with-gzip-files">Working with GZIP Files</h3>
+<pre class="highlight"><code class="language-python">import gzip
+
+# Write compressed file
+with gzip.open('file.txt.gz', 'wt') as f:
+    f.write('Hello, World!')
+
+# Read compressed file
+with gzip.open('file.txt.gz', 'rt') as f:
+    content = f.read()
+    print(content)
+</code></pre>
+
+<hr />
+<h2 id="16-file-io-best-practices">16. File I/O Best Practices</h2>
+<h3 id="1-always-use-context-managers">1. Always Use Context Managers</h3>
+<pre class="highlight"><code class="language-python"># Good
+with open('file.txt', 'r') as f:
+    content = f.read()
+
+# Bad
+f = open('file.txt', 'r')
+content = f.read()
+f.close()  # May not execute if exception occurs
+</code></pre>
+
+<h3 id="2-read-large-files-line-by-line">2. Read Large Files Line by Line</h3>
+<pre class="highlight"><code class="language-python"># Good - memory efficient
+with open('large_file.txt', 'r') as f:
+    for line in f:
+        process(line)
+
+# Bad - loads entire file in memory
+with open('large_file.txt', 'r') as f:
+    lines = f.readlines()  # Loads everything
+    for line in lines:
+        process(line)
+</code></pre>
+
+<h3 id="3-specify-encoding-explicitly">3. Specify Encoding Explicitly</h3>
+<pre class="highlight"><code class="language-python"># Good
+with open('file.txt', 'r', encoding='utf-8') as f:
+    content = f.read()
+
+# May cause issues on different systems
+with open('file.txt', 'r') as f:
+    content = f.read()
+</code></pre>
+
+<h3 id="4-handle-errors-gracefully">4. Handle Errors Gracefully</h3>
+<pre class="highlight"><code class="language-python">try:
+    with open('file.txt', 'r') as f:
+        content = f.read()
+except FileNotFoundError:
+    print(&quot;File not found&quot;)
+except PermissionError:
+    print(&quot;Permission denied&quot;)
+except IOError as e:
+    print(f&quot;I/O error: {e}&quot;)
+</code></pre>
+
+<h3 id="5-use-pathlib-for-modern-code">5. Use pathlib for Modern Code</h3>
+<pre class="highlight"><code class="language-python">from pathlib import Path
+
+# Modern approach
+path = Path('data.txt')
+if path.exists():
+    content = path.read_text()
+
+# Old approach
+import os
+if os.path.exists('data.txt'):
+    with open('data.txt', 'r') as f:
+        content = f.read()
+</code></pre>
+
+<hr />
+<h2 id="17-zero-copy-file-operations-with-sendfile">17. Zero-Copy File Operations with sendfile()</h2>
+<h3 id="understanding-sendfile">Understanding sendfile()</h3>
+<p><code>sendfile()</code> is a system call that copies data between file descriptors without transferring it through user space - a technique called "zero-copy". This is much more efficient for sending files over networks.</p>
+<pre class="highlight"><code class="language-python">import os
+import socket
+
+# Traditional approach - data copied to user space and back
+def send_file_traditional(filename, sock):
+    &quot;&quot;&quot;Traditional file sending - multiple copies&quot;&quot;&quot;
+    with open(filename, 'rb') as f:
+        # Data flow: Disk -&gt; Kernel -&gt; User Space -&gt; Kernel -&gt; Network
+        while True:
+            data = f.read(8192)  # Copy from kernel to user space
+            if not data:
+                break
+            sock.sendall(data)    # Copy from user space to kernel
+
+# Zero-copy approach - data stays in kernel space
+def send_file_zerocopy(filename, sock):
+    &quot;&quot;&quot;Zero-copy file sending using sendfile()&quot;&quot;&quot;
+    with open(filename, 'rb') as f:
+        # Data flow: Disk -&gt; Kernel -&gt; Network (no user space copy!)
+        offset = 0
+        file_size = os.path.getsize(filename)
+
+        while offset &lt; file_size:
+            # sendfile(out_fd, in_fd, offset, count)
+            sent = os.sendfile(sock.fileno(), f.fileno(), offset, file_size - offset)
+            offset += sent
+</code></pre>
+
+<h3 id="practical-example-http-file-server-with-sendfile">Practical Example: HTTP File Server with sendfile()</h3>
+<pre class="highlight"><code class="language-python">import os
+import socket
+
+def serve_file_with_sendfile(filename, client_socket):
+    &quot;&quot;&quot;Serve a file using zero-copy sendfile()&quot;&quot;&quot;
+    try:
+        # Get file size
+        file_size = os.path.getsize(filename)
+
+        # Send HTTP headers
+        headers = (
+            f&quot;HTTP/1.1 200 OK\r\n&quot;
+            f&quot;Content-Length: {file_size}\r\n&quot;
+            f&quot;Content-Type: application/octet-stream\r\n&quot;
+            f&quot;\r\n&quot;
+        )
+        client_socket.sendall(headers.encode())
+
+        # Send file using sendfile (zero-copy)
+        with open(filename, 'rb') as f:
+            offset = 0
+            while offset &lt; file_size:
+                sent = os.sendfile(
+                    client_socket.fileno(),
+                    f.fileno(),
+                    offset,
+                    file_size - offset
+                )
+                if sent == 0:
+                    break
+                offset += sent
+
+        print(f&quot;Sent {offset} bytes using zero-copy&quot;)
+
+    except FileNotFoundError:
+        response = b&quot;HTTP/1.1 404 Not Found\r\n\r\n&quot;
+        client_socket.sendall(response)
+    except OSError as e:
+        print(f&quot;Error: {e}&quot;)
+</code></pre>
+
+<h3 id="sendfile-vs-traditional-copy-performance-comparison">sendfile() vs Traditional Copy - Performance Comparison</h3>
+<pre class="highlight"><code class="language-python">import os
+import socket
+import time
+
+def benchmark_file_transfer(filename, host, port):
+    &quot;&quot;&quot;Compare traditional vs sendfile() performance&quot;&quot;&quot;
+    file_size = os.path.getsize(filename)
+
+    # Traditional method
+    start = time.time()
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.connect((host, port))
+        with open(filename, 'rb') as f:
+            while True:
+                chunk = f.read(65536)
+                if not chunk:
+                    break
+                sock.sendall(chunk)
+    traditional_time = time.time() - start
+
+    # sendfile() method
+    start = time.time()
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.connect((host, port))
+        with open(filename, 'rb') as f:
+            os.sendfile(sock.fileno(), f.fileno(), 0, file_size)
+    sendfile_time = time.time() - start
+
+    print(f&quot;File size: {file_size / (1024*1024):.2f} MB&quot;)
+    print(f&quot;Traditional: {traditional_time:.3f}s&quot;)
+    print(f&quot;sendfile(): {sendfile_time:.3f}s&quot;)
+    print(f&quot;Speedup: {traditional_time/sendfile_time:.2f}x&quot;)
+</code></pre>
+
+<h3 id="platform-considerations">Platform Considerations</h3>
+<pre class="highlight"><code class="language-python">import os
+import sys
+
+def send_file_cross_platform(filename, sock):
+    &quot;&quot;&quot;Cross-platform file sending&quot;&quot;&quot;
+    if hasattr(os, 'sendfile'):
+        # Linux, BSD, macOS (Python 3.3+)
+        with open(filename, 'rb') as f:
+            offset = 0
+            file_size = os.path.getsize(filename)
+            while offset &lt; file_size:
+                sent = os.sendfile(sock.fileno(), f.fileno(), offset, file_size - offset)
+                offset += sent
+    else:
+        # Windows - fallback to traditional method
+        with open(filename, 'rb') as f:
+            while True:
+                chunk = f.read(65536)
+                if not chunk:
+                    break
+                sock.sendall(chunk)
+</code></pre>
+
+<hr />
+<h2 id="18-understanding-buffers-and-buffering">18. Understanding Buffers and Buffering</h2>
+<h3 id="what-is-a-buffer">What is a Buffer?</h3>
+<p>A <strong>buffer</strong> is a temporary storage area in memory used to hold data while it's being transferred between two places. Buffering improves performance by reducing the number of system calls.</p>
+<pre class="highlight"><code class="language-python"># Without buffer (hypothetical - every write is a system call)
+# write('H') -&gt; system call
+# write('e') -&gt; system call
+# write('l') -&gt; system call
+# write('l') -&gt; system call
+# write('o') -&gt; system call
+# Total: 5 system calls!
+
+# With buffer (actual behavior)
+# write('H') -&gt; buffer
+# write('e') -&gt; buffer
+# write('l') -&gt; buffer
+# write('l') -&gt; buffer
+# write('o') -&gt; buffer
+# flush()    -&gt; system call (writes all at once)
+# Total: 1 system call!
+</code></pre>
+
+<h3 id="buffer-types-and-modes">Buffer Types and Modes</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# buffering=-1 (default): Use default buffer size
+with open('file.txt', 'w', buffering=-1) as f:
+    # Text files: line buffered if interactive, else block buffered
+    # Binary files: block buffered (usually 8192 bytes)
+    f.write('data')
+
+# buffering=0: No buffering (binary mode only)
+with open('file.bin', 'wb', buffering=0) as f:
+    # Each write() immediately goes to disk
+    f.write(b'data')  # Immediately written
+
+# buffering=1: Line buffering (text mode only)
+with open('file.txt', 'w', buffering=1) as f:
+    f.write('Line 1\n')  # Flushed immediately (contains newline)
+    f.write('Line 2')    # Stays in buffer (no newline yet)
+
+# buffering&gt;1: Custom buffer size in bytes
+with open('file.txt', 'w', buffering=4096) as f:
+    # Buffer holds up to 4096 bytes before flushing
+    f.write('data')
+</code></pre>
+
+<h3 id="how-buffering-works-internally">How Buffering Works Internally</h3>
+<pre class="highlight"><code class="language-python">import io
+import time
+
+class DebugBuffer(io.BufferedWriter):
+    &quot;&quot;&quot;BufferedWriter with debug output&quot;&quot;&quot;
+    def write(self, b):
+        print(f&quot;Writing {len(b)} bytes to buffer&quot;)
+        result = super().write(b)
+        print(f&quot;Buffer size: {len(self._write_buf)} bytes&quot;)
+        return result
+
+    def flush(self):
+        print(f&quot;Flushing {len(self._write_buf)} bytes to disk&quot;)
+        super().flush()
+
+# Demonstrate buffering behavior
+raw = io.FileIO('debug.bin', 'w')
+buffered = DebugBuffer(raw, buffer_size=100)
+
+buffered.write(b'a' * 50)   # Goes to buffer
+buffered.write(b'b' * 40)   # Still in buffer (total: 90)
+buffered.write(b'c' * 20)   # Triggers flush! (110 &gt; 100)
+
+buffered.close()
+</code></pre>
+
+<h3 id="buffer-performance-impact">Buffer Performance Impact</h3>
+<pre class="highlight"><code class="language-python">import time
+import os
+
+def write_without_buffer(filename, data, chunk_size=1):
+    &quot;&quot;&quot;Write data without buffering - very slow!&quot;&quot;&quot;
+    start = time.time()
+    with open(filename, 'wb', buffering=0) as f:
+        for i in range(0, len(data), chunk_size):
+            f.write(data[i:i+chunk_size])
+    return time.time() - start
+
+def write_with_buffer(filename, data, buffer_size=8192):
+    &quot;&quot;&quot;Write data with buffering - much faster!&quot;&quot;&quot;
+    start = time.time()
+    with open(filename, 'wb', buffering=buffer_size) as f:
+        f.write(data)
+    return time.time() - start
+
+# Benchmark
+data = b'x' * 1000000  # 1 MB of data
+
+time_no_buffer = write_without_buffer('no_buffer.bin', data, 1)
+time_buffered = write_with_buffer('buffered.bin', data)
+
+print(f&quot;Without buffer (1 byte at a time): {time_no_buffer:.3f}s&quot;)
+print(f&quot;With buffer: {time_buffered:.3f}s&quot;)
+print(f&quot;Speedup: {time_no_buffer/time_buffered:.0f}x&quot;)
+
+# Cleanup
+os.remove('no_buffer.bin')
+os.remove('buffered.bin')
+</code></pre>
+
+<h3 id="read-buffering">Read Buffering</h3>
+<pre class="highlight"><code class="language-python">import io
+
+# Reading also uses buffers
+with open('large_file.txt', 'r', buffering=4096) as f:
+    # First read() loads 4096 bytes into buffer
+    char1 = f.read(1)  # Reads from buffer (fast!)
+    char2 = f.read(1)  # Reads from buffer (fast!)
+
+    # After buffer is exhausted, next read loads another 4096 bytes
+    chunk = f.read(5000)  # Loads new data from disk
+
+# Demonstrate with binary buffering
+class InstrumentedFile:
+    &quot;&quot;&quot;File wrapper that counts actual disk reads&quot;&quot;&quot;
+    def __init__(self, filename, buffer_size):
+        self.raw_file = io.FileIO(filename, 'r')
+        self.buffered = io.BufferedReader(self.raw_file, buffer_size)
+        self.disk_reads = 0
+
+    def read(self, size):
+        # Monitor raw file reads (actual disk I/O)
+        initial_pos = self.raw_file.tell()
+        data = self.buffered.read(size)
+        if self.raw_file.tell() != initial_pos:
+            self.disk_reads += 1
+        return data
+
+    def close(self):
+        self.buffered.close()
+
+# Test buffering effect
+file = InstrumentedFile('test.txt', buffer_size=4096)
+for _ in range(100):
+    file.read(10)  # Read 10 bytes, 100 times
+print(f&quot;Disk reads: {file.disk_reads}&quot;)  # Much less than 100!
+file.close()
+</code></pre>
+
+<h3 id="explicit-buffer-control">Explicit Buffer Control</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+# Flush buffer explicitly
+with open('important.log', 'w') as f:
+    f.write('Critical data\n')
+    f.flush()  # Ensure written to disk immediately
+    # Continue with non-critical operations...
+
+# Flush all open files
+sys.stdout.flush()
+sys.stderr.flush()
+
+# Force OS to write to physical disk (fsync)
+import os
+with open('critical.dat', 'wb') as f:
+    f.write(b'important data')
+    f.flush()            # Flush Python buffer to OS
+    os.fsync(f.fileno()) # Force OS to write to physical disk
+</code></pre>
+
+<h3 id="buffer-gotchas-and-best-practices">Buffer Gotchas and Best Practices</h3>
+<pre class="highlight"><code class="language-python"># GOTCHA 1: Line buffering only works on newlines
+with open('file.txt', 'w', buffering=1) as f:
+    f.write('No newline')  # Stays in buffer!
+    f.write(' more text')  # Still in buffer!
+    f.write('\n')          # NOW it flushes!
+
+# GOTCHA 2: Binary mode doesn't support line buffering
+try:
+    f = open('file.bin', 'wb', buffering=1)
+except ValueError as e:
+    print(f&quot;Error: {e}&quot;)  # line buffering not supported for binary
+
+# GOTCHA 3: Reading and writing with buffering
+with open('file.txt', 'r+', buffering=8192) as f:
+    f.write('Hello')
+    # Buffer not flushed yet!
+    f.seek(0)
+    content = f.read()  # Might not see what we just wrote!
+
+    # Solution: flush before reading
+    f.seek(0)
+    f.write('Hello')
+    f.flush()  # Flush write buffer
+    f.seek(0)
+    content = f.read()  # Now we see the data
+
+# BEST PRACTICE: Use appropriate buffer sizes
+# Small files: default buffering is fine
+# Large files, sequential access: larger buffer (64KB - 1MB)
+# Random access: smaller buffer or no buffering
+
+# Good for large file processing
+with open('huge_file.dat', 'rb', buffering=1024*1024) as f:
+    data = f.read()
+
+# Good for database/log writing
+with open('database.log', 'a', buffering=1) as f:
+    f.write('Transaction committed\n')  # Immediate flush
+</code></pre>
+
+<h3 id="understanding-buffer-layers">Understanding Buffer Layers</h3>
+<pre class="highlight"><code class="language-python">&quot;&quot;&quot;
+Complete I/O stack with buffers:
+
+Application
+    ↓
+Python Buffer (io.BufferedWriter/Reader)
+    ↓ flush()
+OS Kernel Buffer (page cache)
+    ↓ fsync() / sync()
+Disk Controller Buffer
+    ↓
+Physical Disk
+&quot;&quot;&quot;
+
+import os
+import io
+
+def demonstrate_buffer_layers(filename):
+    &quot;&quot;&quot;Show all buffer layers&quot;&quot;&quot;
+    with open(filename, 'wb', buffering=8192) as f:
+        # Layer 1: Python buffer (8192 bytes)
+        f.write(b'x' * 100)
+        print(&quot;Data in Python buffer&quot;)
+
+        # Layer 2: OS kernel buffer
+        f.flush()
+        print(&quot;Data flushed to OS kernel buffer&quot;)
+
+        # Layer 3: Force to physical disk
+        os.fsync(f.fileno())
+        print(&quot;Data synchronized to physical disk&quot;)
+</code></pre>
+
+<hr />
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

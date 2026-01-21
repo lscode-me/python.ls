@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Additional resources for Coroutines and Data Processing Pipelines in Python">
+    <title>Additional Resources: Coroutines and Pipelines | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+                    <a href="index.html">Coroutines and Data Processing Pipelines in Python</a> &raquo;
+                    <span>Resources</span>
+                </nav>
+                <div class="lecture-content"><h1 id="additional-resources-coroutines-and-pipelines">Additional Resources: Coroutines and Pipelines</h1>
+<h2 id="official-documentation">Official Documentation</h2>
+<h3 id="python-docs">Python Docs</h3>
+<ul>
+<li><a href="https://peps.python.org/pep-0342/">PEP 342 – Coroutines via Enhanced Generators</a></li>
+<li>The original PEP that introduced <code>send()</code> and enhanced generators</li>
+<li>
+<p>Historical context and design rationale</p>
+</li>
+<li>
+<p><a href="https://www.dabeaz.com/generators/">Python Generator Tricks for Systems Programmers</a></p>
+</li>
+<li>Classic tutorial by David Beazley</li>
+<li>Deep dive into generators and coroutines</li>
+<li>
+<p>Real-world examples</p>
+</li>
+<li>
+<p><a href="https://docs.python.org/3/howto/functional.html#generator-expressions-and-list-comprehensions">Generator Expressions and List Comprehensions</a></p>
+</li>
+<li>Official Python functional programming guide</li>
+<li>Understanding generators vs lists</li>
+</ul>
+<h2 id="essential-reading">Essential Reading</h2>
+<h3 id="david-beazleys-work-must-read">David Beazley's Work (Must Read!)</h3>
+<ol>
+<li id="item-1">
+<p><strong>A Curious Course on Coroutines and Concurrency</strong><br />
+   - <a href="http://www.dabeaz.com/coroutines/">http://www.dabeaz.com/coroutines/</a><br />
+   - Comprehensive tutorial covering everything from basics to advanced patterns<br />
+   - PDF slides with code examples<br />
+   - This lecture is heavily inspired by this course!</p>
+</li>
+<li id="item-2">
+<p><strong>Generator Tricks for Systems Programmers</strong><br />
+   - <a href="http://www.dabeaz.com/generators/">http://www.dabeaz.com/generators/</a><br />
+   - Processing data with generators<br />
+   - Pipeline patterns<br />
+   - Performance considerations</p>
+</li>
+<li id="item-3">
+<p><strong>Understanding the Python GIL</strong><br />
+   - Context for why coroutines matter<br />
+   - Performance implications</p>
+</li>
+</ol>
+<h3 id="articles">Articles</h3>
+<ul>
+<li><a href="https://www.blog.pythonlibrary.org/2019/03/20/python-generators-coroutines-and-pipelines/">Coroutines and Pipelines - A Brief Tutorial</a></li>
+<li>Beginner-friendly introduction</li>
+<li>
+<p>Step-by-step examples</p>
+</li>
+<li>
+<p><a href="https://realpython.com/introduction-to-python-generators/">Python's yield: An Explanation</a></p>
+</li>
+<li>Understanding yield in depth</li>
+<li>
+<p>From generators to coroutines</p>
+</li>
+<li>
+<p><a href="https://medium.com/@__amol__/pipeline-pattern-in-python-51b1aaa49692">Pipeline Pattern in Python</a></p>
+</li>
+<li>Design patterns for data processing</li>
+<li>Real-world applications</li>
+</ul>
+<h2 id="video-tutorials">Video Tutorials</h2>
+<h3 id="conferences-talks">Conferences Talks</h3>
+<ol>
+<li id="item-1">
+<p><strong>David Beazley - Generators: The Final Frontier (PyCon 2014)</strong><br />
+   - <a href="https://www.youtube.com/watch?v=D1twn9kLmYg">YouTube Link</a><br />
+   - Advanced generator techniques<br />
+   - Mind-bending examples<br />
+   - 3 hours of pure genius</p>
+</li>
+<li id="item-2">
+<p><strong>James Powell - So you want to be a Python expert? (PyData 2017)</strong><br />
+   - <a href="https://www.youtube.com/watch?v=cKPlPJyQrt4">YouTube Link</a><br />
+   - Section on generators and iterators<br />
+   - Design patterns</p>
+</li>
+<li id="item-3">
+<p><strong>Raymond Hettinger - Thinking about Concurrency (Python Brasil 2020)</strong><br />
+   - <a href="https://www.youtube.com/watch?v=Bv25Dwe84g0">YouTube Link</a><br />
+   - Different concurrency models<br />
+   - When to use coroutines vs threads vs async</p>
+</li>
+</ol>
+<h3 id="youtube-tutorials">YouTube Tutorials</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=bD05uGo_sVI">Corey Schafer - Python Generators</a></li>
+<li>Clear explanation of generator basics</li>
+<li>
+<p>11 minutes</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=u3T7hmLthUU">Tech With Tim - Python Generators Explained</a></p>
+</li>
+<li>Practical examples</li>
+<li>15 minutes</li>
+</ul>
+<h2 id="books">Books</h2>
+<h3 id="python-specific">Python-Specific</h3>
+<ol>
+<li id="item-1">
+<p><strong>"Fluent Python" by Luciano Ramalho</strong><br />
+   - Chapter 14: Iterables, Iterators, and Generators<br />
+   - Chapter 16: Coroutines<br />
+   - Best comprehensive Python book<br />
+   - <a href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/">O'Reilly Link</a></p>
+</li>
+<li id="item-2">
+<p><strong>"Python Cookbook" by David Beazley &amp; Brian K. Jones</strong><br />
+   - Chapter 4: Iterators and Generators<br />
+   - Recipe-based approach<br />
+   - Production-ready patterns</p>
+</li>
+<li id="item-3">
+<p><strong>"Effective Python" by Brett Slatkin</strong><br />
+   - Item 30: Consider generators instead of returning lists<br />
+   - Item 31: Be defensive when iterating over arguments<br />
+   - Best practices</p>
+</li>
+</ol>
+<h3 id="general-computer-science">General Computer Science</h3>
+<ol>
+<li id="item-1">
+<p><strong>"Structure and Interpretation of Computer Programs" (SICP)</strong><br />
+   - Chapter 3.5: Streams<br />
+   - Theoretical foundation of stream processing<br />
+   - <a href="https://mitpress.mit.edu/sites/default/files/sicp/index.html">Free online</a></p>
+</li>
+<li id="item-2">
+<p><strong>"Design Patterns" (Gang of Four)</strong><br />
+   - Iterator pattern<br />
+   - Observer pattern (related to push/pull)</p>
+</li>
+</ol>
+<h2 id="interactive-learning">Interactive Learning</h2>
+<h3 id="online-courses">Online Courses</h3>
+<ul>
+<li><a href="https://realpython.com/courses/python-iterators-iterables/">Real Python - Iterators and Iterables</a></li>
+<li>Video course with exercises</li>
+<li>
+<p>Gradual progression to coroutines</p>
+</li>
+<li>
+<p><a href="https://www.python-engineer.com/courses/advancedpython/09-generators/">Python Engineer - Generators &amp; Coroutines</a></p>
+</li>
+<li>Free course</li>
+<li>Code examples included</li>
+</ul>
+<h3 id="practice-platforms">Practice Platforms</h3>
+<ul>
+<li><a href="https://exercism.org/tracks/python">Exercism - Python Generator Track</a></li>
+<li>Hands-on exercises</li>
+<li>
+<p>Mentor feedback</p>
+</li>
+<li>
+<p><a href="https://www.codewars.com/kata/search/python?q=generator">CodeWars - Python Generators</a></p>
+</li>
+<li>Challenges involving generators</li>
+<li>Community solutions</li>
+</ul>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<h3 id="async-programming-next-level">Async Programming (Next Level)</h3>
+<ul>
+<li><a href="https://peps.python.org/pep-0492/">PEP 492 – Coroutines with async and await syntax</a></li>
+<li>Modern async coroutines</li>
+<li>
+<p>Different from <code>send()</code>/<code>yield</code> coroutines</p>
+</li>
+<li>
+<p><a href="https://docs.python.org/3/library/asyncio.html">AsyncIO Documentation</a></p>
+</li>
+<li>Official async programming guide</li>
+<li>
+<p>Event loops and futures</p>
+</li>
+<li>
+<p><a href="https://realpython.com/async-io-python/">Async IO in Python: A Complete Walkthrough</a></p>
+</li>
+<li>Comprehensive guide</li>
+<li>When to use async vs traditional coroutines</li>
+</ul>
+<h3 id="functional-programming">Functional Programming</h3>
+<ul>
+<li><a href="https://docs.python.org/3/howto/functional.html">Python Functional Programming HOWTO</a></li>
+<li>Iterators, generators, itertools</li>
+<li>
+<p>Functional style in Python</p>
+</li>
+<li>
+<p><a href="https://toolz.readthedocs.io/">Toolz Documentation</a></p>
+</li>
+<li>Functional utilities for Python</li>
+<li>
+<p>Pipeline composition tools</p>
+</li>
+<li>
+<p><a href="https://github.com/EntilZha/PyFunctional">PyFunctional</a></p>
+</li>
+<li>Functional programming library</li>
+<li>Pipeline API similar to Scala/Spark</li>
+</ul>
+<h2 id="related-libraries">Related Libraries</h2>
+<h3 id="data-processing">Data Processing</h3>
+<ol>
+<li id="item-1">
+<p><strong>itertools</strong><br />
+   - <a href="https://docs.python.org/3/library/itertools.html">Documentation</a><br />
+   - Built-in Python module for iterator building blocks<br />
+   - Essential for advanced generator patterns</p>
+</li>
+<li id="item-2">
+<p><strong>more-itertools</strong><br />
+   - <a href="https://pypi.org/project/more-itertools/">PyPI</a><br />
+   - Extended iterator utilities<br />
+   - Windowing, chunking, peeking</p>
+</li>
+<li id="item-3">
+<p><strong>Pypeline</strong><br />
+   - <a href="https://github.com/kcarnold/pypeline">GitHub</a><br />
+   - Declarative pipelines in Python<br />
+   - Inspired by Unix pipes</p>
+</li>
+</ol>
+<h3 id="stream-processing">Stream Processing</h3>
+<ol>
+<li id="item-1">
+<p><strong>Apache Kafka Python Client</strong><br />
+   - <a href="https://pypi.org/project/kafka-python/">PyPI</a><br />
+   - Real-time data streaming<br />
+   - Producer/consumer patterns</p>
+</li>
+<li id="item-2">
+<p><strong>Faust</strong><br />
+   - <a href="https://faust.readthedocs.io/">Documentation</a><br />
+   - Stream processing library<br />
+   - Built on Kafka</p>
+</li>
+<li id="item-3">
+<p><strong>Streamz</strong><br />
+   - <a href="https://streamz.readthedocs.io/">Documentation</a><br />
+   - Real-time stream processing<br />
+   - Similar to pipeline patterns</p>
+</li>
+</ol>
+<h3 id="data-science">Data Science</h3>
+<ol>
+<li id="item-1">
+<p><strong>Pandas</strong><br />
+   - <a href="https://pandas.pydata.org/docs/user_guide/basics.html#iteration">Iterating over DataFrame</a><br />
+   - Efficient row iteration<br />
+   - Chunking large files</p>
+</li>
+<li id="item-2">
+<p><strong>Dask</strong><br />
+   - <a href="https://dask.org/">Documentation</a><br />
+   - Parallel computing<br />
+   - Lazy evaluation similar to generators</p>
+</li>
+</ol>
+<h2 id="real-world-examples">Real-World Examples</h2>
+<h3 id="open-source-projects-using-coroutines">Open Source Projects Using Coroutines</h3>
+<ol>
+<li id="item-1">
+<p><strong>loguru</strong><br />
+   - <a href="https://github.com/Delgan/loguru">GitHub</a><br />
+   - Modern logging library<br />
+   - Uses coroutines for handlers</p>
+</li>
+<li id="item-2">
+<p><strong>scrapy</strong><br />
+   - <a href="https://github.com/scrapy/scrapy">GitHub</a><br />
+   - Web scraping framework<br />
+   - Pipeline architecture for item processing</p>
+</li>
+<li id="item-3">
+<p><strong>boto3 (AWS SDK)</strong><br />
+   - <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/paginators.html">Documentation</a><br />
+   - Pagination using generators<br />
+   - Processing large result sets</p>
+</li>
+</ol>
+<h3 id="blog-posts-with-real-use-cases">Blog Posts with Real Use Cases</h3>
+<ul>
+<li><a href="https://realpython.com/python-csv/">Processing Large CSV Files in Python</a></li>
+<li>Practical generator usage</li>
+<li>
+<p>Memory-efficient processing</p>
+</li>
+<li>
+<p><a href="https://towardsdatascience.com/building-a-data-pipeline-with-python-generators-a80a4d19019e">Building Data Pipelines with Python</a></p>
+</li>
+<li>ETL examples</li>
+<li>
+<p>Best practices</p>
+</li>
+<li>
+<p><a href="https://www.datadoghq.com/blog/log-file-processing/">Real-time Log Processing with Python</a></p>
+</li>
+<li>Production systems</li>
+<li>Performance optimization</li>
+</ul>
+<h2 id="tools-debugging">Tools &amp; Debugging</h2>
+<h3 id="profiling">Profiling</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/profile.html">cProfile Documentation</a></li>
+<li>Profile generator/coroutine performance</li>
+<li>
+<p>Find bottlenecks</p>
+</li>
+<li>
+<p><a href="https://pypi.org/project/memory-profiler/">memory_profiler</a></p>
+</li>
+<li>Track memory usage</li>
+<li>
+<p>Verify lazy evaluation benefits</p>
+</li>
+<li>
+<p><a href="https://github.com/benfred/py-spy">py-spy</a></p>
+</li>
+<li>Sampling profiler</li>
+<li>Visualize generator execution</li>
+</ul>
+<h3 id="visualization">Visualization</h3>
+<ul>
+<li><a href="https://pythontutor.com/">Python Tutor</a></li>
+<li>Visualize generator execution</li>
+<li>Step through code</li>
+<li>
+<p>Great for understanding yield/send</p>
+</li>
+<li>
+<p><a href="https://jiffyclub.github.io/snakeviz/">SnakevIz</a></p>
+</li>
+<li>Profile visualization</li>
+<li>Interactive flamegraphs</li>
+</ul>
+<h2 id="comparisons-alternatives">Comparisons &amp; Alternatives</h2>
+<h3 id="coroutines-vs-alternatives">Coroutines vs Alternatives</h3>
+<ul>
+<li><a href="https://stackoverflow.com/questions/47789/generator-expressions-vs-list-comprehensions">Generators vs List Comprehensions - Performance</a></li>
+<li>When to use each</li>
+<li>
+<p>Benchmarks</p>
+</li>
+<li>
+<p><a href="https://realpython.com/python-concurrency/">Coroutines vs Threads vs Multiprocessing</a></p>
+</li>
+<li>Different concurrency models</li>
+<li>
+<p>Use cases for each</p>
+</li>
+<li>
+<p><a href="https://martinfowler.com/articles/201701-event-driven.html">Push vs Pull: Event-Driven Architecture</a></p>
+</li>
+<li>Architectural patterns</li>
+<li>Martin Fowler's guide</li>
+</ul>
+<h3 id="other-languages">Other Languages</h3>
+<ul>
+<li><a href="https://go.dev/tour/concurrency/2">Go Channels</a></li>
+<li>Similar concept in Go</li>
+<li>
+<p>CSP (Communicating Sequential Processes)</p>
+</li>
+<li>
+<p><a href="https://doc.rust-lang.org/book/ch13-02-iterators.html">Rust Iterators</a></p>
+</li>
+<li>Zero-cost abstractions</li>
+<li>
+<p>Lazy evaluation</p>
+</li>
+<li>
+<p><a href="https://clojure.org/reference/transducers">Clojure Transducers</a></p>
+</li>
+<li>Composable algorithmic transformations</li>
+<li>Similar pipeline concept</li>
+</ul>
+<h2 id="community-resources">Community Resources</h2>
+<h3 id="forums-discussion">Forums &amp; Discussion</h3>
+<ul>
+<li><a href="https://discuss.python.org/search?q=generators">Python Discourse - Generators</a></li>
+<li>Active community discussions</li>
+<li>
+<p>Design patterns</p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/tagged/coroutine+python">Stack Overflow - Coroutines Tag</a></p>
+</li>
+<li>Common questions</li>
+<li>
+<p>Solutions to problems</p>
+</li>
+<li>
+<p><a href="https://www.reddit.com/r/learnpython/">r/learnpython</a></p>
+</li>
+<li>Beginner-friendly</li>
+<li>Ask questions</li>
+</ul>
+<h3 id="code-repositories">Code Repositories</h3>
+<ul>
+<li><a href="https://github.com/vinta/awesome-python">Awesome Python - Generators</a></li>
+<li>Curated list of Python resources</li>
+<li>
+<p>Libraries and tools</p>
+</li>
+<li>
+<p><a href="https://github.com/faif/python-patterns">Python Patterns</a></p>
+</li>
+<li>Design pattern implementations</li>
+<li>Including iterator and pipeline patterns</li>
+</ul>
+<h2 id="exercises-challenges">Exercises &amp; Challenges</h2>
+<h3 id="online-judges">Online Judges</h3>
+<ul>
+<li><a href="https://leetcode.com/tag/generator/">LeetCode - Generator Problems</a></li>
+<li>Algorithm challenges</li>
+<li>
+<p>Interview prep</p>
+</li>
+<li>
+<p><a href="https://projecteuler.net/">Project Euler</a></p>
+</li>
+<li>Mathematical problems</li>
+<li>Good for testing lazy evaluation</li>
+</ul>
+<h3 id="practice-projects">Practice Projects</h3>
+<ol>
+<li id="item-1">
+<p><strong>Build a Log Analyzer</strong><br />
+   - Parse various log formats<br />
+   - Real-time statistics<br />
+   - Alert system</p>
+</li>
+<li id="item-2">
+<p><strong>CSV/JSON Transformer</strong><br />
+   - Format conversion pipeline<br />
+   - Data validation<br />
+   - Error handling</p>
+</li>
+<li id="item-3">
+<p><strong>Data Streaming Simulator</strong><br />
+   - Generate synthetic sensor data<br />
+   - Process with pipeline<br />
+   - Visualization</p>
+</li>
+<li id="item-4">
+<p><strong>Unix Utilities in Python</strong><br />
+   - Implement grep, wc, sort using coroutines<br />
+   - Learn pipeline composition</p>
+</li>
+</ol>
+<h2 id="stay-updated">Stay Updated</h2>
+<h3 id="blogs-to-follow">Blogs to Follow</h3>
+<ul>
+<li><a href="https://www.dabeaz.com/">David Beazley's Blog</a></li>
+<li>Author of the definitive coroutine tutorials</li>
+<li>
+<p>Advanced Python techniques</p>
+</li>
+<li>
+<p><a href="https://realpython.com/blog/">Real Python Blog</a></p>
+</li>
+<li>Regular Python tutorials</li>
+<li>
+<p>All skill levels</p>
+</li>
+<li>
+<p><a href="https://pyfound.blogspot.com/">Python Software Foundation News</a></p>
+</li>
+<li>Official Python news</li>
+<li>Community updates</li>
+</ul>
+<h3 id="newsletters">Newsletters</h3>
+<ul>
+<li><a href="https://www.pythonweekly.com/">Python Weekly</a></li>
+<li>Curated Python news</li>
+<li>
+<p>New libraries and tutorials</p>
+</li>
+<li>
+<p><a href="https://pycoders.com/">PyCoder's Weekly</a></p>
+</li>
+<li>Articles, projects, events</li>
+<li>Weekly digest</li>
+</ul>
+<h2 id="practical-tips">Practical Tips</h2>
+<h3 id="when-learning">When Learning</h3>
+<ol>
+<li id="item-1"><strong>Start with generators</strong> before moving to coroutines</li>
+<li id="item-2"><strong>Type out examples</strong> - don't just read</li>
+<li id="item-3"><strong>Use Python Tutor</strong> to visualize execution</li>
+<li id="item-4"><strong>Build small projects</strong> to solidify understanding</li>
+<li id="item-5"><strong>Compare approaches</strong> (list vs generator vs coroutine)</li>
+</ol>
+<h3 id="when-building">When Building</h3>
+<ol>
+<li id="item-1"><strong>Profile first</strong> - make sure you need optimization</li>
+<li id="item-2"><strong>Keep it simple</strong> - don't over-engineer</li>
+<li id="item-3"><strong>Document data flow</strong> - especially in complex pipelines</li>
+<li id="item-4"><strong>Test components</strong> independently</li>
+<li id="item-5"><strong>Handle cleanup</strong> properly (close coroutines)</li>
+</ol>
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<h3 id="resources-on-common-mistakes">Resources on Common Mistakes</h3>
+<ul>
+<li><a href="https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do">Common Generator Mistakes</a></li>
+<li>Comprehensive Stack Overflow answer</li>
+<li>
+<p>10,000+ upvotes</p>
+</li>
+<li>
+<p><a href="https://docs.quantifiedcode.com/python-anti-patterns/">Python Anti-Patterns - Generators</a></p>
+</li>
+<li>What NOT to do</li>
+<li>Bad practices to avoid</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p><strong>Start here:</strong><br />
+1. David Beazley's Coroutine Tutorial (must read!)<br />
+2. "Fluent Python" Chapter 14 &amp; 16<br />
+3. Python official docs on generators</p>
+<p><strong>Practice with:</strong><br />
+1. Exercises in homework (hw.md)<br />
+2. Build a log processor<br />
+3. Implement Unix utilities</p>
+<p><strong>Go deeper:</strong><br />
+1. Advanced patterns from David Beazley's talks<br />
+2. AsyncIO for async coroutines<br />
+3. Real-world projects</p>
+<p><strong>Remember:</strong> The best way to learn coroutines is to build something with them!</p>
+<hr />
+<p><em>Last updated: December 2025</em></p></div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

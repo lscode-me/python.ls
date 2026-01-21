@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A comprehensive Python course designed for life science professionals. This course covers Python fundamentals, object-oriented programming, functional programming, and practical applications for bioin">
+    <title>Python for Life Science Developers | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="python-for-life-science-developers">Python for Life Science Developers</h1>
+<p>A comprehensive Python course designed for life science professionals. This course covers Python fundamentals, object-oriented programming, functional programming, and practical applications for bioinformatics and data analysis.</p>
+<h2 id="course-overview">Course Overview</h2>
+<p>This course takes you from Python basics to advanced concepts, with a focus on writing clean, efficient, and Pythonic code. Each lecture includes theory, practical examples, homework assignments, and curated resources.</p>
+<hr />
+<h2 id="course-contents-11-modules">📚 Course Contents (11 Modules)</h2>
+<h3 id="1-objects-references-memory-types">1. Objects, References, Memory, Types</h3>
+<p>Understanding Python's object model, memory management, and core data types.</p>
+<p><strong>Topics Covered:</strong><br />
+- Python object model and references<br />
+- Built-in data types (immutable and mutable)<br />
+- Reference counting and garbage collection<br />
+- Memory management in CPython<br />
+- Identity vs equality (<code>is</code> vs <code>==</code>)<br />
+- Common pitfalls (mutable default arguments)</p>
+<p><strong>Materials:</strong><br />
+- <a href="01_Objects/">Lecture</a> - Core concepts and theory<br />
+- <a href="01_Objects/hw.html">Homework Assignments</a> - 6 practical exercises<br />
+- <a href="01_Objects/links.html">Resources</a> - Curated learning materials<br />
+- <a href="01_Objects/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="2-functions-and-functional-programming">2. Functions and Functional Programming</h3>
+<p>From basic functions to advanced functional programming patterns.</p>
+<p><strong>Topics Covered:</strong><br />
+- Function arguments (<em>args, </em>*kwargs)<br />
+- Scope and namespaces<br />
+- Lambda functions<br />
+- Closures and factory functions<br />
+- Decorators<br />
+- Higher-order functions (map, filter, reduce)<br />
+- Generator functions<br />
+- Recursion<br />
+- Type hints and annotations<br />
+- Functional programming concepts</p>
+<p><strong>Materials:</strong><br />
+- <a href="02_Functions/">Lecture</a> - Complete function guide<br />
+- <a href="02_Functions/hw.html">Homework Assignments</a> - 8 functional programming challenges<br />
+- <a href="02_Functions/links.html">Resources</a> - FP learning resources<br />
+- <a href="02_Functions/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="3-file-handling">3. File Handling</h3>
+<p>Comprehensive file I/O operations and data format handling.</p>
+<p><strong>Topics Covered:</strong><br />
+- File modes and operations<br />
+- Reading and writing files<br />
+- Text encodings<br />
+- Binary files<br />
+- pathlib for modern path operations<br />
+- Directory operations<br />
+- CSV and JSON file handling<br />
+- Temporary files<br />
+- File compression (ZIP, GZIP)<br />
+- Performance and buffering</p>
+<p><strong>Materials:</strong><br />
+- <a href="03_Files/">Lecture</a> - Complete file handling guide<br />
+- <a href="03_Files/hw.html">Homework Assignments</a> - 10 file processing projects<br />
+- <a href="03_Files/links.html">Resources</a> - File I/O resources<br />
+- <a href="03_Files/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="4-testing-in-python">4. Testing in Python</h3>
+<p>Writing reliable code with pytest, unittest, and Test-Driven Development.</p>
+<p><strong>Topics Covered:</strong><br />
+- unittest vs pytest<br />
+- Writing effective tests<br />
+- Fixtures and setup/teardown<br />
+- Parametrized tests<br />
+- Mocking and patching<br />
+- Test coverage<br />
+- Test-Driven Development (TDD)<br />
+- Integration vs unit tests<br />
+- Best practices and patterns<br />
+- Continuous Integration</p>
+<p><strong>Materials:</strong><br />
+- <a href="04_Testing/">Lecture</a> - Complete testing guide<br />
+- <a href="04_Testing/hw.html">Homework Assignments</a> - 12 testing challenges<br />
+- <a href="04_Testing/links.html">Resources</a> - Testing frameworks and tools<br />
+- <a href="04_Testing/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="5-iteration-protocol">5. Iteration Protocol</h3>
+<p>Master iterators, generators, and efficient data processing.</p>
+<p><strong>Topics Covered:</strong><br />
+- Iterator protocol (__iter__ and __next__)<br />
+- Creating custom iterators<br />
+- Generator functions and yield<br />
+- Generator expressions<br />
+- Generator methods (send, throw, close)<br />
+- yield from delegation<br />
+- itertools module mastery<br />
+- Lazy evaluation and memory efficiency<br />
+- Infinite sequences<br />
+- Real-world iteration patterns</p>
+<p><strong>Materials:</strong><br />
+- <a href="05_Iteration/">Lecture</a> - Complete iteration guide<br />
+- <a href="05_Iteration/hw.html">Homework Assignments</a> - 10 iteration challenges<br />
+- <a href="05_Iteration/links.html">Resources</a> - Iteration learning materials<br />
+- <a href="05_Iteration/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="6-streams-and-unix-io">6. Streams and Unix I/O</h3>
+<p>Learn to write Unix-style command-line utilities in Python.</p>
+<p><strong>Topics Covered:</strong><br />
+- Unix philosophy applied to Python<br />
+- Standard streams (stdin, stdout, stderr)<br />
+- Reading from stdin efficiently<br />
+- Writing to stdout and stderr correctly<br />
+- Command-line argument parsing with argparse<br />
+- Building pipeable filters and processors<br />
+- Buffering and performance considerations<br />
+- Signal handling (SIGINT, BrokenPipeError, KeyboardInterrupt)<br />
+- Creating composable Unix-style utilities<br />
+- Working with CSV, JSON, and structured data streams<br />
+- Creating pipelines in Python<br />
+- Binary data handling<br />
+- Progress monitoring and logging<br />
+- Best practices and templates for CLI tools</p>
+<p><strong>Materials:</strong><br />
+- <a href="06_Streams/">Lecture</a> - Complete Unix I/O guide<br />
+- <a href="06_Streams/hw.html">Homework Assignments</a> - 10 CLI utility projects<br />
+- <a href="06_Streams/links.html">Resources</a> - CLI tools and Unix resources<br />
+- <a href="06_Streams/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="7-coroutines-and-data-pipelines">7. Coroutines and Data Pipelines</h3>
+<p>Master coroutines for building push-based data processing pipelines.</p>
+<p><strong>Topics Covered:</strong><br />
+- From generators to coroutines<br />
+- The <code>send()</code> pattern and coroutine priming<br />
+- Bidirectional communication (yield for both producing and consuming)<br />
+- Push vs Pull data processing models<br />
+- Building coroutine-based pipelines (filter → map → sink)<br />
+- Pipeline components: filters, mappers, broadcasters (tee), sinks<br />
+- Stateful data processing with coroutines<br />
+- Real-time log processing and ETL pipelines<br />
+- Windowing, batching, and aggregation patterns<br />
+- Error handling and pipeline cleanup<br />
+- Branching and multi-consumer pipelines<br />
+- Performance optimization for streaming data<br />
+- Comparison with iterator-based (pull) pipelines<br />
+- Production-ready pipeline patterns</p>
+<p><strong>Materials:</strong><br />
+- <a href="07_Coroutines/">Lecture</a> - Complete coroutines and pipeline guide<br />
+- <a href="07_Coroutines/hw.html">Homework Assignments</a> - 8 pipeline projects (basic to expert)<br />
+- <a href="07_Coroutines/links.html">Resources</a> - David Beazley's tutorials and more<br />
+- <a href="07_Coroutines/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="8-object-oriented-programming-oop">8. Object-Oriented Programming (OOP)</h3>
+<p>Master classes, inheritance, encapsulation, and design patterns.</p>
+<p><strong>Topics Covered:</strong><br />
+- Classes and objects<br />
+- Instance vs class attributes<br />
+- Methods (instance, class, static)<br />
+- Inheritance and polymorphism<br />
+- Encapsulation and access control<br />
+- Abstract base classes<br />
+- Special methods (magic methods)<br />
+- Properties and descriptors<br />
+- Composition vs inheritance<br />
+- Advanced OOP (decorators, dataclasses, metaclasses, slots)</p>
+<p><strong>Materials:</strong><br />
+- <a href="08_OOP/">Lecture</a> - Core OOP concepts and advanced patterns<br />
+- <a href="08_OOP/hw.html">Homework Assignments</a> - 8 comprehensive projects<br />
+- <a href="08_OOP/links.html">Resources</a> - OOP learning materials<br />
+- <a href="08_OOP/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="9-pythonic-code">9. Pythonic Code</h3>
+<p>Write beautiful, idiomatic Python code following best practices.</p>
+<p><strong>Topics Covered:</strong><br />
+- The Zen of Python<br />
+- PEP 8 style guide<br />
+- List comprehensions and generator expressions<br />
+- Context managers (with statement)<br />
+- EAFP vs LBYL<br />
+- Pythonic idioms (enumerate, zip, unpacking)<br />
+- Code quality tools (Black, pylint, mypy)<br />
+- Performance optimization<br />
+- Common anti-patterns to avoid</p>
+<p><strong>Materials:</strong><br />
+- <a href="09_Pythonic/">Lecture</a> - Writing idiomatic Python<br />
+- <a href="09_Pythonic/hw.html">Homework Assignments</a> - Code refactoring exercises<br />
+- <a href="09_Pythonic/links.html">Resources</a> - Extensive Pythonic resources<br />
+- <a href="09_Pythonic/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="10-protocols-and-interfaces">10. Protocols and Interfaces</h3>
+<p>Understanding Python's protocol system and creating flexible interfaces.</p>
+<p><strong>Topics Covered:</strong><br />
+- Duck typing philosophy<br />
+- Built-in protocols (sequence, iterator, container, callable)<br />
+- Context manager protocol<br />
+- Numeric and comparison protocols<br />
+- typing.Protocol (structural subtyping)<br />
+- Abstract Base Classes (ABC)<br />
+- Collections ABCs<br />
+- Protocols vs ABC: when to use each</p>
+<p><strong>Materials:</strong><br />
+- <a href="10_Protocols/">Lecture</a> - Protocol system explained<br />
+- <a href="10_Protocols/hw.html">Homework Assignments</a> - 8 protocol implementation tasks<br />
+- <a href="10_Protocols/links.html">Resources</a> - Protocol and interface resources<br />
+- <a href="10_Protocols/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h3 id="11-python-for-bioinformatics">11. Python for Bioinformatics</h3>
+<p>Apply Python to real-world bioinformatics problems and biological data analysis.</p>
+<p><strong>Topics Covered:</strong><br />
+- DNA, RNA, and protein sequence analysis<br />
+- Genetic code and translation<br />
+- FASTA and FASTQ file parsing<br />
+- Sequence alignment algorithms (Needleman-Wunsch, Smith-Waterman)<br />
+- BioPython library essentials<br />
+- Working with biological databases (NCBI, UniProt)<br />
+- Sequence motif finding<br />
+- Open Reading Frame (ORF) detection<br />
+- Multiple sequence alignment<br />
+- Phylogenetic analysis basics<br />
+- Real-world bioinformatics workflows</p>
+<p><strong>Materials:</strong><br />
+- <a href="11_Bioinformatics/">Lecture</a> - Python for biological data<br />
+- <a href="11_Bioinformatics/hw.html">Homework Assignments</a> - 12 practical bioinformatics projects<br />
+- <a href="11_Bioinformatics/links.html">Resources</a> - Comprehensive bioinformatics resources<br />
+- <a href="11_Bioinformatics/quiz.html">Quiz</a> - Test your knowledge</p>
+<hr />
+<h2 id="learning-path">🎯 Learning Path</h2>
+<h3 id="recommended-order">Recommended Order</h3>
+<ol>
+<li id="item-1"><strong>Objects</strong> - Understand Python's foundation</li>
+<li id="item-2"><strong>Functions</strong> - Learn functional programming</li>
+<li id="item-3"><strong>Files</strong> - Handle real-world data</li>
+<li id="item-4"><strong>Testing</strong> - Write reliable, testable code</li>
+<li id="item-5"><strong>Iteration</strong> - Master efficient data processing</li>
+<li id="item-6"><strong>Streams</strong> - Build Unix-style command-line tools</li>
+<li id="item-7"><strong>Coroutines</strong> - Master push-based data pipelines</li>
+<li id="item-8"><strong>OOP</strong> - Master object-oriented design</li>
+<li id="item-9"><strong>Pythonic</strong> - Polish your Python skills</li>
+<li id="item-10"><strong>Protocols</strong> - Understand Python's interface system</li>
+<li id="item-11"><strong>Bioinformatics</strong> - Apply Python to life sciences (capstone)</li>
+</ol>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Basic programming knowledge</li>
+<li>Python 3.8+ installed</li>
+<li>Text editor or IDE (VS Code, PyCharm recommended)</li>
+</ul>
+<hr />
+<h2 id="how-to-use-this-course">📖 How to Use This Course</h2>
+<h3 id="for-each-topic">For Each Topic:</h3>
+<ol>
+<li id="item-1"><strong>Read the lecture notes</strong> (.md files) - Theory and examples</li>
+<li id="item-2"><strong>Complete homework assignments</strong> (hw.md) - Hands-on practice</li>
+<li id="item-3"><strong>Explore resources</strong> (links.md) - Deepen your understanding</li>
+<li id="item-4"><strong>Take the quiz</strong> (quiz.md) - Test your knowledge</li>
+<li id="item-5"><strong>Build projects</strong> - Apply what you've learned</li>
+</ol>
+<h3 id="study-tips">Study Tips:</h3>
+<ul>
+<li>Code along with examples</li>
+<li>Experiment in Python REPL or Jupyter notebooks</li>
+<li>Complete all homework assignments</li>
+<li>Review and refactor your code</li>
+<li>Read other people's code (GitHub, open source)</li>
+</ul>
+<hr />
+<h2 id="tools-and-resources">🛠️ Tools and Resources</h2>
+<h3 id="essential-tools">Essential Tools</h3>
+<ul>
+<li><strong>Python 3.8+</strong> - Latest Python version</li>
+<li><strong>pip</strong> - Package manager</li>
+<li><strong>venv</strong> - Virtual environments</li>
+<li><strong>IPython/Jupyter</strong> - Interactive development</li>
+<li><strong>VS Code/PyCharm</strong> - IDEs with Python support</li>
+</ul>
+<h3 id="code-quality-tools">Code Quality Tools</h3>
+<ul>
+<li><strong>Black</strong> - Code formatter</li>
+<li><strong>pylint</strong> - Code analysis</li>
+<li><strong>flake8</strong> - Style checker</li>
+<li><strong>mypy</strong> - Static type checker</li>
+<li><strong>isort</strong> - Import organizer</li>
+</ul>
+<h3 id="useful-libraries">Useful Libraries</h3>
+<ul>
+<li><strong>pytest</strong> - Testing framework</li>
+<li><strong>requests</strong> - HTTP library</li>
+<li><strong>pandas</strong> - Data analysis</li>
+<li><strong>numpy</strong> - Numerical computing</li>
+<li><strong>matplotlib</strong> - Visualization</li>
+</ul>
+<hr />
+<h2 id="practice-and-projects">🧪 Practice and Projects</h2>
+<h3 id="mini-projects-by-topic">Mini Projects by Topic</h3>
+<ol>
+<li id="item-1"><strong>Objects</strong> - Memory profiler tool</li>
+<li id="item-2"><strong>Functions</strong> - Data processing pipeline</li>
+<li id="item-3"><strong>Files</strong> - File-based database</li>
+<li id="item-4"><strong>Testing</strong> - Test suite for existing project</li>
+<li id="item-5"><strong>Iteration</strong> - Log file analyzer</li>
+<li id="item-6"><strong>Streams</strong> - Unix-style text processing toolkit</li>
+<li id="item-7"><strong>Coroutines</strong> - Real-time log monitoring system</li>
+<li id="item-8"><strong>OOP</strong> - Library management system</li>
+<li id="item-9"><strong>Pythonic</strong> - Code refactoring tool</li>
+<li id="item-10"><strong>Protocols</strong> - Custom collection classes</li>
+<li id="item-11"><strong>Bioinformatics</strong> - Sequence analysis pipeline</li>
+</ol>
+<h3 id="final-project-ideas">Final Project Ideas</h3>
+<ul>
+<li>Complete genomic sequence analyzer with visualization</li>
+<li>NGS data quality control and filtering pipeline</li>
+<li>Phylogenetic tree builder with multiple alignment</li>
+<li>Protein structure analyzer and property predictor</li>
+<li>Gene finder with functional annotation</li>
+<li>BLAST-like sequence similarity search tool</li>
+<li>Laboratory data management system with database integration</li>
+</ul>
+<hr />
+<h2 id="recommended-books">📚 Recommended Books</h2>
+<ol>
+<li id="item-1"><strong>"Fluent Python"</strong> by Luciano Ramalho - Deep dive into Python</li>
+<li id="item-2"><strong>"Effective Python"</strong> by Brett Slatkin - 90 best practices</li>
+<li id="item-3"><strong>"Python Tricks"</strong> by Dan Bader - Practical tips</li>
+<li id="item-4"><strong>"Python Cookbook"</strong> by David Beazley - Problem-solving recipes</li>
+</ol>
+<hr />
+<h2 id="online-resources">🌐 Online Resources</h2>
+<h3 id="official-documentation">Official Documentation</h3>
+<ul>
+<li><a href="https://docs.python.org/3/">Python.org Documentation</a></li>
+<li><a href="https://www.python.org/dev/peps/">Python PEPs</a></li>
+<li><a href="https://docs.python.org/3/library/">Python Standard Library</a></li>
+</ul>
+<h3 id="learning-platforms">Learning Platforms</h3>
+<ul>
+<li><a href="https://realpython.com/">Real Python</a></li>
+<li><a href="https://www.pythonmorsels.com/">Python Morsels</a></li>
+<li><a href="https://exercism.org/tracks/python">Exercism - Python Track</a></li>
+</ul>
+<h3 id="community">Community</h3>
+<ul>
+<li><a href="https://www.reddit.com/r/learnpython/">r/learnpython</a></li>
+<li><a href="https://discord.gg/python">Python Discord</a></li>
+<li><a href="https://stackoverflow.com/questions/tagged/python">Stack Overflow - Python</a></li>
+</ul>
+<hr />
+<h2 id="tips-for-life-science-developers">💡 Tips for Life Science Developers</h2>
+<h3 id="relevant-applications">Relevant Applications</h3>
+<ul>
+<li>Sequence analysis and alignment</li>
+<li>Statistical analysis of experimental data</li>
+<li>Data visualization for publications</li>
+<li>Automated data processing pipelines</li>
+<li>Integration with lab instruments</li>
+<li>Database management for research data</li>
+</ul>
+<h3 id="domain-specific-libraries">Domain-Specific Libraries</h3>
+<ul>
+<li><strong>BioPython</strong> - Biological computation (covered in detail)</li>
+<li><strong>scipy/numpy</strong> - Scientific computing</li>
+<li><strong>pandas</strong> - Data manipulation and analysis</li>
+<li><strong>matplotlib/seaborn</strong> - Visualization</li>
+<li><strong>scikit-learn</strong> - Machine learning</li>
+<li><strong>pysam</strong> - SAM/BAM file handling</li>
+<li><strong>PyVCF</strong> - Variant calling format</li>
+<li><strong>HTSeq</strong> - High-throughput sequencing analysis</li>
+</ul>
+<hr />
+<h2 id="contributing">🤝 Contributing</h2>
+<p>Found an error or have a suggestion? Feel free to:<br />
+- Open an issue<br />
+- Submit a pull request<br />
+- Share your feedback</p>
+<hr />
+<h2 id="license">📝 License</h2>
+<p>This course material is provided for educational purposes.</p>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p>After completing this Python course:<br />
+1. Explore the <strong>Linux for Developers</strong> section<br />
+2. Build real-world projects<br />
+3. Contribute to open source<br />
+4. Apply skills to your research<br />
+5. Share knowledge with others</p>
+<p>Happy coding! 🐍</p>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../courses/Python/">Python</a></li>
+                    <li><a href="../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

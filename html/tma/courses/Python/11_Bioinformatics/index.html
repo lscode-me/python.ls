@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Bioinformatics combines biology, computer science, and statistics to analyze biological data. Python has become the de facto language for bioinformati">
+    <title>Python for Bioinformatics | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Python for Bioinformatics</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="python-for-bioinformatics">Python for Bioinformatics</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Bioinformatics combines biology, computer science, and statistics to analyze biological data. Python has become the de facto language for bioinformatics due to its readability, extensive libraries, and strong community support. This module introduces practical Python applications for common bioinformatics tasks.</p>
+<hr />
+<h2 id="1-biological-sequences">1. Biological Sequences</h2>
+<h3 id="11-dna-rna-and-protein-sequences">1.1 DNA, RNA, and Protein Sequences</h3>
+<pre class="highlight"><code class="language-python"># Basic sequence representation
+# DNA (Deoxyribonucleic Acid) - genetic material
+# Valid characters: A (Adenine), T (Thymine), G (Guanine), C (Cytosine)
+# Sometimes includes: N (any base), R (A or G), Y (C or T), etc. (IUPAC codes)
+dna_seq = &quot;ATGCGATCGATCG&quot;
+
+# RNA (Ribonucleic Acid) - messenger molecule
+# Valid characters: A (Adenine), U (Uracil), G (Guanine), C (Cytosine)
+# Note: U replaces T in RNA
+rna_seq = &quot;AUGCGAUCGAUCG&quot;
+
+# Protein (amino acid sequence)
+# Valid characters: 20 standard amino acids (single letter codes)
+# A=Ala, C=Cys, D=Asp, E=Glu, F=Phe, G=Gly, H=His, I=Ile, K=Lys, L=Leu,
+# M=Met, N=Asn, P=Pro, Q=Gln, R=Arg, S=Ser, T=Thr, V=Val, W=Trp, Y=Tyr
+# Also: * (stop codon), X (unknown amino acid)
+protein_seq = &quot;MRSID&quot;
+
+# Sequence as a class
+class DNASequence:
+    def __init__(self, sequence):
+        self.sequence = sequence.upper()
+        self.validate()
+
+    def validate(self):
+        valid_bases = set('ATCG')
+        if not set(self.sequence).issubset(valid_bases):
+            raise ValueError(&quot;Invalid DNA sequence&quot;)
+
+    def gc_content(self):
+        &quot;&quot;&quot;
+        Calculate GC content percentage
+        GC content: ratio of G and C bases (important for DNA stability)
+        Higher GC content = stronger binding (3 hydrogen bonds vs 2 for AT)
+        &quot;&quot;&quot;
+        gc_count = self.sequence.count('G') + self.sequence.count('C')
+        return (gc_count / len(self.sequence)) * 100
+
+    def complement(self):
+        &quot;&quot;&quot;
+        Return complement sequence
+        Complement: base pairing rules (A pairs with T, G pairs with C)
+        Forms the opposite strand in double helix
+        &quot;&quot;&quot;
+        complement_dict = {'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G'}
+        return ''.join(complement_dict[base] for base in self.sequence)
+
+    def reverse_complement(self):
+        &quot;&quot;&quot;
+        Return reverse complement
+        Reverse complement: complement sequence read backwards (5' to 3')
+        Important for finding genes on opposite DNA strand
+        &quot;&quot;&quot;
+        return self.complement()[::-1]
+
+    def transcribe(self):
+        &quot;&quot;&quot;
+        Transcribe DNA to RNA
+        Transcription: process of copying DNA to RNA
+        Simply replaces Thymine (T) with Uracil (U)
+        &quot;&quot;&quot;
+        return self.sequence.replace('T', 'U')
+
+# Usage
+dna = DNASequence(&quot;ATGCGATCGATCG&quot;)
+print(f&quot;GC Content: {dna.gc_content():.2f}%&quot;)
+print(f&quot;Complement: {dna.complement()}&quot;)
+print(f&quot;Reverse Complement: {dna.reverse_complement()}&quot;)
+print(f&quot;RNA: {dna.transcribe()}&quot;)
+</code></pre>
+
+<h3 id="12-genetic-code-and-translation">1.2 Genetic Code and Translation</h3>
+<pre class="highlight"><code class="language-python"># Standard genetic code (Universal genetic code)
+# Codon: 3 nucleotides that code for one amino acid
+# 64 possible codons (4^3) code for 20 amino acids + stop signals
+# Genetic code is redundant (multiple codons for same amino acid)
+CODON_TABLE = {
+    'ATA':'I', 'ATC':'I', 'ATT':'I', 'ATG':'M',
+    'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACT':'T',
+    'AAC':'N', 'AAT':'N', 'AAA':'K', 'AAG':'K',
+    'AGC':'S', 'AGT':'S', 'AGA':'R', 'AGG':'R',
+    'CTA':'L', 'CTC':'L', 'CTG':'L', 'CTT':'L',
+    'CCA':'P', 'CCC':'P', 'CCG':'P', 'CCT':'P',
+    'CAC':'H', 'CAT':'H', 'CAA':'Q', 'CAG':'Q',
+    'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGT':'R',
+    'GTA':'V', 'GTC':'V', 'GTG':'V', 'GTT':'V',
+    'GCA':'A', 'GCC':'A', 'GCG':'A', 'GCT':'A',
+    'GAC':'D', 'GAT':'D', 'GAA':'E', 'GAG':'E',
+    'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGT':'G',
+    'TCA':'S', 'TCC':'S', 'TCG':'S', 'TCT':'S',
+    'TTC':'F', 'TTT':'F', 'TTA':'L', 'TTG':'L',
+    'TAC':'Y', 'TAT':'Y', 'TAA':'*', 'TAG':'*',
+    'TGC':'C', 'TGT':'C', 'TGA':'*', 'TGG':'W',
+}
+
+def translate(dna_sequence):
+    &quot;&quot;&quot;
+    Translate DNA sequence to protein
+    Translation: converting nucleotide sequence into amino acid sequence
+    Reads sequence in triplets (codons), each coding for one amino acid
+    Stops at stop codon (*, TAA, TAG, TGA)
+    &quot;&quot;&quot;
+    protein = []
+    for i in range(0, len(dna_sequence) - 2, 3):
+        codon = dna_sequence[i:i+3]
+        amino_acid = CODON_TABLE.get(codon, 'X')  # X = unknown
+        if amino_acid == '*':  # Stop codon (translation termination)
+            break
+        protein.append(amino_acid)
+    return ''.join(protein)
+
+# Find all ORFs (Open Reading Frames)
+def find_orfs(dna_sequence, min_length=100):
+    &quot;&quot;&quot;
+    Find all open reading frames
+    ORF: DNA sequence between start codon (ATG) and stop codon
+    Potential protein-coding region in genome
+    Reading frame: one of three ways to divide sequence into codons
+    &quot;&quot;&quot;
+    orfs = []
+    start_codon = 'ATG'  # Methionine (Met, M) - translation start signal
+    stop_codons = ['TAA', 'TAG', 'TGA']  # Translation termination signals
+
+    for frame in range(3):
+        for i in range(frame, len(dna_sequence) - 2, 3):
+            codon = dna_sequence[i:i+3]
+            if codon == start_codon:
+                # Found start, look for stop
+                for j in range(i + 3, len(dna_sequence) - 2, 3):
+                    stop_codon = dna_sequence[j:j+3]
+                    if stop_codon in stop_codons:
+                        orf = dna_sequence[i:j+3]
+                        if len(orf) &gt;= min_length:
+                            orfs.append({
+                                'sequence': orf,
+                                'start': i,
+                                'end': j + 3,
+                                'frame': frame,
+                                'protein': translate(orf)
+                            })
+                        break
+    return orfs
+
+# Usage
+dna = &quot;ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG&quot;
+protein = translate(dna)
+print(f&quot;Protein: {protein}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="2-working-with-fasta-files">2. Working with FASTA Files</h2>
+<h3 id="21-fasta-format">2.1 FASTA Format</h3>
+<p>FASTA is the most common format for biological sequences.</p>
+<p><strong>FASTA format components:</strong>
+- Header line: starts with <code>&gt;</code> followed by sequence ID and description
+- Sequence lines: actual nucleotide or amino acid sequence
+- Can be single-line or multi-line (wrapped at 60-80 characters)
+- Multiple sequences separated by new headers</p>
+<pre class="highlight"><code>&gt;seq1 Description of sequence 1
+ATGCGATCGATCGATCGATCG
+ATCGATCGATCGATCGATCGA
+&gt;seq2 Description of sequence 2
+GCTAGCTAGCTAGCTAGCTAG
+</code></pre>
+
+<h3 id="22-parsing-fasta-files">2.2 Parsing FASTA Files</h3>
+<pre class="highlight"><code class="language-python">from typing import Iterator, Tuple
+
+def parse_fasta(filename: str) -&gt; Iterator[Tuple[str, str, str]]:
+    &quot;&quot;&quot;
+    Parse FASTA file yielding (id, description, sequence) tuples
+    &quot;&quot;&quot;
+    with open(filename, 'r') as f:
+        seq_id = None
+        description = None
+        sequence = []
+
+        for line in f:
+            line = line.strip()
+            if line.startswith('&gt;'):
+                # Yield previous sequence if exists
+                if seq_id is not None:
+                    yield seq_id, description, ''.join(sequence)
+
+                # Parse header
+                header = line[1:].split(maxsplit=1)
+                seq_id = header[0]
+                description = header[1] if len(header) &gt; 1 else &quot;&quot;
+                sequence = []
+            else:
+                sequence.append(line)
+
+        # Yield last sequence
+        if seq_id is not None:
+            yield seq_id, description, ''.join(sequence)
+
+# FASTA writer
+def write_fasta(filename: str, sequences: list, line_length=60):
+    &quot;&quot;&quot;
+    Write sequences to FASTA file
+    sequences: list of (id, description, sequence) tuples
+    &quot;&quot;&quot;
+    with open(filename, 'w') as f:
+        for seq_id, description, sequence in sequences:
+            f.write(f&quot;&gt;{seq_id} {description}\n&quot;)
+            # Write sequence in chunks
+            for i in range(0, len(sequence), line_length):
+                f.write(sequence[i:i+line_length] + '\n')
+
+# Usage
+for seq_id, desc, seq in parse_fasta('sequences.fasta'):
+    print(f&quot;ID: {seq_id}&quot;)
+    print(f&quot;Description: {desc}&quot;)
+    print(f&quot;Length: {len(seq)}&quot;)
+    print(f&quot;GC%: {(seq.count('G') + seq.count('C')) / len(seq) * 100:.2f}&quot;)
+    print()
+</code></pre>
+
+<h3 id="23-fasta-statistics">2.3 FASTA Statistics</h3>
+<pre class="highlight"><code class="language-python">def fasta_statistics(filename: str):
+    &quot;&quot;&quot;Calculate statistics for FASTA file&quot;&quot;&quot;
+    sequences = list(parse_fasta(filename))
+
+    lengths = [len(seq) for _, _, seq in sequences]
+    gc_contents = [
+        (seq.count('G') + seq.count('C')) / len(seq) * 100
+        for _, _, seq in sequences
+    ]
+
+    stats = {
+        'num_sequences': len(sequences),
+        'total_length': sum(lengths),
+        'min_length': min(lengths),
+        'max_length': max(lengths),
+        'mean_length': sum(lengths) / len(lengths),
+        'mean_gc': sum(gc_contents) / len(gc_contents),
+    }
+
+    return stats
+</code></pre>
+
+<hr />
+<h2 id="3-working-with-fastq-files">3. Working with FASTQ Files</h2>
+<h3 id="31-fastq-format">3.1 FASTQ Format</h3>
+<p>FASTQ format includes quality scores for each base.</p>
+<p><strong>FASTQ format structure (4 lines per sequence):</strong>
+- Line 1: <code>@</code> + sequence identifier
+- Line 2: raw sequence (DNA/RNA bases)
+- Line 3: <code>+</code> (optionally followed by same identifier)
+- Line 4: quality scores (ASCII characters, one per base)</p>
+<p><strong>Quality scores (Phred scores):</strong>
+- Phred score = -10 * log10(error probability)
+- Q20 = 99% accuracy, Q30 = 99.9% accuracy
+- Higher score = better quality</p>
+<pre class="highlight"><code>@SEQ_ID
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
++
+!''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF&gt;&gt;&gt;&gt;&gt;&gt;CCCCCCC65
+</code></pre>
+
+<h3 id="32-parsing-fastq">3.2 Parsing FASTQ</h3>
+<pre class="highlight"><code class="language-python">def parse_fastq(filename: str):
+    &quot;&quot;&quot;Parse FASTQ file&quot;&quot;&quot;
+    with open(filename, 'r') as f:
+        while True:
+            header = f.readline().strip()
+            if not header:
+                break
+
+            sequence = f.readline().strip()
+            plus = f.readline().strip()
+            quality = f.readline().strip()
+
+            seq_id = header[1:].split()[0]
+            yield seq_id, sequence, quality
+
+def quality_to_phred(quality_char: str) -&gt; int:
+    &quot;&quot;&quot;
+    Convert quality character to Phred score
+    Phred+33 encoding: ASCII value - 33 = quality score
+    Example: '!' = 33 - 33 = Q0 (lowest), 'I' = 73 - 33 = Q40 (highest typical)
+    &quot;&quot;&quot;
+    return ord(quality_char) - 33
+
+def mean_quality(quality_string: str) -&gt; float:
+    &quot;&quot;&quot;Calculate mean Phred quality score&quot;&quot;&quot;
+    scores = [quality_to_phred(q) for q in quality_string]
+    return sum(scores) / len(scores)
+
+def filter_fastq(input_file: str, output_file: str, 
+                 min_quality: float = 20, min_length: int = 50):
+    &quot;&quot;&quot;Filter FASTQ by quality and length&quot;&quot;&quot;
+    with open(output_file, 'w') as out:
+        for seq_id, sequence, quality in parse_fastq(input_file):
+            if len(sequence) &gt;= min_length and mean_quality(quality) &gt;= min_quality:
+                out.write(f&quot;@{seq_id}\n{sequence}\n+\n{quality}\n&quot;)
+
+# Usage
+for seq_id, seq, qual in parse_fastq('reads.fastq'):
+    avg_qual = mean_quality(qual)
+    print(f&quot;{seq_id}: Length={len(seq)}, AvgQual={avg_qual:.1f}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="4-sequence-alignment">4. Sequence Alignment</h2>
+<p><strong>Sequence Alignment terminology:</strong>
+- <strong>Alignment</strong>: arranging sequences to identify regions of similarity
+- <strong>Match</strong>: identical nucleotides/amino acids at same position (+score)
+- <strong>Mismatch</strong>: different nucleotides/amino acids at same position (-penalty)
+- <strong>Gap</strong>: insertion or deletion represented by dash (-) (-penalty)
+- <strong>Global alignment</strong>: align entire sequences end-to-end
+- <strong>Local alignment</strong>: find best matching subsequences
+- <strong>Identity</strong>: percentage of exact matches
+- <strong>Similarity</strong>: percentage of matches + conservative substitutions</p>
+<h3 id="41-simple-alignment-scoring">4.1 Simple Alignment Scoring</h3>
+<pre class="highlight"><code class="language-python">def simple_alignment_score(seq1: str, seq2: str, 
+                          match=1, mismatch=-1, gap=-2) -&gt; int:
+    &quot;&quot;&quot;Score two aligned sequences&quot;&quot;&quot;
+    score = 0
+    for a, b in zip(seq1, seq2):
+        if a == '-' or b == '-':
+            score += gap
+        elif a == b:
+            score += match
+        else:
+            score += mismatch
+    return score
+
+# Example
+seq1 = &quot;ATCG-AT&quot;
+seq2 = &quot;ATCGCAT&quot;
+print(f&quot;Alignment score: {simple_alignment_score(seq1, seq2)}&quot;)
+</code></pre>
+
+<h3 id="42-needleman-wunsch-global-alignment">4.2 Needleman-Wunsch (Global Alignment)</h3>
+<pre class="highlight"><code class="language-python">import numpy as np
+
+def needleman_wunsch(seq1: str, seq2: str, 
+                     match=1, mismatch=-1, gap=-2):
+    &quot;&quot;&quot;
+    Global sequence alignment using Needleman-Wunsch algorithm
+
+    Needleman-Wunsch: dynamic programming algorithm for global alignment
+    - Finds optimal alignment of entire sequences
+    - Uses scoring matrix to calculate alignment score
+    - Traceback to reconstruct actual alignment
+    - Time complexity: O(n*m) where n, m are sequence lengths
+    &quot;&quot;&quot;
+    n, m = len(seq1), len(seq2)
+
+    # Initialize scoring matrix
+    score = np.zeros((n + 1, m + 1))
+
+    # Initialize first row and column
+    for i in range(n + 1):
+        score[i][0] = gap * i
+    for j in range(m + 1):
+        score[0][j] = gap * j
+
+    # Fill scoring matrix
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            match_score = score[i-1][j-1] + (match if seq1[i-1] == seq2[j-1] else mismatch)
+            delete = score[i-1][j] + gap
+            insert = score[i][j-1] + gap
+            score[i][j] = max(match_score, delete, insert)
+
+    # Traceback
+    align1, align2 = '', ''
+    i, j = n, m
+
+    while i &gt; 0 or j &gt; 0:
+        current_score = score[i][j]
+
+        if i &gt; 0 and j &gt; 0:
+            diagonal = score[i-1][j-1]
+            match_mismatch = match if seq1[i-1] == seq2[j-1] else mismatch
+
+            if current_score == diagonal + match_mismatch:
+                align1 = seq1[i-1] + align1
+                align2 = seq2[j-1] + align2
+                i -= 1
+                j -= 1
+                continue
+
+        if i &gt; 0 and current_score == score[i-1][j] + gap:
+            align1 = seq1[i-1] + align1
+            align2 = '-' + align2
+            i -= 1
+        elif j &gt; 0:
+            align1 = '-' + align1
+            align2 = seq2[j-1] + align2
+            j -= 1
+
+    return align1, align2, score[n][m]
+
+# Usage
+seq1 = &quot;ATCGAT&quot;
+seq2 = &quot;ATCGCAT&quot;
+align1, align2, score = needleman_wunsch(seq1, seq2)
+print(f&quot;Sequence 1: {align1}&quot;)
+print(f&quot;Sequence 2: {align2}&quot;)
+print(f&quot;Score: {score}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="5-introduction-to-biopython">5. Introduction to BioPython</h2>
+<p>BioPython is the most popular Python library for bioinformatics.</p>
+<p><strong>BioPython key features:</strong>
+- Sequence manipulation (Seq, SeqRecord objects)
+- File format parsers (FASTA, GenBank, PDB, etc.)
+- BLAST and other sequence search tools
+- Multiple sequence alignment
+- Phylogenetic tree construction
+- Access to online biological databases (NCBI, UniProt)
+- Protein structure analysis
+- Population genetics and more</p>
+<h3 id="51-installation">5.1 Installation</h3>
+<pre class="highlight"><code class="language-bash">pip install biopython
+</code></pre>
+
+<h3 id="52-working-with-sequences">5.2 Working with Sequences</h3>
+<pre class="highlight"><code class="language-python">from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+
+# Create a sequence
+dna_seq = Seq(&quot;ATGCGATCGATCG&quot;)
+
+# Transcription and translation
+rna_seq = dna_seq.transcribe()
+protein_seq = dna_seq.translate()
+
+print(f&quot;DNA: {dna_seq}&quot;)
+print(f&quot;RNA: {rna_seq}&quot;)
+print(f&quot;Protein: {protein_seq}&quot;)
+
+# Complement and reverse complement
+print(f&quot;Complement: {dna_seq.complement()}&quot;)
+print(f&quot;Reverse complement: {dna_seq.reverse_complement()}&quot;)
+
+# GC content
+from Bio.SeqUtils import gc_fraction
+print(f&quot;GC%: {gc_fraction(dna_seq) * 100:.2f}&quot;)
+</code></pre>
+
+<h3 id="53-readingwriting-files-with-biopython">5.3 Reading/Writing Files with BioPython</h3>
+<pre class="highlight"><code class="language-python">from Bio import SeqIO
+
+# Read FASTA file
+sequences = list(SeqIO.parse(&quot;sequences.fasta&quot;, &quot;fasta&quot;))
+for record in sequences:
+    print(f&quot;ID: {record.id}&quot;)
+    print(f&quot;Description: {record.description}&quot;)
+    print(f&quot;Sequence: {record.seq[:50]}...&quot;)
+    print(f&quot;Length: {len(record.seq)}&quot;)
+
+# Write FASTA file
+records = [
+    SeqRecord(Seq(&quot;ATGCGATCG&quot;), id=&quot;seq1&quot;, description=&quot;Example sequence 1&quot;),
+    SeqRecord(Seq(&quot;GCTAGCTAG&quot;), id=&quot;seq2&quot;, description=&quot;Example sequence 2&quot;),
+]
+SeqIO.write(records, &quot;output.fasta&quot;, &quot;fasta&quot;)
+
+# Convert between formats
+SeqIO.convert(&quot;input.fastq&quot;, &quot;fastq&quot;, &quot;output.fasta&quot;, &quot;fasta&quot;)
+</code></pre>
+
+<h3 id="54-sequence-analysis">5.4 Sequence Analysis</h3>
+<pre class="highlight"><code class="language-python">from Bio.SeqUtils import molecular_weight, ProtParam
+
+# DNA molecular weight
+dna = Seq(&quot;ATGCGATCGATCG&quot;)
+print(f&quot;Molecular weight: {molecular_weight(dna, 'DNA'):.2f}&quot;)
+
+# Protein analysis
+protein = Seq(&quot;MRSID&quot;)
+analyzed_seq = ProtParam.ProteinAnalysis(str(protein))
+
+print(f&quot;Molecular weight: {analyzed_seq.molecular_weight():.2f}&quot;)
+print(f&quot;Aromaticity: {analyzed_seq.aromaticity():.3f}&quot;)
+print(f&quot;Instability index: {analyzed_seq.instability_index():.2f}&quot;)
+print(f&quot;Isoelectric point: {analyzed_seq.isoelectric_point():.2f}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="6-pairwise-sequence-alignment-with-biopython">6. Pairwise Sequence Alignment with BioPython</h2>
+<pre class="highlight"><code class="language-python">from Bio import pairwise2
+from Bio.pairwise2 import format_alignment
+
+seq1 = &quot;ATCGAT&quot;
+seq2 = &quot;ATCGCAT&quot;
+
+# Global alignment
+alignments = pairwise2.align.globalxx(seq1, seq2)
+for alignment in alignments[:3]:  # Show top 3
+    print(format_alignment(*alignment))
+
+# Local alignment
+alignments = pairwise2.align.localxx(seq1, seq2)
+for alignment in alignments[:3]:
+    print(format_alignment(*alignment))
+
+# Custom scoring
+alignments = pairwise2.align.globalms(
+    seq1, seq2,
+    match=2,      # Match score
+    mismatch=-1,  # Mismatch penalty
+    open=-2,      # Gap open penalty
+    extend=-0.5   # Gap extend penalty
+)
+</code></pre>
+
+<hr />
+<h2 id="7-working-with-biological-databases">7. Working with Biological Databases</h2>
+<p><strong>Major biological databases:</strong>
+- <strong>NCBI</strong> (National Center for Biotechnology Information): GenBank, PubMed, protein databases
+- <strong>UniProt</strong>: protein sequences and functional information
+- <strong>Ensembl</strong>: genome annotation and comparative genomics
+- <strong>PDB</strong>: protein 3D structures
+- <strong>KEGG</strong>: metabolic pathways and diseases</p>
+<h3 id="71-ncbi-entrez">7.1 NCBI Entrez</h3>
+<pre class="highlight"><code class="language-python">from Bio import Entrez
+
+# Always tell NCBI who you are
+Entrez.email = &quot;your.email@example.com&quot;
+
+# Search for sequences
+handle = Entrez.esearch(db=&quot;nucleotide&quot;, term=&quot;Homo sapiens[Organism] AND COX1&quot;)
+record = Entrez.read(handle)
+handle.close()
+
+print(f&quot;Total results: {record['Count']}&quot;)
+print(f&quot;IDs: {record['IdList'][:5]}&quot;)
+
+# Fetch sequence
+handle = Entrez.efetch(db=&quot;nucleotide&quot;, id=&quot;NM_001354870&quot;, rettype=&quot;fasta&quot;, retmode=&quot;text&quot;)
+fasta_data = handle.read()
+handle.close()
+print(fasta_data[:200])
+
+# Get GenBank record
+handle = Entrez.efetch(db=&quot;nucleotide&quot;, id=&quot;NM_001354870&quot;, rettype=&quot;gb&quot;, retmode=&quot;text&quot;)
+record = SeqIO.read(handle, &quot;genbank&quot;)
+handle.close()
+
+print(f&quot;ID: {record.id}&quot;)
+print(f&quot;Description: {record.description}&quot;)
+print(f&quot;Features: {len(record.features)}&quot;)
+</code></pre>
+
+<h3 id="72-uniprot">7.2 UniProt</h3>
+<pre class="highlight"><code class="language-python">import requests
+
+def fetch_uniprot(uniprot_id):
+    &quot;&quot;&quot;Fetch protein sequence from UniProt&quot;&quot;&quot;
+    url = f&quot;https://www.uniprot.org/uniprot/{uniprot_id}.fasta&quot;
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        return response.text
+    else:
+        return None
+
+# Usage
+fasta = fetch_uniprot(&quot;P04637&quot;)  # p53 tumor suppressor
+print(fasta[:200])
+</code></pre>
+
+<hr />
+<h2 id="8-sequence-motif-finding">8. Sequence Motif Finding</h2>
+<pre class="highlight"><code class="language-python">import re
+
+def find_motif(sequence: str, motif: str):
+    &quot;&quot;&quot;Find all occurrences of a motif in sequence&quot;&quot;&quot;
+    positions = []
+    for i in range(len(sequence) - len(motif) + 1):
+        if sequence[i:i+len(motif)] == motif:
+            positions.append(i)
+    return positions
+
+# With regular expressions
+def find_pattern(sequence: str, pattern: str):
+    &quot;&quot;&quot;Find patterns using regex&quot;&quot;&quot;
+    return [m.start() for m in re.finditer(pattern, sequence)]
+
+# Example: Find restriction sites
+def find_restriction_sites(sequence: str):
+    &quot;&quot;&quot;Find common restriction enzyme sites&quot;&quot;&quot;
+    sites = {
+        'EcoRI': 'GAATTC',
+        'BamHI': 'GGATCC',
+        'PstI': 'CTGCAG',
+        'HindIII': 'AAGCTT',
+    }
+
+    results = {}
+    for enzyme, site in sites.items():
+        positions = find_motif(sequence, site)
+        if positions:
+            results[enzyme] = positions
+
+    return results
+
+# Usage
+dna = &quot;ATGAATTCGGATCCCTGCAGAAGCTT&quot;
+sites = find_restriction_sites(dna)
+for enzyme, positions in sites.items():
+    print(f&quot;{enzyme}: {positions}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="9-multiple-sequence-alignment">9. Multiple Sequence Alignment</h2>
+<p><strong>Multiple Sequence Alignment (MSA):</strong>
+- Alignment of 3 or more biological sequences
+- Used to find conserved regions across species
+- Important for phylogenetic analysis
+- Common tools: ClustalW, MUSCLE, MAFFT, T-Coffee
+- Applications: identify functional domains, study evolution, design primers</p>
+<pre class="highlight"><code class="language-python">from Bio.Align.Applications import ClustalwCommandline
+
+# Using ClustalW (must be installed)
+clustalw_cline = ClustalwCommandline(&quot;clustalw2&quot;, infile=&quot;sequences.fasta&quot;)
+stdout, stderr = clustalw_cline()
+
+# Read alignment
+from Bio import AlignIO
+alignment = AlignIO.read(&quot;sequences.aln&quot;, &quot;clustal&quot;)
+
+print(f&quot;Alignment length: {alignment.get_alignment_length()}&quot;)
+print(f&quot;Number of sequences: {len(alignment)}&quot;)
+
+# Calculate consensus
+from Bio.Align import AlignInfo
+summary = AlignInfo.SummaryInfo(alignment)
+consensus = summary.dumb_consensus()
+print(f&quot;Consensus: {consensus}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="10-phylogenetic-trees">10. Phylogenetic Trees</h2>
+<p><strong>Phylogenetic analysis terminology:</strong>
+- <strong>Phylogenetic tree</strong>: diagram showing evolutionary relationships
+- <strong>Branch</strong>: line representing evolutionary path
+- <strong>Node</strong>: point where branches split (common ancestor)
+- <strong>Leaf</strong>: terminal node (present-day species/sequences)
+- <strong>UPGMA</strong>: Unweighted Pair Group Method with Arithmetic mean
+- <strong>Neighbor-Joining (NJ)</strong>: fast distance-based tree construction
+- <strong>Bootstrap</strong>: statistical measure of tree reliability
+- <strong>Distance matrix</strong>: pairwise distances between all sequences</p>
+<pre class="highlight"><code class="language-python">from Bio import Phylo
+from Bio.Phylo.TreeConstruction import DistanceCalculator, DistanceTreeConstructor
+
+# Calculate distance matrix
+calculator = DistanceCalculator('identity')
+dm = calculator.get_distance(alignment)
+
+# Construct tree
+constructor = DistanceTreeConstructor()
+tree = constructor.upgma(dm)
+
+# Draw tree
+Phylo.draw_ascii(tree)
+
+# Save tree
+Phylo.write(tree, &quot;tree.xml&quot;, &quot;phyloxml&quot;)
+</code></pre>
+
+<hr />
+<h2 id="11-real-world-example-gene-finder">11. Real-World Example: Gene Finder</h2>
+<pre class="highlight"><code class="language-python">class GeneFinder:
+    &quot;&quot;&quot;Simple gene finder&quot;&quot;&quot;
+
+    def __init__(self, sequence):
+        self.sequence = sequence.upper()
+        self.min_protein_length = 100
+
+    def find_genes(self):
+        &quot;&quot;&quot;Find all potential genes (ORFs)&quot;&quot;&quot;
+        genes = []
+
+        # Check all 6 reading frames (3 forward, 3 reverse)
+        for strand, seq in [(+1, self.sequence), (-1, str(Seq(self.sequence).reverse_complement()))]:
+            for frame in range(3):
+                orfs = self._find_orfs_in_frame(seq, frame)
+                for orf in orfs:
+                    orf['strand'] = '+' if strand == 1 else '-'
+                    genes.append(orf)
+
+        return sorted(genes, key=lambda x: len(x['protein']), reverse=True)
+
+    def _find_orfs_in_frame(self, sequence, frame):
+        &quot;&quot;&quot;Find ORFs in a specific reading frame&quot;&quot;&quot;
+        orfs = []
+        start_codon = 'ATG'
+        stop_codons = {'TAA', 'TAG', 'TGA'}
+
+        i = frame
+        while i &lt; len(sequence) - 2:
+            codon = sequence[i:i+3]
+
+            if codon == start_codon:
+                # Found start, look for stop
+                start_pos = i
+                protein = []
+
+                for j in range(i, len(sequence) - 2, 3):
+                    codon = sequence[j:j+3]
+                    if len(codon) &lt; 3:
+                        break
+
+                    aa = CODON_TABLE.get(codon, 'X')
+
+                    if codon in stop_codons:
+                        # Found complete ORF
+                        if len(protein) &gt;= self.min_protein_length // 3:
+                            orfs.append({
+                                'start': start_pos,
+                                'end': j + 3,
+                                'frame': frame,
+                                'length': j + 3 - start_pos,
+                                'protein': ''.join(protein)
+                            })
+                        i = j + 3
+                        break
+                    else:
+                        protein.append(aa)
+                else:
+                    # No stop codon found
+                    i += 3
+            else:
+                i += 3
+
+        return orfs
+
+# Usage
+sequence = &quot;ATGAAACCCGGGTTTAAATAGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGTAG&quot;
+finder = GeneFinder(sequence)
+genes = finder.find_genes()
+
+for i, gene in enumerate(genes, 1):
+    print(f&quot;Gene {i}:&quot;)
+    print(f&quot;  Position: {gene['start']}-{gene['end']}&quot;)
+    print(f&quot;  Strand: {gene['strand']}&quot;)
+    print(f&quot;  Frame: {gene['frame']}&quot;)
+    print(f&quot;  Length: {gene['length']} bp&quot;)
+    print(f&quot;  Protein: {gene['protein'][:50]}...&quot;)
+    print()
+</code></pre>
+
+<hr />
+<h2 id="12-best-practices-for-bioinformatics">12. Best Practices for Bioinformatics</h2>
+<h3 id="121-data-validation">12.1 Data Validation</h3>
+<pre class="highlight"><code class="language-python">def validate_dna(sequence: str) -&gt; bool:
+    &quot;&quot;&quot;Validate DNA sequence&quot;&quot;&quot;
+    return all(base in 'ATCGN' for base in sequence.upper())
+
+def validate_protein(sequence: str) -&gt; bool:
+    &quot;&quot;&quot;Validate protein sequence&quot;&quot;&quot;
+    valid_aa = set('ACDEFGHIKLMNPQRSTVWY*')
+    return all(aa in valid_aa for aa in sequence.upper())
+
+def sanitize_sequence(sequence: str) -&gt; str:
+    &quot;&quot;&quot;Remove whitespace and numbers from sequence&quot;&quot;&quot;
+    return ''.join(c for c in sequence if c.isalpha())
+</code></pre>
+
+<h3 id="122-memory-efficient-processing">12.2 Memory-Efficient Processing</h3>
+<pre class="highlight"><code class="language-python">def process_large_fasta(filename: str):
+    &quot;&quot;&quot;Process large FASTA files efficiently&quot;&quot;&quot;
+    for seq_id, description, sequence in parse_fasta(filename):
+        # Process one sequence at a time
+        gc_content = (sequence.count('G') + sequence.count('C')) / len(sequence)
+
+        # Don't store all sequences in memory
+        print(f&quot;{seq_id}: {len(sequence)} bp, GC={gc_content:.2%}&quot;)
+</code></pre>
+
+<h3 id="123-error-handling">12.3 Error Handling</h3>
+<pre class="highlight"><code class="language-python">def safe_translate(sequence: str) -&gt; str:
+    &quot;&quot;&quot;Translate with error handling&quot;&quot;&quot;
+    try:
+        if not validate_dna(sequence):
+            raise ValueError(&quot;Invalid DNA sequence&quot;)
+
+        if len(sequence) % 3 != 0:
+            print(f&quot;Warning: Sequence length ({len(sequence)}) not divisible by 3&quot;)
+
+        return translate(sequence)
+
+    except Exception as e:
+        print(f&quot;Translation error: {e}&quot;)
+        return None
+</code></pre>
+
+<hr />
+<h2 id="summary">Summary</h2>
+<p>In this module, you learned:</p>
+<ol>
+<li id="item-1"><strong>Biological Sequences</strong> - Representation and manipulation of DNA, RNA, and proteins</li>
+<li id="item-2"><strong>File Formats</strong> - Working with FASTA and FASTQ files</li>
+<li id="item-3"><strong>Sequence Alignment</strong> - Global and local alignment algorithms</li>
+<li id="item-4"><strong>BioPython</strong> - Using the most popular bioinformatics library</li>
+<li id="item-5"><strong>Databases</strong> - Accessing NCBI and UniProt programmatically</li>
+<li id="item-6"><strong>Motif Finding</strong> - Searching for patterns in sequences</li>
+<li id="item-7"><strong>Gene Finding</strong> - Identifying open reading frames</li>
+<li id="item-8"><strong>Best Practices</strong> - Writing robust bioinformatics code</li>
+</ol>
+<h3 id="next-steps">Next Steps</h3>
+<ul>
+<li>Explore more BioPython modules (Blast, Phylo, PDB)</li>
+<li>Learn about genomic data formats (SAM/BAM, VCF, GFF)</li>
+<li>Study machine learning for bioinformatics</li>
+<li>Practice with real datasets from public databases</li>
+<li>Contribute to open-source bioinformatics projects</li>
+</ul>
+<h3 id="additional-resources">Additional Resources</h3>
+<ul>
+<li>BioPython Tutorial: http://biopython.org/DIST/docs/tutorial/Tutorial.html</li>
+<li>Rosalind Problems: http://rosalind.info/</li>
+<li>NCBI E-utilities: https://www.ncbi.nlm.nih.gov/books/NBK25501/</li>
+</ul>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>File Formats | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="file-formats">File Formats</h1>
+<h2 id="text-and-binary-files-magic-numbers-and-mime-types">Text and Binary Files, Magic Numbers, and MIME Types</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Understand number systems and hex (module 02_NumberSystems)</li>
+<li>Know the basics of encodings (module 03_Encodings)</li>
+<li>Be able to work in command line</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Distinguish between text and binary files</li>
+<li>Determine file type by magic numbers</li>
+<li>Work with the <code>file</code> command to identify formats</li>
+<li>Understand and use MIME types</li>
+<li>Analyze binary file structure</li>
+<li>Work with bioinformatics file formats (FASTA, FASTQ, BAM, VCF)</li>
+</ul>
+<hr />
+<h2 id="1-file-classification">1. File Classification</h2>
+<h3 id="11-text-vs-binary">1.1 Text vs Binary</h3>
+<p><strong>Text Files:</strong></p>
+<ul>
+<li>Contain characters in a specific encoding</li>
+<li>Human-readable in a text editor</li>
+<li>Divided into lines by newlines (<code>\n</code> or <code>\r\n</code>)</li>
+<li>Examples: <code>.txt</code>, <code>.py</code>, <code>.json</code>, <code>.html</code>, <code>.csv</code>, <code>.fasta</code>, <code>.vcf</code></li>
+</ul>
+<p><strong>Binary Files:</strong></p>
+<ul>
+<li>Contain arbitrary bytes (0-255)</li>
+<li>Require special programs for interpretation</li>
+<li>Don't have a concept of "lines"</li>
+<li>Examples: <code>.png</code>, <code>.pdf</code>, <code>.exe</code>, <code>.zip</code>, <code>.bam</code>, <code>.bcf</code></li>
+</ul>
+<p><strong>Bioinformatics Examples:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FASTA</td>
+<td>Text</td>
+<td>DNA/protein sequences</td>
+</tr>
+<tr>
+<td>FASTQ</td>
+<td>Text</td>
+<td>Sequences with quality scores</td>
+</tr>
+<tr>
+<td>VCF</td>
+<td>Text</td>
+<td>Variant calls</td>
+</tr>
+<tr>
+<td>SAM</td>
+<td>Text</td>
+<td>Sequence alignments</td>
+</tr>
+<tr>
+<td>BAM</td>
+<td>Binary</td>
+<td>Compressed SAM</td>
+</tr>
+<tr>
+<td>BCF</td>
+<td>Binary</td>
+<td>Compressed VCF</td>
+</tr>
+<tr>
+<td>CRAM</td>
+<td>Binary</td>
+<td>Compressed alignment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-how-to-determine-type">1.2 How to Determine Type</h3>
+<pre class="highlight"><code class="language-bash"># Text file
+file README.md
+# README.md: UTF-8 Unicode text
+
+# Binary file  
+file photo.jpg
+# photo.jpg: JPEG image data, JFIF standard 1.01
+
+# Executable file
+file /bin/ls
+# /bin/ls: Mach-O 64-bit executable arm64
+
+# Bioinformatics examples
+file sequences.fasta
+# sequences.fasta: ASCII text
+
+file aligned.bam
+# aligned.bam: data
+
+file variants.vcf.gz
+# variants.vcf.gz: gzip compressed data
+</code></pre>
+
+<h3 id="13-viewing-contents">1.3 Viewing Contents</h3>
+<pre class="highlight"><code class="language-bash"># Text file — read directly
+cat script.py
+
+# Binary file — hex dump
+xxd image.png | head -5
+</code></pre>
+
+<pre class="highlight"><code>00000000: 8950 4e47 0d0a 1a0a 0000 000d 4948 4452  .PNG........IHDR
+00000010: 0000 0100 0000 0100 0802 0000 00d3 1025  ...............%
+00000020: 0000 0006 624b 4744 0000 ff00 00ff 00ff  ....bKGD........
+00000030: 0000 0001 7348 4953 0000 0000 0000 0001  ....sHIS........
+00000040: 0100 0101 0001 0000 0001 0000 0001 0100  ................
+</code></pre>
+
+<p><strong>FASTA (Text):</strong></p>
+<pre class="highlight"><code class="language-bash">head sequences.fasta
+</code></pre>
+
+<pre class="highlight"><code>&gt;NM_007294.3 Homo sapiens BRCA1
+ATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAA
+AATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTG
+</code></pre>
+
+<p><strong>BAM (Binary):</strong></p>
+<pre class="highlight"><code class="language-bash">xxd aligned.bam | head -3
+</code></pre>
+
+<pre class="highlight"><code>00000000: 4241 4d01 3800 0000 4048 4409 5644 3a31  BAM.8...@HD.VD:1
+00000010: 2e36 0953 4f72 743a 636f 6f72 6469 6e61  .6.SOrt:coordina
+00000020: 7465 0940 5351 0953 4e3a 6368 7231 094c  te.@SQ.SN:chr1.L
+</code></pre>
+
+<hr />
+<h2 id="2-magic-numbers">2. Magic Numbers</h2>
+<h3 id="21-what-are-they">2.1 What Are They</h3>
+<p><strong>Magic numbers</strong> are fixed bytes at the beginning of a file that identify its format.</p>
+<pre class="highlight"><code>PNG:  89 50 4E 47 0D 0A 1A 0A  (.PNG....)
+JPEG: FF D8 FF
+PDF:  25 50 44 46              (%PDF)
+ZIP:  50 4B 03 04              (PK..)
+GIF:  47 49 46 38              (GIF8)
+BAM:  42 41 4D 01              (BAM.)
+</code></pre>
+
+<h3 id="22-popular-signatures">2.2 Popular Signatures</h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Magic Bytes (hex)</th>
+<th>ASCII</th>
+<th>Offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PNG</td>
+<td><code>89 50 4E 47 0D 0A 1A 0A</code></td>
+<td>.PNG....</td>
+<td>0</td>
+</tr>
+<tr>
+<td>JPEG</td>
+<td><code>FF D8 FF</code></td>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>GIF87a</td>
+<td><code>47 49 46 38 37 61</code></td>
+<td>GIF87a</td>
+<td>0</td>
+</tr>
+<tr>
+<td>GIF89a</td>
+<td><code>47 49 46 38 39 61</code></td>
+<td>GIF89a</td>
+<td>0</td>
+</tr>
+<tr>
+<td>PDF</td>
+<td><code>25 50 44 46 2D</code></td>
+<td>%PDF-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td><code>50 4B 03 04</code></td>
+<td>PK..</td>
+<td>0</td>
+</tr>
+<tr>
+<td>RAR</td>
+<td><code>52 61 72 21 1A 07</code></td>
+<td>Rar!..</td>
+<td>0</td>
+</tr>
+<tr>
+<td>7z</td>
+<td><code>37 7A BC AF 27 1C</code></td>
+<td>7z...</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ELF</td>
+<td><code>7F 45 4C 46</code></td>
+<td>.ELF</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Mach-O</td>
+<td><code>FE ED FA CE</code> or <code>CF FA ED FE</code></td>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>gzip</td>
+<td><code>1F 8B</code></td>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td><code>42 5A 68</code></td>
+<td>BZh</td>
+<td>0</td>
+</tr>
+<tr>
+<td>tar</td>
+<td><code>75 73 74 61 72</code></td>
+<td>ustar</td>
+<td>257</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td><code>53 51 4C 69 74 65 20 66 6F 72 6D 61 74 20 33</code></td>
+<td>SQLite format 3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MP3</td>
+<td><code>FF FB</code> or <code>49 44 33</code></td>
+<td>- / ID3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td><code>66 74 79 70</code></td>
+<td>ftyp</td>
+<td>4</td>
+</tr>
+<tr>
+<td>DOCX/XLSX</td>
+<td><code>50 4B 03 04</code></td>
+<td>PK..</td>
+<td>0 (it's ZIP!)</td>
+</tr>
+<tr>
+<td><strong>BAM</strong></td>
+<td><code>42 41 4D 01</code></td>
+<td>BAM.</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>BCF</strong></td>
+<td><code>42 43 46 02</code></td>
+<td>BCF.</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>CRAM</strong></td>
+<td><code>43 52 41 4D</code></td>
+<td>CRAM</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-checking-magic-numbers">2.3 Checking Magic Numbers</h3>
+<pre class="highlight"><code class="language-bash"># First 8 bytes of PNG
+xxd -l 8 image.png
+# 00000000: 8950 4e47 0d0a 1a0a                      .PNG....
+
+# First 3 bytes of JPEG
+xxd -l 3 photo.jpg  
+# 00000000: ffd8 ff                                  ...
+
+# Check PDF
+xxd -l 5 document.pdf
+# 00000000: 2550 4446 2d                             %PDF-
+
+# Bioinformatics: Check BAM
+xxd -l 4 aligned.bam
+# 00000000: 4241 4d01                                BAM.
+
+# Check gzipped FASTQ
+xxd -l 2 reads.fastq.gz
+# 00000000: 1f8b                                     ..
+</code></pre>
+
+<h3 id="24-why-file-extension-is-not-reliable">2.4 Why File Extension Is Not Reliable</h3>
+<pre class="highlight"><code class="language-bash"># Rename PNG to .txt
+cp image.png fake.txt
+
+# file will detect correctly!
+file fake.txt
+# fake.txt: PNG image data, 256 x 256, 8-bit/color RGB
+
+# Attacker can hide malicious file
+file dangerous.jpg  # Actually it's EXE
+# dangerous.jpg: PE32 executable (GUI) Intel 80386
+</code></pre>
+
+<p><strong>Bioinformatics Security:</strong></p>
+<pre class="highlight"><code class="language-bash"># Someone might rename BAM as TXT to bypass filters
+mv aligned.bam suspicious.txt
+
+# But file command reveals the truth
+file suspicious.txt
+# suspicious.txt: data
+
+# Check magic number
+xxd -l 4 suspicious.txt
+# 00000000: 4241 4d01                                BAM.
+</code></pre>
+
+<hr />
+<h2 id="3-the-file-command">3. The file Command</h2>
+<h3 id="31-basic-usage">3.1 Basic Usage</h3>
+<pre class="highlight"><code class="language-bash"># Determine file type
+file document.pdf
+# document.pdf: PDF document, version 1.4
+
+# Multiple files
+file *.txt
+# README.txt: UTF-8 Unicode text
+# notes.txt: ASCII text
+
+# Recursively for directory
+find . -type f -exec file {} \;
+</code></pre>
+
+<p><strong>Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Check genomic files
+file sequences.fasta
+# sequences.fasta: ASCII text
+
+file aligned.bam
+# aligned.bam: data
+
+file variants.vcf
+# variants.vcf: ASCII text
+
+file reads.fastq.gz
+# reads.fastq.gz: gzip compressed data
+
+file annotations.gff3
+# annotations.gff3: ASCII text, with very long lines
+</code></pre>
+
+<h3 id="32-useful-options">3.2 Useful Options</h3>
+<pre class="highlight"><code class="language-bash"># MIME type and encoding
+file -i document.txt
+# document.txt: text/plain; charset=utf-8
+
+# MIME type only
+file --mime-type document.pdf
+# document.pdf: application/pdf
+
+# Encoding only
+file --mime-encoding script.py
+# script.py: us-ascii
+
+# Follow symlinks
+file -L link_to_file
+
+# Don't show filename
+file -b document.pdf
+# PDF document, version 1.4
+
+# Read list of files from stdin
+find . -name &quot;*.jpg&quot; | file -f -
+</code></pre>
+
+<p><strong>Bioinformatics Workflow:</strong></p>
+<pre class="highlight"><code class="language-bash"># Check all files in genomics project
+find /data/project -type f | file -f - | grep -E &quot;gzip|ASCII|data&quot;
+
+# Verify FASTA files
+file *.fasta *.fa
+# sequences.fasta: ASCII text
+# reference.fa: ASCII text
+
+# Check compressed files
+file *.gz
+# reads_R1.fastq.gz: gzip compressed data
+# reads_R2.fastq.gz: gzip compressed data
+</code></pre>
+
+<h3 id="33-how-file-works">3.3 How file Works</h3>
+<p>The <code>file</code> command uses:</p>
+<ol>
+<li id="item-1"><strong>Magic database</strong> (<code>/usr/share/misc/magic</code> or <code>/usr/share/file/magic</code>)</li>
+<li id="item-2"><strong>Heuristics</strong> for text files</li>
+<li id="item-3"><strong>Structure analysis</strong> for binary files</li>
+</ol>
+<pre class="highlight"><code class="language-bash"># View magic database
+file -C -m /usr/share/misc/magic
+
+# Magic file version
+file -v
+</code></pre>
+
+<h3 id="34-writing-custom-magic-rules">3.4 Writing Custom Magic Rules</h3>
+<pre class="highlight"><code class="language-bash"># File: my_magic
+# Format: offset type test message
+
+# Define hypothetical format
+0 string MYFORMAT My Custom Format
+&gt;8 lelong x version %d
+
+# For BAM files (if not in default magic)
+0 string BAM\x01 Binary Alignment/Map file
+&gt;4 lelong x header length %d
+</code></pre>
+
+<pre class="highlight"><code class="language-bash"># Use with custom database
+file -m my_magic testfile
+</code></pre>
+
+<hr />
+<h2 id="4-mime-types">4. MIME Types</h2>
+<h3 id="41-what-is-mime">4.1 What Is MIME</h3>
+<p><strong>MIME</strong> (Multipurpose Internet Mail Extensions) is a standard for describing content type.</p>
+<p>Format: <code>type/subtype</code></p>
+<pre class="highlight"><code>text/plain
+text/html
+application/json
+image/png
+audio/mpeg
+video/mp4
+</code></pre>
+
+<h3 id="42-main-types">4.2 Main Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>Text data</td>
+<td>text/plain, text/html, text/css</td>
+</tr>
+<tr>
+<td>image</td>
+<td>Images</td>
+<td>image/png, image/jpeg, image/gif</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>Audio</td>
+<td>audio/mpeg, audio/ogg</td>
+</tr>
+<tr>
+<td>video</td>
+<td>Video</td>
+<td>video/mp4, video/webm</td>
+</tr>
+<tr>
+<td>application</td>
+<td>Applications, data</td>
+<td>application/json, application/pdf</td>
+</tr>
+<tr>
+<td>multipart</td>
+<td>Compound data</td>
+<td>multipart/form-data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-common-mime-types">4.3 Common MIME Types</h3>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>MIME Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.txt</td>
+<td>text/plain</td>
+<td></td>
+</tr>
+<tr>
+<td>.html</td>
+<td>text/html</td>
+<td></td>
+</tr>
+<tr>
+<td>.css</td>
+<td>text/css</td>
+<td></td>
+</tr>
+<tr>
+<td>.js</td>
+<td>application/javascript</td>
+<td></td>
+</tr>
+<tr>
+<td>.json</td>
+<td>application/json</td>
+<td></td>
+</tr>
+<tr>
+<td>.xml</td>
+<td>application/xml</td>
+<td></td>
+</tr>
+<tr>
+<td>.pdf</td>
+<td>application/pdf</td>
+<td></td>
+</tr>
+<tr>
+<td>.zip</td>
+<td>application/zip</td>
+<td></td>
+</tr>
+<tr>
+<td>.png</td>
+<td>image/png</td>
+<td></td>
+</tr>
+<tr>
+<td>.jpg</td>
+<td>image/jpeg</td>
+<td></td>
+</tr>
+<tr>
+<td>.gif</td>
+<td>image/gif</td>
+<td></td>
+</tr>
+<tr>
+<td>.svg</td>
+<td>image/svg+xml</td>
+<td></td>
+</tr>
+<tr>
+<td>.mp3</td>
+<td>audio/mpeg</td>
+<td></td>
+</tr>
+<tr>
+<td>.mp4</td>
+<td>video/mp4</td>
+<td></td>
+</tr>
+<tr>
+<td>.wasm</td>
+<td>application/wasm</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Bioinformatics</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>.fasta</td>
+<td>text/plain</td>
+<td>No official MIME</td>
+</tr>
+<tr>
+<td>.fastq</td>
+<td>text/plain</td>
+<td>No official MIME</td>
+</tr>
+<tr>
+<td>.vcf</td>
+<td>text/plain</td>
+<td>No official MIME</td>
+</tr>
+<tr>
+<td>.bam</td>
+<td>application/octet-stream</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>.bcf</td>
+<td>application/octet-stream</td>
+<td>Binary</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-mime-in-http">4.4 MIME in HTTP</h3>
+<pre class="highlight"><code class="language-http">HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{&quot;message&quot;: &quot;Hello&quot;}
+</code></pre>
+
+<pre class="highlight"><code class="language-http">POST /upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;photo.jpg&quot;
+Content-Type: image/jpeg
+
+[binary data]
+------WebKitFormBoundary--
+</code></pre>
+
+<p><strong>Bioinformatics API Example:</strong></p>
+<pre class="highlight"><code class="language-http">POST /api/analyze HTTP/1.1
+Content-Type: application/json
+
+{
+  &quot;sequence&quot;: &quot;ATCGATCG&quot;,
+  &quot;format&quot;: &quot;fasta&quot;,
+  &quot;analysis&quot;: &quot;blast&quot;
+}
+</code></pre>
+
+<pre class="highlight"><code class="language-http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Disposition: attachment; filename=&quot;results.vcf&quot;
+
+{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;results_url&quot;: &quot;/download/variants.vcf.gz&quot;
+}
+</code></pre>
+
+<h3 id="45-mime-in-python">4.5 MIME in Python</h3>
+<pre class="highlight"><code class="language-python">import mimetypes
+
+# By extension
+print(mimetypes.guess_type('document.pdf'))
+# ('application/pdf', None)
+
+print(mimetypes.guess_type('archive.tar.gz'))
+# ('application/x-tar', 'gzip')
+
+# By MIME type
+print(mimetypes.guess_extension('image/png'))
+# '.png'
+
+# With python-magic for content-based detection
+import magic
+
+mime = magic.Magic(mime=True)
+print(mime.from_file('photo.jpg'))
+# 'image/jpeg'
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import magic
+
+def detect_genomic_format(filepath):
+    &quot;&quot;&quot;Detect genomic file format.&quot;&quot;&quot;
+    mime = magic.Magic(mime=True)
+    mime_type = mime.from_file(filepath)
+
+    # Check if compressed
+    if mime_type == 'application/gzip':
+        # Might be .fastq.gz, .vcf.gz, .fasta.gz
+        if filepath.endswith('.fastq.gz'):
+            return 'FASTQ (gzipped)'
+        elif filepath.endswith('.vcf.gz'):
+            return 'VCF (gzipped)'
+        elif filepath.endswith('.fasta.gz'):
+            return 'FASTA (gzipped)'
+
+    # Check magic numbers for specific formats
+    with open(filepath, 'rb') as f:
+        header = f.read(4)
+        if header == b'BAM\x01':
+            return 'BAM'
+        elif header == b'BCF\x02':
+            return 'BCF'
+        elif header == b'CRAM':
+            return 'CRAM'
+
+    # Text-based formats
+    if mime_type == 'text/plain':
+        with open(filepath, 'r') as f:
+            first_line = f.readline()
+            if first_line.startswith('&gt;'):
+                return 'FASTA'
+            elif first_line.startswith('@'):
+                return 'FASTQ'
+            elif first_line.startswith('##fileformat=VCF'):
+                return 'VCF'
+            elif first_line.startswith('##gff-version'):
+                return 'GFF'
+
+    return 'Unknown'
+
+# Usage
+print(detect_genomic_format('sequences.fasta'))  # FASTA
+print(detect_genomic_format('aligned.bam'))      # BAM
+print(detect_genomic_format('reads.fastq.gz'))   # FASTQ (gzipped)
+</code></pre>
+
+<hr />
+<h2 id="5-binary-file-structure">5. Binary File Structure</h2>
+<h3 id="51-common-patterns">5.1 Common Patterns</h3>
+<p>Most binary formats have:</p>
+<ol>
+<li id="item-1"><strong>Header</strong> — metadata at the beginning</li>
+<li id="item-2"><strong>Magic number</strong> — format identifier</li>
+<li id="item-3"><strong>Chunks/Sections</strong> — data blocks</li>
+<li id="item-4"><strong>Footer</strong> — optional data at the end</li>
+</ol>
+<pre class="highlight"><code>┌─────────────────┐
+│  Magic Number   │
+├─────────────────┤
+│     Header      │
+├─────────────────┤
+│    Chunk 1      │
+├─────────────────┤
+│    Chunk 2      │
+├─────────────────┤
+│      ...        │
+├─────────────────┤
+│     Footer      │
+└─────────────────┘
+</code></pre>
+
+<h3 id="52-example-png-structure">5.2 Example: PNG Structure</h3>
+<pre class="highlight"><code>PNG Signature: 89 50 4E 47 0D 0A 1A 0A (8 bytes)
+
+Chunks:
+┌──────────────────────────────────┐
+│ Length (4 bytes, big-endian)     │
+├──────────────────────────────────┤
+│ Type (4 bytes, ASCII)            │
+├──────────────────────────────────┤
+│ Data (Length bytes)              │
+├──────────────────────────────────┤
+│ CRC (4 bytes)                    │
+└──────────────────────────────────┘
+
+Required chunks: IHDR, IDAT, IEND
+Optional: tEXt, gAMA, sRGB, etc.
+</code></pre>
+
+<pre class="highlight"><code class="language-bash"># Analyze PNG
+xxd image.png | head -10
+</code></pre>
+
+<pre class="highlight"><code>00000000: 8950 4e47 0d0a 1a0a 0000 000d 4948 4452  .PNG........IHDR
+          |_____signature___||len ||__type__|
+00000010: 0000 0100 0000 0100 0802 0000 00d3 1025  ...............%
+          |width ||height|| | | ||____CRC____|
+                            ↓ ↓
+                            bit depth, color type
+</code></pre>
+
+<h3 id="53-example-bam-structure">5.3 Example: BAM Structure</h3>
+<pre class="highlight"><code>BAM File Structure:
+
+┌─────────────────────────────────────────┐
+│ Magic: BAM\x01 (4 bytes)                │
+├─────────────────────────────────────────┤
+│ Header text length (4 bytes, LE)        │
+├─────────────────────────────────────────┤
+│ SAM header text (variable)              │
+├─────────────────────────────────────────┤
+│ Number of references (4 bytes, LE)      │
+├─────────────────────────────────────────┤
+│ Reference sequence info (variable)      │
+├─────────────────────────────────────────┤
+│ Alignments (variable, BGZF compressed)  │
+└─────────────────────────────────────────┘
+
+Each alignment:
+- block_size (4 bytes)
+- refID, pos, bin_mq_nl, flag_nc
+- CIGAR, sequence, quality, tags
+</code></pre>
+
+<pre class="highlight"><code class="language-bash"># View BAM header
+xxd -l 64 aligned.bam
+</code></pre>
+
+<pre class="highlight"><code>00000000: 4241 4d01 3800 0000 4048 4409 5644 3a31  BAM.8...@HD.VD:1
+          |_magic_||h_len_||__SAM header text...__|
+00000010: 2e36 0953 4f72 743a 636f 6f72 6469 6e61  .6.SOrt:coordina
+00000020: 7465 0940 5351 0953 4e3a 6368 7231 094c  te.@SQ.SN:chr1.L
+</code></pre>
+
+<h3 id="54-example-vcf-vs-bcf">5.4 Example: VCF vs BCF</h3>
+<p><strong>VCF (Text Format):</strong></p>
+<pre class="highlight"><code>##fileformat=VCFv4.2
+##INFO=&lt;ID=DP,Number=1,Type=Integer,Description=&quot;Total Depth&quot;&gt;
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO
+chr1    12345   rs123   A       G       30      PASS    DP=10
+</code></pre>
+
+<p><strong>BCF (Binary Compressed VCF):</strong></p>
+<pre class="highlight"><code class="language-bash">xxd -l 32 variants.bcf
+</code></pre>
+
+<pre class="highlight"><code>00000000: 4243 4602 0200 0000 7800 0000 2323 6669  BCF.....x...##fi
+          |_magic_||___header metadata (compressed)___|
+</code></pre>
+
+<p>BCF is ~5x smaller and faster to parse than VCF!</p>
+<h3 id="55-analyzing-binary-files">5.5 Analyzing Binary Files</h3>
+<p><strong>Tools:</strong></p>
+<pre class="highlight"><code class="language-bash"># binwalk — analyze embedded files
+binwalk firmware.bin
+# DECIMAL       HEXADECIMAL     DESCRIPTION
+# 0             0x0             PNG image, 256 x 256
+# 65536         0x10000         gzip compressed data
+
+# strings — extract strings
+strings binary_file | head
+
+# exiftool — media file metadata
+exiftool photo.jpg
+
+# samtools — BAM file analysis
+samtools view -H aligned.bam  # View header
+samtools flagstat aligned.bam  # Statistics
+
+# bcftools — VCF/BCF analysis
+bcftools view variants.bcf | head  # View as text
+bcftools stats variants.bcf        # Statistics
+</code></pre>
+
+<p><strong>Python:</strong></p>
+<pre class="highlight"><code class="language-python">import struct
+
+with open('image.png', 'rb') as f:
+    # Read PNG signature
+    signature = f.read(8)
+    print(f&quot;Signature: {signature.hex()}&quot;)
+
+    # Read first chunk (IHDR)
+    length = struct.unpack('&gt;I', f.read(4))[0]
+    chunk_type = f.read(4).decode('ascii')
+    print(f&quot;Chunk: {chunk_type}, Length: {length}&quot;)
+
+    # For IHDR: width, height
+    if chunk_type == 'IHDR':
+        width = struct.unpack('&gt;I', f.read(4))[0]
+        height = struct.unpack('&gt;I', f.read(4))[0]
+        print(f&quot;Dimensions: {width}x{height}&quot;)
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>Signature: 89504e470d0a1a0a
+Chunk: IHDR, Length: 13
+Dimensions: 256x256
+</code></pre>
+
+<p><strong>BAM Parsing Example:</strong></p>
+<pre class="highlight"><code class="language-python">import struct
+
+def read_bam_header(filepath):
+    &quot;&quot;&quot;Read BAM file header.&quot;&quot;&quot;
+    with open(filepath, 'rb') as f:
+        # Magic number
+        magic = f.read(4)
+        if magic != b'BAM\x01':
+            raise ValueError(&quot;Not a BAM file&quot;)
+
+        # Header text length (little-endian)
+        header_len = struct.unpack('&lt;I', f.read(4))[0]
+
+        # SAM header text
+        sam_header = f.read(header_len).decode('ascii')
+
+        # Number of reference sequences
+        n_ref = struct.unpack('&lt;I', f.read(4))[0]
+
+        return {
+            'magic': magic.hex(),
+            'sam_header': sam_header,
+            'n_references': n_ref
+        }
+
+# Usage
+info = read_bam_header('aligned.bam')
+print(f&quot;BAM file with {info['n_references']} reference sequences&quot;)
+print(f&quot;Header:\n{info['sam_header']}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="6-archive-formats">6. Archive Formats</h2>
+<h3 id="61-zip">6.1 ZIP</h3>
+<p><strong>ZIP Structure:</strong></p>
+<pre class="highlight"><code>[Local file header 1]
+[File data 1]
+[Local file header 2]
+[File data 2]
+...
+[Central directory]
+[End of central directory record]
+</code></pre>
+
+<pre class="highlight"><code class="language-bash"># View contents without extracting
+unzip -l archive.zip
+
+# File information
+zipinfo archive.zip
+
+# DOCX, XLSX, PPTX are ZIP!
+unzip -l document.docx
+</code></pre>
+
+<h3 id="62-tar">6.2 tar</h3>
+<p><strong>tar</strong> — doesn't compress, only combines files.</p>
+<pre class="highlight"><code class="language-bash"># View contents
+tar -tvf archive.tar
+
+# tar.gz (gzip compression)
+tar -tzvf archive.tar.gz
+
+# tar.bz2 (bzip2 compression)
+tar -tjvf archive.tar.bz2
+</code></pre>
+
+<p><strong>Bioinformatics:</strong></p>
+<pre class="highlight"><code class="language-bash"># Archive sequencing data
+tar -czf project_data.tar.gz *.fastq.gz *.bam *.vcf
+
+# View archive contents
+tar -tzf project_data.tar.gz
+
+# Extract specific file
+tar -xzf project_data.tar.gz aligned.bam
+</code></pre>
+
+<h3 id="63-gzip-vs-bzip2-vs-xz">6.3 gzip vs bzip2 vs xz</h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Command</th>
+<th>Compression</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gzip</td>
+<td>gzip/gunzip</td>
+<td>Good</td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>bzip2/bunzip2</td>
+<td>Better</td>
+<td>Slower</td>
+</tr>
+<tr>
+<td>xz</td>
+<td>xz/unxz</td>
+<td>Best</td>
+<td>Slowest</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-bash"># Size comparison
+ls -lh file.txt          # 1000000 bytes
+gzip -k file.txt
+ls -lh file.txt.gz       # ~350000 bytes (65% reduction)
+
+bzip2 -k file.txt
+ls -lh file.txt.bz2      # ~300000 bytes (70% reduction)
+
+xz -k file.txt
+ls -lh file.txt.xz       # ~250000 bytes (75% reduction)
+</code></pre>
+
+<p><strong>Genomics Compression:</strong></p>
+<pre class="highlight"><code class="language-bash"># FASTQ compression comparison
+ls -lh reads.fastq       # 1.2 GB
+
+gzip reads.fastq
+ls -lh reads.fastq.gz    # ~300 MB (75% reduction!)
+
+# Decompress for processing
+gunzip reads.fastq.gz
+
+# Or stream without decompressing
+zcat reads.fastq.gz | head -4
+</code></pre>
+
+<p><strong>BGZF (Blocked GZIP) for BAM:</strong></p>
+<p>BAM files use BGZF (blocked gzip) which allows:<br />
+- Random access (important!)<br />
+- Parallel compression/decompression<br />
+- Same compression as gzip</p>
+<pre class="highlight"><code class="language-bash"># BAM is BGZF compressed SAM
+samtools view aligned.bam | head
+
+# Check if properly BGZF compressed
+file aligned.bam
+# aligned.bam: data  (not just &quot;gzip compressed&quot;)
+</code></pre>
+
+<hr />
+<h2 id="7-executable-files">7. Executable Files</h2>
+<h3 id="71-elf-linux">7.1 ELF (Linux)</h3>
+<p><strong>ELF</strong> (Executable and Linkable Format) — executable file format in Linux.</p>
+<pre class="highlight"><code class="language-bash"># ELF information
+file /bin/ls
+# /bin/ls: ELF 64-bit LSB pie executable, x86-64
+
+# Detailed information
+readelf -h /bin/ls
+
+# Sections
+readelf -S /bin/ls
+
+# Symbols
+nm /bin/ls
+</code></pre>
+
+<h3 id="72-mach-o-macos">7.2 Mach-O (macOS)</h3>
+<pre class="highlight"><code class="language-bash"># Mach-O information
+file /bin/ls
+# /bin/ls: Mach-O 64-bit executable arm64
+
+# Detailed information
+otool -h /bin/ls
+</code></pre>
+
+<h3 id="73-pe-windows">7.3 PE (Windows)</h3>
+<pre class="highlight"><code class="language-bash"># On Linux, you can analyze PE files
+file program.exe
+# program.exe: PE32+ executable (GUI) x86-64
+
+# With objdump
+objdump -x program.exe | head
+</code></pre>
+
+<hr />
+<h2 id="8-working-with-files-in-code">8. Working with Files in Code</h2>
+<h3 id="81-type-detection-in-python">8.1 Type Detection in Python</h3>
+<pre class="highlight"><code class="language-python">import magic
+
+# Detect by content
+def get_file_type(filepath):
+    &quot;&quot;&quot;Determines file type by content.&quot;&quot;&quot;
+    mime = magic.Magic(mime=True)
+    file_type = magic.Magic()
+
+    return {
+        'mime': mime.from_file(filepath),
+        'description': file_type.from_file(filepath)
+    }
+
+# Check if image
+def is_image(filepath):
+    &quot;&quot;&quot;Checks if file is an image.&quot;&quot;&quot;
+    mime = magic.Magic(mime=True)
+    return mime.from_file(filepath).startswith('image/')
+
+# Example usage
+info = get_file_type('photo.jpg')
+print(info)
+# {'mime': 'image/jpeg', 'description': 'JPEG image data, JFIF standard 1.01'}
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">def is_genomic_file(filepath):
+    &quot;&quot;&quot;Check if file is a genomic format.&quot;&quot;&quot;
+    mime = magic.Magic(mime=True)
+    mime_type = mime.from_file(filepath)
+
+    # Check binary formats by magic number
+    with open(filepath, 'rb') as f:
+        header = f.read(4)
+        if header == b'BAM\x01':
+            return 'BAM'
+        elif header == b'BCF\x02':
+            return 'BCF'
+        elif header == b'CRAM':
+            return 'CRAM'
+
+    # Check text formats
+    if mime_type.startswith('text/'):
+        try:
+            with open(filepath, 'r') as f:
+                first_line = f.readline()
+                if first_line.startswith('&gt;'):
+                    return 'FASTA'
+                elif first_line.startswith('@'):
+                    return 'FASTQ'
+                elif first_line.startswith('##fileformat=VCF'):
+                    return 'VCF'
+                elif first_line.startswith('##gff-version'):
+                    return 'GFF'
+        except:
+            pass
+
+    # Check compressed
+    if mime_type == 'application/gzip':
+        if filepath.endswith('.fastq.gz'):
+            return 'FASTQ (gzipped)'
+        elif filepath.endswith('.vcf.gz'):
+            return 'VCF (gzipped)'
+        elif filepath.endswith('.fasta.gz'):
+            return 'FASTA (gzipped)'
+
+    return None
+
+# Usage
+print(is_genomic_file('sequences.fasta'))  # FASTA
+print(is_genomic_file('aligned.bam'))      # BAM
+print(is_genomic_file('variants.vcf.gz'))  # VCF (gzipped)
+</code></pre>
+
+<h3 id="82-safe-upload-validation">8.2 Safe Upload Validation</h3>
+<pre class="highlight"><code class="language-python">import magic
+from pathlib import Path
+
+ALLOWED_MIMES = {
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'application/pdf',
+}
+
+def validate_upload(file_path: str) -&gt; bool:
+    &quot;&quot;&quot;
+    Validates uploaded file.
+    Checks MIME type by content, not extension.
+    &quot;&quot;&quot;
+    mime = magic.Magic(mime=True)
+    file_mime = mime.from_file(file_path)
+
+    if file_mime not in ALLOWED_MIMES:
+        return False
+
+    # Additionally check magic bytes
+    with open(file_path, 'rb') as f:
+        header = f.read(8)
+
+    # PNG signature
+    if file_mime == 'image/png':
+        if header[:8] != b'\x89PNG\r\n\x1a\n':
+            return False
+
+    # JPEG signature
+    if file_mime == 'image/jpeg':
+        if header[:2] != b'\xff\xd8':
+            return False
+
+    return True
+</code></pre>
+
+<p><strong>Bioinformatics Upload Validation:</strong></p>
+<pre class="highlight"><code class="language-python">ALLOWED_GENOMIC_FORMATS = {
+    'fasta': {'text/plain'},
+    'fastq': {'text/plain'},
+    'vcf': {'text/plain'},
+    'bam': {'application/octet-stream'},
+    'bcf': {'application/octet-stream'},
+}
+
+def validate_genomic_upload(file_path: str, expected_format: str) -&gt; bool:
+    &quot;&quot;&quot;Validate uploaded genomic file.&quot;&quot;&quot;
+    import magic
+
+    # Check MIME type
+    mime = magic.Magic(mime=True)
+    file_mime = mime.from_file(file_path)
+
+    # Check magic numbers for binary formats
+    with open(file_path, 'rb') as f:
+        header = f.read(4)
+
+    if expected_format == 'bam':
+        if header != b'BAM\x01':
+            return False
+    elif expected_format == 'bcf':
+        if header != b'BCF\x02':
+            return False
+    elif expected_format == 'fasta':
+        # Check first character is '&gt;'
+        try:
+            with open(file_path, 'r') as f:
+                if not f.read(1) == '&gt;':
+                    return False
+        except:
+            return False
+    elif expected_format == 'fastq':
+        # Check first character is '@'
+        try:
+            with open(file_path, 'r') as f:
+                if not f.read(1) == '@':
+                    return False
+        except:
+            return False
+
+    return True
+
+# Usage
+if validate_genomic_upload('uploaded_file', 'bam'):
+    process_bam_file('uploaded_file')
+</code></pre>
+
+<h3 id="83-reading-binary-data">8.3 Reading Binary Data</h3>
+<pre class="highlight"><code class="language-python">import struct
+
+def read_png_header(filepath):
+    &quot;&quot;&quot;Reads PNG file header.&quot;&quot;&quot;
+    with open(filepath, 'rb') as f:
+        # Signature (8 bytes)
+        sig = f.read(8)
+        if sig != b'\x89PNG\r\n\x1a\n':
+            raise ValueError(&quot;Not a PNG file&quot;)
+
+        # IHDR chunk
+        length = struct.unpack('&gt;I', f.read(4))[0]
+        chunk_type = f.read(4)
+
+        if chunk_type != b'IHDR':
+            raise ValueError(&quot;IHDR chunk not found&quot;)
+
+        # Parse IHDR data
+        data = f.read(length)
+        width, height, bit_depth, color_type = struct.unpack('&gt;IIBB', data[:10])
+
+        return {
+            'width': width,
+            'height': height,
+            'bit_depth': bit_depth,
+            'color_type': color_type
+        }
+
+# Usage
+info = read_png_header('image.png')
+print(f&quot;Image: {info['width']}x{info['height']}&quot;)
+</code></pre>
+
+<p><strong>BAM Header Reading:</strong></p>
+<pre class="highlight"><code class="language-python">def read_bam_references(filepath):
+    &quot;&quot;&quot;Read reference sequence information from BAM.&quot;&quot;&quot;
+    import struct
+
+    with open(filepath, 'rb') as f:
+        # Skip magic and header
+        magic = f.read(4)
+        if magic != b'BAM\x01':
+            raise ValueError(&quot;Not a BAM file&quot;)
+
+        # Skip SAM header
+        l_text = struct.unpack('&lt;I', f.read(4))[0]
+        f.read(l_text)
+
+        # Number of reference sequences
+        n_ref = struct.unpack('&lt;I', f.read(4))[0]
+
+        references = []
+        for _ in range(n_ref):
+            # Reference name length
+            l_name = struct.unpack('&lt;I', f.read(4))[0]
+            # Reference name (null-terminated)
+            name = f.read(l_name).rstrip(b'\x00').decode('ascii')
+            # Reference length
+            l_ref = struct.unpack('&lt;I', f.read(4))[0]
+
+            references.append({
+                'name': name,
+                'length': l_ref
+            })
+
+        return references
+
+# Usage
+refs = read_bam_references('aligned.bam')
+for ref in refs:
+    print(f&quot;{ref['name']}: {ref['length']:,} bp&quot;)
+</code></pre>
+
+<hr />
+<h2 id="9-creating-custom-formats">9. Creating Custom Formats</h2>
+<h3 id="91-design-principles">9.1 Design Principles</h3>
+<ol>
+<li id="item-1"><strong>Unique signature</strong> — easy to identify</li>
+<li id="item-2"><strong>Format version</strong> — for backward compatibility</li>
+<li id="item-3"><strong>Self-describing</strong> — sizes, data types in header</li>
+<li id="item-4"><strong>Extensibility</strong> — chunk-based structure</li>
+<li id="item-5"><strong>Checksums</strong> — data integrity</li>
+</ol>
+<h3 id="92-simple-format-example">9.2 Simple Format Example</h3>
+<pre class="highlight"><code class="language-python">import struct
+import hashlib
+
+# Format: MYDATA v1
+# Signature: &quot;MYDATA&quot; (6 bytes)
+# Version: uint16 (2 bytes)  
+# Data length: uint32 (4 bytes)
+# Data: variable
+# Checksum: MD5 (16 bytes)
+
+class SimpleFormat:
+    SIGNATURE = b'MYDATA'
+    VERSION = 1
+
+    @classmethod
+    def write(cls, filepath, data: bytes):
+        with open(filepath, 'wb') as f:
+            # Signature
+            f.write(cls.SIGNATURE)
+            # Version
+            f.write(struct.pack('&gt;H', cls.VERSION))
+            # Data length
+            f.write(struct.pack('&gt;I', len(data)))
+            # Data
+            f.write(data)
+            # Checksum
+            checksum = hashlib.md5(data).digest()
+            f.write(checksum)
+
+    @classmethod
+    def read(cls, filepath) -&gt; bytes:
+        with open(filepath, 'rb') as f:
+            # Verify signature
+            sig = f.read(6)
+            if sig != cls.SIGNATURE:
+                raise ValueError(&quot;Invalid file signature&quot;)
+
+            # Read version
+            version = struct.unpack('&gt;H', f.read(2))[0]
+            if version &gt; cls.VERSION:
+                raise ValueError(f&quot;Unsupported version: {version}&quot;)
+
+            # Read data
+            length = struct.unpack('&gt;I', f.read(4))[0]
+            data = f.read(length)
+
+            # Verify checksum
+            expected_checksum = f.read(16)
+            actual_checksum = hashlib.md5(data).digest()
+            if expected_checksum != actual_checksum:
+                raise ValueError(&quot;Checksum mismatch&quot;)
+
+            return data
+
+# Usage
+SimpleFormat.write('test.mydata', b'Hello, World!')
+content = SimpleFormat.read('test.mydata')
+print(content)  # b'Hello, World!'
+</code></pre>
+
+<hr />
+<h2 id="10-common-pitfalls">10. Common Pitfalls</h2>
+<h3 id="101-trusting-file-extension">10.1 Trusting File Extension</h3>
+<p>❌ <strong>Error:</strong> Check type only by extension</p>
+<pre class="highlight"><code class="language-python"># Unsafe!
+if filename.endswith('.jpg'):
+    process_image(filename)
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Check content</p>
+<pre class="highlight"><code class="language-python">import magic
+mime = magic.Magic(mime=True)
+if mime.from_file(filename) == 'image/jpeg':
+    process_image(filename)
+</code></pre>
+
+<p><strong>Bioinformatics:</strong></p>
+<pre class="highlight"><code class="language-python"># Bad
+if filename.endswith('.bam'):
+    process_bam(filename)
+
+# Good
+with open(filename, 'rb') as f:
+    if f.read(4) == b'BAM\x01':
+        process_bam(filename)
+</code></pre>
+
+<h3 id="102-incorrect-binary-file-reading">10.2 Incorrect Binary File Reading</h3>
+<p>❌ <strong>Error:</strong> Open binary files without 'rb'</p>
+<pre class="highlight"><code class="language-python"># Bad — may corrupt data!
+with open('image.png', 'r') as f:
+    data = f.read()
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Always use binary mode</p>
+<pre class="highlight"><code class="language-python">with open('image.png', 'rb') as f:
+    data = f.read()
+</code></pre>
+
+<h3 id="103-ignoring-endianness">10.3 Ignoring Endianness</h3>
+<p>❌ <strong>Error:</strong> Read multi-byte numbers without considering byte order</p>
+<pre class="highlight"><code class="language-python"># Which byte order is in the file?
+length = int.from_bytes(f.read(4), 'big')  # or 'little'?
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Know the format specification</p>
+<pre class="highlight"><code class="language-python"># PNG uses big-endian
+length = struct.unpack('&gt;I', f.read(4))[0]
+
+# BAM uses little-endian
+length = struct.unpack('&lt;I', f.read(4))[0]
+</code></pre>
+
+<h3 id="104-not-checking-magic-numbers">10.4 Not Checking Magic Numbers</h3>
+<p>❌ <strong>Error:</strong> Parse file without checking signature</p>
+<pre class="highlight"><code class="language-python"># Dangerous — might not be PNG!
+width = struct.unpack('&gt;I', f.read(4))[0]
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Always check signature</p>
+<pre class="highlight"><code class="language-python">sig = f.read(8)
+if sig != b'\x89PNG\r\n\x1a\n':
+    raise ValueError(&quot;Not a PNG file&quot;)
+</code></pre>
+
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>Text vs Binary</strong>: Text contains characters in encoding, binary contains arbitrary bytes. Use <code>'rb'</code> for binary files.</p>
+</li>
+<li>
+<p><strong>Magic numbers more reliable than extensions</strong>: Use <code>file</code> or check first bytes to determine type. Don't trust <code>.bam.txt</code>!</p>
+</li>
+<li>
+<p><strong>MIME types for web</strong>: Correct Content-Type is critical for HTTP. <code>application/json</code>, <code>image/png</code>, etc.</p>
+</li>
+<li>
+<p><strong>Understanding structure</strong>: Most formats have header, chunks, footer. Study specifications (PNG, BAM, VCF).</p>
+</li>
+<li>
+<p><strong>Security</strong>: Always check uploaded file type by content, don't trust extension. Critical for genomic data integrity.</p>
+</li>
+<li>
+<p><strong>Bioinformatics specifics</strong>: </p>
+</li>
+<li>FASTA/FASTQ/VCF are text formats (can view with <code>cat</code>)</li>
+<li>BAM/BCF/CRAM are binary (need specialized tools like <code>samtools</code>)</li>
+<li>BGZF compression allows random access in BAM files</li>
+<li>Always check magic numbers: <code>BAM\x01</code>, <code>BCF\x02</code>, <code>CRAM</code></li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Related Modules:</strong></p>
+<ul>
+<li><a href="../05_JSON/">JSON</a> — structure and working with JSON</li>
+<li><a href="../10_Compression/">Compression</a> — more details on compression</li>
+<li><a href="../11_Checksums/">Checksums</a> — data integrity verification</li>
+</ul>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Write a script that finds all files with incorrect extensions</li>
+<li id="item-2">Analyze JPEG file structure using xxd</li>
+<li id="item-3">Create your own simple binary format for task lists</li>
+<li id="item-4">Write an upload validator for a web application</li>
+<li id="item-5"><strong>Parse a BAM header to extract reference sequences</strong></li>
+<li id="item-6"><strong>Write a tool to detect genomic file formats automatically</strong></li>
+<li id="item-7"><strong>Compare file sizes: FASTA vs FASTQ, SAM vs BAM, VCF vs BCF</strong></li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>Study PNG specification (libpng.org)</li>
+<li>Understand how PDF works</li>
+<li>Learn about ELF format for Linux executables</li>
+<li><strong>Study SAM/BAM specification thoroughly</strong></li>
+<li><strong>Understand BGZF compression used in BAM</strong></li>
+<li><strong>Learn about CRAM format for even better compression</strong></li>
+</ul>
+<p><strong>Connections to Other Courses:</strong></p>
+<ul>
+<li><strong>Python Course</strong>: Module 03_Files covers binary file handling in detail</li>
+<li><strong>Linux Course</strong>: Module 04_Coreutils teaches tools for file manipulation</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man1/file.1.html">file manual</a></li>
+<li><a href="https://github.com/ReFirmLabs/binwalk">binwalk</a></li>
+<li><a href="https://github.com/ahupp/python-magic">python-magic</a></li>
+<li><a href="http://www.htslib.org/">samtools</a></li>
+<li><a href="http://www.htslib.org/doc/bcftools.html">bcftools</a></li>
+</ul>
+<p><strong>Specifications:</strong></p>
+<ul>
+<li><a href="http://www.libpng.org/pub/png/spec/">PNG Specification</a></li>
+<li><a href="https://www.w3.org/Graphics/JPEG/">JPEG Format</a></li>
+<li><a href="https://opensource.adobe.com/dc-acrobat-sdk-docs/pdfstandards/PDF32000_2008.pdf">PDF Reference</a></li>
+<li><a href="https://samtools.github.io/hts-specs/SAMv1.pdf">SAM/BAM Specification</a></li>
+<li><a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">VCF Specification</a></li>
+<li><a href="https://samtools.github.io/hts-specs/CRAMv3.pdf">CRAM Format</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FASTQ_format">FASTQ Format</a></li>
+</ul>
+<p><strong>Learning:</strong></p>
+<ul>
+<li><a href="https://www.garykessler.net/library/file_sigs.html">File Signatures Table</a></li>
+<li><a href="https://www.iana.org/assignments/media-types/">MIME Types Registry</a></li>
+<li><a href="https://genome.ucsc.edu/FAQ/FAQformat.html">Bioinformatics File Formats</a></li>
+</ul>
+<hr />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

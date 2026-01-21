@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Complex Pipelines: Map/Reduce, Staging,  | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Complex Pipelines: Map/Reduce, Staging, </h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="complex-pipelines-mapreduce-staging-checkpoints-orchestration">Complex Pipelines: Map/Reduce, Staging, Checkpoints, Orchestration</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Build production-grade pipelines with map/reduce patterns, temporary staging, checkpoints for recovery, and Makefile orchestration.</p>
+<h2 id="mapreduce-patterns">Map/Reduce Patterns</h2>
+<h3 id="split-process-merge">Split-Process-Merge</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Split large file
+split -l 10000 -d huge.csv chunk_
+
+# Map: Process each chunk
+for chunk in chunk_*; do
+    mlr --csv stats1 -a sum -f amount &quot;$chunk&quot; &gt; &quot;$chunk.result&quot; &amp;
+done
+wait
+
+# Reduce: Merge results
+cat chunk_*.result &gt; final_result.csv
+rm chunk_*
+</code></pre>
+
+<h2 id="staging-with-mktemp">Staging with mktemp</h2>
+<h3 id="multi-stage-pipeline">Multi-Stage Pipeline</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+STAGE1=$(mktemp)
+STAGE2=$(mktemp)
+STAGE3=$(mktemp)
+
+trap 'rm -f &quot;$STAGE1&quot; &quot;$STAGE2&quot; &quot;$STAGE3&quot;' EXIT
+
+# Stage 1: Extract
+curl -s &quot;https://api.example.com/data&quot; | jq -c '.[]' &gt; &quot;$STAGE1&quot;
+
+# Stage 2: Transform
+cat &quot;$STAGE1&quot; | jq -c 'select(.active == true)' &gt; &quot;$STAGE2&quot;
+
+# Stage 3: Load
+cat &quot;$STAGE2&quot; | python3 load_db.py
+
+echo &quot;Pipeline complete&quot;
+</code></pre>
+
+<h2 id="checkpoints-for-resumability">Checkpoints for Resumability</h2>
+<h3 id="checkpoint-pattern">Checkpoint Pattern</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+CHECKPOINT_DIR=&quot;.checkpoints&quot;
+mkdir -p &quot;$CHECKPOINT_DIR&quot;
+
+# Check if step completed
+if [ ! -f &quot;$CHECKPOINT_DIR/step1.done&quot; ]; then
+    echo &quot;Running step 1...&quot;
+    ./step1.sh &gt; output1.csv
+    touch &quot;$CHECKPOINT_DIR/step1.done&quot;
+else
+    echo &quot;Step 1 already complete&quot;
+fi
+
+if [ ! -f &quot;$CHECKPOINT_DIR/step2.done&quot; ]; then
+    echo &quot;Running step 2...&quot;
+    ./step2.sh &lt; output1.csv &gt; output2.csv
+    touch &quot;$CHECKPOINT_DIR/step2.done&quot;
+else
+    echo &quot;Step 2 already complete&quot;
+fi
+
+# Reset checkpoints
+# rm -rf &quot;$CHECKPOINT_DIR&quot;
+</code></pre>
+
+<h2 id="makefile-for-orchestration">Makefile for Orchestration</h2>
+<h3 id="basic-makefile">Basic Makefile</h3>
+<pre class="highlight"><code class="language-makefile">.PHONY: all clean
+
+all: report.md
+
+raw_data.csv:
+    curl -s &quot;https://api.example.com/data&quot; | jq -r '.[]' &gt; raw_data.csv
+
+clean_data.csv: raw_data.csv
+    grep -v &quot;^#&quot; raw_data.csv | mlr --csv filter '$$status == &quot;active&quot;' &gt; clean_data.csv
+
+aggregated.csv: clean_data.csv
+    mlr --csv stats1 -a sum,count -f amount -g category clean_data.csv &gt; aggregated.csv
+
+report.md: aggregated.csv
+    ./generate_report.sh aggregated.csv &gt; report.md
+
+clean:
+    rm -f raw_data.csv clean_data.csv aggregated.csv report.md
+</code></pre>
+
+<h3 id="run-with-make">Run with Make</h3>
+<pre class="highlight"><code class="language-bash"># Run entire pipeline
+make
+
+# Run specific target
+make aggregated.csv
+
+# Clean all outputs
+make clean
+
+# Parallel execution
+make -j4
+</code></pre>
+
+<h2 id="reproducibility-patterns">Reproducibility Patterns</h2>
+<h3 id="versioned-data">Versioned Data</h3>
+<pre class="highlight"><code class="language-bash"># Include date in output
+OUTPUT=&quot;output_$(date +%Y%m%d).csv&quot;
+./pipeline.sh &gt; &quot;$OUTPUT&quot;
+</code></pre>
+
+<h3 id="logging">Logging</h3>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+LOGFILE=&quot;pipeline_$(date +%Y%m%d_%H%M%S).log&quot;
+
+exec 1&gt; &gt;(tee -a &quot;$LOGFILE&quot;)
+exec 2&gt;&amp;1
+
+echo &quot;Starting pipeline at $(date)&quot;
+./step1.sh
+./step2.sh
+echo &quot;Pipeline complete at $(date)&quot;
+</code></pre>
+
+<h3 id="dependency-tracking">Dependency Tracking</h3>
+<pre class="highlight"><code class="language-makefile"># Make automatically tracks dependencies
+report.md: data.csv template.md
+    ./generate_report.sh data.csv template.md &gt; report.md
+
+# If data.csv changes, report.md is regenerated
+</code></pre>
+
+<h2 id="production-pipeline-example">Production Pipeline Example</h2>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+# Configuration
+DATA_DIR=&quot;data&quot;
+CHECKPOINT_DIR=&quot;.checkpoints&quot;
+OUTPUT=&quot;report_$(date +%Y%m%d).md&quot;
+
+mkdir -p &quot;$DATA_DIR&quot; &quot;$CHECKPOINT_DIR&quot;
+
+# Stage 1: Extract
+if [ ! -f &quot;$CHECKPOINT_DIR/extract.done&quot; ]; then
+    echo &quot;Extracting data...&quot;
+    curl -s &quot;https://api.example.com/users&quot; | \
+        jq -c '.[]' &gt; &quot;$DATA_DIR/users.jsonl&quot;
+    touch &quot;$CHECKPOINT_DIR/extract.done&quot;
+fi
+
+# Stage 2: Transform
+if [ ! -f &quot;$CHECKPOINT_DIR/transform.done&quot; ]; then
+    echo &quot;Transforming data...&quot;
+    cat &quot;$DATA_DIR/users.jsonl&quot; | \
+        jq -r '[.id, .name, .email] | @csv' &gt; &quot;$DATA_DIR/users.csv&quot;
+    touch &quot;$CHECKPOINT_DIR/transform.done&quot;
+fi
+
+# Stage 3: Analyze
+if [ ! -f &quot;$CHECKPOINT_DIR/analyze.done&quot; ]; then
+    echo &quot;Analyzing data...&quot;
+    mlr --csv stats1 -a count -g country &quot;$DATA_DIR/users.csv&quot; &gt; &quot;$DATA_DIR/stats.csv&quot;
+    touch &quot;$CHECKPOINT_DIR/analyze.done&quot;
+fi
+
+# Stage 4: Report
+echo &quot;Generating report...&quot;
+./generate_report.sh &quot;$DATA_DIR/stats.csv&quot; &gt; &quot;$OUTPUT&quot;
+
+echo &quot;Pipeline complete: $OUTPUT&quot;
+</code></pre>
+
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li id="item-1"><strong>Use Make for dependencies</strong>: Automatic incremental builds</li>
+<li id="item-2"><strong>Add checkpoints</strong>: Resume from failures</li>
+<li id="item-3"><strong>Stage with temp files</strong>: Debug intermediate steps</li>
+<li id="item-4"><strong>Log everything</strong>: Track execution and errors</li>
+<li id="item-5"><strong>Version outputs</strong>: Date-stamped filenames</li>
+<li id="item-6"><strong>Clean up temp files</strong>: Use trap or Make clean</li>
+<li id="item-7"><strong>Document dependencies</strong>: README or Makefile comments</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Map/Reduce</td>
+<td>split + parallel</td>
+<td>Process large files</td>
+</tr>
+<tr>
+<td>Staging</td>
+<td>mktemp</td>
+<td>Intermediate outputs</td>
+</tr>
+<tr>
+<td>Checkpoints</td>
+<td>touch files</td>
+<td>Resume from failure</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>Makefile</td>
+<td>Dependency management</td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Build production pipeline</li>
+<li>Study Make patterns</li>
+<li>Implement error recovery</li>
+<li>Explore workflow engines (Airflow, Luigi)</li>
+</ul>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

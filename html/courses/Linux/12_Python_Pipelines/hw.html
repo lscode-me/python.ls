@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Python in Pipelines: Hybrid Shell-Python Workflows">
+    <title>Python in Pipelines: Hybrid Shell-Python Workflows - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Python in Pipelines: Hybrid Shell-Python Workflows</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="python-in-pipelines-hybrid-shell-python-workflows-homework">Python in Pipelines: Hybrid Shell-Python Workflows - Homework</h1>
+<h2 id="assignment-1-python-stdin-filter-uppercase-converter">Assignment 1: Python stdin Filter - Uppercase Converter</h2>
+<p>Create Python script that reads lines from stdin and converts to uppercase.<br />
+- Script (<code>uppercase.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys</p>
+<p>for line in sys.stdin:<br />
+      print(line.strip().upper(), flush=True)<br />
+<code>``
+- Usage:</code>echo "hello world" | python3 uppercase.py<code>- Test with:</code>cat file.txt | python3 uppercase.py | grep PATTERN`</p>
+<h2 id="assignment-2-json-stream-generator">Assignment 2: JSON Stream Generator</h2>
+<p>Create Python script that generates JSONL output.<br />
+- Script (<code>generate_users.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import json<br />
+  from datetime import datetime</p>
+<p>for i in range(1, 101):<br />
+      user = {<br />
+          "id": i,<br />
+          "username": f"user{i}",<br />
+          "created_at": datetime.now().isoformat(),<br />
+          "score": i * 10<br />
+      }<br />
+      print(json.dumps(user), flush=True)<br />
+<code>``
+- Usage:</code>python3 generate_users.py | jq -c 'select(.score &gt; 500)'<code>- Requirement: Must use</code>flush=True` for streaming</p>
+<h2 id="assignment-3-csv-to-json-converter">Assignment 3: CSV to JSON Converter</h2>
+<p>Build a streaming CSV to JSONL converter.<br />
+- Script (<code>csv2json.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import csv<br />
+  import json</p>
+<p>reader = csv.DictReader(sys.stdin)<br />
+  for row in reader:<br />
+      print(json.dumps(row), flush=True)<br />
+<code>``
+- Test:</code>cat data.csv | python3 csv2json.py | jq .`<br />
+- Extension: Add command-line arguments for field selection</p>
+<h2 id="assignment-4-json-to-csv-converter">Assignment 4: JSON to CSV Converter</h2>
+<p>Create JSONL to CSV streaming converter.<br />
+- Script (<code>json2csv.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import json<br />
+  import csv</p>
+<p>writer = None<br />
+  for line in sys.stdin:<br />
+      try:<br />
+          obj = json.loads(line)<br />
+          if writer is None:<br />
+              # Initialize writer with first object's keys<br />
+              writer = csv.DictWriter(sys.stdout, fieldnames=obj.keys())<br />
+              writer.writeheader()<br />
+          writer.writerow(obj)<br />
+          sys.stdout.flush()<br />
+      except json.JSONDecodeError:<br />
+          print(f"Warning: Skipping invalid JSON: {line}", file=sys.stderr)<br />
+<code>``
+- Usage:</code>cat data.jsonl | python3 json2csv.py &gt; output.csv`</p>
+<h2 id="assignment-5-python-filter-with-complex-logic">Assignment 5: Python Filter with Complex Logic</h2>
+<p>Create filter with complex business logic impossible in grep/awk.<br />
+- Task: Filter users by multiple conditions<br />
+- Script (<code>complex_filter.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import json<br />
+  from datetime import datetime, timedelta</p>
+<p>threshold_date = datetime.now() - timedelta(days=30)</p>
+<p>for line in sys.stdin:<br />
+      try:<br />
+          user = json.loads(line)</p>
+<pre class="highlight"><code>      # Complex conditions
+      created = datetime.fromisoformat(user['created_at'])
+      is_recent = created &gt; threshold_date
+      is_active = user.get('status') == 'active'
+      has_high_score = user.get('score', 0) &gt; 500
+
+      if is_recent and is_active and has_high_score:
+          print(json.dumps(user), flush=True)
+  except (json.JSONDecodeError, KeyError, ValueError):
+      pass
+</code></pre>
+
+<p><code>``
+- Usage:</code>cat users.jsonl | python3 complex_filter.py`</p>
+<h2 id="assignment-6-pandas-dataframe-pipeline">Assignment 6: Pandas DataFrame Pipeline</h2>
+<p>Use pandas to process CSV in a pipeline.<br />
+- Script (<code>pandas_aggregate.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import pandas as pd</p>
+<p># Read from stdin<br />
+  df = pd.read_csv(sys.stdin)</p>
+<p># Aggregation<br />
+  result = df.groupby('category').agg({<br />
+      'amount': ['sum', 'mean', 'count'],<br />
+      'customer_id': 'nunique'<br />
+  }).reset_index()</p>
+<p># Write to stdout<br />
+  result.to_csv(sys.stdout, index=False)<br />
+<code>``
+- Usage:</code>cat sales.csv | python3 pandas_aggregate.py &gt; summary.csv`<br />
+- Note: Not streaming - loads entire file into memory</p>
+<h2 id="assignment-7-api-enrichment-pipeline">Assignment 7: API Enrichment Pipeline</h2>
+<p>Enrich data with API calls in Python.<br />
+- Script (<code>enrich_users.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import json<br />
+  import requests</p>
+<p>for line in sys.stdin:<br />
+      try:<br />
+          user = json.loads(line)<br />
+          user_id = user['id']</p>
+<pre class="highlight"><code>      # Fetch additional data from API
+      response = requests.get(f'https://jsonplaceholder.typicode.com/users/{user_id}')
+      if response.ok:
+          api_data = response.json()
+          user['email'] = api_data.get('email')
+          user['city'] = api_data.get('address', {}).get('city')
+
+      print(json.dumps(user), flush=True)
+  except (json.JSONDecodeError, requests.RequestException):
+      pass
+</code></pre>
+
+<p><code>``
+- Usage:</code>python3 generate_users.py | head -10 | python3 enrich_users.py`</p>
+<h2 id="assignment-8-shell-python-shell-pipeline">Assignment 8: Shell → Python → Shell Pipeline</h2>
+<p>Build complete pipeline using all three stages.<br />
+- Pipeline:<br />
+  ```bash<br />
+  #!/bin/bash<br />
+  # Stage 1: Generate data (shell)<br />
+  seq 1 1000 | \</p>
+<p># Stage 2: Complex processing (Python)<br />
+  python3 -c "<br />
+  import sys<br />
+  for line in sys.stdin:<br />
+      n = int(line.strip())<br />
+      # Complex calculation<br />
+      if n % 2 == 0 and n % 3 != 0:<br />
+          result = n ** 2 + n + 1<br />
+          print(result, flush=True)<br />
+  " | \</p>
+<p># Stage 3: Aggregate (shell)<br />
+  awk '{sum += $1; count++} END {print "Sum:", sum, "Count:", count, "Avg:", sum/count}'<br />
+  ```</p>
+<h2 id="assignment-9-streaming-json-parser-with-ijson">Assignment 9: Streaming JSON Parser with ijson</h2>
+<p>Process large JSON files without loading into memory.<br />
+- Install: <code>pip install ijson</code><br />
+- Script (<code>stream_parse.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import json<br />
+  import ijson</p>
+<p># Stream parse large JSON array<br />
+  parser = ijson.items(sys.stdin.buffer, 'item')</p>
+<p>for obj in parser:<br />
+      # Process each object as it's parsed<br />
+      if obj.get('status') == 'active':<br />
+          print(json.dumps(obj), flush=True)<br />
+  ```<br />
+- Test with large JSON array: Won't load entire file into memory</p>
+<h2 id="assignment-10-pandas-vs-command-line-comparison">Assignment 10: Pandas vs Command-Line Comparison</h2>
+<p>Compare performance of pandas vs CLI tools.<br />
+- Task: Calculate sum of column by group<br />
+- Generate test data:<br />
+<code>bash
+  seq 1 1000000 | awk '{print $1 % 100 "," rand()*1000}' &gt; large.csv</code><br />
+- Pandas approach (<code>pandas_groupby.py</code>):<br />
+<code>python
+  import pandas as pd
+  import sys
+  df = pd.read_csv(sys.stdin)
+  result = df.groupby(df.columns[0])[df.columns[1]].sum()
+  print(result.to_csv())</code><br />
+- CLI approach:<br />
+<code>bash
+  mlr --csv stats1 -a sum -f 2 -g 1 large.csv</code><br />
+- Measure: <code>time cat large.csv | python3 pandas_groupby.py</code><br />
+- Measure: <code>time mlr --csv stats1 -a sum -f 2 -g 1 large.csv</code><br />
+- Document: Which is faster? Memory usage?</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-streaming-statistics-calculator">Bonus 1: Streaming Statistics Calculator</h3>
+<p>Calculate running statistics without storing all data.<br />
+- Script (<code>streaming_stats.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import json<br />
+  import math</p>
+<p>count = 0<br />
+  sum_val = 0<br />
+  sum_sq = 0<br />
+  min_val = float('inf')<br />
+  max_val = float('-inf')</p>
+<p>for line in sys.stdin:<br />
+      try:<br />
+          num = float(line.strip())<br />
+          count += 1<br />
+          sum_val += num<br />
+          sum_sq += num ** 2<br />
+          min_val = min(min_val, num)<br />
+          max_val = max(max_val, num)<br />
+      except ValueError:<br />
+          continue</p>
+<p>if count &gt; 0:<br />
+      mean = sum_val / count<br />
+      variance = (sum_sq / count) - (mean ** 2)<br />
+      stddev = math.sqrt(variance) if variance &gt; 0 else 0</p>
+<pre class="highlight"><code>  stats = {
+      &quot;count&quot;: count,
+      &quot;sum&quot;: sum_val,
+      &quot;mean&quot;: mean,
+      &quot;stddev&quot;: stddev,
+      &quot;min&quot;: min_val,
+      &quot;max&quot;: max_val
+  }
+  print(json.dumps(stats, indent=2))
+</code></pre>
+
+<p><code>``
+- Usage:</code>seq 1 1000 | python3 streaming_stats.py`<br />
+- Advantage: O(1) memory, single pass</p>
+<h3 id="bonus-2-multi-format-converter">Bonus 2: Multi-Format Converter</h3>
+<p>Build tool that converts between JSON, CSV, YAML.<br />
+- Script (<code>convert.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  import sys<br />
+  import json<br />
+  import csv<br />
+  import argparse</p>
+<p># Try importing yaml<br />
+  try:<br />
+      import yaml<br />
+      HAS_YAML = True<br />
+  except ImportError:<br />
+      HAS_YAML = False</p>
+<p>def json_to_csv(input_stream):<br />
+      data = [json.loads(line) for line in input_stream]<br />
+      if not data:<br />
+          return<br />
+      writer = csv.DictWriter(sys.stdout, fieldnames=data[0].keys())<br />
+      writer.writeheader()<br />
+      writer.writerows(data)</p>
+<p>def csv_to_json(input_stream):<br />
+      reader = csv.DictReader(input_stream)<br />
+      for row in reader:<br />
+          print(json.dumps(row), flush=True)</p>
+<p># Add more conversion functions...</p>
+<p>parser = argparse.ArgumentParser()<br />
+  parser.add_argument('--from', choices=['json', 'csv', 'yaml'], required=True)<br />
+  parser.add_argument('--to', choices=['json', 'csv', 'yaml'], required=True)<br />
+  args = parser.parse_args()</p>
+<p># Route to appropriate converter<br />
+  # ...<br />
+  ```</p>
+<h3 id="bonus-3-parallel-python-filters">Bonus 3: Parallel Python Filters</h3>
+<p>Process data with multiple Python filters in parallel.<br />
+- Architecture:<br />
+  ```bash<br />
+  # Split input to 3 Python filters<br />
+  cat data.jsonl | tee &gt;(python3 filter1.py &gt; out1) \<br />
+                        &gt;(python3 filter2.py &gt; out2) \<br />
+                        &gt;(python3 filter3.py &gt; out3) \<br />
+                   &gt; /dev/null</p>
+<p># Merge results<br />
+  cat out1 out2 out3 | sort | uniq &gt; final.jsonl<br />
+  ```<br />
+- Each filter processes different aspect<br />
+- Combine results at end</p>
+<h3 id="bonus-4-python-http-server-in-pipeline">Bonus 4: Python HTTP Server in Pipeline</h3>
+<p>Create simple API server that processes stdin data.<br />
+- Script (<code>api_server.py</code>):<br />
+  ```python<br />
+  #!/usr/bin/env python3<br />
+  from http.server import HTTPServer, BaseHTTPRequestHandler<br />
+  import json<br />
+  import sys<br />
+  import threading<br />
+  import queue</p>
+<p>data_queue = queue.Queue()</p>
+<p>class Handler(BaseHTTPRequestHandler):<br />
+      def do_GET(self):<br />
+          if self.path == '/data':<br />
+              self.send_response(200)<br />
+              self.send_header('Content-type', 'application/json')<br />
+              self.end_headers()</p>
+<pre class="highlight"><code>          items = []
+          while not data_queue.empty():
+              items.append(data_queue.get())
+
+          self.wfile.write(json.dumps(items).encode())
+</code></pre>
+
+<p>def read_stdin():<br />
+      for line in sys.stdin:<br />
+          try:<br />
+              obj = json.loads(line)<br />
+              data_queue.put(obj)<br />
+          except json.JSONDecodeError:<br />
+              pass</p>
+<p># Start stdin reader in background<br />
+  threading.Thread(target=read_stdin, daemon=True).start()</p>
+<p># Start HTTP server<br />
+  server = HTTPServer(('localhost', 8000), Handler)<br />
+  print("Server running on http://localhost:8000")<br />
+  server.serve_forever()<br />
+<code>``
+- Usage:</code>python3 generate_users.py | python3 api_server.py<code>- Access:</code>curl http://localhost:8000/data`</p>
+<h3 id="bonus-5-hybrid-etl-with-error-recovery">Bonus 5: Hybrid ETL with Error Recovery</h3>
+<p>Build robust ETL with Python and bash.<br />
+- Features:<br />
+  - Python for complex transformations<br />
+  - Bash for orchestration<br />
+  - Error handling and retry<br />
+  - Checkpoints for resume<br />
+  - Logging<br />
+- Example structure:<br />
+  ```bash<br />
+  #!/bin/bash<br />
+  set -euo pipefail</p>
+<p>CHECKPOINT=".checkpoint"</p>
+<p>if [ ! -f "$CHECKPOINT/extract" ]; then<br />
+      echo "Stage 1: Extract"<br />
+      curl -s "https://api.example.com/data" | \<br />
+          python3 validate.py &gt; raw_data.jsonl<br />
+      touch "$CHECKPOINT/extract"<br />
+  fi</p>
+<p>if [ ! -f "$CHECKPOINT/transform" ]; then<br />
+      echo "Stage 2: Transform"<br />
+      cat raw_data.jsonl | \<br />
+          python3 transform.py &gt; clean_data.jsonl<br />
+      touch "$CHECKPOINT/transform"<br />
+  fi</p>
+<p>if [ ! -f "$CHECKPOINT/load" ]; then<br />
+      echo "Stage 3: Load"<br />
+      cat clean_data.jsonl | \<br />
+          python3 load.py<br />
+      touch "$CHECKPOINT/load"<br />
+  fi</p>
+<p>echo "ETL complete"<br />
+  ```</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<h3 id="code-requirements">Code Requirements</h3>
+<ol>
+<li id="item-1"><strong>Proper shebang</strong>: <code>#!/usr/bin/env python3</code></li>
+<li id="item-2"><strong>Flush output</strong>: Use <code>flush=True</code> or <code>sys.stdout.flush()</code></li>
+<li id="item-3"><strong>Error handling</strong>: Try-except for parsing errors</li>
+<li id="item-4"><strong>Type hints</strong> (optional but recommended):<br />
+<code>python
+   def process_line(line: str) -&gt; dict:
+       ...</code></li>
+<li id="item-5"><strong>Docstrings</strong> for functions</li>
+</ol>
+<h3 id="testing-requirements">Testing Requirements</h3>
+<p>Test each script with:<br />
+- <strong>Small data</strong> (10 lines): Verify correctness<br />
+- <strong>Large data</strong> (10,000+ lines): Verify streaming works<br />
+- <strong>Malformed input</strong>: Script doesn't crash<br />
+- <strong>Interruption</strong>: Ctrl+C handling</p>
+<h3 id="performance-checklist">Performance Checklist</h3>
+<ul>
+<li>[ ] Output is flushed immediately (no buffering)</li>
+<li>[ ] Memory usage is constant (O(1) for streaming)</li>
+<li>[ ] Handles large files without loading into memory</li>
+<li>[ ] Error handling doesn't stop entire pipeline</li>
+</ul>
+<h3 id="documentation-template">Documentation Template</h3>
+<pre class="highlight"><code class="language-markdown">## Script: script_name.py
+
+### Purpose
+Brief description of what the script does.
+
+### Usage
+\`\`\`bash
+command | python3 script_name.py [options]
+\`\`\`
+
+### Input Format
+Describe expected input format (CSV, JSONL, etc.)
+
+### Output Format
+Describe output format
+
+### Dependencies
+- Python 3.7+
+- Libraries: pandas, requests, etc.
+
+### Performance
+- Memory: O(1) - streaming
+- Time: O(n) - linear
+
+### Error Handling
+How script handles malformed input, missing fields, etc.
+</code></pre>
+
+<h3 id="pandas-vs-cli-decision-matrix">Pandas vs CLI Decision Matrix</h3>
+<p>Create guide for when to use pandas vs CLI tools:</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Use Pandas</th>
+<th>Use CLI Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data size</td>
+<td>&lt; 1GB</td>
+<td>&gt; 1GB</td>
+</tr>
+<tr>
+<td>Operation</td>
+<td>Complex joins, stats</td>
+<td>Simple filter, group-by</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Abundant</td>
+<td>Limited</td>
+</tr>
+<tr>
+<td>Speed needed</td>
+<td>Analysis</td>
+<td>Production pipeline</td>
+</tr>
+<tr>
+<td>Dependencies</td>
+<td>Python env available</td>
+<td>Minimal dependencies</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bonus-performance-benchmarks">Bonus: Performance Benchmarks</h3>
+<p>Create comprehensive benchmark comparing:<br />
+1. Pure shell (awk, mlr, etc.)<br />
+2. Python with sys.stdin<br />
+3. Python with pandas<br />
+4. Hybrid (shell + Python)</p>
+<p>Test on:<br />
+- 1MB file<br />
+- 100MB file<br />
+- 1GB file</p>
+<p>Measure:<br />
+- Execution time<br />
+- Peak memory<br />
+- CPU usage</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

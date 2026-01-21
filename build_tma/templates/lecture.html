@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="lecture-container">
+    <div class="lecture-header">
+        <span class="course-badge">{{ course_title }}</span>
+        <div class="module-info">
+            <span class="module-number">Module {{ module_number }}</span>
+            <span class="reading-time">📖 {{ reading_time }} min</span>
+        </div>
+    </div>
+
+    <div class="lecture-content">
+        {{ content | safe }}
+    </div>
+
+    <div class="lecture-actions">
+        <a href="quiz.html" class="action-btn quiz-btn">
+            <span class="btn-icon">📝</span>
+            <span class="btn-text">Take Quiz</span>
+        </a>
+        <a href="hw.html" class="action-btn hw-btn">
+            <span class="btn-icon">💻</span>
+            <span class="btn-text">Homework</span>
+        </a>
+    </div>
+
+    <div class="lecture-nav">
+        {% if prev_module %}
+        <a href="{{ prev_module.url }}" class="nav-btn prev">
+            <span class="nav-arrow">←</span>
+            <span class="nav-info">
+                <span class="nav-label">Previous</span>
+                <span class="nav-title">{{ prev_module.title }}</span>
+            </span>
+        </a>
+        {% endif %}
+        
+        {% if next_module %}
+        <a href="{{ next_module.url }}" class="nav-btn next">
+            <span class="nav-info">
+                <span class="nav-label">Next</span>
+                <span class="nav-title">{{ next_module.title }}</span>
+            </span>
+            <span class="nav-arrow">→</span>
+        </a>
+        {% endif %}
+    </div>
+</article>
+{% endblock %}

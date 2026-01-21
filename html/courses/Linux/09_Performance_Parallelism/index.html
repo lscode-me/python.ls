@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Performance &amp; Parallelism | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="performance-parallelism">Performance &amp; Parallelism</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Optimize pipeline performance through parallelism, efficient sorting, and profiling.</p>
+<h2 id="gnu-parallel">GNU Parallel</h2>
+<h3 id="basic-parallel-execution">Basic Parallel Execution</h3>
+<pre class="highlight"><code class="language-bash"># Run commands in parallel
+seq 1 10 | parallel echo &quot;Processing {}&quot;
+
+# Process files
+ls *.txt | parallel wc -l {}
+
+# Multiple CPUs
+seq 1 100 | parallel -j 4 heavy_computation.sh {}
+
+# Keep order
+seq 1 10 | parallel --keep-order echo {}
+</code></pre>
+
+<h3 id="advanced-parallel-patterns">Advanced Parallel Patterns</h3>
+<pre class="highlight"><code class="language-bash"># With progress bar
+seq 1 1000 | parallel --bar process.sh {}
+
+# Retry failed jobs
+parallel --retries 3 flaky_script.sh ::: {1..100}
+
+# Load data from file
+parallel -a urls.txt wget {}
+
+# Argument combinations
+parallel echo {1} {2} ::: A B C ::: 1 2 3
+</code></pre>
+
+<h2 id="xargs-parallel">xargs Parallel</h2>
+<pre class="highlight"><code class="language-bash"># Basic parallel (-P for processes)
+find . -name &quot;*.txt&quot; | xargs -P 4 -I {} wc -l {}
+
+# Batch processing
+seq 1 100 | xargs -P 4 -n 10 batch_process.sh
+
+# With null delimiter
+find . -name &quot;*.csv&quot; -print0 | xargs -0 -P 4 csvstat
+</code></pre>
+
+<h2 id="sort-optimization">Sort Optimization</h2>
+<h3 id="memory-and-parallelism">Memory and Parallelism</h3>
+<pre class="highlight"><code class="language-bash"># Use more memory
+sort -S 2G large.txt
+
+# Parallel sort
+sort --parallel=4 large.txt
+
+# Both
+sort --parallel=4 -S 4G huge.txt
+
+# Temporary directory (use fast SSD)
+TMPDIR=/fast/tmp sort -S 4G huge.txt
+</code></pre>
+
+<h3 id="efficient-sorting">Efficient Sorting</h3>
+<pre class="highlight"><code class="language-bash"># Sort by specific field only
+sort -t',' -k3,3n data.csv
+
+# Unique sort (faster than sort | uniq)
+sort -u data.txt
+
+# Numeric sort
+sort -n numbers.txt
+
+# Version sort (1.2.10 &gt; 1.2.9)
+sort -V versions.txt
+</code></pre>
+
+<h2 id="profiling-with-time-dstat-pv">Profiling with time, dstat, pv</h2>
+<h3 id="time-command">time Command</h3>
+<pre class="highlight"><code class="language-bash"># Measure execution time
+time ./script.sh
+
+# Detailed timing
+/usr/bin/time -v ./script.sh
+
+# Output format
+/usr/bin/time -f &quot;Time: %E\nMax RSS: %M KB&quot; ./script.sh
+</code></pre>
+
+<h3 id="pv-for-progress">pv for Progress</h3>
+<pre class="highlight"><code class="language-bash"># Show progress and throughput
+pv large.csv | wc -l
+
+# With rate limit
+pv -L 1m source.dat &gt; target.dat
+
+# Progress bar
+pv -W large.csv | gzip &gt; large.csv.gz
+
+# ETA
+pv access.log | grep ERROR &gt; errors.log
+</code></pre>
+
+<h3 id="iostat-and-vmstat">iostat and vmstat</h3>
+<pre class="highlight"><code class="language-bash"># I/O statistics
+iostat -x 2
+
+# Memory and CPU
+vmstat 2
+
+# Disk usage monitoring
+iotop
+</code></pre>
+
+<h2 id="practical-performance-examples">Practical Performance Examples</h2>
+<h3 id="example-1-parallel-csv-processing">Example 1: Parallel CSV Processing</h3>
+<pre class="highlight"><code class="language-bash"># Split CSV, process in parallel, merge
+split -l 10000 -d huge.csv chunk_
+ls chunk_* | parallel -j 4 &quot;mlr --csv stats1 -a sum -f amount {} &gt; {}.stats&quot;
+cat chunk_*.stats &gt; final_stats.csv
+rm chunk_*
+</code></pre>
+
+<h3 id="example-2-parallel-api-fetching">Example 2: Parallel API Fetching</h3>
+<pre class="highlight"><code class="language-bash"># Fetch 100 users in parallel (10 at a time)
+seq 1 100 | parallel -j 10 \
+  'curl -s &quot;https://api.example.com/user/{}&quot; | jq -c &quot;.&quot;' &gt; users.jsonl
+</code></pre>
+
+<h3 id="example-3-fast-find-and-process">Example 3: Fast Find and Process</h3>
+<pre class="highlight"><code class="language-bash"># Find and process files efficiently
+find . -name &quot;*.log&quot; -print0 | \
+  xargs -0 -P 8 -I {} sh -c 'grep ERROR {} | wc -l' | \
+  awk '{sum += $1} END {print sum}'
+</code></pre>
+
+<h3 id="example-4-optimized-sort-merge">Example 4: Optimized Sort-Merge</h3>
+<pre class="highlight"><code class="language-bash"># Sort large file with all optimizations
+TMPDIR=/fast/ssd sort --parallel=8 -S 8G -t',' -k1,1 huge.csv &gt; sorted.csv
+</code></pre>
+
+<h2 id="bottleneck-identification">Bottleneck Identification</h2>
+<h3 id="cpu-bound">CPU-Bound</h3>
+<pre class="highlight"><code class="language-bash"># Monitor CPU usage
+top
+htop
+
+# If CPU is bottleneck: use parallelism
+parallel -j $(nproc) command ::: input
+</code></pre>
+
+<h3 id="io-bound">I/O-Bound</h3>
+<pre class="highlight"><code class="language-bash"># Monitor I/O
+iostat -x 2
+iotop
+
+# If I/O is bottleneck:
+# - Use faster storage (SSD)
+# - Reduce I/O operations
+# - Use compression
+# - Batch operations
+</code></pre>
+
+<h3 id="memory-bound">Memory-Bound</h3>
+<pre class="highlight"><code class="language-bash"># Monitor memory
+free -h
+vmstat 2
+
+# If memory is bottleneck:
+# - Stream data (don't load all)
+# - Use external sort
+# - Split and process
+</code></pre>
+
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li id="item-1"><strong>Profile first</strong>: Identify bottleneck before optimizing</li>
+<li id="item-2"><strong>Use parallel</strong> for independent tasks</li>
+<li id="item-3"><strong>Optimize sort</strong>: Use <code>-S</code>, <code>--parallel</code>, fast <code>TMPDIR</code></li>
+<li id="item-4"><strong>Stream data</strong>: Avoid loading everything in memory</li>
+<li id="item-5"><strong>Batch operations</strong>: Reduce overhead</li>
+<li id="item-6"><strong>Monitor resources</strong>: Use <code>time</code>, <code>pv</code>, <code>iostat</code></li>
+<li id="item-7"><strong>Test scalability</strong>: Profile with different data sizes</li>
+</ol>
+<h2 id="performance-checklist">Performance Checklist</h2>
+<ul>
+<li>[ ] Use <code>parallel</code> or <code>xargs -P</code> for parallelism</li>
+<li>[ ] Allocate more memory to sort with <code>-S</code></li>
+<li>[ ] Use <code>--parallel</code> flag for sort</li>
+<li>[ ] Set <code>TMPDIR</code> to fast storage</li>
+<li>[ ] Add <code>pv</code> to monitor progress</li>
+<li>[ ] Profile with <code>/usr/bin/time -v</code></li>
+<li>[ ] Monitor I/O with <code>iostat</code></li>
+<li>[ ] Check memory with <code>free -h</code></li>
+<li>[ ] Use compression for I/O-heavy tasks</li>
+<li>[ ] Batch API calls to reduce overhead</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parallel</td>
+<td>Parallel execution</td>
+<td><code>seq 1 100 \| parallel process {}</code></td>
+</tr>
+<tr>
+<td>xargs -P</td>
+<td>Simple parallelism</td>
+<td><code>find . -name "*.txt" \| xargs -P 4 wc -l</code></td>
+</tr>
+<tr>
+<td>sort -S</td>
+<td>Memory for sort</td>
+<td><code>sort -S 4G huge.txt</code></td>
+</tr>
+<tr>
+<td>sort --parallel</td>
+<td>Parallel sort</td>
+<td><code>sort --parallel=8 large.txt</code></td>
+</tr>
+<tr>
+<td>pv</td>
+<td>Progress monitor</td>
+<td><code>pv large.csv \| wc -l</code></td>
+</tr>
+<tr>
+<td>time</td>
+<td>Profile execution</td>
+<td><code>time ./script.sh</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Practice with GNU parallel</li>
+<li>Profile existing pipelines</li>
+<li>Optimize bottlenecks</li>
+<li>Study parallel algorithms</li>
+</ul>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Additional resources for Streaming Analytics: Join, Group-By, Map/Reduce">
+    <title>Streaming Analytics: Join, Group-By, Map/Reduce - Resources | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Streaming Analytics: Join, Group-By, Map/Reduce</a> &raquo;
+                    <span>Resources</span>
+                </nav>
+                <div class="lecture-content"><h1 id="streaming-analytics-join-group-by-mapreduce-resources">Streaming Analytics: Join, Group-By, Map/Reduce - Resources</h1>
+<h2 id="join-operations">Join Operations</h2>
+<p>https://www.gnu.org/software/coreutils/manual/html_node/join-invocation.html<br />
+https://www.thegeekstuff.com/2012/06/linux-join-command/<br />
+https://miller.readthedocs.io/en/latest/reference-verbs/#join<br />
+https://stackoverflow.com/questions/9841342/join-command-in-unix</p>
+<h2 id="miller-mlr">Miller (mlr)</h2>
+<p>https://miller.readthedocs.io/en/latest/reference-verbs/<br />
+https://miller.readthedocs.io/en/latest/reference-verbs/#stats1<br />
+https://miller.readthedocs.io/en/latest/reference-verbs/#top<br />
+https://miller.readthedocs.io/en/latest/reference-verbs/#join</p>
+<h2 id="datamash">datamash</h2>
+<p>https://www.gnu.org/software/datamash/<br />
+https://www.gnu.org/software/datamash/manual/<br />
+https://www.gnu.org/software/datamash/examples/</p>
+<h2 id="awk-group-by">awk Group-By</h2>
+<p>https://www.gnu.org/software/gawk/manual/html_node/Arrays.html<br />
+https://stackoverflow.com/questions/12144158/awk-group-by-and-sum<br />
+https://www.thegeekstuff.com/2011/01/awk-associative-arrays/</p>
+<h2 id="mapreduce">Map/Reduce</h2>
+<p>https://en.wikipedia.org/wiki/MapReduce<br />
+https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf<br />
+https://www.mongodb.com/docs/manual/core/map-reduce/</p>
+<h2 id="streaming-algorithms">Streaming Algorithms</h2>
+<p>https://en.wikipedia.org/wiki/Streaming_algorithm<br />
+https://www.cs.dartmouth.edu/~ac/Teach/CS49-Fall11/Notes/lecnotes.pdf<br />
+https://blog.acolyer.org/2016/03/04/a-survey-of-synopsis-construction-in-data-streams/</p>
+<h2 id="duckdb">DuckDB</h2>
+<p>https://duckdb.org/ - Official DuckDB website<br />
+https://duckdb.org/docs/sql/aggregates - Aggregate functions<br />
+https://duckdb.org/docs/sql/window_functions - Window functions<br />
+https://duckdb.org/docs/guides/performance/indexing - Performance tuning<br />
+https://duckdb.org/docs/sql/query_syntax/from - FROM clause and joins<br />
+https://github.com/duckdb/duckdb - GitHub repository<br />
+https://duckdb.org/2022/05/04/friendlier-sql.html - Friendlier SQL features<br />
+https://duckdb.org/docs/guides/python/overview - DuckDB with Python</p>
+<h2 id="duckdb-performance">DuckDB Performance</h2>
+<p>https://duckdb.org/why_duckdb - Why DuckDB is fast<br />
+https://duckdb.org/2021/03/05/aggregate-hashtable.html - Aggregate performance<br />
+https://duckdb.org/2021/08/27/external-sorting.html - Sorting large datasets<br />
+https://www.youtube.com/watch?v=bZOvAKGkzpQ - DuckDB performance deep dive</p>
+<h2 id="sql-like-tools">SQL-Like Tools</h2>
+<p>https://github.com/harelba/q - SQL on CSV/TSV<br />
+https://github.com/dinedal/textql - SQL queries on text files<br />
+https://github.com/BurntSushi/xsv - Fast CSV toolkit</p>
+<h2 id="time-series-analysis">Time-Series Analysis</h2>
+<p>https://www.gnu.org/software/gawk/manual/html_node/Time-Functions.html<br />
+https://stackoverflow.com/questions/tagged/time-series+awk</p>
+<h2 id="window-functions">Window Functions</h2>
+<p>https://en.wikipedia.org/wiki/Window_function_(SQL)<br />
+https://www.postgresql.org/docs/current/tutorial-window.html<br />
+https://mode.com/sql-tutorial/sql-window-functions/</p>
+<h2 id="books">Books</h2>
+<p>"Data Science at the Command Line" - Chapter on analytics<br />
+"The Art of SQL" - Understanding joins and aggregations</p>
+<h2 id="video-tutorials">Video Tutorials</h2>
+<p>https://www.youtube.com/results?search_query=miller+mlr+tutorial<br />
+https://www.youtube.com/results?search_query=awk+group+by<br />
+https://www.youtube.com/results?search_query=linux+join+command</p>
+<h2 id="community">Community</h2>
+<p>https://stackoverflow.com/questions/tagged/miller<br />
+https://stackoverflow.com/questions/tagged/datamash<br />
+https://stackoverflow.com/questions/tagged/duckdb<br />
+https://github.com/johnkerl/miller/discussions<br />
+https://discord.gg/tcvwpjfnZx - DuckDB Discord<br />
+https://github.com/duckdb/duckdb/discussions - DuckDB discussions</p></div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

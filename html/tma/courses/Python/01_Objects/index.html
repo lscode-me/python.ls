@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="In Python, everything is an object — integers, strings, lists, functions, classes.">
+    <title>Python Core Foundations | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Python Core Foundations</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="python-core-foundations">Python Core Foundations</h1>
+<h2 id="objects-references-memory-types">Objects, References, Memory, Types</h2>
+<hr />
+<h2 id="1-python-objects-references">1. Python Objects &amp; References</h2>
+<p>In Python, everything is an object — integers, strings, lists, functions, classes.</p>
+<p>A variable does not store a value directly.<br />
+It stores a reference to an object in memory.</p>
+<pre class="highlight"><code class="language-python">a = 10      # create int object 10, bind name &quot;a&quot; to it
+b = a       # b refers to the same object
+</code></pre>
+
+<p>Assignments never copy objects.<br />
+Multiple names may refer to the same object.<br />
+Mutating an object affects all references to it.</p>
+<hr />
+<h2 id="2-built-in-data-types-core-set">2. Built-in Data Types (Core Set)</h2>
+<h3 id="immutable-types">Immutable Types</h3>
+<ul>
+<li>int</li>
+<li>float</li>
+<li>bool</li>
+<li>str</li>
+<li>tuple</li>
+<li>frozenset</li>
+<li>bytes</li>
+</ul>
+<h3 id="mutable-types">Mutable Types</h3>
+<ul>
+<li>list</li>
+<li>dict</li>
+<li>set</li>
+<li>bytearray</li>
+<li>user-defined objects</li>
+</ul>
+<hr />
+<h2 id="3-reference-counting-rc">3. Reference Counting (RC)</h2>
+<p>CPython uses reference counting as the primary garbage collection method.</p>
+<p>Every object stores an internal counter: how many references point to it.</p>
+<pre class="highlight"><code class="language-python">import sys
+
+x = []
+print(sys.getrefcount(x))
+</code></pre>
+
+<p>When the counter becomes 0, the object is immediately deallocated.</p>
+<p>Reference counting is complemented by a cycle detector (GC).</p>
+<hr />
+<h2 id="4-python-memory-manager">4. Python Memory Manager</h2>
+<p>Python memory handling includes:</p>
+<ol>
+<li id="item-1">Reference counter  </li>
+<li id="item-2">Garbage Collector for cyclic references  </li>
+<li id="item-3">PyObject allocator (arenas, pools, blocks)</li>
+</ol>
+<p>Small objects (ints, strings, tuples) are allocated efficiently via internal caches.</p>
+<hr />
+<h2 id="5-mutable-vs-immutable-in-practice">5. Mutable vs Immutable in Practice</h2>
+<h3 id="immutable-example">Immutable example</h3>
+<pre class="highlight"><code class="language-python">a = &quot;hello&quot;
+b = a
+a += &quot;!&quot;   # creates a new string object
+</code></pre>
+
+<h3 id="mutable-example">Mutable example</h3>
+<pre class="highlight"><code class="language-python">x = [1, 2]
+y = x
+x.append(3)
+</code></pre>
+
+<p>y is modified too, because both names point to the same list.</p>
+<hr />
+<h2 id="6-identity-vs-equality-is-vs">6. Identity vs Equality (<code>is</code> vs <code>==</code>)</h2>
+<p><code>==</code> checks value equality.<br />
+<code>is</code> checks identity (same object in memory).</p>
+<hr />
+<h2 id="7-identity-examples-a-is-b">7. Identity Examples (<code>a is b</code>)</h2>
+<h3 id="integers">Integers</h3>
+<pre class="highlight"><code class="language-python">a, b = 1, 1
+a is b          # True (small int cache)
+
+a, b = 256, 256
+a is b          # True
+
+a, b = 257, 257
+a is b          # False (not guaranteed to be cached)
+</code></pre>
+
+<h3 id="strings">Strings</h3>
+<pre class="highlight"><code class="language-python">a, b = &quot;hello&quot;, &quot;hello&quot;
+a is b          # True (interned)
+
+a = &quot;hello world!!1&quot;
+b = &quot;hello world!!1&quot;
+a is b          # May be True or False
+</code></pre>
+
+<h3 id="lists">Lists</h3>
+<pre class="highlight"><code class="language-python">a, b = [], []
+a is b          # False
+
+c = a
+a is c          # True
+</code></pre>
+
+<hr />
+<h2 id="8-mutable-default-arguments">8. Mutable Default Arguments</h2>
+<pre class="highlight"><code class="language-python">def add_item(item, lst=[]):
+    lst.append(item)
+    return lst
+</code></pre>
+
+<p>Usage:</p>
+<pre class="highlight"><code class="language-python">add_item(1)   # [1]
+add_item(2)   # [1, 2]
+add_item(3)   # [1, 2, 3]
+</code></pre>
+
+<p>Correct version:</p>
+<pre class="highlight"><code class="language-python">def add_item(item, lst=None):
+    if lst is None:
+        lst = []
+    lst.append(item)
+    return lst
+</code></pre>
+
+<hr />
+<h2 id="9-constructors-type-converters">9. Constructors &amp; Type Converters</h2>
+<h3 id="numeric">Numeric</h3>
+<pre class="highlight"><code class="language-python">int(&quot;5&quot;)
+float(&quot;3.14&quot;)
+bool(0)
+</code></pre>
+
+<h3 id="containers">Containers</h3>
+<pre class="highlight"><code class="language-python">list(&quot;abc&quot;)       # ['a','b','c']
+tuple([1, 2])     # (1, 2)
+set([1, 1, 2])    # {1, 2}
+</code></pre>
+
+<h3 id="strings_1">Strings</h3>
+<pre class="highlight"><code class="language-python">str(123)
+repr([1, 2, 3])
+</code></pre>
+
+<hr />
+<h1 id="working-with-python-objects-introspection-identity-references-and-memory">Working with Python Objects: Introspection, Identity, References, and Memory</h1>
+<p>This document summarizes the essential Python functions and tools used to inspect objects, understand references, measure memory usage, and analyze the Python memory model.</p>
+<hr />
+<h2 id="1-basic-object-introspection">1. 🔍 Basic Object Introspection</h2>
+<h3 id="typeobj"><strong><code>type(obj)</code></strong></h3>
+<p>Returns the type of an object.</p>
+<pre class="highlight"><code class="language-python">type(10)          # &lt;class 'int'&gt;
+type([1, 2])      # &lt;class 'list'&gt;
+</code></pre>
+
+<h3 id="idobj"><strong><code>id(obj)</code></strong></h3>
+<p>Returns the identity of an object.<br />
+In CPython, this is the memory address.</p>
+<pre class="highlight"><code class="language-python">a = 42
+id(a)             # e.g., 140734962178768
+</code></pre>
+
+<h3 id="isinstanceobj-cls"><strong><code>isinstance(obj, cls)</code></strong></h3>
+<p>Checks whether an object belongs to a given class or type.</p>
+<pre class="highlight"><code class="language-python">isinstance(&quot;hi&quot;, str)      # True
+</code></pre>
+
+<h3 id="callableobj"><strong><code>callable(obj)</code></strong></h3>
+<p>Checks whether an object can be called like a function.</p>
+<hr />
+<h2 id="2-reference-counting">2. 🔗 Reference Counting</h2>
+<h3 id="sysgetrefcountobj"><strong><code>sys.getrefcount(obj)</code></strong></h3>
+<p>Returns the reference count of the object.</p>
+<p>⚠️ Note: Passing the object as a function argument temporarily adds a reference.</p>
+<pre class="highlight"><code class="language-python">import sys
+x = []
+sys.getrefcount(x)
+</code></pre>
+
+<p>When the count reaches <strong>0</strong>, the object is deallocated.</p>
+<hr />
+<h2 id="3-size-memory-footprint">3. 📦 Size &amp; Memory Footprint</h2>
+<h3 id="sysgetsizeofobj"><strong><code>sys.getsizeof(obj)</code></strong></h3>
+<p>Returns the size of the object in bytes (non-recursive).</p>
+<pre class="highlight"><code class="language-python">import sys
+sys.getsizeof(1000)
+sys.getsizeof([])
+</code></pre>
+
+<p>For containers, this returns only the “shell” size, not the full deep size.</p>
+<p>For recursive measurement, external libraries like <code>pympler.asizeof</code> are needed.</p>
+<hr />
+<h2 id="4-garbage-collector-tools-gc">4. 🧠 Garbage Collector Tools (<code>gc</code>)</h2>
+<h3 id="gcget_referrersobj"><strong><code>gc.get_referrers(obj)</code></strong></h3>
+<p>Returns objects that reference the given object.</p>
+<h3 id="gcget_referentsobj"><strong><code>gc.get_referents(obj)</code></strong></h3>
+<p>Returns objects referenced <em>by</em> the given object.</p>
+<pre class="highlight"><code class="language-python">import gc
+a = [1, 2, 3]
+gc.get_referents(a)
+</code></pre>
+
+<h3 id="gcget_objects"><strong><code>gc.get_objects()</code></strong></h3>
+<p>Returns all objects tracked by Python’s garbage collector.</p>
+<h3 id="gcis_trackedobj"><strong><code>gc.is_tracked(obj)</code></strong></h3>
+<p>Checks whether an object is tracked by the garbage collector.<br />
+Most immutable objects are <strong>not</strong> tracked.</p>
+<hr />
+<h2 id="5-object-structure-attributes">5. 🧩 Object Structure &amp; Attributes</h2>
+<h3 id="dirobj"><strong><code>dir(obj)</code></strong></h3>
+<p>Lists attributes and methods of an object.</p>
+<h3 id="varsobj"><strong><code>vars(obj)</code></strong></h3>
+<p>Returns the <code>__dict__</code> of a custom object.</p>
+<h3 id="obj__dict__"><strong><code>obj.__dict__</code></strong></h3>
+<p>The actual attribute storage (may not exist for all objects).</p>
+<h3 id="hashobj"><strong><code>hash(obj)</code></strong></h3>
+<p>Returns the hash value of the object (if hashable).</p>
+<h3 id="string-representations"><strong>String Representations</strong></h3>
+<ul>
+<li><code>repr(obj)</code> — detailed/debug representation  </li>
+<li><code>str(obj)</code> — user-friendly string form</li>
+</ul>
+<hr />
+<h2 id="6-identity-vs-equality">6. 🧪 Identity vs Equality</h2>
+<h3 id="a-is-b"><strong><code>a is b</code></strong></h3>
+<p>Checks identity — whether both names point to the same object.</p>
+<h3 id="a-b"><strong><code>a == b</code></strong></h3>
+<p>Checks value equality.</p>
+<pre class="highlight"><code class="language-python">a = [1, 2]
+b = a
+a is b      # True
+a == b      # True
+
+c = [1, 2]
+a is c      # False
+a == c      # True
+</code></pre>
+
+<hr />
+<h2 id="7-type-construction-conversion">7. 🧬 Type Construction &amp; Conversion</h2>
+<p>Useful for demonstrating object creation and type changes.</p>
+<h3 id="core-constructors"><strong>Core constructors:</strong></h3>
+<ul>
+<li><code>int()</code></li>
+<li><code>float()</code></li>
+<li><code>str()</code></li>
+<li><code>list()</code></li>
+<li><code>tuple()</code></li>
+<li><code>set()</code></li>
+<li><code>dict()</code></li>
+<li><code>bool()</code></li>
+<li><code>bytes()</code></li>
+<li><code>bytearray()</code></li>
+</ul>
+<p>These create new objects (and sometimes intern or reuse objects depending on Python’s optimization rules).</p>
+<hr />
+<h2 id="8-summary-table">8. 📘 Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Function / Operator</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type</td>
+<td><code>type(obj)</code></td>
+<td>Get object type</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td><code>id(obj)</code></td>
+<td>Memory address (CPython)</td>
+</tr>
+<tr>
+<td>Equality</td>
+<td><code>==</code></td>
+<td>Value equality</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td><code>is</code></td>
+<td>Same object in memory</td>
+</tr>
+<tr>
+<td>Size</td>
+<td><code>sys.getsizeof(obj)</code></td>
+<td>Object size (bytes)</td>
+</tr>
+<tr>
+<td>Refcount</td>
+<td><code>sys.getrefcount(obj)</code></td>
+<td>Number of references</td>
+</tr>
+<tr>
+<td>GC</td>
+<td><code>gc.get_referrers(obj)</code></td>
+<td>Objects pointing to obj</td>
+</tr>
+<tr>
+<td>GC</td>
+<td><code>gc.get_referents(obj)</code></td>
+<td>Objects obj points to</td>
+</tr>
+<tr>
+<td>GC</td>
+<td><code>gc.is_tracked(obj)</code></td>
+<td>GC tracking status</td>
+</tr>
+<tr>
+<td>Structure</td>
+<td><code>dir(obj)</code></td>
+<td>Attributes and methods</td>
+</tr>
+<tr>
+<td>Structure</td>
+<td><code>vars(obj)</code></td>
+<td>Object namespace</td>
+</tr>
+<tr>
+<td>Structure</td>
+<td><code>obj.__dict__</code></td>
+<td>Direct attribute storage</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td><code>hash(obj)</code></td>
+<td>Hash value</td>
+</tr>
+<tr>
+<td>Stringification</td>
+<td><code>repr(obj)</code></td>
+<td>Debug string</td>
+</tr>
+<tr>
+<td>Stringification</td>
+<td><code>str(obj)</code></td>
+<td>Human-readable string</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conclusion">✔️ Conclusion</h2>
+<p>These functions form the core toolkit for exploring how Python represents objects, manages memory, tracks references, and exposes object internals.<br />
+They are essential for understanding Python’s memory model and teaching how variables, references, and objects actually work under the hood.</p>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

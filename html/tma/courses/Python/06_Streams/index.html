@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="One of the key ideas of Unix philosophy is that programs should work together as building blocks, exchanging data through standard streams. In this le">
+    <title>Input/Output Streams in Python: The Unix | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Input/Output Streams in Python: The Unix</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="inputoutput-streams-in-python-the-unix-approach">Input/Output Streams in Python: The Unix Approach</h1>
+<h2 id="introduction">Introduction</h2>
+<p>One of the key ideas of Unix philosophy is that programs should work together as building blocks, exchanging data through standard streams. In this lecture, we'll learn how to write Python programs that follow this philosophy.</p>
+<h2 id="unix-philosophy-applied-to-python">Unix Philosophy Applied to Python</h2>
+<p><strong>Core Principles:</strong></p>
+<ol>
+<li id="item-1"><strong>Do one thing well</strong> — each program solves one task</li>
+<li id="item-2"><strong>Use text streams</strong> — a universal interface</li>
+<li id="item-3"><strong>Combine programs</strong> — connect simple tools to solve complex problems</li>
+</ol>
+<p>Python is ideal for creating such tools!</p>
+<h2 id="standard-streams">Standard Streams</h2>
+<p>Every Unix program has three standard streams:</p>
+<ul>
+<li><strong>stdin</strong> (0) — standard input</li>
+<li><strong>stdout</strong> (1) — standard output  </li>
+<li><strong>stderr</strong> (2) — standard error</li>
+</ul>
+<p>In Python, you can access them through the <code>sys</code> module:</p>
+<pre class="highlight"><code class="language-python">import sys
+
+# Read from stdin
+data = sys.stdin.read()
+
+# Write to stdout
+sys.stdout.write(&quot;Result\n&quot;)
+
+# Write errors to stderr
+sys.stderr.write(&quot;Error!\n&quot;)
+</code></pre>
+
+<h2 id="reading-from-stdin">Reading from stdin</h2>
+<h3 id="method-1-line-by-line-reading">Method 1: Line-by-line Reading</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+# Read line by line (most efficient)
+for line in sys.stdin:
+    # line already contains '\n' at the end
+    print(line.rstrip())  # Remove newline
+</code></pre>
+
+<p><strong>Usage:</strong></p>
+<pre class="highlight"><code class="language-bash">cat file.txt | python script.py
+echo -e &quot;line1\nline2&quot; | python script.py
+</code></pre>
+
+<h3 id="method-2-read-all-input">Method 2: Read All Input</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+# Read all input at once
+all_data = sys.stdin.read()
+print(f&quot;Received {len(all_data)} characters&quot;)
+</code></pre>
+
+<h3 id="method-3-read-list-of-lines">Method 3: Read List of Lines</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+# Read all lines into a list
+lines = sys.stdin.readlines()
+for i, line in enumerate(lines, 1):
+    print(f&quot;{i}: {line.rstrip()}&quot;)
+</code></pre>
+
+<h2 id="practical-example-simple-filter">Practical Example: Simple Filter</h2>
+<p>Let's create a program that numbers lines (like <code>cat -n</code>):</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Number lines from input stream&quot;&quot;&quot;
+import sys
+
+def number_lines():
+    for i, line in enumerate(sys.stdin, 1):
+        print(f&quot;{i:6d}  {line.rstrip()}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    number_lines()
+</code></pre>
+
+<p><strong>Usage:</strong></p>
+<pre class="highlight"><code class="language-bash">chmod +x number_lines.py
+cat /etc/passwd | ./number_lines.py
+./number_lines.py &lt; file.txt
+</code></pre>
+
+<h2 id="writing-to-stdout-and-stderr">Writing to stdout and stderr</h2>
+<h3 id="proper-stream-usage">Proper Stream Usage</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+def process_data():
+    try:
+        for i, line in enumerate(sys.stdin, 1):
+            # Normal output goes to stdout
+            print(line.rstrip().upper())
+
+            # Progress and debugging go to stderr
+            if i % 1000 == 0:
+                print(f&quot;Processed {i} lines&quot;, file=sys.stderr)
+
+    except Exception as e:
+        # Errors always go to stderr
+        print(f&quot;ERROR: {e}&quot;, file=sys.stderr)
+        sys.exit(1)
+</code></pre>
+
+<p><strong>Why this matters:</strong></p>
+<pre class="highlight"><code class="language-bash"># Save only results, see errors on screen
+./script.py &lt; input.txt &gt; output.txt
+
+# Redirect both results and errors
+./script.py &lt; input.txt &gt; output.txt 2&gt; errors.log
+
+# Ignore errors
+./script.py &lt; input.txt 2&gt;/dev/null
+</code></pre>
+
+<h2 id="working-with-command-line-arguments">Working with Command-Line Arguments</h2>
+<h3 id="basic-approach-sysargv">Basic Approach: sys.argv</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+if len(sys.argv) &lt; 2:
+    print(&quot;Usage: script.py &lt;filename&gt;&quot;, file=sys.stderr)
+    sys.exit(1)
+
+filename = sys.argv[1]
+</code></pre>
+
+<h3 id="professional-approach-argparse">Professional Approach: argparse</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Filter for text processing&quot;&quot;&quot;
+import sys
+import argparse
+
+def create_parser():
+    parser = argparse.ArgumentParser(
+        description='Filter lines by pattern'
+    )
+    parser.add_argument(
+        'pattern',
+        help='Search pattern'
+    )
+    parser.add_argument(
+        '-i', '--ignore-case',
+        action='store_true',
+        help='Ignore case'
+    )
+    parser.add_argument(
+        '-v', '--invert',
+        action='store_true',
+        help='Invert match'
+    )
+    parser.add_argument(
+        '-c', '--count',
+        action='store_true',
+        help='Count matches only'
+    )
+    return parser
+
+def filter_lines(pattern, ignore_case=False, invert=False, count=False):
+    if ignore_case:
+        pattern = pattern.lower()
+
+    matched = 0
+    for line in sys.stdin:
+        line_to_check = line.lower() if ignore_case else line
+
+        matches = pattern in line_to_check
+        if invert:
+            matches = not matches
+
+        if matches:
+            matched += 1
+            if not count:
+                print(line.rstrip())
+
+    if count:
+        print(matched)
+
+def main():
+    parser = create_parser()
+    args = parser.parse_args()
+
+    try:
+        filter_lines(
+            args.pattern,
+            ignore_case=args.ignore_case,
+            invert=args.invert,
+            count=args.count
+        )
+    except KeyboardInterrupt:
+        sys.exit(130)  # Standard exit code for Ctrl+C
+    except BrokenPipeError:
+        # Happens when next program in pipeline terminates
+        sys.exit(0)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+<p><strong>Usage:</strong></p>
+<pre class="highlight"><code class="language-bash">./filter.py python &lt; file.txt
+./filter.py -i ERROR &lt; app.log
+./filter.py -c &quot;success&quot; &lt; results.txt
+./filter.py -v &quot;test&quot; &lt; data.txt | head -10
+</code></pre>
+
+<h2 id="reading-from-files-or-stdin">Reading from Files or stdin</h2>
+<p>Universal utility that works with both files and stdin:</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Word frequency counter&quot;&quot;&quot;
+import sys
+import argparse
+from collections import Counter
+
+def count_words(file_obj):
+    &quot;&quot;&quot;Count words from file object&quot;&quot;&quot;
+    counter = Counter()
+    for line in file_obj:
+        words = line.lower().split()
+        counter.update(words)
+    return counter
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Count word frequencies'
+    )
+    parser.add_argument(
+        'files',
+        nargs='*',  # 0 or more files
+        help='Files to process (or stdin if not specified)'
+    )
+    parser.add_argument(
+        '-n', '--top',
+        type=int,
+        default=10,
+        help='Show top N words (default: 10)'
+    )
+    args = parser.parse_args()
+
+    counter = Counter()
+
+    if not args.files:
+        # If no files specified, read from stdin
+        counter.update(count_words(sys.stdin))
+    else:
+        # Process each file
+        for filename in args.files:
+            try:
+                with open(filename) as f:
+                    counter.update(count_words(f))
+            except FileNotFoundError:
+                print(f&quot;Error: file '{filename}' not found&quot;, 
+                      file=sys.stderr)
+                sys.exit(1)
+            except PermissionError:
+                print(f&quot;Error: no access to '{filename}'&quot;, 
+                      file=sys.stderr)
+                sys.exit(1)
+
+    # Print results
+    for word, count in counter.most_common(args.top):
+        print(f&quot;{count:8d}  {word}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+<p><strong>Usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># From stdin
+cat *.txt | ./wordcount.py
+
+# From files
+./wordcount.py file1.txt file2.txt
+
+# Combined options
+./wordcount.py -n 20 *.log
+</code></pre>
+
+<h2 id="buffering">Buffering</h2>
+<h3 id="the-buffering-problem">The Buffering Problem</h3>
+<p>Python buffers output, which can be problematic for interactive programs:</p>
+<pre class="highlight"><code class="language-python">import sys
+import time
+
+# Bad: output appears after 10 seconds
+for i in range(10):
+    print(f&quot;Step {i}&quot;)
+    time.sleep(1)
+</code></pre>
+
+<h3 id="solutions">Solutions</h3>
+<p><strong>1. Force buffer flush:</strong></p>
+<pre class="highlight"><code class="language-python">import sys
+import time
+
+for i in range(10):
+    print(f&quot;Step {i}&quot;)
+    sys.stdout.flush()  # Force output
+    time.sleep(1)
+</code></pre>
+
+<p><strong>2. Use flush parameter:</strong></p>
+<pre class="highlight"><code class="language-python">import time
+
+for i in range(10):
+    print(f&quot;Step {i}&quot;, flush=True)
+    time.sleep(1)
+</code></pre>
+
+<p><strong>3. Disable buffering:</strong></p>
+<pre class="highlight"><code class="language-bash"># When running the program
+python -u script.py
+
+# Or via environment variable
+PYTHONUNBUFFERED=1 python script.py
+</code></pre>
+
+<p><strong>4. In code:</strong></p>
+<pre class="highlight"><code class="language-python">import sys
+import io
+
+# Replace stdout with unbuffered version
+sys.stdout = io.TextIOWrapper(
+    sys.stdout.buffer,
+    line_buffering=True
+)
+</code></pre>
+
+<h2 id="signal-handling">Signal Handling</h2>
+<p>Proper interrupt handling:</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+import sys
+import signal
+import time
+
+def signal_handler(sig, frame):
+    &quot;&quot;&quot;Interrupt signal handler&quot;&quot;&quot;
+    print(&quot;\nProgram interrupted by user&quot;, file=sys.stderr)
+    sys.exit(130)  # Standard code for SIGINT
+
+# Register handler
+signal.signal(signal.SIGINT, signal_handler)
+
+def main():
+    try:
+        for i, line in enumerate(sys.stdin, 1):
+            # Processing...
+            print(line.rstrip())
+
+    except BrokenPipeError:
+        # Normal situation in pipeline
+        # For example: ./script.py | head -10
+        sys.stderr.close()
+        sys.exit(0)
+    except KeyboardInterrupt:
+        # Alternative way to handle Ctrl+C
+        sys.exit(130)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+<h2 id="practical-examples-of-unix-utilities">Practical Examples of Unix Utilities</h2>
+<h3 id="1-line-filter-grep-like">1. Line Filter (grep-like)</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Simple grep analog&quot;&quot;&quot;
+import sys
+import re
+import argparse
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('pattern')
+    parser.add_argument('-i', '--ignore-case', action='store_true')
+    parser.add_argument('-v', '--invert', action='store_true')
+    parser.add_argument('-n', '--line-number', action='store_true')
+    args = parser.parse_args()
+
+    flags = re.IGNORECASE if args.ignore_case else 0
+    pattern = re.compile(args.pattern, flags)
+
+    for i, line in enumerate(sys.stdin, 1):
+        matches = bool(pattern.search(line))
+        if args.invert:
+            matches = not matches
+
+        if matches:
+            if args.line_number:
+                print(f&quot;{i}:{line.rstrip()}&quot;)
+            else:
+                print(line.rstrip())
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+<h3 id="2-column-output-column-like">2. Column Output (column-like)</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Format text into columns&quot;&quot;&quot;
+import sys
+import argparse
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--separator', default=None)
+    parser.add_argument('-t', '--table', action='store_true')
+    args = parser.parse_args()
+
+    lines = sys.stdin.readlines()
+
+    # Split into fields
+    rows = []
+    for line in lines:
+        if args.separator:
+            fields = line.rstrip().split(args.separator)
+        else:
+            fields = line.split()
+        rows.append(fields)
+
+    if not rows:
+        return
+
+    # Find maximum width of each column
+    max_cols = max(len(row) for row in rows)
+    widths = [0] * max_cols
+
+    for row in rows:
+        for i, field in enumerate(row):
+            widths[i] = max(widths[i], len(field))
+
+    # Print aligned data
+    for row in rows:
+        formatted = []
+        for i, field in enumerate(row):
+            if i &lt; len(widths):
+                formatted.append(field.ljust(widths[i]))
+            else:
+                formatted.append(field)
+        print('  '.join(formatted).rstrip())
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+<p><strong>Usage:</strong></p>
+<pre class="highlight"><code class="language-bash">cat /etc/passwd | ./column.py -s: -t
+ls -l | ./column.py
+</code></pre>
+
+<h3 id="3-count-lineswordscharacters-wc-like">3. Count Lines/Words/Characters (wc-like)</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;wc analog - count lines, words, characters&quot;&quot;&quot;
+import sys
+import argparse
+
+def count_stats(file_obj, filename=None):
+    &quot;&quot;&quot;Count statistics for file&quot;&quot;&quot;
+    lines = 0
+    words = 0
+    chars = 0
+
+    for line in file_obj:
+        lines += 1
+        words += len(line.split())
+        chars += len(line)
+
+    return lines, words, chars, filename
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('files', nargs='*')
+    parser.add_argument('-l', '--lines', action='store_true')
+    parser.add_argument('-w', '--words', action='store_true')
+    parser.add_argument('-c', '--chars', action='store_true')
+    args = parser.parse_args()
+
+    # If no flags specified, show everything
+    if not (args.lines or args.words or args.chars):
+        args.lines = args.words = args.chars = True
+
+    results = []
+
+    if not args.files:
+        # Read from stdin
+        results.append(count_stats(sys.stdin))
+    else:
+        # Read from files
+        for filename in args.files:
+            try:
+                with open(filename) as f:
+                    results.append(count_stats(f, filename))
+            except (FileNotFoundError, PermissionError) as e:
+                print(f&quot;Error: {e}&quot;, file=sys.stderr)
+                continue
+
+    # Print results
+    total_lines = total_words = total_chars = 0
+
+    for lines, words, chars, filename in results:
+        total_lines += lines
+        total_words += words
+        total_chars += chars
+
+        output = []
+        if args.lines:
+            output.append(f&quot;{lines:8d}&quot;)
+        if args.words:
+            output.append(f&quot;{words:8d}&quot;)
+        if args.chars:
+            output.append(f&quot;{chars:8d}&quot;)
+
+        result = ' '.join(output)
+        if filename:
+            result += f&quot;  {filename}&quot;
+        print(result)
+
+    # If more than one file, show totals
+    if len(results) &gt; 1:
+        output = []
+        if args.lines:
+            output.append(f&quot;{total_lines:8d}&quot;)
+        if args.words:
+            output.append(f&quot;{total_words:8d}&quot;)
+        if args.chars:
+            output.append(f&quot;{total_chars:8d}&quot;)
+        print(' '.join(output) + &quot;  total&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+<h3 id="4-data-transformation-json-to-csv">4. Data Transformation (JSON to CSV)</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;JSON to CSV converter&quot;&quot;&quot;
+import sys
+import json
+import csv
+import argparse
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--delimiter', default=',')
+    parser.add_argument('-k', '--keys', help='Comma-separated field list')
+    args = parser.parse_args()
+
+    try:
+        # Read JSON
+        data = json.load(sys.stdin)
+
+        if not data:
+            return
+
+        # If data is a list of objects
+        if isinstance(data, list):
+            items = data
+        else:
+            items = [data]
+
+        # Determine fields
+        if args.keys:
+            fieldnames = args.keys.split(',')
+        else:
+            # Collect all unique keys
+            fieldnames = set()
+            for item in items:
+                if isinstance(item, dict):
+                    fieldnames.update(item.keys())
+            fieldnames = sorted(fieldnames)
+
+        # Write CSV
+        writer = csv.DictWriter(
+            sys.stdout,
+            fieldnames=fieldnames,
+            delimiter=args.delimiter,
+            extrasaction='ignore'
+        )
+
+        writer.writeheader()
+        for item in items:
+            if isinstance(item, dict):
+                writer.writerow(item)
+
+    except json.JSONDecodeError as e:
+        print(f&quot;JSON parsing error: {e}&quot;, file=sys.stderr)
+        sys.exit(1)
+    except BrokenPipeError:
+        sys.stderr.close()
+        sys.exit(0)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+<p><strong>Usage:</strong></p>
+<pre class="highlight"><code class="language-bash">cat data.json | ./json2csv.py &gt; data.csv
+curl -s api.example.com/users | ./json2csv.py -k id,name,email
+</code></pre>
+
+<h2 id="advanced-techniques">Advanced Techniques</h2>
+<h3 id="working-with-binary-data">Working with Binary Data</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+# Binary mode for stdin/stdout
+binary_stdin = sys.stdin.buffer
+binary_stdout = sys.stdout.buffer
+
+# Read binary data
+data = binary_stdin.read()
+
+# Write binary data
+binary_stdout.write(b'\x00\xFF\xAA')
+</code></pre>
+
+<h3 id="creating-pipelines-in-python">Creating Pipelines in Python</h3>
+<pre class="highlight"><code class="language-python">import subprocess
+import sys
+
+def pipeline_example():
+    &quot;&quot;&quot;Create pipeline: cat file.txt | grep 'pattern' | wc -l&quot;&quot;&quot;
+
+    # First command
+    p1 = subprocess.Popen(
+        ['cat', 'file.txt'],
+        stdout=subprocess.PIPE
+    )
+
+    # Second command
+    p2 = subprocess.Popen(
+        ['grep', 'pattern'],
+        stdin=p1.stdout,
+        stdout=subprocess.PIPE
+    )
+
+    # Close our end of the pipe
+    p1.stdout.close()
+
+    # Third command
+    p3 = subprocess.Popen(
+        ['wc', '-l'],
+        stdin=p2.stdout,
+        stdout=subprocess.PIPE
+    )
+
+    p2.stdout.close()
+
+    # Get result
+    output, _ = p3.communicate()
+    return output.decode().strip()
+</code></pre>
+
+<h3 id="progress-bar-for-pipeline">Progress Bar for Pipeline</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Show stream processing progress&quot;&quot;&quot;
+import sys
+import time
+
+def progress_filter():
+    count = 0
+    start_time = time.time()
+
+    for line in sys.stdin:
+        count += 1
+        sys.stdout.write(line)
+
+        # Show statistics in stderr every second
+        if count % 1000 == 0:
+            elapsed = time.time() - start_time
+            rate = count / elapsed if elapsed &gt; 0 else 0
+            print(
+                f&quot;\rProcessed: {count:,} lines &quot;
+                f&quot;({rate:.0f} lines/sec)&quot;,
+                file=sys.stderr,
+                end='',
+                flush=True
+            )
+
+    # Final statistics
+    elapsed = time.time() - start_time
+    print(
+        f&quot;\nTotal: {count:,} lines in {elapsed:.1f} sec&quot;,
+        file=sys.stderr
+    )
+
+if __name__ == &quot;__main__&quot;:
+    try:
+        progress_filter()
+    except BrokenPipeError:
+        sys.stderr.close()
+        sys.exit(0)
+</code></pre>
+
+<p><strong>Usage:</strong></p>
+<pre class="highlight"><code class="language-bash">cat huge_file.log | ./progress.py | grep ERROR &gt; errors.txt
+</code></pre>
+
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="1-exit-codes">1. Exit Codes</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+# Success
+sys.exit(0)
+
+# General error
+sys.exit(1)
+
+# Incorrect usage
+sys.exit(2)
+
+# Interrupted (Ctrl+C)
+sys.exit(130)
+</code></pre>
+
+<h3 id="2-universal-utility-template">2. Universal Utility Template</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;
+Template for Unix utility in Python
+&quot;&quot;&quot;
+import sys
+import argparse
+import signal
+
+def signal_handler(sig, frame):
+    sys.exit(130)
+
+signal.signal(signal.SIGINT, signal_handler)
+
+def create_parser():
+    parser = argparse.ArgumentParser(
+        description='Utility description'
+    )
+    parser.add_argument(
+        'files',
+        nargs='*',
+        help='Input files (or stdin)'
+    )
+    # Add your arguments
+    return parser
+
+def process_file(file_obj, args):
+    &quot;&quot;&quot;Process single file/stream&quot;&quot;&quot;
+    for line in file_obj:
+        # Your logic here
+        print(line.rstrip())
+
+def main():
+    parser = create_parser()
+    args = parser.parse_args()
+
+    try:
+        if not args.files:
+            # Read from stdin
+            process_file(sys.stdin, args)
+        else:
+            # Process files
+            for filename in args.files:
+                try:
+                    with open(filename) as f:
+                        process_file(f, args)
+                except FileNotFoundError:
+                    print(f&quot;Error: '{filename}' not found&quot;, 
+                          file=sys.stderr)
+                    sys.exit(1)
+                except PermissionError:
+                    print(f&quot;Error: no access to '{filename}'&quot;, 
+                          file=sys.stderr)
+                    sys.exit(1)
+
+    except BrokenPipeError:
+        sys.stderr.close()
+        sys.exit(0)
+    except KeyboardInterrupt:
+        sys.exit(130)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+<h3 id="3-encoding-handling">3. Encoding Handling</h3>
+<pre class="highlight"><code class="language-python">import sys
+
+# Explicitly specify encoding
+sys.stdin.reconfigure(encoding='utf-8')
+sys.stdout.reconfigure(encoding='utf-8')
+sys.stderr.reconfigure(encoding='utf-8')
+
+# Or when opening a file
+with open('file.txt', encoding='utf-8') as f:
+    for line in f:
+        print(line.rstrip())
+</code></pre>
+
+<h3 id="4-testing-utilities">4. Testing Utilities</h3>
+<pre class="highlight"><code class="language-python">import subprocess
+import sys
+
+def test_utility():
+    &quot;&quot;&quot;Test our utility&quot;&quot;&quot;
+    # Prepare test data
+    test_input = &quot;line1\nline2\nline3\n&quot;
+
+    # Run utility
+    result = subprocess.run(
+        ['python', 'my_utility.py'],
+        input=test_input,
+        capture_output=True,
+        text=True
+    )
+
+    # Check result
+    assert result.returncode == 0
+    assert result.stdout == expected_output
+
+    print(&quot;Test passed!&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    test_utility()
+</code></pre>
+
+<h2 id="real-world-examples">Real-World Examples</h2>
+<h3 id="log-processing">Log Processing</h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Log analyzer with filtering and statistics&quot;&quot;&quot;
+import sys
+import re
+from datetime import datetime
+from collections import Counter, defaultdict
+import argparse
+
+def parse_log_line(line):
+    &quot;&quot;&quot;Parse Apache/Nginx log line&quot;&quot;&quot;
+    pattern = r'(\S+) - - \[(.*?)\] &quot;(\S+) (\S+) (\S+)&quot; (\d+) (\d+)'
+    match = re.match(pattern, line)
+    if match:
+        return {
+            'ip': match.group(1),
+            'timestamp': match.group(2),
+            'method': match.group(3),
+            'path': match.group(4),
+            'protocol': match.group(5),
+            'status': int(match.group(6)),
+            'size': int(match.group(7))
+        }
+    return None
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--status', type=int, 
+                       help='Filter by HTTP status')
+    parser.add_argument('--stats', action='store_true',
+                       help='Show statistics')
+    args = parser.parse_args()
+
+    stats = {
+        'total': 0,
+        'by_status': Counter(),
+        'by_ip': Counter(),
+        'total_bytes': 0
+    }
+
+    for line in sys.stdin:
+        entry = parse_log_line(line)
+        if not entry:
+            continue
+
+        stats['total'] += 1
+        stats['by_status'][entry['status']] += 1
+        stats['by_ip'][entry['ip']] += 1
+        stats['total_bytes'] += entry['size']
+
+        # Filtering
+        if args.status and entry['status'] != args.status:
+            continue
+
+        if not args.stats:
+            print(line.rstrip())
+
+    # Print statistics
+    if args.stats:
+        print(f&quot;\n=== Statistics ===&quot;, file=sys.stderr)
+        print(f&quot;Total requests: {stats['total']}&quot;, file=sys.stderr)
+        print(f&quot;Total bytes: {stats['total_bytes']:,}&quot;, file=sys.stderr)
+        print(f&quot;\nTop 10 IP addresses:&quot;, file=sys.stderr)
+        for ip, count in stats['by_ip'].most_common(10):
+            print(f&quot;  {ip}: {count}&quot;, file=sys.stderr)
+        print(f&quot;\nBy status:&quot;, file=sys.stderr)
+        for status in sorted(stats['by_status'].keys()):
+            count = stats['by_status'][status]
+            print(f&quot;  {status}: {count}&quot;, file=sys.stderr)
+
+if __name__ == &quot;__main__&quot;:
+    try:
+        main()
+    except BrokenPipeError:
+        sys.stderr.close()
+        sys.exit(0)
+</code></pre>
+
+<p><strong>Usage:</strong></p>
+<pre class="highlight"><code class="language-bash"># Filter only errors
+cat access.log | ./loganalyzer.py -s 404
+
+# Show statistics
+cat access.log | ./loganalyzer.py --stats
+
+# Combine with other tools
+cat access.log | ./loganalyzer.py -s 500 | grep &quot;api&quot; | wc -l
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Python is an excellent tool for creating Unix utilities:</p>
+<p>✅ <strong>Simplicity</strong> — easy to read and maintain<br />
+✅ <strong>Rich standard library</strong> — regex, json, csv, argparse<br />
+✅ <strong>Cross-platform</strong> — works everywhere<br />
+✅ <strong>Performance</strong> — sufficient for most tasks  </p>
+<p><strong>Key Takeaways:</strong>
+- Use <code>sys.stdin</code> for reading streams
+- Write results to <code>stdout</code>, errors to <code>stderr</code>
+- Handle <code>BrokenPipeError</code> and <code>KeyboardInterrupt</code>
+- Make utilities universal (files or stdin)
+- Follow Unix philosophy: one task, text streams, composability</p>
+<p><strong>Remember:</strong> A good Unix utility in Python can be simpler and clearer than an equivalent bash script, especially for complex logic!</p>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

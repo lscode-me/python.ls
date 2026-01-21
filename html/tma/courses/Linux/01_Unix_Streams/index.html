@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Unix as a Language of Data &amp; Streams | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Unix as a Language of Data &amp; Streams</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="unix-as-a-language-of-data-streams">Unix as a Language of Data &amp; Streams</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Unix wasn't just designed as an operating system — it was designed as a <strong>philosophy for building composable tools</strong>. At its core is the idea that <strong>data flows through transformations</strong>, and each tool does one thing well.</p>
+<p>In this module, we'll learn to think in terms of <strong>streams</strong> — continuous flows of data that can be filtered, transformed, and aggregated using simple, composable commands.</p>
+<hr />
+<h2 id="unix-philosophy-for-data">Unix Philosophy for Data</h2>
+<h3 id="the-core-principles">The Core Principles</h3>
+<ol>
+<li id="item-1"><strong>Write programs that do one thing and do it well</strong></li>
+<li id="item-2"><strong>Write programs to work together</strong></li>
+<li id="item-3"><strong>Write programs to handle text streams, because that is a universal interface</strong></li>
+</ol>
+<h3 id="why-this-matters-for-data-processing">Why This Matters for Data Processing</h3>
+<ul>
+<li><strong>Composability</strong>: Small tools combine into powerful pipelines</li>
+<li><strong>Streaming</strong>: Process gigabytes without loading into memory</li>
+<li><strong>Text as Interface</strong>: Universal data format that all tools understand</li>
+<li><strong>Incremental Development</strong>: Build and test pipelines step by step</li>
+</ul>
+<hr />
+<h2 id="streams-pipes-and-standard-io">Streams, Pipes, and Standard I/O</h2>
+<h3 id="the-three-standard-streams">The Three Standard Streams</h3>
+<p>Every Unix process has three standard streams:</p>
+<ul>
+<li><strong>stdin (0)</strong>: Standard input — where data comes in</li>
+<li><strong>stdout (1)</strong>: Standard output — where results go out</li>
+<li><strong>stderr (2)</strong>: Standard error — where errors and logs go</li>
+</ul>
+<h3 id="pipes-connecting-streams">Pipes: Connecting Streams</h3>
+<p>The pipe operator <code>|</code> connects stdout of one command to stdin of the next:</p>
+<pre class="highlight"><code class="language-bash"># Count lines in a file
+cat data.csv | wc -l
+
+# Find unique values
+cat data.csv | cut -d',' -f2 | sort | uniq
+
+# Top 10 most frequent items
+cat data.csv | cut -d',' -f3 | sort | uniq -c | sort -rn | head -10
+</code></pre>
+
+<h3 id="redirection">Redirection</h3>
+<pre class="highlight"><code class="language-bash"># Output to file
+command &gt; output.txt
+
+# Append to file
+command &gt;&gt; output.txt
+
+# Input from file
+command &lt; input.txt
+
+# Redirect stderr
+command 2&gt; errors.log
+
+# Redirect both stdout and stderr
+command &amp;&gt; all_output.log
+</code></pre>
+
+<hr />
+<h2 id="the-filter-transform-aggregate-workflow">The Filter → Transform → Aggregate Workflow</h2>
+<p>This is the fundamental pattern of Unix data processing:</p>
+<h3 id="1-filter-select-what-you-need">1. Filter — Select What You Need</h3>
+<pre class="highlight"><code class="language-bash"># Filter lines matching a pattern
+grep &quot;ERROR&quot; app.log
+
+# Filter specific fields
+cut -d',' -f1,3 data.csv
+
+# Filter by date
+grep &quot;2024-11-&quot; access.log
+</code></pre>
+
+<h3 id="2-transform-change-the-data">2. Transform — Change the Data</h3>
+<pre class="highlight"><code class="language-bash"># Convert to uppercase
+tr '[:lower:]' '[:upper:]'
+
+# Replace text
+sed 's/old/new/g'
+
+# Extract and transform fields
+awk -F',' '{print $1, $3*2}'
+</code></pre>
+
+<h3 id="3-aggregate-summarize-results">3. Aggregate — Summarize Results</h3>
+<pre class="highlight"><code class="language-bash"># Count occurrences
+sort | uniq -c
+
+# Sum values
+awk '{sum += $1} END {print sum}'
+
+# Get statistics
+datamash mean 1 median 1 &lt; data.txt
+</code></pre>
+
+<hr />
+<h2 id="text-as-the-universal-data-interface">Text as the Universal Data Interface</h2>
+<h3 id="why-text">Why Text?</h3>
+<ul>
+<li><strong>Human-readable</strong>: Easy to inspect and debug</li>
+<li><strong>Tool-compatible</strong>: Every Unix tool can process text</li>
+<li><strong>Line-oriented</strong>: Natural unit for streaming</li>
+<li><strong>Flexible</strong>: CSV, JSON, logs, tables — all text-based</li>
+</ul>
+<h3 id="common-text-formats">Common Text Formats</h3>
+<pre class="highlight"><code class="language-bash"># CSV (Comma-Separated Values)
+name,age,city
+Alice,30,NYC
+Bob,25,LA
+
+# TSV (Tab-Separated Values)
+name    age    city
+Alice   30     NYC
+
+# JSONL (JSON Lines)
+{&quot;name&quot;:&quot;Alice&quot;,&quot;age&quot;:30,&quot;city&quot;:&quot;NYC&quot;}
+{&quot;name&quot;:&quot;Bob&quot;,&quot;age&quot;:25,&quot;city&quot;:&quot;LA&quot;}
+
+# Log format
+2024-11-27 10:23:45 INFO User logged in
+2024-11-27 10:24:12 ERROR Connection timeout
+</code></pre>
+
+<hr />
+<h2 id="building-your-first-data-pipeline">Building Your First Data Pipeline</h2>
+<h3 id="example-analyzing-web-server-logs">Example: Analyzing Web Server Logs</h3>
+<p>Given an access log:</p>
+<pre class="highlight"><code>192.168.1.1 - - [27/Nov/2024:10:23:45] &quot;GET /api/users&quot; 200
+192.168.1.2 - - [27/Nov/2024:10:24:12] &quot;GET /api/posts&quot; 404
+192.168.1.1 - - [27/Nov/2024:10:25:01] &quot;POST /api/login&quot; 200
+</code></pre>
+
+<h3 id="task-1-count-requests-by-ip">Task 1: Count Requests by IP</h3>
+<pre class="highlight"><code class="language-bash">cat access.log | \
+  awk '{print $1}' | \
+  sort | \
+  uniq -c | \
+  sort -rn
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>2 192.168.1.1
+1 192.168.1.2
+</code></pre>
+
+<h3 id="task-2-find-all-404-errors">Task 2: Find All 404 Errors</h3>
+<pre class="highlight"><code class="language-bash">grep &quot;404&quot; access.log | \
+  awk '{print $7}' | \
+  sort | \
+  uniq -c
+</code></pre>
+
+<h3 id="task-3-top-10-most-accessed-endpoints">Task 3: Top 10 Most Accessed Endpoints</h3>
+<pre class="highlight"><code class="language-bash">awk '{print $7}' access.log | \
+  sort | \
+  uniq -c | \
+  sort -rn | \
+  head -10
+</code></pre>
+
+<hr />
+<h2 id="essential-commands-for-data-streaming">Essential Commands for Data Streaming</h2>
+<h3 id="curl-fetch-data-from-urls"><code>curl</code> - Fetch Data from URLs</h3>
+<pre class="highlight"><code class="language-bash"># Download a file
+curl -O https://example.com/data.csv
+
+# Fetch and pipe to processing
+curl -s https://api.example.com/data | jq '.results[]'
+
+# Follow redirects
+curl -L https://example.com/redirect
+</code></pre>
+
+<h3 id="cut-extract-columns"><code>cut</code> - Extract Columns</h3>
+<pre class="highlight"><code class="language-bash"># Extract first column (comma-delimited)
+cut -d',' -f1 data.csv
+
+# Extract multiple columns
+cut -d',' -f1,3,5 data.csv
+
+# Extract character range
+cut -c1-10 data.txt
+</code></pre>
+
+<h3 id="grep-filter-lines-by-pattern"><code>grep</code> - Filter Lines by Pattern</h3>
+<pre class="highlight"><code class="language-bash"># Basic search
+grep &quot;error&quot; app.log
+
+# Case-insensitive
+grep -i &quot;error&quot; app.log
+
+# Invert match (exclude lines)
+grep -v &quot;DEBUG&quot; app.log
+
+# Show line numbers
+grep -n &quot;error&quot; app.log
+</code></pre>
+
+<h3 id="sort-order-lines"><code>sort</code> - Order Lines</h3>
+<pre class="highlight"><code class="language-bash"># Alphabetically
+sort data.txt
+
+# Numerically
+sort -n numbers.txt
+
+# Reverse order
+sort -r data.txt
+
+# By specific field
+sort -t',' -k2 data.csv
+</code></pre>
+
+<h3 id="uniq-remove-duplicates"><code>uniq</code> - Remove Duplicates</h3>
+<pre class="highlight"><code class="language-bash"># Remove adjacent duplicates (requires sorted input)
+sort data.txt | uniq
+
+# Count occurrences
+sort data.txt | uniq -c
+
+# Show only duplicates
+sort data.txt | uniq -d
+</code></pre>
+
+<h3 id="head-and-tail-select-firstlast-lines"><code>head</code> and <code>tail</code> - Select First/Last Lines</h3>
+<pre class="highlight"><code class="language-bash"># First 10 lines
+head data.csv
+
+# First N lines
+head -20 data.csv
+
+# Last 10 lines
+tail data.csv
+
+# Follow file (useful for logs)
+tail -f app.log
+</code></pre>
+
+<h3 id="tee-split-output-to-multiple-destinations"><code>tee</code> - Split Output to Multiple Destinations</h3>
+<p>The <code>tee</code> command reads from stdin and writes to both stdout and files simultaneously.</p>
+<pre class="highlight"><code class="language-bash"># Save output to file AND display it
+command | tee output.txt
+
+# Append to file instead of overwriting
+command | tee -a output.txt
+
+# Write to multiple files
+command | tee file1.txt file2.txt file3.txt
+
+# Save intermediate results while continuing pipeline
+curl -s https://api.example.com/data | \
+  tee raw_data.json | \
+  jq '.results[]' | \
+  tee processed.json | \
+  grep &quot;ERROR&quot;
+
+# Silent tee (write to file but don't show on screen)
+command | tee output.txt &gt; /dev/null
+</code></pre>
+
+<p><strong>Practical Example: Log and Process</strong></p>
+<pre class="highlight"><code class="language-bash"># Save API response and process it
+curl -s 'https://api.github.com/repos/torvalds/linux' | \
+  tee api_response.json | \
+  jq -r '.stargazers_count'
+</code></pre>
+
+<h3 id="named-pipes-fifos-introduction">Named Pipes (FIFOs) - Introduction</h3>
+<p>Named pipes allow inter-process communication through the filesystem.</p>
+<pre class="highlight"><code class="language-bash"># Create a named pipe
+mkfifo mypipe
+
+# Terminal 1: Write to pipe (blocks until someone reads)
+echo &quot;Hello from pipe&quot; &gt; mypipe
+
+# Terminal 2: Read from pipe
+cat &lt; mypipe
+
+# Use in pipelines
+mkfifo data_pipe
+gzip -c large_file.txt &gt; data_pipe &amp;
+process_data &lt; data_pipe
+rm data_pipe
+</code></pre>
+
+<p><strong>Why use named pipes?</strong>
+- Connect independent processes
+- Avoid intermediate files
+- Enable parallel processing</p>
+<h3 id="devfd-file-descriptor-files"><code>/dev/fd/</code> - File Descriptor Files</h3>
+<p>The <code>/dev/fd/</code> directory contains special files representing open file descriptors.</p>
+<pre class="highlight"><code class="language-bash"># View your current file descriptors
+ls -l /dev/fd/
+
+# Access stdin, stdout, stderr as files
+cat /dev/fd/0  # Same as reading from stdin
+echo &quot;test&quot; &gt; /dev/fd/1  # Same as writing to stdout
+echo &quot;error&quot; &gt; /dev/fd/2  # Same as writing to stderr
+
+# Use in redirections
+diff &lt;(ls /tmp) &lt;(ls /var/tmp)
+# Internally uses /dev/fd/N for process substitution
+</code></pre>
+
+<h3 id="buffering-in-unix-streams">Buffering in Unix Streams</h3>
+<p>Understanding buffering is crucial for real-time data processing.</p>
+<p><strong>Buffering Modes:</strong>
+- <strong>Unbuffered</strong>: Data is written immediately (stderr is unbuffered by default)
+- <strong>Line-buffered</strong>: Data is written when a newline is encountered (stdout to terminal)
+- <strong>Fully-buffered</strong>: Data is written when buffer is full (stdout to file/pipe)</p>
+<pre class="highlight"><code class="language-bash"># Problem: grep output doesn't appear immediately in pipeline
+tail -f app.log | grep ERROR | process_alerts
+# grep buffers output because stdout is a pipe
+
+# Solution 1: Use --line-buffered with grep
+tail -f app.log | grep --line-buffered ERROR | process_alerts
+
+# Solution 2: Use stdbuf to control buffering
+tail -f app.log | stdbuf -oL grep ERROR | process_alerts
+
+# Solution 3: Python with -u flag (unbuffered)
+tail -f app.log | python3 -u script.py
+
+# Solution 4: Flush in Python code
+print(&quot;output&quot;, flush=True)
+</code></pre>
+
+<p><strong>Example: Real-time Log Monitoring</strong></p>
+<pre class="highlight"><code class="language-bash"># Without line buffering - delays appear
+tail -f /var/log/syslog | grep &quot;error&quot; | awk '{print $1, $2, $5}'
+
+# With line buffering - immediate output
+tail -f /var/log/syslog | grep --line-buffered &quot;error&quot; | awk '{print $1, $2, $5}'
+</code></pre>
+
+<hr />
+<h2 id="practical-examples">Practical Examples</h2>
+<h3 id="example-1-fetch-and-analyze-csv">Example 1: Fetch and Analyze CSV</h3>
+<pre class="highlight"><code class="language-bash"># Fetch CSV, extract date column, count entries per date
+curl -s https://example.com/sales.csv | \
+  cut -d',' -f1 | \
+  sort | \
+  uniq -c | \
+  sort -rn | \
+  head -10
+</code></pre>
+
+<h3 id="example-2-find-most-frequent-values">Example 2: Find Most Frequent Values</h3>
+<pre class="highlight"><code class="language-bash"># Most common user agents in logs
+awk -F'&quot;' '{print $6}' access.log | \
+  sort | \
+  uniq -c | \
+  sort -rn | \
+  head -10
+</code></pre>
+
+<h3 id="example-3-quick-data-validation">Example 3: Quick Data Validation</h3>
+<pre class="highlight"><code class="language-bash"># Count records
+wc -l &lt; data.csv
+
+# Check for empty fields
+grep ',,' data.csv | wc -l
+
+# Unique values in column
+cut -d',' -f2 data.csv | sort -u | wc -l
+</code></pre>
+
+<h3 id="example-4-using-tee-for-debugging">Example 4: Using tee for Debugging</h3>
+<pre class="highlight"><code class="language-bash"># Save intermediate results while debugging pipeline
+cat sales.csv | \
+  tee 01_raw.csv | \
+  grep -v &quot;^#&quot; | \
+  tee 02_no_comments.csv | \
+  cut -d',' -f1,3 | \
+  tee 03_selected_cols.csv | \
+  sort | \
+  uniq -c &gt; final_result.txt
+
+# Now you can inspect each stage: 01_raw.csv, 02_no_comments.csv, etc.
+</code></pre>
+
+<h3 id="example-5-named-pipe-for-parallel-processing">Example 5: Named Pipe for Parallel Processing</h3>
+<pre class="highlight"><code class="language-bash"># Process large file in parallel using named pipes
+mkfifo pipe1 pipe2
+
+# Start two processors in background
+grep &quot;TYPE_A&quot; &lt; pipe1 | process_a &gt; output_a.txt &amp;
+grep &quot;TYPE_B&quot; &lt; pipe2 | process_b &gt; output_b.txt &amp;
+
+# Feed data to both pipes
+tee pipe1 pipe2 &lt; large_data.txt &gt; /dev/null
+
+# Wait for completion and cleanup
+wait
+rm pipe1 pipe2
+</code></pre>
+
+<hr />
+<h2 id="thinking-in-streams">Thinking in Streams</h2>
+<h3 id="mental-model">Mental Model</h3>
+<pre class="highlight"><code>[Data Source] → [Filter] → [Transform] → [Aggregate] → [Output]
+</code></pre>
+
+<h3 id="benefits-of-streaming">Benefits of Streaming</h3>
+<ol>
+<li id="item-1"><strong>Memory Efficient</strong>: Process any size dataset</li>
+<li id="item-2"><strong>Fast Feedback</strong>: See results as they're computed</li>
+<li id="item-3"><strong>Composable</strong>: Mix and match tools freely</li>
+<li id="item-4"><strong>Debuggable</strong>: Test each stage independently</li>
+</ol>
+<h3 id="when-to-break-the-pipeline">When to Break the Pipeline</h3>
+<p>Sometimes you need intermediate files:
+- <strong>Checkpointing</strong>: Save progress for long-running jobs
+- <strong>Multiple consumers</strong>: Use same data in multiple pipelines
+- <strong>Debugging</strong>: Inspect intermediate results</p>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="1-start-simple-add-complexity">1. Start Simple, Add Complexity</h3>
+<pre class="highlight"><code class="language-bash"># Start with basic filter
+grep &quot;2024-11&quot; data.log
+
+# Add transformation
+grep &quot;2024-11&quot; data.log | awk '{print $1, $5}'
+
+# Add aggregation
+grep &quot;2024-11&quot; data.log | awk '{print $5}' | sort | uniq -c
+</code></pre>
+
+<h3 id="2-test-each-stage">2. Test Each Stage</h3>
+<pre class="highlight"><code class="language-bash"># Test first stage
+cat data.csv | cut -d',' -f2 | head
+
+# Test second stage
+cat data.csv | cut -d',' -f2 | sort | head
+
+# Test complete pipeline
+cat data.csv | cut -d',' -f2 | sort | uniq -c
+</code></pre>
+
+<h3 id="3-use-head-for-sampling">3. Use Head for Sampling</h3>
+<pre class="highlight"><code class="language-bash"># Process only first 1000 lines for testing
+head -1000 huge_file.csv | your_pipeline
+</code></pre>
+
+<h3 id="4-handle-errors-gracefully">4. Handle Errors Gracefully</h3>
+<pre class="highlight"><code class="language-bash"># Check if file exists
+[ -f data.csv ] &amp;&amp; cat data.csv | process
+
+# Provide default if command fails
+curl -s https://api.example.com/data || echo '{&quot;error&quot;: &quot;API down&quot;}'
+</code></pre>
+
+<hr />
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<h3 id="1-not-sorting-before-uniq">1. Not Sorting Before <code>uniq</code></h3>
+<pre class="highlight"><code class="language-bash"># WRONG: uniq only removes adjacent duplicates
+cat data.txt | uniq
+
+# CORRECT: sort first
+cat data.txt | sort | uniq
+</code></pre>
+
+<h3 id="2-useless-use-of-cat">2. Useless Use of <code>cat</code></h3>
+<pre class="highlight"><code class="language-bash"># INEFFICIENT
+cat file.txt | grep pattern
+
+# BETTER
+grep pattern file.txt
+
+# BUT: cat is fine for pipelines with multiple inputs
+cat file1.txt file2.txt | grep pattern
+</code></pre>
+
+<h3 id="3-not-quoting-variables">3. Not Quoting Variables</h3>
+<pre class="highlight"><code class="language-bash"># WRONG: breaks on spaces
+grep $pattern data.txt
+
+# CORRECT
+grep &quot;$pattern&quot; data.txt
+</code></pre>
+
+<hr />
+<h2 id="summary">Summary</h2>
+<p>In this module, you learned:</p>
+<ul>
+<li>✅ Unix philosophy: small tools, text streams, composition</li>
+<li>✅ Standard I/O: stdin, stdout, stderr</li>
+<li>✅ Pipes and redirection</li>
+<li>✅ Filter → Transform → Aggregate pattern</li>
+<li>✅ Essential commands: <code>curl</code>, <code>cut</code>, <code>grep</code>, <code>sort</code>, <code>uniq</code>, <code>head</code>, <code>tee</code></li>
+<li>✅ Named pipes (FIFOs) for inter-process communication</li>
+<li>✅ <code>/dev/fd/</code> file descriptor files</li>
+<li>✅ Buffering modes and how to control them</li>
+<li>✅ Building and debugging data pipelines</li>
+</ul>
+<h3 id="next-steps">Next Steps</h3>
+<p>In the next module, we'll dive deeper into <strong>Files, I-nodes &amp; File Descriptors</strong> to understand how Unix manages data at the system level.</p>
+<hr />
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><code>man</code> pages: <code>man grep</code>, <code>man cut</code>, <code>man sort</code></li>
+<li><a href="https://en.wikipedia.org/wiki/The_Unix_Programming_Environment">The Unix Programming Environment</a></li>
+<li><a href="https://datascienceatthecommandline.com/">Data Science at the Command Line</a></li>
+</ul>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

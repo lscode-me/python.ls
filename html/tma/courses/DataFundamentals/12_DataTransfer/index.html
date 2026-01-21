@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>Data Transfer Encoding | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Data Transfer Encoding</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="data-transfer-encoding">Data Transfer Encoding</h1>
+<h2 id="base64-url-encoding-and-mime-types">Base64, URL Encoding, and MIME Types</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Understand character encodings (Module 03_Encodings)</li>
+<li>Know HTTP basics</li>
+<li>Have experience working with JSON</li>
+<li><strong>For Bioinformatics</strong>: Work with web APIs for genomic data (e.g., NCBI, Ensembl, UniProt)</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Encode and decode data in Base64</li>
+<li>Use URL encoding for parameters</li>
+<li>Understand MIME types and their application</li>
+<li>Embed binary data in text formats</li>
+<li><strong>For Bioinformatics</strong>: Interact with bioinformatics APIs, handle data URLs for visualizations, encode genomic data for transfer</li>
+</ul>
+<hr />
+<h2 id="1-why-encoding-is-needed">1. Why Encoding is Needed</h2>
+<h3 id="11-the-problem">1.1 The Problem</h3>
+<p>How to transmit binary data (image, file) where text is expected?</p>
+<ul>
+<li>JSON supports only strings, not bytes</li>
+<li>URLs don't support all characters</li>
+<li>Email was created for ASCII text</li>
+</ul>
+<p><strong>Bioinformatics Context:</strong></p>
+<ul>
+<li>REST APIs (NCBI, Ensembl) expect text-based formats</li>
+<li>Web tools need to embed images (protein structures, phylogenetic trees) in HTML</li>
+<li>Email notifications with attached plots/reports</li>
+</ul>
+<h3 id="12-the-solution">1.2 The Solution</h3>
+<p>Encoding transforms binary data into safe text:</p>
+<pre class="highlight"><code>Binary:  [0x48, 0x65, 0x6C, 0x6C, 0x6F]
+Base64:  &quot;SGVsbG8=&quot;
+</code></pre>
+
+<hr />
+<h2 id="2-base64">2. Base64</h2>
+<h3 id="21-how-base64-works">2.1 How Base64 Works</h3>
+<p>Base64 uses 64 characters:</p>
+<ul>
+<li><code>A-Z</code> (26)</li>
+<li><code>a-z</code> (26)</li>
+<li><code>0-9</code> (10)</li>
+<li><code>+</code>, <code>/</code> (2)</li>
+<li><code>=</code> (padding)</li>
+</ul>
+<p><strong>Algorithm:</strong></p>
+<ol>
+<li id="item-1">Take 3 bytes (24 bits)</li>
+<li id="item-2">Split into 4 groups of 6 bits</li>
+<li id="item-3">Each group → one of 64 characters</li>
+</ol>
+<pre class="highlight"><code>Input:  &quot;Hi&quot; = 0x48 0x69
+Binary: 01001000 01101001
+Groups: 010010 000110 1001XX
+Base64: S      G      k=
+
+Padding: 2 bytes produce 3 characters + 1 &quot;=&quot;
+</code></pre>
+
+<h3 id="22-command-line">2.2 Command Line</h3>
+<pre class="highlight"><code class="language-bash"># Encoding
+echo -n &quot;Hello, World!&quot; | base64
+# SGVsbG8sIFdvcmxkIQ==
+
+# Decoding
+echo &quot;SGVsbG8sIFdvcmxkIQ==&quot; | base64 -d
+# Hello, World!
+
+# File
+base64 image.png &gt; image.txt
+base64 -d image.txt &gt; restored.png
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-bash"># Encode a small reference sequence for API transfer
+echo -n &quot;ATCGATCGATCG&quot; | base64
+# QVRDR0FUQ0dBVENH
+
+# Decode sequence from API response
+echo &quot;QVRDR0FUQ0dBVENH&quot; | base64 -d
+# ATCGATCGATCG
+</code></pre>
+
+<h3 id="23-python">2.3 Python</h3>
+<pre class="highlight"><code class="language-python">import base64
+
+# Encoding
+text = &quot;Hello, World!&quot;
+encoded = base64.b64encode(text.encode()).decode()
+print(encoded)  # SGVsbG8sIFdvcmxkIQ==
+
+# Decoding
+decoded = base64.b64decode(encoded).decode()
+print(decoded)  # Hello, World!
+
+# Binary data (image)
+with open('image.png', 'rb') as f:
+    image_data = f.read()
+
+encoded_image = base64.b64encode(image_data).decode()
+
+# Decoding and saving
+decoded_image = base64.b64decode(encoded_image)
+with open('restored.png', 'wb') as f:
+    f.write(decoded_image)
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import base64
+import json
+
+# Embed a small plot in JSON for API response
+def embed_plot_in_json(plot_path):
+    &quot;&quot;&quot;Embed plot image as base64 in JSON.&quot;&quot;&quot;
+    with open(plot_path, 'rb') as f:
+        plot_data = base64.b64encode(f.read()).decode()
+
+    return {
+        'analysis': 'gene_expression',
+        'plot': {
+            'mime_type': 'image/png',
+            'data': plot_data
+        }
+    }
+
+# Usage
+result = embed_plot_in_json('expression_heatmap.png')
+with open('api_response.json', 'w') as f:
+    json.dump(result, f)
+</code></pre>
+
+<h3 id="24-base64-variants">2.4 Base64 Variants</h3>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Characters</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard</td>
+<td><code>+/=</code></td>
+<td>MIME, PEM</td>
+</tr>
+<tr>
+<td>URL-safe</td>
+<td><code>-_</code></td>
+<td>URL, filenames</td>
+</tr>
+<tr>
+<td>Base32</td>
+<td><code>A-Z2-7</code></td>
+<td>Case-insensitive</td>
+</tr>
+<tr>
+<td>Base16</td>
+<td><code>0-9A-F</code></td>
+<td>Hex</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-python">import base64
+
+# URL-safe Base64
+encoded = base64.urlsafe_b64encode(b&quot;data?with/special+chars&quot;)
+print(encoded)  # ZGF0YT93aXRoL3NwZWNpYWwrY2hhcnM=
+</code></pre>
+
+<h3 id="25-data-urls">2.5 Data URLs</h3>
+<pre class="highlight"><code class="language-html">&lt;!-- Embedded image in HTML --&gt;
+&lt;img src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==&quot; /&gt;
+</code></pre>
+
+<pre class="highlight"><code class="language-python"># Generate data URL
+def image_to_data_url(filepath, mime_type):
+    with open(filepath, 'rb') as f:
+        data = base64.b64encode(f.read()).decode()
+    return f&quot;data:{mime_type};base64,{data}&quot;
+
+data_url = image_to_data_url('logo.png', 'image/png')
+</code></pre>
+
+<p><strong>Bioinformatics Use Case:</strong></p>
+<pre class="highlight"><code class="language-python">def embed_structure_in_html(pdb_path):
+    &quot;&quot;&quot;Embed PDB structure visualization as data URL.&quot;&quot;&quot;
+    # Assuming you have a PNG rendering of the structure
+    with open(pdb_path + '.png', 'rb') as f:
+        data = base64.b64encode(f.read()).decode()
+
+    html = f&quot;&quot;&quot;
+    &lt;html&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Protein Structure&lt;/h1&gt;
+        &lt;img src=&quot;data:image/png;base64,{data}&quot; /&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    &quot;&quot;&quot;
+    return html
+</code></pre>
+
+<hr />
+<h2 id="3-url-encoding">3. URL Encoding</h2>
+<h3 id="31-why-its-needed">3.1 Why It's Needed</h3>
+<p>URLs can only contain ASCII characters from a "safe" set. Special characters need encoding.</p>
+<pre class="highlight"><code>Unsafe: space, ?, &amp;, =, #, %, non-ASCII characters
+</code></pre>
+
+<p><strong>Bioinformatics:</strong> Query parameters often contain:
+- Gene names with special characters (e.g., <code>TNF-α</code>, <code>IL-1β</code>)
+- Genomic coordinates (<code>chr1:12345-67890</code>)
+- Search queries with spaces</p>
+<h3 id="32-percent-encoding">3.2 Percent Encoding</h3>
+<pre class="highlight"><code>Space  →  %20 or +
+?      →  %3F
+&amp;      →  %26
+=      →  %3D
+#      →  %23
+%      →  %25
+</code></pre>
+
+<h3 id="33-examples">3.3 Examples</h3>
+<pre class="highlight"><code>Before:  &quot;Hello World&quot;
+After:   &quot;Hello%20World&quot; or &quot;Hello+World&quot;
+
+Before:  &quot;price=100&amp;discount=10%&quot;
+After:   &quot;price%3D100%26discount%3D10%25&quot;
+
+Before:  &quot;TNF-α&quot;
+After:   &quot;TNF-%CE%B1&quot;
+</code></pre>
+
+<p><strong>Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code>Before:  &quot;chr1:12345-67890&quot;
+After:   &quot;chr1%3A12345-67890&quot;
+
+Before:  &quot;gene=IL-1β&amp;organism=human&quot;
+After:   &quot;gene=IL-1%CE%B2&amp;organism=human&quot;
+</code></pre>
+
+<h3 id="34-python-urllib">3.4 Python urllib</h3>
+<pre class="highlight"><code class="language-python">from urllib.parse import quote, unquote, urlencode, parse_qs
+
+# Encode string
+encoded = quote(&quot;Hello world!&quot;)
+print(encoded)  # Hello%20world%21
+
+# Decode
+decoded = unquote(encoded)
+print(decoded)  # Hello world!
+
+# URL parameters
+params = {'name': 'John', 'city': 'New York', 'age': 30}
+query_string = urlencode(params)
+print(query_string)  # name=John&amp;city=New+York&amp;age=30
+
+# Parse parameters
+parsed = parse_qs(query_string)
+print(parsed)  # {'name': ['John'], 'city': ['New York'], 'age': ['30']}
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">from urllib.parse import urlencode
+import requests
+
+# Query NCBI Gene database
+params = {
+    'db': 'gene',
+    'term': 'TNF-α[Gene Name] AND Homo sapiens[Organism]',
+    'retmode': 'json'
+}
+
+query_string = urlencode(params)
+url = f&quot;https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?{query_string}&quot;
+
+response = requests.get(url)
+print(response.json())
+</code></pre>
+
+<h3 id="35-command-line">3.5 Command Line</h3>
+<pre class="highlight"><code class="language-bash"># Python
+python3 -c &quot;from urllib.parse import quote; print(quote('Hello World'))&quot;
+
+# jq
+echo '&quot;Hello World&quot;' | jq -r '@uri'
+</code></pre>
+
+<hr />
+<h2 id="4-mime-types-in-detail">4. MIME Types in Detail</h2>
+<h3 id="41-structure">4.1 Structure</h3>
+<pre class="highlight"><code>type/subtype; parameter=value
+
+Examples:
+text/plain; charset=utf-8
+application/json
+image/png
+multipart/form-data; boundary=----WebKitFormBoundary
+</code></pre>
+
+<h3 id="42-main-types">4.2 Main Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>Text data</td>
+<td>text/html, text/css, text/plain</td>
+</tr>
+<tr>
+<td>image</td>
+<td>Images</td>
+<td>image/png, image/jpeg</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>Audio</td>
+<td>audio/mpeg, audio/ogg</td>
+</tr>
+<tr>
+<td>video</td>
+<td>Video</td>
+<td>video/mp4, video/webm</td>
+</tr>
+<tr>
+<td>application</td>
+<td>Application data</td>
+<td>application/json, application/pdf</td>
+</tr>
+<tr>
+<td>multipart</td>
+<td>Composite data</td>
+<td>multipart/form-data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bioinformatics-Specific MIME Types:</strong></p>
+<table>
+<thead>
+<tr>
+<th>MIME Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chemical/x-pdb</code></td>
+<td>Protein Data Bank format</td>
+</tr>
+<tr>
+<td><code>chemical/x-mol</code></td>
+<td>Molecular structure (MOL)</td>
+</tr>
+<tr>
+<td><code>text/x-fasta</code></td>
+<td>FASTA sequences</td>
+</tr>
+<tr>
+<td><code>application/x-gzip</code></td>
+<td>Gzipped data (FASTQ.gz, etc.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-in-http">4.3 In HTTP</h3>
+<pre class="highlight"><code class="language-http"># Request
+POST /api/data HTTP/1.1
+Content-Type: application/json
+
+{&quot;key&quot;: &quot;value&quot;}
+
+# Response
+HTTP/1.1 200 OK
+Content-Type: image/png
+
+[binary data]
+</code></pre>
+
+<p><strong>Bioinformatics API Example:</strong></p>
+<pre class="highlight"><code class="language-http"># Upload VCF file
+POST /api/variants HTTP/1.1
+Content-Type: text/plain
+Content-Disposition: attachment; filename=&quot;variants.vcf&quot;
+
+##fileformat=VCFv4.2
+#CHROM  POS     ID      REF     ALT
+chr1    12345   .       A       G
+</code></pre>
+
+<h3 id="44-content-disposition">4.4 Content-Disposition</h3>
+<pre class="highlight"><code class="language-http">Content-Disposition: attachment; filename=&quot;report.pdf&quot;
+Content-Disposition: inline; filename=&quot;image.png&quot;
+</code></pre>
+
+<p><strong>Bioinformatics:</strong></p>
+<pre class="highlight"><code class="language-http"># Download FASTA file
+Content-Type: text/plain
+Content-Disposition: attachment; filename=&quot;Homo_sapiens.GRCh38.dna.fa&quot;
+</code></pre>
+
+<hr />
+<h2 id="5-multipart-forms">5. Multipart Forms</h2>
+<h3 id="51-structure">5.1 Structure</h3>
+<pre class="highlight"><code class="language-http">POST /upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=----Boundary
+
+------Boundary
+Content-Disposition: form-data; name=&quot;title&quot;
+
+My Document
+------Boundary
+Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;doc.pdf&quot;
+Content-Type: application/pdf
+
+[binary content]
+------Boundary--
+</code></pre>
+
+<h3 id="52-python-requests">5.2 Python requests</h3>
+<pre class="highlight"><code class="language-python">import requests
+
+# Upload file
+files = {
+    'file': ('document.pdf', open('document.pdf', 'rb'), 'application/pdf')
+}
+data = {
+    'title': 'My Document',
+    'description': 'Test upload'
+}
+
+response = requests.post(
+    'https://api.example.com/upload',
+    files=files,
+    data=data
+)
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import requests
+
+# Upload FASTQ file to analysis service
+files = {
+    'fastq_r1': ('sample_R1.fastq.gz', open('sample_R1.fastq.gz', 'rb'), 'application/gzip'),
+    'fastq_r2': ('sample_R2.fastq.gz', open('sample_R2.fastq.gz', 'rb'), 'application/gzip')
+}
+data = {
+    'sample_id': 'SAMPLE001',
+    'organism': 'Homo sapiens',
+    'experiment_type': 'RNA-Seq'
+}
+
+response = requests.post(
+    'https://genomics-api.example.com/v1/analyze',
+    files=files,
+    data=data
+)
+
+print(response.json())
+# {'job_id': 'job_12345', 'status': 'queued'}
+</code></pre>
+
+<hr />
+<h2 id="6-practical-examples">6. Practical Examples</h2>
+<h3 id="61-jwt-tokens">6.1 JWT Tokens</h3>
+<pre class="highlight"><code class="language-python">import base64
+import json
+
+# JWT = header.payload.signature (Base64 URL)
+jwt = &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&quot;
+
+# Decode payload
+parts = jwt.split('.')
+# Add padding if needed
+payload = parts[1] + '=' * (4 - len(parts[1]) % 4)
+decoded = base64.urlsafe_b64decode(payload)
+data = json.loads(decoded)
+print(data)
+# {'sub': '1234567890', 'name': 'John Doe', 'iat': 1516239022}
+</code></pre>
+
+<h3 id="62-email-attachments">6.2 Email Attachments</h3>
+<pre class="highlight"><code class="language-python">import base64
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+
+msg = MIMEMultipart()
+msg['Subject'] = 'Document'
+
+# Attachment
+with open('document.pdf', 'rb') as f:
+    attachment = MIMEBase('application', 'pdf')
+    attachment.set_payload(f.read())
+    encoders.encode_base64(attachment)
+    attachment.add_header(
+        'Content-Disposition',
+        'attachment; filename=&quot;document.pdf&quot;'
+    )
+    msg.attach(attachment)
+</code></pre>
+
+<p><strong>Bioinformatics:</strong></p>
+<pre class="highlight"><code class="language-python">import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+
+def send_vcf_report(vcf_path, recipient):
+    &quot;&quot;&quot;Email VCF variant report.&quot;&quot;&quot;
+    msg = MIMEMultipart()
+    msg['Subject'] = 'Variant Analysis Report'
+    msg['To'] = recipient
+
+    # Attach VCF file
+    with open(vcf_path, 'rb') as f:
+        attachment = MIMEBase('text', 'plain')
+        attachment.set_payload(f.read())
+        encoders.encode_base64(attachment)
+        attachment.add_header(
+            'Content-Disposition',
+            f'attachment; filename=&quot;{vcf_path}&quot;'
+        )
+        msg.attach(attachment)
+
+    # Send email
+    # smtp_server.send_message(msg)
+</code></pre>
+
+<h3 id="63-image-in-json">6.3 Image in JSON</h3>
+<pre class="highlight"><code class="language-python">import base64
+import json
+
+def image_to_json(filepath):
+    with open(filepath, 'rb') as f:
+        data = base64.b64encode(f.read()).decode()
+    return {
+        'filename': filepath,
+        'data': data,
+        'mime_type': 'image/png'
+    }
+
+# In API
+image_json = image_to_json('photo.png')
+response = requests.post(
+    'https://api.example.com/images',
+    json=image_json
+)
+</code></pre>
+
+<p><strong>Bioinformatics:</strong></p>
+<pre class="highlight"><code class="language-python">def plot_to_json(plot_path):
+    &quot;&quot;&quot;Convert matplotlib plot to JSON with embedded base64 image.&quot;&quot;&quot;
+    with open(plot_path, 'rb') as f:
+        plot_data = base64.b64encode(f.read()).decode()
+
+    return {
+        'plot_type': 'expression_heatmap',
+        'format': 'png',
+        'data': plot_data
+    }
+
+# API response with embedded plot
+api_response = {
+    'analysis_id': 'EXP001',
+    'genes_analyzed': 500,
+    'heatmap': plot_to_json('heatmap.png')
+}
+</code></pre>
+
+<hr />
+<h2 id="7-best-practices">7. Best Practices</h2>
+<h3 id="71-base64">7.1 Base64</h3>
+<ul>
+<li>Increases size by ~33%</li>
+<li>Don't use for large files</li>
+<li>Prefer URL-safe variant for URLs</li>
+</ul>
+<p><strong>Bioinformatics:</strong> Base64 is fine for small plots/logos, but <strong>never</strong> for FASTQ/BAM files. Use direct file transfer instead.</p>
+<h3 id="72-url-encoding">7.2 URL Encoding</h3>
+<ul>
+<li>Always encode user input</li>
+<li>Use <code>urlencode</code> for parameters</li>
+<li>Remember difference between <code>+</code> and <code>%20</code></li>
+</ul>
+<p><strong>Bioinformatics:</strong> Always encode gene names, genomic coordinates, and organism names in API queries.</p>
+<h3 id="73-mime-types">7.3 MIME Types</h3>
+<ul>
+<li>Specify correct Content-Type</li>
+<li>Add charset for text</li>
+<li>Use Content-Disposition for downloads</li>
+</ul>
+<p><strong>Bioinformatics:</strong> Use appropriate MIME types for genomic data:
+- <code>text/plain</code> for FASTA/FASTQ/VCF
+- <code>application/gzip</code> for compressed files
+- <code>application/octet-stream</code> for BAM/CRAM</p>
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>Base64 — binary data as text</strong>: 64 safe characters, +33% size increase.</p>
+</li>
+<li>
+<p><strong>URL encoding — safe URLs</strong>: Special characters → %XX.</p>
+</li>
+<li>
+<p><strong>MIME types — content type</strong>: type/subtype, critical for HTTP.</p>
+</li>
+<li>
+<p><strong>Not encryption</strong>: Encoding doesn't protect data!</p>
+</li>
+<li>
+<p><strong>🧬 For Bioinformatics</strong>: Use Base64 for embedding small visualizations, URL-encode genomic coordinates and gene names, specify correct MIME types for genomic file formats.</p>
+</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<ul>
+<li><a href="https://tools.ietf.org/html/rfc4648">RFC 4648 - Base Encodings</a></li>
+<li><a href="https://tools.ietf.org/html/rfc3986">RFC 3986 - URI</a></li>
+<li><a href="https://www.iana.org/assignments/media-types/">IANA Media Types</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/books/NBK25501/">NCBI E-utilities API</a></li>
+<li><a href="https://rest.ensembl.org/">Ensembl REST API</a></li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>This is the final module of the Data Fundamentals course.</strong></p>
+<p><strong>Practice:</strong></p>
+<ol>
+<li id="item-1">Encode and decode a file in Base64</li>
+<li id="item-2">Properly URL-encode a string with special characters</li>
+<li id="item-3">Determine MIME type for different files</li>
+<li id="item-4"><strong>Bioinformatics</strong>: Query NCBI E-utilities API with URL-encoded gene names, embed a plot in HTML using data URLs</li>
+</ol>
+<p><strong>Recommended courses to continue:</strong></p>
+<ul>
+<li><a href="../../Linux/">Linux</a> — Linux Command Line</li>
+<li><a href="../../Python/">Python</a> — Python Programming</li>
+<li><a href="../../Networking/">Networking</a> — Computer Networks</li>
+</ul>
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

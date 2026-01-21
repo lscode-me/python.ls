@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Data Compression">
+    <title>HW: Homework: Data Compression | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Homework: Data Compression</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Data Fundamentals for Life Sciences</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 10 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="homework-data-compression">Homework: Data Compression</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-compression-algorithm-comparison">Exercise 1: Compression Algorithm Comparison</h3>
+<ol>
+<li id="item-1">Test different compression algorithms on various data types:
+   - Text files (source code, documents, logs)
+   - Binary files (images, executables, databases)
+   - Structured data (CSV, JSON, XML)
+   - Random data and already compressed files</li>
+<li id="item-2">Measure compression ratios for each algorithm:
+   - gzip, bzip2, xz, lz4, zstd
+   - Compare with built-in OS compression (zip, rar)</li>
+<li id="item-3">Document compression speed vs ratio trade-offs</li>
+<li id="item-4">Analyze which algorithms work best for different data types</li>
+</ol>
+<h3 id="exercise-2-lossless-vs-lossy-compression">Exercise 2: Lossless vs Lossy Compression</h3>
+<ol>
+<li id="item-1">Experiment with image compression:
+   - PNG (lossless) vs JPEG (lossy) at different quality levels
+   - WebP format for modern web applications
+   - TIFF compression options for scientific data</li>
+<li id="item-2">Audio compression comparison:
+   - FLAC (lossless) vs MP3/AAC (lossy)
+   - Analyze quality vs file size trade-offs</li>
+<li id="item-3">Video compression concepts:
+   - Research H.264, H.265, AV1 codecs
+   - Understand bitrate, quality, and compatibility</li>
+</ol>
+<h3 id="exercise-3-compression-performance-analysis">Exercise 3: Compression Performance Analysis</h3>
+<ol>
+<li id="item-1">Benchmark compression algorithms:
+   - Compression speed (MB/s)
+   - Decompression speed (MB/s)
+   - Memory usage during compression
+   - CPU utilization patterns</li>
+<li id="item-2">Test with different compression levels</li>
+<li id="item-3">Analyze the impact of file size on performance</li>
+<li id="item-4">Compare single-threaded vs multi-threaded compression</li>
+</ol>
+<h3 id="exercise-4-streaming-and-archive-compression">Exercise 4: Streaming and Archive Compression</h3>
+<ol>
+<li id="item-1">Practice with tar archives combined with compression:
+   - tar.gz, tar.bz2, tar.xz formats
+   - Create and extract archives with various options
+   - Handle symbolic links, permissions, and metadata</li>
+<li id="item-2">Streaming compression scenarios:
+   - Compress data on-the-fly during network transfer
+   - Database backup compression
+   - Log file rotation with compression</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Automated Backup System</strong>
+- Design a backup system with intelligent compression
+- Choose appropriate algorithms based on data type
+- Implement compression level optimization
+- Handle incremental backups with compression
+- Create verification and integrity checking</p>
+<p><strong>Task 2: Web Performance Optimization</strong>
+- Implement HTTP compression (gzip, brotli)
+- Optimize static asset compression
+- Configure server-side compression settings
+- Measure impact on page load times
+- Balance compression vs server CPU usage</p>
+<p><strong>Task 3: Database Storage Optimization</strong>
+- Analyze database compression options:
+  - PostgreSQL TOAST compression
+  - MySQL InnoDB compression
+  - SQLite compression extensions
+- Measure storage savings vs query performance
+- Implement application-level compression strategies</p>
+<h2 id="programming-implementation">Programming Implementation</h2>
+<p><strong>Task 4: Compression Library Integration</strong>
+Implement compression in your preferred language:
+- File compression/decompression utilities
+- In-memory data compression for caching
+- Stream processing with compression
+- Error handling and recovery mechanisms
+- Progress reporting for large files</p>
+<p><strong>Task 5: Custom Compression Solutions</strong>
+1. Implement dictionary-based compression for logs
+2. Create domain-specific compression for structured data
+3. Develop adaptive compression based on data characteristics
+4. Implement compression with encryption for security</p>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p><strong>Task 6: Specialized Compression Formats</strong>
+- Scientific data compression (HDF5, NetCDF)
+- Geospatial data compression (GeoTIFF, MBTiles)
+- Time series compression (specialized algorithms)
+- Document format compression (PDF, DOCX internals)</p>
+<p><strong>Task 7: Big Data Compression</strong>
+- Columnar compression in data warehouses
+- Hadoop compression codecs (Snappy, LZO)
+- Apache Parquet compression options
+- Compression in distributed systems</p>
+<h2 id="performance-testing">Performance Testing</h2>
+<p><strong>Task 8: Comprehensive Benchmarking</strong>
+1. Create a testing framework for compression algorithms
+2. Test with various file sizes (KB to GB)
+3. Measure impact on different hardware configurations
+4. Test network transfer scenarios with compression
+5. Analyze compression effectiveness over time</p>
+<h2 id="real-world-scenarios">Real-World Scenarios</h2>
+<p><strong>Task 9: Industry Applications</strong>
+1. Media streaming compression strategies
+2. Cloud storage cost optimization through compression
+3. Mobile application asset compression
+4. Scientific data archival with long-term accessibility
+5. Log aggregation and storage optimization</p>
+<h2 id="security-considerations">Security Considerations</h2>
+<p><strong>Task 10: Compression Security</strong>
+- Research compression-based attacks (ZIP bombs, compression oracles)
+- Implement safe decompression with resource limits
+- Combine compression with encryption securely
+- Handle malicious compressed files safely</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive compression analysis portfolio:
+1. Algorithm comparison matrix with performance data
+2. Real-world compression strategy recommendations
+3. Working implementations of compression utilities
+4. Benchmark results across different scenarios
+5. Security best practices documentation
+6. Cost-benefit analysis for various use cases
+7. Future trends and emerging compression technologies</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

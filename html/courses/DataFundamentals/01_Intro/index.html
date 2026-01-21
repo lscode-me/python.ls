@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>Data Fundamentals for Life Sciences | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="data-fundamentals-for-life-sciences">Data Fundamentals for Life Sciences</h1>
+<h2 id="introduction-data-information-and-formats">Introduction: Data, Information, and Formats</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Be able to use a computer at a user level</li>
+<li>Have a general understanding of files and folders</li>
+<li>Understand that computers work with zeros and ones (basic concept)</li>
+</ul>
+<blockquote>
+<p><strong>💡 Tip:</strong> This course uses Linux/Unix command-line tools (<code>cat</code>, <code>xxd</code>, <code>file</code>, <code>chmod</code>, and others). You'll find a brief description of each command in the <a href="../README.html#command-reference">Command Reference</a> in the course README.</p>
+</blockquote>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Explain the difference between data and information</li>
+<li>Describe the abstraction levels of data representation in computers</li>
+<li>Distinguish between structured, semi-structured, and unstructured data</li>
+<li>Explain why there are so many data formats</li>
+<li>Apply these concepts to biological and healthcare data</li>
+</ul>
+<hr />
+<h2 id="1-what-is-data">1. What Is Data</h2>
+<h3 id="11-data-vs-information">1.1 Data vs Information</h3>
+<p><strong>Data</strong> are raw facts, numbers, symbols without context. Data alone carries no meaning.</p>
+<p><strong>Information</strong> is data that has been processed and presented in a context that makes it understandable and useful.</p>
+<p><strong>Example:</strong></p>
+<pre class="highlight"><code>Data:    42, 37.5, &quot;Smith&quot;, 2024-12-08
+</code></pre>
+
+<p>These numbers and strings mean nothing without context.</p>
+<pre class="highlight"><code>Information:
+  Patient: Smith
+  Visit Date: 2024-12-08
+  Age: 42 years
+  Temperature: 37.5°C
+</code></pre>
+
+<p>Now the data has meaning — this is a patient's medical record.</p>
+<p><strong>Life Science Example:</strong></p>
+<pre class="highlight"><code>Data:    ATCGATCG, 125, 0.75
+</code></pre>
+
+<p>These values are meaningless without context.</p>
+<pre class="highlight"><code>Information:
+  DNA Sequence: ATCGATCG
+  Read Quality: 125 (Phred score)
+  GC Content: 0.75 (75%)
+</code></pre>
+
+<p>Now it's clear — this is genomic sequencing data.</p>
+<h3 id="12-data-lifecycle">1.2 Data Lifecycle</h3>
+<pre class="highlight"><code>┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  Creation   │───►│   Storage   │───►│ Processing  │───►│    Usage    │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+       ▲                                                        │
+       └────────────────────────────────────────────────────────┘
+</code></pre>
+
+<p>At each stage, it's important to understand:</p>
+<ul>
+<li><strong>How</strong> data is represented (format)</li>
+<li><strong>Where</strong> data is located (storage)</li>
+<li><strong>How</strong> to work with it (tools)</li>
+</ul>
+<p><strong>Bioinformatics Pipeline Example:</strong></p>
+<pre class="highlight"><code>Creation:     DNA Sequencer → FASTQ files
+Storage:      Store raw reads (compressed .fastq.gz)
+Processing:   Align reads → BAM files
+Usage:        Variant calling → VCF files
+              Analysis → CSV reports
+</code></pre>
+
+<hr />
+<h2 id="2-abstraction-levels">2. Abstraction Levels</h2>
+<h3 id="21-from-bits-to-applications">2.1 From Bits to Applications</h3>
+<p>Computers work only with binary data — zeros and ones. But we see text, images, hear music. How does this work?</p>
+<pre class="highlight"><code>┌────────────────────────────────────────────────────────────────┐
+│                     Abstraction Levels                          │
+├────────────────────────────────────────────────────────────────┤
+│  7. Application     │  Text editor, browser, player, IGV       │
+├─────────────────────┼──────────────────────────────────────────┤
+│  6. Data Format     │  JSON, YAML, Markdown, MP3, JPEG, FASTQ  │
+├─────────────────────┼──────────────────────────────────────────┤
+│  5. Encoding        │  UTF-8, ASCII, Base64, Phred+33          │
+├─────────────────────┼──────────────────────────────────────────┤
+│  4. Bytes           │  8-bit blocks: 01001000 = 0x48 = 72      │
+├─────────────────────┼──────────────────────────────────────────┤
+│  3. Bits            │  0 and 1                                 │
+├─────────────────────┼──────────────────────────────────────────┤
+│  2. Electronics     │  High/low voltage                        │
+├─────────────────────┼──────────────────────────────────────────┤
+│  1. Physics         │  Electrons, magnetic domains             │
+└─────────────────────┴──────────────────────────────────────────┘
+</code></pre>
+
+<p><strong>Example: Letter "H"</strong></p>
+<pre class="highlight"><code>Application level:    H (letter on screen)
+         ↓
+Format level:         Part of HTML tag &lt;H1&gt; or JSON string
+         ↓
+Encoding level:       UTF-8 encodes as 0x48
+         ↓
+Byte level:           01001000
+         ↓
+Bit level:            0, 1, 0, 0, 1, 0, 0, 0
+</code></pre>
+
+<p><strong>Bioinformatics Example: Quality Score "I"</strong></p>
+<pre class="highlight"><code>Application level:    Quality 40 (very high confidence)
+         ↓
+Format level:         Part of FASTQ quality line
+         ↓
+Encoding level:       Phred+33: ASCII 'I' = 73 - 33 = 40
+         ↓
+Byte level:           01001001 (0x49)
+         ↓
+Bit level:            0, 1, 0, 0, 1, 0, 0, 1
+</code></pre>
+
+<h3 id="22-why-this-matters">2.2 Why This Matters</h3>
+<p>When something doesn't work, the problem can be at any level:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Typical Problem</th>
+<th>Life Science Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Format</td>
+<td>"Invalid JSON" — syntax error</td>
+<td>Malformed VCF file</td>
+</tr>
+<tr>
+<td>Encoding</td>
+<td>"Mojibake" — wrong encoding</td>
+<td>Patient names garbled</td>
+</tr>
+<tr>
+<td>Bytes</td>
+<td>Corrupted file</td>
+<td>Incomplete BAM file</td>
+</tr>
+<tr>
+<td>Bits</td>
+<td>Disk read error</td>
+<td>Failed sequencing run</td>
+</tr>
+</tbody>
+</table>
+<p>Understanding levels helps localize and fix problems.</p>
+<hr />
+<h2 id="3-data-classification">3. Data Classification</h2>
+<h3 id="31-by-degree-of-structure">3.1 By Degree of Structure</h3>
+<p>Data is divided into three categories by how organized it is:</p>
+<p><strong>Structured Data</strong></p>
+<p>Data with a clear, predefined schema.</p>
+<pre class="highlight"><code>┌────────┬─────────────┬───────┐
+│ ID     │ Name        │ Age   │
+├────────┼─────────────┼───────┤
+│ 1      │ Alice       │ 30    │
+│ 2      │ Bob         │ 25    │
+│ 3      │ Charlie     │ 35    │
+└────────┴─────────────┴───────┘
+</code></pre>
+
+<p>Examples:</p>
+<ul>
+<li>Relational databases (PostgreSQL, MySQL)</li>
+<li>Excel tables with fixed columns</li>
+<li>CSV with headers</li>
+</ul>
+<p><strong>Life Science Examples:</strong></p>
+<ul>
+<li>Variant call tables (CHR, POS, REF, ALT)</li>
+<li>Gene expression matrices</li>
+<li>Clinical trial data</li>
+<li>Laboratory measurements</li>
+</ul>
+<p>Advantages:</p>
+<ul>
+<li>Easy to query (SQL)</li>
+<li>Easy to validate</li>
+<li>Efficient storage</li>
+</ul>
+<p><strong>Semi-Structured Data</strong></p>
+<p>Data with a flexible schema embedded in the data itself.</p>
+<pre class="highlight"><code class="language-json">{
+  &quot;id&quot;: 1,
+  &quot;name&quot;: &quot;Alice&quot;,
+  &quot;age&quot;: 30,
+  &quot;skills&quot;: [&quot;Python&quot;, &quot;SQL&quot;],
+  &quot;address&quot;: {
+    &quot;city&quot;: &quot;Moscow&quot;,
+    &quot;zip&quot;: &quot;101000&quot;
+  }
+}
+</code></pre>
+
+<p>Examples:</p>
+<ul>
+<li>JSON</li>
+<li>YAML</li>
+<li>XML</li>
+</ul>
+<p><strong>Life Science Examples:</strong></p>
+<ul>
+<li>VCF files (header + structured records)</li>
+<li>JSON from bioinformatics APIs (NCBI, UniProt)</li>
+<li>Configuration files for analysis pipelines</li>
+<li>Metadata for sequencing experiments</li>
+</ul>
+<p>Advantages:</p>
+<ul>
+<li>Schema flexibility</li>
+<li>Self-describing</li>
+<li>Easily extensible</li>
+</ul>
+<p><strong>Unstructured Data</strong></p>
+<p>Data without a predefined model.</p>
+<pre class="highlight"><code>Hello! This is plain text. There's no structure here,
+just a sequence of characters. This could be an email,
+article, comment, or any other free-form text.
+</code></pre>
+
+<p>Examples:</p>
+<ul>
+<li>Free-form text (emails, articles)</li>
+<li>Images</li>
+<li>Audio and video</li>
+<li>Unstructured logs</li>
+</ul>
+<p><strong>Life Science Examples:</strong></p>
+<ul>
+<li>Clinical notes from doctors</li>
+<li>Scientific paper abstracts</li>
+<li>Microscopy images</li>
+<li>Lab notebook entries</li>
+<li>Patient interview transcripts</li>
+</ul>
+<p>Challenges:</p>
+<ul>
+<li>Difficult to analyze automatically</li>
+<li>No standard query method</li>
+<li>Requires NLP/ML for information extraction</li>
+</ul>
+<h3 id="32-data-type-comparison">3.2 Data Type Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Characteristic</th>
+<th>Structured</th>
+<th>Semi-structured</th>
+<th>Unstructured</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Schema</td>
+<td>Strict, external</td>
+<td>Flexible, embedded</td>
+<td>Absent</td>
+</tr>
+<tr>
+<td>Queries</td>
+<td>SQL, simple</td>
+<td>JSONPath, XPath</td>
+<td>Full-text search</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>RDBMS, CSV</td>
+<td>JSON, YAML, XML</td>
+<td>Text, media</td>
+</tr>
+<tr>
+<td>Volume in world</td>
+<td>~20%</td>
+<td>~10%</td>
+<td>~70%</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>Simple</td>
+<td>Medium</td>
+<td>Complex</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Life Science Context:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Examples</th>
+<th>Analysis Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Structured</td>
+<td>Variant tables, expression matrices</td>
+<td>SQL, pandas, R dataframes</td>
+</tr>
+<tr>
+<td>Semi-structured</td>
+<td>VCF, GFF, JSON APIs</td>
+<td>BioPython, jq, custom parsers</td>
+</tr>
+<tr>
+<td>Unstructured</td>
+<td>Clinical notes, images</td>
+<td>NLP tools, image analysis, OCR</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-data-formats">4. Data Formats</h2>
+<h3 id="41-why-formats-are-needed">4.1 Why Formats Are Needed</h3>
+<p><strong>Format</strong> is an agreement on how data is represented and interpreted.</p>
+<p>Without formats, computers couldn't:</p>
+<ul>
+<li>Understand each other</li>
+<li>Open files created by other programs</li>
+<li>Transmit data over networks</li>
+</ul>
+<p><strong>Example of the problem without standards:</strong></p>
+<pre class="highlight"><code>Program A saves date as: 2024-12-08
+Program B expects date as:   08/12/2024
+Program C expects date as:   12/08/2024
+
+Result: chaos and errors
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<p>Different sequencing platforms historically used different quality encodings:</p>
+<pre class="highlight"><code>Sanger:    Phred+33 (ASCII 33-126)
+Illumina:  Phred+64 (ASCII 64-126) [older versions]
+Solexa:    Solexa+64 (different calculation)
+
+Result: Quality scores misinterpreted if format not specified!
+</code></pre>
+
+<h3 id="42-text-vs-binary-formats">4.2 Text vs Binary Formats</h3>
+<p><strong>Text Formats:</strong></p>
+<pre class="highlight"><code class="language-json">{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}
+</code></pre>
+
+<ul>
+<li>Human-readable</li>
+<li>Easy to edit in text editor</li>
+<li>Larger size</li>
+<li>Examples: JSON, YAML, XML, CSV, Markdown, FASTA, VCF</li>
+</ul>
+<p><strong>Binary Formats:</strong></p>
+<pre class="highlight"><code>00000000: 7b22 6e61 6d65 223a 2022 416c 6963 6522  {&quot;name&quot;: &quot;Alice&quot;
+00000010: 2c20 2261 6765 223a 2033 307d            , &quot;age&quot;: 30}
+</code></pre>
+
+<p>(this is hex representation, actual storage is bytes)</p>
+<ul>
+<li>Compact</li>
+<li>Faster to parse</li>
+<li>Not readable without special tools</li>
+<li>Examples: Protocol Buffers, MessagePack, JPEG, MP3, BAM, BCF</li>
+</ul>
+<p><strong>Bioinformatics Formats:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Format Type</th>
+<th>Text</th>
+<th>Binary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sequences</td>
+<td>FASTA, FASTQ</td>
+<td>HDF5</td>
+</tr>
+<tr>
+<td>Alignments</td>
+<td>SAM, MAF</td>
+<td>BAM, CRAM</td>
+</tr>
+<tr>
+<td>Variants</td>
+<td>VCF, GFF</td>
+<td>BCF</td>
+</tr>
+<tr>
+<td>Expression</td>
+<td>CSV, TSV</td>
+<td>HDF5, Loom</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-format-selection">4.3 Format Selection</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Recommended Format</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configuration</td>
+<td>YAML, TOML</td>
+<td>Readability, comments</td>
+</tr>
+<tr>
+<td>API responses</td>
+<td>JSON</td>
+<td>Standard, wide support</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>Markdown</td>
+<td>Simplicity, conversion</td>
+</tr>
+<tr>
+<td>Table exchange</td>
+<td>CSV</td>
+<td>Universal</td>
+</tr>
+<tr>
+<td>High performance</td>
+<td>Protocol Buffers</td>
+<td>Compact, speed</td>
+</tr>
+<tr>
+<td>Web pages</td>
+<td>HTML</td>
+<td>Browser standard</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Life Science Scenarios:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Format</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raw sequencing data</td>
+<td>FASTQ (gzipped)</td>
+<td>Standard, quality info</td>
+</tr>
+<tr>
+<td>Aligned reads</td>
+<td>BAM</td>
+<td>Binary, indexed, efficient</td>
+</tr>
+<tr>
+<td>Variant calls</td>
+<td>VCF</td>
+<td>Standard, widely supported</td>
+</tr>
+<tr>
+<td>Gene annotations</td>
+<td>GFF3/GTF</td>
+<td>Standard for genomic features</td>
+</tr>
+<tr>
+<td>Expression data</td>
+<td>CSV/TSV or HDF5</td>
+<td>Simple or high-performance</td>
+</tr>
+<tr>
+<td>Experimental metadata</td>
+<td>JSON/YAML</td>
+<td>Flexible, self-describing</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-text-and-binary-files">5. Text and Binary Files</h2>
+<h3 id="51-what-is-a-text-file">5.1 What Is a Text File</h3>
+<p><strong>Text file</strong> is a sequence of characters (letters, digits, symbols) encoded in a specific encoding.</p>
+<pre class="highlight"><code class="language-bash"># View text file
+cat hello.txt
+</code></pre>
+
+<pre class="highlight"><code>Hello, World!
+Привет, мир!
+</code></pre>
+
+<p>Characteristics:</p>
+<ul>
+<li>Consists of printable characters</li>
+<li>Has line breaks (<code>\n</code> or <code>\r\n</code>)</li>
+<li>Readable in any text editor</li>
+<li>Encoding matters for correct display</li>
+</ul>
+<p><strong>FASTA Example (text file):</strong></p>
+<pre class="highlight"><code>&gt;seq1 description
+ATCGATCGATCGATCG
+GCTAGCTAGCTAGCTA
+</code></pre>
+
+<h3 id="52-what-is-a-binary-file">5.2 What Is a Binary File</h3>
+<p><strong>Binary file</strong> is a sequence of bytes not intended for direct human reading.</p>
+<pre class="highlight"><code class="language-bash"># View binary file as text (meaningless)
+cat image.png
+</code></pre>
+
+<pre class="highlight"><code>�PNG
+▒
+IHDR...(garbage)...
+</code></pre>
+
+<pre class="highlight"><code class="language-bash"># View in hex mode (makes sense)
+xxd image.png | head -3
+</code></pre>
+
+<pre class="highlight"><code>00000000: 8950 4e47 0d0a 1a0a 0000 000d 4948 4452  .PNG........IHDR
+00000010: 0000 0100 0000 0100 0802 0000 00d3 1025  ...............%
+00000020: 0000 0006 624b 4744 0000 ff00 00ff 00ff  ....bKGD........
+</code></pre>
+
+<p>Characteristics:</p>
+<ul>
+<li>Can contain any bytes (0-255)</li>
+<li>Requires special programs for interpretation</li>
+<li>Often has magic numbers at the beginning</li>
+<li>Examples: images, executables, archives</li>
+</ul>
+<p><strong>BAM File Example (binary):</strong></p>
+<pre class="highlight"><code class="language-bash"># View BAM as text (meaningless)
+cat aligned_reads.bam
+# Output: garbage
+
+# View with specialized tool
+samtools view aligned_reads.bam | head
+# Output: readable alignment records
+</code></pre>
+
+<h3 id="53-how-to-determine-file-type">5.3 How to Determine File Type</h3>
+<pre class="highlight"><code class="language-bash"># The file command analyzes contents
+file document.txt
+# document.txt: UTF-8 Unicode text
+
+file image.png
+# image.png: PNG image data, 256 x 256, 8-bit/color RGB
+
+file archive.zip
+# archive.zip: Zip archive data
+</code></pre>
+
+<p><strong>Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash">file sample.fasta
+# sample.fasta: ASCII text
+
+file sample.fastq.gz
+# sample.fastq.gz: gzip compressed data
+
+file aligned.bam
+# aligned.bam: data
+
+file variants.vcf
+# variants.vcf: ASCII text
+</code></pre>
+
+<p>The <code>file</code> command looks at:</p>
+<ol>
+<li id="item-1">Magic numbers (signatures) at the beginning of the file</li>
+<li id="item-2">Data structure</li>
+<li id="item-3">Heuristics for text files</li>
+</ol>
+<hr />
+<h2 id="6-magic-numbers">6. Magic Numbers</h2>
+<h3 id="61-what-are-magic-numbers">6.1 What Are Magic Numbers</h3>
+<p><strong>Magic numbers</strong> are special bytes at the beginning of a file that identify its format.</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Magic bytes (hex)</th>
+<th>ASCII representation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PNG</td>
+<td>89 50 4E 47</td>
+<td><code>.PNG</code></td>
+</tr>
+<tr>
+<td>JPEG</td>
+<td>FF D8 FF</td>
+<td>(non-printable)</td>
+</tr>
+<tr>
+<td>PDF</td>
+<td>25 50 44 46</td>
+<td><code>%PDF</code></td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td>50 4B 03 04</td>
+<td><code>PK..</code></td>
+</tr>
+<tr>
+<td>GIF</td>
+<td>47 49 46 38</td>
+<td><code>GIF8</code></td>
+</tr>
+<tr>
+<td>ELF (Linux exe)</td>
+<td>7F 45 4C 46</td>
+<td><code>.ELF</code></td>
+</tr>
+<tr>
+<td>Gzip</td>
+<td>1F 8B</td>
+<td>(non-printable)</td>
+</tr>
+<tr>
+<td>BAM</td>
+<td>42 41 4D 01</td>
+<td><code>BAM</code> + version</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-why-magic-numbers-are-needed">6.2 Why Magic Numbers Are Needed</h3>
+<ol>
+<li id="item-1">
+<p><strong>Format identification</strong> — programs can determine file type regardless of extension</p>
+</li>
+<li id="item-2">
+<p><strong>Validation</strong> — if magic numbers are wrong, the file is corrupted or replaced</p>
+</li>
+<li id="item-3">
+<p><strong>Security</strong> — helps prevent file substitution</p>
+</li>
+</ol>
+<pre class="highlight"><code class="language-bash"># Example: rename PNG to .txt
+mv image.png fake.txt
+
+# file will still detect correctly
+file fake.txt
+# fake.txt: PNG image data, 256 x 256, 8-bit/color RGB
+</code></pre>
+
+<p><strong>Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-bash"># BAM file disguised as TXT
+mv aligned.bam data.txt
+
+# file command still identifies it
+file data.txt
+# data.txt: data
+
+# View magic numbers
+xxd -l 8 data.txt
+# 00000000: 4241 4d01 ...  BAM.
+</code></pre>
+
+<h3 id="63-viewing-magic-numbers">6.3 Viewing Magic Numbers</h3>
+<pre class="highlight"><code class="language-bash"># First 16 bytes of PNG file
+xxd -l 16 image.png
+</code></pre>
+
+<pre class="highlight"><code>00000000: 8950 4e47 0d0a 1a0a 0000 000d 4948 4452  .PNG........IHDR
+</code></pre>
+
+<p>Breakdown:</p>
+<ul>
+<li><code>89 50 4E 47</code> — PNG magic number</li>
+<li><code>0D 0A 1A 0A</code> — special bytes for damage detection</li>
+<li><code>00 00 00 0D</code> — length of next chunk</li>
+<li><code>49 48 44 52</code> — "IHDR" (image header)</li>
+</ul>
+<p><strong>FASTQ.GZ Example:</strong></p>
+<pre class="highlight"><code class="language-bash"># First 16 bytes of gzipped FASTQ
+xxd -l 16 sample.fastq.gz
+</code></pre>
+
+<pre class="highlight"><code>00000000: 1f8b 0800 0000 0000 0003 ...  ............
+</code></pre>
+
+<ul>
+<li><code>1F 8B</code> — gzip magic number</li>
+<li><code>08</code> — compression method (deflate)</li>
+</ul>
+<hr />
+<h2 id="7-encodings-preview">7. Encodings: Preview</h2>
+<h3 id="71-why-encodings-are-needed">7.1 Why Encodings Are Needed</h3>
+<p><strong>Encoding</strong> is a mapping table between characters and numbers (bytes).</p>
+<p>Computers understand only numbers. To store text, each character is assigned a number:</p>
+<pre class="highlight"><code>A → 65
+B → 66
+C → 67
+...
+</code></pre>
+
+<p>Problem: different countries created their own tables:</p>
+<ul>
+<li>USA: ASCII (Latin)</li>
+<li>Russia: KOI8-R, Windows-1251, CP866</li>
+<li>Japan: Shift-JIS, EUC-JP</li>
+<li>And hundreds more...</li>
+</ul>
+<h3 id="72-mojibake-a-typical-problem">7.2 "Mojibake" — A Typical Problem</h3>
+<pre class="highlight"><code>Expected:  Hello, world!
+Got:       ����, �����!
+</code></pre>
+
+<p>This happens when:</p>
+<ol>
+<li id="item-1">File saved in one encoding (UTF-8)</li>
+<li id="item-2">Opened in another (Windows-1251)</li>
+</ol>
+<p><strong>Life Science Impact:</strong></p>
+<p>Patient names, drug names, and clinical notes can be corrupted:</p>
+<pre class="highlight"><code>Expected:  Müller (German patient name)
+Got:       M├╝ller (wrong encoding)
+
+Expected:  Iñigo (Spanish name)
+Got:       IÃ±igo (wrong encoding)
+</code></pre>
+
+<p>This can lead to serious medical record errors!</p>
+<h3 id="73-solution-unicode-and-utf-8">7.3 Solution: Unicode and UTF-8</h3>
+<p><strong>Unicode</strong> is a unified table of all characters from all world languages.</p>
+<p><strong>UTF-8</strong> is a way to encode Unicode that:</p>
+<ul>
+<li>Is compatible with ASCII</li>
+<li>Supports all characters</li>
+<li>Is the internet standard</li>
+</ul>
+<p>We'll cover this in detail in module <a href="../03_Encodings/">03_Encodings</a>.</p>
+<hr />
+<h2 id="8-course-format-overview">8. Course Format Overview</h2>
+<h3 id="81-structured-data-formats">8.1 Structured Data Formats</h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Purpose</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JSON</strong></td>
+<td>APIs, configs</td>
+<td>Web standard, simple</td>
+</tr>
+<tr>
+<td><strong>YAML</strong></td>
+<td>Configs, DevOps</td>
+<td>Readable, comments</td>
+</tr>
+<tr>
+<td><strong>XML</strong></td>
+<td>Documents, legacy</td>
+<td>Verbose, powerful</td>
+</tr>
+<tr>
+<td><strong>CSV</strong></td>
+<td>Tables</td>
+<td>Simple, universal</td>
+</tr>
+<tr>
+<td><strong>TOML</strong></td>
+<td>Configs</td>
+<td>Clear, typed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-document-formats">8.2 Document Formats</h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Purpose</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Markdown</strong></td>
+<td>Documentation</td>
+<td>Simple syntax</td>
+</tr>
+<tr>
+<td><strong>HTML</strong></td>
+<td>Web pages</td>
+<td>Browser standard</td>
+</tr>
+<tr>
+<td><strong>reStructuredText</strong></td>
+<td>Technical docs</td>
+<td>Powerful, Python world</td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-service-formats">8.3 Service Formats</h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Purpose</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>INI</strong></td>
+<td>Windows configs</td>
+<td>Simple, sections</td>
+</tr>
+<tr>
+<td><strong>Properties</strong></td>
+<td>Java configs</td>
+<td>Key=value</td>
+</tr>
+<tr>
+<td><strong>.env</strong></td>
+<td>Environment variables</td>
+<td>Simple, security</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-data-working-tools">9. Data Working Tools</h2>
+<h3 id="91-command-line">9.1 Command Line</h3>
+<pre class="highlight"><code class="language-bash"># File viewing
+cat file.txt          # Entire file
+head -n 10 file.txt   # First 10 lines
+tail -n 10 file.txt   # Last 10 lines
+less file.txt         # Paginated viewing
+
+# Type and encoding detection
+file document.txt
+file -i document.txt  # With MIME type and encoding
+
+# Hex viewing
+xxd file.bin | head
+hexdump -C file.bin | head
+
+# Encoding conversion
+iconv -f WINDOWS-1251 -t UTF-8 input.txt &gt; output.txt
+</code></pre>
+
+<h3 id="92-specialized-tools">9.2 Specialized Tools</h3>
+<pre class="highlight"><code class="language-bash"># JSON
+jq '.' file.json      # Formatting
+jq '.name' file.json  # Extract field
+
+# YAML
+yq '.' file.yaml      # Formatting
+
+# CSV
+csvtool col 1,3 file.csv    # Select columns
+csvstat file.csv            # Statistics
+
+# Compression
+gzip file.txt         # Compress
+gunzip file.txt.gz    # Decompress
+
+# Hashes
+md5sum file.txt
+sha256sum file.txt
+</code></pre>
+
+<p><strong>Bioinformatics Tools:</strong></p>
+<pre class="highlight"><code class="language-bash"># FASTA/FASTQ
+seqtk seq -A input.fastq &gt; output.fasta  # Convert to FASTA
+bioawk -c fastx '{print $name, length($seq)}' reads.fasta  # Sequence lengths
+
+# BAM/SAM
+samtools view aligned.bam | head     # View alignments
+samtools flagstat aligned.bam        # Alignment statistics
+
+# VCF
+bcftools view variants.vcf.gz        # View VCF
+bcftools stats variants.vcf.gz       # Variant statistics
+
+# GFF/GTF
+grep &quot;gene&quot; annotations.gff          # Filter features
+awk '$3==&quot;gene&quot;' annotations.gff     # Filter by feature type
+</code></pre>
+
+<h3 id="93-editors">9.3 Editors</h3>
+<table>
+<thead>
+<tr>
+<th>Editor</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VS Code</td>
+<td>Universal, JSON/YAML highlighting, extensions</td>
+</tr>
+<tr>
+<td>Vim/Neovim</td>
+<td>Fast terminal editing</td>
+</tr>
+<tr>
+<td>Sublime Text</td>
+<td>Working with large files</td>
+</tr>
+<tr>
+<td>IGV</td>
+<td>Viewing genomic data (BAM, VCF, BED)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-common-pitfalls">10. Common Pitfalls</h2>
+<h3 id="101-ignoring-encodings">10.1 Ignoring Encodings</h3>
+<p>❌ <strong>Error:</strong> Opening files without checking encoding</p>
+<pre class="highlight"><code class="language-bash"># File in Windows-1251, opened as UTF-8
+cat russian.txt
+# Result: Ð�Ñ€Ð¸Ð²ÐµÑ‚!
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Always check encoding</p>
+<pre class="highlight"><code class="language-bash">file -i russian.txt
+# russian.txt: text/plain; charset=iso-8859-1
+
+# Convert if needed
+iconv -f WINDOWS-1251 -t UTF-8 russian.txt
+</code></pre>
+
+<h3 id="102-trusting-file-extensions">10.2 Trusting File Extensions</h3>
+<p>❌ <strong>Error:</strong> Trusting file extensions</p>
+<pre class="highlight"><code class="language-bash"># Someone renamed virus.exe to picture.jpg
+file picture.jpg
+# picture.jpg: PE32 executable (GUI) Intel 80386
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Use <code>file</code> to verify</p>
+<h3 id="103-editing-binary-files">10.3 Editing Binary Files</h3>
+<p>❌ <strong>Error:</strong> Opening binary file in text editor and saving</p>
+<pre class="highlight"><code class="language-bash"># This will corrupt the file!
+nano database.db
+nano aligned.bam  # Don't do this!
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Use specialized tools</p>
+<pre class="highlight"><code class="language-bash"># Hex editor for binary files
+hexedit file.bin
+
+# Use specialized bioinformatics tools
+samtools view -h aligned.bam &gt; aligned.sam  # Convert to text
+</code></pre>
+
+<h3 id="104-mixing-line-endings">10.4 Mixing Line Endings</h3>
+<p>❌ <strong>Error:</strong> Mixing Windows (<code>\r\n</code>) and Unix (<code>\n</code>) line endings</p>
+<pre class="highlight"><code class="language-bash"># File with mixed endings
+file mixed.txt
+# mixed.txt: ASCII text, with CRLF, LF line terminators
+</code></pre>
+
+<p>✅ <strong>Solution:</strong> Convert to one format</p>
+<pre class="highlight"><code class="language-bash"># Windows → Unix
+sed -i 's/\r$//' file.txt
+
+# Or use dos2unix
+dos2unix file.txt
+</code></pre>
+
+<p><strong>Bioinformatics Impact:</strong></p>
+<p>Mixed line endings can break:<br />
+- FASTA parsing (split sequences incorrectly)<br />
+- Shell scripts in pipelines<br />
+- Python/Perl parsers</p>
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>Data ≠ Information</strong>: Data becomes information only in context. Format and representation are critical. In bioinformatics, a sequence without quality scores or annotations is just data.</p>
+</li>
+<li>
+<p><strong>Abstraction Levels</strong>: From bits to applications — understanding levels helps diagnose problems. When a BAM file won't open, is it a format issue, encoding problem, or file corruption?</p>
+</li>
+<li>
+<p><strong>Three Data Types</strong>: Structured (SQL tables), semi-structured (JSON/YAML/VCF), unstructured (text/images) — each requires a different approach. Choose the right format for your analysis pipeline.</p>
+</li>
+<li>
+<p><strong>Text vs Binary</strong>: Text files are human-readable (FASTA, VCF), binary requires special tools (BAM, BCF). Use <code>file</code> to determine type. Binary formats are more efficient for large datasets.</p>
+</li>
+<li>
+<p><strong>Encodings Matter</strong>: "Mojibake" is encoding mismatch. UTF-8 is the modern standard. Critical for patient names and international collaboration.</p>
+</li>
+<li>
+<p><strong>Magic Numbers</strong>: Don't trust file extensions. Use <code>file</code> command to verify actual format. Important for data integrity in pipelines.</p>
+</li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Related Modules:</strong></p>
+<ul>
+<li><a href="../02_NumberSystems/">Number Systems</a> — bits, bytes, number systems</li>
+<li><a href="../03_Encodings/">Encodings</a> — deep dive into encodings</li>
+<li><a href="../04_FileFormats/">File Formats</a> — detailed format analysis</li>
+</ul>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Use <code>file</code> command to determine types of various files in your system</li>
+<li id="item-2">Open a binary file (PNG, ZIP, or BAM) in hex editor and find magic numbers</li>
+<li id="item-3">Create a text file, save in UTF-8, then open with wrong encoding to see mojibake</li>
+<li id="item-4">Download a FASTQ file and examine its structure with <code>head</code>, <code>xxd</code>, and <code>file</code></li>
+<li id="item-5">Compare file sizes: FASTA vs FASTQ, SAM vs BAM, VCF vs BCF</li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>Study PNG format at low level (chunks, CRC)</li>
+<li>Examine how ELF files work (Linux executables)</li>
+<li>Understand BAM/CRAM compression algorithms</li>
+<li>Learn about BGZF (blocked gzip) used in bioinformatics</li>
+</ul>
+<p><strong>Connections to Other Courses:</strong></p>
+<ul>
+<li><strong>Python Course</strong>: Module 03_Files teaches how to handle these formats programmatically</li>
+<li><strong>Linux Course</strong>: Module 06_Structured_Data teaches command-line tools for data formats</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<p><strong>Articles:</strong></p>
+<ul>
+<li><a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/">The Absolute Minimum About Unicode</a></li>
+<li><a href="https://www.akkadia.org/drepper/cpumemory.pdf">What Every Programmer Should Know About Memory</a></li>
+</ul>
+<p><strong>Bioinformatics Standards:</strong></p>
+<ul>
+<li><a href="https://samtools.github.io/hts-specs/SAMv1.pdf">SAM/BAM Format Specification</a></li>
+<li><a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">VCF Format Specification</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FASTQ_format">FASTQ Format</a></li>
+<li><a href="https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.html">GFF3 Specification</a></li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man1/file.1.html">file command manual</a></li>
+<li><a href="https://linux.die.net/man/1/xxd">xxd manual</a></li>
+<li><a href="https://man7.org/linux/man-pages/man5/magic.5.html">Magic file format</a></li>
+<li><a href="http://www.htslib.org/">samtools</a></li>
+<li><a href="http://www.htslib.org/doc/bcftools.html">bcftools</a></li>
+</ul>
+<p><strong>Wikipedia:</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Character_encoding">Character encoding</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Binary_file">Binary file</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Magic_number_(programming)">Magic number (programming)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FASTQ_format">FASTQ format</a></li>
+</ul>
+<hr />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

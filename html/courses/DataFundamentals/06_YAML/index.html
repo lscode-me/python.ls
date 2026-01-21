@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Before starting this module, you should:">
+    <title>YAML | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="yaml">YAML</h1>
+<h2 id="human-friendly-data-format-for-bioinformatics-configurations">Human-Friendly Data Format for Bioinformatics Configurations</h2>
+<hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Know JSON (Module 05_JSON)</li>
+<li>Understand data structures (objects, arrays)</li>
+<li>Have experience with configuration files</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Read and write valid YAML</li>
+<li>Understand YAML features and "gotchas"</li>
+<li>Compare YAML and JSON, choose the appropriate format</li>
+<li>Use <code>yq</code> for processing YAML</li>
+<li>Apply YAML in bioinformatics pipelines and DevOps tools</li>
+</ul>
+<hr />
+<h2 id="1-what-is-yaml">1. What is YAML</h2>
+<h3 id="11-definition">1.1 Definition</h3>
+<p><strong>YAML</strong> (YAML Ain't Markup Language) — a human-readable data serialization format.</p>
+<ul>
+<li>Created in 2001</li>
+<li>Superset of JSON (valid JSON = valid YAML)</li>
+<li>Uses indentation instead of braces</li>
+<li>Supports comments</li>
+</ul>
+<h3 id="12-where-yaml-is-used">1.2 Where YAML is Used</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker Compose</td>
+<td><code>docker-compose.yml</code></td>
+</tr>
+<tr>
+<td>Kubernetes</td>
+<td><code>deployment.yaml</code>, <code>service.yaml</code></td>
+</tr>
+<tr>
+<td>GitHub Actions</td>
+<td><code>.github/workflows/*.yml</code></td>
+</tr>
+<tr>
+<td>Ansible</td>
+<td>playbooks, inventory</td>
+</tr>
+<tr>
+<td>CI/CD</td>
+<td><code>.gitlab-ci.yml</code>, <code>.travis.yml</code></td>
+</tr>
+<tr>
+<td>Helm</td>
+<td><code>Chart.yaml</code>, <code>values.yaml</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Snakemake</td>
+<td><code>Snakefile</code>, <code>config.yaml</code></td>
+</tr>
+<tr>
+<td>Nextflow</td>
+<td><code>nextflow.config</code> (supports YAML)</td>
+</tr>
+<tr>
+<td>Cromwell</td>
+<td>workflow configurations</td>
+</tr>
+<tr>
+<td>CWL</td>
+<td>Common Workflow Language definitions</td>
+</tr>
+<tr>
+<td>Conda</td>
+<td><code>environment.yaml</code></td>
+</tr>
+<tr>
+<td>Galaxy</td>
+<td>tool definitions, workflow configs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-example-yaml">1.3 Example YAML</h3>
+<p><strong>Generic Example:</strong></p>
+<pre class="highlight"><code class="language-yaml"># Application configuration
+app:
+  name: MyApp
+  version: 1.0.0
+
+server:
+  host: localhost
+  port: 8080
+  debug: true
+
+database:
+  host: db.example.com
+  port: 5432
+  credentials:
+    username: admin
+    password: secret  # TODO: use secrets manager
+
+features:
+  - authentication
+  - logging
+  - caching
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Pipeline Configuration):</strong></p>
+<pre class="highlight"><code class="language-yaml"># Snakemake pipeline configuration
+pipeline:
+  name: RNA-Seq Analysis
+  version: 2.1.0
+
+reference:
+  genome: /data/genomes/GRCh38.fa
+  annotation: /data/annotations/gencode.v42.gtf
+
+samples:
+  - sample_id: PAT001
+    fastq_r1: /data/fastq/PAT001_R1.fastq.gz
+    fastq_r2: /data/fastq/PAT001_R2.fastq.gz
+    condition: control
+  - sample_id: PAT002
+    fastq_r1: /data/fastq/PAT002_R1.fastq.gz
+    fastq_r2: /data/fastq/PAT002_R2.fastq.gz
+    condition: treatment
+
+tools:
+  fastqc:
+    threads: 4
+  star:
+    threads: 8
+    genome_dir: /data/star_index
+  featurecounts:
+    threads: 4
+    feature_type: exon  # Count reads at exon level
+
+quality_control:
+  min_phred_score: 30
+  min_read_length: 50
+  adapter_trimming: true
+</code></pre>
+
+<hr />
+<h2 id="2-yaml-syntax">2. YAML Syntax</h2>
+<h3 id="21-basic-types">2.1 Basic Types</h3>
+<pre class="highlight"><code class="language-yaml"># Strings
+string1: Hello World
+string2: &quot;Hello World&quot;        # With quotes
+string3: 'Hello World'        # Single quotes
+string4: &quot;Line 1\nLine 2&quot;     # With escape (only in double quotes)
+
+# Numbers
+integer: 42
+negative: -17
+float: 3.14159
+scientific: 1.5e+10
+hex: 0xFF        # ⚠️ May be interpreted as string!
+octal: 0o755     # ⚠️ Depends on YAML version
+
+# Boolean
+bool1: true
+bool2: false
+bool3: yes       # ⚠️ Also boolean!
+bool4: no        # ⚠️ Also boolean!
+bool5: on        # ⚠️ Also boolean!
+bool6: off       # ⚠️ Also boolean!
+
+# Null
+null1: null
+null2: ~
+null3:           # Empty value = null
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-yaml"># Sample metadata
+sample_id: PAT001
+age: 45
+coverage: 30.5
+quality_score: 35
+sequenced: true
+variants_called: null  # Analysis not yet complete
+
+# Gene annotation
+gene_name: BRCA2
+chromosome: chr13
+start: 32889611
+end: 32973805
+strand: &quot;+&quot;  # Quote to avoid interpretation issues
+is_canonical: true
+</code></pre>
+
+<h3 id="22-strings-details">2.2 Strings — Details</h3>
+<pre class="highlight"><code class="language-yaml"># Without quotes — simple string
+simple: Hello World
+
+# Double quotes — escape support
+escaped: &quot;Tab:\t Newline:\n Quote:\&quot;&quot;
+
+# Single quotes — everything literal (except '')
+literal: 'No escape: \n stays as \n'
+apostrophe: 'It''s working'  # '' = one '
+
+# Multi-line — literal block (preserves newlines)
+description: |
+  This is a long
+  multi-line string.
+  Newlines are preserved.
+
+# Multi-line — folded block (newlines → spaces)
+summary: &gt;
+  This is also multi-line
+  but newlines become spaces.
+  Only double newlines create paragraphs.
+
+  New paragraph here.
+
+# With indentation
+indented: |2
+    This text starts with 4 spaces
+    because of |2 modifier.
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-yaml"># Gene description (literal block)
+gene_description: |
+  BRCA2 is a tumor suppressor gene that plays a role in DNA repair.
+  Mutations in this gene are associated with increased risk of
+  breast and ovarian cancer.
+
+# Analysis notes (folded block)
+analysis_notes: &gt;
+  Quality control passed. Coverage is adequate for variant calling.
+  Minor adapter contamination detected but within acceptable limits.
+
+# FASTA-like sequence (literal block)
+sequence: |
+  ATGCGATCGATCGATCGATCGATCG
+  ATCGATCGATCGATCGATCGATCGA
+  TCGATCGATCGATCGATCGATCGAT
+</code></pre>
+
+<h3 id="23-lists-arrays">2.3 Lists (Arrays)</h3>
+<pre class="highlight"><code class="language-yaml"># Block style (recommended)
+fruits:
+  - apple
+  - banana
+  - cherry
+
+# Flow style (like JSON)
+fruits: [apple, banana, cherry]
+
+# Nested lists
+matrix:
+  - [1, 2, 3]
+  - [4, 5, 6]
+  - [7, 8, 9]
+
+# List of objects
+users:
+  - name: Alice
+    age: 30
+  - name: Bob
+    age: 25
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-yaml"># Chromosomes
+chromosomes:
+  - chr1
+  - chr2
+  - chr3
+  - chrX
+  - chrY
+  - chrM
+
+# Or flow style
+chromosomes: [chr1, chr2, chr3, chrX, chrY, chrM]
+
+# Sample list
+samples:
+  - sample_id: PAT001
+    condition: control
+    replicate: 1
+  - sample_id: PAT002
+    condition: treatment
+    replicate: 1
+  - sample_id: PAT003
+    condition: treatment
+    replicate: 2
+
+# Quality score thresholds
+phred_thresholds: [20, 30, 35, 40]
+
+# Gene list
+genes_of_interest:
+  - BRCA1
+  - BRCA2
+  - TP53
+  - EGFR
+</code></pre>
+
+<h3 id="24-objects-maps">2.4 Objects (Maps)</h3>
+<pre class="highlight"><code class="language-yaml"># Block style
+person:
+  name: Alice
+  age: 30
+  email: alice@example.com
+
+# Flow style
+person: {name: Alice, age: 30}
+
+# Nested objects
+config:
+  server:
+    host: localhost
+    port: 8080
+  database:
+    host: db.local
+    port: 5432
+
+# Complex keys
+? |-
+  multi-line
+  key
+: value for complex key
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-yaml"># Reference genome configuration
+reference:
+  genome:
+    fasta: /data/genomes/GRCh38.fa
+    index: /data/genomes/GRCh38.fa.fai
+  annotation:
+    gtf: /data/annotations/gencode.v42.gtf
+    gff: /data/annotations/gencode.v42.gff3
+
+# Variant calling parameters
+variant_calling:
+  caller: gatk
+  parameters:
+    min_base_quality: 20
+    min_mapping_quality: 30
+    ploidy: 2
+  filters:
+    min_depth: 10
+    min_quality: 30
+    max_missing: 0.1
+</code></pre>
+
+<h3 id="25-mixed-structures">2.5 Mixed Structures</h3>
+<pre class="highlight"><code class="language-yaml"># Object with lists
+server:
+  name: web-1
+  ports:
+    - 80
+    - 443
+  tags:
+    - production
+    - frontend
+
+# List of objects with nesting
+deployments:
+  - name: app-deployment
+    replicas: 3
+    containers:
+      - name: app
+        image: myapp:latest
+        ports:
+          - containerPort: 8080
+      - name: sidecar
+        image: sidecar:latest
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Pipeline Steps):</strong></p>
+<pre class="highlight"><code class="language-yaml">pipeline_steps:
+  - name: quality_control
+    tool: fastqc
+    threads: 4
+    inputs:
+      - &quot;{sample}_R1.fastq.gz&quot;
+      - &quot;{sample}_R2.fastq.gz&quot;
+    outputs:
+      - &quot;qc/{sample}_R1_fastqc.html&quot;
+      - &quot;qc/{sample}_R2_fastqc.html&quot;
+
+  - name: alignment
+    tool: bwa
+    threads: 8
+    parameters:
+      algorithm: mem
+      mark_shorter: true
+    inputs:
+      - &quot;{sample}_R1.fastq.gz&quot;
+      - &quot;{sample}_R2.fastq.gz&quot;
+    output: &quot;aligned/{sample}.bam&quot;
+
+  - name: variant_calling
+    tool: bcftools
+    threads: 4
+    parameters:
+      ploidy: 2
+      min_base_quality: 20
+    input: &quot;aligned/{sample}.bam&quot;
+    output: &quot;variants/{sample}.vcf.gz&quot;
+</code></pre>
+
+<hr />
+<h2 id="3-advanced-features">3. Advanced Features</h2>
+<h3 id="31-anchors-aliases">3.1 Anchors &amp; Aliases</h3>
+<pre class="highlight"><code class="language-yaml"># Define anchor with &amp;
+defaults: &amp;defaults
+  adapter: postgres
+  host: localhost
+  pool: 5
+
+# Use alias with *
+development:
+  &lt;&lt;: *defaults          # Insert all keys from defaults
+  database: dev_db
+
+production:
+  &lt;&lt;: *defaults
+  database: prod_db
+  pool: 25               # Override pool
+
+# Result for development:
+# adapter: postgres
+# host: localhost
+# pool: 5
+# database: dev_db
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Tool Defaults):</strong></p>
+<pre class="highlight"><code class="language-yaml"># Define default tool parameters
+default_alignment: &amp;alignment_defaults
+  threads: 8
+  min_mapping_quality: 30
+  mark_duplicates: true
+  sort_output: true
+
+# Use for different samples
+sample_PAT001:
+  &lt;&lt;: *alignment_defaults
+  input: PAT001.fastq.gz
+  output: PAT001.bam
+
+sample_PAT002:
+  &lt;&lt;: *alignment_defaults
+  input: PAT002.fastq.gz
+  output: PAT002.bam
+  threads: 16  # Override for this sample
+
+# Quality control defaults
+qc_defaults: &amp;qc_defaults
+  min_phred_score: 30
+  min_read_length: 50
+  adapter_trimming: true
+
+preprocessing:
+  &lt;&lt;: *qc_defaults
+  trim_quality_window: 4
+
+variant_qc:
+  &lt;&lt;: *qc_defaults
+  min_depth: 10
+  min_quality: 30
+</code></pre>
+
+<h3 id="32-multiple-documents">3.2 Multiple Documents</h3>
+<pre class="highlight"><code class="language-yaml"># First document
+---
+name: Document 1
+type: config
+---
+# Second document
+name: Document 2
+type: data
+...
+# End of documents (optional)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example (Multiple Samples):</strong></p>
+<pre class="highlight"><code class="language-yaml">---
+sample_id: PAT001
+condition: control
+fastq_r1: PAT001_R1.fastq.gz
+fastq_r2: PAT001_R2.fastq.gz
+---
+sample_id: PAT002
+condition: treatment
+fastq_r1: PAT002_R1.fastq.gz
+fastq_r2: PAT002_R2.fastq.gz
+---
+sample_id: PAT003
+condition: treatment
+fastq_r1: PAT003_R1.fastq.gz
+fastq_r2: PAT003_R2.fastq.gz
+</code></pre>
+
+<h3 id="33-tags">3.3 Tags</h3>
+<pre class="highlight"><code class="language-yaml"># Explicit type specification
+not_a_bool: !!str yes
+not_a_number: !!str 123
+explicit_float: !!float 42
+
+# Custom tags
+date: !custom 2024-01-15
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-yaml"># Ensure version is string, not float
+pipeline_version: !!str 2.1
+genome_version: !!str 38.0
+
+# Ensure sample IDs remain strings
+sample_id: !!str 001
+patient_id: !!str 00123
+</code></pre>
+
+<hr />
+<h2 id="4-yaml-gotchas-pitfalls">4. YAML "Gotchas" — Pitfalls</h2>
+<h3 id="41-norway-problem">4.1 Norway Problem</h3>
+<pre class="highlight"><code class="language-yaml"># ⚠️ CAUTION! In YAML 1.1:
+country: NO      # Interpreted as false!
+answer: YES      # Interpreted as true!
+
+# ✅ Solution — use quotes:
+country: &quot;NO&quot;
+answer: &quot;YES&quot;
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Impact:</strong></p>
+<pre class="highlight"><code class="language-yaml"># ⚠️ Problem with gene names or conditions
+gene_response: NO    # Interpreted as false!
+treatment: YES       # Interpreted as true!
+
+# ✅ Solution:
+gene_response: &quot;NO&quot;
+treatment: &quot;YES&quot;
+
+# Also affects sample conditions
+condition: ON        # Interpreted as true!
+condition: &quot;ON&quot;      # Correct string
+</code></pre>
+
+<h3 id="42-numbers-as-strings">4.2 Numbers as Strings</h3>
+<pre class="highlight"><code class="language-yaml"># ⚠️ May be interpreted as number:
+version: 1.0     # float 1.0, not string &quot;1.0&quot;!
+phone: 12345     # integer, not string
+
+# ✅ Solution:
+version: &quot;1.0&quot;
+phone: &quot;12345&quot;
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Impact:</strong></p>
+<pre class="highlight"><code class="language-yaml"># ⚠️ Problems with IDs and versions
+sample_id: 001       # Becomes integer 1, loses leading zero!
+genome_version: 38.0 # Becomes float 38.0, not &quot;38.0&quot;
+
+# ✅ Solution:
+sample_id: &quot;001&quot;
+genome_version: &quot;38.0&quot;
+patient_id: &quot;PAT001&quot;
+</code></pre>
+
+<h3 id="43-colon-in-values">4.3 Colon in Values</h3>
+<pre class="highlight"><code class="language-yaml"># ⚠️ Error:
+message: Error: file not found
+
+# ✅ Solution — quotes:
+message: &quot;Error: file not found&quot;
+
+# Or (if no space after colon — OK):
+url: http://example.com
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Impact:</strong></p>
+<pre class="highlight"><code class="language-yaml"># ⚠️ Problem with paths and descriptions
+description: Gene: BRCA2 function: DNA repair  # ERROR
+
+# ✅ Solution:
+description: &quot;Gene: BRCA2 function: DNA repair&quot;
+
+# File paths usually OK (no space after colon)
+file: file:///data/genomes/GRCh38.fa
+</code></pre>
+
+<h3 id="44-special-values">4.4 Special Values</h3>
+<pre class="highlight"><code class="language-yaml"># These values are interpreted specially:
+empty:           # null
+tilde: ~         # null  
+yes: yes         # true (YAML 1.1)
+no: no           # false (YAML 1.1)
+on: on           # true (YAML 1.1)
+off: off         # false (YAML 1.1)
+
+# In YAML 1.2 only true/false are boolean
+</code></pre>
+
+<h3 id="45-indentation-spaces-only">4.5 Indentation — Spaces Only!</h3>
+<pre class="highlight"><code class="language-yaml"># ⚠️ TABS ARE FORBIDDEN!
+# Use only spaces (usually 2)
+
+server:
+  host: localhost    # 2 spaces — OK
+    port: 8080        # TAB — ERROR!
+</code></pre>
+
+<hr />
+<h2 id="5-yaml-vs-json">5. YAML vs JSON</h2>
+<h3 id="51-syntax-comparison">5.1 Syntax Comparison</h3>
+<p><strong>JSON:</strong></p>
+<pre class="highlight"><code class="language-json">{
+  &quot;server&quot;: {
+    &quot;host&quot;: &quot;localhost&quot;,
+    &quot;port&quot;: 8080,
+    &quot;features&quot;: [&quot;auth&quot;, &quot;logging&quot;]
+  }
+}
+</code></pre>
+
+<p><strong>YAML:</strong></p>
+<pre class="highlight"><code class="language-yaml">server:
+  host: localhost
+  port: 8080
+  features:
+    - auth
+    - logging
+</code></pre>
+
+<h3 id="52-when-to-use">5.2 When to Use</h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>JSON</th>
+<th>YAML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comments</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td>Readability</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Machine generation</td>
+<td>✅ Simple</td>
+<td>⚠️ More complex</td>
+</tr>
+<tr>
+<td>File size</td>
+<td>Larger</td>
+<td>Smaller</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>✅ Safer</td>
+<td>⚠️ Risks (tags)</td>
+</tr>
+<tr>
+<td>APIs</td>
+<td>✅ Standard</td>
+<td>❌ Rare</td>
+</tr>
+<tr>
+<td>Configurations</td>
+<td>⚠️ Inconvenient</td>
+<td>✅ Ideal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🧬 In Bioinformatics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Format</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline configs</td>
+<td>YAML</td>
+<td>Readable, comments, human-editable</td>
+</tr>
+<tr>
+<td>API responses (NCBI, Ensembl)</td>
+<td>JSON</td>
+<td>Standard, interoperable</td>
+</tr>
+<tr>
+<td>Sample metadata</td>
+<td>JSON or YAML</td>
+<td>Both work; YAML for human editing</td>
+</tr>
+<tr>
+<td>Tool parameters</td>
+<td>YAML</td>
+<td>Comments for documentation</td>
+</tr>
+<tr>
+<td>Data exchange</td>
+<td>JSON</td>
+<td>Universal support</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-recommendations">5.3 Recommendations</h3>
+<ul>
+<li>
+<p><strong>JSON</strong>: APIs, data exchange, machine generation</p>
+</li>
+<li>
+<p><strong>YAML</strong>: Configurations, pipelines, human-editable files</p>
+</li>
+</ul>
+<hr />
+<h2 id="6-tools-for-yaml">6. Tools for YAML</h2>
+<h3 id="61-yq-yaml-processor">6.1 yq — YAML Processor</h3>
+<pre class="highlight"><code class="language-bash"># Installation (macOS)
+brew install yq
+
+# Installation (Linux)
+# https://github.com/mikefarah/yq/releases
+
+# Formatting
+yq eval '.' config.yaml
+
+# Extract value
+yq eval '.server.port' config.yaml
+
+# Change value
+yq eval '.server.port = 9090' config.yaml
+
+# Add element to list
+yq eval '.features += [&quot;new-feature&quot;]' config.yaml
+
+# Delete field
+yq eval 'del(.server.debug)' config.yaml
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Extract reference genome path
+yq eval '.reference.genome' pipeline_config.yaml
+
+# Get all sample IDs
+yq eval '.samples[].sample_id' config.yaml
+
+# Update quality threshold
+yq eval '.quality_control.min_phred_score = 35' config.yaml
+
+# Add new sample
+yq eval '.samples += [{&quot;sample_id&quot;: &quot;PAT004&quot;, &quot;condition&quot;: &quot;control&quot;}]' config.yaml
+
+# Extract tool threads
+yq eval '.tools.star.threads' config.yaml
+</code></pre>
+
+<h3 id="62-converting-yaml-json">6.2 Converting YAML ↔ JSON</h3>
+<pre class="highlight"><code class="language-bash"># YAML → JSON (with yq)
+yq eval -o=json config.yaml
+
+# JSON → YAML (with yq)
+yq eval -P config.json
+
+# With Python
+python3 -c &quot;import yaml, json, sys; print(json.dumps(yaml.safe_load(open('config.yaml')), indent=2))&quot;
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Examples:</strong></p>
+<pre class="highlight"><code class="language-bash"># Convert pipeline config to JSON for API
+yq eval -o=json pipeline_config.yaml &gt; pipeline_config.json
+
+# Convert Ensembl JSON response to YAML for readability
+curl -s &quot;https://rest.ensembl.org/lookup/id/ENSG00000139618?content-type=application/json&quot; | yq eval -P
+
+# Convert sample metadata
+yq eval -o=json samples.yaml &gt; samples.json
+</code></pre>
+
+<h3 id="63-yaml-validation">6.3 YAML Validation</h3>
+<pre class="highlight"><code class="language-bash"># With yamllint
+pip install yamllint
+yamllint config.yaml
+
+# With Python
+python3 -c &quot;import yaml; yaml.safe_load(open('config.yaml'))&quot;
+
+# Online: yamllint.com
+</code></pre>
+
+<h3 id="64-yamllint-rules">6.4 yamllint Rules</h3>
+<pre class="highlight"><code class="language-yaml"># .yamllint file
+---
+rules:
+  line-length:
+    max: 120
+  indentation:
+    spaces: 2
+  truthy:
+    check-keys: true
+  comments:
+    require-starting-space: true
+</code></pre>
+
+<hr />
+<h2 id="7-yaml-in-python">7. YAML in Python</h2>
+<h3 id="71-basic-operations">7.1 Basic Operations</h3>
+<pre class="highlight"><code class="language-python">import yaml
+
+# YAML string → Python dict
+yaml_string = &quot;&quot;&quot;
+server:
+  host: localhost
+  port: 8080
+features:
+  - auth
+  - logging
+&quot;&quot;&quot;
+
+data = yaml.safe_load(yaml_string)
+print(data)
+# {'server': {'host': 'localhost', 'port': 8080}, 'features': ['auth', 'logging']}
+
+# Python dict → YAML string
+yaml_output = yaml.dump(data, default_flow_style=False)
+print(yaml_output)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import yaml
+
+# Pipeline configuration
+pipeline_config = &quot;&quot;&quot;
+pipeline:
+  name: RNA-Seq Analysis
+  version: 2.1.0
+
+samples:
+  - sample_id: PAT001
+    condition: control
+  - sample_id: PAT002
+    condition: treatment
+
+tools:
+  star:
+    threads: 8
+    genome_dir: /data/star_index
+&quot;&quot;&quot;
+
+config = yaml.safe_load(pipeline_config)
+print(f&quot;Pipeline: {config['pipeline']['name']}&quot;)
+print(f&quot;Samples: {len(config['samples'])}&quot;)
+print(f&quot;STAR threads: {config['tools']['star']['threads']}&quot;)
+</code></pre>
+
+<h3 id="72-working-with-files">7.2 Working with Files</h3>
+<pre class="highlight"><code class="language-python">import yaml
+
+# Reading
+with open('config.yaml', 'r', encoding='utf-8') as f:
+    config = yaml.safe_load(f)
+
+# Writing
+with open('output.yaml', 'w', encoding='utf-8') as f:
+    yaml.dump(config, f, default_flow_style=False, allow_unicode=True)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import yaml
+
+# Load pipeline configuration
+with open('pipeline_config.yaml', 'r', encoding='utf-8') as f:
+    config = yaml.safe_load(f)
+
+# Modify configuration
+config['tools']['star']['threads'] = 16
+config['quality_control']['min_phred_score'] = 35
+
+# Add new sample
+new_sample = {
+    'sample_id': 'PAT004',
+    'condition': 'control',
+    'fastq_r1': 'PAT004_R1.fastq.gz',
+    'fastq_r2': 'PAT004_R2.fastq.gz'
+}
+config['samples'].append(new_sample)
+
+# Save updated configuration
+with open('pipeline_config_updated.yaml', 'w', encoding='utf-8') as f:
+    yaml.dump(config, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+</code></pre>
+
+<h3 id="73-safe_load-vs-load">7.3 safe_load vs load</h3>
+<pre class="highlight"><code class="language-python">import yaml
+
+# ✅ ALWAYS use safe_load
+data = yaml.safe_load(yaml_string)
+
+# ⚠️ NEVER use yaml.load without Loader!
+# yaml.load(yaml_string)  # DANGEROUS! Can execute code!
+
+# If you need full load (rarely):
+data = yaml.load(yaml_string, Loader=yaml.SafeLoader)
+</code></pre>
+
+<h3 id="74-multiple-documents">7.4 Multiple Documents</h3>
+<pre class="highlight"><code class="language-python">import yaml
+
+yaml_multi = &quot;&quot;&quot;
+---
+name: doc1
+---
+name: doc2
+---
+name: doc3
+&quot;&quot;&quot;
+
+# Load all documents
+docs = list(yaml.safe_load_all(yaml_multi))
+print(len(docs))  # 3
+
+# Write multiple documents
+yaml.dump_all(docs, stream, default_flow_style=False)
+</code></pre>
+
+<p><strong>🧬 Bioinformatics Example:</strong></p>
+<pre class="highlight"><code class="language-python">import yaml
+
+# Multiple sample documents
+samples_yaml = &quot;&quot;&quot;
+---
+sample_id: PAT001
+condition: control
+fastq_r1: PAT001_R1.fastq.gz
+---
+sample_id: PAT002
+condition: treatment
+fastq_r1: PAT002_R1.fastq.gz
+---
+sample_id: PAT003
+condition: treatment
+fastq_r1: PAT003_R1.fastq.gz
+&quot;&quot;&quot;
+
+# Load all samples
+samples = list(yaml.safe_load_all(samples_yaml))
+print(f&quot;Loaded {len(samples)} samples&quot;)
+
+for sample in samples:
+    print(f&quot;Sample {sample['sample_id']}: {sample['condition']}&quot;)
+</code></pre>
+
+<hr />
+<h2 id="8-yaml-in-bioinformatics-pipelines">8. YAML in Bioinformatics Pipelines</h2>
+<h3 id="81-snakemake-configuration">8.1 Snakemake Configuration</h3>
+<pre class="highlight"><code class="language-yaml"># config.yaml for Snakemake
+samples:
+  PAT001: data/fastq/PAT001.fastq.gz
+  PAT002: data/fastq/PAT002.fastq.gz
+  PAT003: data/fastq/PAT003.fastq.gz
+
+reference:
+  genome: data/reference/GRCh38.fa
+  annotation: data/reference/gencode.v42.gtf
+
+params:
+  star:
+    threads: 8
+    genome_dir: data/star_index
+
+  featurecounts:
+    threads: 4
+    feature_type: exon
+    attribute: gene_id
+
+  deseq2:
+    fdr_threshold: 0.05
+    log2fc_threshold: 1.0
+</code></pre>
+
+<h3 id="82-conda-environment">8.2 Conda Environment</h3>
+<pre class="highlight"><code class="language-yaml"># environment.yaml
+name: rnaseq-pipeline
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - snakemake=7.32
+  - fastqc=0.12.1
+  - star=2.7.10b
+  - samtools=1.17
+  - bcftools=1.17
+  - subread=2.0.3
+  - multiqc=1.14
+  - r-base=4.3.1
+  - bioconductor-deseq2=1.40.0
+  - pip:
+    - pandas==2.0.3
+    - numpy==1.24.3
+    - matplotlib==3.7.2
+</code></pre>
+
+<h3 id="83-galaxy-tool-definition">8.3 Galaxy Tool Definition</h3>
+<pre class="highlight"><code class="language-yaml"># tool.yaml for Galaxy
+id: variant_calling
+name: Variant Calling with BCFtools
+version: 1.17.0
+
+description: |
+  Call variants from aligned BAM files using BCFtools mpileup and call.
+
+inputs:
+  - name: input_bam
+    type: data
+    format: bam
+    label: Input BAM file
+
+  - name: reference
+    type: data
+    format: fasta
+    label: Reference genome
+
+  - name: min_base_quality
+    type: integer
+    value: 20
+    label: Minimum base quality
+
+  - name: min_mapping_quality
+    type: integer
+    value: 30
+    label: Minimum mapping quality
+
+outputs:
+  - name: output_vcf
+    type: data
+    format: vcf
+    label: Variant calls (VCF)
+
+command: |
+  bcftools mpileup 
+    -f $reference 
+    -Q $min_base_quality 
+    -q $min_mapping_quality 
+    $input_bam |
+  bcftools call 
+    -mv 
+    -o $output_vcf
+</code></pre>
+
+<h3 id="84-cwl-workflow">8.4 CWL Workflow</h3>
+<pre class="highlight"><code class="language-yaml"># workflow.cwl - Common Workflow Language
+cwlVersion: v1.2
+class: Workflow
+
+inputs:
+  fastq_r1:
+    type: File
+    doc: Forward reads FASTQ
+  fastq_r2:
+    type: File
+    doc: Reverse reads FASTQ
+  reference_genome:
+    type: File
+    doc: Reference genome FASTA
+  threads:
+    type: int
+    default: 8
+
+outputs:
+  aligned_bam:
+    type: File
+    outputSource: alignment/output_bam
+  variants_vcf:
+    type: File
+    outputSource: variant_calling/output_vcf
+
+steps:
+  quality_control:
+    run: fastqc.cwl
+    in:
+      reads_r1: fastq_r1
+      reads_r2: fastq_r2
+    out: [qc_report]
+
+  alignment:
+    run: bwa_mem.cwl
+    in:
+      reads_r1: fastq_r1
+      reads_r2: fastq_r2
+      reference: reference_genome
+      threads: threads
+    out: [output_bam]
+
+  variant_calling:
+    run: bcftools_call.cwl
+    in:
+      input_bam: alignment/output_bam
+      reference: reference_genome
+    out: [output_vcf]
+</code></pre>
+
+<hr />
+<h2 id="9-best-practices">9. Best Practices</h2>
+<h3 id="91-formatting">9.1 Formatting</h3>
+<pre class="highlight"><code class="language-yaml"># ✅ Good
+server:
+  host: localhost
+  port: 8080
+
+# ❌ Bad — mixing styles
+server:
+  host: localhost
+  port: 8080
+database: {host: db, port: 5432}  # Flow style suddenly
+</code></pre>
+
+<h3 id="92-quotes">9.2 Quotes</h3>
+<pre class="highlight"><code class="language-yaml"># ✅ Use quotes for:
+version: &quot;1.0&quot;           # Versions (otherwise float)
+country: &quot;NO&quot;            # Strings similar to boolean
+port: &quot;8080&quot;             # If you need string, not number
+message: &quot;Hello: World&quot;  # Strings with colon
+</code></pre>
+
+<p><strong>🧬 Bioinformatics:</strong></p>
+<pre class="highlight"><code class="language-yaml"># Always quote IDs and versions
+sample_id: &quot;001&quot;
+genome_version: &quot;38.0&quot;
+pipeline_version: &quot;2.1&quot;
+
+# Quote gene names that might be ambiguous
+gene: &quot;NO&quot;  # Not boolean false
+response: &quot;YES&quot;  # Not boolean true
+</code></pre>
+
+<h3 id="93-comments">9.3 Comments</h3>
+<pre class="highlight"><code class="language-yaml"># ✅ Useful comments
+server:
+  host: localhost
+  port: 8080  # Default HTTP port
+
+  # Connection pool settings
+  pool:
+    min: 5
+    max: 20
+
+# ❌ Useless comments  
+server:
+  host: localhost  # The host
+  port: 8080       # The port
+</code></pre>
+
+<p><strong>🧬 Bioinformatics:</strong></p>
+<pre class="highlight"><code class="language-yaml"># ✅ Document parameters and thresholds
+quality_control:
+  min_phred_score: 30  # Illumina Q30 standard
+  min_read_length: 50  # Filter short reads after trimming
+
+  # Adapter sequences for Illumina TruSeq
+  adapters:
+    - AGATCGGAAGAGC
+    - AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+</code></pre>
+
+<h3 id="94-file-organization">9.4 File Organization</h3>
+<pre class="highlight"><code class="language-yaml"># Group logically related settings
+# 1. Metadata
+pipeline:
+  name: RNA-Seq Analysis
+  version: 2.1.0
+
+# 2. Reference data
+reference:
+  genome: /data/genomes/GRCh38.fa
+  annotation: /data/annotations/gencode.v42.gtf
+
+# 3. Samples
+samples:
+  - sample_id: PAT001
+    condition: control
+
+# 4. Tool parameters
+tools:
+  star:
+    threads: 8
+</code></pre>
+
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>YAML — for humans</strong>: Comments, clean syntax, indentation instead of braces.</p>
+</li>
+<li>
+<p><strong>Beware of types</strong>: <code>yes/no</code>, <code>on/off</code> — boolean. <code>1.0</code> — float. Use quotes.</p>
+</li>
+<li>
+<p><strong>Spaces only</strong>: Tabs are forbidden! Usually 2 spaces for indentation.</p>
+</li>
+<li>
+<p><strong>safe_load always</strong>: Never use <code>yaml.load()</code> without SafeLoader.</p>
+</li>
+<li>
+<p><strong>JSON is a subset of YAML</strong>: Any JSON is valid YAML (starting with YAML 1.2).</p>
+</li>
+<li>
+<p><strong>🧬 Bioinformatics</strong>: YAML is ideal for pipeline configs, tool parameters, and sample metadata.</p>
+</li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Related Modules:</strong></p>
+<ul>
+<li><a href="../07_Markup/">Markup</a> — HTML, XML, Markdown</li>
+<li><a href="../08_ConfigFiles/">Config Files</a> — INI, TOML and other formats</li>
+</ul>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Write a Snakemake <code>config.yaml</code> for an RNA-Seq pipeline</li>
+<li id="item-2">Create a Conda <code>environment.yaml</code> for bioinformatics tools</li>
+<li id="item-3">Convert JSON sample metadata to YAML and back</li>
+<li id="item-4">Write a yamllint configuration for your project</li>
+<li id="item-5">Design a CWL workflow definition in YAML</li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>YAML 1.1 vs 1.2 (differences in boolean handling)</li>
+<li>Snakemake advanced configuration patterns</li>
+<li>CWL (Common Workflow Language) specifications</li>
+<li>Galaxy tool development with YAML</li>
+</ul>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<p><strong>Documentation:</strong></p>
+<ul>
+<li><a href="https://yaml.org/spec/">YAML Specification</a></li>
+<li><a href="https://mikefarah.gitbook.io/yq/">yq Documentation</a></li>
+<li><a href="https://pyyaml.org/wiki/PyYAMLDocumentation">PyYAML Documentation</a></li>
+</ul>
+<p><strong>Bioinformatics Workflows:</strong></p>
+<ul>
+<li><a href="https://snakemake.readthedocs.io/">Snakemake Documentation</a></li>
+<li><a href="https://www.commonwl.org/">Common Workflow Language</a></li>
+<li><a href="https://galaxyproject.org/develop/">Galaxy Tool Development</a></li>
+<li><a href="https://www.nextflow.io/">Nextflow Documentation</a></li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><a href="https://www.yamllint.com/">YAML Lint</a></li>
+<li><a href="https://yaml-multiline.info/">YAML Multiline</a></li>
+<li><a href="https://github.com/mikefarah/yq/releases">yq releases</a></li>
+</ul>
+<p><strong>Learning:</strong></p>
+<ul>
+<li><a href="https://learnxinyminutes.com/docs/yaml/">Learn YAML in Y minutes</a></li>
+<li><a href="https://www.arp242.net/yaml-config.html">YAML Gotchas</a></li>
+</ul>
+<hr />
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

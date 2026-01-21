@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Coroutines and Data Processing Pipelines in Python">
+    <title>HW: Homework: Coroutines and Data  | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Homework: Coroutines and Data </h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Python for Life Science Developers</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 7 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="homework-coroutines-and-data-pipelines">Homework: Coroutines and Data Pipelines</h1>
+<h2 id="task-1-basic-coroutines-easy">Task 1: Basic Coroutines (Easy)</h2>
+<p>Implement simple coroutines to understand the <code>send()</code> pattern.</p>
+<h3 id="11-echo-with-counter">1.1 Echo with Counter</h3>
+<p>Create a coroutine that echoes received values and counts them:</p>
+<pre class="highlight"><code class="language-python">def echo_counter():
+    &quot;&quot;&quot;
+    Coroutine that prints received values and their count
+
+    Example:
+    &gt;&gt;&gt; ec = echo_counter()
+    &gt;&gt;&gt; next(ec)
+    &gt;&gt;&gt; ec.send(&quot;hello&quot;)
+    1: hello
+    &gt;&gt;&gt; ec.send(&quot;world&quot;)
+    2: world
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<p><strong>Test:</strong></p>
+<pre class="highlight"><code class="language-python">ec = echo_counter()
+next(ec)
+ec.send(&quot;apple&quot;)   # 1: apple
+ec.send(&quot;banana&quot;)  # 2: banana
+ec.send(&quot;cherry&quot;)  # 3: cherry
+</code></pre>
+
+<h3 id="12-minmax-tracker">1.2 Min/Max Tracker</h3>
+<p>Create a coroutine that tracks min and max values:</p>
+<pre class="highlight"><code class="language-python">def minmax():
+    &quot;&quot;&quot;
+    Returns current (min, max) and accepts new values
+
+    Example:
+    &gt;&gt;&gt; mm = minmax()
+    &gt;&gt;&gt; next(mm)
+    (None, None)
+    &gt;&gt;&gt; mm.send(10)
+    (10, 10)
+    &gt;&gt;&gt; mm.send(5)
+    (5, 10)
+    &gt;&gt;&gt; mm.send(15)
+    (5, 15)
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<p><strong>Test:</strong></p>
+<pre class="highlight"><code class="language-python">mm = minmax()
+print(next(mm))      # (None, None)
+print(mm.send(10))   # (10, 10)
+print(mm.send(5))    # (5, 10)
+print(mm.send(20))   # (5, 20)
+print(mm.send(3))    # (3, 20)
+</code></pre>
+
+<h3 id="13-running-sum">1.3 Running Sum</h3>
+<p>Create a coroutine that maintains a running sum:</p>
+<pre class="highlight"><code class="language-python">def running_sum():
+    &quot;&quot;&quot;
+    Accumulates values and yields running total
+
+    Example:
+    &gt;&gt;&gt; rs = running_sum()
+    &gt;&gt;&gt; next(rs)
+    0
+    &gt;&gt;&gt; rs.send(10)
+    10
+    &gt;&gt;&gt; rs.send(20)
+    30
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<h2 id="task-2-pipeline-components-medium">Task 2: Pipeline Components (Medium)</h2>
+<p>Implement reusable pipeline components using the <code>@coroutine</code> decorator.</p>
+<h3 id="21-auto-priming-decorator">2.1 Auto-Priming Decorator</h3>
+<pre class="highlight"><code class="language-python">def coroutine(func):
+    &quot;&quot;&quot;Decorator that automatically primes coroutines&quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<h3 id="22-deduplicator">2.2 Deduplicator</h3>
+<p>Create a component that filters out duplicate items:</p>
+<pre class="highlight"><code class="language-python">@coroutine
+def deduplicate(key_func=None, target=None):
+    &quot;&quot;&quot;
+    Filter out duplicate items
+
+    Args:
+        key_func: Function to extract comparison key (default: identity)
+        target: Target coroutine
+
+    Example:
+    &gt;&gt;&gt; sink = printer()
+    &gt;&gt;&gt; dedup = deduplicate(target=sink)
+    &gt;&gt;&gt; dedup.send(1)    # prints 1
+    &gt;&gt;&gt; dedup.send(2)    # prints 2
+    &gt;&gt;&gt; dedup.send(1)    # skipped (duplicate)
+    &gt;&gt;&gt; dedup.send(3)    # prints 3
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<h3 id="23-throttle">2.3 Throttle</h3>
+<p>Create a rate limiter that passes at most N items per time window:</p>
+<pre class="highlight"><code class="language-python">@coroutine
+def throttle(max_items, window_seconds, target):
+    &quot;&quot;&quot;
+    Rate limiter: pass max_items per window_seconds
+
+    Args:
+        max_items: Maximum items to pass in window
+        window_seconds: Time window in seconds
+        target: Target coroutine
+
+    Example:
+    &gt;&gt;&gt; sink = printer()
+    &gt;&gt;&gt; limiter = throttle(max_items=2, window_seconds=1, target=sink)
+    &gt;&gt;&gt; limiter.send(&quot;A&quot;)  # passes
+    &gt;&gt;&gt; limiter.send(&quot;B&quot;)  # passes
+    &gt;&gt;&gt; limiter.send(&quot;C&quot;)  # blocked (rate limit)
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<h3 id="24-window-aggregator">2.4 Window Aggregator</h3>
+<p>Create a component that aggregates items into time-based windows:</p>
+<pre class="highlight"><code class="language-python">@coroutine
+def time_window(seconds, aggregate_func, target):
+    &quot;&quot;&quot;
+    Aggregate items in time windows
+
+    Args:
+        seconds: Window size in seconds
+        aggregate_func: Function to aggregate items (e.g., sum, max, len)
+        target: Target coroutine
+
+    Example:
+    &gt;&gt;&gt; sink = printer()
+    &gt;&gt;&gt; window = time_window(seconds=1, aggregate_func=sum, target=sink)
+    &gt;&gt;&gt; window.send(10)
+    &gt;&gt;&gt; window.send(20)
+    &gt;&gt;&gt; # After 1 second, prints 30
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<h2 id="task-3-csv-to-json-converter-medium">Task 3: CSV to JSON Converter (Medium)</h2>
+<p>Create a pipeline that converts CSV to JSON with filtering and transformation.</p>
+<p><strong>Input CSV:</strong></p>
+<pre class="highlight"><code class="language-csv">name,age,city,salary
+Alice,30,NYC,100000
+Bob,25,LA,80000
+Charlie,35,NYC,120000
+Diana,28,Chicago,90000
+</code></pre>
+
+<p><strong>Requirements:</strong>
+1. Parse CSV lines
+2. Filter: only people from NYC
+3. Transform: convert salary to integer, add <code>senior</code> field (age &gt;= 30)
+4. Output as JSON</p>
+<p><strong>Your implementation:</strong></p>
+<pre class="highlight"><code class="language-python">import sys
+import csv
+import json
+from io import StringIO
+
+def coroutine(func):
+    def wrapper(*args, **kwargs):
+        gen = func(*args, **kwargs)
+        next(gen)
+        return gen
+    return wrapper
+
+@coroutine
+def csv_to_json_pipeline():
+    &quot;&quot;&quot;
+    Build pipeline: CSV → filter NYC → transform → JSON
+
+    Usage:
+    &gt;&gt;&gt; pipeline = csv_to_json_pipeline()
+    &gt;&gt;&gt; pipeline.send(&quot;Alice,30,NYC,100000&quot;)
+    {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30, &quot;city&quot;: &quot;NYC&quot;, &quot;salary&quot;: 100000, &quot;senior&quot;: true}
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+
+# Test
+if __name__ == &quot;__main__&quot;:
+    pipeline = csv_to_json_pipeline()
+
+    data = [
+        &quot;name,age,city,salary&quot;,
+        &quot;Alice,30,NYC,100000&quot;,
+        &quot;Bob,25,LA,80000&quot;,
+        &quot;Charlie,35,NYC,120000&quot;,
+        &quot;Diana,28,Chicago,90000&quot;,
+    ]
+
+    for line in data[1:]:  # Skip header
+        pipeline.send(line)
+</code></pre>
+
+<p><strong>Expected output:</strong></p>
+<pre class="highlight"><code class="language-json">{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30, &quot;city&quot;: &quot;NYC&quot;, &quot;salary&quot;: 100000, &quot;senior&quot;: true}
+{&quot;name&quot;: &quot;Charlie&quot;, &quot;age&quot;: 35, &quot;city&quot;: &quot;NYC&quot;, &quot;salary&quot;: 120000, &quot;senior&quot;: true}
+</code></pre>
+
+<h2 id="task-4-log-analyzer-hard">Task 4: Log Analyzer (Hard)</h2>
+<p>Build a complete log analysis pipeline with multiple features.</p>
+<p><strong>Log format:</strong></p>
+<pre class="highlight"><code>2025-12-03 10:30:45 INFO [auth] User john logged in
+2025-12-03 10:30:46 ERROR [db] Connection timeout after 30s
+2025-12-03 10:30:47 WARN [cache] Cache miss for key: user_123
+</code></pre>
+
+<p><strong>Requirements:</strong></p>
+<h3 id="41-parser">4.1 Parser</h3>
+<pre class="highlight"><code class="language-python">import re
+
+def parse_log_line(line):
+    &quot;&quot;&quot;
+    Parse log line into dict
+
+    Returns:
+        {
+            'timestamp': '2025-12-03 10:30:45',
+            'level': 'INFO',
+            'module': 'auth',
+            'message': 'User john logged in'
+        }
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<h3 id="42-pipeline-components">4.2 Pipeline Components</h3>
+<p>Implement these components:</p>
+<pre class="highlight"><code class="language-python">@coroutine
+def filter_level(levels, target):
+    &quot;&quot;&quot;Filter by log level (can be list)&quot;&quot;&quot;
+    pass
+
+@coroutine
+def extract_usernames(target):
+    &quot;&quot;&quot;Extract username from messages containing 'user &lt;name&gt;'&quot;&quot;&quot;
+    pass
+
+@coroutine
+def count_by_field(field, target=None):
+    &quot;&quot;&quot;Count occurrences by field value&quot;&quot;&quot;
+    pass
+
+@coroutine
+def alert_on_error_rate(threshold, window_size, alert_func):
+    &quot;&quot;&quot;Trigger alert if error rate exceeds threshold&quot;&quot;&quot;
+    pass
+</code></pre>
+
+<h3 id="43-main-pipeline">4.3 Main Pipeline</h3>
+<p>Build a pipeline that:
+1. Parses log lines
+2. Filters ERROR and WARN levels
+3. Extracts usernames
+4. Counts errors by module
+5. Alerts if error rate &gt; 10 per minute
+6. Outputs JSON</p>
+<pre class="highlight"><code class="language-python">def build_log_analyzer():
+    &quot;&quot;&quot;
+    Build complete log analysis pipeline
+
+    Returns entry point coroutine
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+
+# Test
+if __name__ == &quot;__main__&quot;:
+    logs = [
+        &quot;2025-12-03 10:30:45 INFO [auth] User john logged in&quot;,
+        &quot;2025-12-03 10:30:46 ERROR [db] Connection timeout&quot;,
+        &quot;2025-12-03 10:30:47 ERROR [db] Query failed for user alice&quot;,
+        &quot;2025-12-03 10:30:48 WARN [cache] Cache miss&quot;,
+        &quot;2025-12-03 10:30:49 ERROR [api] Invalid request from user bob&quot;,
+    ]
+
+    pipeline = build_log_analyzer()
+    for log in logs:
+        pipeline.send(log)
+</code></pre>
+
+<h2 id="task-5-streaming-statistics-hard">Task 5: Streaming Statistics (Hard)</h2>
+<p>Implement a real-time statistics collector for streaming data.</p>
+<p><strong>Requirements:</strong></p>
+<pre class="highlight"><code class="language-python">@coroutine
+def streaming_stats(window_size=100, target=None):
+    &quot;&quot;&quot;
+    Calculate statistics over sliding window
+
+    Computes:
+    - count
+    - mean
+    - min/max
+    - standard deviation
+    - percentiles (50th, 95th, 99th)
+
+    Args:
+        window_size: Size of sliding window
+        target: Optional target to pass stats through
+
+    Returns:
+        Stats dict on each send()
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+
+# Test
+if __name__ == &quot;__main__&quot;:
+    import random
+
+    stats = streaming_stats(window_size=10)
+
+    for i in range(20):
+        value = random.randint(1, 100)
+        result = stats.send(value)
+        print(f&quot;Value: {value:3d} | Stats: {result}&quot;)
+</code></pre>
+
+<p><strong>Expected output format:</strong></p>
+<pre class="highlight"><code class="language-python">{
+    'count': 10,
+    'mean': 45.2,
+    'min': 5,
+    'max': 98,
+    'std': 28.3,
+    'p50': 42,
+    'p95': 89,
+    'p99': 96
+}
+</code></pre>
+
+<h2 id="task-6-multi-consumer-pipeline-hard">Task 6: Multi-Consumer Pipeline (Hard)</h2>
+<p>Build a pipeline with multiple consumers (broadcasting).</p>
+<p><strong>Scenario:</strong> Process web server logs and:
+1. Write all logs to <code>all.log</code>
+2. Write errors to <code>errors.log</code>
+3. Count requests by status code
+4. Alert on high error rate
+5. Generate real-time dashboard data</p>
+<pre class="highlight"><code class="language-python">@coroutine
+def multi_output_pipeline():
+    &quot;&quot;&quot;
+    Build pipeline with multiple consumers:
+
+    source → parser → [tee] → file_writer(all.log)
+                         ├→ error_filter → file_writer(errors.log)
+                         ├→ status_counter → dashboard
+                         └→ alert_monitor
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<p><strong>Test with sample logs:</strong></p>
+<pre class="highlight"><code class="language-python">logs = [
+    '192.168.1.1 - - [03/Dec/2025:10:30:45] &quot;GET /api/users HTTP/1.1&quot; 200 1234',
+    '192.168.1.2 - - [03/Dec/2025:10:30:46] &quot;POST /api/login HTTP/1.1&quot; 401 89',
+    '192.168.1.3 - - [03/Dec/2025:10:30:47] &quot;GET /api/data HTTP/1.1&quot; 500 234',
+]
+</code></pre>
+
+<h2 id="task-7-custom-pipeline-operators-expert">Task 7: Custom Pipeline Operators (Expert)</h2>
+<p>Create a mini-framework for building pipelines with operator overloading.</p>
+<pre class="highlight"><code class="language-python">class PipelineStage:
+    &quot;&quot;&quot;Base class for pipeline stages&quot;&quot;&quot;
+
+    def __init__(self, coroutine):
+        self.coroutine = coroutine
+
+    def __rshift__(self, other):
+        &quot;&quot;&quot;Enable &gt;&gt; operator for chaining&quot;&quot;&quot;
+        # Your code here
+        pass
+
+    def send(self, item):
+        self.coroutine.send(item)
+
+    def close(self):
+        self.coroutine.close()
+
+# Example usage:
+# pipeline = Source() &gt;&gt; Filter(predicate) &gt;&gt; Map(transform) &gt;&gt; Sink()
+</code></pre>
+
+<p><strong>Implement these operators:</strong></p>
+<pre class="highlight"><code class="language-python">class Filter(PipelineStage):
+    &quot;&quot;&quot;Filter stage&quot;&quot;&quot;
+    def __init__(self, predicate):
+        # Your code here
+        pass
+
+class Map(PipelineStage):
+    &quot;&quot;&quot;Map/transform stage&quot;&quot;&quot;
+    def __init__(self, func):
+        # Your code here
+        pass
+
+class Tee(PipelineStage):
+    &quot;&quot;&quot;Broadcast to multiple targets&quot;&quot;&quot;
+    def __init__(self, *targets):
+        # Your code here
+        pass
+
+class Sink(PipelineStage):
+    &quot;&quot;&quot;Terminal stage&quot;&quot;&quot;
+    def __init__(self, handler=print):
+        # Your code here
+        pass
+</code></pre>
+
+<p><strong>Usage example:</strong></p>
+<pre class="highlight"><code class="language-python">pipeline = (
+    Source() 
+    &gt;&gt; Filter(lambda x: x &gt; 0) 
+    &gt;&gt; Map(lambda x: x * 2) 
+    &gt;&gt; Sink()
+)
+
+for value in [-5, 10, -3, 20]:
+    pipeline.send(value)
+
+# Output: 20, 40
+</code></pre>
+
+<h2 id="task-8-real-time-data-processor-expert">Task 8: Real-Time Data Processor (Expert)</h2>
+<p>Build a production-ready real-time data processing system.</p>
+<p><strong>Requirements:</strong>
+1. Read from multiple sources (files, network, stdin)
+2. Parse different formats (JSON, CSV, log lines)
+3. Apply transformations and filters
+4. Aggregate data in time windows
+5. Output to multiple sinks (file, database, API)
+6. Handle errors gracefully
+7. Collect metrics and statistics
+8. Support hot-reloading of configuration</p>
+<pre class="highlight"><code class="language-python">class DataProcessor:
+    &quot;&quot;&quot;Real-time data processing system&quot;&quot;&quot;
+
+    def __init__(self, config_file):
+        &quot;&quot;&quot;
+        Load configuration and build pipeline
+
+        Config format (YAML):
+        sources:
+          - type: file
+            path: /var/log/app.log
+            format: log
+          - type: stdin
+            format: json
+
+        pipeline:
+          - type: filter
+            condition: level == 'ERROR'
+          - type: map
+            function: extract_fields
+          - type: window
+            size: 60
+            aggregate: count
+
+        sinks:
+          - type: file
+            path: /tmp/output.json
+          - type: http
+            url: https://api.example.com/logs
+        &quot;&quot;&quot;
+        # Your code here
+        pass
+
+    def run(self):
+        &quot;&quot;&quot;Start processing&quot;&quot;&quot;
+        pass
+
+    def stop(self):
+        &quot;&quot;&quot;Graceful shutdown&quot;&quot;&quot;
+        pass
+</code></pre>
+
+<h2 id="bonus-performance-challenge">Bonus: Performance Challenge</h2>
+<p>Optimize a coroutine pipeline to process <strong>1 million records per second</strong>.</p>
+<p><strong>Task:</strong> Process a stream of dictionaries:
+- Filter by field value
+- Transform 3 fields
+- Calculate running statistics
+- Write to file</p>
+<p><strong>Constraints:</strong>
+- Must use coroutines
+- Must process 1M records/sec on modern laptop
+- Memory usage &lt; 100MB</p>
+<pre class="highlight"><code class="language-python">def optimized_pipeline():
+    &quot;&quot;&quot;
+    High-performance pipeline for 1M+ records/sec
+
+    Optimize:
+    - Minimize function calls
+    - Use efficient data structures
+    - Batch operations where possible
+    - Profile and eliminate bottlenecks
+    &quot;&quot;&quot;
+    # Your code here
+    pass
+</code></pre>
+
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ol>
+<li id="item-1">
+<p><strong>Code Quality:</strong>
+   - Use type hints
+   - Add docstrings
+   - Follow PEP 8
+   - Handle errors</p>
+</li>
+<li id="item-2">
+<p><strong>Testing:</strong>
+   - Include test cases
+   - Test edge cases
+   - Verify memory usage</p>
+</li>
+<li id="item-3">
+<p><strong>Documentation:</strong>
+   - Explain your design choices
+   - Document any assumptions
+   - Include usage examples</p>
+</li>
+<li id="item-4">
+<p><strong>Files to submit:</strong>
+   - <code>task1.py</code> through <code>task8.py</code>
+   - <code>README.md</code> with instructions
+   - <code>tests/</code> directory with test files</p>
+</li>
+</ol>
+<h2 id="grading-rubric">Grading Rubric</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Points</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10</td>
+<td>Basic coroutines work correctly</td>
+</tr>
+<tr>
+<td>2</td>
+<td>15</td>
+<td>Pipeline components are reusable</td>
+</tr>
+<tr>
+<td>3</td>
+<td>15</td>
+<td>CSV→JSON pipeline complete</td>
+</tr>
+<tr>
+<td>4</td>
+<td>20</td>
+<td>Log analyzer with all features</td>
+</tr>
+<tr>
+<td>5</td>
+<td>15</td>
+<td>Statistics calculations correct</td>
+</tr>
+<tr>
+<td>6</td>
+<td>10</td>
+<td>Multi-consumer pipeline works</td>
+</tr>
+<tr>
+<td>7</td>
+<td>10</td>
+<td>Operator overloading elegant</td>
+</tr>
+<tr>
+<td>8</td>
+<td>5</td>
+<td>Real-time system (bonus)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total: 100 points (+5 bonus)</strong></p>
+<h2 id="tips">Tips</h2>
+<ol>
+<li id="item-1"><strong>Start with tests:</strong> Write test cases first to clarify requirements</li>
+<li id="item-2"><strong>Build incrementally:</strong> Test each component before combining</li>
+<li id="item-3"><strong>Use @coroutine decorator:</strong> Eliminates manual priming</li>
+<li id="item-4"><strong>Close pipelines:</strong> Always close coroutines when done</li>
+<li id="item-5"><strong>Profile code:</strong> Use <code>cProfile</code> to find bottlenecks</li>
+<li id="item-6"><strong>Read the lecture:</strong> All concepts are covered in lecture notes</li>
+</ol>
+<p>Good luck! 🚀</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

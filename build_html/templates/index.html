@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">
+            <span class="hero-icon">🧬</span>
+            Python & Linux for Life Sciences
+        </h1>
+        <p class="hero-subtitle">
+            Master data fundamentals, Python programming, and Linux command line
+            for bioinformatics and healthcare data analysis.
+        </p>
+        <div class="hero-actions">
+            <a href="{{ base_url }}/courses/" class="btn btn-primary btn-lg">Start Learning</a>
+            <a href="{{ telegram_bot }}" class="btn btn-outline btn-lg">📱 Join Telegram</a>
+        </div>
+    </div>
+</section>
+
+<section class="courses-overview">
+    <h2>📚 Our Courses</h2>
+    <div class="courses-grid">
+        {% for course in courses %}
+        <div class="course-card">
+            <div class="course-icon">{{ course.icon }}</div>
+            <h3>{{ course.title }}</h3>
+            <p class="course-modules">{{ course.modules }} modules</p>
+            <a href="{{ base_url }}/courses/{{ course.id }}/" class="btn btn-secondary">
+                View Course →
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="features">
+    <h2>✨ Why LSCode?</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <span class="feature-icon">🎯</span>
+            <h3>Life Science Focus</h3>
+            <p>All examples and exercises use real bioinformatics data and healthcare scenarios.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">📝</span>
+            <h3>Interactive Quizzes</h3>
+            <p>Test your knowledge with interactive quizzes after each module.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">💻</span>
+            <h3>Hands-on Practice</h3>
+            <p>Practical homework assignments with real-world applications.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">📱</span>
+            <h3>Telegram Integration</h3>
+            <p>Learn on the go with our Telegram Mini App.</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Ready to Start?</h2>
+    <p>Begin with Data Fundamentals or jump into Python and Linux tracks.</p>
+    <a href="{{ base_url }}/courses/" class="btn btn-primary btn-lg">Explore Courses</a>
+</section>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="tma-home">
+    <div class="home-hero">
+        <span class="hero-icon">🧬</span>
+        <h1>LSCode</h1>
+        <p>Python & Linux for Life Sciences</p>
+    </div>
+
+    <div class="home-courses">
+        <h2>📚 Courses</h2>
+        <div class="course-list">
+            {% for course in courses %}
+            <a href="{{ base_url }}/courses/{{ course.id }}/" class="course-item">
+                <span class="course-icon">{{ course.icon }}</span>
+                <div class="course-info">
+                    <h3>{{ course.title }}</h3>
+                    <span class="course-modules">{{ course.modules }} modules</span>
+                </div>
+                <span class="course-arrow">→</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="home-progress" id="progress-section">
+        <h2>📊 Your Progress</h2>
+        <div class="progress-summary" id="progress-summary">
+            <p class="loading">Loading progress...</p>
+        </div>
+    </div>
+
+    <div class="home-bot">
+        <p>📱 Follow our Telegram Bot for updates!</p>
+        <a href="{{ telegram_bot }}" class="bot-link" onclick="tg.openTelegramLink('{{ telegram_bot }}')">
+            @{{ telegram_bot_username }}
+        </a>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const progress = await TMAStorage.getProgress();
+        const summary = document.getElementById('progress-summary');
+        
+        if (Object.keys(progress).length === 0) {
+            summary.innerHTML = '<p class="empty">Start learning to track your progress!</p>';
+        } else {
+            let html = '<div class="progress-list">';
+            for (const [course, data] of Object.entries(progress)) {
+                const percent = Math.round((data.completed / data.total) * 100);
+                html += `
+                    <div class="progress-item">
+                        <span class="progress-course">${course}</span>
+                        <div class="progress-bar-mini">
+                            <div class="progress-fill-mini" style="width: ${percent}%"></div>
+                        </div>
+                        <span class="progress-percent">${percent}%</span>
+                    </div>
+                `;
+            }
+            html += '</div>';
+            summary.innerHTML = html;
+        }
+    } catch (e) {
+        document.getElementById('progress-summary').innerHTML = 
+            '<p class="error">Could not load progress</p>';
+    }
+});
+</script>
+{% endblock %}

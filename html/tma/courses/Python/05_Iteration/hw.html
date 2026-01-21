@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Iteration Protocol">
+    <title>HW: Iteration Protocol - Homework | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Iteration Protocol - Homework</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Python for Life Science Developers</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 5 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="iteration-protocol-homework">Iteration Protocol - Homework</h1>
+<ol>
+<li id="item-1">Custom Iterator Classes
+   Create the following iterator classes:</li>
+</ol>
+<p>a) RangeIterator - mimics built-in range()
+      - Support start, stop, step
+      - Implement <strong>iter</strong> and <strong>next</strong>
+      - Handle negative steps</p>
+<p>b) CycleIterator - cycles through items infinitely
+      - Takes any iterable
+      - Repeats forever
+      - Track iteration count</p>
+<p>c) BatchIterator - yields items in batches
+      - Takes iterable and batch size
+      - Last batch may be smaller
+      - Support overlapping batches (optional)</p>
+<p>Your task:
+   - Implement both <strong>iter</strong> and <strong>next</strong>
+   - Handle StopIteration correctly
+   - Test with various inputs
+   - Compare with itertools equivalents</p>
+<p>Your goal:
+   - Master iterator protocol
+   - Understand <strong>iter</strong> vs <strong>next</strong>
+   - Practice state management in iterators</p>
+<ol start="2">
+<li id="item-1">Generator Functions
+   Implement the following generators:</li>
+</ol>
+<p>a) fibonacci(n) - first n Fibonacci numbers
+   b) primes(max_num) - all primes up to max_num
+   c) permutations(items, r) - all r-length permutations
+   d) sliding_window(iterable, size) - sliding window view
+   e) flatten(nested) - flatten nested structures</p>
+<p>Your task:
+   - Use yield for lazy evaluation
+   - Handle edge cases (empty input, size=1, etc.)
+   - Make memory efficient (no lists)
+   - Test with large inputs</p>
+<p>Example:
+       for window in sliding_window([1,2,3,4,5], 3):
+           print(window)  # [1,2,3], [2,3,4], [3,4,5]</p>
+<p>Your goal:
+   - Master yield statement
+   - Understand lazy evaluation
+   - Practice generator patterns</p>
+<ol start="3">
+<li id="item-1">Generator Expressions and Pipelines
+   Create data processing pipelines using generators:</li>
+</ol>
+<p>Given a log file with entries like:
+       2023-11-26 10:15:23 ERROR Connection failed
+       2023-11-26 10:15:24 INFO Request processed</p>
+<p>Tasks:
+   a) Parse log entries (generator)
+   b) Filter by log level (generator)
+   c) Extract timestamps (generator)
+   d) Group by hour (generator)
+   e) Generate statistics (generator)</p>
+<p>Your task:
+   - Use generator expressions where possible
+   - Chain generators into pipeline
+   - Keep each stage simple and focused
+   - Compare memory usage with list-based approach</p>
+<p>Your goal:
+   - Master generator expressions
+   - Learn pipeline architecture
+   - Understand lazy evaluation benefits</p>
+<ol start="4">
+<li id="item-1">Advanced Generator Methods
+   Explore send(), throw(), and close():</li>
+</ol>
+<p>a) Coroutine: running average calculator
+      - Use send() to add values
+      - Returns current average</p>
+<p>b) State machine generator
+      - Multiple states with transitions
+      - Use send() to trigger transitions</p>
+<p>c) Error-handling generator
+      - Use throw() to inject errors
+      - Generator catches and handles them</p>
+<p>Your task:
+   - Implement bidirectional communication
+   - Handle exceptions in generators
+   - Demonstrate proper cleanup with close()
+   - Show practical use cases</p>
+<p>Your goal:
+   - Master generator methods
+   - Understand coroutines
+   - Practice advanced iteration patterns</p>
+<ol start="5">
+<li id="item-1">yield from and Generator Delegation
+   Implement using yield from:</li>
+</ol>
+<p>a) Tree traversal (depth-first and breadth-first)
+   b) Recursive directory walker
+   c) Nested data structure flattener
+   d) Chain multiple data sources
+   e) Recursive parser for nested expressions</p>
+<p>Your task:
+   - Use yield from for delegation
+   - Handle recursive structures
+   - Compare with manual iteration
+   - Demonstrate code simplification</p>
+<p>Example:
+       def traverse_tree(node):
+           yield node.value
+           for child in node.children:
+               yield from traverse_tree(child)</p>
+<p>Your goal:
+   - Master yield from
+   - Simplify recursive generators
+   - Understand generator delegation</p>
+<ol start="6">
+<li id="item-1">itertools Mastery
+   Solve problems using itertools module:</li>
+</ol>
+<p>a) Generate all password combinations (4-8 chars, letters+digits)
+   b) Find all triplets in list that sum to target
+   c) Create round-robin scheduler from tasks
+   d) Implement pagination with islice
+   e) Group and aggregate data with groupby</p>
+<p>Your task:
+   - Use appropriate itertools functions
+   - Combine multiple itertools tools
+   - Optimize for memory and speed
+   - Compare with manual implementation</p>
+<p>Functions to use:
+   - product, permutations, combinations
+   - chain, islice, cycle
+   - groupby, accumulate
+   - filterfalse, takewhile, dropwhile</p>
+<p>Your goal:
+   - Master itertools module
+   - Learn efficient iteration patterns
+   - Solve complex problems simply</p>
+<ol start="7">
+<li id="item-1">Custom Iterable Classes
+   Create iterable classes for:</li>
+</ol>
+<p>a) CircularBuffer - fixed-size buffer with wrap-around
+   b) LazyList - list that loads items on demand
+   c) InfiniteGrid - infinite 2D grid with sparse storage
+   d) TimeSeriesData - iterate with different time windows
+   e) PaginatedAPI - iterate over paginated REST API</p>
+<p>Your task:
+   - Implement <strong>iter</strong> returning generator or iterator
+   - Support multiple simultaneous iterations
+   - Handle state correctly
+   - Add useful methods beyond iteration</p>
+<p>Your goal:
+   - Create rich iterable interfaces
+   - Understand iterable vs iterator
+   - Practice real-world iteration scenarios</p>
+<ol start="8">
+<li id="item-1">Performance and Memory Optimization
+   Compare and optimize iteration approaches:</li>
+</ol>
+<p>Tasks:
+   a) Process 1 million numbers:
+      - List comprehension
+      - Generator expression
+      - Manual loop
+      - map/filter</p>
+<p>b) Measure:
+      - Memory usage
+      - Execution time
+      - CPU usage</p>
+<p>c) Optimize:
+      - Finding first match
+      - Aggregating large dataset
+      - Processing file line by line</p>
+<p>Your task:
+   - Implement all approaches
+   - Use memory_profiler and timeit
+   - Profile and compare
+   - Write recommendations</p>
+<p>Your goal:
+   - Understand performance implications
+   - Learn when to use generators
+   - Master profiling techniques
+   - Make informed optimization decisions</p>
+<ol start="9">
+<li id="item-1">Infinite Sequences
+   Create infinite generators:</li>
+</ol>
+<p>a) Collatz sequence generator
+   b) Random number stream with seed
+   c) Infinite repeat with delays
+   d) Streaming data simulator
+   e) Infinite geometric series</p>
+<p>Your task:
+   - Generate infinitely (no endpoint)
+   - Use with itertools.islice for testing
+   - Implement useful infinite sequences
+   - Show practical applications</p>
+<p>Example:
+       def collatz(n):
+           while True:
+               yield n
+               n = n // 2 if n % 2 == 0 else 3 * n + 1
+               if n == 1:
+                   yield 1
+                   return</p>
+<p>Your goal:
+   - Master infinite iteration
+   - Understand lazy evaluation power
+   - Practice mathematical sequences</p>
+<ol start="10">
+<li id="item-1">
+<p>Real-World Iteration Patterns
+    Implement practical iterators for:</p>
+<p>a) CSV file reader with header parsing
+b) JSON stream processor (line-delimited JSON)
+c) Database result cursor wrapper
+d) File system tree walker with filtering
+e) Network stream processor (chunks)</p>
+<p>Your task:
+- Handle real data formats
+- Implement error handling
+- Support filtering and transformation
+- Make memory-efficient
+- Add context manager support</p>
+<p>Your goal:
+- Apply iteration to real problems
+- Handle I/O efficiently
+- Create production-ready iterators
+- Master practical patterns</p>
+</li>
+</ol></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

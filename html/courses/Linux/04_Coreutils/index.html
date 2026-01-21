@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="📁 **[Sample Data](../data/DataSamples.md)** — sample data files for practice">
+    <title>Coreutils: Data Transformation Utilities | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 id="coreutils-data-transformation-utilities">Coreutils: Data Transformation Utilities</h1>
+<h2 id="sample-data-files">Sample Data Files</h2>
+<p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>GNU coreutils provide essential stream processing tools for data transformation. This lecture covers utilities that reshape, reorder, and format streaming data.</p>
+<h2 id="core-transformation-tools">Core Transformation Tools</h2>
+<h3 id="1-cut-column-extraction">1. <code>cut</code> — Column Extraction</h3>
+<p>Extract specific fields/characters from each line:</p>
+<pre class="highlight"><code class="language-bash"># Extract columns 2,4 from CSV
+cut -d',' -f2,4 data.csv
+
+# Character positions 1-10
+cut -c1-10 file.txt
+
+# Everything except column 1
+cut -d',' -f2- data.csv
+</code></pre>
+
+<p><strong>Key Options:</strong><br />
+- <code>-d DELIM</code>: Field delimiter (default: TAB)<br />
+- <code>-f LIST</code>: Field numbers (1-indexed)<br />
+- <code>-c LIST</code>: Character positions<br />
+- <code>--complement</code>: Invert selection</p>
+<h3 id="2-paste-column-merging">2. <code>paste</code> — Column Merging</h3>
+<p>Join files side-by-side:</p>
+<pre class="highlight"><code class="language-bash"># Merge two files with TAB separator
+paste file1.txt file2.txt
+
+# Use comma separator
+paste -d',' ids.txt names.txt ages.txt &gt; people.csv
+
+# Serial mode: convert rows to columns
+paste -s -d',' data.txt
+</code></pre>
+
+<h3 id="3-tr-character-translation">3. <code>tr</code> — Character Translation</h3>
+<p>Translate or delete characters:</p>
+<pre class="highlight"><code class="language-bash"># Convert case
+tr '[:lower:]' '[:upper:]' &lt; input.txt
+
+# Delete characters
+tr -d '[:punct:]' &lt; text.txt
+
+# Squeeze repeats
+tr -s ' ' &lt; text.txt  # collapse spaces
+
+# ROT13 encoding
+tr 'A-Za-z' 'N-ZA-Mn-za-m' &lt; secret.txt
+</code></pre>
+
+<p><strong>Character Classes:</strong><br />
+- <code>[:alnum:]</code>, <code>[:alpha:]</code>, <code>[:digit:]</code><br />
+- <code>[:lower:]</code>, <code>[:upper:]</code><br />
+- <code>[:space:]</code>, <code>[:punct:]</code></p>
+<h3 id="4-sort-ordering-data">4. <code>sort</code> — Ordering Data</h3>
+<p>Sort lines efficiently:</p>
+<pre class="highlight"><code class="language-bash"># Default alphabetical sort
+sort file.txt
+
+# Numeric sort
+sort -n numbers.txt
+
+# Reverse order
+sort -r file.txt
+
+# Sort by second field (CSV)
+sort -t',' -k2,2 data.csv
+
+# Sort by numeric field (descending)
+sort -t',' -k3,3nr data.csv
+
+# Unique sort
+sort -u file.txt
+
+# Parallel sort (faster)
+sort --parallel=4 -S 2G huge.txt
+</code></pre>
+
+<p><strong>Key Options:</strong><br />
+- <code>-t DELIM</code>: Field delimiter<br />
+- <code>-k POS</code>: Key position (field.char)<br />
+- <code>-n</code>: Numeric sort<br />
+- <code>-r</code>: Reverse<br />
+- <code>-u</code>: Unique<br />
+- <code>-s</code>: Stable sort<br />
+- <code>--parallel=N</code>: Use N cores<br />
+- <code>-S SIZE</code>: Memory buffer</p>
+<h3 id="5-uniq-deduplication">5. <code>uniq</code> — Deduplication</h3>
+<p>Remove or count adjacent duplicates:</p>
+<pre class="highlight"><code class="language-bash"># Remove duplicates (requires sorted input)
+sort file.txt | uniq
+
+# Count occurrences
+sort file.txt | uniq -c
+
+# Show only duplicates
+sort file.txt | uniq -d
+
+# Show only unique
+sort file.txt | uniq -u
+
+# Case-insensitive
+sort -f file.txt | uniq -i
+</code></pre>
+
+<h3 id="6-split-file-splitting">6. <code>split</code> — File Splitting</h3>
+<p>Split large files:</p>
+<pre class="highlight"><code class="language-bash"># Split by lines (1000 per file)
+split -l 1000 large.txt chunk_
+
+# Split by size (100MB)
+split -b 100M large.csv part_
+
+# Numeric suffixes
+split -l 1000 -d large.txt chunk_
+
+# Custom suffix length
+split -l 1000 -d -a 4 large.txt chunk_  # chunk_0000
+</code></pre>
+
+<h3 id="7-pv-progress-viewer">7. <code>pv</code> — Progress Viewer</h3>
+<p>Monitor pipeline throughput:</p>
+<pre class="highlight"><code class="language-bash"># Show progress for file copy
+pv large.csv | gzip &gt; large.csv.gz
+
+# Rate limit (1MB/s)
+pv -L 1m large.csv &gt; output.csv
+
+# ETA and progress bar
+pv -W large.csv | wc -l
+
+# Multi-file progress
+pv file1 file2 file3 | tar -cz &gt; archive.tar.gz
+</code></pre>
+
+<h3 id="8-stdbuf-buffer-control">8. <code>stdbuf</code> — Buffer Control</h3>
+<p>Control I/O buffering:</p>
+<pre class="highlight"><code class="language-bash"># Disable output buffering
+stdbuf -oL python slow_script.py | tee log.txt
+
+# Line-buffered output
+stdbuf -oL grep ERROR /var/log/app.log
+
+# Disable all buffering
+stdbuf -i0 -o0 -e0 command
+</code></pre>
+
+<h2 id="practical-examples">Practical Examples</h2>
+<h3 id="example-1-csv-column-reordering">Example 1: CSV Column Reordering</h3>
+<pre class="highlight"><code class="language-bash"># Reorder columns: 3,1,2,4
+cut -d',' -f3,1,2,4 data.csv
+</code></pre>
+
+<h3 id="example-2-join-two-files">Example 2: Join Two Files</h3>
+<pre class="highlight"><code class="language-bash"># Create people.csv from separate files
+paste -d',' ids.txt names.txt ages.txt &gt; people.csv
+</code></pre>
+
+<h3 id="example-3-top-10-most-frequent-lines">Example 3: Top 10 Most Frequent Lines</h3>
+<pre class="highlight"><code class="language-bash">sort data.txt | uniq -c | sort -rn | head -10
+</code></pre>
+
+<h3 id="example-4-split-and-process-in-parallel">Example 4: Split and Process in Parallel</h3>
+<pre class="highlight"><code class="language-bash"># Split large file
+split -l 10000 -d large.csv chunk_
+
+# Process in parallel
+for chunk in chunk_*; do
+    process_chunk.sh &quot;$chunk&quot; &amp;
+done
+wait
+
+# Merge results
+cat chunk_*.processed &gt; output.csv
+rm chunk_*
+</code></pre>
+
+<h3 id="example-5-progress-monitored-pipeline">Example 5: Progress-Monitored Pipeline</h3>
+<pre class="highlight"><code class="language-bash">pv access.log | \
+  grep -E '^[0-9]' | \
+  cut -d' ' -f1,7 | \
+  sort | uniq -c | \
+  sort -rn &gt; top_ips.txt
+</code></pre>
+
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li id="item-1"><strong>Use <code>sort</code> before <code>uniq</code></strong>: <code>uniq</code> only removes adjacent duplicates</li>
+<li id="item-2"><strong>Specify numeric sort</strong> with <code>-n</code> for numbers</li>
+<li id="item-3"><strong>Use <code>--parallel</code></strong> for large sorts</li>
+<li id="item-4"><strong>Buffer large sorts</strong> with <code>-S</code> memory option</li>
+<li id="item-5"><strong>Use <code>pv</code></strong> for long-running pipelines</li>
+<li id="item-6"><strong>Disable buffering</strong> with <code>stdbuf -oL</code> for real-time output</li>
+<li id="item-7"><strong>Split large files</strong> before parallel processing</li>
+<li id="item-8"><strong>Use stable sort</strong> (<code>-s</code>) when field order matters</li>
+</ol>
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="pattern-1-frequency-analysis">Pattern 1: Frequency Analysis</h3>
+<pre class="highlight"><code class="language-bash"># Count occurrences, show top 10
+cut -d',' -f2 data.csv | sort | uniq -c | sort -rn | head -10
+</code></pre>
+
+<h3 id="pattern-2-column-swap">Pattern 2: Column Swap</h3>
+<pre class="highlight"><code class="language-bash"># Swap columns 1 and 2
+awk -F',' '{print $2&quot;,&quot;$1&quot;,&quot;$3}' data.csv
+# OR
+cut -d',' -f2,1,3 data.csv
+</code></pre>
+
+<h3 id="pattern-3-deduplication-by-key">Pattern 3: Deduplication by Key</h3>
+<pre class="highlight"><code class="language-bash"># Keep first occurrence of each ID
+sort -t',' -k1,1 -u data.csv
+</code></pre>
+
+<h3 id="pattern-4-parallel-processing">Pattern 4: Parallel Processing</h3>
+<pre class="highlight"><code class="language-bash"># Split, process, merge
+split -l 1000 -d input.csv chunk_
+for f in chunk_*; do process.sh &quot;$f&quot; &gt; &quot;$f.out&quot; &amp; done
+wait
+cat chunk_*.out &gt; output.csv
+rm chunk_*
+</code></pre>
+
+<h2 id="performance-tips">Performance Tips</h2>
+<ol>
+<li id="item-1">
+<p><strong>Sort optimization:</strong><br />
+   - Use <code>--parallel</code> and <code>-S</code> for large files<br />
+   - Set <code>TMPDIR</code> to fast storage<br />
+   - Use <code>-k</code> to sort by specific fields only</p>
+</li>
+<li id="item-2">
+<p><strong>Cut vs Awk:</strong><br />
+   - Use <code>cut</code> for simple column extraction<br />
+   - Use <code>awk</code> for complex field manipulation</p>
+</li>
+<li id="item-3">
+<p><strong>Pipe vs Temp Files:</strong><br />
+   - Use pipes for streaming<br />
+   - Use temp files for multiple passes</p>
+</li>
+<li id="item-4">
+<p><strong>Buffer control:</strong><br />
+   - Use <code>stdbuf -oL</code> for line-buffered output<br />
+   - Helps with real-time monitoring</p>
+</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Key Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cut</code></td>
+<td>Extract columns</td>
+<td>Column selection</td>
+</tr>
+<tr>
+<td><code>paste</code></td>
+<td>Join files horizontally</td>
+<td>Merge columns</td>
+</tr>
+<tr>
+<td><code>tr</code></td>
+<td>Character translation</td>
+<td>Case conversion, deletion</td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td>Order lines</td>
+<td>Sorting, deduplication prep</td>
+</tr>
+<tr>
+<td><code>uniq</code></td>
+<td>Remove duplicates</td>
+<td>Frequency counting</td>
+</tr>
+<tr>
+<td><code>split</code></td>
+<td>Divide files</td>
+<td>Parallel processing</td>
+</tr>
+<tr>
+<td><code>pv</code></td>
+<td>Progress monitoring</td>
+<td>Pipeline visibility</td>
+</tr>
+<tr>
+<td><code>stdbuf</code></td>
+<td>Buffer control</td>
+<td>Real-time output</td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Practice combining these tools in pipelines</li>
+<li>Explore <code>awk</code> for more complex transformations</li>
+<li>Learn <code>join</code> for database-like joins</li>
+<li>Study <code>comm</code> and <code>diff</code> for set operations</li>
+</ul>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

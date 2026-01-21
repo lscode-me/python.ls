@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Protocols and Interfaces">
+    <title>HW: Protocols and Interfaces - Hom | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Protocols and Interfaces - Hom</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Python for Life Science Developers</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 10 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="protocols-and-interfaces-homework">Protocols and Interfaces - Homework</h1>
+<ol>
+<li id="item-1">Implementing Common Protocols
+   Create a <code>Deck</code> class representing a deck of playing cards:</li>
+</ol>
+<p>Implement these protocols:
+   - Sequence protocol: <strong>len</strong>, <strong>getitem</strong>
+   - Container protocol: <strong>contains</strong>
+   - Iterator protocol: <strong>iter</strong>
+   - Callable protocol: <strong>call</strong> (shuffle the deck)
+   - String representation: <strong>str</strong>, <strong>repr</strong></p>
+<p>Your task:
+   - Support len(deck)
+   - Support deck[index] and slicing
+   - Support "card in deck"
+   - Support iteration: for card in deck
+   - Support deck() to shuffle
+   - Create Card class with suit and rank</p>
+<p>Your goal:
+   - Master protocol implementation
+   - Understand duck typing
+   - Practice making objects behave like built-ins</p>
+<ol start="2">
+<li id="item-1">Numeric Protocol Implementation
+   Create a <code>Fraction</code> class for rational numbers:</li>
+</ol>
+<p>Implement:
+   - Arithmetic: <strong>add</strong>, <strong>sub</strong>, <strong>mul</strong>, <strong>truediv</strong>
+   - Comparison: <strong>eq</strong>, <strong>lt</strong>, <strong>le</strong>, <strong>gt</strong>, <strong>ge</strong>
+   - Conversion: <strong>int</strong>, <strong>float</strong>, <strong>str</strong>
+   - Simplification: reduce to lowest terms automatically</p>
+<p>Your task:
+   - Handle operations between Fraction and int
+   - Implement proper fraction arithmetic
+   - Auto-simplify (e.g., 2/4 becomes 1/2)
+   - Support mixed operations: Fraction(1,2) + 3</p>
+<p>Example:
+       f1 = Fraction(1, 2)
+       f2 = Fraction(1, 3)
+       print(f1 + f2)  # 5/6</p>
+<p>Your goal:
+   - Master numeric protocols
+   - Understand operator overloading
+   - Practice mathematical correctness</p>
+<ol start="3">
+<li id="item-1">Custom Collections with ABCs
+   Create custom collection classes using collections.abc:</li>
+</ol>
+<p>a) UniqueList - list that doesn't allow duplicates
+      Inherit from: collections.abc.MutableSequence</p>
+<p>b) OrderedSet - set that maintains insertion order
+      Inherit from: collections.abc.MutableSet</p>
+<p>c) DefaultDict - dict with default factory
+      Inherit from: collections.abc.MutableMapping</p>
+<p>Your task:
+   - Implement all required abstract methods
+   - Add custom behavior for each collection
+   - Test that they work with built-in functions
+   - Compare performance with built-in types</p>
+<p>Your goal:
+   - Understand collections ABCs
+   - Learn abstract method implementation
+   - Practice creating custom collections</p>
+<ol start="4">
+<li id="item-1">Context Manager Protocol
+   Create the following context managers:</li>
+</ol>
+<p>a) Timer - measure execution time with optional logging
+   b) TemporaryDirectory - create/cleanup temp directory
+   c) DatabaseConnection - manage DB connection lifecycle
+   d) SuppressException - suppress specific exceptions
+   e) ChangeDirectory - temporarily change working directory</p>
+<p>Your task:
+   - Implement using <strong>enter</strong> and <strong>exit</strong>
+   - Handle exceptions properly in <strong>exit</strong>
+   - Test with various scenarios
+   - Also implement using @contextmanager decorator</p>
+<p>Your goal:
+   - Master context manager protocol
+   - Understand resource management
+   - Practice cleanup and exception handling</p>
+<ol start="5">
+<li id="item-1">Typing Protocols
+   Create a plugin system using typing.Protocol:</li>
+</ol>
+<p>Define protocols for:
+   - DataLoader: load(filename: str) -&gt; Any
+   - DataProcessor: process(data: Any) -&gt; Any
+   - DataSaver: save(data: Any, filename: str) -&gt; None</p>
+<p>Implement concrete classes:
+   - CSVLoader, JSONLoader, XMLLoader
+   - FilterProcessor, TransformProcessor
+   - CSVSaver, JSONSaver</p>
+<p>Your task:
+   - Define protocols with type hints
+   - Implement multiple concrete classes
+   - Create pipeline combining all three protocols
+   - No inheritance required (duck typing)</p>
+<p>Your goal:
+   - Master typing.Protocol
+   - Understand structural subtyping
+   - Practice type-safe duck typing
+   - Learn plugin architecture patterns</p>
+<ol start="6">
+<li id="item-1">Comparable Protocol
+   Create a system for sorting and comparing custom objects:</li>
+</ol>
+<p>Implement for:
+   - Student (by grade, then name)
+   - Task (by priority, then deadline)
+   - File (by size, then name)</p>
+<p>Requirements:
+   - Implement <strong>eq</strong>, <strong>lt</strong>, <strong>le</strong>, <strong>gt</strong>, <strong>ge</strong>, <strong>ne</strong>
+   - Support sorting with sorted()
+   - Support min(), max()
+   - Implement using functools.total_ordering</p>
+<p>Your task:
+   - Implement complete comparison protocol
+   - Test sorting in different scenarios
+   - Handle edge cases (None values, equal items)
+   - Demonstrate functools.total_ordering usage</p>
+<p>Your goal:
+   - Master comparison protocols
+   - Understand total ordering
+   - Practice sorting algorithms</p>
+<ol start="7">
+<li id="item-1">Callable Objects and Function-like Classes
+   Create callable classes for different use cases:</li>
+</ol>
+<p>a) Memoizer - cache function results
+   b) RateLimiter - limit function call rate
+   c) Validator - validate input with custom rules
+   d) EventHandler - handle events with callbacks
+   e) StateMachine - implement state transitions</p>
+<p>Your task:
+   - Implement <strong>call</strong> for each class
+   - Maintain internal state
+   - Support function-like behavior
+   - Add useful methods beyond <strong>call</strong></p>
+<p>Example:
+       @Memoizer
+       def expensive_function(n):
+           return n ** 2</p>
+<p>Your goal:
+   - Master callable protocol
+   - Create function-like objects
+   - Practice decorator patterns with classes</p>
+<ol start="8">
+<li id="item-1">Multi-Protocol Implementation
+   Create a <code>Matrix</code> class implementing multiple protocols:</li>
+</ol>
+<p>Protocols to implement:
+   - Sequence: indexing, slicing, length
+   - Numeric: addition, subtraction, multiplication
+   - Comparison: equality
+   - Iterator: row-wise iteration
+   - Context manager: temporary matrix transformations
+   - Callable: apply function to all elements</p>
+<p>Your task:
+   - Support matrix[i][j] and matrix[i] access
+   - Implement matrix arithmetic correctly
+   - Allow: for row in matrix
+   - Support: matrix(lambda x: x * 2)
+   - Test with various operations</p>
+<p>Your goal:
+   - Combine multiple protocols in one class
+   - Understand protocol interactions
+   - Create rich, Pythonic interfaces</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

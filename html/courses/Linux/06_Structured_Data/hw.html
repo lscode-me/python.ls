@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Structured Data Processing (JSON, CSV, YAML, XML)">
+    <title>Structured Data Processing (JSON, CSV, YAML, XML) - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Structured Data Processing (JSON, CSV, YAML, XML)</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="structured-data-processing-json-csv-yaml-xml-homework">Structured Data Processing (JSON, CSV, YAML, XML) - Homework</h1>
+<h2 id="assignment-1-extract-json-fields">Assignment 1: Extract JSON Fields</h2>
+<p>Extract the "name" and "age" fields from a JSON array of users.<br />
+- Input: <code>users.json</code> with array of user objects<br />
+- Command: Use <code>jq '.[] | {name, age}'</code><br />
+- Output: JSON objects with only name and age</p>
+<h2 id="assignment-2-filter-json-by-condition">Assignment 2: Filter JSON by Condition</h2>
+<p>Filter users older than 25 years.<br />
+- Input: <code>users.json</code><br />
+- Command: <code>jq '.[] | select(.age &gt; 25)'</code><br />
+- Output: Filtered JSON array</p>
+<h2 id="assignment-3-json-to-csv-conversion">Assignment 3: JSON to CSV Conversion</h2>
+<p>Convert a JSON array to CSV format.<br />
+- Input: <code>products.json</code> with: id, name, price<br />
+- Command: <code>jq -r '.[] | [.id, .name, .price] | @csv' products.json &gt; products.csv</code><br />
+- Output: CSV file</p>
+<h2 id="assignment-4-csv-column-selection">Assignment 4: CSV Column Selection</h2>
+<p>Extract specific columns from a CSV file.<br />
+- Input: <code>data.csv</code> with many columns<br />
+- Command: Use <code>csvcut -c name,age,city data.csv</code> or <code>mlr --csv cut -f name,age,city data.csv</code><br />
+- Output: CSV with 3 columns</p>
+<h2 id="assignment-5-csv-filtering">Assignment 5: CSV Filtering</h2>
+<p>Filter CSV rows where price &gt; 100.<br />
+- Input: <code>sales.csv</code><br />
+- Command: <code>mlr --csv filter '$price &gt; 100' sales.csv</code><br />
+- Output: Filtered rows</p>
+<h2 id="assignment-6-csv-group-by-aggregation">Assignment 6: CSV Group-By Aggregation</h2>
+<p>Calculate total sales per customer.<br />
+- Input: <code>orders.csv</code> with: order_id, customer_id, amount<br />
+- Command: <code>mlr --csv stats1 -a sum -f amount -g customer_id orders.csv</code><br />
+- Output: customer_id, amount_sum</p>
+<h2 id="assignment-7-jsonl-processing">Assignment 7: JSONL Processing</h2>
+<p>Process a JSON Lines file to extract error events.<br />
+- Input: <code>events.jsonl</code><br />
+- Command: <code>jq -c 'select(.type == "error")' events.jsonl</code><br />
+- Output: JSONL with errors only</p>
+<h2 id="assignment-8-multi-format-pipeline">Assignment 8: Multi-Format Pipeline</h2>
+<p>Download JSON from API, filter, convert to CSV.<br />
+- Steps:<br />
+  1. <code>curl -s 'https://jsonplaceholder.typicode.com/users'</code><br />
+  2. Filter users from specific city: <code>jq '.[] | select(.address.city == "Gwenborough")'</code><br />
+  3. Convert to CSV: <code>jq -r '[.id, .name, .email] | @csv'</code><br />
+- Output: CSV file</p>
+<h2 id="assignment-9-xml-data-extraction">Assignment 9: XML Data Extraction</h2>
+<p>Extract all names from an XML file.<br />
+- Input: <code>users.xml</code><br />
+- Command: <code>xmlstarlet sel -t -v "//user/name" -n users.xml</code><br />
+- Output: List of names</p>
+<h2 id="assignment-10-csv-to-json-and-back">Assignment 10: CSV to JSON and Back</h2>
+<p>Convert CSV to JSON, filter, convert back to CSV.<br />
+- Input: <code>products.csv</code><br />
+- Steps:<br />
+  1. CSV → JSON: <code>mlr --csv --ojson cat products.csv</code><br />
+  2. Filter: <code>jq '.[] | select(.price &lt; 50)'</code><br />
+  3. JSON → CSV: <code>jq -r '[.id, .name, .price] | @csv'</code></p>
+<h2 id="duckdb-assignments">DuckDB Assignments</h2>
+<h3 id="assignment-11-query-csv-with-sql">Assignment 11: Query CSV with SQL</h3>
+<p>Use DuckDB to query a CSV file with SQL.<br />
+- Input: <code>users.csv</code><br />
+- Command: <code>duckdb -c "SELECT name, city FROM 'users.csv' WHERE status = 'active'"</code><br />
+- Output: Active users with their cities</p>
+<h3 id="assignment-12-aggregate-with-duckdb">Assignment 12: Aggregate with DuckDB</h3>
+<p>Calculate statistics per category using SQL.<br />
+- Input: <code>products.csv</code><br />
+- Command: <code>duckdb -c "SELECT category, COUNT(*), AVG(price), MAX(price) FROM 'products.csv' GROUP BY category"</code><br />
+- Output: Category statistics</p>
+<h3 id="assignment-13-join-with-duckdb">Assignment 13: Join with DuckDB</h3>
+<p>Join users and orders using SQL.<br />
+- Input: <code>users.csv</code>, <code>orders.csv</code><br />
+- Command: <code>duckdb -c "SELECT u.name, COUNT(o.order_id) as orders, SUM(o.amount) as total FROM 'users.csv' u JOIN 'orders.csv' o ON u.id = o.customer_id GROUP BY u.name"</code><br />
+- Output: User statistics with order counts</p>
+<h3 id="assignment-14-export-to-parquet">Assignment 14: Export to Parquet</h3>
+<p>Convert CSV to Parquet format.<br />
+- Input: <code>users.csv</code><br />
+- Command: <code>duckdb -c "COPY (SELECT * FROM 'users.csv') TO 'users.parquet' (FORMAT PARQUET)"</code><br />
+- Output: <code>users.parquet</code> file</p>
+<h3 id="assignment-15-complex-query">Assignment 15: Complex Query</h3>
+<p>Find top spending customers by city.<br />
+- Input: <code>users.csv</code>, <code>orders.csv</code><br />
+- Use: CTE (Common Table Expression) in DuckDB<br />
+- Output: Ranked customers per city</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-json-aggregation">Bonus 1: JSON Aggregation</h3>
+<p>From a JSONL file of sales, calculate:<br />
+- Total revenue<br />
+- Average order value<br />
+- Number of orders<br />
+Use jq with <code>-s</code> flag.</p>
+<h3 id="bonus-2-csv-join">Bonus 2: CSV Join</h3>
+<p>Join two CSV files on a common column.<br />
+- <code>customers.csv</code>: customer_id, name<br />
+- <code>orders.csv</code>: order_id, customer_id, amount<br />
+- Output: order_id, name, amount<br />
+- Hint: Use <code>csvjoin</code> or <code>mlr join</code></p>
+<h3 id="bonus-3-complex-jq-filter">Bonus 3: Complex jq Filter</h3>
+<p>From a nested JSON API response:<br />
+1. Extract specific fields<br />
+2. Flatten nested objects<br />
+3. Filter by multiple conditions<br />
+4. Convert to CSV</p>
+<h3 id="bonus-4-data-validation">Bonus 4: Data Validation</h3>
+<p>Validate that a JSON file conforms to a schema.<br />
+- Use <code>jsonschema</code> or jq to check:<br />
+  - Required fields present<br />
+  - Data types correct<br />
+  - Value ranges valid</p>
+<h3 id="bonus-5-multi-file-aggregation">Bonus 5: Multi-File Aggregation</h3>
+<p>Aggregate data from multiple JSON files:<br />
+- Read all <code>.json</code> files in a directory<br />
+- Merge into single array<br />
+- Group by category<br />
+- Calculate statistics per category</p>
+<h3 id="bonus-6-duckdb-performance-comparison">Bonus 6: DuckDB Performance Comparison</h3>
+<p>Compare DuckDB vs mlr performance:<br />
+- Create a large CSV file (1M+ rows)<br />
+- Perform same aggregation with both tools<br />
+- Measure execution time using <code>time</code> command<br />
+- Compare memory usage<br />
+- Document results</p>
+<h3 id="bonus-7-window-functions-with-duckdb">Bonus 7: Window Functions with DuckDB</h3>
+<p>Use DuckDB window functions:<br />
+- Input: <code>orders.csv</code><br />
+- Calculate running total per customer<br />
+- Add row numbers within customer groups<br />
+- Find previous and next order amounts (LAG/LEAD)<br />
+- Output: Enhanced dataset with analytical columns</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<ul>
+<li>Submit all commands and scripts</li>
+<li>Include sample input/output files</li>
+<li>Test with various data formats</li>
+<li>Document any edge cases handled</li>
+</ul></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

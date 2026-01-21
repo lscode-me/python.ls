@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Additional resources for Python in Pipelines: Hybrid Shell-Python Workflows">
+    <title>Python in Pipelines: Hybrid Shell-Python Workflows - Resources | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Linux/">Linux for Developers: Unix & Data Pipelines</a> &raquo;
+                    <a href="index.html">Python in Pipelines: Hybrid Shell-Python Workflows</a> &raquo;
+                    <span>Resources</span>
+                </nav>
+                <div class="lecture-content"><h1 id="python-in-pipelines-hybrid-shell-python-workflows-resources">Python in Pipelines: Hybrid Shell-Python Workflows - Resources</h1>
+<h2 id="core-python-documentation">Core Python Documentation</h2>
+<h3 id="standard-library-essential-modules">Standard Library - Essential Modules</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/sys.html">sys module</a> - System-specific parameters and functions</li>
+<li><a href="https://docs.python.org/3/library/subprocess.html">subprocess module</a> - Subprocess management and shell interaction</li>
+<li><a href="https://docs.python.org/3/library/fileinput.html">fileinput module</a> - Iterate over lines from multiple input streams</li>
+<li><a href="https://docs.python.org/3/library/argparse.html">argparse module</a> - Command-line argument parsing</li>
+<li><a href="https://docs.python.org/3/library/logging.html">logging module</a> - Flexible event logging system</li>
+<li><a href="https://docs.python.org/3/library/pathlib.html">pathlib module</a> - Object-oriented filesystem paths</li>
+<li><a href="https://docs.python.org/3/library/shutil.html">shutil module</a> - High-level file operations</li>
+<li><a href="https://docs.python.org/3/library/tempfile.html">tempfile module</a> - Temporary file and directory creation</li>
+<li><a href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> - High-level asynchronous execution</li>
+<li><a href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing</a> - Process-based parallelism</li>
+</ul>
+<h3 id="file-and-data-processing">File and Data Processing</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/csv.html">csv module</a> - CSV file reading and writing</li>
+<li><a href="https://docs.python.org/3/library/json.html">json module</a> - JSON encoder and decoder</li>
+<li><a href="https://docs.python.org/3/library/pickle.html">pickle module</a> - Python object serialization</li>
+<li><a href="https://docs.python.org/3/library/gzip.html">gzip module</a> - Support for gzip compression</li>
+<li><a href="https://docs.python.org/3/library/zipfile.html">zipfile module</a> - Work with ZIP archives</li>
+<li><a href="https://docs.python.org/3/library/tarfile.html">tarfile module</a> - Read and write tar archive files</li>
+</ul>
+<h2 id="essential-third-party-libraries">Essential Third-Party Libraries</h2>
+<h3 id="data-processing-powerhouses">Data Processing Powerhouses</h3>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/">pandas</a> - Data manipulation and analysis library</li>
+<li><a href="https://numpy.org/doc/">NumPy</a> - Numerical computing with Python</li>
+<li><a href="https://docs.dask.org/">Dask</a> - Parallel computing library</li>
+<li><a href="https://pola-rs.github.io/polars-book/">Polars</a> - Fast DataFrame library</li>
+<li><a href="https://vaex.io/">Vaex</a> - Out-of-core DataFrames for big data</li>
+</ul>
+<h3 id="json-and-streaming-data">JSON and Streaming Data</h3>
+<ul>
+<li><a href="https://github.com/ijson/ijson">ijson</a> - Streaming JSON parser</li>
+<li><a href="https://jsonlines.readthedocs.io/">jsonlines</a> - Handle JSON Lines format</li>
+<li><a href="https://github.com/ijl/orjson">orjson</a> - Fast JSON library</li>
+<li><a href="https://github.com/ultrajson/ultrajson">ujson</a> - Ultra fast JSON encoder/decoder</li>
+</ul>
+<h3 id="command-line-and-shell-integration">Command Line and Shell Integration</h3>
+<ul>
+<li><a href="https://click.palletsprojects.com/">click</a> - Python package for creating command line interfaces</li>
+<li><a href="https://typer.tiangolo.com/">typer</a> - Modern CLI framework based on Python type hints</li>
+<li><a href="https://sh.readthedocs.io/">sh</a> - Python subprocess replacement</li>
+<li><a href="https://plumbum.readthedocs.io/">plumbum</a> - Shell combinators library</li>
+<li><a href="https://www.fabfile.org/">fabric</a> - High level SSH command execution</li>
+</ul>
+<h3 id="workflow-and-pipeline-frameworks">Workflow and Pipeline Frameworks</h3>
+<ul>
+<li><a href="https://luigi.readthedocs.io/">Luigi</a> - Build complex pipelines of batch jobs</li>
+<li><a href="https://airflow.apache.org/docs/">Airflow</a> - Workflow management platform</li>
+<li><a href="https://docs.prefect.io/">Prefect</a> - Modern workflow management system</li>
+<li><a href="https://snakemake.readthedocs.io/">Snakemake</a> - Workflow management system</li>
+<li><a href="https://www.nextflow.io/docs/">Nextflow</a> - Data-driven computational pipelines</li>
+</ul>
+<h2 id="performance-and-optimization">Performance and Optimization</h2>
+<h3 id="profiling-and-benchmarking">Profiling and Benchmarking</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/profile.html">cProfile</a> - Built-in Python profiler</li>
+<li><a href="https://github.com/pyutils/line_profiler">line_profiler</a> - Line-by-line profiling</li>
+<li><a href="https://github.com/pythonprofilers/memory_profiler">memory_profiler</a> - Memory usage monitoring</li>
+<li><a href="https://github.com/benfred/py-spy">py-spy</a> - Sampling profiler for Python</li>
+<li><a href="https://github.com/plasma-umass/scalene">scalene</a> - High-performance CPU, GPU and memory profiler</li>
+</ul>
+<h3 id="parallel-and-async-processing">Parallel and Async Processing</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/asyncio.html">asyncio</a> - Asynchronous I/O, event loop, coroutines</li>
+<li><a href="https://github.com/Tinche/aiofiles">aiofiles</a> - Asynchronous file operations</li>
+<li><a href="https://joblib.readthedocs.io/">joblib</a> - Lightweight pipelining in Python</li>
+<li><a href="https://docs.ray.io/">ray</a> - Distributed computing framework</li>
+<li><a href="https://docs.celeryproject.org/">celery</a> - Distributed task queue</li>
+</ul>
+<h2 id="data-formats-and-serialization">Data Formats and Serialization</h2>
+<h3 id="binary-and-efficient-formats">Binary and Efficient Formats</h3>
+<ul>
+<li><a href="https://arrow.apache.org/docs/python/">Apache Arrow</a> - In-memory columnar format</li>
+<li><a href="https://parquet.apache.org/docs/">Apache Parquet</a> - Columnar storage format</li>
+<li><a href="https://avro.apache.org/docs/current/gettingstartedpython.html">Apache Avro</a> - Data serialization system</li>
+<li><a href="https://developers.google.com/protocol-buffers/docs/pythontutorial">Protocol Buffers</a> - Google's data interchange format</li>
+<li><a href="https://msgpack.org/">MessagePack</a> - Efficient binary serialization format</li>
+</ul>
+<h3 id="configuration-and-markup">Configuration and Markup</h3>
+<ul>
+<li><a href="https://pyyaml.org/wiki/PyYAMLDocumentation">PyYAML</a> - YAML parser and emitter</li>
+<li><a href="https://github.com/uiri/toml">toml</a> - TOML parser</li>
+<li><a href="https://docs.python.org/3/library/configparser.html">configparser</a> - Configuration file parser</li>
+<li><a href="https://lxml.de/">lxml</a> - XML and HTML processing</li>
+<li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a> - HTML/XML parsing</li>
+</ul>
+<h2 id="system-integration-and-monitoring">System Integration and Monitoring</h2>
+<h3 id="system-monitoring">System Monitoring</h3>
+<ul>
+<li><a href="https://psutil.readthedocs.io/">psutil</a> - System and process monitoring</li>
+<li><a href="https://docs.python.org/3/library/resource.html">resource</a> - Resource usage information</li>
+<li><a href="https://docs.python.org/3/library/time.html">time</a> - Time-related functions</li>
+<li><a href="https://docs.python.org/3/library/datetime.html">datetime</a> - Date and time handling</li>
+</ul>
+<h3 id="logging-and-debugging">Logging and Debugging</h3>
+<ul>
+<li><a href="https://www.structlog.org/">structlog</a> - Structured logging</li>
+<li><a href="https://github.com/Delgan/loguru">loguru</a> - Modern logging library</li>
+<li><a href="https://rich.readthedocs.io/">rich</a> - Rich text and beautiful formatting</li>
+<li><a href="https://tqdm.github.io/">tqdm</a> - Fast, extensible progress bar</li>
+</ul>
+<h2 id="tutorials-and-learning-resources">Tutorials and Learning Resources</h2>
+<h3 id="python-command-line-tools">Python Command Line Tools</h3>
+<ul>
+<li><a href="https://realpython.com/python-subprocess/">RealPython: Python subprocess</a> - Complete guide to subprocess</li>
+<li><a href="https://realpython.com/command-line-interfaces-python-argparse/">RealPython: Command Line Interfaces</a> - Building CLI apps</li>
+<li><a href="https://pymotw.com/3/subprocess/">Python Module of the Week: subprocess</a> - Detailed subprocess examples</li>
+<li><a href="https://automateboringstuff.com/">Automate the Boring Stuff</a> - Practical Python automation</li>
+</ul>
+<h3 id="data-pipeline-design">Data Pipeline Design</h3>
+<ul>
+<li><a href="https://github.com/andkret/Cookbook">Data Engineering Cookbook</a> - Open-source data engineering guide</li>
+<li><a href="https://effectivepython.com/">Effective Python</a> - Best practices for Python</li>
+<li><a href="https://www.cosmicpython.com/">Architecture Patterns with Python</a> - Software design patterns</li>
+</ul>
+<h3 id="unixlinux-integration">Unix/Linux Integration</h3>
+<ul>
+<li><a href="https://github.com/jlevy/the-art-of-command-line">The Art of Command Line</a> - Command line mastery</li>
+<li><a href="https://tldp.org/LDP/abs/html/">Advanced Bash-Scripting Guide</a> - Comprehensive bash reference</li>
+<li><a href="http://shop.oreilly.com/product/9780596003302.do">Unix Power Tools</a> - Classic Unix reference</li>
+</ul>
+<h2 id="testing-and-quality-assurance">Testing and Quality Assurance</h2>
+<h3 id="testing-frameworks">Testing Frameworks</h3>
+<ul>
+<li><a href="https://docs.pytest.org/">pytest</a> - Testing framework</li>
+<li><a href="https://docs.python.org/3/library/unittest.html">unittest</a> - Built-in testing framework</li>
+<li><a href="https://hypothesis.readthedocs.io/">hypothesis</a> - Property-based testing</li>
+<li><a href="https://pytest-benchmark.readthedocs.io/">pytest-benchmark</a> - Performance testing</li>
+</ul>
+<h3 id="code-quality-tools">Code Quality Tools</h3>
+<ul>
+<li><a href="https://black.readthedocs.io/">black</a> - Code formatter</li>
+<li><a href="https://flake8.pycqa.org/">flake8</a> - Style guide enforcement</li>
+<li><a href="https://mypy.readthedocs.io/">mypy</a> - Static type checker</li>
+<li><a href="https://bandit.readthedocs.io/">bandit</a> - Security linter</li>
+<li><a href="https://pylint.pycqa.org/">pylint</a> - Code analysis tool</li>
+</ul>
+<h2 id="cloud-and-container-integration">Cloud and Container Integration</h2>
+<h3 id="cloud-platforms">Cloud Platforms</h3>
+<ul>
+<li><a href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html">boto3</a> - AWS SDK for Python</li>
+<li><a href="https://googleapis.dev/python/google-cloud-core/latest/">google-cloud</a> - Google Cloud Client Libraries</li>
+<li><a href="https://github.com/Azure/azure-sdk-for-python">azure-sdk-for-python</a> - Azure SDK for Python</li>
+</ul>
+<h3 id="container-technologies">Container Technologies</h3>
+<ul>
+<li><a href="https://docker-py.readthedocs.io/">Docker SDK for Python</a> - Docker API client</li>
+<li><a href="https://github.com/kubernetes-client/python">Kubernetes Python Client</a> - Kubernetes API client</li>
+</ul>
+<h2 id="books-and-deep-learning">Books and Deep Learning</h2>
+<h3 id="essential-reading">Essential Reading</h3>
+<ul>
+<li>"Fluent Python" by Luciano Ramalho - Advanced Python techniques</li>
+<li>"Python Tricks" by Dan Bader - Python best practices</li>
+<li>"High Performance Python" by Micha Gorelick - Optimization techniques</li>
+<li>"Architecture Patterns with Python" by Harry Percival - Design patterns</li>
+<li>"Data Pipelines with Apache Airflow" by Bas Harenslak - Workflow orchestration</li>
+</ul>
+<h3 id="online-courses">Online Courses</h3>
+<ul>
+<li><a href="https://www.coursera.org/specializations/python-data-engineering">Python for Data Engineering (Coursera)</a></li>
+<li><a href="https://www.coursera.org/learn/genomic-tools">Command Line Tools for Genomic Data Science</a></li>
+<li><a href="https://www.edx.org/learn/python/python-automation-testing">Python Automation and Testing (edX)</a></li>
+</ul>
+<h2 id="community-and-support">Community and Support</h2>
+<h3 id="forums-and-communities">Forums and Communities</h3>
+<ul>
+<li><a href="https://www.python.org/community/">Python.org Community</a> - Official Python community</li>
+<li><a href="https://www.reddit.com/r/Python/">r/Python</a> - Python subreddit</li>
+<li><a href="https://discord.gg/python">Python Discord</a> - Real-time Python community</li>
+<li><a href="https://stackoverflow.com/questions/tagged/python">Stack Overflow Python</a> - Q&amp;A platform</li>
+</ul>
+<h3 id="package-management">Package Management</h3>
+<ul>
+<li><a href="https://pypi.org/">PyPI</a> - Python Package Index</li>
+<li><a href="https://conda-forge.org/">conda-forge</a> - Community-driven conda packages</li>
+<li><a href="https://python-poetry.org/">Poetry</a> - Dependency management</li>
+<li><a href="https://pypa.github.io/pipx/">pipx</a> - Install and run Python applications</li>
+</ul></div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

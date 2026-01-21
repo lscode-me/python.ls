@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Complex Pipelines: Map/Reduce, Staging, Checkpoints, Orchestration">
+    <title>HW: Complex Pipelines: Map/Reduce, | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Complex Pipelines: Map/Reduce,</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 13 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="complex-pipelines-mapreduce-staging-checkpoints-orchestration-homework">Complex Pipelines: Map/Reduce, Staging, Checkpoints, Orchestration - Homework</h1>
+<h2 id="assignment-1-basic-split-map-reduce">Assignment 1: Basic Split-Map-Reduce</h2>
+<p>Implement classic map/reduce pattern on a large CSV file.
+- Generate test data:
+  <code>bash
+  seq 1 100000 | awk '{print $1 % 100 "," rand()*1000}' &gt; data.csv</code>
+- Implementation:
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Split
+  split -l 10000 -d data.csv chunk_</p>
+<p># Map (parallel)
+  for chunk in chunk_*; do
+      awk -F',' '{sum[$1] += $2} END {for (k in sum) print k","sum[k]}' "$chunk" &gt; "$chunk.result" &amp;
+  done
+  wait</p>
+<p># Reduce (merge)
+  awk -F',' '{sum[$1] += $2} END {for (k in sum) print k","sum[k]}' chunk_*.result &gt; final.csv</p>
+<p># Cleanup
+  rm chunk_*
+  ```
+- Requirement: Parallelize map phase</p>
+<h2 id="assignment-2-makefile-based-pipeline">Assignment 2: Makefile-Based Pipeline</h2>
+<p>Create a data pipeline orchestrated by Make.
+- File: <code>Makefile</code>
+  ```makefile
+  .PHONY: all clean</p>
+<p># Final target
+  all: report.md</p>
+<p># Download raw data
+  raw_data.json:
+    curl -s "https://jsonplaceholder.typicode.com/users" &gt; raw_data.json</p>
+<p># Transform to CSV
+  users.csv: raw_data.json
+    jq -r '.[] | [.id, .name, .email, .address.city] | @csv' raw_data.json &gt; users.csv</p>
+<p># Aggregate statistics
+  stats.csv: users.csv
+    echo "city,count" &gt; stats.csv
+    tail -n +1 users.csv | cut -d',' -f4 | sort | uniq -c | \
+      awk '{print $$2","$$1}' &gt;&gt; stats.csv</p>
+<p># Generate report
+  report.md: stats.csv
+    echo "# User Statistics" &gt; report.md
+    echo "" &gt;&gt; report.md
+    echo "Generated: $$(date)" &gt;&gt; report.md
+    echo "" &gt;&gt; report.md
+    echo "## Users by City" &gt;&gt; report.md
+    echo "" &gt;&gt; report.md
+    echo "| City | Count |" &gt;&gt; report.md
+    echo "|------|-------|" &gt;&gt; report.md
+    tail -n +2 stats.csv | awk -F',' '{printf "| %s | %s |\n", $$1, $$2}' &gt;&gt; report.md</p>
+<p># Cleanup
+  clean:
+    rm -f raw_data.json users.csv stats.csv report.md
+  <code>``
+- Usage:</code>make<code>(builds all),</code>make clean<code>(removes outputs)
+- Test: Modify</code>raw_data.json<code>, run</code>make` (should rebuild only necessary targets)</p>
+<h2 id="assignment-3-checkpoint-based-resumable-pipeline">Assignment 3: Checkpoint-Based Resumable Pipeline</h2>
+<p>Build pipeline that can resume after failure.
+- Script (<code>resumable_pipeline.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p>CHECKPOINT_DIR=".checkpoints"
+  DATA_DIR="data"</p>
+<p>mkdir -p "$CHECKPOINT_DIR" "$DATA_DIR"</p>
+<p># Stage 1: Extract
+  if [ ! -f "$CHECKPOINT_DIR/extract.done" ]; then
+      echo "Stage 1: Extracting data..."
+      curl -s "https://jsonplaceholder.typicode.com/posts" &gt; "$DATA_DIR/posts.json"
+      curl -s "https://jsonplaceholder.typicode.com/comments" &gt; "$DATA_DIR/comments.json"
+      touch "$CHECKPOINT_DIR/extract.done"
+      echo "  ✓ Extract complete"
+  else
+      echo "Stage 1: Extract (cached)"
+  fi</p>
+<p># Stage 2: Transform
+  if [ ! -f "$CHECKPOINT_DIR/transform.done" ]; then
+      echo "Stage 2: Transforming data..."
+      jq -c '.[]' "$DATA_DIR/posts.json" &gt; "$DATA_DIR/posts.jsonl"
+      jq -c '.[]' "$DATA_DIR/comments.json" &gt; "$DATA_DIR/comments.jsonl"
+      touch "$CHECKPOINT_DIR/transform.done"
+      echo "  ✓ Transform complete"
+  else
+      echo "Stage 2: Transform (cached)"
+  fi</p>
+<p># Stage 3: Analyze
+  if [ ! -f "$CHECKPOINT_DIR/analyze.done" ]; then
+      echo "Stage 3: Analyzing data..."
+      jq -r '.userId' "$DATA_DIR/posts.jsonl" | sort | uniq -c | \
+        awk '{print $2","$1}' &gt; "$DATA_DIR/posts_per_user.csv"
+      touch "$CHECKPOINT_DIR/analyze.done"
+      echo "  ✓ Analyze complete"
+  else
+      echo "Stage 3: Analyze (cached)"
+  fi</p>
+<p># Stage 4: Report
+  echo "Stage 4: Generating report..."
+  {
+    echo "# Analysis Report"
+    echo ""
+    echo "Generated: $(date)"
+    echo ""
+    echo "## Top 5 Users by Posts"
+    echo ""
+    echo "| User ID | Post Count |"
+    echo "|---------|------------|"
+    sort -t',' -k2,2nr "$DATA_DIR/posts_per_user.csv" | head -5 | \
+      awk -F',' '{printf "| %s | %s |\n", $1, $2}'
+  } &gt; report.md</p>
+<p>echo "  ✓ Report generated: report.md"
+  echo ""
+  echo "Pipeline complete!"
+  echo "To reset: rm -rf $CHECKPOINT_DIR"
+  <code>``
+- Test failure recovery:
+  1. Add</code>exit 1<code>in stage 2
+  2. Run script (fails at stage 2)
+  3. Remove</code>exit 1`
+  4. Run again (skips stage 1, resumes at stage 2)</p>
+<h2 id="assignment-4-staging-with-temporary-files">Assignment 4: Staging with Temporary Files</h2>
+<p>Create pipeline with explicit staging areas.
+- Script (<code>staged_pipeline.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Setup staging areas
+  STAGE1=$(mktemp -d)
+  STAGE2=$(mktemp -d)
+  STAGE3=$(mktemp -d)
+  FINAL="output"</p>
+<p>mkdir -p "$FINAL"</p>
+<p># Cleanup on exit
+  trap 'rm -rf "$STAGE1" "$STAGE2" "$STAGE3"' EXIT</p>
+<p>echo "Stage 1: Extract → $STAGE1"
+  curl -s "https://jsonplaceholder.typicode.com/users" &gt; "$STAGE1/users.json"
+  ls -lh "$STAGE1"</p>
+<p>echo ""
+  echo "Stage 2: Transform → $STAGE2"
+  jq -c '.[]' "$STAGE1/users.json" &gt; "$STAGE2/users.jsonl"
+  jq -c '. | {id, name, email, company: .company.name}' "$STAGE2/users.jsonl" &gt; "$STAGE2/users_clean.jsonl"
+  ls -lh "$STAGE2"</p>
+<p>echo ""
+  echo "Stage 3: Enrich → $STAGE3"
+  cat "$STAGE2/users_clean.jsonl" | \
+    python3 -c "
+  import sys, json
+  for line in sys.stdin:
+      user = json.loads(line)
+      user['name_length'] = len(user['name'])
+      user['email_domain'] = user['email'].split('@')[1]
+      print(json.dumps(user))
+  " &gt; "$STAGE3/users_enriched.jsonl"
+  ls -lh "$STAGE3"</p>
+<p>echo ""
+  echo "Stage 4: Load → $FINAL"
+  jq -r '[.id, .name, .email_domain, .company] | @csv' "$STAGE3/users_enriched.jsonl" &gt; "$FINAL/users_final.csv"
+  ls -lh "$FINAL"</p>
+<p>echo ""
+  echo "Pipeline complete! Output in $FINAL/"
+  ```</p>
+<h2 id="assignment-5-parallel-processing-with-gnu-parallel">Assignment 5: Parallel Processing with GNU Parallel</h2>
+<p>Parallelize data processing using GNU parallel.
+- Script (<code>parallel_pipeline.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Generate test files
+  mkdir -p input
+  for i in {1..20}; do
+    seq $(( (i-1)<em>1000 + 1 )) $(( i</em>1000 )) &gt; input/data_$i.txt
+  done</p>
+<p>echo "Processing 20 files in parallel..."</p>
+<p># Process all files in parallel (4 at a time)
+  ls input/*.txt | parallel -j 4 --bar \
+    'wc -l {} | awk "{print \$1}" &gt; {}.count'</p>
+<p>echo ""
+  echo "Aggregating results..."</p>
+<p># Sum all counts
+  awk '{sum += $1} END {print "Total lines:", sum}' input/*.count</p>
+<p># Cleanup
+  rm -rf input
+  ```
+- Extension: Add processing step (e.g., filter, transform)</p>
+<h2 id="assignment-6-dependency-tracking-with-make">Assignment 6: Dependency Tracking with Make</h2>
+<p>Create complex Makefile with multiple dependencies.
+- File: <code>Makefile</code>
+  ```makefile
+  .PHONY: all clean test</p>
+<p># Variables
+  DATA_URL = https://jsonplaceholder.typicode.com</p>
+<p># Final report depends on all analyses
+  all: report.md</p>
+<p># Download raw data (multiple sources)
+  raw/users.json:
+    mkdir -p raw
+    curl -s "$(DATA_URL)/users" &gt; raw/users.json</p>
+<p>raw/posts.json:
+    mkdir -p raw
+    curl -s "$(DATA_URL)/posts" &gt; raw/posts.json</p>
+<p>raw/comments.json:
+    mkdir -p raw
+    curl -s "$(DATA_URL)/comments" &gt; raw/comments.json</p>
+<p># Transform to JSONL
+  processed/%.jsonl: raw/%.json
+    mkdir -p processed
+    jq -c '.[]' $&lt; &gt; $@</p>
+<p># Analysis: users
+  analysis/user_stats.csv: processed/users.jsonl
+    mkdir -p analysis
+    jq -r '[.id, .name, .email] | @csv' $&lt; &gt; $@</p>
+<p># Analysis: posts per user
+  analysis/posts_per_user.csv: processed/posts.jsonl
+    mkdir -p analysis
+    jq -r '.userId' $&lt; | sort | uniq -c | \
+      awk '{print $$2","$$1}' &gt; $@</p>
+<p># Analysis: comments per post
+  analysis/comments_per_post.csv: processed/comments.jsonl
+    mkdir -p analysis
+    jq -r '.postId' $&lt; | sort | uniq -c | \
+      awk '{print $$2","$$1}' &gt; $@</p>
+<p># Final report depends on all analyses
+  report.md: analysis/user_stats.csv analysis/posts_per_user.csv analysis/comments_per_post.csv
+    ./generate_report.sh</p>
+<p># Test target
+  test: all
+    @echo "Testing report exists..."
+    @test -f report.md &amp;&amp; echo "✓ Report found" || echo "✗ Report missing"</p>
+<p># Clean all generated files
+  clean:
+    rm -rf raw processed analysis report.md</p>
+<p># Parallel build
+  parallel:
+    $(MAKE) -j4 all
+  ```</p>
+<h2 id="assignment-7-logging-and-monitoring">Assignment 7: Logging and Monitoring</h2>
+<p>Add comprehensive logging to pipeline.
+- Script (<code>logged_pipeline.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Setup logging
+  LOG_DIR="logs"
+  LOG_FILE="$LOG_DIR/pipeline_$(date +%Y%m%d_%H%M%S).log"
+  mkdir -p "$LOG_DIR"</p>
+<p># Logging functions
+  log() {
+      echo "[$(date +'%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+  }</p>
+<p>log_stage() {
+      echo "" | tee -a "$LOG_FILE"
+      echo "========================================" | tee -a "$LOG_FILE"
+      log "STAGE: $*"
+      echo "========================================" | tee -a "$LOG_FILE"
+  }</p>
+<p>log_error() {
+      log "ERROR: $*" &gt;&amp;2
+  }</p>
+<p># Error handler
+  error_handler() {
+      log_error "Pipeline failed at line $1"
+      exit 1
+  }
+  trap 'error_handler $LINENO' ERR</p>
+<p># Cleanup
+  cleanup() {
+      log "Cleaning up temporary files..."
+  }
+  trap cleanup EXIT</p>
+<p># Pipeline stages
+  log_stage "1: Extract"
+  log "Downloading data from API..."
+  curl -s "https://jsonplaceholder.typicode.com/users" &gt; users.json
+  log "Downloaded $(wc -l &lt; users.json) lines"</p>
+<p>log_stage "2: Transform"
+  log "Converting to JSONL..."
+  jq -c '.[]' users.json &gt; users.jsonl
+  log "Converted to $(wc -l &lt; users.jsonl) records"</p>
+<p>log_stage "3: Analyze"
+  log "Extracting domains..."
+  jq -r '.email' users.jsonl | sed 's/.*@//' | sort | uniq -c | sort -rn &gt; domains.txt
+  log "Found $(wc -l &lt; domains.txt) unique domains"</p>
+<p>log_stage "Pipeline Complete"
+  log "Log file: $LOG_FILE"
+  ```</p>
+<h2 id="assignment-8-reproducible-pipeline-with-versioning">Assignment 8: Reproducible Pipeline with Versioning</h2>
+<p>Create pipeline that versions all outputs.
+- Script (<code>versioned_pipeline.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Version based on date
+  VERSION=$(date +%Y%m%d_%H%M%S)
+  OUTPUT_DIR="output_$VERSION"</p>
+<p>mkdir -p "$OUTPUT_DIR"</p>
+<p>echo "Pipeline version: $VERSION"
+  echo "Output directory: $OUTPUT_DIR"</p>
+<p># Record metadata
+  {
+    echo "version: $VERSION"
+    echo "timestamp: $(date -Iseconds)"
+    echo "hostname: $(hostname)"
+    echo "user: $(whoami)"
+    echo "git_commit: $(git rev-parse HEAD 2&gt;/dev/null || echo 'N/A')"
+  } &gt; "$OUTPUT_DIR/metadata.txt"</p>
+<p># Run pipeline
+  echo "Extracting..."
+  curl -s "https://jsonplaceholder.typicode.com/users" &gt; "$OUTPUT_DIR/users.json"</p>
+<p>echo "Processing..."
+  jq -c '.[]' "$OUTPUT_DIR/users.json" &gt; "$OUTPUT_DIR/users.jsonl"</p>
+<p>echo "Analyzing..."
+  jq -r '.email' "$OUTPUT_DIR/users.jsonl" | \
+    sed 's/.*@//' | sort | uniq -c | sort -rn &gt; "$OUTPUT_DIR/domains.txt"</p>
+<p># Create symlink to latest
+  ln -sfn "$OUTPUT_DIR" output_latest</p>
+<p>echo ""
+  echo "Pipeline complete!"
+  echo "Results: $OUTPUT_DIR"
+  echo "Latest: output_latest -&gt; $OUTPUT_DIR"
+  ```</p>
+<h2 id="assignment-9-error-recovery-and-retry">Assignment 9: Error Recovery and Retry</h2>
+<p>Implement robust error handling with retries.
+- Script (<code>retry_pipeline.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -uo pipefail  # Note: no -e, we handle errors manually</p>
+<p>MAX_RETRIES=3
+  RETRY_DELAY=2</p>
+<p># Retry function
+  retry() {
+      local max_attempts=$MAX_RETRIES
+      local delay=$RETRY_DELAY
+      local attempt=1</p>
+<pre class="highlight"><code>  while [ $attempt -le $max_attempts ]; do
+      echo &quot;Attempt $attempt/$max_attempts: $*&quot;
+
+      if &quot;$@&quot;; then
+          return 0
+      fi
+
+      local exit_code=$?
+
+      if [ $attempt -lt $max_attempts ]; then
+          echo &quot;Failed with exit code $exit_code, retrying in ${delay}s...&quot;
+          sleep $delay
+          delay=$((delay * 2))  # Exponential backoff
+      fi
+
+      attempt=$((attempt + 1))
+  done
+
+  echo &quot;All attempts failed&quot;
+  return 1
+</code></pre>
+
+<p>}</p>
+<p># Fetch with retry
+  fetch_data() {
+      local url=$1
+      local output=$2
+      retry curl -f -s "$url" -o "$output"
+  }</p>
+<p># Pipeline
+  echo "Fetching data with automatic retry..."</p>
+<p>if fetch_data "https://jsonplaceholder.typicode.com/users" "users.json"; then
+      echo "✓ Data fetched successfully"
+      jq -c '.[]' users.json &gt; users.jsonl
+      echo "✓ Processing complete"
+  else
+      echo "✗ Failed to fetch data after $MAX_RETRIES attempts"
+      exit 1
+  fi
+  ```</p>
+<h2 id="assignment-10-complete-production-pipeline">Assignment 10: Complete Production Pipeline</h2>
+<p>Build a production-ready pipeline incorporating all concepts.
+- Features required:
+  - Makefile orchestration
+  - Checkpoint-based resumability
+  - Logging with timestamps
+  - Error handling and retry
+  - Temporary staging areas
+  - Parallel processing
+  - Versioned outputs
+  - Progress monitoring
+  - Cleanup on exit
+- See bonus challenge for full implementation</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-incremental-processing">Bonus 1: Incremental Processing</h3>
+<p>Build pipeline that only processes new/changed data.
+- Track file checksums
+- Skip processing if checksum unchanged
+- Update only necessary outputs
+- Example:
+  ```bash
+  # Check if input changed
+  NEW_HASH=$(md5sum input.csv | cut -d' ' -f1)
+  OLD_HASH=$(cat .last_hash 2&gt;/dev/null || echo "")</p>
+<p>if [ "$NEW_HASH" != "$OLD_HASH" ]; then
+      echo "Input changed, processing..."
+      process_data input.csv
+      echo "$NEW_HASH" &gt; .last_hash
+  else
+      echo "Input unchanged, skipping"
+  fi
+  ```</p>
+<h3 id="bonus-2-distributed-pipeline">Bonus 2: Distributed Pipeline</h3>
+<p>Distribute work across multiple machines.
+- Use SSH to run workers on remote hosts
+- Aggregate results centrally
+- Example architecture:
+  ```bash
+  # Split work
+  split -n l/4 data.csv chunk_</p>
+<p># Distribute to workers
+  scp chunk_aa worker1:/tmp/
+  scp chunk_ab worker2:/tmp/
+  scp chunk_ac worker3:/tmp/
+  scp chunk_ad worker4:/tmp/</p>
+<p># Process remotely
+  ssh worker1 'process /tmp/chunk_aa &gt; /tmp/result_aa' &amp;
+  ssh worker2 'process /tmp/chunk_ab &gt; /tmp/result_ab' &amp;
+  ssh worker3 'process /tmp/chunk_ac &gt; /tmp/result_ac' &amp;
+  ssh worker4 'process /tmp/chunk_ad &gt; /tmp/result_ad' &amp;
+  wait</p>
+<p># Fetch results
+  scp worker{1..4}:/tmp/result_* .</p>
+<p># Aggregate
+  cat result_* &gt; final_result.txt
+  ```</p>
+<h3 id="bonus-3-pipeline-performance-dashboard">Bonus 3: Pipeline Performance Dashboard</h3>
+<p>Create real-time monitoring dashboard.
+- Track metrics:
+  - Current stage
+  - Progress percentage
+  - Processing rate (records/sec)
+  - ETA
+  - Memory usage
+  - CPU usage
+- Output to JSON for web dashboard
+- Use: <code>watch</code>, <code>pv</code>, <code>iostat</code>, <code>vmstat</code></p>
+<h3 id="bonus-4-pipeline-dag-visualization">Bonus 4: Pipeline DAG Visualization</h3>
+<p>Generate visual representation of pipeline dependencies.
+- Parse Makefile
+- Generate GraphViz DOT format
+- Create PNG/SVG diagram
+- Example:
+  ```bash
+  # Extract dependencies from Makefile
+  make -Bnd | grep -E '^ *Must remake target' | \
+    awk '{print $4}' &gt; targets.txt</p>
+<p># Generate DOT file
+  # ... (custom script)</p>
+<p># Render
+  dot -Tpng pipeline.dot &gt; pipeline.png
+  ```</p>
+<h3 id="bonus-5-complete-enterprise-etl">Bonus 5: Complete Enterprise ETL</h3>
+<p>Build full-featured production pipeline:</p>
+<p><strong>File</strong>: <code>enterprise_pipeline.sh</code></p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+# Configuration
+CONFIG_FILE=&quot;${CONFIG_FILE:-.env}&quot;
+CHECKPOINT_DIR=&quot;.checkpoints&quot;
+LOG_DIR=&quot;logs&quot;
+DATA_DIR=&quot;data&quot;
+OUTPUT_DIR=&quot;output&quot;
+VERSION=$(date +%Y%m%d_%H%M%S)
+
+# Setup
+mkdir -p &quot;$CHECKPOINT_DIR&quot; &quot;$LOG_DIR&quot; &quot;$DATA_DIR&quot; &quot;$OUTPUT_DIR&quot;
+
+# Load configuration
+if [ -f &quot;$CONFIG_FILE&quot; ]; then
+    set -a
+    source &quot;$CONFIG_FILE&quot;
+    set +a
+fi
+
+# Logging
+LOG_FILE=&quot;$LOG_DIR/pipeline_$VERSION.log&quot;
+log() {
+    echo &quot;[$(date +'%Y-%m-%d %H:%M:%S')] $*&quot; | tee -a &quot;$LOG_FILE&quot;
+}
+
+# Cleanup
+cleanup() {
+    log &quot;Cleanup completed&quot;
+}
+trap cleanup EXIT
+
+# Error handling
+error_handler() {
+    log &quot;ERROR at line $1&quot;
+    exit 1
+}
+trap 'error_handler $LINENO' ERR
+
+# Stages...
+# (implement full ETL with all best practices)
+</code></pre>
+
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<h3 id="required-components">Required Components</h3>
+<ol>
+<li id="item-1"><strong>All scripts</strong> with proper documentation</li>
+<li id="item-2"><strong>Makefile</strong> with dependencies clearly defined</li>
+<li id="item-3"><strong>README.md</strong> explaining:
+   - Pipeline architecture
+   - How to run
+   - Dependencies
+   - Configuration options
+   - Troubleshooting</li>
+<li id="item-4"><strong>Sample outputs</strong> from each stage</li>
+<li id="item-5"><strong>Performance benchmarks</strong></li>
+</ol>
+<h3 id="testing-requirements">Testing Requirements</h3>
+<ul>
+<li>[ ] Pipeline runs successfully end-to-end</li>
+<li>[ ] Handles interruption gracefully</li>
+<li>[ ] Resumes from checkpoints correctly</li>
+<li>[ ] Makefile dependencies work (partial rebuilds)</li>
+<li>[ ] Error handling catches failures</li>
+<li>[ ] Cleanup removes temporary files</li>
+<li>[ ] Logging captures all stages</li>
+<li>[ ] Works with various data sizes</li>
+</ul>
+<h3 id="documentation-template">Documentation Template</h3>
+<pre class="highlight"><code class="language-markdown"># Pipeline Name
+
+## Architecture
+[Diagram or description of pipeline stages]
+
+## Dependencies
+- bash 4.0+
+- jq
+- curl
+- make
+- GNU parallel
+
+## Configuration
+Copy `.env.example` to `.env` and configure:
+- `API_URL`: Source API endpoint
+- `MAX_RETRIES`: Number of retry attempts
+- `LOG_LEVEL`: Logging verbosity
+
+## Usage
+\`\`\`bash
+# Full pipeline
+make
+
+# Clean outputs
+make clean
+
+# Resume from checkpoint
+./pipeline.sh
+
+# Reset checkpoints
+rm -rf .checkpoints
+\`\`\`
+
+## Stages
+1. **Extract**: Download data from API
+2. **Transform**: Convert formats and clean
+3. **Analyze**: Calculate statistics
+4. **Load**: Generate reports
+
+## Performance
+- Processing rate: 10,000 records/sec
+- Memory usage: &lt; 100MB
+- Parallelism: 4 workers
+
+## Troubleshooting
+...
+</code></pre>
+
+<h3 id="performance-metrics-to-report">Performance Metrics to Report</h3>
+<ul>
+<li>Total execution time</li>
+<li>Time per stage</li>
+<li>Throughput (records/sec)</li>
+<li>Memory usage (peak RSS)</li>
+<li>CPU utilization</li>
+<li>I/O statistics</li>
+</ul>
+<h3 id="code-quality-checklist">Code Quality Checklist</h3>
+<ul>
+<li>[ ] Proper error handling (<code>set -euo pipefail</code>)</li>
+<li>[ ] All variables quoted (<code>"$VAR"</code>)</li>
+<li>[ ] Cleanup with <code>trap EXIT</code></li>
+<li>[ ] Logging with timestamps</li>
+<li>[ ] Progress indicators</li>
+<li>[ ] Meaningful error messages</li>
+<li>[ ] Comments for complex logic</li>
+<li>[ ] Consistent naming conventions</li>
+</ul></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

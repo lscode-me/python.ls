@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Configuration Files">
+    <title>HW: Homework: Configuration Files | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Homework: Configuration Files</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Data Fundamentals for Life Sciences</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 8 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="homework-configuration-files">Homework: Configuration Files</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-multi-format-configuration">Exercise 1: Multi-Format Configuration</h3>
+<ol>
+<li id="item-1">Create the same configuration in different formats:
+   - INI file for legacy compatibility
+   - TOML file for modern applications
+   - Environment file (.env) for deployment
+   - JSON config for web applications
+   - YAML config for container orchestration</li>
+<li id="item-2">Include database settings, API keys, feature flags</li>
+<li id="item-3">Compare syntax, readability, and tooling support</li>
+</ol>
+<h3 id="exercise-2-environment-variable-management">Exercise 2: Environment Variable Management</h3>
+<ol>
+<li id="item-1">Practice different approaches to environment variables:
+   - System environment variables
+   - .env files with dotenv libraries
+   - Docker environment injection
+   - Kubernetes ConfigMaps and Secrets</li>
+<li id="item-2">Implement variable substitution and defaults</li>
+<li id="item-3">Handle sensitive data securely</li>
+</ol>
+<h3 id="exercise-3-configuration-hierarchy">Exercise 3: Configuration Hierarchy</h3>
+<ol>
+<li id="item-1">Implement a configuration system with multiple layers:
+   - Default configuration (built into application)
+   - System-wide configuration (/etc/app/)
+   - User configuration (~/.app/config)
+   - Environment-specific overrides
+   - Command-line argument overrides</li>
+<li id="item-2">Document the precedence order</li>
+<li id="item-3">Create a configuration merger that handles conflicts</li>
+</ol>
+<h3 id="exercise-4-validation-and-schema">Exercise 4: Validation and Schema</h3>
+<ol>
+<li id="item-1">Create configuration schemas for validation:
+   - JSON Schema for JSON configs
+   - Custom validation for INI files
+   - Type checking for environment variables</li>
+<li id="item-2">Implement validation in your preferred language</li>
+<li id="item-3">Provide helpful error messages for invalid configs</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Application Configuration System</strong>
+- Design a complete configuration system for a web application
+- Support multiple environments (dev, staging, production)
+- Include database, cache, logging, and API configurations
+- Implement hot-reloading of configuration changes</p>
+<p><strong>Task 2: Secure Configuration Management</strong>
+- Implement secure storage for sensitive configuration
+- Use encryption for secrets at rest
+- Implement key rotation strategies
+- Create audit trails for configuration changes</p>
+<p><strong>Task 3: Configuration as Code</strong>
+- Store all configuration in version control
+- Implement configuration deployment pipelines
+- Create rollback mechanisms for bad configurations
+- Implement configuration testing and validation</p>
+<h2 id="security-considerations">Security Considerations</h2>
+<p><strong>Task 4: Security Best Practices</strong>
+1. Never store passwords in plain text
+2. Use secure key management systems
+3. Implement least-privilege access
+4. Regular security audits of configuration
+5. Proper handling of configuration in logs</p>
+<h2 id="tools-and-libraries">Tools and Libraries</h2>
+<p><strong>Task 5: Tool Comparison</strong>
+Research and compare configuration management tools:
+- Consul for distributed configuration
+- etcd for key-value configuration storage
+- Vault for secrets management
+- Spring Cloud Config for Java applications
+- dotenv libraries for various languages</p>
+<h2 id="advanced-scenarios">Advanced Scenarios</h2>
+<p><strong>Task 6: Complex Configuration Scenarios</strong>
+1. Multi-tenant applications with per-tenant config
+2. Microservices configuration coordination
+3. Configuration feature toggles and A/B testing
+4. Dynamic configuration updates without restarts
+5. Configuration backup and disaster recovery</p>
+<h2 id="programming-implementation">Programming Implementation</h2>
+<p><strong>Task 7: Code Integration</strong>
+Implement configuration handling in your preferred language:
+- Automatic type conversion
+- Configuration validation at startup
+- Graceful degradation for missing config
+- Configuration change notifications
+- Unit testing for configuration logic</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive configuration management portfolio:
+1. Sample configurations in all major formats
+2. Security analysis and recommendations
+3. Implementation of configuration hierarchy system
+4. Documentation of best practices
+5. Tool comparison matrix
+6. Working code examples with tests</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

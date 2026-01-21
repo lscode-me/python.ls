@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Hashes and Checksums">
+    <title>HW: Homework: Checksums and Data I | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Homework: Checksums and Data I</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Data Fundamentals for Life Sciences</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 11 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="homework-checksums-and-data-integrity">Homework: Checksums and Data Integrity</h1>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-hash-algorithm-comparison">Exercise 1: Hash Algorithm Comparison</h3>
+<ol>
+<li id="item-1">Calculate and compare different hash functions:
+   - MD5, SHA-1 (deprecated but still encountered)
+   - SHA-256, SHA-512 (current standards)
+   - Blake2, SHA-3 (modern alternatives)
+   - CRC32 (fast but weak)</li>
+<li id="item-2">Test hash calculation for:
+   - Small text files
+   - Large binary files
+   - Identical content in different formats
+   - Files with single bit differences</li>
+<li id="item-3">Document performance characteristics of each algorithm</li>
+<li id="item-4">Understand security implications and appropriate use cases</li>
+</ol>
+<h3 id="exercise-2-file-integrity-verification">Exercise 2: File Integrity Verification</h3>
+<ol>
+<li id="item-1">Create integrity verification workflows:
+   - Generate checksums for file collections
+   - Verify integrity after file transfers
+   - Detect corruption in stored files
+   - Automate integrity checking in scripts</li>
+<li id="item-2">Practice with different checksum file formats:
+   - md5sum, sha256sum output formats
+   - Custom checksum manifests
+   - Integration with version control systems</li>
+<li id="item-3">Handle edge cases:
+   - Missing files
+   - Permission issues
+   - Path differences across systems</li>
+</ol>
+<h3 id="exercise-3-data-transmission-verification">Exercise 3: Data Transmission Verification</h3>
+<ol>
+<li id="item-1">Implement end-to-end data integrity:
+   - Calculate checksums before transmission
+   - Verify checksums after reception
+   - Handle checksum mismatches gracefully
+   - Implement retry mechanisms for failed transfers</li>
+<li id="item-2">Practice with different protocols:
+   - HTTP with ETag headers
+   - FTP with hash verification
+   - Email attachments with checksums
+   - Cloud storage integrity checking</li>
+</ol>
+<h3 id="exercise-4-digital-signatures-and-authentication">Exercise 4: Digital Signatures and Authentication</h3>
+<ol>
+<li id="item-1">Learn about cryptographic signatures:
+   - Public/private key concepts
+   - Message Authentication Codes (HMAC)
+   - Digital signature verification
+   - Certificate chain validation</li>
+<li id="item-2">Practical signature implementation:
+   - Sign files with GPG/PGP
+   - Verify software package signatures
+   - Create and verify JWT tokens
+   - Implement HMAC for API authentication</li>
+</ol>
+<h2 id="practical-tasks">Practical Tasks</h2>
+<p><strong>Task 1: Automated Integrity System</strong>
+- Build a file integrity monitoring system
+- Generate baseline checksums for important files
+- Detect unauthorized modifications
+- Implement alerting for integrity violations
+- Create restoration procedures for corrupted files</p>
+<p><strong>Task 2: Software Distribution Verification</strong>
+- Download and verify software packages
+- Check GPG signatures for open source software
+- Verify container image signatures
+- Implement package integrity in deployment pipelines
+- Create custom package signing workflows</p>
+<p><strong>Task 3: Database Integrity Checking</strong>
+- Implement database backup verification
+- Create checksums for database exports
+- Verify data consistency across replicas
+- Monitor data corruption in production systems
+- Implement point-in-time integrity validation</p>
+<h2 id="programming-implementation">Programming Implementation</h2>
+<p><strong>Task 4: Checksum Utilities Development</strong>
+Create comprehensive checksum utilities:
+- Multi-algorithm hash calculation
+- Recursive directory processing
+- Parallel processing for large files
+- Progress reporting for long operations
+- Resume capability for interrupted operations</p>
+<p><strong>Task 5: Integrity APIs</strong>
+- Implement RESTful APIs for integrity verification
+- Create libraries for common programming languages
+- Integrate with existing file management systems
+- Provide webhook notifications for integrity events
+- Support for distributed integrity verification</p>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p><strong>Task 6: Merkle Trees and Blockchain Concepts</strong>
+- Understand Merkle tree construction
+- Implement efficient bulk verification
+- Learn about blockchain integrity concepts
+- Create tamper-evident log systems
+- Implement incremental verification strategies</p>
+<p><strong>Task 7: Hardware Security Modules (HSM)</strong>
+- Research hardware-based integrity verification
+- Understand TPM (Trusted Platform Module) concepts
+- Learn about secure boot and measured boot
+- Explore hardware root of trust implementations</p>
+<h2 id="security-considerations">Security Considerations</h2>
+<p><strong>Task 8: Cryptographic Best Practices</strong>
+1. Understand hash function vulnerabilities:
+   - Collision attacks (MD5, SHA-1)
+   - Length extension attacks
+   - Rainbow table attacks
+2. Implement secure random number generation
+3. Use appropriate key derivation functions
+4. Understand timing attack prevention
+5. Implement secure comparison operations</p>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<p><strong>Task 9: High-Performance Hashing</strong>
+- Optimize hash calculation for large files
+- Implement streaming hash computation
+- Use hardware acceleration (AES-NI, SHA extensions)
+- Compare software vs hardware implementations
+- Optimize for different storage types (SSD, HDD, network)</p>
+<h2 id="real-world-applications">Real-World Applications</h2>
+<p><strong>Task 10: Industry Use Cases</strong>
+1. Digital forensics and evidence integrity
+2. Software supply chain security
+3. Financial transaction verification
+4. Medical data integrity in healthcare
+5. Legal document authenticity
+6. Scientific data reproducibility
+7. Media content verification</p>
+<h2 id="monitoring-and-alerting">Monitoring and Alerting</h2>
+<p><strong>Task 11: Production Monitoring</strong>
+- Implement real-time integrity monitoring
+- Create dashboards for integrity metrics
+- Set up alerting for integrity violations
+- Integrate with existing monitoring systems
+- Implement automated response to integrity issues</p>
+<h2 id="compliance-and-standards">Compliance and Standards</h2>
+<p><strong>Task 12: Regulatory Compliance</strong>
+- Research compliance requirements (FIPS, Common Criteria)
+- Implement audit trails for integrity operations
+- Create compliance reporting mechanisms
+- Understand legal implications of integrity failures
+- Document integrity verification procedures</p>
+<h2 id="submission-requirements">Submission Requirements</h2>
+<p>Create a comprehensive data integrity portfolio:
+1. Hash algorithm performance comparison
+2. Working integrity verification system
+3. Security analysis and threat modeling
+4. Implementation of digital signature workflows
+5. Performance optimization documentation
+6. Real-world case study implementation
+7. Compliance and best practices guide
+8. Tools and utilities for practical use
+9. Automated testing and validation framework</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

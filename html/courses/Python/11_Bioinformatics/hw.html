@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homework for Python for Bioinformatics">
+    <title>Bioinformatics - Homework | Python and Linux for Life Science Developers</title>
+    
+    <!-- Fonts: Geist for text, JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Geist font from Vercel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
+    
+    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="../../../" class="logo">
+                <span class="logo-icon">🧬</span>
+                <span class="logo-text">LSCode</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../../../courses/">Courses</a></li>
+                <li><a href="mailto:admin@lscode.me">Contact</a></li>
+                <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+            <article class="lecture-page">
+                <nav class="breadcrumb">
+                    <a href="../../../">Home</a> &raquo;
+                    <a href="../../../courses/">Courses</a> &raquo;
+                    <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+                    <a href="index.html">Python for Bioinformatics</a> &raquo;
+                    <span>Homework</span>
+                </nav>
+                <div class="lecture-content"><h1 id="bioinformatics-homework">Bioinformatics - Homework</h1>
+<h2 id="assignment-1-dna-sequence-analysis">Assignment 1: DNA Sequence Analysis</h2>
+<p>Create a comprehensive DNA sequence analyzer that:<br />
+- Validates DNA sequences<br />
+- Calculates GC content<br />
+- Finds complement and reverse complement<br />
+- Transcribes to RNA<br />
+- Identifies potential start and stop codons<br />
+- Calculates melting temperature (Tm)</p>
+<p>Your goal:<br />
+Master basic DNA sequence operations and understand fundamental molecular biology concepts in code.</p>
+<p>Test with:<br />
+- Normal sequences<br />
+- Sequences with ambiguous bases (N)<br />
+- Very long sequences (performance testing)</p>
+<h2 id="assignment-2-genetic-code-implementation">Assignment 2: Genetic Code Implementation</h2>
+<p>Implement a complete genetic code translation system:<br />
+- Create the standard genetic code table<br />
+- Implement translation (DNA/RNA to protein)<br />
+- Handle all three reading frames<br />
+- Identify ORFs (Open Reading Frames)<br />
+- Support alternative genetic codes (mitochondrial, bacterial)<br />
+- Handle frame shifts and incomplete codons</p>
+<p>Your goal:<br />
+Understand the genetic code and translation process deeply through implementation.</p>
+<p>Requirements:<br />
+- Support both DNA and RNA input<br />
+- Handle sequences that don't start with ATG<br />
+- Report all possible ORFs with their positions</p>
+<h2 id="assignment-3-fasta-file-parser">Assignment 3: FASTA File Parser</h2>
+<p>Build a robust FASTA file parser and writer:<br />
+- Parse multi-sequence FASTA files<br />
+- Handle wrapped sequences (multi-line)<br />
+- Calculate statistics (length, GC%, N50)<br />
+- Filter sequences by criteria (length, GC content)<br />
+- Convert between single-line and multi-line formats<br />
+- Extract sequences by ID or pattern<br />
+- Merge multiple FASTA files</p>
+<p>Your goal:<br />
+Create production-quality file parsing code that handles edge cases and large files efficiently.</p>
+<p>Test cases:<br />
+- Empty files<br />
+- Malformed headers<br />
+- Very long sequences<br />
+- Files with millions of sequences</p>
+<h2 id="assignment-4-fastq-quality-control">Assignment 4: FASTQ Quality Control</h2>
+<p>Implement FASTQ quality control pipeline:<br />
+- Parse FASTQ files (handle both formats)<br />
+- Calculate per-base quality statistics<br />
+- Filter reads by quality score<br />
+- Trim low-quality ends<br />
+- Remove adapter sequences<br />
+- Generate quality reports (graphs optional)<br />
+- Convert FASTQ to FASTA</p>
+<p>Your goal:<br />
+Understand next-generation sequencing data and quality assessment.</p>
+<p>Requirements:<br />
+- Support Phred+33 and Phred+64 encoding<br />
+- Implement sliding window quality trimming<br />
+- Report before/after statistics<br />
+- Handle paired-end reads</p>
+<h2 id="assignment-5-sequence-alignment">Assignment 5: Sequence Alignment</h2>
+<p>Implement sequence alignment algorithms:<br />
+- Global alignment (Needleman-Wunsch)<br />
+- Local alignment (Smith-Waterman)<br />
+- Semi-global alignment<br />
+- Custom scoring matrices<br />
+- Gap penalties (linear and affine)<br />
+- Traceback to get actual alignment<br />
+- Calculate identity and similarity percentages</p>
+<p>Your goal:<br />
+Understand dynamic programming and alignment scoring systems.</p>
+<p>Bonus:<br />
+- Implement banded alignment for similar sequences<br />
+- Add support for protein alignment with BLOSUM matrices</p>
+<h2 id="assignment-6-biopython-integration">Assignment 6: BioPython Integration</h2>
+<p>Create a sequence analysis toolkit using BioPython:<br />
+- Read sequences from various formats (FASTA, GenBank, EMBL)<br />
+- Perform sequence manipulations<br />
+- Calculate molecular properties<br />
+- Generate restriction enzyme maps<br />
+- Perform pairwise alignments<br />
+- Access NCBI databases (Entrez)<br />
+- Download and parse GenBank records</p>
+<p>Your goal:<br />
+Master BioPython library and integrate it into real-world workflows.</p>
+<p>Features to implement:<br />
+- Batch download sequences by accession numbers<br />
+- Extract CDS features from GenBank files<br />
+- Find restriction sites in a sequence<br />
+- Compare sequences and report differences</p>
+<h2 id="assignment-7-motif-finder">Assignment 7: Motif Finder</h2>
+<p>Develop a sequence motif finding tool:<br />
+- Search for exact motifs<br />
+- Support IUPAC ambiguity codes<br />
+- Use regular expressions for complex patterns<br />
+- Find transcription factor binding sites<br />
+- Identify restriction enzyme sites<br />
+- Support both strands<br />
+- Report positions and context<br />
+- Calculate motif enrichment</p>
+<p>Your goal:<br />
+Learn pattern matching in biological sequences and understand regulatory elements.</p>
+<p>Patterns to find:<br />
+- TATA box: TATAAA<br />
+- Kozak sequence: GCCACCATGG<br />
+- Poly-A signal: AATAAA<br />
+- Common restriction sites</p>
+<h2 id="assignment-8-gene-finder">Assignment 8: Gene Finder</h2>
+<p>Build a simple gene prediction tool:<br />
+- Find all ORFs in all six reading frames<br />
+- Filter by minimum length<br />
+- Identify start and stop codons<br />
+- Calculate protein properties (MW, pI)<br />
+- Detect overlapping genes<br />
+- Score ORFs by likelihood (codon usage)<br />
+- Export results in GFF format</p>
+<p>Your goal:<br />
+Understand gene structure and implement a basic gene finder algorithm.</p>
+<p>Advanced features:<br />
+- Predict Shine-Dalgarno sequences (prokaryotes)<br />
+- Identify splice sites (eukaryotes, basic)<br />
+- Calculate codon adaptation index (CAI)</p>
+<h2 id="assignment-9-multiple-sequence-alignment-analyzer">Assignment 9: Multiple Sequence Alignment Analyzer</h2>
+<p>Create tools to analyze multiple sequence alignments:<br />
+- Read alignment files (FASTA, Clustal, Stockholm)<br />
+- Calculate conservation scores<br />
+- Identify conserved regions<br />
+- Generate consensus sequence<br />
+- Calculate pairwise identities<br />
+- Detect gap patterns<br />
+- Visualize alignment (text-based)</p>
+<p>Your goal:<br />
+Work with multiple sequence alignments and understand evolutionary conservation.</p>
+<p>Statistics to calculate:<br />
+- Column-wise entropy<br />
+- Gap percentage per position<br />
+- Identity matrix between all sequences<br />
+- Most conserved and variable regions</p>
+<h2 id="assignment-10-biological-database-interface">Assignment 10: Biological Database Interface</h2>
+<p>Build a command-line tool to interact with biological databases:<br />
+- Query NCBI (nucleotide, protein databases)<br />
+- Retrieve sequences by ID or search term<br />
+- Parse GenBank/GenPept records<br />
+- Extract specific features (CDS, genes)<br />
+- Download in batch<br />
+- Cache results locally<br />
+- Export to various formats</p>
+<p>Your goal:<br />
+Learn to programmatically access biological databases and handle API rate limits.</p>
+<p>Features:<br />
+- Handle API errors gracefully<br />
+- Implement retry logic<br />
+- Respect NCBI usage guidelines<br />
+- Cache to avoid repeated downloads<br />
+- Support query history</p>
+<h2 id="assignment-11-sequence-statistics-dashboard">Assignment 11: Sequence Statistics Dashboard</h2>
+<p>Create a comprehensive sequence analysis dashboard:<br />
+- Process multiple sequences from a file<br />
+- Calculate extensive statistics:<br />
+  * Length distribution<br />
+  * GC content distribution<br />
+  * k-mer frequencies<br />
+  * Codon usage<br />
+  * Dinucleotide frequencies<br />
+- Generate text-based or simple HTML report<br />
+- Support both nucleotide and protein sequences</p>
+<p>Your goal:<br />
+Build a production-ready analysis tool with comprehensive reporting.</p>
+<p>Output format:<br />
+- Summary statistics table<br />
+- Distribution histograms (ASCII art or real plots)<br />
+- Detailed per-sequence report<br />
+- Export to CSV/JSON</p>
+<h2 id="assignment-12-phylogenetic-analysis-tool">Assignment 12: Phylogenetic Analysis Tool</h2>
+<p>Implement basic phylogenetic analysis:<br />
+- Calculate pairwise distances (multiple models)<br />
+- Build distance matrix<br />
+- Construct phylogenetic tree (UPGMA or NJ)<br />
+- Read/write Newick format<br />
+- Calculate tree statistics<br />
+- Visualize tree (ASCII art)</p>
+<p>Your goal:<br />
+Understand phylogenetic relationships and tree construction algorithms.</p>
+<p>Distance models:<br />
+- Hamming distance (p-distance)<br />
+- Jukes-Cantor<br />
+- Kimura 2-parameter<br />
+- Calculate bootstrap support (basic)</p>
+<h2 id="bonus-project-end-to-end-pipeline">Bonus Project: End-to-End Pipeline</h2>
+<p>Create a complete sequence analysis pipeline:<br />
+1. Download sequences from NCBI for a gene family<br />
+2. Perform quality checks<br />
+3. Align sequences (multiple alignment)<br />
+4. Build phylogenetic tree<br />
+5. Identify conserved motifs<br />
+6. Predict gene structure<br />
+7. Generate comprehensive report</p>
+<p>Your goal:<br />
+Integrate all learned concepts into a real-world bioinformatics workflow.</p>
+<p>This should be a command-line tool with:<br />
+- Configuration file support<br />
+- Progress reporting<br />
+- Error handling<br />
+- Logging<br />
+- Modular design for easy extension</p></div>
+                <div class="lecture-nav">
+                    <a href="index.html" class="nav-prev">
+                        <span class="nav-label">← Back</span>
+                        <span class="nav-title">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="nav-next">
+                        <span class="nav-label">Take Quiz →</span>
+                        <span class="nav-title">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>LSCode.me</h4>
+                <p>Python and Linux for Life Science Developers</p>
+            </div>
+            <div class="footer-section">
+                <h4>Courses</h4>
+                <ul>
+                    <li><a href="../../../courses/DataFundamentals/">Data Fundamentals</a></li>
+                    <li><a href="../../../courses/Python/">Python</a></li>
+                    <li><a href="../../../courses/Linux/">Linux</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:admin@lscode.me">admin@lscode.me</a></li>
+                    <li><a href="https://t.me/en_lscode_me_bot">Telegram Bot</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LSCode.me. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../../static/js/main.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

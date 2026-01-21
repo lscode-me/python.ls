@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Functions are first-class objects in Python — they can be: - Assigned to variables - Passed as arguments - Returned from other functions - Stored in d">
+    <title>Functions and Functional Programming | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">Functions and Functional Programming</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        <h1 id="functions-and-functional-programming">Functions and Functional Programming</h1>
+<h2 id="functions-closures-decorators">Functions, Closures, Decorators</h2>
+<hr />
+<h2 id="1-function-basics">1. Function Basics</h2>
+<p>Functions are first-class objects in Python — they can be:
+- Assigned to variables
+- Passed as arguments
+- Returned from other functions
+- Stored in data structures</p>
+<pre class="highlight"><code class="language-python">def greet(name):
+    return f&quot;Hello, {name}!&quot;
+
+# Assign to variable
+say_hello = greet
+print(say_hello(&quot;Alice&quot;))    # Hello, Alice!
+
+# Store in list
+functions = [greet, len, str]
+</code></pre>
+
+<hr />
+<h2 id="2-function-arguments">2. Function Arguments</h2>
+<h3 id="positional-arguments">Positional Arguments</h3>
+<pre class="highlight"><code class="language-python">def add(a, b):
+    return a + b
+
+print(add(3, 5))    # 8
+</code></pre>
+
+<h3 id="keyword-arguments">Keyword Arguments</h3>
+<pre class="highlight"><code class="language-python">def describe_person(name, age, city):
+    return f&quot;{name}, {age} years old, from {city}&quot;
+
+print(describe_person(name=&quot;Alice&quot;, age=30, city=&quot;NYC&quot;))
+print(describe_person(age=30, city=&quot;NYC&quot;, name=&quot;Alice&quot;))    # Order doesn't matter
+</code></pre>
+
+<h3 id="default-arguments">Default Arguments</h3>
+<pre class="highlight"><code class="language-python">def greet(name, greeting=&quot;Hello&quot;):
+    return f&quot;{greeting}, {name}!&quot;
+
+print(greet(&quot;Alice&quot;))                    # Hello, Alice!
+print(greet(&quot;Bob&quot;, &quot;Hi&quot;))                # Hi, Bob!
+print(greet(&quot;Charlie&quot;, greeting=&quot;Hey&quot;))  # Hey, Charlie!
+</code></pre>
+
+<h3 id="args-variable-positional-arguments">*args (Variable Positional Arguments)</h3>
+<pre class="highlight"><code class="language-python">def sum_all(*numbers):
+    return sum(numbers)
+
+print(sum_all(1, 2, 3))           # 6
+print(sum_all(1, 2, 3, 4, 5))     # 15
+</code></pre>
+
+<h3 id="kwargs-variable-keyword-arguments">**kwargs (Variable Keyword Arguments)</h3>
+<pre class="highlight"><code class="language-python">def print_info(**info):
+    for key, value in info.items():
+        print(f&quot;{key}: {value}&quot;)
+
+print_info(name=&quot;Alice&quot;, age=30, city=&quot;NYC&quot;)
+# name: Alice
+# age: 30
+# city: NYC
+</code></pre>
+
+<h3 id="combining-all-argument-types">Combining All Argument Types</h3>
+<p>The order of parameters in function definition must follow this pattern:
+1. Regular positional parameters (<code>a, b</code>)
+2. <code>*args</code> (variable positional)
+3. Keyword-only parameters or parameters with defaults
+4. <code>**kwargs</code> (variable keyword)</p>
+<pre class="highlight"><code class="language-python">def complex_function(a, b, *args, key1=&quot;default&quot;, **kwargs):
+    print(f&quot;a={a}, b={b}&quot;)
+    print(f&quot;args={args}&quot;)
+    print(f&quot;key1={key1}&quot;)
+    print(f&quot;kwargs={kwargs}&quot;)
+
+# Call with mixed arguments
+complex_function(1, 2, 3, 4, key1=&quot;value&quot;, extra1=&quot;x&quot;, extra2=&quot;y&quot;)
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>a=1, b=2
+args=(3, 4)
+key1=value
+kwargs={'extra1': 'x', 'extra2': 'y'}
+</code></pre>
+
+<p><strong>Explanation:</strong>
+- <code>1, 2</code> → positional arguments <code>a</code> and <code>b</code>
+- <code>3, 4</code> → captured by <code>*args</code> as a tuple
+- <code>key1="value"</code> → overrides the default value of <code>key1</code>
+- <code>extra1="x", extra2="y"</code> → captured by <code>**kwargs</code> as a dictionary</p>
+<h3 id="argument-unpacking">Argument Unpacking</h3>
+<p>You can unpack sequences and dictionaries when calling functions:</p>
+<pre class="highlight"><code class="language-python">def calculate(a, b, c):
+    return (a + b) * c
+
+# Unpack list/tuple with *
+numbers = [2, 3, 4]
+result = calculate(*numbers)  # Same as calculate(2, 3, 4)
+print(result)  # 20
+
+# Unpack dictionary with **
+params = {&quot;a&quot;: 2, &quot;b&quot;: 3, &quot;c&quot;: 4}
+result = calculate(**params)  # Same as calculate(a=2, b=3, c=4)
+print(result)  # 20
+</code></pre>
+
+<h3 id="keyword-only-arguments">Keyword-Only Arguments</h3>
+<p>Force arguments to be specified by name using <code>*</code>:</p>
+<pre class="highlight"><code class="language-python">def create_user(name, *, email, age):
+    &quot;&quot;&quot;email and age must be passed as keyword arguments&quot;&quot;&quot;
+    return f&quot;User: {name}, {email}, {age}&quot;
+
+# This works
+create_user(&quot;Alice&quot;, email=&quot;alice@example.com&quot;, age=30)
+
+# This raises TypeError - email and age must be keyword arguments
+# create_user(&quot;Alice&quot;, &quot;alice@example.com&quot;, 30)
+</code></pre>
+
+<h3 id="positional-only-arguments">Positional-Only Arguments</h3>
+<p>Force arguments to be positional using <code>/</code> (Python 3.8+):</p>
+<pre class="highlight"><code class="language-python">def divide(a, b, /):
+    &quot;&quot;&quot;a and b must be passed as positional arguments&quot;&quot;&quot;
+    return a / b
+
+# This works
+divide(10, 2)  # 5.0
+
+# This raises TypeError - a and b cannot be keyword arguments
+# divide(a=10, b=2)
+</code></pre>
+
+<h3 id="complete-example">Complete Example</h3>
+<pre class="highlight"><code class="language-python">def advanced_function(pos_only, /, pos_or_kw, *, kw_only, **kwargs):
+    &quot;&quot;&quot;
+    pos_only: positional-only
+    pos_or_kw: can be positional or keyword
+    kw_only: keyword-only
+    kwargs: additional keyword arguments
+    &quot;&quot;&quot;
+    print(f&quot;pos_only={pos_only}&quot;)
+    print(f&quot;pos_or_kw={pos_or_kw}&quot;)
+    print(f&quot;kw_only={kw_only}&quot;)
+    print(f&quot;kwargs={kwargs}&quot;)
+
+advanced_function(1, 2, kw_only=3, extra=&quot;value&quot;)
+# pos_only=1
+# pos_or_kw=2
+# kw_only=3
+# kwargs={'extra': 'value'}
+</code></pre>
+
+<hr />
+<h2 id="3-return-values">3. Return Values</h2>
+<h3 id="single-return">Single Return</h3>
+<pre class="highlight"><code class="language-python">def square(x):
+    return x ** 2
+</code></pre>
+
+<h3 id="multiple-returns-tuple-unpacking">Multiple Returns (Tuple Unpacking)</h3>
+<pre class="highlight"><code class="language-python">def divide_and_remainder(a, b):
+    return a // b, a % b
+
+quotient, remainder = divide_and_remainder(17, 5)
+print(quotient, remainder)    # 3 2
+</code></pre>
+
+<h3 id="early-return">Early Return</h3>
+<pre class="highlight"><code class="language-python">def find_item(items, target):
+    for item in items:
+        if item == target:
+            return item
+    return None
+</code></pre>
+
+<hr />
+<h2 id="4-scope-and-namespaces">4. Scope and Namespaces</h2>
+<h3 id="understanding-variable-visibility">Understanding Variable Visibility</h3>
+<p>Python uses the <strong>LEGB rule</strong> to resolve variable names:
+- <strong>L</strong>ocal: Inside the current function
+- <strong>E</strong>nclosing: In enclosing functions (for nested functions)
+- <strong>G</strong>lobal: At the module level
+- <strong>B</strong>uilt-in: Python built-in names</p>
+<pre class="highlight"><code class="language-python"># Built-in scope
+# len, print, etc.
+
+global_var = &quot;I'm global&quot;  # Global scope
+
+def outer_function():
+    enclosing_var = &quot;I'm in enclosing scope&quot;  # Enclosing scope
+
+    def inner_function():
+        local_var = &quot;I'm local&quot;  # Local scope
+        print(local_var)          # Local
+        print(enclosing_var)      # Enclosing
+        print(global_var)         # Global
+        print(len([1, 2, 3]))     # Built-in
+
+    inner_function()
+
+outer_function()
+</code></pre>
+
+<h3 id="local-vs-global">Local vs Global</h3>
+<p>Variables created inside functions are local by default:</p>
+<pre class="highlight"><code class="language-python">x = &quot;global&quot;
+
+def func():
+    x = &quot;local&quot;  # Creates a NEW local variable, doesn't modify global x
+    print(x)
+
+func()        # local
+print(x)      # global (unchanged)
+</code></pre>
+
+<p><strong>Important:</strong> Reading a global variable works without declaration:</p>
+<pre class="highlight"><code class="language-python">count = 10
+
+def show_count():
+    print(count)  # Can read global variable
+
+show_count()  # 10
+</code></pre>
+
+<p>But modifying requires <code>global</code> keyword:</p>
+<pre class="highlight"><code class="language-python">count = 10
+
+def modify_count():
+    # This will raise UnboundLocalError without 'global'
+    # count = count + 1  # Error!
+    pass
+
+def modify_count_correct():
+    global count
+    count = count + 1  # Now it works
+
+modify_count_correct()
+print(count)  # 11
+</code></pre>
+
+<h3 id="global-keyword">Global Keyword</h3>
+<p>Use <code>global</code> to modify variables in global scope:</p>
+<pre class="highlight"><code class="language-python">counter = 0
+
+def increment():
+    global counter
+    counter += 1
+
+def reset():
+    global counter
+    counter = 0
+
+increment()
+increment()
+print(counter)    # 2
+
+reset()
+print(counter)    # 0
+</code></pre>
+
+<p><strong>Warning:</strong> Overusing <code>global</code> is considered bad practice. Better alternatives:
+- Return values from functions
+- Use classes to maintain state
+- Pass values as parameters</p>
+<pre class="highlight"><code class="language-python"># Bad: using global
+total = 0
+
+def add_to_total(x):
+    global total
+    total += x
+
+# Good: return values
+def add(current_total, x):
+    return current_total + x
+
+total = 0
+total = add(total, 5)
+total = add(total, 3)
+</code></pre>
+
+<h3 id="nonlocal-keyword">Nonlocal Keyword</h3>
+<p>Use <code>nonlocal</code> to modify variables in enclosing (but not global) scope:</p>
+<pre class="highlight"><code class="language-python">def outer():
+    x = &quot;outer&quot;
+
+    def inner():
+        nonlocal x  # Refers to x in outer()
+        x = &quot;inner&quot;
+        print(f&quot;Inside inner: {x}&quot;)
+
+    print(f&quot;Before inner: {x}&quot;)
+    inner()
+    print(f&quot;After inner: {x}&quot;)
+
+outer()
+# Before inner: outer
+# Inside inner: inner
+# After inner: inner
+</code></pre>
+
+<p><strong>Difference between <code>global</code> and <code>nonlocal</code>:</strong></p>
+<pre class="highlight"><code class="language-python">x = &quot;global&quot;
+
+def outer():
+    x = &quot;enclosing&quot;
+
+    def use_global():
+        global x
+        x = &quot;modified global&quot;
+        print(f&quot;use_global: {x}&quot;)
+
+    def use_nonlocal():
+        nonlocal x
+        x = &quot;modified enclosing&quot;
+        print(f&quot;use_nonlocal: {x}&quot;)
+
+    print(f&quot;Initial enclosing x: {x}&quot;)
+    use_nonlocal()
+    print(f&quot;After nonlocal: {x}&quot;)
+    use_global()
+    print(f&quot;Enclosing x after global: {x}&quot;)
+
+print(f&quot;Initial global x: {x}&quot;)
+outer()
+print(f&quot;Final global x: {x}&quot;)
+
+# Output:
+# Initial global x: global
+# Initial enclosing x: enclosing
+# use_nonlocal: modified enclosing
+# After nonlocal: modified enclosing
+# use_global: modified global
+# Enclosing x after global: modified enclosing
+# Final global x: modified global
+</code></pre>
+
+<h3 id="variable-shadowing">Variable Shadowing</h3>
+<p>Inner scopes can "shadow" outer variables:</p>
+<pre class="highlight"><code class="language-python">x = 100
+
+def outer():
+    x = 10  # Shadows global x
+
+    def inner():
+        x = 1  # Shadows enclosing x
+        print(f&quot;Inner x: {x}&quot;)
+
+    inner()
+    print(f&quot;Outer x: {x}&quot;)
+
+outer()
+print(f&quot;Global x: {x}&quot;)
+
+# Inner x: 1
+# Outer x: 10
+# Global x: 100
+</code></pre>
+
+<h3 id="best-practices-for-scope">Best Practices for Scope</h3>
+<ol>
+<li id="item-1"><strong>Minimize use of <code>global</code></strong>: Makes code harder to test and reason about</li>
+<li id="item-2"><strong>Prefer returning values</strong>: More explicit and testable</li>
+<li id="item-3"><strong>Use function parameters</strong>: Pass data explicitly</li>
+<li id="item-4"><strong>Avoid shadowing</strong>: Don't reuse variable names across scopes unnecessarily</li>
+</ol>
+<pre class="highlight"><code class="language-python"># Good practice example
+def calculate_statistics(numbers):
+    &quot;&quot;&quot;Pure function - no global state&quot;&quot;&quot;
+    total = sum(numbers)
+    count = len(numbers)
+    average = total / count if count &gt; 0 else 0
+    return {
+        'total': total,
+        'count': count,
+        'average': average
+    }
+
+result = calculate_statistics([1, 2, 3, 4, 5])
+print(result)  # {'total': 15, 'count': 5, 'average': 3.0}
+</code></pre>
+
+<hr />
+<h2 id="5-lambda-functions">5. Lambda Functions</h2>
+<p>Lambda functions are anonymous, single-expression functions.</p>
+<pre class="highlight"><code class="language-python"># Regular function
+def square(x):
+    return x ** 2
+
+# Lambda equivalent
+square = lambda x: x ** 2
+
+print(square(5))    # 25
+</code></pre>
+
+<h3 id="lambda-with-multiple-arguments">Lambda with Multiple Arguments</h3>
+<pre class="highlight"><code class="language-python">add = lambda a, b: a + b
+print(add(3, 5))    # 8
+</code></pre>
+
+<h3 id="lambda-in-higher-order-functions">Lambda in Higher-Order Functions</h3>
+<pre class="highlight"><code class="language-python">numbers = [1, 2, 3, 4, 5]
+
+# map
+squared = list(map(lambda x: x ** 2, numbers))
+print(squared)    # [1, 4, 9, 16, 25]
+
+# filter
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+print(evens)      # [2, 4]
+
+# sorted
+words = [&quot;apple&quot;, &quot;pie&quot;, &quot;zoo&quot;, &quot;a&quot;]
+sorted_words = sorted(words, key=lambda x: len(x))
+print(sorted_words)    # ['a', 'zoo', 'pie', 'apple']
+</code></pre>
+
+<hr />
+<h2 id="6-closures">6. Closures</h2>
+<p>A closure is a function that captures variables from its enclosing scope.</p>
+<pre class="highlight"><code class="language-python">def outer(x):
+    def inner(y):
+        return x + y
+    return inner
+
+add_5 = outer(5)
+add_10 = outer(10)
+
+print(add_5(3))     # 8
+print(add_10(3))    # 13
+</code></pre>
+
+<h3 id="practical-example-counter">Practical Example: Counter</h3>
+<pre class="highlight"><code class="language-python">def make_counter():
+    count = 0
+
+    def increment():
+        nonlocal count
+        count += 1
+        return count
+
+    return increment
+
+counter = make_counter()
+print(counter())    # 1
+print(counter())    # 2
+print(counter())    # 3
+</code></pre>
+
+<hr />
+<h2 id="7-decorators">7. Decorators</h2>
+<p>Decorators are a powerful feature that allows you to modify or enhance the behavior of functions or methods without directly changing their code. They are essentially functions that take another function as an argument and return a new function.</p>
+<h3 id="understanding-the-decorator-concept">Understanding the Decorator Concept</h3>
+<p>At its core, a decorator is just <strong>syntactic sugar</strong> for wrapping functions:</p>
+<pre class="highlight"><code class="language-python">def my_decorator(func):
+    def wrapper():
+        print(&quot;Something before&quot;)
+        func()
+        print(&quot;Something after&quot;)
+    return wrapper
+
+# These two are equivalent:
+@my_decorator
+def say_hello():
+    print(&quot;Hello!&quot;)
+
+# Is the same as:
+def say_hello():
+    print(&quot;Hello!&quot;)
+say_hello = my_decorator(say_hello)
+</code></pre>
+
+<p>The <code>@decorator</code> syntax is just a cleaner way to wrap functions.</p>
+<h3 id="basic-decorator">Basic Decorator</h3>
+<pre class="highlight"><code class="language-python">def my_decorator(func):
+    def wrapper():
+        print(&quot;Before function call&quot;)
+        func()
+        print(&quot;After function call&quot;)
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print(&quot;Hello!&quot;)
+
+say_hello()
+# Before function call
+# Hello!
+# After function call
+</code></pre>
+
+<p><strong>What happens here:</strong>
+1. <code>say_hello</code> function is defined
+2. <code>@my_decorator</code> passes <code>say_hello</code> to <code>my_decorator</code>
+3. <code>my_decorator</code> returns <code>wrapper</code> function
+4. <code>say_hello</code> now refers to <code>wrapper</code>
+5. When we call <code>say_hello()</code>, we actually call <code>wrapper()</code></p>
+<h3 id="decorator-with-function-arguments">Decorator with Function Arguments</h3>
+<p>To handle functions with arguments, use <code>*args</code> and <code>**kwargs</code>:</p>
+<pre class="highlight"><code class="language-python">def log_call(func):
+    def wrapper(*args, **kwargs):
+        print(f&quot;Calling {func.__name__} with args={args}, kwargs={kwargs}&quot;)
+        result = func(*args, **kwargs)
+        print(f&quot;{func.__name__} returned {result}&quot;)
+        return result
+    return wrapper
+
+@log_call
+def add(a, b):
+    return a + b
+
+@log_call
+def greet(name, greeting=&quot;Hello&quot;):
+    return f&quot;{greeting}, {name}!&quot;
+
+result = add(3, 5)
+# Calling add with args=(3, 5), kwargs={}
+# add returned 8
+
+message = greet(&quot;Alice&quot;, greeting=&quot;Hi&quot;)
+# Calling greet with args=('Alice',), kwargs={'greeting': 'Hi'}
+# greet returned Hi, Alice!
+</code></pre>
+
+<h3 id="practical-decorators">Practical Decorators</h3>
+<h4 id="timing-decorator">Timing Decorator</h4>
+<pre class="highlight"><code class="language-python">import time
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f&quot;{func.__name__} took {end - start:.4f} seconds&quot;)
+        return result
+    return wrapper
+
+@timer
+def slow_function():
+    time.sleep(1)
+    return &quot;Done&quot;
+
+result = slow_function()
+# slow_function took 1.0012 seconds
+</code></pre>
+
+<h4 id="authentication-decorator">Authentication Decorator</h4>
+<pre class="highlight"><code class="language-python">def require_auth(func):
+    def wrapper(user, *args, **kwargs):
+        if not user.get(&quot;authenticated&quot;):
+            raise PermissionError(&quot;User not authenticated&quot;)
+        return func(user, *args, **kwargs)
+    return wrapper
+
+@require_auth
+def view_account(user):
+    return f&quot;Account details for {user['name']}&quot;
+
+# This works
+user1 = {&quot;name&quot;: &quot;Alice&quot;, &quot;authenticated&quot;: True}
+print(view_account(user1))
+
+# This raises PermissionError
+user2 = {&quot;name&quot;: &quot;Bob&quot;, &quot;authenticated&quot;: False}
+# view_account(user2)  # Raises PermissionError
+</code></pre>
+
+<h4 id="retry-decorator">Retry Decorator</h4>
+<pre class="highlight"><code class="language-python">def retry(max_attempts=3):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_attempts):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt == max_attempts - 1:
+                        raise
+                    print(f&quot;Attempt {attempt + 1} failed: {e}&quot;)
+            return None
+        return wrapper
+    return decorator
+
+@retry(max_attempts=3)
+def unstable_network_call():
+    import random
+    if random.random() &lt; 0.7:
+        raise ConnectionError(&quot;Network error&quot;)
+    return &quot;Success&quot;
+</code></pre>
+
+<h3 id="decorators-with-arguments">Decorators with Arguments</h3>
+<p>When decorator itself takes arguments, you need an extra level of nesting:</p>
+<pre class="highlight"><code class="language-python">def repeat(times):
+    &quot;&quot;&quot;Decorator factory - returns a decorator&quot;&quot;&quot;
+    def decorator(func):
+        &quot;&quot;&quot;Actual decorator&quot;&quot;&quot;
+        def wrapper(*args, **kwargs):
+            &quot;&quot;&quot;Wrapper function&quot;&quot;&quot;
+            for _ in range(times):
+                result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator
+
+@repeat(times=3)
+def greet(name):
+    print(f&quot;Hello, {name}!&quot;)
+
+greet(&quot;Alice&quot;)
+# Hello, Alice!
+# Hello, Alice!
+# Hello, Alice!
+</code></pre>
+
+<p><strong>How it works:</strong>
+1. <code>repeat(times=3)</code> is called first, returns <code>decorator</code>
+2. <code>@decorator</code> is applied to <code>greet</code>
+3. <code>greet</code> becomes <code>wrapper</code></p>
+<h3 id="preserving-function-metadata">Preserving Function Metadata</h3>
+<p>Without <code>functools.wraps</code>, decorated functions lose their metadata:</p>
+<pre class="highlight"><code class="language-python">def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+@my_decorator
+def example():
+    &quot;&quot;&quot;This is the docstring&quot;&quot;&quot;
+    pass
+
+print(example.__name__)    # wrapper (wrong!)
+print(example.__doc__)     # None (lost!)
+</code></pre>
+
+<p>Use <code>@wraps</code> to preserve metadata:</p>
+<pre class="highlight"><code class="language-python">from functools import wraps
+
+def my_decorator(func):
+    @wraps(func)  # This preserves func's metadata
+    def wrapper(*args, **kwargs):
+        print(&quot;Before&quot;)
+        result = func(*args, **kwargs)
+        print(&quot;After&quot;)
+        return result
+    return wrapper
+
+@my_decorator
+def example():
+    &quot;&quot;&quot;This is the docstring&quot;&quot;&quot;
+    pass
+
+print(example.__name__)    # example (correct!)
+print(example.__doc__)     # This is the docstring (preserved!)
+</code></pre>
+
+<h3 id="stacking-multiple-decorators">Stacking Multiple Decorators</h3>
+<p>You can apply multiple decorators to a single function:</p>
+<pre class="highlight"><code class="language-python">def bold(func):
+    def wrapper(*args, **kwargs):
+        return f&quot;&lt;b&gt;{func(*args, **kwargs)}&lt;/b&gt;&quot;
+    return wrapper
+
+def italic(func):
+    def wrapper(*args, **kwargs):
+        return f&quot;&lt;i&gt;{func(*args, **kwargs)}&lt;/i&gt;&quot;
+    return wrapper
+
+@bold
+@italic
+def greet(name):
+    return f&quot;Hello, {name}&quot;
+
+print(greet(&quot;Alice&quot;))
+# &lt;b&gt;&lt;i&gt;Hello, Alice&lt;/i&gt;&lt;/b&gt;
+</code></pre>
+
+<p>Decorators are applied <strong>bottom to top</strong> (inside out):</p>
+<pre class="highlight"><code class="language-python"># This:
+@bold
+@italic
+def greet(name):
+    return f&quot;Hello, {name}&quot;
+
+# Is equivalent to:
+greet = bold(italic(greet))
+</code></pre>
+
+<h3 id="class-based-decorators">Class-Based Decorators</h3>
+<p>Decorators can also be classes:</p>
+<pre class="highlight"><code class="language-python">class CountCalls:
+    def __init__(self, func):
+        self.func = func
+        self.count = 0
+
+    def __call__(self, *args, **kwargs):
+        self.count += 1
+        print(f&quot;Call {self.count} to {self.func.__name__}&quot;)
+        return self.func(*args, **kwargs)
+
+@CountCalls
+def say_hello():
+    print(&quot;Hello!&quot;)
+
+say_hello()  # Call 1 to say_hello
+say_hello()  # Call 2 to say_hello
+say_hello()  # Call 3 to say_hello
+</code></pre>
+
+<h3 id="real-world-use-cases">Real-World Use Cases</h3>
+<p>Decorators are commonly used for:
+- <strong>Logging</strong>: Track function calls and parameters
+- <strong>Timing</strong>: Measure execution time
+- <strong>Caching/Memoization</strong>: Store results of expensive function calls
+- <strong>Authentication/Authorization</strong>: Check permissions before execution
+- <strong>Rate limiting</strong>: Control how often functions can be called
+- <strong>Input validation</strong>: Validate arguments before function execution
+- <strong>Deprecation warnings</strong>: Mark functions as deprecated</p>
+<p>Example with caching:</p>
+<pre class="highlight"><code class="language-python">from functools import wraps
+
+def memoize(func):
+    cache = {}
+
+    @wraps(func)
+    def wrapper(*args):
+        if args not in cache:
+            cache[args] = func(*args)
+        return cache[args]
+    return wrapper
+
+@memoize
+def fibonacci(n):
+    if n &lt; 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Much faster with memoization!
+print(fibonacci(35))  # Instant with cache
+</code></pre>
+
+<hr />
+<h2 id="8-higher-order-functions">8. Higher-Order Functions</h2>
+<p>Functions that take functions as arguments or return functions.</p>
+<h3 id="map">map()</h3>
+<pre class="highlight"><code class="language-python">numbers = [1, 2, 3, 4]
+squared = list(map(lambda x: x ** 2, numbers))
+print(squared)    # [1, 4, 9, 16]
+</code></pre>
+
+<h3 id="filter">filter()</h3>
+<pre class="highlight"><code class="language-python">numbers = [1, 2, 3, 4, 5, 6]
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+print(evens)    # [2, 4, 6]
+</code></pre>
+
+<h3 id="reduce">reduce()</h3>
+<pre class="highlight"><code class="language-python">from functools import reduce
+
+numbers = [1, 2, 3, 4, 5]
+product = reduce(lambda x, y: x * y, numbers)
+print(product)    # 120
+</code></pre>
+
+<hr />
+<h2 id="9-partial-functions">9. Partial Functions</h2>
+<p>Partially apply arguments to a function.</p>
+<pre class="highlight"><code class="language-python">from functools import partial
+
+def power(base, exponent):
+    return base ** exponent
+
+square = partial(power, exponent=2)
+cube = partial(power, exponent=3)
+
+print(square(5))    # 25
+print(cube(5))      # 125
+</code></pre>
+
+<hr />
+<h2 id="10-generator-functions">10. Generator Functions</h2>
+<p>Generators produce values lazily using <code>yield</code>.</p>
+<pre class="highlight"><code class="language-python">def count_up_to(n):
+    count = 1
+    while count &lt;= n:
+        yield count
+        count += 1
+
+counter = count_up_to(5)
+print(next(counter))    # 1
+print(next(counter))    # 2
+
+for num in count_up_to(3):
+    print(num)
+# 1
+# 2
+# 3
+</code></pre>
+
+<h3 id="generator-expressions">Generator Expressions</h3>
+<pre class="highlight"><code class="language-python"># List comprehension (creates list in memory)
+squares_list = [x ** 2 for x in range(10)]
+
+# Generator expression (lazy evaluation)
+squares_gen = (x ** 2 for x in range(10))
+
+print(sum(squares_gen))    # 285
+</code></pre>
+
+<hr />
+<h2 id="11-recursion">11. Recursion</h2>
+<p>Functions that call themselves.</p>
+<pre class="highlight"><code class="language-python">def factorial(n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))    # 120
+</code></pre>
+
+<h3 id="fibonacci">Fibonacci</h3>
+<pre class="highlight"><code class="language-python">def fibonacci(n):
+    if n &lt;= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(7))    # 13
+</code></pre>
+
+<h3 id="tail-recursion-optimization-manual">Tail Recursion Optimization (Manual)</h3>
+<pre class="highlight"><code class="language-python">def factorial_tail(n, accumulator=1):
+    if n &lt;= 1:
+        return accumulator
+    return factorial_tail(n - 1, n * accumulator)
+
+print(factorial_tail(5))    # 120
+</code></pre>
+
+<hr />
+<h2 id="12-function-annotations-and-type-hints">12. Function Annotations and Type Hints</h2>
+<pre class="highlight"><code class="language-python">def greet(name: str, age: int) -&gt; str:
+    return f&quot;{name} is {age} years old&quot;
+
+def process_items(items: list[int]) -&gt; list[int]:
+    return [item * 2 for item in items]
+</code></pre>
+
+<h3 id="using-typing-module">Using typing Module</h3>
+<pre class="highlight"><code class="language-python">from typing import List, Dict, Optional, Union, Callable
+
+def process_data(
+    data: List[Dict[str, Union[int, str]]],
+    transform: Callable[[int], int]
+) -&gt; Optional[List[int]]:
+    pass
+</code></pre>
+
+<hr />
+<h2 id="13-functional-programming-concepts">13. Functional Programming Concepts</h2>
+<h3 id="pure-functions">Pure Functions</h3>
+<p>Functions that:
+- Always return the same output for same input
+- Have no side effects</p>
+<pre class="highlight"><code class="language-python"># Pure function
+def add(a, b):
+    return a + b
+
+# Impure function (side effect)
+total = 0
+def add_to_total(x):
+    global total
+    total += x
+    return total
+</code></pre>
+
+<h3 id="immutability">Immutability</h3>
+<p><strong>Immutability</strong> means that data cannot be changed after it's created. In functional programming, immutable data structures are preferred because they:
+- Make code easier to reason about
+- Prevent unexpected side effects
+- Enable safer concurrent programming
+- Make debugging easier</p>
+<h4 id="mutable-vs-immutable-types-in-python">Mutable vs Immutable Types in Python</h4>
+<p><strong>Immutable types</strong> (cannot be changed):
+- <code>int</code>, <code>float</code>, <code>bool</code>, <code>str</code>, <code>tuple</code>, <code>frozenset</code></p>
+<p><strong>Mutable types</strong> (can be changed):
+- <code>list</code>, <code>dict</code>, <code>set</code>, and most custom objects</p>
+<pre class="highlight"><code class="language-python"># Immutable: strings
+text = &quot;hello&quot;
+# text[0] = &quot;H&quot;  # TypeError: 'str' object does not support item assignment
+new_text = &quot;H&quot; + text[1:]  # Create a new string
+print(new_text)  # &quot;Hello&quot;
+
+# Mutable: lists
+numbers = [1, 2, 3]
+numbers[0] = 10  # This works - modifies in place
+print(numbers)   # [10, 2, 3]
+</code></pre>
+
+<h4 id="why-immutability-matters">Why Immutability Matters</h4>
+<p><strong>Problem with mutable data:</strong></p>
+<pre class="highlight"><code class="language-python">def add_item(item, items=[]):  # DANGEROUS!
+    items.append(item)
+    return items
+
+# Default list is shared across calls!
+list1 = add_item(1)
+list2 = add_item(2)
+print(list1)  # [1, 2] - unexpected!
+print(list2)  # [1, 2] - same object!
+</code></pre>
+
+<p><strong>Solution with immutability:</strong></p>
+<pre class="highlight"><code class="language-python">def add_item(item, items=None):
+    if items is None:
+        items = []  # Create new list each time
+    return items + [item]  # Return new list
+
+list1 = add_item(1)
+list2 = add_item(2)
+print(list1)  # [1]
+print(list2)  # [2]
+</code></pre>
+
+<h4 id="immutable-approach-create-new-instead-of-modifying">Immutable Approach: Create New Instead of Modifying</h4>
+<pre class="highlight"><code class="language-python"># Bad: Modifying in place (mutable approach)
+def add_to_list(items, value):
+    items.append(value)  # Side effect!
+    return items
+
+original = [1, 2, 3]
+result = add_to_list(original, 4)
+print(original)  # [1, 2, 3, 4] - original changed!
+print(result)    # [1, 2, 3, 4]
+
+# Good: Creating new (immutable approach)
+def add_to_list(items, value):
+    return items + [value]  # or: return [*items, value]
+
+original = [1, 2, 3]
+result = add_to_list(original, 4)
+print(original)  # [1, 2, 3] - unchanged!
+print(result)    # [1, 2, 3, 4] - new list
+</code></pre>
+
+<h4 id="working-with-immutable-data">Working with Immutable Data</h4>
+<p><strong>Lists:</strong></p>
+<pre class="highlight"><code class="language-python"># Instead of mutating
+numbers = [1, 2, 3]
+# numbers.append(4)
+
+# Create new
+numbers = [1, 2, 3]
+new_numbers = numbers + [4]
+# or
+new_numbers = [*numbers, 4]
+
+# Filter without modification
+original = [1, 2, 3, 4, 5]
+evens = [x for x in original if x % 2 == 0]
+
+# Map without modification
+original = [1, 2, 3]
+squared = [x ** 2 for x in original]
+</code></pre>
+
+<p><strong>Dictionaries:</strong></p>
+<pre class="highlight"><code class="language-python"># Instead of mutating
+user = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}
+# user[&quot;city&quot;] = &quot;NYC&quot;
+
+# Create new
+user = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}
+updated_user = {**user, &quot;city&quot;: &quot;NYC&quot;}
+print(user)          # {'name': 'Alice', 'age': 30}
+print(updated_user)  # {'name': 'Alice', 'age': 30, 'city': 'NYC'}
+
+# Update existing key
+user = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}
+updated_user = {**user, &quot;age&quot;: 31}
+print(updated_user)  # {'name': 'Alice', 'age': 31}
+</code></pre>
+
+<p><strong>Using tuples instead of lists:</strong></p>
+<pre class="highlight"><code class="language-python"># Immutable collection
+coordinates = (10, 20)
+# coordinates[0] = 15  # TypeError
+
+# Must create new tuple
+new_coordinates = (15, coordinates[1])
+
+# Good for function returns
+def get_point():
+    return (100, 200)  # Tuple - immutable
+
+x, y = get_point()
+</code></pre>
+
+<h4 id="immutability-and-function-arguments">Immutability and Function Arguments</h4>
+<p>Functions should not modify their arguments:</p>
+<pre class="highlight"><code class="language-python"># Bad: Modifies input
+def process_data(data):
+    data[&quot;processed&quot;] = True  # Side effect!
+    return data
+
+# Good: Returns new data
+def process_data(data):
+    return {**data, &quot;processed&quot;: True}
+
+original = {&quot;name&quot;: &quot;Alice&quot;}
+result = process_data(original)
+print(original)  # {'name': 'Alice'} - unchanged
+print(result)    # {'name': 'Alice', 'processed': True}
+</code></pre>
+
+<h4 id="deep-vs-shallow-copies">Deep vs Shallow Copies</h4>
+<p>When you need to work with nested structures:</p>
+<pre class="highlight"><code class="language-python">import copy
+
+# Shallow copy - nested objects are still shared
+original = {&quot;name&quot;: &quot;Alice&quot;, &quot;scores&quot;: [90, 85, 88]}
+shallow = original.copy()
+shallow[&quot;scores&quot;].append(92)
+print(original[&quot;scores&quot;])  # [90, 85, 88, 92] - modified!
+
+# Deep copy - completely independent
+original = {&quot;name&quot;: &quot;Alice&quot;, &quot;scores&quot;: [90, 85, 88]}
+deep = copy.deepcopy(original)
+deep[&quot;scores&quot;].append(92)
+print(original[&quot;scores&quot;])  # [90, 85, 88] - unchanged!
+print(deep[&quot;scores&quot;])      # [90, 85, 88, 92]
+</code></pre>
+
+<h4 id="benefits-of-immutability">Benefits of Immutability</h4>
+<ol>
+<li id="item-1"><strong>Predictability</strong>: Data doesn't change unexpectedly</li>
+<li id="item-2"><strong>Thread safety</strong>: Multiple threads can safely read immutable data</li>
+<li id="item-3"><strong>Easier debugging</strong>: Data flow is clear and traceable</li>
+<li id="item-4"><strong>Easier testing</strong>: Functions with immutable data are easier to test</li>
+<li id="item-5"><strong>Caching</strong>: Immutable objects can be safely cached</li>
+</ol>
+<pre class="highlight"><code class="language-python"># Example: Pure function with immutability
+def calculate_total_price(items):
+    &quot;&quot;&quot;
+    Pure function - doesn't modify input, always returns same output for same input
+    &quot;&quot;&quot;
+    return sum(item[&quot;price&quot;] for item in items)
+
+# Safe to call multiple times
+items = [
+    {&quot;name&quot;: &quot;Apple&quot;, &quot;price&quot;: 1.5},
+    {&quot;name&quot;: &quot;Banana&quot;, &quot;price&quot;: 0.5}
+]
+
+total1 = calculate_total_price(items)
+total2 = calculate_total_price(items)
+# items is guaranteed to be unchanged
+</code></pre>
+
+<h4 id="when-to-use-mutability">When to Use Mutability</h4>
+<p>While immutability is generally preferred, mutability can be useful for:
+- Performance-critical code (avoiding copies)
+- Building up large data structures incrementally
+- Working with I/O (files, databases)</p>
+<pre class="highlight"><code class="language-python"># Building a large list - mutation is more efficient
+def read_large_file(filename):
+    lines = []  # Mutable for efficiency
+    with open(filename) as f:
+        for line in f:
+            lines.append(line.strip())
+    return tuple(lines)  # Return immutable tuple
+</code></pre>
+
+<h3 id="function-composition">Function Composition</h3>
+<pre class="highlight"><code class="language-python">def compose(f, g):
+    return lambda x: f(g(x))
+
+def add_5(x):
+    return x + 5
+
+def multiply_2(x):
+    return x * 2
+
+# Compose functions
+composed = compose(add_5, multiply_2)
+print(composed(3))    # (3 * 2) + 5 = 11
+</code></pre>
+
+<hr />
+<h2 id="14-common-functional-patterns">14. Common Functional Patterns</h2>
+<h3 id="list-comprehensions">List Comprehensions</h3>
+<pre class="highlight"><code class="language-python">squares = [x ** 2 for x in range(10)]
+evens = [x for x in range(10) if x % 2 == 0]
+</code></pre>
+
+<h3 id="dictionary-comprehensions">Dictionary Comprehensions</h3>
+<pre class="highlight"><code class="language-python">word_lengths = {word: len(word) for word in [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]}
+</code></pre>
+
+<h3 id="set-comprehensions">Set Comprehensions</h3>
+<pre class="highlight"><code class="language-python">unique_lengths = {len(word) for word in [&quot;apple&quot;, &quot;pie&quot;, &quot;zoo&quot;, &quot;a&quot;]}
+</code></pre>
+
+<h3 id="nested-comprehensions">Nested Comprehensions</h3>
+<pre class="highlight"><code class="language-python">matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flattened = [num for row in matrix for num in row]
+print(flattened)    # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+</code></pre>
+
+<hr />
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

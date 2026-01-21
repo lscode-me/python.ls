@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Bash as Glue: Combining Tools &amp; Error Handling">
+    <title>HW: Bash as Glue: Combining Tools  | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Bash as Glue: Combining Tools </h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 11 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="bash-as-glue-combining-tools-error-handling-homework">Bash as Glue: Combining Tools &amp; Error Handling - Homework</h1>
+<h2 id="assignment-1-basic-trap-with-exit-cleanup">Assignment 1: Basic trap with EXIT Cleanup</h2>
+<p>Create script that cleans up temporary files on exit.
+- Script (<code>cleanup_demo.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -e</p>
+<p>TMPFILE=$(mktemp)
+  trap 'echo "Cleaning up..."; rm -f "$TMPFILE"' EXIT</p>
+<p>echo "Working with $TMPFILE"
+  echo "Some data" &gt; "$TMPFILE"
+  cat "$TMPFILE"</p>
+<p># Cleanup happens automatically on exit
+  <code>``
+- Test cases:
+  1. Normal exit:</code>./cleanup_demo.sh<code>2. Error exit: Add</code>exit 1` before end
+  3. Interrupt: Run script and press Ctrl+C
+- Verify: Temp file is always deleted</p>
+<h2 id="assignment-2-load-configuration-from-env">Assignment 2: Load Configuration from .env</h2>
+<p>Create script that loads environment variables from <code>.env</code> file.
+- Create <code>.env</code>:
+  <code>DATABASE_URL=postgres://localhost/mydb
+  API_KEY=secret_key_12345
+  LOG_LEVEL=DEBUG
+  MAX_RETRIES=3</code>
+- Script (<code>load_env.sh</code>):
+  ```bash
+  #!/bin/bash</p>
+<p>if [ -f .env ]; then
+      echo "Loading environment from .env..."
+      set -a  # Auto-export all variables
+      source .env
+      set +a
+  else
+      echo "Error: .env file not found"
+      exit 1
+  fi</p>
+<p>echo "Database: $DATABASE_URL"
+  echo "Log level: $LOG_LEVEL"
+  echo "Max retries: $MAX_RETRIES"
+  ```
+- Requirement: Variables must be available to child processes</p>
+<h2 id="assignment-3-safe-temporary-file-management">Assignment 3: Safe Temporary File Management</h2>
+<p>Demonstrate proper mktemp usage.
+- Script showing different mktemp modes:
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Temporary file
+  TMPFILE=$(mktemp)
+  echo "Created temp file: $TMPFILE"</p>
+<p># Temporary directory
+  TMPDIR=$(mktemp -d)
+  echo "Created temp directory: $TMPDIR"</p>
+<p># Named pattern
+  LOGFILE=$(mktemp /tmp/myapp.XXXXXX.log)
+  echo "Created log file: $LOGFILE"</p>
+<p># Cleanup all
+  trap 'rm -f "$TMPFILE" "$LOGFILE"; rm -rf "$TMPDIR"' EXIT</p>
+<p># Use files...
+  echo "data" &gt; "$TMPFILE"
+  touch "$TMPDIR/file1.txt"
+  echo "log entry" &gt; "$LOGFILE"</p>
+<p>echo "Files will be cleaned up on exit"
+  ```</p>
+<h2 id="assignment-4-comprehensive-error-handling">Assignment 4: Comprehensive Error Handling</h2>
+<p>Build script with set -euo pipefail and proper error handling.
+- Script (<code>robust.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Error handler
+  error_handler() {
+      echo "Error occurred in script at line $1" &gt;&amp;2
+      exit 1
+  }
+  trap 'error_handler $LINENO' ERR</p>
+<p># Cleanup handler
+  cleanup() {
+      echo "Performing cleanup..."
+      rm -f /tmp/work_*
+  }
+  trap cleanup EXIT</p>
+<p># Your code here
+  echo "Starting process..."</p>
+<p># This will fail if file doesn't exist
+  cat nonexistent_file.txt</p>
+<p>echo "This line won't be reached"
+  ```
+- Test: Run and verify error handling works</p>
+<h2 id="assignment-5-multi-stage-pipeline-with-staging">Assignment 5: Multi-Stage Pipeline with Staging</h2>
+<p>Create pipeline with temporary staging between stages.
+- Script (<code>pipeline.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Setup temp files for staging
+  STAGE1=$(mktemp)
+  STAGE2=$(mktemp)
+  STAGE3=$(mktemp)</p>
+<p>trap 'rm -f "$STAGE1" "$STAGE2" "$STAGE3"' EXIT</p>
+<p>echo "Stage 1: Extract"
+  curl -s "https://jsonplaceholder.typicode.com/users" &gt; "$STAGE1"</p>
+<p>echo "Stage 2: Transform"
+  jq -c '.[] | {id, name, email}' "$STAGE1" &gt; "$STAGE2"</p>
+<p>echo "Stage 3: Load"
+  jq -r '[.id, .name, .email] | @csv' "$STAGE2" &gt; "$STAGE3"</p>
+<p>echo "Final output:"
+  cat "$STAGE3"
+  ```</p>
+<h2 id="assignment-6-error-handling-with-trap-err">Assignment 6: Error Handling with trap ERR</h2>
+<p>Demonstrate ERR trap for error recovery.
+- Script (<code>error_trap.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -E  # ERR trap inherited by functions</p>
+<p>error_count=0</p>
+<p>handle_error() {
+      error_count=$((error_count + 1))
+      echo "Error #$error_count at line $1" &gt;&amp;2</p>
+<pre class="highlight"><code>  if [ $error_count -ge 3 ]; then
+      echo &quot;Too many errors, aborting&quot;
+      exit 1
+  fi
+</code></pre>
+
+<p>}</p>
+<p>trap 'handle_error $LINENO' ERR</p>
+<p># Test with failing commands
+  false || true  # This won't trigger trap (||)</p>
+<p>set -e
+  false  # This will trigger trap</p>
+<p>echo "Script continues..."
+  ```</p>
+<h2 id="assignment-7-temporary-directory-workflow">Assignment 7: Temporary Directory Workflow</h2>
+<p>Build workflow using temp directory for intermediate files.
+- Script (<code>temp_workflow.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p>WORKDIR=$(mktemp -d)
+  trap 'echo "Cleaning up $WORKDIR"; rm -rf "$WORKDIR"' EXIT</p>
+<p>echo "Working directory: $WORKDIR"
+  cd "$WORKDIR"</p>
+<p># Download multiple files
+  for id in {1..5}; do
+      curl -s "https://jsonplaceholder.typicode.com/users/$id" &gt; "user_$id.json"
+  done</p>
+<p># Process files
+  jq -s '.' user_*.json &gt; combined.json</p>
+<p># Extract result
+  jq -r '.[] | .name' combined.json &gt; names.txt</p>
+<p># Copy result out before cleanup
+  cp names.txt "$OLDPWD/output.txt"</p>
+<p>echo "Results saved to output.txt"
+  ```</p>
+<h2 id="assignment-8-configuration-validation">Assignment 8: Configuration Validation</h2>
+<p>Create script that validates configuration before proceeding.
+- Script (<code>validate_config.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Load config
+  if [ ! -f .env ]; then
+      echo "Error: .env file not found" &gt;&amp;2
+      exit 1
+  fi</p>
+<p>set -a
+  source .env
+  set +a</p>
+<p># Validate required variables
+  required_vars=("DATABASE_URL" "API_KEY" "LOG_LEVEL")</p>
+<p>for var in "${required_vars[@]}"; do
+      if [ -z "${!var:-}" ]; then
+          echo "Error: Required variable $var is not set" &gt;&amp;2
+          exit 1
+      fi
+  done</p>
+<p># Validate values
+  if [[ ! "$LOG_LEVEL" =~ ^(DEBUG|INFO|WARN|ERROR)$ ]]; then
+      echo "Error: Invalid LOG_LEVEL: $LOG_LEVEL" &gt;&amp;2
+      exit 1
+  fi</p>
+<p>echo "Configuration validated successfully"
+  echo "DATABASE_URL: $DATABASE_URL"
+  echo "LOG_LEVEL: $LOG_LEVEL"
+  ```</p>
+<h2 id="assignment-9-robust-script-template">Assignment 9: Robust Script Template</h2>
+<p>Create a production-ready script template with all best practices.
+- Template (<code>template.sh</code>):
+  ```bash
+  #!/bin/bash</p>
+<p># Strict error handling
+  set -euo pipefail</p>
+<p># Script metadata
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &amp;&amp; pwd)"
+  SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"</p>
+<p># Configuration
+  CONFIG_FILE="${CONFIG_FILE:-.env}"</p>
+<p># Logging
+  log() {
+      echo "[$(date +'%Y-%m-%d %H:%M:%S')] $*" &gt;&amp;2
+  }</p>
+<p>error() {
+      log "ERROR: $*"
+      exit 1
+  }</p>
+<p># Load configuration
+  if [ -f "$CONFIG_FILE" ]; then
+      log "Loading configuration from $CONFIG_FILE"
+      set -a
+      source "$CONFIG_FILE"
+      set +a
+  fi</p>
+<p># Setup temp files
+  TMPDIR=$(mktemp -d)</p>
+<p># Cleanup function
+  cleanup() {
+      local exit_code=$?
+      log "Cleaning up..."
+      rm -rf "$TMPDIR"
+      exit $exit_code
+  }
+  trap cleanup EXIT INT TERM</p>
+<p># Error handler
+  error_handler() {
+      error "Failed at line $1"
+  }
+  trap 'error_handler $LINENO' ERR</p>
+<p># Main logic
+  main() {
+      log "Starting $SCRIPT_NAME"</p>
+<pre class="highlight"><code>  # Your code here
+  log &quot;Working directory: $TMPDIR&quot;
+
+  log &quot;Completed successfully&quot;
+</code></pre>
+
+<p>}</p>
+<p># Run main
+  main "$@"
+  ```</p>
+<h2 id="assignment-10-signal-handling">Assignment 10: Signal Handling</h2>
+<p>Implement proper signal handling for graceful shutdown.
+- Script (<code>signal_handling.sh</code>):
+  ```bash
+  #!/bin/bash</p>
+<p># Shared state
+  RUNNING=true</p>
+<p># Cleanup on exit
+  cleanup() {
+      echo ""
+      echo "Shutting down gracefully..."
+      RUNNING=false
+      # Wait for background jobs
+      wait
+      echo "Cleanup complete"
+  }</p>
+<p># Handle signals
+  trap cleanup INT TERM</p>
+<p># Main loop
+  echo "Running... Press Ctrl+C to stop"
+  count=0
+  while $RUNNING; do
+      count=$((count + 1))
+      echo "Iteration $count"
+      sleep 1
+  done</p>
+<p>echo "Exited cleanly"
+  ```
+- Test: Run and interrupt with Ctrl+C, verify clean shutdown</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-retry-logic-with-exponential-backoff">Bonus 1: Retry Logic with Exponential Backoff</h3>
+<p>Implement command retry with exponential backoff.
+- Script (<code>retry.sh</code>):
+  ```bash
+  #!/bin/bash</p>
+<p>retry_with_backoff() {
+      local max_attempts=5
+      local timeout=1
+      local attempt=1
+      local exit_code=0</p>
+<pre class="highlight"><code>  while [ $attempt -le $max_attempts ]; do
+      echo &quot;Attempt $attempt/$max_attempts&quot;
+
+      if &quot;$@&quot;; then
+          return 0
+      fi
+
+      exit_code=$?
+
+      if [ $attempt -lt $max_attempts ]; then
+          echo &quot;Command failed, retrying in ${timeout}s...&quot;
+          sleep $timeout
+          timeout=$((timeout * 2))
+      fi
+
+      attempt=$((attempt + 1))
+  done
+
+  echo &quot;Command failed after $max_attempts attempts&quot;
+  return $exit_code
+</code></pre>
+
+<p>}</p>
+<p># Usage
+  retry_with_backoff curl -f "https://unreliable-api.com/data"
+  ```</p>
+<h3 id="bonus-2-configuration-with-defaults">Bonus 2: Configuration with Defaults</h3>
+<p>Build configuration system with default values.
+- Script (<code>config_defaults.sh</code>):
+  ```bash
+  #!/bin/bash</p>
+<p># Load .env if exists
+  if [ -f .env ]; then
+      set -a
+      source .env
+      set +a
+  fi</p>
+<p># Set defaults for missing variables
+  DATABASE_URL="${DATABASE_URL:-postgres://localhost/defaultdb}"
+  API_KEY="${API_KEY:-}"
+  LOG_LEVEL="${LOG_LEVEL:-INFO}"
+  MAX_RETRIES="${MAX_RETRIES:-3}"
+  TIMEOUT="${TIMEOUT:-30}"</p>
+<p># Validate critical variables
+  if [ -z "$API_KEY" ]; then
+      echo "Warning: API_KEY not set" &gt;&amp;2
+  fi</p>
+<p>echo "Configuration:"
+  echo "  DATABASE_URL: $DATABASE_URL"
+  echo "  LOG_LEVEL: $LOG_LEVEL"
+  echo "  MAX_RETRIES: $MAX_RETRIES"
+  echo "  TIMEOUT: $TIMEOUT"
+  ```</p>
+<h3 id="bonus-3-logging-framework">Bonus 3: Logging Framework</h3>
+<p>Create comprehensive logging system.
+- Script (<code>logging.sh</code>):
+  ```bash
+  #!/bin/bash</p>
+<p># Log levels
+  LOG_LEVEL_DEBUG=0
+  LOG_LEVEL_INFO=1
+  LOG_LEVEL_WARN=2
+  LOG_LEVEL_ERROR=3</p>
+<p># Current log level
+  CURRENT_LOG_LEVEL=${LOG_LEVEL:-$LOG_LEVEL_INFO}</p>
+<p># Log file
+  LOG_FILE="${LOG_FILE:-app.log}"</p>
+<p># Logging functions
+  log_debug() {
+      [ $CURRENT_LOG_LEVEL -le $LOG_LEVEL_DEBUG ] &amp;&amp; \
+          echo "[$(date +'%Y-%m-%d %H:%M:%S')] [DEBUG] $*" | tee -a "$LOG_FILE"
+  }</p>
+<p>log_info() {
+      [ $CURRENT_LOG_LEVEL -le $LOG_LEVEL_INFO ] &amp;&amp; \
+          echo "[$(date +'%Y-%m-%d %H:%M:%S')] [INFO] $*" | tee -a "$LOG_FILE"
+  }</p>
+<p>log_warn() {
+      [ $CURRENT_LOG_LEVEL -le $LOG_LEVEL_WARN ] &amp;&amp; \
+          echo "[$(date +'%Y-%m-%d %H:%M:%S')] [WARN] $*" | tee -a "$LOG_FILE" &gt;&amp;2
+  }</p>
+<p>log_error() {
+      [ $CURRENT_LOG_LEVEL -le $LOG_LEVEL_ERROR ] &amp;&amp; \
+          echo "[$(date +'%Y-%m-%d %H:%M:%S')] [ERROR] $*" | tee -a "$LOG_FILE" &gt;&amp;2
+  }</p>
+<p># Usage
+  log_debug "This is debug"
+  log_info "This is info"
+  log_warn "This is warning"
+  log_error "This is error"
+  ```</p>
+<h3 id="bonus-4-dependency-checker">Bonus 4: Dependency Checker</h3>
+<p>Script that checks for required commands before running.
+- Script (<code>check_deps.sh</code>):
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p># Required commands
+  REQUIRED_CMDS=("curl" "jq" "awk" "sed" "grep")</p>
+<p># Optional commands
+  OPTIONAL_CMDS=("pv" "parallel" "mlr")</p>
+<p># Check if command exists
+  command_exists() {
+      command -v "$1" &gt;/dev/null 2&gt;&amp;1
+  }</p>
+<p># Check required dependencies
+  echo "Checking required dependencies..."
+  missing_required=()
+  for cmd in "${REQUIRED_CMDS[@]}"; do
+      if command_exists "$cmd"; then
+          echo "  ✓ $cmd"
+      else
+          echo "  ✗ $cmd (MISSING)"
+          missing_required+=("$cmd")
+      fi
+  done</p>
+<p># Check optional dependencies
+  echo ""
+  echo "Checking optional dependencies..."
+  for cmd in "${OPTIONAL_CMDS[@]}"; do
+      if command_exists "$cmd"; then
+          echo "  ✓ $cmd"
+      else
+          echo "  ⚠ $cmd (optional, not installed)"
+      fi
+  done</p>
+<p># Fail if required dependencies missing
+  if [ ${#missing_required[@]} -gt 0 ]; then
+      echo ""
+      echo "Error: Missing required commands: ${missing_required[*]}"
+      echo "Please install them before running this script"
+      exit 1
+  fi</p>
+<p>echo ""
+  echo "All required dependencies satisfied"
+  ```</p>
+<h3 id="bonus-5-complete-etl-script-with-best-practices">Bonus 5: Complete ETL Script with Best Practices</h3>
+<p>Build production-grade ETL script incorporating all concepts.
+- Features:
+  - Configuration via .env
+  - Error handling with trap
+  - Temporary file management
+  - Logging
+  - Retry logic
+  - Dependency checking
+  - Signal handling
+  - Progress reporting
+- See template in Assignment 9 and extend with ETL logic</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<h3 id="script-requirements">Script Requirements</h3>
+<ul>
+<li>[ ] Proper shebang: <code>#!/bin/bash</code></li>
+<li>[ ] Error handling: <code>set -euo pipefail</code></li>
+<li>[ ] Cleanup with <code>trap</code></li>
+<li>[ ] Proper quoting: <code>"$VAR"</code> not <code>$VAR</code></li>
+<li>[ ] Comments explaining complex logic</li>
+<li>[ ] Usage/help message for user-facing scripts</li>
+</ul>
+<h3 id="testing-checklist">Testing Checklist</h3>
+<p>Test each script with:
+1. Normal execution
+2. Error conditions (missing files, bad input)
+3. Interruption (Ctrl+C)
+4. Missing configuration
+5. Invalid configuration values</p>
+<h3 id="documentation">Documentation</h3>
+<p>For each script, provide:
+1. <strong>Purpose</strong>: What does it do?
+2. <strong>Requirements</strong>: Dependencies, config files
+3. <strong>Usage</strong>: How to run it
+4. <strong>Configuration</strong>: What variables it uses
+5. <strong>Error handling</strong>: How it handles failures
+6. <strong>Cleanup</strong>: What resources it manages</p>
+<h3 id="code-quality-standards">Code Quality Standards</h3>
+<ul>
+<li>Use meaningful variable names</li>
+<li>Avoid hardcoded paths</li>
+<li>Check command exit codes</li>
+<li>Provide helpful error messages</li>
+<li>Log important operations</li>
+<li>Clean up temporary resources</li>
+</ul>
+<h3 id="bonus-shell-script-best-practices-guide">Bonus: Shell Script Best Practices Guide</h3>
+<p>Create a comprehensive style guide based on your learnings:
+- Naming conventions
+- Error handling patterns
+- Logging standards
+- Configuration management
+- Testing strategies</p></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

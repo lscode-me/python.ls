@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Files, I-nodes &amp; File Descriptors">
+    <title>HW: Files, I-nodes &amp; File Descript | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Files, I-nodes &amp; File Descript</h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 2 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="files-i-nodes-file-descriptors-homework">Files, I-nodes &amp; File Descriptors - Homework</h1>
+<h2 id="assignment-1-i-node-investigation">Assignment 1: I-node Investigation</h2>
+<ol>
+<li id="item-1">Create a file and check its i-node number using <code>ls -i</code></li>
+<li id="item-2">Create a hard link to that file</li>
+<li id="item-3">Verify both have the same i-node number</li>
+<li id="item-4">Check link count with <code>stat</code></li>
+<li id="item-5">Delete the original file</li>
+<li id="item-6">Verify the hard link still works and data is intact</li>
+<li id="item-7">Create a symbolic link to a file</li>
+<li id="item-8">Compare i-node numbers of symlink vs original</li>
+<li id="item-9">Delete the original and observe what happens to the symlink</li>
+</ol>
+<h2 id="assignment-2-file-descriptor-exploration">Assignment 2: File Descriptor Exploration</h2>
+<ol>
+<li id="item-1">Write a script that redirects stdout to <code>output.txt</code> and stderr to <code>error.txt</code></li>
+<li id="item-2">In the script, write to both stdout and stderr</li>
+<li id="item-3">Run the script and verify output goes to correct files</li>
+<li id="item-4">Examine <code>/proc/self/fd/</code> while the script is running</li>
+<li id="item-5">Create a script that uses custom file descriptors (FD 3, 4)</li>
+<li id="item-6">Open a file for reading on FD 3</li>
+<li id="item-7">Open another file for writing on FD 4</li>
+<li id="item-8">Copy data from FD 3 to FD 4</li>
+</ol>
+<h2 id="assignment-3-file-types-survey">Assignment 3: File Types Survey</h2>
+<ol>
+<li id="item-1">List all files in <code>/dev</code> and identify their types using <code>ls -l</code></li>
+<li id="item-2">Count how many of each file type exist</li>
+<li id="item-3">Use <code>ls -l /dev | cut -c1 | sort | uniq -c</code></li>
+<li id="item-4">Identify 3 character devices and describe their purpose</li>
+<li id="item-5">Identify 3 block devices and describe their purpose</li>
+<li id="item-6">Create a named pipe using <code>mkfifo</code></li>
+<li id="item-7">Test the pipe by writing to it in one terminal and reading in another</li>
+</ol>
+<h2 id="assignment-4-permission-management">Assignment 4: Permission Management</h2>
+<ol>
+<li id="item-1">Create a file with permissions 644</li>
+<li id="item-2">Change it to 755 using octal notation</li>
+<li id="item-3">Change it to rwxr-x--- using symbolic notation</li>
+<li id="item-4">Create a directory and set permissions to 755</li>
+<li id="item-5">Set umask to 027 and create a new file</li>
+<li id="item-6">Verify the new file has permissions 640</li>
+<li id="item-7">Create a script and make it executable only for the owner</li>
+<li id="item-8">Test chmod with recursive option on a directory tree</li>
+</ol>
+<h2 id="assignment-5-special-permission-bits">Assignment 5: Special Permission Bits</h2>
+<ol>
+<li id="item-1">Find all files with setuid bit in /usr/bin: <code>find /usr/bin -perm -4000</code></li>
+<li id="item-2">Research why certain programs (like passwd) need setuid</li>
+<li id="item-3">Create a directory and set the setgid bit (2000)</li>
+<li id="item-4">Create files in that directory and verify they inherit the group</li>
+<li id="item-5">Set the sticky bit on a directory (1000)</li>
+<li id="item-6">Test that users can only delete their own files</li>
+</ol>
+<h2 id="assignment-6-working-with-dev-files">Assignment 6: Working with /dev Files</h2>
+<ol>
+<li id="item-1">Redirect a command's output to <code>/dev/null</code></li>
+<li id="item-2">Read 100 bytes from <code>/dev/urandom</code> and save to a file</li>
+<li id="item-3">Convert the random bytes to base64 encoding</li>
+<li id="item-4">Create a 10MB file of zeros using <code>/dev/zero</code> and <code>dd</code></li>
+<li id="item-5">Compare the size and contents with <code>ls -lh</code> and <code>file</code></li>
+<li id="item-6">Generate 5 random passwords using <code>/dev/urandom</code></li>
+<li id="item-7">Time how long it takes to read 1MB from <code>/dev/zero</code></li>
+</ol>
+<h2 id="assignment-7-file-format-analysis">Assignment 7: File Format Analysis</h2>
+<ol>
+<li id="item-1">Use <code>file</code> command to identify formats of 10 different files</li>
+<li id="item-2">Find all PNG files in a directory: <code>file * | grep PNG</code></li>
+<li id="item-3">View the first 16 bytes (hex) of a PDF, PNG, and JPEG file using <code>xxd</code></li>
+<li id="item-4">Identify the magic bytes for each format</li>
+<li id="item-5">Create a script that identifies file types by magic bytes</li>
+<li id="item-6">Test the script on various files</li>
+</ol>
+<h2 id="assignment-8-line-ending-conversion">Assignment 8: Line Ending Conversion</h2>
+<ol>
+<li id="item-1">Create a file with Unix line endings (\n)</li>
+<li id="item-2">Convert it to Windows line endings (\r\n) manually using <code>sed</code></li>
+<li id="item-3">Verify with <code>od -c filename</code> or <code>cat -A filename</code></li>
+<li id="item-4">Convert it back to Unix line endings</li>
+<li id="item-5">Compare file sizes before and after conversion</li>
+<li id="item-6">Use <code>dos2unix</code> and <code>unix2dos</code> if available</li>
+</ol>
+<h2 id="assignment-9-character-encoding">Assignment 9: Character Encoding</h2>
+<ol>
+<li id="item-1">Create a file with UTF-8 text including special characters (é, ñ, 中, etc.)</li>
+<li id="item-2">Check encoding with <code>file -i filename</code></li>
+<li id="item-3">Convert the file to ISO-8859-1 using <code>iconv</code></li>
+<li id="item-4">Compare the files and note any changes</li>
+<li id="item-5">Convert back to UTF-8</li>
+<li id="item-6">Handle encoding in a bash script with <code>LC_ALL</code></li>
+</ol>
+<h2 id="assignment-10-advanced-redirection">Assignment 10: Advanced Redirection</h2>
+<p>Create a script that:
+1. Logs all stdout messages to <code>output.log</code>
+2. Logs all stderr messages to <code>error.log</code>
+3. Also displays errors on the console (tee-like behavior for stderr)
+4. Uses file descriptors 3 and 4 for custom logging
+5. Includes timestamps in log entries
+6. Properly closes all file descriptors at exit</p>
+<p>Hint: Use exec, file descriptors, and process substitution</p>
+<h2 id="bonus-challenge-1-file-descriptor-leaks">Bonus Challenge 1: File Descriptor Leaks</h2>
+<ol>
+<li id="item-1">Write a script that opens many files without closing them</li>
+<li id="item-2">Monitor <code>/proc/self/fd/</code> to see the leak</li>
+<li id="item-3">Observe what happens when you run out of file descriptors</li>
+<li id="item-4">Fix the script to properly close descriptors</li>
+<li id="item-5">Use <code>ulimit -n</code> to check/set the FD limit</li>
+</ol>
+<h2 id="bonus-challenge-2-i-node-exhaustion">Bonus Challenge 2: I-node Exhaustion</h2>
+<ol>
+<li id="item-1">Check available i-nodes with <code>df -i</code></li>
+<li id="item-2">Create a script that creates many small empty files</li>
+<li id="item-3">Monitor i-node usage</li>
+<li id="item-4">Research what happens when i-nodes are exhausted</li>
+<li id="item-5">Clean up the test files</li>
+<li id="item-6">Document the difference between running out of i-nodes vs disk space</li>
+</ol>
+<h2 id="bonus-challenge-3-build-a-simple-logger">Bonus Challenge 3: Build a Simple Logger</h2>
+<p>Create a bash function or script that:
+1. Accepts messages via stdin or arguments
+2. Writes to a log file with timestamps
+3. Also displays on console (like <code>tee</code>)
+4. Rotates logs when they reach a certain size
+5. Keeps only the last N log files
+6. Uses file locking to handle concurrent writes</p>
+<p>Example usage:</p>
+<pre class="highlight"><code class="language-bash">echo &quot;Starting process&quot; | logger
+logger &quot;Process completed&quot;
+somecommand | logger
+</code></pre>
+
+<h2 id="bonus-challenge-4-permission-audit-tool">Bonus Challenge 4: Permission Audit Tool</h2>
+<p>Write a script that:
+1. Scans a directory tree for security issues
+2. Finds world-writable files
+3. Finds setuid/setgid binaries
+4. Finds files with no owner (orphaned)
+5. Generates a report with findings
+6. Suggests remediation for each issue</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<p>For each assignment:
+1. Document the commands you used
+2. Include the output or screenshots
+3. Explain what you observed
+4. Answer any questions asked in the assignment
+5. Note any errors or unexpected behavior</p>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>Use <code>man</code> pages: <code>man stat</code>, <code>man chmod</code>, <code>man ln</code></li>
+<li>Test with small examples first</li>
+<li>Use <code>echo $?</code> to check exit codes</li>
+<li>Be careful with permissions - don't lock yourself out!</li>
+<li>Always clean up test files and directories</li>
+<li>For advanced assignments, plan before coding</li>
+</ul></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

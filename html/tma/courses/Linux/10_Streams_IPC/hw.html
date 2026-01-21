@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Homework for Streams, IPC &amp; Unix Sockets">
+    <title>HW: Streams, IPC &amp; Unix Sockets -  | LSCode - Python &amp; Linux for Life Sciences</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <link rel="stylesheet" href="../../../static/css/tma-style.css?v=3">
+    <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
+    
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Apply Telegram theme
+        document.documentElement.style.setProperty('--tg-viewport-height', tg.viewportHeight + 'px');
+        document.documentElement.style.setProperty('--tg-viewport-stable-height', tg.viewportStableHeight + 'px');
+    </script>
+</head>
+<body class="tma-body">
+    <header class="tma-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" aria-label="Back">←</button>
+            <h1 class="header-title">HW: Streams, IPC &amp; Unix Sockets - </h1>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+        </div>
+    </header>
+
+    <main class="tma-main">
+        
+            <article class="lecture-container">
+                <div class="lecture-header">
+                    <span class="course-badge">Linux for Developers: Unix & Data Pipelines</span>
+                    <div class="module-info">
+                        <span class="module-number">Module 10 - Homework</span>
+                    </div>
+                </div>
+                <div class="lecture-content"><h1 id="streams-ipc-unix-sockets-homework">Streams, IPC &amp; Unix Sockets - Homework</h1>
+<h2 id="assignment-1-create-and-use-a-named-pipe">Assignment 1: Create and Use a Named Pipe</h2>
+<p>Create a FIFO and use it for async communication.
+- Steps:
+  1. Create named pipe: <code>mkfifo mypipe</code>
+  2. Start reader in background: <code>cat &lt; mypipe &amp;</code>
+  3. Write to pipe: <code>echo "Hello from pipe" &gt; mypipe</code>
+  4. Cleanup: <code>rm mypipe</code>
+- Verify: Reader receives message immediately
+- Question: What happens if you write before starting reader?</p>
+<h2 id="assignment-2-async-producer-consumer-pattern">Assignment 2: Async Producer-Consumer Pattern</h2>
+<p>Build a producer-consumer system with named pipes.
+- Architecture:
+  <code>Producer → FIFO → Consumer</code>
+- Producer script (<code>producer.sh</code>):
+  <code>bash
+  #!/bin/bash
+  for i in {1..10}; do
+    echo "Data $i"
+    sleep 0.5
+  done</code>
+- Consumer script (<code>consumer.sh</code>):
+  <code>bash
+  #!/bin/bash
+  while read line; do
+    echo "Processing: $line"
+  done</code>
+- Run: <code>./producer.sh &gt; datastream &amp; ./consumer.sh &lt; datastream</code>
+- Requirement: Consumer processes data as it arrives (streaming)</p>
+<h2 id="assignment-3-python-as-stdin-filter">Assignment 3: Python as stdin Filter</h2>
+<p>Create Python script that reads from stdin and transforms data.
+- Task: Convert CSV to JSON
+- Input: <code>data.csv</code> with: id,name,age
+- Python script (<code>csv_to_json.py</code>):
+  ```python
+  #!/usr/bin/env python3
+  import sys
+  import csv
+  import json</p>
+<p>reader = csv.DictReader(sys.stdin)
+  for row in reader:
+      print(json.dumps(row), flush=True)
+  <code>``
+- Usage:</code>cat data.csv | python3 csv_to_json.py | jq .<code>- Requirement: Must work with streaming data (use</code>flush=True`)</p>
+<h2 id="assignment-4-python-stdout-generator">Assignment 4: Python stdout Generator</h2>
+<p>Create Python script that generates data to stdout.
+- Task: Generate JSONL events
+- Script (<code>generate_events.py</code>):
+  ```python
+  #!/usr/bin/env python3
+  import sys
+  import json
+  import time
+  from datetime import datetime</p>
+<p>for i in range(100):
+      event = {
+          "id": i,
+          "timestamp": datetime.now().isoformat(),
+          "value": i * 10
+      }
+      print(json.dumps(event), flush=True)
+      time.sleep(0.1)  # Simulate real-time events
+  <code>``
+- Usage:</code>python3 generate_events.py | jq -c 'select(.value &gt; 500)'`
+- Requirement: Output must stream, not buffer</p>
+<h2 id="assignment-5-shell-python-shell-pipeline">Assignment 5: Shell → Python → Shell Pipeline</h2>
+<p>Build a multi-stage pipeline with Python in the middle.
+- Pipeline:
+  <code>bash
+  seq 1 100 | \
+    python3 -c "import sys; [print(int(x)**2) for x in sys.stdin]" | \
+    awk '{sum+=$1} END {print "Sum of squares:", sum}'</code>
+- Task: Modify to calculate:
+  1. Shell generates numbers 1-1000
+  2. Python filters even numbers and squares them
+  3. Shell calculates average
+- Hint: Python filter: <code>if int(x) % 2 == 0</code></p>
+<h2 id="assignment-6-named-pipe-with-error-handling">Assignment 6: Named Pipe with Error Handling</h2>
+<p>Create robust producer-consumer with cleanup.
+- Script template:
+  ```bash
+  #!/bin/bash
+  set -euo pipefail</p>
+<p>PIPE="datastream"
+  mkfifo "$PIPE"
+  trap 'rm -f "$PIPE"' EXIT</p>
+<p># Producer
+  (
+    for i in {1..100}; do
+      echo "Item $i"
+      sleep 0.1
+    done
+  ) &gt; "$PIPE" &amp;</p>
+<p># Consumer
+  while read line; do
+    echo "Processed: $line"
+  done &lt; "$PIPE"</p>
+<p>wait
+  ```
+- Requirement: Pipe cleaned up even if script interrupted</p>
+<h2 id="assignment-7-unix-domain-socket-communication">Assignment 7: Unix Domain Socket Communication</h2>
+<p>Use netcat with Unix sockets for IPC.
+- Terminal 1 (Server):
+  <code>bash
+  nc -lU /tmp/my.sock</code>
+- Terminal 2 (Client):
+  <code>bash
+  echo "Hello Server" | nc -U /tmp/my.sock</code>
+- Task: Build chat application:
+  - Server echoes messages back with timestamp
+  - Client sends commands
+  - Cleanup: <code>rm /tmp/my.sock</code></p>
+<h2 id="assignment-8-bidirectional-python-shell-communication">Assignment 8: Bidirectional Python-Shell Communication</h2>
+<p>Python script that reads from stdin and writes to stdout interactively.
+- Script (<code>interactive.py</code>):
+  ```python
+  #!/usr/bin/env python3
+  import sys</p>
+<p>print("Ready for input", flush=True)
+  for line in sys.stdin:
+      command = line.strip()
+      if command == "quit":
+          break
+      result = f"Processed: {command.upper()}"
+      print(result, flush=True)
+  <code>- Shell wrapper:</code>bash
+  #!/bin/bash
+  {
+    echo "hello"
+    echo "world"
+    echo "quit"
+  } | python3 interactive.py
+  ```
+- Requirement: Real-time interaction (no buffering)</p>
+<h2 id="assignment-9-parallel-processing-with-named-pipes">Assignment 9: Parallel Processing with Named Pipes</h2>
+<p>Distribute work across multiple workers using FIFOs.
+- Architecture:
+  <code>┌→ Worker 1 (FIFO1) ┐
+  Producer ├→ Worker 2 (FIFO2) ├→ Aggregator
+           └→ Worker 3 (FIFO3) ┘</code>
+- Implementation:
+  ```bash
+  #!/bin/bash
+  mkfifo pipe1 pipe2 pipe3
+  trap 'rm -f pipe1 pipe2 pipe3' EXIT</p>
+<p># Workers
+  cat &lt; pipe1 | grep "pattern" &gt; results1.txt &amp;
+  cat &lt; pipe2 | grep "pattern" &gt; results2.txt &amp;
+  cat &lt; pipe3 | grep "pattern" &gt; results3.txt &amp;</p>
+<p># Distribute (round-robin)
+  cat data.txt | awk '{print &gt; ("pipe" ((NR-1)%3 + 1))}'</p>
+<p>wait
+  cat results*.txt &gt; final.txt
+  ```</p>
+<h2 id="assignment-10-stream-buffering-control">Assignment 10: Stream Buffering Control</h2>
+<p>Demonstrate buffering issues and solutions.
+- Problem script (buffered):
+  ```python
+  #!/usr/bin/env python3
+  import sys
+  import time</p>
+<p>for i in range(10):
+      print(f"Item {i}")  # Buffered!
+      time.sleep(1)
+  <code>- Run: `python3 buffered.py | cat` (output delayed)
+- Solution 1: `flush=True`</code>python
+  print(f"Item {i}", flush=True)
+  <code>- Solution 2: `stdbuf`</code>bash
+  stdbuf -oL python3 buffered.py | cat
+  <code>- Solution 3: Python flag</code>bash
+  python3 -u buffered.py | cat
+  ```
+- Task: Compare all three methods, document behavior</p>
+<h2 id="bonus-challenges">Bonus Challenges</h2>
+<h3 id="bonus-1-multi-stage-pipeline-with-fifos">Bonus 1: Multi-Stage Pipeline with FIFOs</h3>
+<p>Create 3-stage pipeline using named pipes.
+- Stage 1: Data generation → FIFO1
+- Stage 2: Processing → FIFO2
+- Stage 3: Aggregation → Output
+- All stages run concurrently
+- Use <code>trap</code> for cleanup
+- Show progress with <code>pv</code></p>
+<h3 id="bonus-2-python-streaming-json-parser">Bonus 2: Python Streaming JSON Parser</h3>
+<p>Build a streaming JSON parser that processes large files line-by-line.
+- Input: Multi-GB JSONL file
+- Task: Extract specific fields without loading entire file
+- Use: <code>ijson</code> library for streaming JSON
+- Script:
+  ```python
+  #!/usr/bin/env python3
+  import sys
+  import json</p>
+<p>for line in sys.stdin:
+      try:
+          obj = json.loads(line)
+          if obj.get('status') == 'active':
+              print(json.dumps({
+                  'id': obj['id'],
+                  'value': obj['value']
+              }), flush=True)
+      except json.JSONDecodeError:
+          pass  # Skip malformed lines
+  ```
+- Requirement: Constant memory usage (no accumulation)</p>
+<h3 id="bonus-3-shell-python-hybrid-etl">Bonus 3: Shell-Python Hybrid ETL</h3>
+<p>Build complete ETL using both shell and Python.
+- Extract (Shell):
+  <code>bash
+  curl -s "https://api.example.com/data" | \</code>
+- Transform (Python):
+  <code>python
+  python3 -c "
+  import sys, json
+  for line in sys.stdin:
+      obj = json.loads(line)
+      # Complex transformation
+      obj['computed'] = obj['value'] * 2
+      print(json.dumps(obj))
+  " | \</code>
+- Load (Shell):
+  <code>bash
+  jq -r '[.id, .computed] | @csv' &gt; output.csv</code>
+- Add error handling, logging, and performance monitoring</p>
+<h3 id="bonus-4-process-substitution-advanced">Bonus 4: Process Substitution Advanced</h3>
+<p>Use process substitution for complex pipelines.
+- Example: Compare two data sources
+  <code>bash
+  diff &lt;(curl -s "https://api.example.com/v1/data" | jq -r '.id') \
+       &lt;(curl -s "https://api.example.com/v2/data" | jq -r '.id')</code>
+- Task: Build pipeline that:
+  - Fetches data from 3 APIs concurrently
+  - Compares results
+  - Reports differences
+- Use: <code>&lt;(command)</code> for parallel execution</p>
+<h3 id="bonus-5-custom-ipc-protocol">Bonus 5: Custom IPC Protocol</h3>
+<p>Design a simple message protocol for shell-Python communication.
+- Protocol format: <code>COMMAND|ARG1|ARG2|...</code>
+- Commands: <code>ADD</code>, <code>MULTIPLY</code>, <code>STATS</code>, <code>QUIT</code>
+- Python server:
+  ```python
+  import sys</p>
+<p>def handle_command(cmd, args):
+      if cmd == "ADD":
+          return sum(map(int, args))
+      elif cmd == "MULTIPLY":
+          result = 1
+          for arg in args:
+              result *= int(arg)
+          return result
+      # ... more commands</p>
+<p>for line in sys.stdin:
+      parts = line.strip().split('|')
+      cmd, args = parts[0], parts[1:]
+      if cmd == "QUIT":
+          break
+      result = handle_command(cmd, args)
+      print(result, flush=True)
+  <code>- Shell client:</code>bash
+  {
+    echo "ADD|5|10|15"
+    echo "MULTIPLY|3|4|5"
+    echo "QUIT"
+  } | python3 server.py
+  ```</p>
+<h2 id="submission-guidelines">Submission Guidelines</h2>
+<h3 id="required-components">Required Components</h3>
+<ol>
+<li id="item-1"><strong>All scripts</strong> with proper shebangs and error handling</li>
+<li id="item-2"><strong>Usage examples</strong> for each assignment</li>
+<li id="item-3"><strong>Output samples</strong> showing correct behavior</li>
+<li id="item-4"><strong>Documentation</strong>:
+   - How to run each script
+   - Expected input/output
+   - Error handling strategy</li>
+</ol>
+<h3 id="testing-checklist">Testing Checklist</h3>
+<ul>
+<li>[ ] Named pipes are created and cleaned up properly</li>
+<li>[ ] Python scripts use <code>flush=True</code> for streaming output</li>
+<li>[ ] Error handling with <code>trap</code> works correctly</li>
+<li>[ ] Scripts can handle interrupts (Ctrl+C) gracefully</li>
+<li>[ ] No buffer deadlocks in pipelines</li>
+<li>[ ] Process substitution works as expected</li>
+</ul>
+<h3 id="performance-notes">Performance Notes</h3>
+<p>Document for each assignment:
+- Memory usage (should be constant for streaming)
+- Latency (time from input to output)
+- Throughput (items processed per second)</p>
+<h3 id="common-pitfalls-to-avoid">Common Pitfalls to Avoid</h3>
+<ol>
+<li id="item-1"><strong>Buffering</strong>: Always use <code>flush=True</code> in Python</li>
+<li id="item-2"><strong>Cleanup</strong>: Use <code>trap</code> to remove FIFOs on exit</li>
+<li id="item-3"><strong>Deadlocks</strong>: Don't read and write to same FIFO in one process</li>
+<li id="item-4"><strong>Blocking</strong>: Open FIFOs for reading before writing</li>
+<li id="item-5"><strong>Encoding</strong>: Specify UTF-8 encoding if needed</li>
+</ol></div>
+                <div class="lecture-actions">
+                    <a href="index.html" class="action-btn">
+                        <span class="btn-icon">📖</span>
+                        <span class="btn-text">Lecture</span>
+                    </a>
+                    <a href="quiz.html" class="action-btn primary">
+                        <span class="btn-icon">📝</span>
+                        <span class="btn-text">Quiz</span>
+                    </a>
+                </div>
+            </article>
+            
+    </main>
+
+    <nav class="tma-nav" id="tma-nav">
+        <a href="../../../" class="nav-item ">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="../../../courses/" class="nav-item ">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">Courses</span>
+        </a>
+        <a href="../../../progress/" class="nav-item ">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Progress</span>
+        </a>
+    </nav>
+
+    <script src="../../../static/js/tma-main.js"></script>
+    <script src="../../../static/js/tma-storage.js"></script>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
