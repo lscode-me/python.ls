@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -120,7 +120,7 @@ cat symlink.txt  # Error: No such file or directory
 <p>Every process maintains a <strong>file descriptor table</strong> mapping integers to open files.</p>
 <h3 id="standard-file-descriptors">Standard File Descriptors</h3>
 <p>Every process starts with three standard file descriptors:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>FD</th>
@@ -149,7 +149,7 @@ cat symlink.txt  # Error: No such file or directory
 <td><code>/dev/stderr</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="viewing-open-file-descriptors">Viewing Open File Descriptors</h3>
 <pre class="highlight"><code class="language-bash"># View FDs for current shell
 ls -l /proc/self/fd/
@@ -539,7 +539,7 @@ ls -l /dev | cut -c1 | sort | uniq -c
 </code></pre>
 
 <h3 id="permission-bits">Permission Bits</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Permission</th>
@@ -574,7 +574,7 @@ ls -l /dev | cut -c1 | sort | uniq -c
 <td>No permission</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="octal-notation">Octal Notation</h3>
 <pre class="highlight"><code class="language-bash">chmod 755 script.sh
 # 7 = 4+2+1 = rwx (user)
@@ -702,7 +702,7 @@ file program
 </code></pre>
 
 <h3 id="line-endings">Line Endings</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>System</th>
@@ -727,7 +727,7 @@ file program
 <td><code>\r</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <pre class="highlight"><code class="language-bash"># Convert Windows to Unix
 dos2unix file.txt
 

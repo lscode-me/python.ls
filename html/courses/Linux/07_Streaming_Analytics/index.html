@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -345,7 +345,7 @@ duckdb -c &quot;SELECT * FROM 'filtered.parquet'&quot;
 </code></pre>
 
 <h3 id="duckdb-vs-traditional-tools">DuckDB vs Traditional Tools</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Operation</th>
@@ -375,7 +375,7 @@ duckdb -c &quot;SELECT * FROM 'filtered.parquet'&quot;
 <td><code>duckdb -c "SELECT *, LAG(value) OVER (ORDER BY date) FROM 'data.csv'"</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="when-to-use-duckdb">When to Use DuckDB</h3>
 <p><strong>Use DuckDB for:</strong><br />
 - ✅ Complex multi-way joins<br />
@@ -509,7 +509,7 @@ sort -k1 data.csv | \
 <li id="item-7"><strong>Profile queries</strong> to find bottlenecks</li>
 </ol>
 <h2 id="summary">Summary</h2>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Operation</th>
@@ -554,7 +554,7 @@ sort -k1 data.csv | \
 <td><code>duckdb -c "SELECT *, LAG(value) OVER (ORDER BY date) FROM 'data.csv'"</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="next-steps">Next Steps</h2>
 <ul>
 <li>Practice join operations on real datasets</li>

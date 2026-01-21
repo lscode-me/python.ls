@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="In Python, everything is an object — integers, strings, lists, functions, classes.">
+    <meta name="description" content="Before starting this module, you should:">
     <title>Python Core Foundations | LSCode - Python &amp; Linux for Life Sciences</title>
     
     <!-- Fonts -->
@@ -41,6 +41,25 @@
         <h1 id="python-core-foundations">Python Core Foundations</h1>
 <h2 id="objects-references-memory-types">Objects, References, Memory, Types</h2>
 <hr />
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<p>Before starting this module, you should:</p>
+<ul>
+<li>Have Python 3.8+ installed</li>
+<li>Be comfortable with basic Python syntax (variables, functions, loops)</li>
+<li>Understand the difference between values and variables conceptually</li>
+</ul>
+<hr />
+<h2 id="learning-objectives">🎯 Learning Objectives</h2>
+<p>After completing this module, you will be able to:</p>
+<ul>
+<li>Explain how Python represents data as objects</li>
+<li>Distinguish between object identity and equality</li>
+<li>Predict the behavior of mutable vs immutable types</li>
+<li>Use introspection tools (<code>id</code>, <code>type</code>, <code>sys.getrefcount</code>)</li>
+<li>Avoid common pitfalls with mutable default arguments</li>
+<li>Understand how Python manages memory through reference counting</li>
+</ul>
+<hr />
 <h2 id="1-python-objects-references">1. Python Objects &amp; References</h2>
 <p>In Python, everything is an object — integers, strings, lists, functions, classes.</p>
 <p>A variable does not store a value directly.<br />
@@ -54,134 +73,208 @@ Multiple names may refer to the same object.<br />
 Mutating an object affects all references to it.</p>
 <hr />
 <h2 id="2-built-in-data-types-core-set">2. Built-in Data Types (Core Set)</h2>
+<p>Python's built-in types are divided into two categories based on whether their value can be changed after creation. This distinction is fundamental to understanding Python's behavior and avoiding subtle bugs.</p>
 <h3 id="immutable-types">Immutable Types</h3>
+<p>Once created, these objects cannot be modified. Any "modification" creates a new object:</p>
 <ul>
-<li>int</li>
-<li>float</li>
-<li>bool</li>
-<li>str</li>
-<li>tuple</li>
-<li>frozenset</li>
-<li>bytes</li>
+<li><code>int</code> — integers of unlimited size</li>
+<li><code>float</code> — floating-point numbers</li>
+<li><code>bool</code> — <code>True</code> or <code>False</code></li>
+<li><code>str</code> — text strings</li>
+<li><code>tuple</code> — fixed-length sequences</li>
+<li><code>frozenset</code> — immutable set</li>
+<li><code>bytes</code> — immutable byte sequence</li>
 </ul>
 <h3 id="mutable-types">Mutable Types</h3>
+<p>These objects can be changed in place. All references to the object see the changes:</p>
 <ul>
-<li>list</li>
-<li>dict</li>
-<li>set</li>
-<li>bytearray</li>
-<li>user-defined objects</li>
+<li><code>list</code> — dynamic arrays</li>
+<li><code>dict</code> — key-value mappings</li>
+<li><code>set</code> — unique element collections</li>
+<li><code>bytearray</code> — mutable byte sequence</li>
+<li>user-defined objects (by default)</li>
 </ul>
+<p><strong>Why does this matter?</strong> If you pass a mutable object to a function and modify it, the caller sees the change. With immutable objects, you always get a new object instead.</p>
 <hr />
 <h2 id="3-reference-counting-rc">3. Reference Counting (RC)</h2>
-<p>CPython uses reference counting as the primary garbage collection method.</p>
-<p>Every object stores an internal counter: how many references point to it.</p>
+<p>CPython uses reference counting as the primary garbage collection method. Every object stores an internal counter tracking how many references point to it. When the counter reaches 0, the object is immediately deallocated from memory.</p>
 <pre class="highlight"><code class="language-python">import sys
 
 x = []
-print(sys.getrefcount(x))
+print(sys.getrefcount(x))  # Output: 2 (x + temporary reference from getrefcount)
 </code></pre>
 
-<p>When the counter becomes 0, the object is immediately deallocated.</p>
-<p>Reference counting is complemented by a cycle detector (GC).</p>
+<p><strong>Why 2 and not 1?</strong> The <code>getrefcount()</code> function itself creates a temporary reference to the object when you pass it as an argument.</p>
+<pre class="highlight"><code class="language-python">a = []
+b = a       # Now refcount is 2
+c = a       # Now refcount is 3
+del b       # Back to 2
+del c       # Back to 1
+del a       # Refcount becomes 0 → object deallocated
+</code></pre>
+
+<p>Reference counting is complemented by a <strong>cycle detector</strong> (GC) that handles circular references (e.g., when object A references B and B references A).</p>
 <hr />
 <h2 id="4-python-memory-manager">4. Python Memory Manager</h2>
-<p>Python memory handling includes:</p>
+<p>Python manages memory automatically, freeing you from manual allocation and deallocation. The memory system has three layers:</p>
 <ol>
-<li id="item-1">Reference counter  </li>
-<li id="item-2">Garbage Collector for cyclic references  </li>
-<li id="item-3">PyObject allocator (arenas, pools, blocks)</li>
+<li id="item-1"><strong>Reference Counter</strong> — tracks object usage, deallocates when count reaches 0</li>
+<li id="item-2"><strong>Garbage Collector</strong> — handles cyclic references that refcount can't detect</li>
+<li id="item-3"><strong>PyObject Allocator</strong> — organizes memory into arenas, pools, and blocks for efficiency</li>
 </ol>
-<p>Small objects (ints, strings, tuples) are allocated efficiently via internal caches.</p>
+<p><strong>Small Object Optimization:</strong></p>
+<p>Small integers (-5 to 256) and short strings are cached and reused. This is why:</p>
+<pre class="highlight"><code class="language-python">a = 256
+b = 256
+print(a is b)  # Output: True — same cached object
+
+a = 257
+b = 257
+print(a is b)  # Output: False — different objects (not cached)
+</code></pre>
+
+<p>This optimization improves performance for common values but can lead to surprising <code>is</code> behavior.</p>
 <hr />
 <h2 id="5-mutable-vs-immutable-in-practice">5. Mutable vs Immutable in Practice</h2>
-<h3 id="immutable-example">Immutable example</h3>
+<p>Understanding mutability is critical for predicting Python's behavior and avoiding subtle bugs.</p>
+<h3 id="immutable-example-strings">Immutable Example (Strings)</h3>
+<p>When you "modify" an immutable object, Python creates a new object:</p>
 <pre class="highlight"><code class="language-python">a = &quot;hello&quot;
-b = a
-a += &quot;!&quot;   # creates a new string object
+b = a          # b points to the same string as a
+print(id(a) == id(b))  # Output: True
+
+a += &quot;!&quot;       # Creates NEW string &quot;hello!&quot;, a now points to it
+print(a)       # Output: hello!
+print(b)       # Output: hello — still points to old object
+print(id(a) == id(b))  # Output: False — different objects now
 </code></pre>
 
-<h3 id="mutable-example">Mutable example</h3>
+<h3 id="mutable-example-lists">Mutable Example (Lists)</h3>
+<p>Mutating a list affects all references to it:</p>
 <pre class="highlight"><code class="language-python">x = [1, 2]
-y = x
-x.append(3)
+y = x          # y points to the SAME list as x
+print(id(x) == id(y))  # Output: True
+
+x.append(3)    # Modifies the list in place
+print(x)       # Output: [1, 2, 3]
+print(y)       # Output: [1, 2, 3] — y sees the change!
 </code></pre>
 
-<p>y is modified too, because both names point to the same list.</p>
+<p><strong>Key insight:</strong> The difference isn't about variables — it's about whether the <em>object itself</em> can be modified.</p>
 <hr />
 <h2 id="6-identity-vs-equality-is-vs">6. Identity vs Equality (<code>is</code> vs <code>==</code>)</h2>
-<p><code>==</code> checks value equality.<br />
-<code>is</code> checks identity (same object in memory).</p>
+<p>Python has two ways to compare objects, and confusing them is a common source of bugs:</p>
+<ul>
+<li><strong><code>==</code></strong> checks <strong>value equality</strong> — do these objects have the same content?</li>
+<li><strong><code>is</code></strong> checks <strong>identity</strong> — are these the exact same object in memory?</li>
+</ul>
+<pre class="highlight"><code class="language-python">a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a == b)   # Output: True  — same content
+print(a is b)   # Output: False — different objects
+print(a is c)   # Output: True  — same object
+</code></pre>
+
+<p><strong>Rule of thumb:</strong> Use <code>==</code> for comparing values. Only use <code>is</code> for comparing to <code>None</code> or checking singleton objects:</p>
+<pre class="highlight"><code class="language-python">if x is None:      # ✅ Correct
+    pass
+
+if x == None:      # ❌ Works but not Pythonic
+    pass
+</code></pre>
+
 <hr />
 <h2 id="7-identity-examples-a-is-b">7. Identity Examples (<code>a is b</code>)</h2>
+<p>Python's caching and interning optimizations can make <code>is</code> behave unexpectedly. These examples show why you should never rely on <code>is</code> for value comparison.</p>
 <h3 id="integers">Integers</h3>
+<p>Small integers (-5 to 256) are cached and reused:</p>
 <pre class="highlight"><code class="language-python">a, b = 1, 1
-a is b          # True (small int cache)
+print(a is b)   # Output: True (small int cache)
 
 a, b = 256, 256
-a is b          # True
+print(a is b)   # Output: True (still in cache range)
 
 a, b = 257, 257
-a is b          # False (not guaranteed to be cached)
+print(a is b)   # Output: False (outside cache range)
 </code></pre>
 
 <h3 id="strings">Strings</h3>
+<p>Simple strings are "interned" (shared) for efficiency:</p>
 <pre class="highlight"><code class="language-python">a, b = &quot;hello&quot;, &quot;hello&quot;
-a is b          # True (interned)
+print(a is b)   # Output: True (interned at compile time)
 
 a = &quot;hello world!!1&quot;
 b = &quot;hello world!!1&quot;
-a is b          # May be True or False
+print(a is b)   # Output: May be True or False (implementation-dependent)
 </code></pre>
 
+<p><strong>Why inconsistent?</strong> Interning depends on string content, how it was created, and Python version. Never rely on this behavior!</p>
 <h3 id="lists">Lists</h3>
+<p>Mutable objects are never cached — each <code>[]</code> creates a new list:</p>
 <pre class="highlight"><code class="language-python">a, b = [], []
-a is b          # False
+print(a is b)   # Output: False — two different empty lists
 
 c = a
-a is c          # True
+print(a is c)   # Output: True — same list object
 </code></pre>
 
 <hr />
 <h2 id="8-mutable-default-arguments">8. Mutable Default Arguments</h2>
-<pre class="highlight"><code class="language-python">def add_item(item, lst=[]):
+<p>This is one of Python's most famous "gotchas". Default argument values are evaluated <strong>once</strong> when the function is defined, not each time it's called.</p>
+<h3 id="the-problem">The Problem</h3>
+<pre class="highlight"><code class="language-python">def add_item(item, lst=[]):   # ❌ Dangerous!
     lst.append(item)
     return lst
 </code></pre>
 
-<p>Usage:</p>
-<pre class="highlight"><code class="language-python">add_item(1)   # [1]
-add_item(2)   # [1, 2]
-add_item(3)   # [1, 2, 3]
+<pre class="highlight"><code class="language-python">print(add_item(1))   # Output: [1]       — looks fine
+print(add_item(2))   # Output: [1, 2]    — wait, where did 1 come from?
+print(add_item(3))   # Output: [1, 2, 3] — the list persists!
 </code></pre>
 
-<p>Correct version:</p>
-<pre class="highlight"><code class="language-python">def add_item(item, lst=None):
+<p><strong>Why?</strong> The empty list <code>[]</code> is created once when Python parses the function definition. Every call uses and modifies that same list.</p>
+<h3 id="the-solution">The Solution</h3>
+<p>Use <code>None</code> as a sentinel and create the list inside the function:</p>
+<pre class="highlight"><code class="language-python">def add_item(item, lst=None):  # ✅ Safe
     if lst is None:
-        lst = []
+        lst = []               # Fresh list each call
     lst.append(item)
     return lst
 </code></pre>
 
+<pre class="highlight"><code class="language-python">print(add_item(1))   # Output: [1]
+print(add_item(2))   # Output: [2] — fresh list each time
+print(add_item(3))   # Output: [3]
+</code></pre>
+
+<p><strong>Rule:</strong> Never use mutable objects (<code>list</code>, <code>dict</code>, <code>set</code>) as default arguments.</p>
 <hr />
 <h2 id="9-constructors-type-converters">9. Constructors &amp; Type Converters</h2>
-<h3 id="numeric">Numeric</h3>
-<pre class="highlight"><code class="language-python">int(&quot;5&quot;)
-float(&quot;3.14&quot;)
-bool(0)
+<p>Every built-in type can be called as a function to create new objects or convert between types. These are called <strong>constructors</strong> or <strong>type converters</strong>.</p>
+<h3 id="numeric-conversions">Numeric Conversions</h3>
+<pre class="highlight"><code class="language-python">print(int(&quot;5&quot;))       # Output: 5 — string to int
+print(int(3.9))       # Output: 3 — float to int (truncates, doesn't round)
+print(float(&quot;3.14&quot;))  # Output: 3.14
+print(bool(0))        # Output: False — 0 is &quot;falsy&quot;
+print(bool(42))       # Output: True — non-zero is &quot;truthy&quot;
 </code></pre>
 
-<h3 id="containers">Containers</h3>
-<pre class="highlight"><code class="language-python">list(&quot;abc&quot;)       # ['a','b','c']
-tuple([1, 2])     # (1, 2)
-set([1, 1, 2])    # {1, 2}
+<h3 id="container-conversions">Container Conversions</h3>
+<pre class="highlight"><code class="language-python">print(list(&quot;abc&quot;))       # Output: ['a', 'b', 'c'] — string to list of chars
+print(tuple([1, 2, 3]))  # Output: (1, 2, 3) — list to tuple
+print(set([1, 1, 2, 2])) # Output: {1, 2} — duplicates removed
 </code></pre>
 
-<h3 id="strings_1">Strings</h3>
-<pre class="highlight"><code class="language-python">str(123)
-repr([1, 2, 3])
+<h3 id="string-representations">String Representations</h3>
+<pre class="highlight"><code class="language-python">print(str(123))        # Output: '123' — human-readable
+print(repr([1, 2, 3])) # Output: '[1, 2, 3]' — debug representation
 </code></pre>
 
+<p><strong>Difference between <code>str()</code> and <code>repr()</code>:</strong>
+- <code>str()</code> — meant for end users, may omit details
+- <code>repr()</code> — meant for developers, shows how to recreate the object</p>
 <hr />
 <h1 id="working-with-python-objects-introspection-identity-references-and-memory">Working with Python Objects: Introspection, Identity, References, and Memory</h1>
 <p>This document summarizes the essential Python functions and tools used to inspect objects, understand references, measure memory usage, and analyze the Python memory model.</p>
@@ -255,7 +348,7 @@ Most immutable objects are <strong>not</strong> tracked.</p>
 <p>The actual attribute storage (may not exist for all objects).</p>
 <h3 id="hashobj"><strong><code>hash(obj)</code></strong></h3>
 <p>Returns the hash value of the object (if hashable).</p>
-<h3 id="string-representations"><strong>String Representations</strong></h3>
+<h3 id="string-representations_1"><strong>String Representations</strong></h3>
 <ul>
 <li><code>repr(obj)</code> — detailed/debug representation  </li>
 <li><code>str(obj)</code> — user-friendly string form</li>
@@ -385,6 +478,50 @@ a == c      # True
 <h2 id="conclusion">✔️ Conclusion</h2>
 <p>These functions form the core toolkit for exploring how Python represents objects, manages memory, tracks references, and exposes object internals.<br />
 They are essential for understanding Python’s memory model and teaching how variables, references, and objects actually work under the hood.</p>
+<hr />
+<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<ul>
+<li>
+<p><strong>Everything is an object</strong>: Integers, strings, functions, classes — all are objects with identity, type, and value.</p>
+</li>
+<li>
+<p><strong>Variables are references</strong>: Assignment binds a name to an object; it never copies the object itself.</p>
+</li>
+<li>
+<p><strong>Mutable vs Immutable</strong>: Mutable objects can be changed in place (affecting all references). Immutable objects create new objects on "modification".</p>
+</li>
+<li>
+<p><strong><code>is</code> vs <code>==</code></strong>: Use <code>==</code> for value comparison, <code>is</code> only for <code>None</code> or singleton checks. Small int/string caching makes <code>is</code> unreliable for values.</p>
+</li>
+<li>
+<p><strong>Mutable default arguments</strong>: Never use <code>list</code>, <code>dict</code>, or <code>set</code> as default arguments. Use <code>None</code> and create inside the function.</p>
+</li>
+<li>
+<p><strong>Reference counting</strong>: Objects are deallocated when refcount reaches 0. Cyclic references are handled by the garbage collector.</p>
+</li>
+</ul>
+<hr />
+<h2 id="next-steps">🚀 Next Steps</h2>
+<p><strong>Related Modules:</strong></p>
+<ul>
+<li><a href="../02_Functions/">Functions</a> — how functions are objects and closures work</li>
+<li><a href="../08_OOP/">OOP</a> — creating custom objects with classes</li>
+</ul>
+<p><strong>Practice Ideas:</strong></p>
+<ol>
+<li id="item-1">Use <code>id()</code> to track object identity through various operations</li>
+<li id="item-2">Create a function with a mutable default argument and observe the bug</li>
+<li id="item-3">Explore <code>sys.getrefcount()</code> with different reference scenarios</li>
+<li id="item-4">Compare <code>is</code> vs <code>==</code> with integers around the 256 boundary</li>
+<li id="item-5">Use <code>gc.get_referrers()</code> to find all references to an object</li>
+</ol>
+<p><strong>Going Deeper:</strong></p>
+<ul>
+<li>Study CPython's small integer cache implementation</li>
+<li>Learn about string interning with <code>sys.intern()</code></li>
+<li>Explore weak references with the <code>weakref</code> module</li>
+<li>Understand <code>__slots__</code> for memory-efficient objects</li>
+</ul>
     </main>
 
     <nav class="tma-nav" id="tma-nav">

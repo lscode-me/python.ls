@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -72,7 +72,7 @@
 <li>Examples: <code>.png</code>, <code>.pdf</code>, <code>.exe</code>, <code>.zip</code>, <code>.bam</code>, <code>.bcf</code></li>
 </ul>
 <p><strong>Bioinformatics Examples:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -117,7 +117,7 @@
 <td>Compressed alignment</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="12-how-to-determine-type">1.2 How to Determine Type</h3>
 <pre class="highlight"><code class="language-bash"># Text file
 file README.md
@@ -188,7 +188,7 @@ BAM:  42 41 4D 01              (BAM.)
 </code></pre>
 
 <h3 id="22-popular-signatures">2.2 Popular Signatures</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -319,7 +319,7 @@ BAM:  42 41 4D 01              (BAM.)
 <td>0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="23-checking-magic-numbers">2.3 Checking Magic Numbers</h3>
 <pre class="highlight"><code class="language-bash"># First 8 bytes of PNG
 xxd -l 8 image.png
@@ -486,7 +486,7 @@ video/mp4
 </code></pre>
 
 <h3 id="42-main-types">4.2 Main Types</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Type</th>
@@ -526,9 +526,9 @@ video/mp4
 <td>multipart/form-data</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="43-common-mime-types">4.3 Common MIME Types</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Extension</th>
@@ -643,7 +643,7 @@ video/mp4
 <td>Binary</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="44-mime-in-http">4.4 MIME in HTTP</h3>
 <pre class="highlight"><code class="language-http">HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
@@ -780,21 +780,25 @@ print(detect_genomic_format('reads.fastq.gz'))   # FASTQ (gzipped)
 </code></pre>
 
 <h3 id="52-example-png-structure">5.2 Example: PNG Structure</h3>
-<pre class="highlight"><code>PNG Signature: 89 50 4E 47 0D 0A 1A 0A (8 bytes)
+<pre class="highlight"><code>PNG Signature:
+89 50 4E 47 0D 0A 1A 0A (8 bytes)
 
-Chunks:
-┌──────────────────────────────────┐
-│ Length (4 bytes, big-endian)     │
-├──────────────────────────────────┤
-│ Type (4 bytes, ASCII)            │
-├──────────────────────────────────┤
-│ Data (Length bytes)              │
-├──────────────────────────────────┤
-│ CRC (4 bytes)                    │
-└──────────────────────────────────┘
+Chunk structure:
+┌────────────────────┐
+│ Length             │
+│ (4 bytes, BE)      │
+├────────────────────┤
+│ Type               │
+│ (4 bytes, ASCII)   │
+├────────────────────┤
+│ Data               │
+│ (Length bytes)     │
+├────────────────────┤
+│ CRC (4 bytes)      │
+└────────────────────┘
 
-Required chunks: IHDR, IDAT, IEND
-Optional: tEXt, gAMA, sRGB, etc.
+Required: IHDR, IDAT, IEND
+Optional: tEXt, gAMA, sRGB
 </code></pre>
 
 <pre class="highlight"><code class="language-bash"># Analyze PNG
@@ -812,24 +816,30 @@ xxd image.png | head -10
 <h3 id="53-example-bam-structure">5.3 Example: BAM Structure</h3>
 <pre class="highlight"><code>BAM File Structure:
 
-┌─────────────────────────────────────────┐
-│ Magic: BAM\x01 (4 bytes)                │
-├─────────────────────────────────────────┤
-│ Header text length (4 bytes, LE)        │
-├─────────────────────────────────────────┤
-│ SAM header text (variable)              │
-├─────────────────────────────────────────┤
-│ Number of references (4 bytes, LE)      │
-├─────────────────────────────────────────┤
-│ Reference sequence info (variable)      │
-├─────────────────────────────────────────┤
-│ Alignments (variable, BGZF compressed)  │
-└─────────────────────────────────────────┘
+┌───────────────────┐
+│ Magic: BAM\x01    │
+│ (4 bytes)         │
+├───────────────────┤
+│ Header length     │
+│ (4 bytes, LE)     │
+├───────────────────┤
+│ SAM header text   │
+│ (variable)        │
+├───────────────────┤
+│ # of references   │
+│ (4 bytes, LE)     │
+├───────────────────┤
+│ Reference info    │
+│ (variable)        │
+├───────────────────┤
+│ Alignments        │
+│ (BGZF compressed) │
+└───────────────────┘
 
 Each alignment:
 - block_size (4 bytes)
-- refID, pos, bin_mq_nl, flag_nc
-- CIGAR, sequence, quality, tags
+- refID, pos, flags
+- CIGAR, seq, qual, tags
 </code></pre>
 
 <pre class="highlight"><code class="language-bash"># View BAM header
@@ -987,7 +997,7 @@ tar -xzf project_data.tar.gz aligned.bam
 </code></pre>
 
 <h3 id="63-gzip-vs-bzip2-vs-xz">6.3 gzip vs bzip2 vs xz</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -1016,7 +1026,7 @@ tar -xzf project_data.tar.gz aligned.bam
 <td>Slowest</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <pre class="highlight"><code class="language-bash"># Size comparison
 ls -lh file.txt          # 1000000 bytes
 gzip -k file.txt

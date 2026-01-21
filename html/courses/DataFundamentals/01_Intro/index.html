@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -87,11 +87,24 @@
 
 <p>Now it's clear — this is genomic sequencing data.</p>
 <h3 id="12-data-lifecycle">1.2 Data Lifecycle</h3>
-<pre class="highlight"><code>┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  Creation   │───►│   Storage   │───►│ Processing  │───►│    Usage    │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-       ▲                                                        │
-       └────────────────────────────────────────────────────────┘
+<pre class="highlight"><code>┌─────────────┐
+│  Creation   │◄─┐
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│   Storage   │  │
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│ Processing  │  │
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│    Usage    │──┘
+└─────────────┘
 </code></pre>
 
 <p>At each stage, it's important to understand:</p>
@@ -113,7 +126,7 @@ Usage:        Variant calling → VCF files
 <h3 id="21-from-bits-to-applications">2.1 From Bits to Applications</h3>
 <p>Computers work only with binary data — zeros and ones. But we see text, images, hear music. How does this work?</p>
 <pre class="highlight"><code>┌────────────────────────────────────────────────────────────────┐
-│                     Abstraction Levels                          │
+│                     Abstraction Levels                         │
 ├────────────────────────────────────────────────────────────────┤
 │  7. Application     │  Text editor, browser, player, IGV       │
 ├─────────────────────┼──────────────────────────────────────────┤
@@ -157,7 +170,7 @@ Bit level:            0, 1, 0, 0, 1, 0, 0, 1
 
 <h3 id="22-why-this-matters">2.2 Why This Matters</h3>
 <p>When something doesn't work, the problem can be at any level:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Level</th>
@@ -187,7 +200,7 @@ Bit level:            0, 1, 0, 0, 1, 0, 0, 1
 <td>Failed sequencing run</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Understanding levels helps localize and fix problems.</p>
 <hr />
 <h2 id="3-data-classification">3. Data Classification</h2>
@@ -285,7 +298,7 @@ article, comment, or any other free-form text.
 <li>Requires NLP/ML for information extraction</li>
 </ul>
 <h3 id="32-data-type-comparison">3.2 Data Type Comparison</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Characteristic</th>
@@ -326,9 +339,9 @@ article, comment, or any other free-form text.
 <td>Complex</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Life Science Context:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Data Type</th>
@@ -353,7 +366,7 @@ article, comment, or any other free-form text.
 <td>NLP tools, image analysis, OCR</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="4-data-formats">4. Data Formats</h2>
 <h3 id="41-why-formats-are-needed">4.1 Why Formats Are Needed</h3>
@@ -405,7 +418,7 @@ Result: Quality scores misinterpreted if format not specified!
 <li>Examples: Protocol Buffers, MessagePack, JPEG, MP3, BAM, BCF</li>
 </ul>
 <p><strong>Bioinformatics Formats:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format Type</th>
@@ -435,9 +448,9 @@ Result: Quality scores misinterpreted if format not specified!
 <td>HDF5, Loom</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="43-format-selection">4.3 Format Selection</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Scenario</th>
@@ -477,9 +490,9 @@ Result: Quality scores misinterpreted if format not specified!
 <td>Browser standard</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Life Science Scenarios:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Scenario</th>
@@ -519,7 +532,7 @@ Result: Quality scores misinterpreted if format not specified!
 <td>Flexible, self-describing</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="5-text-and-binary-files">5. Text and Binary Files</h2>
 <h3 id="51-what-is-a-text-file">5.1 What Is a Text File</h3>
@@ -618,7 +631,7 @@ file variants.vcf
 <h2 id="6-magic-numbers">6. Magic Numbers</h2>
 <h3 id="61-what-are-magic-numbers">6.1 What Are Magic Numbers</h3>
 <p><strong>Magic numbers</strong> are special bytes at the beginning of a file that identify its format.</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -668,7 +681,7 @@ file variants.vcf
 <td><code>BAM</code> + version</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="62-why-magic-numbers-are-needed">6.2 Why Magic Numbers Are Needed</h3>
 <ol>
 <li id="item-1">
@@ -779,7 +792,7 @@ Got:       IÃ±igo (wrong encoding)
 <hr />
 <h2 id="8-course-format-overview">8. Course Format Overview</h2>
 <h3 id="81-structured-data-formats">8.1 Structured Data Formats</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -814,9 +827,9 @@ Got:       IÃ±igo (wrong encoding)
 <td>Clear, typed</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="82-document-formats">8.2 Document Formats</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -841,9 +854,9 @@ Got:       IÃ±igo (wrong encoding)
 <td>Powerful, Python world</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="83-service-formats">8.3 Service Formats</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -868,7 +881,7 @@ Got:       IÃ±igo (wrong encoding)
 <td>Simple, security</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="9-data-working-tools">9. Data Working Tools</h2>
 <h3 id="91-command-line">9.1 Command Line</h3>
@@ -930,7 +943,7 @@ awk '$3==&quot;gene&quot;' annotations.gff     # Filter by feature type
 </code></pre>
 
 <h3 id="93-editors">9.3 Editors</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Editor</th>
@@ -955,7 +968,7 @@ awk '$3==&quot;gene&quot;' annotations.gff     # Filter by feature type
 <td>Viewing genomic data (BAM, VCF, BED)</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="10-common-pitfalls">10. Common Pitfalls</h2>
 <h3 id="101-ignoring-encodings">10.1 Ignoring Encodings</h3>

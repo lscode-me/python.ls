@@ -48,10 +48,14 @@ FASTQ, BAM, CRAM files use **lossless** compression to preserve sequence data in
 ### 1.2 Size/Speed Tradeoff
 
 ```
-Compression Speed                    Compression Ratio
-←─────────────────────────────────────────────────→
-lz4   gzip   bzip2   xz/lzma
-fast  ←──────────────────→  slow
+Speed vs Ratio:
+
+        Fast │ lz4
+             │ gzip
+             │ bzip2
+        Slow │ xz/lzma
+             ↓
+        Better compression
 ```
 
 **🧬 Common in Bioinformatics:**

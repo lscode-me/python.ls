@@ -547,21 +547,25 @@ Most binary formats have:
 ### 5.2 Example: PNG Structure
 
 ```
-PNG Signature: 89 50 4E 47 0D 0A 1A 0A (8 bytes)
+PNG Signature:
+89 50 4E 47 0D 0A 1A 0A (8 bytes)
 
-Chunks:
-┌──────────────────────────────────┐
-│ Length (4 bytes, big-endian)     │
-├──────────────────────────────────┤
-│ Type (4 bytes, ASCII)            │
-├──────────────────────────────────┤
-│ Data (Length bytes)              │
-├──────────────────────────────────┤
-│ CRC (4 bytes)                    │
-└──────────────────────────────────┘
+Chunk structure:
+┌────────────────────┐
+│ Length             │
+│ (4 bytes, BE)      │
+├────────────────────┤
+│ Type               │
+│ (4 bytes, ASCII)   │
+├────────────────────┤
+│ Data               │
+│ (Length bytes)     │
+├────────────────────┤
+│ CRC (4 bytes)      │
+└────────────────────┘
 
-Required chunks: IHDR, IDAT, IEND
-Optional: tEXt, gAMA, sRGB, etc.
+Required: IHDR, IDAT, IEND
+Optional: tEXt, gAMA, sRGB
 ```
 
 ```bash
@@ -583,24 +587,30 @@ xxd image.png | head -10
 ```
 BAM File Structure:
 
-┌─────────────────────────────────────────┐
-│ Magic: BAM\x01 (4 bytes)                │
-├─────────────────────────────────────────┤
-│ Header text length (4 bytes, LE)        │
-├─────────────────────────────────────────┤
-│ SAM header text (variable)              │
-├─────────────────────────────────────────┤
-│ Number of references (4 bytes, LE)      │
-├─────────────────────────────────────────┤
-│ Reference sequence info (variable)      │
-├─────────────────────────────────────────┤
-│ Alignments (variable, BGZF compressed)  │
-└─────────────────────────────────────────┘
+┌───────────────────┐
+│ Magic: BAM\x01    │
+│ (4 bytes)         │
+├───────────────────┤
+│ Header length     │
+│ (4 bytes, LE)     │
+├───────────────────┤
+│ SAM header text   │
+│ (variable)        │
+├───────────────────┤
+│ # of references   │
+│ (4 bytes, LE)     │
+├───────────────────┤
+│ Reference info    │
+│ (variable)        │
+├───────────────────┤
+│ Alignments        │
+│ (BGZF compressed) │
+└───────────────────┘
 
 Each alignment:
 - block_size (4 bytes)
-- refID, pos, bin_mq_nl, flag_nc
-- CIGAR, sequence, quality, tags
+- refID, pos, flags
+- CIGAR, seq, qual, tags
 ```
 
 ```bash

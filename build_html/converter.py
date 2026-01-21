@@ -86,7 +86,18 @@ class MarkdownConverter:
         html = self.md.convert(content)
         # Add anchors to ordered list items
         html = self.add_list_anchors(html)
+        # Wrap tables in responsive container
+        html = self.wrap_tables(html)
         return html
+    
+    def wrap_tables(self, html: str) -> str:
+        """Wrap tables in a div for responsive horizontal scrolling."""
+        return re.sub(
+            r'(<table[^>]*>.*?</table>)',
+            r'<div class="table-wrapper">\1</div>',
+            html,
+            flags=re.DOTALL
+        )
     
     def add_list_anchors(self, html: str) -> str:
         """Add id anchors to ordered list items for linking."""

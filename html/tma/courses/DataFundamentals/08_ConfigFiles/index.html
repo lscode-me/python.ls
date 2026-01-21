@@ -63,14 +63,26 @@
 <h2 id="1-overview-of-configuration-formats">1. Overview of Configuration Formats</h2>
 <h3 id="11-evolution-of-formats">1.1 Evolution of Formats</h3>
 <pre class="highlight"><code>Universal formats:
-1980s     1990s      2000s      2010s      2020s
-INI  →  XML  →  JSON  →  YAML  →  TOML
-                              ↓
-                           .env (parallel)
 
-Linux/UNIX formats (since 1970s, still relevant):
-passwd, group → sshd_config, sudoers → systemd units → nginx/apache
-    (DSV)         (keyword-value)        (INI)         (block-based)
+1980s │ INI
+      ↓
+1990s │ XML
+      ↓
+2000s │ JSON
+      ↓
+2010s │ YAML, .env
+      ↓
+2020s │ TOML
+
+Linux/UNIX (since 1970s):
+
+passwd, group (DSV)
+      ↓
+sshd_config (keyword-value)
+      ↓
+systemd units (INI-like)
+      ↓
+nginx/apache (block-based)
 </code></pre>
 
 <h3 id="12-format-comparison">1.2 Format Comparison</h3>

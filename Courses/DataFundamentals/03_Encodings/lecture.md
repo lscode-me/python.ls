@@ -123,18 +123,34 @@ Patient names, drug names, and clinical notes with non-ASCII characters can be c
 ### 2.2 ASCII Table
 
 ```
-Dec  Hex  Char     Dec  Hex  Char     Dec  Hex  Char
-───────────────    ───────────────    ───────────────
-32   20   SPACE    48   30   0        65   41   A
-33   21   !        49   31   1        66   42   B
-34   22   "        50   32   2        ...
-35   23   #        ...               90   5A   Z
-36   24   $        57   39   9        
-37   25   %                           97   61   a
-38   26   &        58   3A   :        98   62   b
-39   27   '        59   3B   ;        ...
-...                ...               122  7A   z
-47   2F   /        64   40   @
+Printable characters:
+
+Dec  Hex  Char
+─────────────────
+32   20   SPACE
+33   21   !
+34   22   "
+...
+47   2F   /
+
+48   30   0
+49   31   1
+...
+57   39   9
+
+58   3A   :
+...
+64   40   @
+
+65   41   A
+66   42   B
+...
+90   5A   Z
+
+97   61   a
+98   62   b
+...
+122  7A   z
 ```
 
 **Key Values:**
@@ -259,18 +275,18 @@ Therefore: ПРИВЕТ → PRIVET when 8th bit is lost
 Most common encoding for Russian in Windows:
 
 ```
-Character  Code (hex)  Code (dec)
-──────────────────────────────────
-А          0xC0        192
-Б          0xC1        193
-В          0xC2        194
+Char  Hex   Dec
+────────────────
+А     0xC0  192
+Б     0xC1  193
+В     0xC2  194
 ...
-Я          0xDF        223
+Я     0xDF  223
 
-а          0xE0        224
-б          0xE1        225
+а     0xE0  224
+б     0xE1  225
 ...
-я          0xFF        255
+я     0xFF  255
 ```
 
 ### 3.5 Compatibility Problem

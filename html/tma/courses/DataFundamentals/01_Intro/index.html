@@ -92,11 +92,24 @@
 
 <p>Now it's clear — this is genomic sequencing data.</p>
 <h3 id="12-data-lifecycle">1.2 Data Lifecycle</h3>
-<pre class="highlight"><code>┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  Creation   │───►│   Storage   │───►│ Processing  │───►│    Usage    │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-       ▲                                                        │
-       └────────────────────────────────────────────────────────┘
+<pre class="highlight"><code>┌─────────────┐
+│  Creation   │◄─┐
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│   Storage   │  │
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│ Processing  │  │
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│    Usage    │──┘
+└─────────────┘
 </code></pre>
 
 <p>At each stage, it's important to understand:</p>
@@ -118,7 +131,7 @@ Usage:        Variant calling → VCF files
 <h3 id="21-from-bits-to-applications">2.1 From Bits to Applications</h3>
 <p>Computers work only with binary data — zeros and ones. But we see text, images, hear music. How does this work?</p>
 <pre class="highlight"><code>┌────────────────────────────────────────────────────────────────┐
-│                     Abstraction Levels                          │
+│                     Abstraction Levels                         │
 ├────────────────────────────────────────────────────────────────┤
 │  7. Application     │  Text editor, browser, player, IGV       │
 ├─────────────────────┼──────────────────────────────────────────┤

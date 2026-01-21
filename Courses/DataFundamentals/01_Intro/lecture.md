@@ -73,11 +73,24 @@ Now it's clear — this is genomic sequencing data.
 ### 1.2 Data Lifecycle
 
 ```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  Creation   │───►│   Storage   │───►│ Processing  │───►│    Usage    │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-       ▲                                                        │
-       └────────────────────────────────────────────────────────┘
+┌─────────────┐
+│  Creation   │◄─┐
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│   Storage   │  │
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│ Processing  │  │
+└──────┬──────┘  │
+       │         │
+       ▼         │
+┌─────────────┐  │
+│    Usage    │──┘
+└─────────────┘
 ```
 
 At each stage, it's important to understand:
@@ -106,7 +119,7 @@ Computers work only with binary data — zeros and ones. But we see text, images
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│                     Abstraction Levels                          │
+│                     Abstraction Levels                         │
 ├────────────────────────────────────────────────────────────────┤
 │  7. Application     │  Text editor, browser, player, IGV       │
 ├─────────────────────┼──────────────────────────────────────────┤

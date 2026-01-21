@@ -76,10 +76,14 @@
 <p><strong>🧬 In Bioinformatics:</strong></p>
 <p>FASTQ, BAM, CRAM files use <strong>lossless</strong> compression to preserve sequence data integrity. Lossy compression is never acceptable for genomic data.</p>
 <h3 id="12-sizespeed-tradeoff">1.2 Size/Speed Tradeoff</h3>
-<pre class="highlight"><code>Compression Speed                    Compression Ratio
-←─────────────────────────────────────────────────→
-lz4   gzip   bzip2   xz/lzma
-fast  ←──────────────────→  slow
+<pre class="highlight"><code>Speed vs Ratio:
+
+        Fast │ lz4
+             │ gzip
+             │ bzip2
+        Slow │ xz/lzma
+             ↓
+        Better compression
 </code></pre>
 
 <p><strong>🧬 Common in Bioinformatics:</strong></p>

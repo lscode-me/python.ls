@@ -32,14 +32,26 @@ After completing this module, you will be able to:
 
 ```
 Universal formats:
-1980s     1990s      2000s      2010s      2020s
-INI  →  XML  →  JSON  →  YAML  →  TOML
-                              ↓
-                           .env (parallel)
 
-Linux/UNIX formats (since 1970s, still relevant):
-passwd, group → sshd_config, sudoers → systemd units → nginx/apache
-    (DSV)         (keyword-value)        (INI)         (block-based)
+1980s │ INI
+      ↓
+1990s │ XML
+      ↓
+2000s │ JSON
+      ↓
+2010s │ YAML, .env
+      ↓
+2020s │ TOML
+
+Linux/UNIX (since 1970s):
+
+passwd, group (DSV)
+      ↓
+sshd_config (keyword-value)
+      ↓
+systemd units (INI-like)
+      ↓
+nginx/apache (block-based)
 ```
 
 ### 1.2 Format Comparison

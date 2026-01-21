@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -66,7 +66,7 @@
 <li>"This is important text." — content</li>
 </ul>
 <h3 id="12-types-of-markup">1.2 Types of Markup</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Type</th>
@@ -96,9 +96,9 @@
 <td>Ease of writing</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>🧬 In Bioinformatics:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Type</th>
@@ -128,7 +128,7 @@
 <td>Scientific papers</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="2-html">2. HTML</h2>
 <h3 id="21-html-basics">2.1 HTML Basics</h3>
@@ -322,7 +322,7 @@
 </code></pre>
 
 <h3 id="32-xml-vs-html">3.2 XML vs HTML</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Aspect</th>
@@ -357,7 +357,7 @@
 <td>Loose</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="33-xml-rules">3.3 XML Rules</h3>
 <pre class="highlight"><code class="language-xml">&lt;!-- 1. One root element --&gt;
 &lt;root&gt;
@@ -594,7 +594,7 @@ fastqc -t 4 sample_R1.fastq.gz sample_R2.fastq.gz
 </code></pre>
 
 <h2 id="quality-metrics">Quality Metrics</h2>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -619,7 +619,7 @@ fastqc -t 4 sample_R1.fastq.gz sample_R2.fastq.gz
 <td>Acceptable</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="references">References</h2>
 <ul>
 <li>Dobin et al. (2013). STAR: ultrafast universal RNA-seq aligner. <em>Bioinformatics</em>.</li>
@@ -638,7 +638,7 @@ def hello():
     print(&quot;Hello, World!&quot;)
 </code></pre>
 
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Column 1</th>
@@ -658,7 +658,7 @@ def hello():
 <td style="text-align: right;">aligned</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>[x] Completed task</li>
 <li>[ ] Incomplete task</li>
@@ -784,7 +784,7 @@ variantcaller call \
 </code></pre>
 
 <h3 id="parameters">Parameters</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Parameter</th>
@@ -819,7 +819,7 @@ variantcaller call \
 <td>Number of threads</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="output-format">Output Format</h2>
 <p>VCF 4.2 format with the following INFO fields:</p>
 <ul>
@@ -866,7 +866,7 @@ print(html)
 <hr />
 <h2 id="5-format-comparison">5. Format Comparison</h2>
 <h3 id="51-when-to-use">5.1 When to Use</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -895,9 +895,9 @@ print(html)
 <td>Pipelines (Snakemake), Conda environments</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>🧬 Bioinformatics Specific:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -932,11 +932,14 @@ print(html)
 <td>Snakemake, Nextflow</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="52-readability-vs-functionality">5.2 Readability vs Functionality</h3>
-<pre class="highlight"><code>Simplicity          Power
-←─────────────────────────────→
-Markdown  HTML  XML  LaTeX
+<pre class="highlight"><code>Simplicity → Power
+──────────────────
+Markdown   ★☆☆☆
+HTML       ★★☆☆
+XML        ★★★☆
+LaTeX      ★★★★
 </code></pre>
 
 <h3 id="53-format-conversion">5.3 Format Conversion</h3>

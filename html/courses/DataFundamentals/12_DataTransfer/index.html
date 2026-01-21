@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -173,7 +173,7 @@ with open('api_response.json', 'w') as f:
 </code></pre>
 
 <h3 id="24-base64-variants">2.4 Base64 Variants</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Variant</th>
@@ -203,7 +203,7 @@ with open('api_response.json', 'w') as f:
 <td>Hex</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <pre class="highlight"><code class="language-python">import base64
 
 # URL-safe Base64
@@ -342,7 +342,7 @@ multipart/form-data; boundary=----WebKitFormBoundary
 </code></pre>
 
 <h3 id="42-main-types">4.2 Main Types</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Type</th>
@@ -382,9 +382,9 @@ multipart/form-data; boundary=----WebKitFormBoundary
 <td>multipart/form-data</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Bioinformatics-Specific MIME Types:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>MIME Type</th>
@@ -409,7 +409,7 @@ multipart/form-data; boundary=----WebKitFormBoundary
 <td>Gzipped data (FASTQ.gz, etc.)</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="43-in-http">4.3 In HTTP</h3>
 <pre class="highlight"><code class="language-http"># Request
 POST /api/data HTTP/1.1

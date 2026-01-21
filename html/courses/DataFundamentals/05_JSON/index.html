@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -65,7 +65,7 @@
 <li>Human-readable</li>
 </ul>
 <h3 id="12-where-json-is-used">1.2 Where JSON is Used</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Domain</th>
@@ -94,9 +94,9 @@
 <td>Between services, client-server communication</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>🧬 In Bioinformatics:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Domain</th>
@@ -125,7 +125,7 @@
 <td>Analysis results from tools like bcftools, bedtools</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="13-example-json">1.3 Example JSON</h3>
 <p><strong>Generic Example:</strong></p>
 <pre class="highlight"><code class="language-json">{
@@ -162,7 +162,7 @@
 <h2 id="2-json-syntax">2. JSON Syntax</h2>
 <h3 id="21-data-types">2.1 Data Types</h3>
 <p>JSON supports <strong>6 data types</strong>:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Type</th>
@@ -202,7 +202,7 @@
 <td>Set of key-value pairs</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="22-strings">2.2 Strings</h3>
 <pre class="highlight"><code class="language-json">{
   &quot;simple&quot;: &quot;Hello, World!&quot;,
@@ -216,7 +216,7 @@
 </code></pre>
 
 <p><strong>Escape sequences:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Sequence</th>
@@ -261,7 +261,7 @@
 <td>Unicode character</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>🧬 Bioinformatics Note:</strong><br />
 Gene names often contain special characters (TNF-α, IL-1β). UTF-8 encoding in JSON handles these naturally without escape sequences.</p>
 <h3 id="23-numbers">2.3 Numbers</h3>
@@ -1090,7 +1090,7 @@ except ValidationError as e:
 <hr />
 <h2 id="8-alternatives-to-json">8. Alternatives to JSON</h2>
 <h3 id="81-when-json-is-not-suitable">8.1 When JSON is Not Suitable</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Limitation</th>
@@ -1119,9 +1119,9 @@ except ValidationError as e:
 <td>JSON Schema, TypeScript types</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>🧬 In Bioinformatics:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Use Case</th>
@@ -1156,7 +1156,7 @@ except ValidationError as e:
 <td>Speed</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="82-json5">8.2 JSON5</h3>
 <pre class="highlight"><code class="language-javascript">// JSON5 supports:
 {

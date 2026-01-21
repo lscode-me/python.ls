@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -52,7 +52,7 @@
 - <code>^cat$</code> — matches a line containing only "cat"</p>
 <h3 id="regex-vs-shell-globbing">Regex vs Shell Globbing</h3>
 <p>⚠️ <strong>Important!</strong> Regex and shell globbing are <strong>different systems</strong> with different syntax:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Feature</th>
@@ -112,7 +112,7 @@
 <td><code>(txt\|md)</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="examples-comparison">Examples Comparison</h3>
 <pre class="highlight"><code class="language-bash"># Shell Globbing (file matching)
 ls *.txt          # All files ending in .txt
@@ -466,7 +466,7 @@ sed 's/&lt;[^&gt;]*&gt;//g' page.html | \
 <li id="item-7"><strong>Document regex patterns</strong> with comments in scripts</li>
 </ol>
 <h2 id="summary">Summary</h2>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Tool</th>
@@ -491,7 +491,7 @@ sed 's/&lt;[^&gt;]*&gt;//g' page.html | \
 <td><code>awk -F',' '{sum+=$3} END {print sum}'</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="next-steps">Next Steps</h2>
 <ul>
 <li>Practice regex on regex101.com</li>
@@ -807,7 +807,7 @@ echo -e &quot;ATGC\nATGX\nGGCC&quot; | grep -E '^[ATGC]+$'
 </ol>
 <hr />
 <h2 id="quick-reference-common-regex-patterns">Quick Reference: Common Regex Patterns</h2>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Pattern</th>
@@ -937,7 +937,7 @@ echo -e &quot;ATGC\nATGX\nGGCC&quot; | grep -E '^[ATGC]+$'
 <td><code>.txt</code>, <code>.json</code>, <code>.csv</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="usage-with-grep">Usage with grep</h3>
 <pre class="highlight"><code class="language-bash"># Use -E for extended regex (recommended)
 grep -E 'pattern' file.txt
@@ -956,7 +956,7 @@ grep -vE 'pattern' file.txt
 </code></pre>
 
 <h3 id="quick-syntax-reminder">Quick Syntax Reminder</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Symbol</th>
@@ -1061,7 +1061,7 @@ grep -vE 'pattern' file.txt
 <td><code>\.</code> matches literal dot</td>
 </tr>
 </tbody>
-</table>
+</table></div>
     </main>
 
     <footer class="site-footer">

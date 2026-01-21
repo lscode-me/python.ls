@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -268,7 +268,7 @@ D .quit
 </code></pre>
 
 <h3 id="duckdb-vs-other-tools">DuckDB vs Other Tools</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Feature</th>
@@ -322,7 +322,7 @@ D .quit
 <td>⚠️ Medium</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="when-to-use-duckdb">When to Use DuckDB</h3>
 <p><strong>Use DuckDB when:</strong><br />
 - Complex joins across multiple files<br />
@@ -414,7 +414,7 @@ xq '.root.users.user[] | .name' data.xml
 <li id="item-7"><strong>Test filters</strong> on small samples first</li>
 </ol>
 <h2 id="summary">Summary</h2>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -449,7 +449,7 @@ xq '.root.users.user[] | .name' data.xml
 <td><code>xmlstarlet sel -t -v "//name"</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="next-steps">Next Steps</h2>
 <ul>
 <li>Practice jq filters and transformations</li>

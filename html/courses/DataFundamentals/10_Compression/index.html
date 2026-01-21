@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -71,10 +71,14 @@
 <p><strong>🧬 In Bioinformatics:</strong></p>
 <p>FASTQ, BAM, CRAM files use <strong>lossless</strong> compression to preserve sequence data integrity. Lossy compression is never acceptable for genomic data.</p>
 <h3 id="12-sizespeed-tradeoff">1.2 Size/Speed Tradeoff</h3>
-<pre class="highlight"><code>Compression Speed                    Compression Ratio
-←─────────────────────────────────────────────────→
-lz4   gzip   bzip2   xz/lzma
-fast  ←──────────────────→  slow
+<pre class="highlight"><code>Speed vs Ratio:
+
+        Fast │ lz4
+             │ gzip
+             │ bzip2
+        Slow │ xz/lzma
+             ↓
+        Better compression
 </code></pre>
 
 <p><strong>🧬 Common in Bioinformatics:</strong></p>
@@ -177,7 +181,7 @@ bzip2 -k file.txt
 </code></pre>
 
 <h3 id="32-comparison-with-gzip">3.2 Comparison with gzip</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Aspect</th>
@@ -207,7 +211,7 @@ bzip2 -k file.txt
 <td>.bz2</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>🧬 In Bioinformatics:</strong></p>
 <p>bzip2 provides better compression but is slower. Less common than gzip for sequencing data. Sometimes used for long-term archival of analysis results.</p>
 <hr />
@@ -325,7 +329,7 @@ unzip -l archive.zip
 </code></pre>
 
 <h3 id="62-zip-vs-targz">6.2 ZIP vs tar.gz</h3>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>ZIP</th>
@@ -350,7 +354,7 @@ unzip -l archive.zip
 <td>Separate compression</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>🧬 In Bioinformatics:</strong></p>
 <p>ZIP is useful for sharing data with Windows users or for archives with many small files that need random access.</p>
 <pre class="highlight"><code class="language-bash"># Create ZIP of results for collaborators
@@ -470,7 +474,7 @@ with zipfile.ZipFile('archive.zip', 'r') as zf:
 
 <hr />
 <h2 id="8-format-comparison">8. Format Comparison</h2>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -511,9 +515,9 @@ with zipfile.ZipFile('archive.zip', 'r') as zf:
 <td>Modern standard</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>🧬 Bioinformatics Recommendations:</strong></p>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Format</th>
@@ -542,7 +546,7 @@ with zipfile.ZipFile('archive.zip', 'r') as zf:
 <td>Long-term cold storage</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <h2 id="key-takeaways">💡 Key Takeaways</h2>
 <ul>

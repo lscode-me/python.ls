@@ -66,7 +66,7 @@ Understanding these fundamentals is crucial for bioinformatics, healthcare data 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                  Data Fundamentals Course                        │
+│                  Data Fundamentals Course                       │
 └─────────────────────────────────────────────────────────────────┘
                               │
          ┌────────────────────┼────────────────────┐
@@ -358,7 +358,8 @@ Data Fundamentals prepares you for the Linux course where you'll:
 ### Books
 
 - "The Absolute Minimum Every Software Developer Must Know About Unicode" — Joel Spolsky
-- "Pro Git" by Scott Chacon — excellent explanation of binary formats
+- "Designing Data-Intensive Applications" by Martin Kleppmann — data formats, serialization, encodings
+- "Practical Computing for Biologists" by Haddock & Dunn — working with data in life sciences
 - "Bioinformatics Data Skills" by Vince Buffalo — data formats in bioinformatics
 
 ### Online Resources

@@ -813,9 +813,12 @@ print(html)
 ### 5.2 Readability vs Functionality
 
 ```
-Simplicity          Power
-←─────────────────────────────→
-Markdown  HTML  XML  LaTeX
+Simplicity → Power
+──────────────────
+Markdown   ★☆☆☆
+HTML       ★★☆☆
+XML        ★★★☆
+LaTeX      ★★★★
 ```
 
 ### 5.3 Format Conversion

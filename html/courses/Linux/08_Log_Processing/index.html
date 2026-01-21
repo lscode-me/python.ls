@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=6">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -227,7 +227,7 @@ jq -s 'group_by(.user_id) | map({
 <li id="item-8"><strong>Test on samples</strong> before processing all data</li>
 </ol>
 <h2 id="summary">Summary</h2>
-<table>
+<div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>Task</th>
@@ -257,7 +257,7 @@ jq -s 'group_by(.user_id) | map({
 <td><code>awk '{printf "\| %s \| %s \|\\n", $1, $2}'</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="next-steps">Next Steps</h2>
 <ul>
 <li>Practice JSONL processing with jq</li>
