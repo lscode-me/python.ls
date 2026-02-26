@@ -162,7 +162,7 @@ D) `echo "# Report - $date"`
 | 2 | B | `zcat` streams gzip to stdout without extracting |
 | 3 | D | Both `jq -c select()` and `grep` work (jq is more reliable) |
 | 4 | B | `-s` flag silences curl progress bar |
-| 5 | C | Both `zcat file1.gz file2.gz` and `zcat *.gz` work |
+| 5 | A | Both `zcat file1.gz file2.gz` and `zcat *.gz` work |
 | 6 | B | Markdown table row format is `| val | val | val |` |
 | 7 | B | `curl -s` fetches silently, `jq '.'` pretty-prints |
 | 8 | B | `sleep N` delays for N seconds (accepts decimals) |

@@ -39,6 +39,733 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: Streams, IPC &amp; Unix Sockets</h2>
+        <p class="quiz-meta">15 questions • ~15 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 15</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+        <div class="question-card" data-question="1" >
+            <div class="question-header">
+                <span class="question-num">Q1</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What command creates a named pipe (FIFO)?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`touch pipe`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`mkfifo pipe`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`pipe create`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q1" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`fifo pipe`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="2" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q2</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What happens if you write to a FIFO before anyone reads from it?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Data is lost</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Write operation blocks until reader connects</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Error is thrown</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q2" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Data is buffered indefinitely</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="3" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q3</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">How do you read from stdin in Python?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`input()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`sys.stdin.read()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`for line in sys.stdin:`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q3" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Both B and C</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="4" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q4</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does do in Pythons: What does `flush=True` do in Python&#39;s print()?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Clears the buffer</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Forces immediate output (no buffering)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Flushes to disk</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q4" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Clears the screen</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="5" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q5</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which command makes Python output line-buffered from the shell?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`python3 -b script.py`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`python3 -u script.py`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`python3 --unbuffered script.py`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q5" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Both B and C</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="6" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q6</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">How do you clean up a FIFO on script exit?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`trap &#39;rm -f fifo&#39; EXIT`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`rm -f fifo` at end of script</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">FIFOs auto-delete</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q6" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`cleanup fifo`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="7" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q7</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does do: What does `nc -lU /tmp/socket` do?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">List sockets</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Listen on Unix domain socket</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Load socket</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q7" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Lock socket</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="8" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q8</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which flag makes use line-buffered: Which flag makes `stdbuf` use line-buffered output?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`-o0`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`-oL`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`-line`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q8" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`-b`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="9" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q9</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What is process substitution used: What is process substitution `&lt;(command)` used for?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Redirecting stderr</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Creating temporary file-like interface for command output</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Running command in background</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q9" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Process management</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="10" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q10</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">How do you send data to a background Python process via stdin?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`echo &#34;data&#34; | python3 script.py &amp;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`python3 script.py &lt; &lt;(echo &#34;data&#34;) &amp;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Use a named pipe or socket</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q10" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Both B and C</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="11" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q11</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Whats the difference between and: What&#39;s the difference between `&gt;` and `&gt;&gt;` with named pipes?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q11" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">No difference for FIFOs</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q11" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`&gt;` overwrites, `&gt;&gt;` appends</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q11" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`&gt;&gt;` creates FIFO</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q11" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`&gt;` is blocking</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="12" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q12</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which Python library enables streaming JSON parsing?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q12" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`json`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q12" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`jsonstream`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q12" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`ijson`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q12" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`streamjson`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="13" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q13</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does do: What does `cat -` do?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q13" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Concatenate files</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q13" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Read from stdin</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q13" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">List files</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q13" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Count lines</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="14" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q14</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">How do you distribute work round-robin to 3 named pipes?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q14" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`split -n 3`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q14" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`awk &#39;{print &gt; (&#34;pipe&#34; ((NR-1)%3 + 1))}&#39;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q14" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`parallel -j 3`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q14" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`tee pipe1 pipe2 pipe3`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="15" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q15</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Whats the main advantage of: What&#39;s the main advantage of Unix domain sockets over TCP sockets?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q15" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Work over network</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q15" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Faster (no network stack overhead)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q15" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">More secure</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q15" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Easier syntax</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 15</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Streams, IPC & Unix Sockets - Quiz", "description": "What command creates a named pipe (FIFO)?", "courseId": "Linux", "moduleId": "10_Streams_IPC", "questions": [{"number": 1, "text": "What command creates a named pipe (FIFO)?", "code": null, "answers": [{"letter": "A", "text": "`touch pipe`"}, {"letter": "B", "text": "`mkfifo pipe`"}, {"letter": "C", "text": "`pipe create`"}, {"letter": "D", "text": "`fifo pipe`"}], "correctAnswer": "B", "explanation": "`mkfifo pipename` creates a named pipe (FIFO = First In First Out)"}, {"number": 2, "text": "What happens if you write to a FIFO before anyone reads from it?", "code": null, "answers": [{"letter": "A", "text": "Data is lost"}, {"letter": "B", "text": "Write operation blocks until reader connects"}, {"letter": "C", "text": "Error is thrown"}, {"letter": "D", "text": "Data is buffered indefinitely"}], "correctAnswer": "B", "explanation": "Write blocks until a reader connects; data waits in kernel buffer"}, {"number": 3, "text": "How do you read from stdin in Python?", "code": null, "answers": [{"letter": "A", "text": "`input()`"}, {"letter": "B", "text": "`sys.stdin.read()`"}, {"letter": "C", "text": "`for line in sys.stdin:`"}, {"letter": "D", "text": "Both B and C"}], "correctAnswer": "B", "explanation": "Both methods work: `read()` loads all, iteration processes line-by-line"}, {"number": 4, "text": "What does do in Pythons: What does `flush=True` do in Python's print()?", "code": null, "answers": [{"letter": "A", "text": "Clears the buffer"}, {"letter": "B", "text": "Forces immediate output (no buffering)"}, {"letter": "C", "text": "Flushes to disk"}, {"letter": "D", "text": "Clears the screen"}], "correctAnswer": "D", "explanation": "`flush=True` bypasses Python's output buffer for immediate write"}, {"number": 5, "text": "Which command makes Python output line-buffered from the shell?", "code": null, "answers": [{"letter": "A", "text": "`python3 -b script.py`"}, {"letter": "B", "text": "`python3 -u script.py`"}, {"letter": "C", "text": "`python3 --unbuffered script.py`"}, {"letter": "D", "text": "Both B and C"}], "correctAnswer": "C", "explanation": "`-u` flag forces unbuffered output (binary stdout/stderr)"}, {"number": 6, "text": "How do you clean up a FIFO on script exit?", "code": null, "answers": [{"letter": "A", "text": "`trap 'rm -f fifo' EXIT`"}, {"letter": "B", "text": "`rm -f fifo` at end of script"}, {"letter": "C", "text": "FIFOs auto-delete"}, {"letter": "D", "text": "`cleanup fifo`"}], "correctAnswer": "D", "explanation": "`trap 'cleanup_command' EXIT` runs cleanup on any exit (normal or error)"}, {"number": 7, "text": "What does do: What does `nc -lU /tmp/socket` do?", "code": null, "answers": [{"letter": "A", "text": "List sockets"}, {"letter": "B", "text": "Listen on Unix domain socket"}, {"letter": "C", "text": "Load socket"}, {"letter": "D", "text": "Lock socket"}], "correctAnswer": "B", "explanation": "`-l` = listen, `-U` = Unix domain socket at specified path"}, {"number": 8, "text": "Which flag makes use line-buffered: Which flag makes `stdbuf` use line-buffered output?", "code": null, "answers": [{"letter": "A", "text": "`-o0`"}, {"letter": "B", "text": "`-oL`"}, {"letter": "C", "text": "`-line`"}, {"letter": "D", "text": "`-b`"}], "correctAnswer": "B", "explanation": "`-oL` = line-buffered output (one line at a time)"}, {"number": 9, "text": "What is process substitution used: What is process substitution `<(command)` used for?", "code": null, "answers": [{"letter": "A", "text": "Redirecting stderr"}, {"letter": "B", "text": "Creating temporary file-like interface for command output"}, {"letter": "C", "text": "Running command in background"}, {"letter": "D", "text": "Process management"}], "correctAnswer": "A", "explanation": "`<(cmd)` creates pseudo-file that can be read like a file"}, {"number": 10, "text": "How do you send data to a background Python process via stdin?", "code": null, "answers": [{"letter": "A", "text": "`echo \"data\" | python3 script.py &`"}, {"letter": "B", "text": "`python3 script.py < <(echo \"data\") &`"}, {"letter": "C", "text": "Use a named pipe or socket"}, {"letter": "D", "text": "Both B and C"}], "correctAnswer": "C", "explanation": "Process substitution or named pipes work; simple pipe with `&` doesn't"}, {"number": 11, "text": "Whats the difference between and: What's the difference between `>` and `>>` with named pipes?", "code": null, "answers": [{"letter": "A", "text": "No difference for FIFOs"}, {"letter": "B", "text": "`>` overwrites, `>>` appends"}, {"letter": "C", "text": "`>>` creates FIFO"}, {"letter": "D", "text": "`>` is blocking"}], "correctAnswer": "A", "explanation": "FIFOs don't store data; both `>` and `>>` work the same way"}, {"number": 12, "text": "Which Python library enables streaming JSON parsing?", "code": null, "answers": [{"letter": "A", "text": "`json`"}, {"letter": "B", "text": "`jsonstream`"}, {"letter": "C", "text": "`ijson`"}, {"letter": "D", "text": "`streamjson`"}], "correctAnswer": "A", "explanation": "`ijson` parses JSON in streaming fashion without loading entire file"}, {"number": 13, "text": "What does do: What does `cat -` do?", "code": null, "answers": [{"letter": "A", "text": "Concatenate files"}, {"letter": "B", "text": "Read from stdin"}, {"letter": "C", "text": "List files"}, {"letter": "D", "text": "Count lines"}], "correctAnswer": "B", "explanation": "`-` conventionally means stdin (though cat reads stdin by default)"}, {"number": 14, "text": "How do you distribute work round-robin to 3 named pipes?", "code": null, "answers": [{"letter": "A", "text": "`split -n 3`"}, {"letter": "B", "text": "`awk '{print > (\"pipe\" ((NR-1)%3 + 1))}'`"}, {"letter": "C", "text": "`parallel -j 3`"}, {"letter": "D", "text": "`tee pipe1 pipe2 pipe3`"}], "correctAnswer": "A", "explanation": "awk with modulo distributes lines round-robin to different files/pipes"}, {"number": 15, "text": "Whats the main advantage of: What's the main advantage of Unix domain sockets over TCP sockets?", "code": null, "answers": [{"letter": "A", "text": "Work over network"}, {"letter": "B", "text": "Faster (no network stack overhead)"}, {"letter": "C", "text": "More secure"}, {"letter": "D", "text": "Easier syntax"}], "correctAnswer": "C", "explanation": "Unix sockets bypass TCP/IP stack, faster for local IPC"}]};
+const COURSE_ID = "Linux";
+const MODULE_ID = "10_Streams_IPC";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

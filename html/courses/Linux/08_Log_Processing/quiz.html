@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -34,6 +33,655 @@
 
     <main class="main-content">
         
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="../../../">Home</a> &raquo;
+        <a href="../../../courses/Linux/">Linux for Developers: Unix &amp; Data Pipelines</a> &raquo;
+        <a href="index.html">Log Processing &amp; Real-World Pipelines</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>Log Processing &amp; Real-World Pipelines - Quiz</h1>
+        <p class="quiz-description">What is the main advantage of JSONL format for logs?</p>
+        <div class="quiz-meta">
+            <span class="question-count">15 questions</span>
+            <span class="time-estimate">⏱️ ~15 min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 15</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            
+            <div class="question-card" data-question="1" >
+                <div class="question-number">Question 1</div>
+                <h3 class="question-text">What is the main advantage of JSONL format for logs?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q1" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Smaller file size</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q1" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">One JSON object per line, easy to stream</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q1" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Better compression</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q1" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Faster parsing</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="2" style="display: none;">
+                <div class="question-number">Question 2</div>
+                <h3 class="question-text">Which command streams a gzip-compressed file without decompressing it to disk?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q2" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`gunzip logs.gz | cat`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q2" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`zcat logs.gz`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q2" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`cat logs.gz | gunzip`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q2" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`gzip -d logs.gz | less`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="3" style="display: none;">
+                <div class="question-number">Question 3</div>
+                <h3 class="question-text">How do you filter JSONL entries where level equals &#34;ERROR&#34;?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q3" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`jq &#39;filter(.level == &#34;ERROR&#34;)&#39; app.jsonl`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q3" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`jq -c &#39;select(.level == &#34;ERROR&#34;)&#39; app.jsonl`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q3" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`grep &#39;&#34;level&#34;:&#34;ERROR&#34;&#39; app.jsonl`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q3" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Both B and C</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="4" style="display: none;">
+                <div class="question-number">Question 4</div>
+                <h3 class="question-text">Which curl option makes the output silent (no progress bar)?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q4" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`-q`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q4" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`-s`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q4" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`-silent`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q4" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`-n`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="5" style="display: none;">
+                <div class="question-number">Question 5</div>
+                <h3 class="question-text">How do you process multiple gzip files in one pipeline?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q5" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`zcat file1.gz file2.gz file3.gz | grep ERROR`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q5" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`zcat *.gz | grep ERROR`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q5" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Both A and B</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q5" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`cat *.gz | gunzip | grep ERROR`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="6" style="display: none;">
+                <div class="question-number">Question 6</div>
+                <h3 class="question-text">Whats the correct markdown table: What&#39;s the correct markdown table row format?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q6" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[Name] [Age] [City]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q6" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`| Name | Age | City |`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q6" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`Name,Age,City`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q6" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`Name\tAge\tCity`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="7" style="display: none;">
+                <div class="question-number">Question 7</div>
+                <h3 class="question-text">How do you fetch JSON from an API and pretty-print it?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q7" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`curl &#39;https://api.example.com/data&#39; | json`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q7" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`curl -s &#39;https://api.example.com/data&#39; | jq &#39;.&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q7" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`wget &#39;https://api.example.com/data&#39; | jq`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q7" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`http &#39;https://api.example.com/data&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="8" style="display: none;">
+                <div class="question-number">Question 8</div>
+                <h3 class="question-text">Which command adds 05 second: Which command adds 0.5 second delay between API requests?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q8" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`wait 0.5`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q8" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`sleep 0.5`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q8" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`delay 500`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q8" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`pause 0.5`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="9" style="display: none;">
+                <div class="question-number">Question 9</div>
+                <h3 class="question-text">How do you group JSONL entries by a field and count them?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q9" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`jq &#39;.field&#39; file.jsonl | sort | uniq -c`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q9" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`jq -r &#39;.field&#39; file.jsonl | sort | uniq -c`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q9" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Both A and B</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q9" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`jq -s &#39;group_by(.field) | map(length)&#39; file.jsonl`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="10" style="display: none;">
+                <div class="question-number">Question 10</div>
+                <h3 class="question-text">Whats the best format for: What&#39;s the best format for streaming logs?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q10" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Pretty-printed JSON with newlines</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q10" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">JSONL (one object per line)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q10" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">XML</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q10" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">CSV</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="11" style="display: none;">
+                <div class="question-number">Question 11</div>
+                <h3 class="question-text">Which command decompresses xz-compressed...: Which command decompresses xz-compressed logs and searches for errors?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q11" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`xzcat logs.xz | grep ERROR`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q11" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`xz -d logs.xz | grep ERROR`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q11" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`unxz logs.xz &amp;&amp; grep ERROR logs`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q11" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`zcat logs.xz | grep ERROR`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="12" style="display: none;">
+                <div class="question-number">Question 12</div>
+                <h3 class="question-text">How do you use to: How do you use `tee` to save API response while processing it?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q12" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`curl -s &#39;api.com&#39; | tee response.json | jq &#39;.&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q12" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`curl -s &#39;api.com&#39; &gt; tee response.json | jq &#39;.&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q12" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`curl -s &#39;api.com&#39; | save response.json | jq &#39;.&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q12" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`curl -s &#39;api.com&#39; &amp;&amp; tee response.json | jq &#39;.&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="13" style="display: none;">
+                <div class="question-number">Question 13</div>
+                <h3 class="question-text">What does do: What does `jq -s &#39;group_by(.level) | map({level: .[0].level, count: length})&#39;` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q13" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Sorts by level</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q13" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Filters by level</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q13" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Groups JSONL entries by level and counts each group</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q13" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Selects only the level field</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="14" style="display: none;">
+                <div class="question-number">Question 14</div>
+                <h3 class="question-text">How do you compress pipeline output on the fly?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q14" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`command | gzip &gt; output.gz`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q14" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`command &gt; output.txt &amp;&amp; gzip output.txt`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q14" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`command | compress &gt; output.gz`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q14" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`command --gzip &gt; output.gz`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="15" style="display: none;">
+                <div class="question-number">Question 15</div>
+                <h3 class="question-text">Whats the correct way to: What&#39;s the correct way to generate a markdown heading with a variable date?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q15" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`echo &#34;# Report - $(date +%Y-%m-%d)&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q15" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`echo &#34;# Report - {date}&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q15" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`printf &#34;# Report - %s&#34; date`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q15" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`echo &#34;# Report - $date&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ 15</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="index.html" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Log Processing & Real-World Pipelines - Quiz", "description": "What is the main advantage of JSONL format for logs?", "courseId": "Linux", "moduleId": "08_Log_Processing", "questions": [{"number": 1, "text": "What is the main advantage of JSONL format for logs?", "code": null, "answers": [{"letter": "A", "text": "Smaller file size"}, {"letter": "B", "text": "One JSON object per line, easy to stream"}, {"letter": "C", "text": "Better compression"}, {"letter": "D", "text": "Faster parsing"}], "correctAnswer": "B", "explanation": "JSONL has one object per line, perfect for streaming with `grep`, `jq -c`"}, {"number": 2, "text": "Which command streams a gzip-compressed file without decompressing it to disk?", "code": null, "answers": [{"letter": "A", "text": "`gunzip logs.gz | cat`"}, {"letter": "B", "text": "`zcat logs.gz`"}, {"letter": "C", "text": "`cat logs.gz | gunzip`"}, {"letter": "D", "text": "`gzip -d logs.gz | less`"}], "correctAnswer": "B", "explanation": "`zcat` streams gzip to stdout without extracting"}, {"number": 3, "text": "How do you filter JSONL entries where level equals \"ERROR\"?", "code": null, "answers": [{"letter": "A", "text": "`jq 'filter(.level == \"ERROR\")' app.jsonl`"}, {"letter": "B", "text": "`jq -c 'select(.level == \"ERROR\")' app.jsonl`"}, {"letter": "C", "text": "`grep '\"level\":\"ERROR\"' app.jsonl`"}, {"letter": "D", "text": "Both B and C"}], "correctAnswer": "D", "explanation": "Both `jq -c select()` and `grep` work (jq is more reliable)"}, {"number": 4, "text": "Which curl option makes the output silent (no progress bar)?", "code": null, "answers": [{"letter": "A", "text": "`-q`"}, {"letter": "B", "text": "`-s`"}, {"letter": "C", "text": "`-silent`"}, {"letter": "D", "text": "`-n`"}], "correctAnswer": "B", "explanation": "`-s` flag silences curl progress bar"}, {"number": 5, "text": "How do you process multiple gzip files in one pipeline?", "code": null, "answers": [{"letter": "A", "text": "`zcat file1.gz file2.gz file3.gz | grep ERROR`"}, {"letter": "B", "text": "`zcat *.gz | grep ERROR`"}, {"letter": "C", "text": "Both A and B"}, {"letter": "D", "text": "`cat *.gz | gunzip | grep ERROR`"}], "correctAnswer": "A", "explanation": "Both `zcat file1.gz file2.gz` and `zcat *.gz` work"}, {"number": 6, "text": "Whats the correct markdown table: What's the correct markdown table row format?", "code": null, "answers": [{"letter": "A", "text": "`[Name] [Age] [City]`"}, {"letter": "B", "text": "`| Name | Age | City |`"}, {"letter": "C", "text": "`Name,Age,City`"}, {"letter": "D", "text": "`Name\\tAge\\tCity`"}], "correctAnswer": "B", "explanation": "Markdown table row format is `"}, {"number": 7, "text": "How do you fetch JSON from an API and pretty-print it?", "code": null, "answers": [{"letter": "A", "text": "`curl 'https://api.example.com/data' | json`"}, {"letter": "B", "text": "`curl -s 'https://api.example.com/data' | jq '.'`"}, {"letter": "C", "text": "`wget 'https://api.example.com/data' | jq`"}, {"letter": "D", "text": "`http 'https://api.example.com/data'`"}], "correctAnswer": "B", "explanation": "`curl -s` fetches silently, `jq '.'` pretty-prints"}, {"number": 8, "text": "Which command adds 05 second: Which command adds 0.5 second delay between API requests?", "code": null, "answers": [{"letter": "A", "text": "`wait 0.5`"}, {"letter": "B", "text": "`sleep 0.5`"}, {"letter": "C", "text": "`delay 500`"}, {"letter": "D", "text": "`pause 0.5`"}], "correctAnswer": "B", "explanation": "`sleep N` delays for N seconds (accepts decimals)"}, {"number": 9, "text": "How do you group JSONL entries by a field and count them?", "code": null, "answers": [{"letter": "A", "text": "`jq '.field' file.jsonl | sort | uniq -c`"}, {"letter": "B", "text": "`jq -r '.field' file.jsonl | sort | uniq -c`"}, {"letter": "C", "text": "Both A and B"}, {"letter": "D", "text": "`jq -s 'group_by(.field) | map(length)' file.jsonl`"}], "correctAnswer": "B", "explanation": "`-r` for raw output, then `sort"}, {"number": 10, "text": "Whats the best format for: What's the best format for streaming logs?", "code": null, "answers": [{"letter": "A", "text": "Pretty-printed JSON with newlines"}, {"letter": "B", "text": "JSONL (one object per line)"}, {"letter": "C", "text": "XML"}, {"letter": "D", "text": "CSV"}], "correctAnswer": "B", "explanation": "JSONL is standard for streaming logs"}, {"number": 11, "text": "Which command decompresses xz-compressed...: Which command decompresses xz-compressed logs and searches for errors?", "code": null, "answers": [{"letter": "A", "text": "`xzcat logs.xz | grep ERROR`"}, {"letter": "B", "text": "`xz -d logs.xz | grep ERROR`"}, {"letter": "C", "text": "`unxz logs.xz && grep ERROR logs`"}, {"letter": "D", "text": "`zcat logs.xz | grep ERROR`"}], "correctAnswer": "A", "explanation": "`xzcat` decompresses xz files to stdout (like `zcat` for gzip)"}, {"number": 12, "text": "How do you use to: How do you use `tee` to save API response while processing it?", "code": null, "answers": [{"letter": "A", "text": "`curl -s 'api.com' | tee response.json | jq '.'`"}, {"letter": "B", "text": "`curl -s 'api.com' > tee response.json | jq '.'`"}, {"letter": "C", "text": "`curl -s 'api.com' | save response.json | jq '.'`"}, {"letter": "D", "text": "`curl -s 'api.com' && tee response.json | jq '.'`"}], "correctAnswer": "A", "explanation": "`tee` writes to file and passes through to stdout for further processing"}, {"number": 13, "text": "What does do: What does `jq -s 'group_by(.level) | map({level: .[0].level, count: length})'` do?", "code": null, "answers": [{"letter": "A", "text": "Sorts by level"}, {"letter": "B", "text": "Filters by level"}, {"letter": "C", "text": "Groups JSONL entries by level and counts each group"}, {"letter": "D", "text": "Selects only the level field"}], "correctAnswer": "C", "explanation": "`-s` slurps all inputs into array, `group_by` groups by field, `map` aggregates counts"}, {"number": 14, "text": "How do you compress pipeline output on the fly?", "code": null, "answers": [{"letter": "A", "text": "`command | gzip > output.gz`"}, {"letter": "B", "text": "`command > output.txt && gzip output.txt`"}, {"letter": "C", "text": "`command | compress > output.gz`"}, {"letter": "D", "text": "`command --gzip > output.gz`"}], "correctAnswer": "A", "explanation": "Pipe directly to `gzip` to compress output as it's generated"}, {"number": 15, "text": "Whats the correct way to: What's the correct way to generate a markdown heading with a variable date?", "code": null, "answers": [{"letter": "A", "text": "`echo \"# Report - $(date +%Y-%m-%d)\"`"}, {"letter": "B", "text": "`echo \"# Report - {date}\"`"}, {"letter": "C", "text": "`printf \"# Report - %s\" date`"}, {"letter": "D", "text": "`echo \"# Report - $date\"`"}], "correctAnswer": "A", "explanation": "Use command substitution `$(date +%Y-%m-%d)` to embed current date"}]};
+</script>
+<script src="../../../static/js/quiz.js"></script>
+
     </main>
 
     <footer class="site-footer">
@@ -63,7 +711,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

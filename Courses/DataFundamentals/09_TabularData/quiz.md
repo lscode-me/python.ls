@@ -436,34 +436,34 @@ D) `csvcombine samples.csv results.csv`
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | A | Comma-Separated Values — values separated by commas. |
+| 1 | B | Comma-Separated Values — values separated by commas. |
 | 2 | A | By default, CSV uses comma as delimiter. |
-| 3 | C | TSV (Tab-Separated Values) uses tab character. |
+| 3 | B | TSV (Tab-Separated Values) uses tab character. |
 | 4 | D | Values with comma are enclosed in double quotes. |
 | 5 | B | Quotes inside value are doubled: `""`. |
-| 6 | B | `csv.DictReader` returns rows as dictionaries with keys from header. |
+| 6 | A | `csv.DictReader` returns rows as dictionaries with keys from header. |
 | 7 | A | `newline=''` prevents issues with line breaks on different OS. |
-| 8 | A | `csvlook` formats CSV as table in terminal. |
+| 8 | B | `csvlook` formats CSV as table in terminal. |
 | 9 | A | In European countries, comma is decimal separator, so CSV uses `;`. |
 | 10 | B | `pd.read_csv()` — main pandas function for reading CSV. |
-| 11 | C | UTF-8 — recommended encoding for compatibility. |
+| 11 | D | UTF-8 — recommended encoding for compatibility. |
 | 12 | B | `csvgrep -c column -m match` filters rows by value in column. |
-| 13 | B | `writerows()` writes a list of lists (multiple rows). |
+| 13 | A | `writerows()` writes a list of lists (multiple rows). |
 | 14 | C | `next(reader)` returns first row (usually header). |
-| 15 | D | csvsql can execute SQL queries, convert and import to DB. |
+| 15 | C | csvsql can execute SQL queries, convert and import to DB. |
 | 16 | C | csvstat outputs statistics: min, max, mean, std, etc. |
 | 17 | D | NR>1 skips header, sum+=$2 sums second column. |
-| 18 | D | BOM (Byte Order Mark) — special bytes at start of UTF-8/UTF-16 files. |
+| 18 | B | BOM (Byte Order Mark) — special bytes at start of UTF-8/UTF-16 files. |
 | 19 | B | writeheader() writes row with column names from fieldnames. |
-| 20 | D | csvjson converts CSV file to JSON format. |
+| 20 | C | csvjson converts CSV file to JSON format. |
 | 21 | B | 🧬 BED format is tab-separated with 3+ columns (chrom, start, end). |
-| 22 | A | 🧬 GFF is tab-separated with 9 standard columns. |
+| 22 | B | 🧬 GFF is tab-separated with 9 standard columns. |
 | 23 | C | 🧬 csvsql allows SQL queries with numeric comparisons. |
-| 24 | D | 🧬 VCF is tab-separated with metadata lines starting with ##. |
+| 24 | B | 🧬 VCF is tab-separated with metadata lines starting with ##. |
 | 25 | B | 🧬 CSV with clear headers is standard for sample metadata. |
 | 26 | A | 🧬 pandas provides powerful filtering and analysis capabilities. |
-| 27 | C | 🧬 NR>1 means "row number > 1", skipping the header. |
-| 28 | C | 🧬 groupby() groups by sample, then calculate mean on coverage column. |
+| 27 | B | 🧬 NR>1 means "row number > 1", skipping the header. |
+| 28 | B | 🧬 groupby() groups by sample, then calculate mean on coverage column. |
 | 29 | D | 🧬 "NA" or "." are standard conventions in bioinformatics; document your choice. |
 | 30 | A | 🧬 csvjoin -c specifies column to join on. |
 

@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -34,6 +33,1435 @@
 
     <main class="main-content">
         
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="../../../">Home</a> &raquo;
+        <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+        <a href="index.html">File Handling in Python</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>File Handling - Quiz</h1>
+        <p class="quiz-description">Test your knowledge of file I/O operations, formats, and best practices.</p>
+        <div class="quiz-meta">
+            <span class="question-count">35 questions</span>
+            <span class="time-estimate">⏱️ ~35 min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 35</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            
+            <div class="question-card" data-question="1" >
+                <div class="question-number">Question 1</div>
+                <h3 class="question-text">File Modes: What does the file mode `&#39;r+&#39;` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q1" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Read-only mode</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q1" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Read and write mode (file must exist)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q1" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Write mode (creates new file)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q1" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Append mode</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="2" style="display: none;">
+                <div class="question-number">Question 2</div>
+                <h3 class="question-text">Context Manager: What is the advantage of using `with open()` for file operations?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q2" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">It&#39;s faster than regular open()</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q2" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">It automatically closes the file, even if an exception occurs</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q2" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">It allows multiple files to be opened</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q2" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">It prevents file corruption</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="3" style="display: none;">
+                <div class="question-number">Question 3</div>
+                <h3 class="question-text">Which is the correct way to join paths using pathlib?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q3" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`Path(&#39;/home&#39;) / &#39;user&#39; / &#39;file.txt&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q3" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`Path(&#39;/home&#39;) + &#39;user&#39; + &#39;file.txt&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q3" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`Path(&#39;/home&#39;).join(&#39;user&#39;, &#39;file.txt&#39;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q3" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`Path.join(&#39;/home&#39;, &#39;user&#39;, &#39;file.txt&#39;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="4" style="display: none;">
+                <div class="question-number">Question 4</div>
+                <h3 class="question-text">CSV Reading: Which module is used for reading and writing CSV files in Python?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q4" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`csvfile`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q4" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`pandas`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q4" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`spreadsheet`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q4" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="5" style="display: none;">
+                <div class="question-number">Question 5</div>
+                <h3 class="question-text">JSON Serialization: What does `json.dumps()` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q5" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Loads JSON from a file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q5" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Dumps JSON to a file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q5" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Converts a Python object to a JSON string</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q5" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Validates JSON syntax</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="6" style="display: none;">
+                <div class="question-number">Question 6</div>
+                <h3 class="question-text">Binary Files: Which mode should you use to read a binary file?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q6" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`&#39;rb&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q6" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`&#39;r&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q6" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`&#39;binary&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q6" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`&#39;b&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="7" style="display: none;">
+                <div class="question-number">Question 7</div>
+                <h3 class="question-text">File Encoding: What is the default encoding for text files in Python 3?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q7" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">ASCII</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q7" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Latin-1</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q7" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">UTF-16</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q7" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">UTF-8</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="8" style="display: none;">
+                <div class="question-number">Question 8</div>
+                <h3 class="question-text">Temporary Files: Which module provides functionality for creating temporary files?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q8" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`temp`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q8" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`tempfile`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q8" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`tmpfile`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q8" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`temporary`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="9" style="display: none;">
+                <div class="question-number">Question 9</div>
+                <h3 class="question-text">File Existence: Using pathlib, how do you check if a file exists?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q9" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`Path(&#39;file.txt&#39;).exists()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q9" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`Path.exists(&#39;file.txt&#39;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q9" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`os.path.exists(&#39;file.txt&#39;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q9" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`file.exists(&#39;file.txt&#39;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="10" style="display: none;">
+                <div class="question-number">Question 10</div>
+                <h3 class="question-text">ZIP Files: Which module is used to work with ZIP archives in Python?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q10" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`zip`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q10" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`archive`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q10" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`compress`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q10" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`zipfile`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="11" style="display: none;">
+                <div class="question-number">Question 11</div>
+                <h3 class="question-text">io.open() vs open(): In Python 3, what is the relationship between `open()` and `io.open()`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q11" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">They are completely different functions</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q11" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`open()` is an alias to `io.open()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q11" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`io.open()` is deprecated</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q11" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`open()` is faster than `io.open()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="12" style="display: none;">
+                <div class="question-number">Question 12</div>
+                <h3 class="question-text">What is `io.StringIO` used for?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q12" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Reading strings from files</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q12" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Creating in-memory text streams</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q12" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Converting strings to bytes</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q12" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Compressing text data</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="13" style="display: none;">
+                <div class="question-number">Question 13</div>
+                <h3 class="question-text">File Object Type: What type of object does `open(&#39;file.txt&#39;, &#39;r&#39;)` return in Python 3?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q13" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`io.FileIO`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q13" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`io.BufferedReader`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q13" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`io.TextIOWrapper`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q13" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`io.StringIO`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="14" style="display: none;">
+                <div class="question-number">Question 14</div>
+                <h3 class="question-text">File Seeking: What does `file.seek(0, 2)` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q14" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Moves to the beginning of the file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q14" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Moves 2 bytes forward</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q14" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Moves to the end of the file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q14" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Moves to byte position 2</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="15" style="display: none;">
+                <div class="question-number">Question 15</div>
+                <h3 class="question-text">Encoding Errors: Which error handler replaces unencodable characters with XML entities?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q15" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`&#39;ignore&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q15" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`&#39;replace&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q15" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`&#39;xmlcharrefreplace&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q15" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`&#39;backslashreplace&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="16" style="display: none;">
+                <div class="question-number">Question 16</div>
+                <h3 class="question-text">What is the correct way to read data from a `BytesIO` object after writing to it?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q16" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`bytesio.read()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q16" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`bytesio.seek(0)` then `bytesio.read()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q16" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`bytesio.getvalue()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q16" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Both B and C are correct</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="17" style="display: none;">
+                <div class="question-number">Question 17</div>
+                <h3 class="question-text">File Modes: Which file mode creates a new file and fails if the file already exists?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q17" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`&#39;w&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q17" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`&#39;x&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q17" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`&#39;a&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q17" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`&#39;w+&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="18" style="display: none;">
+                <div class="question-number">Question 18</div>
+                <h3 class="question-text">CSV DictReader: What does `csv.DictReader` return for each row?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q18" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">A list</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q18" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">A tuple</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q18" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">A dictionary</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q18" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">A string</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="19" style="display: none;">
+                <div class="question-number">Question 19</div>
+                <h3 class="question-text">JSON Load vs Loads: What&#39;s the difference between `json.load()` and `json.loads()`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q19" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`load()` reads from a file, `loads()` reads from a string</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q19" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`load()` is faster than `loads()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q19" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`loads()` is deprecated</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q19" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">They are identical</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="20" style="display: none;">
+                <div class="question-number">Question 20</div>
+                <h3 class="question-text">File Buffering: What does `buffering=0` mean when opening a file?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q20" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Use default buffering</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q20" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">No buffering (only for binary mode)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q20" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Maximum buffering</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q20" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Line buffering</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="21" style="display: none;">
+                <div class="question-number">Question 21</div>
+                <h3 class="question-text">What does `io.TextIOWrapper` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q21" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Compresses text files</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q21" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Wraps a binary stream to provide text interface</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q21" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Creates temporary text files</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q21" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Validates text encoding</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="22" style="display: none;">
+                <div class="question-number">Question 22</div>
+                <h3 class="question-text">Path Operations: Which pathlib method recursively finds all files matching a pattern?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q22" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`glob()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q22" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`rglob()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q22" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`find()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q22" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`search()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="23" style="display: none;">
+                <div class="question-number">Question 23</div>
+                <h3 class="question-text">File Properties: How do you get a file&#39;s size using pathlib?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q23" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`path.size()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q23" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`path.filesize()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q23" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`path.stat().st_size`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q23" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`len(path)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="24" style="display: none;">
+                <div class="question-number">Question 24</div>
+                <h3 class="question-text">Reading Lines: Which is the most memory-efficient way to read a large file line by line?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q24" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`file.readlines()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q24" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`file.read().split(&#39;\n&#39;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q24" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`for line in file:`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q24" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`list(file)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="25" style="display: none;">
+                <div class="question-number">Question 25</div>
+                <h3 class="question-text">Byte Operations: What does `b&#39;Hello&#39;.decode(&#39;utf-8&#39;)` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q25" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`b&#39;Hello&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q25" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`&#39;Hello&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q25" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[72, 101, 108, 108, 111]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q25" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">An error</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="26" style="display: none;">
+                <div class="question-number">Question 26</div>
+                <h3 class="question-text">File Context: Which magic methods are needed to create a file context manager?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q26" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`__init__` and `__del__`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q26" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`__enter__` and `__exit__`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q26" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`__open__` and `__close__`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q26" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`__start__` and `__stop__`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="27" style="display: none;">
+                <div class="question-number">Question 27</div>
+                <h3 class="question-text">GZIP Files: Which mode should you use to read a compressed text file with gzip?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q27" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`&#39;r&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q27" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`&#39;rb&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q27" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`&#39;rt&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q27" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`&#39;text&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="28" style="display: none;">
+                <div class="question-number">Question 28</div>
+                <h3 class="question-text">Path Properties: Which pathlib property gives you the file extension?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q28" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`path.extension`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q28" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`path.ext`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q28" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`path.suffix`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q28" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`path.type`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="29" style="display: none;">
+                <div class="question-number">Question 29</div>
+                <h3 class="question-text">File Object Methods: Which method checks if a file object is readable?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q29" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`file.isreadable()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q29" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`file.can_read()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q29" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`file.readable()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q29" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`file.read_mode()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="30" style="display: none;">
+                <div class="question-number">Question 30</div>
+                <h3 class="question-text">Writing CSV: What parameter should you set when opening a CSV file for writing to avoid blank lines on Windows?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q30" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`encoding=&#39;utf-8&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q30" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`newline=&#39;&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q30" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`mode=&#39;wb&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q30" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`buffering=0`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="31" style="display: none;">
+                <div class="question-number">Question 31</div>
+                <h3 class="question-text">Socket as File Object: What method converts a socket to a file-like object?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q31" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`socket.tofile()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q31" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`socket.makefile()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q31" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`socket.fileno()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q31" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`socket.convert()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="32" style="display: none;">
+                <div class="question-number">Question 32</div>
+                <h3 class="question-text">sendfile() Benefit: What is the main advantage of `os.sendfile()` over traditional file reading and sending?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q32" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">It compresses data automatically</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q32" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">It uses zero-copy technology (no user-space copy)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q32" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">It encrypts data in transit</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q32" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">It works on all operating systems</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="33" style="display: none;">
+                <div class="question-number">Question 33</div>
+                <h3 class="question-text">Buffer Flushing: What does `file.flush()` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q33" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Closes the file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q33" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Clears the file contents</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q33" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Writes buffered data to disk</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q33" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Reads data into buffer</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="34" style="display: none;">
+                <div class="question-number">Question 34</div>
+                <h3 class="question-text">Line Buffering: When does a line-buffered file flush automatically?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q34" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">After every write</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q34" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">When a newline character is written</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q34" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">When the buffer is full</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q34" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Every second</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="35" style="display: none;">
+                <div class="question-number">Question 35</div>
+                <h3 class="question-text">Unbuffered Binary I/O: What buffering value should you use for unbuffered binary I/O?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q35" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`buffering=-1`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q35" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`buffering=0`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q35" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`buffering=1`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q35" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`buffering=None`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ 35</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="index.html" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "File Handling - Quiz", "description": "Test your knowledge of file I/O operations, formats, and best practices.", "courseId": "Python", "moduleId": "03_Files", "questions": [{"number": 1, "text": "File Modes: What does the file mode `'r+'` do?", "code": null, "answers": [{"letter": "A", "text": "Read-only mode"}, {"letter": "B", "text": "Read and write mode (file must exist)"}, {"letter": "C", "text": "Write mode (creates new file)"}, {"letter": "D", "text": "Append mode"}], "correctAnswer": "B", "explanation": "Read and write mode (file must exist)"}, {"number": 2, "text": "Context Manager: What is the advantage of using `with open()` for file operations?", "code": null, "answers": [{"letter": "A", "text": "It's faster than regular open()"}, {"letter": "B", "text": "It automatically closes the file, even if an exception occurs"}, {"letter": "C", "text": "It allows multiple files to be opened"}, {"letter": "D", "text": "It prevents file corruption"}], "correctAnswer": "B", "explanation": "It automatically closes the file, even if an exception occurs"}, {"number": 3, "text": "Which is the correct way to join paths using pathlib?", "code": null, "answers": [{"letter": "A", "text": "`Path('/home') / 'user' / 'file.txt'`"}, {"letter": "B", "text": "`Path('/home') + 'user' + 'file.txt'`"}, {"letter": "C", "text": "`Path('/home').join('user', 'file.txt')`"}, {"letter": "D", "text": "`Path.join('/home', 'user', 'file.txt')`"}], "correctAnswer": "A", "explanation": "`Path('/home') / 'user' / 'file.txt'`"}, {"number": 4, "text": "CSV Reading: Which module is used for reading and writing CSV files in Python?", "code": null, "answers": [{"letter": "A", "text": "`csvfile`"}, {"letter": "B", "text": "`pandas`"}, {"letter": "C", "text": "`spreadsheet`"}, {"letter": "D", "text": "`csv`"}], "correctAnswer": "D", "explanation": "`csv`"}, {"number": 5, "text": "JSON Serialization: What does `json.dumps()` do?", "code": null, "answers": [{"letter": "A", "text": "Loads JSON from a file"}, {"letter": "B", "text": "Dumps JSON to a file"}, {"letter": "C", "text": "Converts a Python object to a JSON string"}, {"letter": "D", "text": "Validates JSON syntax"}], "correctAnswer": "C", "explanation": "Converts a Python object to a JSON string"}, {"number": 6, "text": "Binary Files: Which mode should you use to read a binary file?", "code": null, "answers": [{"letter": "A", "text": "`'rb'`"}, {"letter": "B", "text": "`'r'`"}, {"letter": "C", "text": "`'binary'`"}, {"letter": "D", "text": "`'b'`"}], "correctAnswer": "A", "explanation": "`'rb'`"}, {"number": 7, "text": "File Encoding: What is the default encoding for text files in Python 3?", "code": null, "answers": [{"letter": "A", "text": "ASCII"}, {"letter": "B", "text": "Latin-1"}, {"letter": "C", "text": "UTF-16"}, {"letter": "D", "text": "UTF-8"}], "correctAnswer": "D", "explanation": "UTF-8"}, {"number": 8, "text": "Temporary Files: Which module provides functionality for creating temporary files?", "code": null, "answers": [{"letter": "A", "text": "`temp`"}, {"letter": "B", "text": "`tempfile`"}, {"letter": "C", "text": "`tmpfile`"}, {"letter": "D", "text": "`temporary`"}], "correctAnswer": "B", "explanation": "`tempfile`"}, {"number": 9, "text": "File Existence: Using pathlib, how do you check if a file exists?", "code": null, "answers": [{"letter": "A", "text": "`Path('file.txt').exists()`"}, {"letter": "B", "text": "`Path.exists('file.txt')`"}, {"letter": "C", "text": "`os.path.exists('file.txt')`"}, {"letter": "D", "text": "`file.exists('file.txt')`"}], "correctAnswer": "A", "explanation": "`Path('file.txt').exists()`"}, {"number": 10, "text": "ZIP Files: Which module is used to work with ZIP archives in Python?", "code": null, "answers": [{"letter": "A", "text": "`zip`"}, {"letter": "B", "text": "`archive`"}, {"letter": "C", "text": "`compress`"}, {"letter": "D", "text": "`zipfile`"}], "correctAnswer": "D", "explanation": "`zipfile`"}, {"number": 11, "text": "io.open() vs open(): In Python 3, what is the relationship between `open()` and `io.open()`?", "code": null, "answers": [{"letter": "A", "text": "They are completely different functions"}, {"letter": "B", "text": "`open()` is an alias to `io.open()`"}, {"letter": "C", "text": "`io.open()` is deprecated"}, {"letter": "D", "text": "`open()` is faster than `io.open()`"}], "correctAnswer": "B", "explanation": "`open()` is an alias to `io.open()`"}, {"number": 12, "text": "What is `io.StringIO` used for?", "code": null, "answers": [{"letter": "A", "text": "Reading strings from files"}, {"letter": "B", "text": "Creating in-memory text streams"}, {"letter": "C", "text": "Converting strings to bytes"}, {"letter": "D", "text": "Compressing text data"}], "correctAnswer": "B", "explanation": "Creating in-memory text streams"}, {"number": 13, "text": "File Object Type: What type of object does `open('file.txt', 'r')` return in Python 3?", "code": null, "answers": [{"letter": "A", "text": "`io.FileIO`"}, {"letter": "B", "text": "`io.BufferedReader`"}, {"letter": "C", "text": "`io.TextIOWrapper`"}, {"letter": "D", "text": "`io.StringIO`"}], "correctAnswer": "C", "explanation": "`io.TextIOWrapper`"}, {"number": 14, "text": "File Seeking: What does `file.seek(0, 2)` do?", "code": null, "answers": [{"letter": "A", "text": "Moves to the beginning of the file"}, {"letter": "B", "text": "Moves 2 bytes forward"}, {"letter": "C", "text": "Moves to the end of the file"}, {"letter": "D", "text": "Moves to byte position 2"}], "correctAnswer": "C", "explanation": "Moves to the end of the file"}, {"number": 15, "text": "Encoding Errors: Which error handler replaces unencodable characters with XML entities?", "code": null, "answers": [{"letter": "A", "text": "`'ignore'`"}, {"letter": "B", "text": "`'replace'`"}, {"letter": "C", "text": "`'xmlcharrefreplace'`"}, {"letter": "D", "text": "`'backslashreplace'`"}], "correctAnswer": "C", "explanation": "`'xmlcharrefreplace'`"}, {"number": 16, "text": "What is the correct way to read data from a `BytesIO` object after writing to it?", "code": null, "answers": [{"letter": "A", "text": "`bytesio.read()`"}, {"letter": "B", "text": "`bytesio.seek(0)` then `bytesio.read()`"}, {"letter": "C", "text": "`bytesio.getvalue()`"}, {"letter": "D", "text": "Both B and C are correct"}], "correctAnswer": "D", "explanation": "Both B and C are correct"}, {"number": 17, "text": "File Modes: Which file mode creates a new file and fails if the file already exists?", "code": null, "answers": [{"letter": "A", "text": "`'w'`"}, {"letter": "B", "text": "`'x'`"}, {"letter": "C", "text": "`'a'`"}, {"letter": "D", "text": "`'w+'`"}], "correctAnswer": "B", "explanation": "`'x'`"}, {"number": 18, "text": "CSV DictReader: What does `csv.DictReader` return for each row?", "code": null, "answers": [{"letter": "A", "text": "A list"}, {"letter": "B", "text": "A tuple"}, {"letter": "C", "text": "A dictionary"}, {"letter": "D", "text": "A string"}], "correctAnswer": "C", "explanation": "A dictionary"}, {"number": 19, "text": "JSON Load vs Loads: What's the difference between `json.load()` and `json.loads()`?", "code": null, "answers": [{"letter": "A", "text": "`load()` reads from a file, `loads()` reads from a string"}, {"letter": "B", "text": "`load()` is faster than `loads()`"}, {"letter": "C", "text": "`loads()` is deprecated"}, {"letter": "D", "text": "They are identical"}], "correctAnswer": "A", "explanation": "`load()` reads from a file, `loads()` reads from a string"}, {"number": 20, "text": "File Buffering: What does `buffering=0` mean when opening a file?", "code": null, "answers": [{"letter": "A", "text": "Use default buffering"}, {"letter": "B", "text": "No buffering (only for binary mode)"}, {"letter": "C", "text": "Maximum buffering"}, {"letter": "D", "text": "Line buffering"}], "correctAnswer": "B", "explanation": "No buffering (only for binary mode)"}, {"number": 21, "text": "What does `io.TextIOWrapper` do?", "code": null, "answers": [{"letter": "A", "text": "Compresses text files"}, {"letter": "B", "text": "Wraps a binary stream to provide text interface"}, {"letter": "C", "text": "Creates temporary text files"}, {"letter": "D", "text": "Validates text encoding"}], "correctAnswer": "B", "explanation": "Wraps a binary stream to provide text interface"}, {"number": 22, "text": "Path Operations: Which pathlib method recursively finds all files matching a pattern?", "code": null, "answers": [{"letter": "A", "text": "`glob()`"}, {"letter": "B", "text": "`rglob()`"}, {"letter": "C", "text": "`find()`"}, {"letter": "D", "text": "`search()`"}], "correctAnswer": "B", "explanation": "`rglob()`"}, {"number": 23, "text": "File Properties: How do you get a file's size using pathlib?", "code": null, "answers": [{"letter": "A", "text": "`path.size()`"}, {"letter": "B", "text": "`path.filesize()`"}, {"letter": "C", "text": "`path.stat().st_size`"}, {"letter": "D", "text": "`len(path)`"}], "correctAnswer": "C", "explanation": "`path.stat().st_size`"}, {"number": 24, "text": "Reading Lines: Which is the most memory-efficient way to read a large file line by line?", "code": null, "answers": [{"letter": "A", "text": "`file.readlines()`"}, {"letter": "B", "text": "`file.read().split('\\n')`"}, {"letter": "C", "text": "`for line in file:`"}, {"letter": "D", "text": "`list(file)`"}], "correctAnswer": "C", "explanation": "`for line in file:`"}, {"number": 25, "text": "Byte Operations: What does `b'Hello'.decode('utf-8')` return?", "code": null, "answers": [{"letter": "A", "text": "`b'Hello'`"}, {"letter": "B", "text": "`'Hello'`"}, {"letter": "C", "text": "`[72, 101, 108, 108, 111]`"}, {"letter": "D", "text": "An error"}], "correctAnswer": "B", "explanation": "`'Hello'`"}, {"number": 26, "text": "File Context: Which magic methods are needed to create a file context manager?", "code": null, "answers": [{"letter": "A", "text": "`__init__` and `__del__`"}, {"letter": "B", "text": "`__enter__` and `__exit__`"}, {"letter": "C", "text": "`__open__` and `__close__`"}, {"letter": "D", "text": "`__start__` and `__stop__`"}], "correctAnswer": "B", "explanation": "`__enter__` and `__exit__`"}, {"number": 27, "text": "GZIP Files: Which mode should you use to read a compressed text file with gzip?", "code": null, "answers": [{"letter": "A", "text": "`'r'`"}, {"letter": "B", "text": "`'rb'`"}, {"letter": "C", "text": "`'rt'`"}, {"letter": "D", "text": "`'text'`"}], "correctAnswer": "C", "explanation": "`'rt'`"}, {"number": 28, "text": "Path Properties: Which pathlib property gives you the file extension?", "code": null, "answers": [{"letter": "A", "text": "`path.extension`"}, {"letter": "B", "text": "`path.ext`"}, {"letter": "C", "text": "`path.suffix`"}, {"letter": "D", "text": "`path.type`"}], "correctAnswer": "C", "explanation": "`path.suffix`"}, {"number": 29, "text": "File Object Methods: Which method checks if a file object is readable?", "code": null, "answers": [{"letter": "A", "text": "`file.isreadable()`"}, {"letter": "B", "text": "`file.can_read()`"}, {"letter": "C", "text": "`file.readable()`"}, {"letter": "D", "text": "`file.read_mode()`"}], "correctAnswer": "C", "explanation": "`file.readable()`"}, {"number": 30, "text": "Writing CSV: What parameter should you set when opening a CSV file for writing to avoid blank lines on Windows?", "code": null, "answers": [{"letter": "A", "text": "`encoding='utf-8'`"}, {"letter": "B", "text": "`newline=''`"}, {"letter": "C", "text": "`mode='wb'`"}, {"letter": "D", "text": "`buffering=0`"}], "correctAnswer": "B", "explanation": "`newline=''`"}, {"number": 31, "text": "Socket as File Object: What method converts a socket to a file-like object?", "code": null, "answers": [{"letter": "A", "text": "`socket.tofile()`"}, {"letter": "B", "text": "`socket.makefile()`"}, {"letter": "C", "text": "`socket.fileno()`"}, {"letter": "D", "text": "`socket.convert()`"}], "correctAnswer": "B", "explanation": "`socket.makefile()`"}, {"number": 32, "text": "sendfile() Benefit: What is the main advantage of `os.sendfile()` over traditional file reading and sending?", "code": null, "answers": [{"letter": "A", "text": "It compresses data automatically"}, {"letter": "B", "text": "It uses zero-copy technology (no user-space copy)"}, {"letter": "C", "text": "It encrypts data in transit"}, {"letter": "D", "text": "It works on all operating systems"}], "correctAnswer": "B", "explanation": "It uses zero-copy technology (no user-space copy)"}, {"number": 33, "text": "Buffer Flushing: What does `file.flush()` do?", "code": null, "answers": [{"letter": "A", "text": "Closes the file"}, {"letter": "B", "text": "Clears the file contents"}, {"letter": "C", "text": "Writes buffered data to disk"}, {"letter": "D", "text": "Reads data into buffer"}], "correctAnswer": "C", "explanation": "Writes buffered data to disk"}, {"number": 34, "text": "Line Buffering: When does a line-buffered file flush automatically?", "code": null, "answers": [{"letter": "A", "text": "After every write"}, {"letter": "B", "text": "When a newline character is written"}, {"letter": "C", "text": "When the buffer is full"}, {"letter": "D", "text": "Every second"}], "correctAnswer": "B", "explanation": "When a newline character is written"}, {"number": 35, "text": "Unbuffered Binary I/O: What buffering value should you use for unbuffered binary I/O?", "code": null, "answers": [{"letter": "A", "text": "`buffering=-1`"}, {"letter": "B", "text": "`buffering=0`"}, {"letter": "C", "text": "`buffering=1`"}, {"letter": "D", "text": "`buffering=None`"}], "correctAnswer": "B", "explanation": "`buffering=0`"}]};
+</script>
+<script src="../../../static/js/quiz.js"></script>
+
     </main>
 
     <footer class="site-footer">
@@ -63,7 +1491,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

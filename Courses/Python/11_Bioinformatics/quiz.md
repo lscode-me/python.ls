@@ -243,21 +243,21 @@ D) O(log n)
 | 1 | B | Uracil is found in RNA, not DNA |
 | 2 | D | A codon consists of 3 consecutive nucleotides |
 | 3 | C | GC pairs have 3 hydrogen bonds vs AT's 2, affecting stability |
-| 4 | D | FASTA format uses '>' for sequence headers |
+| 4 | C | FASTA format uses '>' for sequence headers |
 | 5 | A | Alignment identifies regions of similarity between sequences |
-| 6 | D | BioPython is specifically designed for bioinformatics |
+| 6 | C | BioPython is specifically designed for bioinformatics |
 | 7 | A | Transcription: A→U, T→A, G→C, C→G |
-| 8 | B | Each DNA strand has 3 possible reading frames |
+| 8 | A | Each DNA strand has 3 possible reading frames |
 | 9 | B | BLAST = Basic Local Alignment Search Tool |
 | 10 | A | Primary, secondary, tertiary, and quaternary structures |
 | 11 | D | PCR doesn't require restriction enzymes |
-| 12 | D | Branch lengths represent evolutionary distance |
+| 12 | C | Branch lengths represent evolutionary distance |
 | 13 | B | RNA-seq is the standard for measuring gene expression |
-| 14 | C | UniProt is the main protein sequence database |
-| 15 | A | Strings are immutable and perfect for DNA sequences |
-| 16 | A | The function calculates GC content percentage |
+| 14 | B | UniProt is the main protein sequence database |
+| 15 | B | Strings are immutable and perfect for DNA sequences |
+| 16 | B | The function calculates GC content percentage |
 | 17 | C | Creates DNA complement by base replacement |
-| 18 | B | Bio.SeqIO handles sequence input/output operations |
+| 18 | A | Bio.SeqIO handles sequence input/output operations |
 | 19 | C | GWAS analyzes millions of variants across populations |
 | 20 | C | Naive string matching has O(nm) complexity |
 

@@ -158,13 +158,13 @@ D) Easier syntax
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | D | `mkfifo pipename` creates a named pipe (FIFO = First In First Out) |
+| 1 | B | `mkfifo pipename` creates a named pipe (FIFO = First In First Out) |
 | 2 | B | Write blocks until a reader connects; data waits in kernel buffer |
 | 3 | B | Both methods work: `read()` loads all, iteration processes line-by-line |
 | 4 | D | `flush=True` bypasses Python's output buffer for immediate write |
 | 5 | C | `-u` flag forces unbuffered output (binary stdout/stderr) |
 | 6 | D | `trap 'cleanup_command' EXIT` runs cleanup on any exit (normal or error) |
-| 7 | C | `-l` = listen, `-U` = Unix domain socket at specified path |
+| 7 | B | `-l` = listen, `-U` = Unix domain socket at specified path |
 | 8 | B | `-oL` = line-buffered output (one line at a time) |
 | 9 | A | `<(cmd)` creates pseudo-file that can be read like a file |
 | 10 | C | Process substitution or named pipes work; simple pipe with `&` doesn't |

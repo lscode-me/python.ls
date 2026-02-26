@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -33,7 +32,120 @@
     </header>
 
     <main class="main-content">
-        <h1 id="performance-parallelism">Performance &amp; Parallelism</h1>
+        
+<div class="lecture-page-wrapper">
+    <!-- Left Sidebar: Course TOC -->
+    <aside class="sidebar sidebar-left">
+        <div class="sidebar-header">
+            <h3>Linux for Developers: Unix &amp; Data Pipelines</h3>
+        </div>
+        <nav class="course-toc">
+            
+            <a href="../../../courses/Linux/01_Unix_Streams/" 
+               class="toc-item ">
+                <span class="toc-number">1</span>
+                <span class="toc-title">Unix as a Language of Data &amp; Streams</span>
+            </a>
+            
+            <a href="../../../courses/Linux/02_Files_Inodes_Descriptors/" 
+               class="toc-item ">
+                <span class="toc-number">2</span>
+                <span class="toc-title">Files, I-nodes &amp; File Descriptors</span>
+            </a>
+            
+            <a href="../../../courses/Linux/03_Shell_Programming/" 
+               class="toc-item ">
+                <span class="toc-number">3</span>
+                <span class="toc-title">Shell Programming as a Mini-DSL for Data Processing</span>
+            </a>
+            
+            <a href="../../../courses/Linux/04_Coreutils/" 
+               class="toc-item ">
+                <span class="toc-number">4</span>
+                <span class="toc-title">Coreutils: Data Transformation Utilities</span>
+            </a>
+            
+            <a href="../../../courses/Linux/05_Grep_Sed_Awk/" 
+               class="toc-item ">
+                <span class="toc-number">5</span>
+                <span class="toc-title">Grep, Sed &amp; Awk: Text Processing Power Tools</span>
+            </a>
+            
+            <a href="../../../courses/Linux/06_Structured_Data/" 
+               class="toc-item ">
+                <span class="toc-number">6</span>
+                <span class="toc-title">Structured Data Processing (JSON, CSV, YAML, XML)</span>
+            </a>
+            
+            <a href="../../../courses/Linux/07_Streaming_Analytics/" 
+               class="toc-item ">
+                <span class="toc-number">7</span>
+                <span class="toc-title">Streaming Analytics: Join, Group-By, Map/Reduce</span>
+            </a>
+            
+            <a href="../../../courses/Linux/08_Log_Processing/" 
+               class="toc-item ">
+                <span class="toc-number">8</span>
+                <span class="toc-title">Log Processing &amp; Real-World Pipelines</span>
+            </a>
+            
+            <a href="../../../courses/Linux/09_Performance_Parallelism/" 
+               class="toc-item active">
+                <span class="toc-number">9</span>
+                <span class="toc-title">Performance &amp; Parallelism</span>
+            </a>
+            
+            <a href="../../../courses/Linux/10_Streams_IPC/" 
+               class="toc-item ">
+                <span class="toc-number">10</span>
+                <span class="toc-title">Streams, IPC &amp; Unix Sockets</span>
+            </a>
+            
+            <a href="../../../courses/Linux/11_Bash_Glue/" 
+               class="toc-item ">
+                <span class="toc-number">11</span>
+                <span class="toc-title">Bash as Glue: Combining Tools &amp; Error Handling</span>
+            </a>
+            
+            <a href="../../../courses/Linux/12_Python_Pipelines/" 
+               class="toc-item ">
+                <span class="toc-number">12</span>
+                <span class="toc-title">Python in Pipelines: Hybrid Shell-Python Workflows</span>
+            </a>
+            
+            <a href="../../../courses/Linux/13_Complex_Pipelines/" 
+               class="toc-item ">
+                <span class="toc-number">13</span>
+                <span class="toc-title">Complex Pipelines: Map/Reduce, Staging, Checkpoints, Orchestration</span>
+            </a>
+            
+            <a href="../../../courses/Linux/14_Final_Project/" 
+               class="toc-item ">
+                <span class="toc-number">14</span>
+                <span class="toc-title">Final Project: Build a Complete ETL Pipeline</span>
+            </a>
+            
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <article class="lecture-page">
+        <nav class="breadcrumb">
+            <a href="../../../">Home</a> &raquo;
+            <a href="../../../courses/Linux/">Linux for Developers: Unix &amp; Data Pipelines</a> &raquo;
+            <span>Performance &amp; Parallelism</span>
+        </nav>
+
+        <div class="lecture-header">
+            <h1>Performance &amp; Parallelism</h1>
+            <div class="lecture-meta">
+                <span class="module-badge">Module 9</span>
+                <span class="reading-time">📖 4 min read</span>
+            </div>
+        </div>
+
+        <div class="lecture-content">
+            <h1 id="performance-parallelism">Performance &amp; Parallelism</h1>
 <h2 id="sample-data-files">Sample Data Files</h2>
 <p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
 <hr />
@@ -277,6 +389,54 @@ vmstat 2
 <li>Optimize bottlenecks</li>
 <li>Study parallel algorithms</li>
 </ul>
+        </div>
+
+        <div class="lecture-nav">
+            
+            <a href="../../../courses/Linux/08_Log_Processing/" class="nav-prev">
+                <span class="nav-label">← Previous</span>
+                <span class="nav-title">Log Processing &amp; Real-World Pipelines</span>
+            </a>
+            
+
+            
+            <a href="../../../courses/Linux/10_Streams_IPC/" class="nav-next">
+                <span class="nav-label">Next →</span>
+                <span class="nav-title">Streams, IPC &amp; Unix Sockets</span>
+            </a>
+            
+        </div>
+
+        <div class="lecture-resources">
+            <h3>📚 Resources</h3>
+            <div class="resource-links">
+                <a href="quiz.html" class="resource-btn quiz-btn">
+                    <span class="icon">📝</span>
+                    <span class="text">Take Quiz</span>
+                </a>
+                <a href="hw.html" class="resource-btn hw-btn">
+                    <span class="icon">💻</span>
+                    <span class="text">Homework</span>
+                </a>
+                <a href="links.html" class="resource-btn links-btn">
+                    <span class="icon">🔗</span>
+                    <span class="text">More Links</span>
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Right Sidebar: Lecture Navigation -->
+    <aside class="sidebar sidebar-right">
+        <div class="sidebar-header">
+            <h3>On this page</h3>
+        </div>
+        <nav class="lecture-nav-toc">
+            <!-- Will be populated by JavaScript -->
+        </nav>
+    </aside>
+</div>
+
     </main>
 
     <footer class="site-footer">
@@ -306,7 +466,7 @@ vmstat 2
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

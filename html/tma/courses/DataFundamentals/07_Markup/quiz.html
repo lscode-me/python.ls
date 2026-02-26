@@ -39,6 +39,1397 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: Markup Languages</h2>
+        <p class="quiz-meta">30 questions • ~30 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 30</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+        <div class="question-card" data-question="1" >
+            <div class="question-header">
+                <span class="question-num">Q1</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What is Markup: What is a markup language?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">A system for annotating text with tags</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">A database</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">A programming language</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q1" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">A data transmission protocol</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="2" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q2</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">HTML Purpose: What is HTML used for?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Creating web pages</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">File compression</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Server programming</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q2" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Data storage</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="3" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q3</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does `&lt;!DOCTYPE html&gt;` do in HTML5?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Tells the browser to use standards mode</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Imports styles</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Creates a comment</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q3" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Includes JavaScript</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="4" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q4</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Semantic HTML: Which tag is semantically correct for navigation?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`&lt;div class=&#34;nav&#34;&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`&lt;span id=&#34;navigation&#34;&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`&lt;nav&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q4" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`&lt;menu&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="5" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q5</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">XML vs HTML: How does XML differ from HTML?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">XML doesn&#39;t require closing tags</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">XML is only used for web pages</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">XML is case-insensitive</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q5" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">XML allows creating arbitrary tags</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="6" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q6</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">XML Tag Closing: Which XML is valid?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">&lt;tag&gt;content&lt;/tag&gt;</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`&lt;tag content&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`&lt;tag&gt;content`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q6" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`&lt;tag&gt;content&lt;/TAG&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="7" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q7</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">XML Special Characters: How do you write the `&lt;` character in XML?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`%lt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`&lt;&lt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">&amp;lt;</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q7" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`\&lt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="8" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q8</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Markdown Headings: How do you create a level 2 heading in Markdown?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`# Heading`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`-- Heading --`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">## Heading</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q8" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`** Heading **`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="9" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q9</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Markdown Bold Text: How do you make text bold in Markdown?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`~~text~~`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">**text**</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`&lt;b&gt;text&lt;/b&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q9" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`__text`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="10" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q10</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Markdown Links: What is the syntax for a link in Markdown?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`(text)[url]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`{text}(url)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">[text](url)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q10" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`&lt;a href=&#34;url&#34;&gt;text&lt;/a&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="11" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q11</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">GitHub Markdown: What is the syntax for a code block with syntax highlighting in GFM?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q11" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`[code]code[/code]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q11" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">```python code```</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q11" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`&lt;code&gt;code&lt;/code&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q11" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`{python}code{/python}`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="12" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q12</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Markdown Tables: Which symbol separates cells in Markdown tables?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q12" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q12" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`:`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q12" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">|</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q12" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`,`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="13" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q13</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">HTML Attributes: Which attribute must be unique on a page?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q13" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`style`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q13" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`name`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q13" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`class`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q13" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">id</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="14" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q14</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">XML Root Element: How many root elements can an XML document have?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q14" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Any number</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q14" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Exactly one</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q14" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">At least two</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q14" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Zero or one</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="15" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q15</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Markdown Lists: Which symbol starts a bullet list?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q15" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`+` only</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q15" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q15" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">* or -</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q15" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`#`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="16" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q16</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">HTML Forms: Which attribute specifies the HTTP method of a form?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q16" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`submit`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q16" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`action`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q16" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`type`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q16" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">method</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="17" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q17</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">SVG Format: SVG files are based on which format?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q17" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">XML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q17" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Binary</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q17" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">HTML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q17" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">JSON</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="18" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q18</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Markdown Quotes: How do you create a quote in Markdown?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q18" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`| text`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q18" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">&gt; text</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q18" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`&#34; text &#34;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q18" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`&#39; text &#39;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="19" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q19</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">XML Namespaces: What are namespaces used for in XML?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q19" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Encryption</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q19" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Data compression</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q19" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Styling</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q19" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Avoiding tag name conflicts</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="20" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q20</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Format Conversion: Which tool converts Markdown to other formats?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q20" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">pandoc</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q20" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">grep</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q20" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">gcc</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q20" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">curl</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="21" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q21</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 GFF Format: GFF (Gene Finding Format) is based on which markup language?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q21" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">HTML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q21" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">XML-like structure</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q21" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">JSON</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q21" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">YAML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="22" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q22</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 SBML Purpose: What is SBML (Systems Biology Markup Language) used for?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q22" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Storing DNA sequences</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q22" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Modeling biological pathways and networks</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q22" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Variant calling</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q22" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Sequence alignment</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="23" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q23</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 Markdown for Protocols: Why is Markdown ideal for bioinformatics protocols?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q23" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">It&#39;s binary format</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q23" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">It requires special software</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q23" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">It&#39;s human-readable and supports code blocks</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q23" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">It&#39;s faster than other formats</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="24" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q24</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 HTML Analysis Reports: Which HTML tag is best for displaying variant statistics in a report?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q24" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`&lt;div&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q24" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`&lt;span&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q24" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`&lt;table&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q24" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`&lt;p&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="25" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q25</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 XML Gene Annotation: Given this XML, how would you access the gene name in Python?</p>
+                
+                
+                <pre class="question-code"><code>&lt;gene id=&#34;ENSG00000139618&#34;&gt;
+    &lt;name&gt;BRCA2&lt;/name&gt;
+&lt;/gene&gt;</code></pre>
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q25" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`gene.name`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q25" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`gene.find(&#39;name&#39;).text`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q25" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`gene[&#39;name&#39;]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q25" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`gene.get(&#39;name&#39;)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="26" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q26</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 Markdown README: What should a bioinformatics tool README include?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q26" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Only installation instructions</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q26" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Installation, usage, parameters, and citation</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q26" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Just the source code</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q26" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Only the license</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="27" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q27</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 FastQC Reports: FastQC generates analysis reports in which format?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q27" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">XML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q27" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">JSON</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q27" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">HTML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q27" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Markdown</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="28" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q28</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 Markdown Code Blocks: How do you specify a bash code block in Markdown?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q28" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">` ```bash code``` `</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q28" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`&lt;bash&gt;code&lt;/bash&gt;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q28" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`[bash]code[/bash]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q28" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`{bash}code{/bash}`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="29" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q29</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 XML vs JSON for Data: Why might you prefer JSON over XML for bioinformatics metadata?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q29" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">JSON is more verbose</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q29" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">JSON is easier to parse and more compact</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q29" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">JSON requires special tools</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q29" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">JSON doesn&#39;t support nested data</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="30" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q30</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">🧬 Documentation Format: Which format is best for a bioinformatics pipeline protocol with code examples?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q30" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Plain text</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q30" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">HTML only</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q30" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Markdown with code blocks</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q30" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">XML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 30</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Markup Languages - Quiz", "description": "Test your knowledge on \"Markup Languages: HTML, XML, and Markdown\" with a bioinformatics focus.", "courseId": "DataFundamentals", "moduleId": "07_Markup", "questions": [{"number": 1, "text": "What is Markup: What is a markup language?", "code": null, "answers": [{"letter": "A", "text": "A system for annotating text with tags"}, {"letter": "B", "text": "A database"}, {"letter": "C", "text": "A programming language"}, {"letter": "D", "text": "A data transmission protocol"}], "correctAnswer": "A", "explanation": "Markup language annotates text with tags for structure and formatting."}, {"number": 2, "text": "HTML Purpose: What is HTML used for?", "code": null, "answers": [{"letter": "A", "text": "Creating web pages"}, {"letter": "B", "text": "File compression"}, {"letter": "C", "text": "Server programming"}, {"letter": "D", "text": "Data storage"}], "correctAnswer": "A", "explanation": "HTML (HyperText Markup Language) is the standard for web pages."}, {"number": 3, "text": "What does `<!DOCTYPE html>` do in HTML5?", "code": null, "answers": [{"letter": "A", "text": "Tells the browser to use standards mode"}, {"letter": "B", "text": "Imports styles"}, {"letter": "C", "text": "Creates a comment"}, {"letter": "D", "text": "Includes JavaScript"}], "correctAnswer": "A", "explanation": "DOCTYPE tells the browser to use standards mode rendering."}, {"number": 4, "text": "Semantic HTML: Which tag is semantically correct for navigation?", "code": null, "answers": [{"letter": "A", "text": "`<div class=\"nav\">`"}, {"letter": "B", "text": "`<span id=\"navigation\">`"}, {"letter": "C", "text": "`<nav>`"}, {"letter": "D", "text": "`<menu>`"}], "correctAnswer": "C", "explanation": "`<nav>` is the semantic HTML5 tag for navigation."}, {"number": 5, "text": "XML vs HTML: How does XML differ from HTML?", "code": null, "answers": [{"letter": "A", "text": "XML doesn't require closing tags"}, {"letter": "B", "text": "XML is only used for web pages"}, {"letter": "C", "text": "XML is case-insensitive"}, {"letter": "D", "text": "XML allows creating arbitrary tags"}], "correctAnswer": "D", "explanation": "XML allows creating arbitrary tags, HTML has a fixed set."}, {"number": 6, "text": "XML Tag Closing: Which XML is valid?", "code": null, "answers": [{"letter": "A", "text": "<tag>content</tag>"}, {"letter": "B", "text": "`<tag content>`"}, {"letter": "C", "text": "`<tag>content`"}, {"letter": "D", "text": "`<tag>content</TAG>`"}], "correctAnswer": "A", "explanation": "XML requires exact case matching of opening and closing tags."}, {"number": 7, "text": "XML Special Characters: How do you write the `<` character in XML?", "code": null, "answers": [{"letter": "A", "text": "`%lt;`"}, {"letter": "B", "text": "`<<`"}, {"letter": "C", "text": "&lt;"}, {"letter": "D", "text": "`\\<`"}], "correctAnswer": "C", "explanation": "`&lt;` is the entity for `<` in XML and HTML."}, {"number": 8, "text": "Markdown Headings: How do you create a level 2 heading in Markdown?", "code": null, "answers": [{"letter": "A", "text": "`# Heading`"}, {"letter": "B", "text": "`-- Heading --`"}, {"letter": "C", "text": "## Heading"}, {"letter": "D", "text": "`** Heading **`"}], "correctAnswer": null, "explanation": null}, {"number": 9, "text": "Markdown Bold Text: How do you make text bold in Markdown?", "code": null, "answers": [{"letter": "A", "text": "`~~text~~`"}, {"letter": "B", "text": "**text**"}, {"letter": "C", "text": "`<b>text</b>`"}, {"letter": "D", "text": "`__text`"}], "correctAnswer": null, "explanation": null}, {"number": 10, "text": "Markdown Links: What is the syntax for a link in Markdown?", "code": null, "answers": [{"letter": "A", "text": "`(text)[url]`"}, {"letter": "B", "text": "`{text}(url)`"}, {"letter": "C", "text": "[text](url)"}, {"letter": "D", "text": "`<a href=\"url\">text</a>`"}], "correctAnswer": null, "explanation": null}, {"number": 11, "text": "GitHub Markdown: What is the syntax for a code block with syntax highlighting in GFM?", "code": null, "answers": [{"letter": "A", "text": "`[code]code[/code]`"}, {"letter": "B", "text": "```python code```"}, {"letter": "C", "text": "`<code>code</code>`"}, {"letter": "D", "text": "`{python}code{/python}`"}], "correctAnswer": null, "explanation": null}, {"number": 12, "text": "Markdown Tables: Which symbol separates cells in Markdown tables?", "code": null, "answers": [{"letter": "A", "text": "`;`"}, {"letter": "B", "text": "`:`"}, {"letter": "C", "text": "|"}, {"letter": "D", "text": "`,`"}], "correctAnswer": null, "explanation": null}, {"number": 13, "text": "HTML Attributes: Which attribute must be unique on a page?", "code": null, "answers": [{"letter": "A", "text": "`style`"}, {"letter": "B", "text": "`name`"}, {"letter": "C", "text": "`class`"}, {"letter": "D", "text": "id"}], "correctAnswer": null, "explanation": null}, {"number": 14, "text": "XML Root Element: How many root elements can an XML document have?", "code": null, "answers": [{"letter": "A", "text": "Any number"}, {"letter": "B", "text": "Exactly one"}, {"letter": "C", "text": "At least two"}, {"letter": "D", "text": "Zero or one"}], "correctAnswer": null, "explanation": null}, {"number": 15, "text": "Markdown Lists: Which symbol starts a bullet list?", "code": null, "answers": [{"letter": "A", "text": "`+` only"}, {"letter": "B", "text": "`>`"}, {"letter": "C", "text": "* or -"}, {"letter": "D", "text": "`#`"}], "correctAnswer": null, "explanation": null}, {"number": 16, "text": "HTML Forms: Which attribute specifies the HTTP method of a form?", "code": null, "answers": [{"letter": "A", "text": "`submit`"}, {"letter": "B", "text": "`action`"}, {"letter": "C", "text": "`type`"}, {"letter": "D", "text": "method"}], "correctAnswer": null, "explanation": null}, {"number": 17, "text": "SVG Format: SVG files are based on which format?", "code": null, "answers": [{"letter": "A", "text": "XML"}, {"letter": "B", "text": "Binary"}, {"letter": "C", "text": "HTML"}, {"letter": "D", "text": "JSON"}], "correctAnswer": null, "explanation": null}, {"number": 18, "text": "Markdown Quotes: How do you create a quote in Markdown?", "code": null, "answers": [{"letter": "A", "text": "`| text`"}, {"letter": "B", "text": "> text"}, {"letter": "C", "text": "`\" text \"`"}, {"letter": "D", "text": "`' text '`"}], "correctAnswer": null, "explanation": null}, {"number": 19, "text": "XML Namespaces: What are namespaces used for in XML?", "code": null, "answers": [{"letter": "A", "text": "Encryption"}, {"letter": "B", "text": "Data compression"}, {"letter": "C", "text": "Styling"}, {"letter": "D", "text": "Avoiding tag name conflicts"}], "correctAnswer": null, "explanation": null}, {"number": 20, "text": "Format Conversion: Which tool converts Markdown to other formats?", "code": null, "answers": [{"letter": "A", "text": "pandoc"}, {"letter": "B", "text": "grep"}, {"letter": "C", "text": "gcc"}, {"letter": "D", "text": "curl"}], "correctAnswer": null, "explanation": null}, {"number": 21, "text": "\ud83e\uddec GFF Format: GFF (Gene Finding Format) is based on which markup language?", "code": null, "answers": [{"letter": "A", "text": "HTML"}, {"letter": "B", "text": "XML-like structure"}, {"letter": "C", "text": "JSON"}, {"letter": "D", "text": "YAML"}], "correctAnswer": null, "explanation": null}, {"number": 22, "text": "\ud83e\uddec SBML Purpose: What is SBML (Systems Biology Markup Language) used for?", "code": null, "answers": [{"letter": "A", "text": "Storing DNA sequences"}, {"letter": "B", "text": "Modeling biological pathways and networks"}, {"letter": "C", "text": "Variant calling"}, {"letter": "D", "text": "Sequence alignment"}], "correctAnswer": null, "explanation": null}, {"number": 23, "text": "\ud83e\uddec Markdown for Protocols: Why is Markdown ideal for bioinformatics protocols?", "code": null, "answers": [{"letter": "A", "text": "It's binary format"}, {"letter": "B", "text": "It requires special software"}, {"letter": "C", "text": "It's human-readable and supports code blocks"}, {"letter": "D", "text": "It's faster than other formats"}], "correctAnswer": null, "explanation": null}, {"number": 24, "text": "\ud83e\uddec HTML Analysis Reports: Which HTML tag is best for displaying variant statistics in a report?", "code": null, "answers": [{"letter": "A", "text": "`<div>`"}, {"letter": "B", "text": "`<span>`"}, {"letter": "C", "text": "`<table>`"}, {"letter": "D", "text": "`<p>`"}], "correctAnswer": null, "explanation": null}, {"number": 25, "text": "\ud83e\uddec XML Gene Annotation: Given this XML, how would you access the gene name in Python?", "code": "<gene id=\"ENSG00000139618\">\n    <name>BRCA2</name>\n</gene>", "answers": [{"letter": "A", "text": "`gene.name`"}, {"letter": "B", "text": "`gene.find('name').text`"}, {"letter": "C", "text": "`gene['name']`"}, {"letter": "D", "text": "`gene.get('name')`"}], "correctAnswer": null, "explanation": null}, {"number": 26, "text": "\ud83e\uddec Markdown README: What should a bioinformatics tool README include?", "code": null, "answers": [{"letter": "A", "text": "Only installation instructions"}, {"letter": "B", "text": "Installation, usage, parameters, and citation"}, {"letter": "C", "text": "Just the source code"}, {"letter": "D", "text": "Only the license"}], "correctAnswer": null, "explanation": null}, {"number": 27, "text": "\ud83e\uddec FastQC Reports: FastQC generates analysis reports in which format?", "code": null, "answers": [{"letter": "A", "text": "XML"}, {"letter": "B", "text": "JSON"}, {"letter": "C", "text": "HTML"}, {"letter": "D", "text": "Markdown"}], "correctAnswer": null, "explanation": null}, {"number": 28, "text": "\ud83e\uddec Markdown Code Blocks: How do you specify a bash code block in Markdown?", "code": null, "answers": [{"letter": "A", "text": "` ```bash code``` `"}, {"letter": "B", "text": "`<bash>code</bash>`"}, {"letter": "C", "text": "`[bash]code[/bash]`"}, {"letter": "D", "text": "`{bash}code{/bash}`"}], "correctAnswer": null, "explanation": null}, {"number": 29, "text": "\ud83e\uddec XML vs JSON for Data: Why might you prefer JSON over XML for bioinformatics metadata?", "code": null, "answers": [{"letter": "A", "text": "JSON is more verbose"}, {"letter": "B", "text": "JSON is easier to parse and more compact"}, {"letter": "C", "text": "JSON requires special tools"}, {"letter": "D", "text": "JSON doesn't support nested data"}], "correctAnswer": null, "explanation": null}, {"number": 30, "text": "\ud83e\uddec Documentation Format: Which format is best for a bioinformatics pipeline protocol with code examples?", "code": null, "answers": [{"letter": "A", "text": "Plain text"}, {"letter": "B", "text": "HTML only"}, {"letter": "C", "text": "Markdown with code blocks"}, {"letter": "D", "text": "XML"}], "correctAnswer": null, "explanation": null}]};
+const COURSE_ID = "DataFundamentals";
+const MODULE_ID = "07_Markup";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

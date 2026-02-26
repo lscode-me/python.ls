@@ -641,50 +641,50 @@ D) Binary
 | # | Answer | Explanation |
 |---|--------|-------------|
 | 1 | D | Sections in INI are denoted `[section_name]`. |
-| 2 | D | In INI, comments start with `;` or `#`. |
-| 3 | A | Tom's Obvious Minimal Language — named after creator Tom Preston-Werner. |
+| 2 | B | In INI, comments start with `;` or `#`. |
+| 3 | B | Tom's Obvious Minimal Language — named after creator Tom Preston-Werner. |
 | 4 | B | TOML supports integer, float, boolean, datetime as separate types. |
 | 5 | B | pyproject.toml — standard Python project configuration file (PEP 518, 621). |
 | 6 | C | .env contains secrets (passwords, keys) that shouldn't be in repository. |
-| 7 | B | Standard .env format: `KEY=value` (no spaces around `=`). |
-| 8 | D | `load_dotenv()` from python-dotenv library loads .env into os.environ. |
-| 9 | B | In TOML arrays: `key = [1, 2, 3]`. |
-| 10 | D | `[server]` creates a table (equivalent to object/dict). |
+| 7 | A | Standard .env format: `KEY=value` (no spaces around `=`). |
+| 8 | C | `load_dotenv()` from python-dotenv library loads .env into os.environ. |
+| 9 | A | In TOML arrays: `key = [1, 2, 3]`. |
+| 10 | C | `[server]` creates a table (equivalent to object/dict). |
 | 11 | D | `configparser` — standard Python module for INI files. |
 | 12 | B | `tomllib` built into Python 3.11+ (read-only). |
-| 13 | B | .env.example — template with variable list without real values, committed to Git. |
-| 14 | B | `env_file: .env` or `env_file: [.env]` in docker-compose.yml. |
+| 13 | D | .env.example — template with variable list without real values, committed to Git. |
+| 14 | D | `env_file: .env` or `env_file: [.env]` in docker-compose.yml. |
 | 15 | B | TOML supports dates without quotes: `date = 2024-01-15`. |
-| 16 | B | Cargo.toml — Rust package configuration file. |
+| 16 | D | Cargo.toml — Rust package configuration file. |
 | 17 | D | In INI all values are strings, need manual type conversion. |
-| 18 | C | `os.getenv(key, default)` returns variable value or default. |
+| 18 | D | `os.getenv(key, default)` returns variable value or default. |
 | 19 | B | pydantic-settings loads and validates configuration with typing. |
 | 20 | A | Secrets stored in .env and excluded from Git via .gitignore. |
-| 21 | C | `/etc/passwd` uses colon `:` as field delimiter (colon-separated values). |
-| 22 | A | Each entry contains 7 fields: username, password, UID, GID, GECOS, home, shell. |
-| 23 | B | `/etc/shadow` stores password hashes and password policy info (expiry, etc.). |
+| 21 | D | `/etc/passwd` uses colon `:` as field delimiter (colon-separated values). |
+| 22 | B | Each entry contains 7 fields: username, password, UID, GID, GECOS, home, shell. |
+| 23 | A | `/etc/shadow` stores password hashes and password policy info (expiry, etc.). |
 | 24 | A | `sshd_config` uses keyword-value format: directive and value separated by space. |
-| 25 | A | `Match` applies conditional settings to specific users, groups, or hosts. |
+| 25 | D | `Match` applies conditional settings to specific users, groups, or hosts. |
 | 26 | D | `visudo` checks syntax before saving, preventing system lockout. |
-| 27 | C | `/etc/fstab` contains device, mount point, FS type, options, dump and pass. Not permissions! |
+| 27 | B | `/etc/fstab` contains device, mount point, FS type, options, dump and pass. Not permissions! |
 | 28 | A | `/etc/hosts` describes static mapping of IP addresses and DNS names. |
-| 29 | A | Standard systemd service sections: `[Unit]`, `[Service]`, `[Install]`. |
+| 29 | B | Standard systemd service sections: `[Unit]`, `[Service]`, `[Install]`. |
 | 30 | A | `ExecStart` defines the command executed when starting the service. |
-| 31 | D | `Restart=on-failure` restarts service only if it exits with error (code != 0). |
-| 32 | C | nginx uses curly braces: `server { ... }`, `location { ... }`. |
-| 33 | D | `location` defines rules for processing requests by URL paths. |
+| 31 | C | `Restart=on-failure` restarts service only if it exits with error (code != 0). |
+| 32 | D | nginx uses curly braces: `server { ... }`, `location { ... }`. |
+| 33 | C | `location` defines rules for processing requests by URL paths. |
 | 34 | C | `/etc/environment` uses shell-style variables: `KEY=value`. |
-| 35 | C | Crontab has 5 time fields: minute, hour, day of month, month, day of week. |
-| 36 | D | `*/15` means "every 15 units" — every 15 minutes in minutes field. |
+| 35 | D | Crontab has 5 time fields: minute, hour, day of month, month, day of week. |
+| 36 | B | `*/15` means "every 15 units" — every 15 minutes in minutes field. |
 | 37 | A | `@daily` — special string, equivalent to `0 0 * * *` (daily at midnight). |
 | 38 | A | Module `pwd` provides access to user database (password database). |
 | 39 | C | Prefix `-` means "don't fail if file doesn't exist", loads variables from file. |
-| 40 | A | Section 5 of man describes file formats and conventions. |
-| 41 | A | 🧬 BLAST uses .ncbirc with INI-like format for database configuration. |
-| 42 | C | 🧬 TOML provides typed, structured configuration with comments. |
-| 43 | C | 🧬 `[Service]` section defines `ExecStart` for the start command. |
-| 44 | D | 🧬 .env file (not committed) is best for credentials and secrets. |
-| 45 | C | 🧬 TOML and YAML support comments for documenting paths and parameters. |
+| 40 | B | Section 5 of man describes file formats and conventions. |
+| 41 | C | 🧬 BLAST uses .ncbirc with INI-like format for database configuration. |
+| 42 | B | 🧬 TOML provides typed, structured configuration with comments. |
+| 43 | B | 🧬 `[Service]` section defines `ExecStart` for the start command. |
+| 44 | B | 🧬 .env file (not committed) is best for credentials and secrets. |
+| 45 | B | 🧬 TOML and YAML support comments for documenting paths and parameters. |
 
 ---
 

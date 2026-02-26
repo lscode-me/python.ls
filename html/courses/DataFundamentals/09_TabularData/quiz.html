@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -34,6 +33,1242 @@
 
     <main class="main-content">
         
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="../../../">Home</a> &raquo;
+        <a href="../../../courses/DataFundamentals/">Data Fundamentals for Life Sciences</a> &raquo;
+        <a href="index.html">Tabular Data</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>Tabular Data - Quiz</h1>
+        <p class="quiz-description">Test your knowledge on &#34;Tabular Data: CSV, TSV&#34; with a bioinformatics focus.</p>
+        <div class="quiz-meta">
+            <span class="question-count">30 questions</span>
+            <span class="time-estimate">⏱️ ~30 min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 30</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            
+            <div class="question-card" data-question="1" >
+                <div class="question-number">Question 1</div>
+                <h3 class="question-text">CSV Acronym: What does CSV stand for?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q1" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Character Separated Values</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q1" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Comma-Separated Values</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q1" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Common Separated Values</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q1" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Column Sorted Values</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="2" style="display: none;">
+                <div class="question-number">Question 2</div>
+                <h3 class="question-text">CSV Delimiter: What delimiter is used by default in CSV?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q2" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Comma</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q2" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Space</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q2" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Tab</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q2" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Semicolon</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="3" style="display: none;">
+                <div class="question-number">Question 3</div>
+                <h3 class="question-text">TSV Delimiter: What delimiter is used in TSV?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q3" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Comma</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q3" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Tab</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q3" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Pipe</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q3" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Semicolon</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="4" style="display: none;">
+                <div class="question-number">Question 4</div>
+                <h3 class="question-text">Quotes in CSV: How do you write the value &#34;Hello, World&#34; in CSV?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q4" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`Hello\, World`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q4" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`Hello, World`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q4" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`&#39;Hello, World&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q4" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">&#34;Hello, World&#34;</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="5" style="display: none;">
+                <div class="question-number">Question 5</div>
+                <h3 class="question-text">Quotes Inside Values: How do you write a value with the word &#34;test&#34; (in quotes) in CSV?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q5" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">&#34;He said &#34;&#34;test&#34;&#34;&#34;</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q5" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`He said \&#34;test\&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q5" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`&#34;He said &#39;test&#39;&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q5" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`&#34;He said &#34;test&#34;&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="6" style="display: none;">
+                <div class="question-number">Question 6</div>
+                <h3 class="question-text">Python csv Module: Which class reads CSV as dictionaries?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q6" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">csv.DictReader</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q6" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`csv.MapReader`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q6" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`csv.reader`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q6" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`csv.DictParser`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="7" style="display: none;">
+                <div class="question-number">Question 7</div>
+                <h3 class="question-text">newline Parameter: Why is `newline=&#39;&#39;` important when opening CSV in Python?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q7" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">For file compression</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q7" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">For faster reading</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q7" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">For correct handling of line breaks</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q7" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">For Unicode support</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="8" style="display: none;">
+                <div class="question-number">Question 8</div>
+                <h3 class="question-text">csvkit Tool: Which csvkit tool pretty-prints CSV in terminal?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q8" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`csvdisplay`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q8" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">csvlook</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q8" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`csvprint`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q8" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`csvshow`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="9" style="display: none;">
+                <div class="question-number">Question 9</div>
+                <h3 class="question-text">What delimiter is often used in European CSV files?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q9" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Comma</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q9" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Slash</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q9" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Colon</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q9" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Semicolon</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="10" style="display: none;">
+                <div class="question-number">Question 10</div>
+                <h3 class="question-text">pandas Reading: Which pandas function reads CSV?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q10" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`pd.load_csv()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q10" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">pd.read_csv()</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q10" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`pd.open_csv()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q10" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`pd.csv_read()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="11" style="display: none;">
+                <div class="question-number">Question 11</div>
+                <h3 class="question-text">CSV Encoding: What encoding is recommended for CSV?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q11" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">ASCII</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q11" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">UTF-16</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q11" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Latin-1</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q11" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">UTF-8</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="12" style="display: none;">
+                <div class="question-number">Question 12</div>
+                <h3 class="question-text">What does the command `csvgrep -c name -m Alice data.csv` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q12" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Filters rows where name column contains Alice</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q12" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Deletes rows with Alice</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q12" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Replaces Alice with another value</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q12" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Sorts by name column</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="13" style="display: none;">
+                <div class="question-number">Question 13</div>
+                <h3 class="question-text">csv.writer: Which method writes multiple rows to CSV?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q13" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">writer.writerows(rows)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q13" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`writer.dump(rows)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q13" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`writer.write(rows)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q13" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`writer.writeall(rows)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="14" style="display: none;">
+                <div class="question-number">Question 14</div>
+                <h3 class="question-text">CSV Header: How do you get the CSV header when reading in Python?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q14" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`reader.columns`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q14" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`reader.header()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q14" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">next(reader)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q14" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`reader[0]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="15" style="display: none;">
+                <div class="question-number">Question 15</div>
+                <h3 class="question-text">What does csvsql allow you to do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q15" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Execute SQL queries on CSV file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q15" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">All of the above</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q15" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Convert CSV to SQL file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q15" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Import CSV into database</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="16" style="display: none;">
+                <div class="question-number">Question 16</div>
+                <h3 class="question-text">What does the csvstat command do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q16" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Sorts CSV</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q16" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Displays CSV as table</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q16" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Outputs statistics per column (min, max, mean)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q16" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Converts to JSON</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="17" style="display: none;">
+                <div class="question-number">Question 17</div>
+                <h3 class="question-text">awk Sum: What does `awk -F, &#39;NR&gt;1 {sum+=$2} END {print sum}&#39; data.csv` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q17" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Counts rows</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q17" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Sorts by second column</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q17" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Sums values of second column (without header)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q17" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Outputs second column</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="18" style="display: none;">
+                <div class="question-number">Question 18</div>
+                <h3 class="question-text">What is BOM in the context of CSV files?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q18" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Column delimiter</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q18" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Byte Order Mark — marker at file beginning</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q18" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Date format</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q18" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Compression type</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="19" style="display: none;">
+                <div class="question-number">Question 19</div>
+                <h3 class="question-text">Which csv.DictWriter method writes the header?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q19" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">writer.columns()</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q19" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">writer.writeheader()</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q19" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">writer.header()</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q19" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">writer.writerow()</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="20" style="display: none;">
+                <div class="question-number">Question 20</div>
+                <h3 class="question-text">What does the csvjson command do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q20" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Validates CSV</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q20" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Executes SQL queries</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q20" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Converts JSON to CSV</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q20" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Converts CSV to JSON</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="21" style="display: none;">
+                <div class="question-number">Question 21</div>
+                <h3 class="question-text">🧬 BED Format: BED (Browser Extensible Data) format uses which delimiter?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q21" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Comma</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q21" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Tab</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q21" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Space</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q21" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Semicolon</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="22" style="display: none;">
+                <div class="question-number">Question 22</div>
+                <h3 class="question-text">🧬 GFF Format: GFF (General Feature Format) for gene annotations is:</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q22" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Comma-separated</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q22" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Tab-separated with 9 columns</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q22" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">XML-based</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q22" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">JSON-based</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="23" style="display: none;">
+                <div class="question-number">Question 23</div>
+                <h3 class="question-text">🧬 Gene Expression CSV: You have DESeq2 results in CSV. How do you filter significant genes (padj &lt; 0.05)?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q23" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`csvgrep -c padj -r &#39;&lt;0.05&#39; results.csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q23" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`csvsql --query &#34;SELECT * FROM results WHERE padj &lt; 0.05&#34; results.csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q23" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`csvcut -c padj results.csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q23" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`csvlook results.csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="24" style="display: none;">
+                <div class="question-number">Question 24</div>
+                <h3 class="question-text">🧬 VCF to CSV: VCF (Variant Call Format) files are:</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q24" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Always CSV</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q24" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Tab-separated with header lines starting with ##</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q24" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">JSON format</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q24" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">XML format</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="25" style="display: none;">
+                <div class="question-number">Question 25</div>
+                <h3 class="question-text">🧬 Sample Metadata: Which format is best for sample metadata with mixed data types?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q25" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Plain text</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q25" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">CSV with clear column headers</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q25" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Binary format</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q25" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">XML</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="26" style="display: none;">
+                <div class="question-number">Question 26</div>
+                <h3 class="question-text">🧬 Gene Count Matrix: You have a gene count matrix from RNA-Seq. Which tool is best for filtering?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q26" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Excel only</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q26" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">pandas in Python</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q26" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Text editor</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q26" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">grep</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="27" style="display: none;">
+                <div class="question-number">Question 27</div>
+                <h3 class="question-text">🧬 Variant Quality Filter: Given variants.csv with quality scores, how do you filter quality &gt; 30? What does `NR&gt;1` do?</h3>
+                
+                
+                <pre class="question-code"><code>awk -F, &#39;NR&gt;1 &amp;&amp; $3 &gt; 30&#39; variants.csv</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q27" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Filters first row</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q27" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Skips header row</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q27" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Counts rows</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q27" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Sorts rows</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="28" style="display: none;">
+                <div class="question-number">Question 28</div>
+                <h3 class="question-text">🧬 Coverage Analysis: You calculate average coverage per sample. Which pandas method?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q28" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`df.mean()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q28" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`df.groupby(&#39;sample_id&#39;)[&#39;coverage&#39;].mean()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q28" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`df[&#39;coverage&#39;].avg()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q28" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`df.average(&#39;coverage&#39;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="29" style="display: none;">
+                <div class="question-number">Question 29</div>
+                <h3 class="question-text">🧬 Missing Data: In bioinformatics CSV, what&#39;s the best way to represent missing data?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q29" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Empty string &#34;&#34;</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q29" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">&#34;NA&#34; or &#34;.&#34; (documented convention)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q29" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">0</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q29" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Random value</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="30" style="display: none;">
+                <div class="question-number">Question 30</div>
+                <h3 class="question-text">🧬 csvjoin for Analysis: You have samples.csv and results.csv, both with sample_id. How to merge?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q30" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`csvjoin -c sample_id samples.csv results.csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q30" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`csvmerge samples.csv results.csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q30" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`csvcat samples.csv results.csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q30" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`csvcombine samples.csv results.csv`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ 30</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="index.html" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Tabular Data - Quiz", "description": "Test your knowledge on \"Tabular Data: CSV, TSV\" with a bioinformatics focus.", "courseId": "DataFundamentals", "moduleId": "09_TabularData", "questions": [{"number": 1, "text": "CSV Acronym: What does CSV stand for?", "code": null, "answers": [{"letter": "A", "text": "Character Separated Values"}, {"letter": "B", "text": "Comma-Separated Values"}, {"letter": "C", "text": "Common Separated Values"}, {"letter": "D", "text": "Column Sorted Values"}], "correctAnswer": "B", "explanation": "Comma-Separated Values \u2014 values separated by commas."}, {"number": 2, "text": "CSV Delimiter: What delimiter is used by default in CSV?", "code": null, "answers": [{"letter": "A", "text": "Comma"}, {"letter": "B", "text": "Space"}, {"letter": "C", "text": "Tab"}, {"letter": "D", "text": "Semicolon"}], "correctAnswer": "A", "explanation": "By default, CSV uses comma as delimiter."}, {"number": 3, "text": "TSV Delimiter: What delimiter is used in TSV?", "code": null, "answers": [{"letter": "A", "text": "Comma"}, {"letter": "B", "text": "Tab"}, {"letter": "C", "text": "Pipe"}, {"letter": "D", "text": "Semicolon"}], "correctAnswer": "B", "explanation": "TSV (Tab-Separated Values) uses tab character."}, {"number": 4, "text": "Quotes in CSV: How do you write the value \"Hello, World\" in CSV?", "code": null, "answers": [{"letter": "A", "text": "`Hello\\, World`"}, {"letter": "B", "text": "`Hello, World`"}, {"letter": "C", "text": "`'Hello, World'`"}, {"letter": "D", "text": "\"Hello, World\""}], "correctAnswer": "D", "explanation": "Values with comma are enclosed in double quotes."}, {"number": 5, "text": "Quotes Inside Values: How do you write a value with the word \"test\" (in quotes) in CSV?", "code": null, "answers": [{"letter": "A", "text": "\"He said \"\"test\"\"\""}, {"letter": "B", "text": "`He said \\\"test\\\"`"}, {"letter": "C", "text": "`\"He said 'test'\"`"}, {"letter": "D", "text": "`\"He said \"test\"\"`"}], "correctAnswer": "B", "explanation": "Quotes inside value are doubled: `\"\"`."}, {"number": 6, "text": "Python csv Module: Which class reads CSV as dictionaries?", "code": null, "answers": [{"letter": "A", "text": "csv.DictReader"}, {"letter": "B", "text": "`csv.MapReader`"}, {"letter": "C", "text": "`csv.reader`"}, {"letter": "D", "text": "`csv.DictParser`"}], "correctAnswer": "A", "explanation": "`csv.DictReader` returns rows as dictionaries with keys from header."}, {"number": 7, "text": "newline Parameter: Why is `newline=''` important when opening CSV in Python?", "code": null, "answers": [{"letter": "A", "text": "For file compression"}, {"letter": "B", "text": "For faster reading"}, {"letter": "C", "text": "For correct handling of line breaks"}, {"letter": "D", "text": "For Unicode support"}], "correctAnswer": "A", "explanation": "`newline=''` prevents issues with line breaks on different OS."}, {"number": 8, "text": "csvkit Tool: Which csvkit tool pretty-prints CSV in terminal?", "code": null, "answers": [{"letter": "A", "text": "`csvdisplay`"}, {"letter": "B", "text": "csvlook"}, {"letter": "C", "text": "`csvprint`"}, {"letter": "D", "text": "`csvshow`"}], "correctAnswer": "B", "explanation": "`csvlook` formats CSV as table in terminal."}, {"number": 9, "text": "What delimiter is often used in European CSV files?", "code": null, "answers": [{"letter": "A", "text": "Comma"}, {"letter": "B", "text": "Slash"}, {"letter": "C", "text": "Colon"}, {"letter": "D", "text": "Semicolon"}], "correctAnswer": "A", "explanation": "In European countries, comma is decimal separator, so CSV uses `;`."}, {"number": 10, "text": "pandas Reading: Which pandas function reads CSV?", "code": null, "answers": [{"letter": "A", "text": "`pd.load_csv()`"}, {"letter": "B", "text": "pd.read_csv()"}, {"letter": "C", "text": "`pd.open_csv()`"}, {"letter": "D", "text": "`pd.csv_read()`"}], "correctAnswer": "B", "explanation": "`pd.read_csv()` \u2014 main pandas function for reading CSV."}, {"number": 11, "text": "CSV Encoding: What encoding is recommended for CSV?", "code": null, "answers": [{"letter": "A", "text": "ASCII"}, {"letter": "B", "text": "UTF-16"}, {"letter": "C", "text": "Latin-1"}, {"letter": "D", "text": "UTF-8"}], "correctAnswer": "D", "explanation": "UTF-8 \u2014 recommended encoding for compatibility."}, {"number": 12, "text": "What does the command `csvgrep -c name -m Alice data.csv` do?", "code": null, "answers": [{"letter": "A", "text": "Filters rows where name column contains Alice"}, {"letter": "B", "text": "Deletes rows with Alice"}, {"letter": "C", "text": "Replaces Alice with another value"}, {"letter": "D", "text": "Sorts by name column"}], "correctAnswer": "B", "explanation": "`csvgrep -c column -m match` filters rows by value in column."}, {"number": 13, "text": "csv.writer: Which method writes multiple rows to CSV?", "code": null, "answers": [{"letter": "A", "text": "writer.writerows(rows)"}, {"letter": "B", "text": "`writer.dump(rows)`"}, {"letter": "C", "text": "`writer.write(rows)`"}, {"letter": "D", "text": "`writer.writeall(rows)`"}], "correctAnswer": "A", "explanation": "`writerows()` writes a list of lists (multiple rows)."}, {"number": 14, "text": "CSV Header: How do you get the CSV header when reading in Python?", "code": null, "answers": [{"letter": "A", "text": "`reader.columns`"}, {"letter": "B", "text": "`reader.header()`"}, {"letter": "C", "text": "next(reader)"}, {"letter": "D", "text": "`reader[0]`"}], "correctAnswer": "C", "explanation": "`next(reader)` returns first row (usually header)."}, {"number": 15, "text": "What does csvsql allow you to do?", "code": null, "answers": [{"letter": "A", "text": "Execute SQL queries on CSV file"}, {"letter": "B", "text": "All of the above"}, {"letter": "C", "text": "Convert CSV to SQL file"}, {"letter": "D", "text": "Import CSV into database"}], "correctAnswer": "C", "explanation": "csvsql can execute SQL queries, convert and import to DB."}, {"number": 16, "text": "What does the csvstat command do?", "code": null, "answers": [{"letter": "A", "text": "Sorts CSV"}, {"letter": "B", "text": "Displays CSV as table"}, {"letter": "C", "text": "Outputs statistics per column (min, max, mean)"}, {"letter": "D", "text": "Converts to JSON"}], "correctAnswer": "C", "explanation": "csvstat outputs statistics: min, max, mean, std, etc."}, {"number": 17, "text": "awk Sum: What does `awk -F, 'NR>1 {sum+=$2} END {print sum}' data.csv` do?", "code": null, "answers": [{"letter": "A", "text": "Counts rows"}, {"letter": "B", "text": "Sorts by second column"}, {"letter": "C", "text": "Sums values of second column (without header)"}, {"letter": "D", "text": "Outputs second column"}], "correctAnswer": "D", "explanation": "NR>1 skips header, sum+=$2 sums second column."}, {"number": 18, "text": "What is BOM in the context of CSV files?", "code": null, "answers": [{"letter": "A", "text": "Column delimiter"}, {"letter": "B", "text": "Byte Order Mark \u2014 marker at file beginning"}, {"letter": "C", "text": "Date format"}, {"letter": "D", "text": "Compression type"}], "correctAnswer": "B", "explanation": "BOM (Byte Order Mark) \u2014 special bytes at start of UTF-8/UTF-16 files."}, {"number": 19, "text": "Which csv.DictWriter method writes the header?", "code": null, "answers": [{"letter": "A", "text": "writer.columns()"}, {"letter": "B", "text": "writer.writeheader()"}, {"letter": "C", "text": "writer.header()"}, {"letter": "D", "text": "writer.writerow()"}], "correctAnswer": "B", "explanation": "writeheader() writes row with column names from fieldnames."}, {"number": 20, "text": "What does the csvjson command do?", "code": null, "answers": [{"letter": "A", "text": "Validates CSV"}, {"letter": "B", "text": "Executes SQL queries"}, {"letter": "C", "text": "Converts JSON to CSV"}, {"letter": "D", "text": "Converts CSV to JSON"}], "correctAnswer": "C", "explanation": "csvjson converts CSV file to JSON format."}, {"number": 21, "text": "\ud83e\uddec BED Format: BED (Browser Extensible Data) format uses which delimiter?", "code": null, "answers": [{"letter": "A", "text": "Comma"}, {"letter": "B", "text": "Tab"}, {"letter": "C", "text": "Space"}, {"letter": "D", "text": "Semicolon"}], "correctAnswer": "B", "explanation": "\ud83e\uddec BED format is tab-separated with 3+ columns (chrom, start, end)."}, {"number": 22, "text": "\ud83e\uddec GFF Format: GFF (General Feature Format) for gene annotations is:", "code": null, "answers": [{"letter": "A", "text": "Comma-separated"}, {"letter": "B", "text": "Tab-separated with 9 columns"}, {"letter": "C", "text": "XML-based"}, {"letter": "D", "text": "JSON-based"}], "correctAnswer": "B", "explanation": "\ud83e\uddec GFF is tab-separated with 9 standard columns."}, {"number": 23, "text": "\ud83e\uddec Gene Expression CSV: You have DESeq2 results in CSV. How do you filter significant genes (padj < 0.05)?", "code": null, "answers": [{"letter": "A", "text": "`csvgrep -c padj -r '<0.05' results.csv`"}, {"letter": "B", "text": "`csvsql --query \"SELECT * FROM results WHERE padj < 0.05\" results.csv`"}, {"letter": "C", "text": "`csvcut -c padj results.csv`"}, {"letter": "D", "text": "`csvlook results.csv`"}], "correctAnswer": "C", "explanation": "\ud83e\uddec csvsql allows SQL queries with numeric comparisons."}, {"number": 24, "text": "\ud83e\uddec VCF to CSV: VCF (Variant Call Format) files are:", "code": null, "answers": [{"letter": "A", "text": "Always CSV"}, {"letter": "B", "text": "Tab-separated with header lines starting with ##"}, {"letter": "C", "text": "JSON format"}, {"letter": "D", "text": "XML format"}], "correctAnswer": null, "explanation": null}, {"number": 25, "text": "\ud83e\uddec Sample Metadata: Which format is best for sample metadata with mixed data types?", "code": null, "answers": [{"letter": "A", "text": "Plain text"}, {"letter": "B", "text": "CSV with clear column headers"}, {"letter": "C", "text": "Binary format"}, {"letter": "D", "text": "XML"}], "correctAnswer": null, "explanation": null}, {"number": 26, "text": "\ud83e\uddec Gene Count Matrix: You have a gene count matrix from RNA-Seq. Which tool is best for filtering?", "code": null, "answers": [{"letter": "A", "text": "Excel only"}, {"letter": "B", "text": "pandas in Python"}, {"letter": "C", "text": "Text editor"}, {"letter": "D", "text": "grep"}], "correctAnswer": null, "explanation": null}, {"number": 27, "text": "\ud83e\uddec Variant Quality Filter: Given variants.csv with quality scores, how do you filter quality > 30? What does `NR>1` do?", "code": "awk -F, 'NR>1 && $3 > 30' variants.csv", "answers": [{"letter": "A", "text": "Filters first row"}, {"letter": "B", "text": "Skips header row"}, {"letter": "C", "text": "Counts rows"}, {"letter": "D", "text": "Sorts rows"}], "correctAnswer": null, "explanation": null}, {"number": 28, "text": "\ud83e\uddec Coverage Analysis: You calculate average coverage per sample. Which pandas method?", "code": null, "answers": [{"letter": "A", "text": "`df.mean()`"}, {"letter": "B", "text": "`df.groupby('sample_id')['coverage'].mean()`"}, {"letter": "C", "text": "`df['coverage'].avg()`"}, {"letter": "D", "text": "`df.average('coverage')`"}], "correctAnswer": null, "explanation": null}, {"number": 29, "text": "\ud83e\uddec Missing Data: In bioinformatics CSV, what's the best way to represent missing data?", "code": null, "answers": [{"letter": "A", "text": "Empty string \"\""}, {"letter": "B", "text": "\"NA\" or \".\" (documented convention)"}, {"letter": "C", "text": "0"}, {"letter": "D", "text": "Random value"}], "correctAnswer": null, "explanation": null}, {"number": 30, "text": "\ud83e\uddec csvjoin for Analysis: You have samples.csv and results.csv, both with sample_id. How to merge?", "code": null, "answers": [{"letter": "A", "text": "`csvjoin -c sample_id samples.csv results.csv`"}, {"letter": "B", "text": "`csvmerge samples.csv results.csv`"}, {"letter": "C", "text": "`csvcat samples.csv results.csv`"}, {"letter": "D", "text": "`csvcombine samples.csv results.csv`"}], "correctAnswer": null, "explanation": null}]};
+</script>
+<script src="../../../static/js/quiz.js"></script>
+
     </main>
 
     <footer class="site-footer">
@@ -63,7 +1298,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

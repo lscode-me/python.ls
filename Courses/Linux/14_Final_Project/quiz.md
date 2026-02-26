@@ -175,7 +175,7 @@ D) Log only errors, ignore all other information
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | B | ETL stands for Extract, Transform, Load - the standard order of operations |
+| 1 | A | ETL stands for Extract, Transform, Load - the standard order of operations |
 | 2 | B | Production pipelines should handle errors gracefully without losing valid data |
 | 3 | B | Validate at each stage to catch issues early and maintain data integrity |
 | 4 | A | Streaming and parallelism prevent memory issues and improve throughput |
@@ -184,7 +184,7 @@ D) Log only errors, ignore all other information
 | 7 | D | Comprehensive monitoring includes throughput, errors, latency, and resources |
 | 8 | A | Checkpointing enables recovery from failures without full reprocessing |
 | 9 | C | Validation at all stages catches issues early and ensures data quality |
-| 10 | C | GNU parallel and xargs -P enable parallel execution of commands |
+| 10 | B | GNU parallel and xargs -P enable parallel execution of commands |
 | 11 | C | Makefile tracks dependencies and only rebuilds what's necessary |
 | 12 | A | Streaming processes data line-by-line without loading entire file |
 | 13 | D | Error sink stores invalid records for later analysis and reprocessing |

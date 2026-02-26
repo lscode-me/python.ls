@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -34,6 +33,1057 @@
 
     <main class="main-content">
         
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="../../../">Home</a> &raquo;
+        <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+        <a href="index.html">Functions and Functional Programming</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>Functions and Functional Programming - Quiz</h1>
+        <p class="quiz-description">Test your knowledge of functions, closures, decorators, and functional programming concepts.</p>
+        <div class="quiz-meta">
+            <span class="question-count">25 questions</span>
+            <span class="time-estimate">⏱️ ~25 min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 25</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            
+            <div class="question-card" data-question="1" >
+                <div class="question-number">Question 1</div>
+                <h3 class="question-text">Function Arguments: What does the `*args` parameter in a function definition do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q1" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Creates a required argument named &#39;args&#39;</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q1" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Collects all keyword arguments into a dictionary</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q1" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Collects all positional arguments into a tuple</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q1" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Unpacks a list into separate arguments</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="2" style="display: none;">
+                <div class="question-number">Question 2</div>
+                <h3 class="question-text">Argument Order: In a function definition, what is the correct order of parameters?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q2" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`**kwargs, *args, defaults, positional`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q2" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`positional, defaults, *args, **kwargs`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q2" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`positional, *args, **kwargs, defaults`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q2" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`defaults, positional, *args, **kwargs`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="3" style="display: none;">
+                <div class="question-number">Question 3</div>
+                <h3 class="question-text">Complex Function Call: Given the function: `def func(a, b, *args, key=&#34;default&#34;, **kwargs): pass` What is captured in `kwargs` when called as: `func(1, 2, 3, key=&#34;value&#34;, extra=&#34;x&#34;)`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q3" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`{&#39;key&#39;: &#39;value&#39;, &#39;extra&#39;: &#39;x&#39;}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q3" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`{&#39;extra&#39;: &#39;x&#39;}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q3" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`{&#39;key&#39;: &#39;value&#39;}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q3" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`{}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="4" style="display: none;">
+                <div class="question-number">Question 4</div>
+                <h3 class="question-text">Keyword-Only Arguments: What does the `*` in `def func(a, b, *, c, d):` indicate?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q4" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`c` and `d` must be passed as positional arguments</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q4" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`c` and `d` must be passed as keyword arguments</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q4" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`c` and `d` are optional</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q4" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">All arguments after `*` are collected into a tuple</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="5" style="display: none;">
+                <div class="question-number">Question 5</div>
+                <h3 class="question-text">LEGB Rule: What does the LEGB rule stand for in Python scope resolution?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q5" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Local, Extended, Global, Built-in</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q5" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Local, Enclosing, Global, Built-in</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q5" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Load, Execute, Generate, Build</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q5" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Local, Environment, Global, Base</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="6" style="display: none;">
+                <div class="question-number">Question 6</div>
+                <h3 class="question-text">Variable Scope: What will this code print?</h3>
+                
+                
+                <pre class="question-code"><code>x = 10
+def func():
+    x = 20
+    print(x)
+func()
+print(x)</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q6" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`20` then `20`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q6" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`10` then `10`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q6" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`20` then `10`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q6" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`10` then `20`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="7" style="display: none;">
+                <div class="question-number">Question 7</div>
+                <h3 class="question-text">Global Keyword: When do you need to use the `global` keyword?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q7" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">When reading a global variable inside a function</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q7" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">When modifying a global variable inside a function</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q7" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">When creating any variable inside a function</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q7" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">When calling a function from global scope</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="8" style="display: none;">
+                <div class="question-number">Question 8</div>
+                <h3 class="question-text">Nonlocal vs Global: What is the difference between `nonlocal` and `global`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q8" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`nonlocal` modifies enclosing function scope, `global` modifies module scope</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q8" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`nonlocal` is faster than `global`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q8" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">They are the same</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q8" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`nonlocal` works with variables, `global` works with functions</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="9" style="display: none;">
+                <div class="question-number">Question 9</div>
+                <h3 class="question-text">Lambda Functions: Which of the following is a valid lambda function?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q9" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`lambda x, y: return x + y`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q9" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`lambda x, y: x + y`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q9" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`lambda (x, y): x + y`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q9" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`lambda: x, y -&gt; x + y`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="10" style="display: none;">
+                <div class="question-number">Question 10</div>
+                <h3 class="question-text">Closures: What is a closure in Python?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q10" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">A function that remembers values from its enclosing scope</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q10" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">A function that closes files automatically</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q10" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">A function that can only be called once</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q10" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">A function that has no return value</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="11" style="display: none;">
+                <div class="question-number">Question 11</div>
+                <h3 class="question-text">Decorator Syntax: What is `@decorator` syntax equivalent to?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q11" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`func = decorator(func)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q11" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`decorator(func())`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q11" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`func = func(decorator)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q11" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`func.decorator()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="12" style="display: none;">
+                <div class="question-number">Question 12</div>
+                <h3 class="question-text">Decorator Execution: Given: What is the equivalent without decorators?</h3>
+                
+                
+                <pre class="question-code"><code>@bold
+@italic
+def greet():
+    return &#34;Hi&#34;</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q12" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`greet = italic(bold(greet))`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q12" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`greet = bold(italic(greet))`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q12" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`greet = bold(greet(italic))`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q12" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`greet = greet(bold, italic)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="13" style="display: none;">
+                <div class="question-number">Question 13</div>
+                <h3 class="question-text">Decorator with Arguments: Why does a decorator with arguments need three levels of functions?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q13" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">It doesn&#39;t - two levels are enough</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q13" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Outer function receives decorator args, middle creates decorator, inner is the wrapper</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q13" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">For better performance</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q13" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">To confuse programmers</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="14" style="display: none;">
+                <div class="question-number">Question 14</div>
+                <h3 class="question-text">functools.wraps: What does `@wraps(func)` do in a decorator?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q14" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Wraps the function in a try-catch block</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q14" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Preserves the original function&#39;s metadata</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q14" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Makes the decorator faster</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q14" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Allows the function to wrap other functions</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="15" style="display: none;">
+                <div class="question-number">Question 15</div>
+                <h3 class="question-text">Immutability Concept: What does immutability mean in programming?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q15" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Data cannot be changed after it&#39;s created</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q15" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Functions cannot have side effects</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q15" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Variables cannot be reassigned</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q15" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Objects cannot be deleted</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="16" style="display: none;">
+                <div class="question-number">Question 16</div>
+                <h3 class="question-text">Mutable vs Immutable: Which of these Python types is immutable?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q16" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`list`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q16" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`dict`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q16" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`tuple`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q16" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`set`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="17" style="display: none;">
+                <div class="question-number">Question 17</div>
+                <h3 class="question-text">Immutable Practice: What&#39;s wrong with: `def add_item(item, items=[]):`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q17" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Default mutable argument is shared across calls</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q17" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Syntax error</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q17" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`items` should be a tuple</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q17" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Nothing is wrong</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="18" style="display: none;">
+                <div class="question-number">Question 18</div>
+                <h3 class="question-text">Creating New Data: Which approach follows immutability principles?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q18" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`items.append(4)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q18" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`items = items + [4]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q18" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`items.extend([4])`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q18" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`items += [4]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="19" style="display: none;">
+                <div class="question-number">Question 19</div>
+                <h3 class="question-text">Dictionary Immutability: How do you add a key to a dictionary immutably?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q19" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`d[&#34;key&#34;] = &#34;value&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q19" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`d.update({&#34;key&#34;: &#34;value&#34;})`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q19" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`new_d = {**d, &#34;key&#34;: &#34;value&#34;}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q19" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`d.setdefault(&#34;key&#34;, &#34;value&#34;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="20" style="display: none;">
+                <div class="question-number">Question 20</div>
+                <h3 class="question-text">Map Function: What does `list(map(lambda x: x * 2, [1, 2, 3]))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q20" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[1, 2, 3, 1, 2, 3]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q20" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[1, 4, 9]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q20" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`6`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q20" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[2, 4, 6]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="21" style="display: none;">
+                <div class="question-number">Question 21</div>
+                <h3 class="question-text">Filter Function: What does `list(filter(lambda x: x &gt; 5, [3, 6, 2, 8, 1, 9]))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q21" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[3, 2, 1]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q21" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[6, 8, 9]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q21" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`True`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q21" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[3, 6, 2, 8, 1, 9]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="22" style="display: none;">
+                <div class="question-number">Question 22</div>
+                <h3 class="question-text">Generator Functions: What keyword is used in a generator function to yield values?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q22" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">yield</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q22" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">return</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q22" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">generate</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q22" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">next</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="23" style="display: none;">
+                <div class="question-number">Question 23</div>
+                <h3 class="question-text">First-Class Functions: What does it mean that Python has &#34;first-class functions&#34;?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q23" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Functions are always executed first</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q23" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Only built-in functions are supported</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q23" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Functions can be passed as arguments, returned from other functions, and assigned to variables</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q23" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Functions must be defined before variables</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="24" style="display: none;">
+                <div class="question-number">Question 24</div>
+                <h3 class="question-text">Recursion: What is the base case in a recursive function?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q24" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">The first function call</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q24" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">The most complex case</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q24" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">The function&#39;s return type</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q24" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">The condition that stops the recursion</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="25" style="display: none;">
+                <div class="question-number">Question 25</div>
+                <h3 class="question-text">Type Hints: In the function signature `def greet(name: str) -&gt; str:`, what does `-&gt; str` indicate?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q25" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">The function returns a string</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q25" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">The function requires a string argument</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q25" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">The function converts input to string</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q25" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">The function has a string default value</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ 25</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="index.html" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Functions and Functional Programming - Quiz", "description": "Test your knowledge of functions, closures, decorators, and functional programming concepts.", "courseId": "Python", "moduleId": "02_Functions", "questions": [{"number": 1, "text": "Function Arguments: What does the `*args` parameter in a function definition do?", "code": null, "answers": [{"letter": "A", "text": "Creates a required argument named 'args'"}, {"letter": "B", "text": "Collects all keyword arguments into a dictionary"}, {"letter": "C", "text": "Collects all positional arguments into a tuple"}, {"letter": "D", "text": "Unpacks a list into separate arguments"}], "correctAnswer": "C", "explanation": "Collects all positional arguments into a tuple"}, {"number": 2, "text": "Argument Order: In a function definition, what is the correct order of parameters?", "code": null, "answers": [{"letter": "A", "text": "`**kwargs, *args, defaults, positional`"}, {"letter": "B", "text": "`positional, defaults, *args, **kwargs`"}, {"letter": "C", "text": "`positional, *args, **kwargs, defaults`"}, {"letter": "D", "text": "`defaults, positional, *args, **kwargs`"}], "correctAnswer": "B", "explanation": "`positional, defaults, *args, **kwargs`"}, {"number": 3, "text": "Complex Function Call: Given the function: `def func(a, b, *args, key=\"default\", **kwargs): pass` What is captured in `kwargs` when called as: `func(1, 2, 3, key=\"value\", extra=\"x\")`?", "code": null, "answers": [{"letter": "A", "text": "`{'key': 'value', 'extra': 'x'}`"}, {"letter": "B", "text": "`{'extra': 'x'}`"}, {"letter": "C", "text": "`{'key': 'value'}`"}, {"letter": "D", "text": "`{}`"}], "correctAnswer": "B", "explanation": "`{'extra': 'x'}` (key is matched to the named parameter)"}, {"number": 4, "text": "Keyword-Only Arguments: What does the `*` in `def func(a, b, *, c, d):` indicate?", "code": null, "answers": [{"letter": "A", "text": "`c` and `d` must be passed as positional arguments"}, {"letter": "B", "text": "`c` and `d` must be passed as keyword arguments"}, {"letter": "C", "text": "`c` and `d` are optional"}, {"letter": "D", "text": "All arguments after `*` are collected into a tuple"}], "correctAnswer": "B", "explanation": "`c` and `d` must be passed as keyword arguments"}, {"number": 5, "text": "LEGB Rule: What does the LEGB rule stand for in Python scope resolution?", "code": null, "answers": [{"letter": "A", "text": "Local, Extended, Global, Built-in"}, {"letter": "B", "text": "Local, Enclosing, Global, Built-in"}, {"letter": "C", "text": "Load, Execute, Generate, Build"}, {"letter": "D", "text": "Local, Environment, Global, Base"}], "correctAnswer": "B", "explanation": "Local, Enclosing, Global, Built-in"}, {"number": 6, "text": "Variable Scope: What will this code print?", "code": "x = 10\ndef func():\n    x = 20\n    print(x)\nfunc()\nprint(x)", "answers": [{"letter": "A", "text": "`20` then `20`"}, {"letter": "B", "text": "`10` then `10`"}, {"letter": "C", "text": "`20` then `10`"}, {"letter": "D", "text": "`10` then `20`"}], "correctAnswer": "C", "explanation": "`20` then `10` (local x shadows global x)"}, {"number": 7, "text": "Global Keyword: When do you need to use the `global` keyword?", "code": null, "answers": [{"letter": "A", "text": "When reading a global variable inside a function"}, {"letter": "B", "text": "When modifying a global variable inside a function"}, {"letter": "C", "text": "When creating any variable inside a function"}, {"letter": "D", "text": "When calling a function from global scope"}], "correctAnswer": "B", "explanation": "When modifying a global variable inside a function"}, {"number": 8, "text": "Nonlocal vs Global: What is the difference between `nonlocal` and `global`?", "code": null, "answers": [{"letter": "A", "text": "`nonlocal` modifies enclosing function scope, `global` modifies module scope"}, {"letter": "B", "text": "`nonlocal` is faster than `global`"}, {"letter": "C", "text": "They are the same"}, {"letter": "D", "text": "`nonlocal` works with variables, `global` works with functions"}], "correctAnswer": "A", "explanation": "`nonlocal` modifies enclosing function scope, `global` modifies module scope"}, {"number": 9, "text": "Lambda Functions: Which of the following is a valid lambda function?", "code": null, "answers": [{"letter": "A", "text": "`lambda x, y: return x + y`"}, {"letter": "B", "text": "`lambda x, y: x + y`"}, {"letter": "C", "text": "`lambda (x, y): x + y`"}, {"letter": "D", "text": "`lambda: x, y -> x + y`"}], "correctAnswer": "B", "explanation": "`lambda x, y: x + y`"}, {"number": 10, "text": "Closures: What is a closure in Python?", "code": null, "answers": [{"letter": "A", "text": "A function that remembers values from its enclosing scope"}, {"letter": "B", "text": "A function that closes files automatically"}, {"letter": "C", "text": "A function that can only be called once"}, {"letter": "D", "text": "A function that has no return value"}], "correctAnswer": "A", "explanation": "A function that remembers values from its enclosing scope"}, {"number": 11, "text": "Decorator Syntax: What is `@decorator` syntax equivalent to?", "code": null, "answers": [{"letter": "A", "text": "`func = decorator(func)`"}, {"letter": "B", "text": "`decorator(func())`"}, {"letter": "C", "text": "`func = func(decorator)`"}, {"letter": "D", "text": "`func.decorator()`"}], "correctAnswer": "A", "explanation": "`func = decorator(func)`"}, {"number": 12, "text": "Decorator Execution: Given: What is the equivalent without decorators?", "code": "@bold\n@italic\ndef greet():\n    return \"Hi\"", "answers": [{"letter": "A", "text": "`greet = italic(bold(greet))`"}, {"letter": "B", "text": "`greet = bold(italic(greet))`"}, {"letter": "C", "text": "`greet = bold(greet(italic))`"}, {"letter": "D", "text": "`greet = greet(bold, italic)`"}], "correctAnswer": "B", "explanation": "`greet = bold(italic(greet))` (bottom to top)"}, {"number": 13, "text": "Decorator with Arguments: Why does a decorator with arguments need three levels of functions?", "code": null, "answers": [{"letter": "A", "text": "It doesn't - two levels are enough"}, {"letter": "B", "text": "Outer function receives decorator args, middle creates decorator, inner is the wrapper"}, {"letter": "C", "text": "For better performance"}, {"letter": "D", "text": "To confuse programmers"}], "correctAnswer": "B", "explanation": "Outer function receives decorator args, middle creates decorator, inner is the wrapper"}, {"number": 14, "text": "functools.wraps: What does `@wraps(func)` do in a decorator?", "code": null, "answers": [{"letter": "A", "text": "Wraps the function in a try-catch block"}, {"letter": "B", "text": "Preserves the original function's metadata"}, {"letter": "C", "text": "Makes the decorator faster"}, {"letter": "D", "text": "Allows the function to wrap other functions"}], "correctAnswer": "B", "explanation": "Preserves the original function's metadata"}, {"number": 15, "text": "Immutability Concept: What does immutability mean in programming?", "code": null, "answers": [{"letter": "A", "text": "Data cannot be changed after it's created"}, {"letter": "B", "text": "Functions cannot have side effects"}, {"letter": "C", "text": "Variables cannot be reassigned"}, {"letter": "D", "text": "Objects cannot be deleted"}], "correctAnswer": "A", "explanation": "Data cannot be changed after it's created"}, {"number": 16, "text": "Mutable vs Immutable: Which of these Python types is immutable?", "code": null, "answers": [{"letter": "A", "text": "`list`"}, {"letter": "B", "text": "`dict`"}, {"letter": "C", "text": "`tuple`"}, {"letter": "D", "text": "`set`"}], "correctAnswer": "C", "explanation": "`tuple`"}, {"number": 17, "text": "Immutable Practice: What's wrong with: `def add_item(item, items=[]):`?", "code": null, "answers": [{"letter": "A", "text": "Default mutable argument is shared across calls"}, {"letter": "B", "text": "Syntax error"}, {"letter": "C", "text": "`items` should be a tuple"}, {"letter": "D", "text": "Nothing is wrong"}], "correctAnswer": "A", "explanation": "Default mutable argument is shared across calls"}, {"number": 18, "text": "Creating New Data: Which approach follows immutability principles?", "code": null, "answers": [{"letter": "A", "text": "`items.append(4)`"}, {"letter": "B", "text": "`items = items + [4]`"}, {"letter": "C", "text": "`items.extend([4])`"}, {"letter": "D", "text": "`items += [4]`"}], "correctAnswer": "B", "explanation": "`items = items + [4]` (creates new list)"}, {"number": 19, "text": "Dictionary Immutability: How do you add a key to a dictionary immutably?", "code": null, "answers": [{"letter": "A", "text": "`d[\"key\"] = \"value\"`"}, {"letter": "B", "text": "`d.update({\"key\": \"value\"})`"}, {"letter": "C", "text": "`new_d = {**d, \"key\": \"value\"}`"}, {"letter": "D", "text": "`d.setdefault(\"key\", \"value\")`"}], "correctAnswer": "C", "explanation": "`new_d = {**d, \"key\": \"value\"}`"}, {"number": 20, "text": "Map Function: What does `list(map(lambda x: x * 2, [1, 2, 3]))` return?", "code": null, "answers": [{"letter": "A", "text": "`[1, 2, 3, 1, 2, 3]`"}, {"letter": "B", "text": "`[1, 4, 9]`"}, {"letter": "C", "text": "`6`"}, {"letter": "D", "text": "`[2, 4, 6]`"}], "correctAnswer": "D", "explanation": "`[2, 4, 6]`"}, {"number": 21, "text": "Filter Function: What does `list(filter(lambda x: x > 5, [3, 6, 2, 8, 1, 9]))` return?", "code": null, "answers": [{"letter": "A", "text": "`[3, 2, 1]`"}, {"letter": "B", "text": "`[6, 8, 9]`"}, {"letter": "C", "text": "`True`"}, {"letter": "D", "text": "`[3, 6, 2, 8, 1, 9]`"}], "correctAnswer": "B", "explanation": "`[6, 8, 9]`"}, {"number": 22, "text": "Generator Functions: What keyword is used in a generator function to yield values?", "code": null, "answers": [{"letter": "A", "text": "yield"}, {"letter": "B", "text": "return"}, {"letter": "C", "text": "generate"}, {"letter": "D", "text": "next"}], "correctAnswer": "A", "explanation": "yield"}, {"number": 23, "text": "First-Class Functions: What does it mean that Python has \"first-class functions\"?", "code": null, "answers": [{"letter": "A", "text": "Functions are always executed first"}, {"letter": "B", "text": "Only built-in functions are supported"}, {"letter": "C", "text": "Functions can be passed as arguments, returned from other functions, and assigned to variables"}, {"letter": "D", "text": "Functions must be defined before variables"}], "correctAnswer": "C", "explanation": "Functions can be passed as arguments, returned from other functions, and assigned to variables"}, {"number": 24, "text": "Recursion: What is the base case in a recursive function?", "code": null, "answers": [{"letter": "A", "text": "The first function call"}, {"letter": "B", "text": "The most complex case"}, {"letter": "C", "text": "The function's return type"}, {"letter": "D", "text": "The condition that stops the recursion"}], "correctAnswer": "D", "explanation": "The condition that stops the recursion"}, {"number": 25, "text": "Type Hints: In the function signature `def greet(name: str) -> str:`, what does `-> str` indicate?", "code": null, "answers": [{"letter": "A", "text": "The function returns a string"}, {"letter": "B", "text": "The function requires a string argument"}, {"letter": "C", "text": "The function converts input to string"}, {"letter": "D", "text": "The function has a string default value"}], "correctAnswer": "A", "explanation": "The function returns a string"}]};
+</script>
+<script src="../../../static/js/quiz.js"></script>
+
     </main>
 
     <footer class="site-footer">
@@ -63,7 +1113,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

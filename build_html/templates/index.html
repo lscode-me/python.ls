@@ -12,13 +12,13 @@
             for bioinformatics and healthcare data analysis.
         </p>
         <div class="hero-actions">
-            <a href="{{ base_url }}/courses/" class="btn btn-primary btn-lg">Start Learning</a>
+            <a href="#courses" class="btn btn-primary btn-lg">Start Learning</a>
             <a href="{{ telegram_bot }}" class="btn btn-outline btn-lg">📱 Join Telegram</a>
         </div>
     </div>
 </section>
 
-<section class="courses-overview">
+<section class="courses-overview" id="courses">
     <h2>📚 Our Courses</h2>
     <div class="courses-grid">
         {% for course in courses %}
@@ -63,6 +63,6 @@
 <section class="cta">
     <h2>Ready to Start?</h2>
     <p>Begin with Data Fundamentals or jump into Python and Linux tracks.</p>
-    <a href="{{ base_url }}/courses/" class="btn btn-primary btn-lg">Explore Courses</a>
+    <a href="#courses" class="btn btn-primary btn-lg">Explore Courses</a>
 </section>
 {% endblock %}

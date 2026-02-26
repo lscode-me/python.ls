@@ -38,7 +38,7 @@
     </header>
 
     <main class="tma-main">
-        {{ content | safe }}
+        {% block content %}{{ content | safe }}{% endblock %}
     </main>
 
     <nav class="tma-nav" id="tma-nav">

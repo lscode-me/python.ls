@@ -39,6 +39,733 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: Performance &amp; Parallelism</h2>
+        <p class="quiz-meta">15 questions • ~15 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 15</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+        <div class="question-card" data-question="1" >
+            <div class="question-header">
+                <span class="question-num">Q1</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which flag controls the number of parallel jobs in GNU parallel?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`-n`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`-j`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`-p`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q1" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`--jobs`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="2" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q2</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does do: What does `sort -S 4G` do?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Sorts 4GB of data</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Saves output to 4G file</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Allocates 4GB of memory for sorting</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q2" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Splits into 4GB chunks</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="3" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q3</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which command shows progress and throughput in a pipeline?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`time`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`top`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`pv`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q3" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`watch`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="4" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q4</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">How do you enable parallel sorting with 8 threads?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`sort -j 8`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`sort -t 8`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`sort --threads=8`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q4" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`sort --parallel=8`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="5" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q5</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does do: What does `xargs -P 4` do?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Processes 4 arguments at a time</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Uses 4 parallel processes</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Prints 4 items</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q5" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Paginates with 4 items per page</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="6" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q6</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which environment variable sets the temporary directory for sort?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`SORTDIR`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`TMPDIR`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`TEMPDIR`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q6" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`TEMP`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="7" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q7</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does show: What does `/usr/bin/time -v` show?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Current time</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Verbose output only</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Detailed resource usage (CPU, memory, I/O)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q7" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Version information</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="8" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q8</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">How do you rate-limit GNU parallel to start 1 job every 0.5 seconds?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`parallel --rate 0.5`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`parallel --delay 0.5`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`parallel --limit 0.5`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q8" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`parallel --wait 0.5`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="9" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q9</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What indicates a CPU-bound process?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">High CPU usage, low I/O wait</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Low CPU usage, high I/O wait</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">High memory usage</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q9" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">High network usage</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="10" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q10</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which flag makes GNU parallel show a progress bar?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`-p`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`--progress`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`--bar`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q10" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Both B and C</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="11" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q11</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does do: What does `sort -u` do?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q11" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Sort in uppercase</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q11" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Sort and remove duplicates (unique)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q11" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Unix line endings</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q11" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">User-defined sort</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="12" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q12</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">How do you retry failed jobs 3 times in GNU parallel?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q12" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`--retry 3`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q12" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`--retries 3`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q12" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`-r 3`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q12" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`--tries 3`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="13" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q13</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Whats the difference between and: What&#39;s the difference between `time` and `/usr/bin/time -v`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q13" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">No difference</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q13" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Shell builtin vs external command with detailed stats</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q13" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">One is faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q13" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Different time formats</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="14" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q14</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which tool monitors IO statistics: Which tool monitors I/O statistics in real-time?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q14" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`top`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q14" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`ps`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q14" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`iostat`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q14" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`vmstat`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="15" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q15</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What does do: What does `parallel --load 80%` do?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q15" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Uses 80% CPU</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q15" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Loads 80% of data</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q15" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Pauses when system load exceeds 80% of CPU cores</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q15" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Limits to 80% memory</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 15</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Performance & Parallelism - Quiz", "description": "Which flag controls the number of parallel jobs in GNU parallel?", "courseId": "Linux", "moduleId": "09_Performance_Parallelism", "questions": [{"number": 1, "text": "Which flag controls the number of parallel jobs in GNU parallel?", "code": null, "answers": [{"letter": "A", "text": "`-n`"}, {"letter": "B", "text": "`-j`"}, {"letter": "C", "text": "`-p`"}, {"letter": "D", "text": "`--jobs`"}], "correctAnswer": "B", "explanation": "`-j N` controls parallel jobs (e.g., `parallel -j 4`)"}, {"number": 2, "text": "What does do: What does `sort -S 4G` do?", "code": null, "answers": [{"letter": "A", "text": "Sorts 4GB of data"}, {"letter": "B", "text": "Saves output to 4G file"}, {"letter": "C", "text": "Allocates 4GB of memory for sorting"}, {"letter": "D", "text": "Splits into 4GB chunks"}], "correctAnswer": "A", "explanation": "`-S` allocates memory buffer for sort"}, {"number": 3, "text": "Which command shows progress and throughput in a pipeline?", "code": null, "answers": [{"letter": "A", "text": "`time`"}, {"letter": "B", "text": "`top`"}, {"letter": "C", "text": "`pv`"}, {"letter": "D", "text": "`watch`"}], "correctAnswer": "C", "explanation": "`pv` (Pipe Viewer) shows progress and throughput"}, {"number": 4, "text": "How do you enable parallel sorting with 8 threads?", "code": null, "answers": [{"letter": "A", "text": "`sort -j 8`"}, {"letter": "B", "text": "`sort -t 8`"}, {"letter": "C", "text": "`sort --threads=8`"}, {"letter": "D", "text": "`sort --parallel=8`"}], "correctAnswer": "C", "explanation": "`--parallel=N` enables N-threaded sorting"}, {"number": 5, "text": "What does do: What does `xargs -P 4` do?", "code": null, "answers": [{"letter": "A", "text": "Processes 4 arguments at a time"}, {"letter": "B", "text": "Uses 4 parallel processes"}, {"letter": "C", "text": "Prints 4 items"}, {"letter": "D", "text": "Paginates with 4 items per page"}], "correctAnswer": "A", "explanation": "`-P N` runs N processes in parallel"}, {"number": 6, "text": "Which environment variable sets the temporary directory for sort?", "code": null, "answers": [{"letter": "A", "text": "`SORTDIR`"}, {"letter": "B", "text": "`TMPDIR`"}, {"letter": "C", "text": "`TEMPDIR`"}, {"letter": "D", "text": "`TEMP`"}], "correctAnswer": "B", "explanation": "`TMPDIR` sets temporary directory for sort and other tools"}, {"number": 7, "text": "What does show: What does `/usr/bin/time -v` show?", "code": null, "answers": [{"letter": "A", "text": "Current time"}, {"letter": "B", "text": "Verbose output only"}, {"letter": "C", "text": "Detailed resource usage (CPU, memory, I/O)"}, {"letter": "D", "text": "Version information"}], "correctAnswer": "C", "explanation": "`-v` (verbose) shows CPU time, memory, I/O, page faults"}, {"number": 8, "text": "How do you rate-limit GNU parallel to start 1 job every 0.5 seconds?", "code": null, "answers": [{"letter": "A", "text": "`parallel --rate 0.5`"}, {"letter": "B", "text": "`parallel --delay 0.5`"}, {"letter": "C", "text": "`parallel --limit 0.5`"}, {"letter": "D", "text": "`parallel --wait 0.5`"}], "correctAnswer": "C", "explanation": "`--delay` adds delay between job starts for rate limiting"}, {"number": 9, "text": "What indicates a CPU-bound process?", "code": null, "answers": [{"letter": "A", "text": "High CPU usage, low I/O wait"}, {"letter": "B", "text": "Low CPU usage, high I/O wait"}, {"letter": "C", "text": "High memory usage"}, {"letter": "D", "text": "High network usage"}], "correctAnswer": "A", "explanation": "CPU-bound = high CPU, low I/O; I/O-bound = opposite"}, {"number": 10, "text": "Which flag makes GNU parallel show a progress bar?", "code": null, "answers": [{"letter": "A", "text": "`-p`"}, {"letter": "B", "text": "`--progress`"}, {"letter": "C", "text": "`--bar`"}, {"letter": "D", "text": "Both B and C"}], "correctAnswer": "A", "explanation": "Both `--progress` and `--bar` show progress (bar is newer)"}, {"number": 11, "text": "What does do: What does `sort -u` do?", "code": null, "answers": [{"letter": "A", "text": "Sort in uppercase"}, {"letter": "B", "text": "Sort and remove duplicates (unique)"}, {"letter": "C", "text": "Unix line endings"}, {"letter": "D", "text": "User-defined sort"}], "correctAnswer": "B", "explanation": "`-u` sorts and keeps only unique lines (faster than `sort"}, {"number": 12, "text": "How do you retry failed jobs 3 times in GNU parallel?", "code": null, "answers": [{"letter": "A", "text": "`--retry 3`"}, {"letter": "B", "text": "`--retries 3`"}, {"letter": "C", "text": "`-r 3`"}, {"letter": "D", "text": "`--tries 3`"}], "correctAnswer": "D", "explanation": "`--retries N` retries failed jobs N times"}, {"number": 13, "text": "Whats the difference between and: What's the difference between `time` and `/usr/bin/time -v`?", "code": null, "answers": [{"letter": "A", "text": "No difference"}, {"letter": "B", "text": "Shell builtin vs external command with detailed stats"}, {"letter": "C", "text": "One is faster"}, {"letter": "D", "text": "Different time formats"}], "correctAnswer": "D", "explanation": "`time` is shell builtin (basic), `/usr/bin/time -v` is external (detailed)"}, {"number": 14, "text": "Which tool monitors IO statistics: Which tool monitors I/O statistics in real-time?", "code": null, "answers": [{"letter": "A", "text": "`top`"}, {"letter": "B", "text": "`ps`"}, {"letter": "C", "text": "`iostat`"}, {"letter": "D", "text": "`vmstat`"}], "correctAnswer": "C", "explanation": "`iostat -x 2` monitors I/O statistics every 2 seconds"}, {"number": 15, "text": "What does do: What does `parallel --load 80%` do?", "code": null, "answers": [{"letter": "A", "text": "Uses 80% CPU"}, {"letter": "B", "text": "Loads 80% of data"}, {"letter": "C", "text": "Pauses when system load exceeds 80% of CPU cores"}, {"letter": "D", "text": "Limits to 80% memory"}], "correctAnswer": "C", "explanation": "`--load` pauses new jobs when load average is high"}]};
+const COURSE_ID = "Linux";
+const MODULE_ID = "09_Performance_Parallelism";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

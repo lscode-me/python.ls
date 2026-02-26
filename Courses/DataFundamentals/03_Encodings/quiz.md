@@ -498,41 +498,41 @@ D) Windows-1252
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | D | Encoding is a mapping table between characters and their numeric representations. |
-| 2 | A | ASCII is 7 bits, 128 characters (0-127). |
-| 3 | B | 'A' = 65 (0x41). Lowercase 'a' = 97 (0x61). |
-| 4 | C | ASCII only supports Latin and basic symbols, not Cyrillic. |
-| 5 | A | Unicode is a character table. UTF-8/16/32 are ways to encode Unicode in bytes. |
+| 1 | B | Encoding is a mapping table between characters and their numeric representations. |
+| 2 | D | ASCII is 7 bits, 128 characters (0-127). |
+| 3 | A | 'A' = 65 (0x41). Lowercase 'a' = 97 (0x61). |
+| 4 | A | ASCII only supports Latin and basic symbols, not Cyrillic. |
+| 5 | B | Unicode is a character table. UTF-8/16/32 are ways to encode Unicode in bytes. |
 | 6 | C | Code points are written as U+XXXX, e.g., U+0041 for 'A'. |
 | 7 | A | First 128 characters of UTF-8 are identical to ASCII — one byte, same value. |
-| 8 | B | UTF-8: 1 byte (ASCII), 2 bytes (Cyrillic), 3 bytes (CJK), 4 bytes (emoji). |
-| 9 | C | Cyrillic (U+0400-U+04FF) is encoded in 2 bytes in UTF-8. |
+| 8 | A | UTF-8: 1 byte (ASCII), 2 bytes (Cyrillic), 3 bytes (CJK), 4 bytes (emoji). |
+| 9 | B | Cyrillic (U+0400-U+04FF) is encoded in 2 bytes in UTF-8. |
 | 10 | C | Emoji (U+1F600+) are beyond BMP and require 4 bytes in UTF-8. |
 | 11 | B | Mojibake is corrupted text when encoding used for writing doesn't match encoding used for reading. |
 | 12 | D | UTF-8 bytes interpreted as Latin-1 give characteristic "ÐŸÑ€Ð¸..." |
 | 13 | C | `iconv` with -f (from) and -t (to) flags converts encodings. |
 | 14 | C | BOM is bytes at the beginning of a file to identify encoding and endianness. |
-| 15 | B | UTF-8 BOM = `EF BB BF`. `FF FE` = UTF-16 LE, `FE FF` = UTF-16 BE. |
+| 15 | A | UTF-8 BOM = `EF BB BF`. `FF FE` = UTF-16 LE, `FE FF` = UTF-16 BE. |
 | 16 | D | Always explicitly specify `encoding='utf-8'` when opening files. |
 | 17 | D | MySQL `utf8` = max 3 bytes, doesn't support characters beyond BMP (emoji). |
 | 18 | B | In KOI-8, Russian letters are positioned so that zeroing the 8th bit gives similar Latin. |
-| 19 | A | `chardet` is a library for automatic encoding detection. |
-| 20 | D | One character can have different Unicode representations; normalization brings them to unified form. |
-| 21 | A | `unicodedata.name()` returns the official Unicode character name. |
+| 19 | C | `chardet` is a library for automatic encoding detection. |
+| 20 | A | One character can have different Unicode representations; normalization brings them to unified form. |
+| 21 | D | `unicodedata.name()` returns the official Unicode character name. |
 | 22 | A | Lu = Letter, uppercase. Ll = lowercase, Nd = digit, Lo = other letter. |
 | 23 | D | `unicodedata.lookup('SNOWMAN')` returns character by its Unicode name. |
 | 24 | A | Cyrillic is in block U+0400-U+04FF. U+0000-U+007F = ASCII, U+4E00+ = CJK. |
-| 25 | C | UTF-8 is used on ~98% of websites, it's the de facto web standard. |
+| 25 | D | UTF-8 is used on ~98% of websites, it's the de facto web standard. |
 | 26 | B | Both encodings are 8-bit, but characters are placed differently in upper 128 bytes. |
-| 27 | D | UTF-16 depends on byte order (BE/LE), so BOM is needed. UTF-8 doesn't depend. |
-| 28 | D | GB18030 is a mandatory standard in China, covering all Unicode characters. |
-| 29 | B | `unicodedata.numeric('½')` returns 0.5 — numeric value of the fraction. |
+| 27 | A | UTF-16 depends on byte order (BE/LE), so BOM is needed. UTF-8 doesn't depend. |
+| 28 | B | GB18030 is a mandatory standard in China, covering all Unicode characters. |
+| 29 | D | `unicodedata.numeric('½')` returns 0.5 — numeric value of the fraction. |
 | 30 | B | NFD splits character into base + combining mark, then filter category Mn. |
-| 31 | A | UTF-8 correctly handles all Latin characters with diacritics. Latin-1 works but UTF-8 is modern standard. |
+| 31 | C | UTF-8 correctly handles all Latin characters with diacritics. Latin-1 works but UTF-8 is modern standard. |
 | 32 | C | UTF-8 is the only encoding listed that supports Greek letters (U+0370-U+03FF). |
-| 33 | A | Modern bioinformatics uses UTF-8 for all metadata to support international characters. |
+| 33 | B | Modern bioinformatics uses UTF-8 for all metadata to support international characters. |
 | 34 | B | The � (replacement character) appears when a character cannot be represented in the encoding. |
-| 35 | C | UTF-8 supports all languages and is the international standard for data exchange. |
+| 35 | B | UTF-8 supports all languages and is the international standard for data exchange. |
 
 ---
 

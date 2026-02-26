@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="{{ base_url }}/static/css/style.css?v=7">
+    <link rel="stylesheet" href="{{ base_url }}/static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="{{ base_url }}/static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="{{ base_url }}/courses/">Courses</a></li>
                 <li><a href="mailto:{{ admin_email }}">Contact</a></li>
                 <li><a href="{{ telegram_bot }}" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -33,7 +32,7 @@
     </header>
 
     <main class="main-content">
-        {{ content | safe }}
+        {% block content %}{{ content | safe }}{% endblock %}
     </main>
 
     <footer class="site-footer">
@@ -63,7 +62,7 @@
         </div>
     </footer>
 
-    <script src="{{ base_url }}/static/js/main.js"></script>
+    <script src="{{ base_url }}/static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

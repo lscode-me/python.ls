@@ -39,6 +39,73 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: Coroutines and Data Processing</h2>
+        <p class="quiz-meta">0 questions • ~0 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 0</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 0</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Quiz: Coroutines and Data Pipelines", "description": "What is the main difference between a generator and a coroutine?", "courseId": "Python", "moduleId": "07_Coroutines", "questions": []};
+const COURSE_ID = "Python";
+const MODULE_ID = "07_Coroutines";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

@@ -259,6 +259,15 @@ class MarkdownConverter:
                 'title': next_module.title
             }
         
+        # Prepare course modules list for sidebar TOC
+        course_modules = []
+        for m in course.modules:
+            course_modules.append({
+                'id': m.id,
+                'number': m.number,
+                'title': m.title,
+            })
+        
         html = self.render_template(
             'lecture.html',
             base_url=base_url,
@@ -269,9 +278,11 @@ class MarkdownConverter:
             course_title=course.title,
             module_title=module.title,
             module_number=module.number,
+            current_module_id=module.id,
             reading_time=reading_time,
             prev_module=prev_nav,
             next_module=next_nav,
+            course_modules=course_modules,
             quiz_url=f"quiz.html",
             hw_url=f"hw.html",
             links_url=f"links.html",
@@ -431,8 +442,26 @@ class MarkdownConverter:
         (output_dir / "index.html").write_text(html, encoding='utf-8')
     
     def build_courses_index(self, courses: list[Course]) -> None:
-        """Build main courses listing page."""
-        base_url = self.get_base_url(1)
+        """Build courses listing page - redirect to home."""
+        html = '''<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=../">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p>Redirecting to <a href="../">home</a>...</p>
+</body>
+</html>'''
+        
+        output_dir = self.output_path / "courses"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        (output_dir / "index.html").write_text(html, encoding='utf-8')
+    
+    def build_home(self, courses: list[Course]) -> None:
+        """Build home page with courses directly."""
+        base_url = "."
         
         courses_data = []
         for c in courses:
@@ -444,45 +473,12 @@ class MarkdownConverter:
             })
         
         html = self.render_template(
-            'base.html',
+            'index.html',
             base_url=base_url,
-            title="Courses",
-            description="All available courses",
-            content=f'''
-            <section class="courses-page">
-                <h1>📚 All Courses</h1>
-                <p>Choose a course to start learning.</p>
-                <div class="courses-grid">
-                    {''.join(f"""
-                    <div class="course-card">
-                        <div class="course-icon">{c['icon']}</div>
-                        <h3>{c['title']}</h3>
-                        <p class="course-modules">{c['modules']} modules</p>
-                        <a href="{c['id']}/" class="btn btn-secondary">View Course →</a>
-                    </div>
-                    """ for c in courses_data)}
-                </div>
-            </section>
-            ''',
+            title="Python & Linux for Life Sciences",
+            description="Master data fundamentals, Python programming, and Linux command line for bioinformatics and healthcare data analysis.",
+            courses=courses_data,
         )
-        
-        output_dir = self.output_path / "courses"
-        output_dir.mkdir(parents=True, exist_ok=True)
-        (output_dir / "index.html").write_text(html, encoding='utf-8')
-    
-    def build_home(self, courses: list[Course]) -> None:
-        """Build home page - redirect to courses."""
-        html = '''<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=courses/">
-    <title>Redirecting...</title>
-</head>
-<body>
-    <p>Redirecting to <a href="courses/">courses</a>...</p>
-</body>
-</html>'''
         
         self.output_path.mkdir(parents=True, exist_ok=True)
         (self.output_path / "index.html").write_text(html, encoding='utf-8')

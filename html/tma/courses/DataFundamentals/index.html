@@ -39,6 +39,181 @@
 
     <main class="tma-main">
         
+<section class="course-container">
+    <div class="course-header">
+        <span class="course-icon-large">📊</span>
+        <h1>Data Fundamentals for Life Sciences</h1>
+        <p class="course-desc">This course covers fundamental data concepts that every life science professional should understand.</p>
+        <span class="course-meta">12 modules</span>
+    </div>
+
+    <div class="modules-list">
+        
+        <a href="01_Intro/" class="module-item" data-module="1">
+            <div class="module-num">1</div>
+            <div class="module-content">
+                <h3>Data Fundamentals for Life Sciences</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-1">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="02_NumberSystems/" class="module-item" data-module="2">
+            <div class="module-num">2</div>
+            <div class="module-content">
+                <h3>Number Systems</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-2">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="03_Encodings/" class="module-item" data-module="3">
+            <div class="module-num">3</div>
+            <div class="module-content">
+                <h3>Character Encodings</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-3">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="04_FileFormats/" class="module-item" data-module="4">
+            <div class="module-num">4</div>
+            <div class="module-content">
+                <h3>File Formats</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-4">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="05_JSON/" class="module-item" data-module="5">
+            <div class="module-num">5</div>
+            <div class="module-content">
+                <h3>JSON</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-5">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="06_YAML/" class="module-item" data-module="6">
+            <div class="module-num">6</div>
+            <div class="module-content">
+                <h3>YAML</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-6">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="07_Markup/" class="module-item" data-module="7">
+            <div class="module-num">7</div>
+            <div class="module-content">
+                <h3>Markup Languages</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-7">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="08_ConfigFiles/" class="module-item" data-module="8">
+            <div class="module-num">8</div>
+            <div class="module-content">
+                <h3>Configuration Files</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-8">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="09_TabularData/" class="module-item" data-module="9">
+            <div class="module-num">9</div>
+            <div class="module-content">
+                <h3>Tabular Data</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-9">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="10_Compression/" class="module-item" data-module="10">
+            <div class="module-num">10</div>
+            <div class="module-content">
+                <h3>Data Compression</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-10">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="11_Checksums/" class="module-item" data-module="11">
+            <div class="module-num">11</div>
+            <div class="module-content">
+                <h3>Hashes and Checksums</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-11">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="12_DataTransfer/" class="module-item" data-module="12">
+            <div class="module-num">12</div>
+            <div class="module-content">
+                <h3>Data Transfer Encoding</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-12">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const courseId = "DataFundamentals";
+    try {
+        const quizResults = await TMAStorage.getCourseQuizResults(courseId);
+        
+        for (const [moduleId, result] of Object.entries(quizResults)) {
+            const moduleNum = moduleId.match(/(\d+)/)?.[1];
+            if (moduleNum) {
+                const statusEl = document.getElementById(`status-${moduleNum}`);
+                if (statusEl) {
+                    const icon = statusEl.querySelector('.status-icon');
+                    if (result.percentage >= 80) {
+                        icon.textContent = '✓';
+                        icon.classList.add('completed');
+                    } else if (result.percentage >= 50) {
+                        icon.textContent = '◐';
+                        icon.classList.add('partial');
+                    } else {
+                        icon.textContent = '○';
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('Could not load course progress:', e);
+    }
+});
+</script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

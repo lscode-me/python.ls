@@ -443,12 +443,12 @@ D) XML
 | 5 | D | XML allows creating arbitrary tags, HTML has a fixed set. |
 | 6 | A | XML requires exact case matching of opening and closing tags. |
 | 7 | C | `&lt;` is the entity for `<` in XML and HTML. |
-| 8 | C | `##` creates `<h2>` (level 2 heading). |
+| 8 | A | `##` creates `<h2>` (level 2 heading). |
 | 9 | B | `**text**` or `__text__` creates bold text. |
 | 10 | C | `[text](url)` is the link syntax in Markdown. |
 | 11 | B | Three backticks with language name for syntax highlighting. |
-| 12 | C | `|` (pipe) separates table cells in Markdown. |
-| 13 | D | `id` must be unique on a page, `class` can repeat. |
+| 12 | A | `|` (pipe) separates table cells in Markdown. |
+| 13 | C | `id` must be unique on a page, `class` can repeat. |
 | 14 | B | XML document must have exactly one root element. |
 | 15 | C | `*`, `-`, or `+` start a bullet list. |
 | 16 | D | `method="GET"` or `method="POST"` specifies HTTP method. |

@@ -39,6 +39,1173 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: 🐍 Pythonic Code: Clarity, Simp</h2>
+        <p class="quiz-meta">25 questions • ~25 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 25</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+        <div class="question-card" data-question="1" >
+            <div class="question-header">
+                <span class="question-num">Q1</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Which statement is NOT one of the principles from &#34;The Zen of Python&#34;?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Explicit is better than implicit</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Simple is better than complex</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Readability counts</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q1" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Performance is better than readability</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="2" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q2</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">List Comprehension: Which is the most Pythonic way to create a list of squares?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`squares = [x**2 for x in range(10)]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`squares = []; [squares.append(x**2) for x in range(10)]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`squares = list(map(lambda x: x**2, range(10)))`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q2" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`squares = []; exec(&#34;[squares.append(x**2) for x in range(10)]&#34;)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="3" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q3</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">EAFP vs LBYL: What does EAFP stand for in Python?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Error And Failure Prevention</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Execute And Fix Problems</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Easier to Ask for Forgiveness than Permission</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q3" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Every Action Follows Protocol</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="4" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q4</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Enumerate: What is the most Pythonic way to iterate with both index and value?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`for i in range(len(items)): print(i, items[i])`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`i = 0; for item in items: print(i, item); i += 1`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`for item in items: print(items.index(item), item)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q4" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`for i, item in enumerate(items): print(i, item)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="5" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q5</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">String Formatting: Which is the most modern and Pythonic string formatting method?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`&#34;Hello, %s&#34; % name`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`f&#34;Hello, {name}&#34;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`&#34;Hello, {}&#34;.format(name)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q5" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`&#34;Hello, &#34; + name`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="6" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q6</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Context Managers: When should you use a context manager (with statement)?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Only for file operations</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">For any resource that needs setup and cleanup</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Only for database connections</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q6" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Never, try/finally is better</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="7" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q7</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Unpacking: What does this code do: `a, *b, c = [1, 2, 3, 4, 5]`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`a=1, b=[2, 3, 4], c=5`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Raises a SyntaxError</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`a=1, b=2, c=5`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q7" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`a=1, b=[2, 3, 4, 5], c=None`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="8" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q8</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Default Dictionary Values: What&#39;s the Pythonic way to get a dictionary value with a default?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`value = d[key] if key in d else default`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`try: value = d[key]\nexcept: value = default`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`value = d.get(key, default)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q8" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`value = d[key] or default`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="9" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q9</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Multiple Comparisons: Which is the most Pythonic way to check if a value is in a range?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`if x &gt;= 1 and x &lt;= 10:`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`if x in range(1, 11):`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`if min(1, x) == 1 and max(x, 10) == 10:`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q9" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`if 1 &lt;= x &lt;= 10:`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="10" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q10</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Any and All: What does `all([True, True, False, True])` return?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`False`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`True`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`[True, True, True]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q10" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`3`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="11" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q11</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Generator vs List: What&#39;s the main advantage of `(x**2 for x in range(1000000))` over `[x**2 for x in range(1000000)]`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q11" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Generators are faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q11" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Generators use less memory (lazy evaluation)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q11" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Generators can be reused multiple times</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q11" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Generators are easier to read</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="12" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q12</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Dictionary Comprehension: What does `{k: v*2 for k, v in {&#39;a&#39;: 1, &#39;b&#39;: 2}.items() if v &gt; 1}` produce?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q12" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`{&#39;a&#39;: 2, &#39;b&#39;: 4}`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q12" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`{&#39;b&#39;: 4}`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q12" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`{2: &#39;b&#39;}`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q12" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`{&#39;b&#39;: 2}`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="13" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q13</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Duck Typing: Which approach is more Pythonic for accepting different iterable types?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q13" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`if isinstance(items, (list, tuple, set)): process(items)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q13" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`try: iter(items); process(items)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q13" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Just use `for item in items:` without type checking</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q13" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Convert everything to list first: `process(list(items))`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="14" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q14</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Star Unpacking: Given `first, *middle, last = [1, 2, 3, 4, 5]`, what is `middle`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q14" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`[2, 3, 4]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q14" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`(2, 3, 4)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q14" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`2`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q14" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`[2, 3, 4, 5]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="15" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q15</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Swapping Variables: What&#39;s the Pythonic way to swap two variables?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q15" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`temp = a; a = b; b = temp`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q15" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`a, b = b, a`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q15" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`a = a + b; b = a - b; a = a - b`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q15" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`a ^= b; b ^= a; a ^= b`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="16" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q16</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Collections Module: Which `collections` tool is best for counting element frequencies?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q16" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`defaultdict(int)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q16" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`Counter`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q16" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`OrderedDict`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q16" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`deque`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="17" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q17</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Context Manager: What happens to the file if an exception occurs inside a `with` block?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q17" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">File remains open</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q17" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">File is automatically closed</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q17" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Program crashes</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q17" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">File is deleted</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="18" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q18</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">F-String Debugging: What does `print(f&#34;{x=}&#34;)` output when `x = 42`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q18" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`42`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q18" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`x`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q18" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`x=42`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q18" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`x = 42`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="19" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q19</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Chained Comparisons: Which statement is equivalent to `if 0 &lt;= x &lt; 100:`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q19" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`if x &gt;= 0 and x &lt; 100:`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q19" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`if (0 &lt;= x) &lt; 100:`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q19" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`if x in range(0, 100):`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q19" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Both A and C</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="20" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q20</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Zip Function: What does `list(zip([1, 2, 3], [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]))` return?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q20" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`[[1, &#39;a&#39;], [2, &#39;b&#39;], [3, &#39;c&#39;]]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q20" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`[(1, &#39;a&#39;), (2, &#39;b&#39;), (3, &#39;c&#39;)]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q20" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`{1: &#39;a&#39;, 2: &#39;b&#39;, 3: &#39;c&#39;}`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q20" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`[1, 2, 3, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="21" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q21</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Generator Function: What&#39;s the key difference between `return` and `yield` in a function?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q21" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`yield` returns multiple values at once</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q21" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`yield` creates a generator that produces values lazily</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q21" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`yield` is faster than `return`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q21" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`yield` is only for lists</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="22" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q22</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Dictionary Merging: What&#39;s the Pythonic way (Python 3.5+) to merge two dictionaries?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q22" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`d1.update(d2)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q22" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`{**d1, **d2}`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q22" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`dict(d1, **d2)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q22" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Both B and C</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="23" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q23</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Enumerate with Start: What does `list(enumerate([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], start=1))` produce?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q23" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`[(0, &#39;a&#39;), (1, &#39;b&#39;), (2, &#39;c&#39;)]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q23" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`[(1, &#39;a&#39;), (2, &#39;b&#39;), (3, &#39;c&#39;)]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q23" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`[(&#39;a&#39;, 1), (&#39;b&#39;, 2), (&#39;c&#39;, 3)]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q23" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`[(1, 0), (2, 1), (3, 2)]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="24" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q24</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Defaultdict: What happens when you access a non-existent key in `defaultdict(list)`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q24" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Raises KeyError</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q24" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Returns None</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q24" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Creates the key with an empty list `[]`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q24" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Returns an empty string</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="25" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q25</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">String Formatting: Which is the most modern Pythonic string formatting?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q25" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`&#34;Value: %d&#34; % x`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q25" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`&#34;Value: {}&#34;.format(x)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q25" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`f&#34;Value: {x}&#34;`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q25" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`&#34;Value: &#34; + str(x)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 25</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Pythonic Code - Quiz", "description": "Test your knowledge of writing idiomatic, clean, and Pythonic code.", "courseId": "Python", "moduleId": "09_Pythonic", "questions": [{"number": 1, "text": "Which statement is NOT one of the principles from \"The Zen of Python\"?", "code": null, "answers": [{"letter": "A", "text": "Explicit is better than implicit"}, {"letter": "B", "text": "Simple is better than complex"}, {"letter": "C", "text": "Readability counts"}, {"letter": "D", "text": "Performance is better than readability"}], "correctAnswer": "D", "explanation": "Performance is better than readability (this is NOT in the Zen of Python)"}, {"number": 2, "text": "List Comprehension: Which is the most Pythonic way to create a list of squares?", "code": null, "answers": [{"letter": "A", "text": "`squares = [x**2 for x in range(10)]`"}, {"letter": "B", "text": "`squares = []; [squares.append(x**2) for x in range(10)]`"}, {"letter": "C", "text": "`squares = list(map(lambda x: x**2, range(10)))`"}, {"letter": "D", "text": "`squares = []; exec(\"[squares.append(x**2) for x in range(10)]\")`"}], "correctAnswer": "A", "explanation": "`squares = [x**2 for x in range(10)]`"}, {"number": 3, "text": "EAFP vs LBYL: What does EAFP stand for in Python?", "code": null, "answers": [{"letter": "A", "text": "Error And Failure Prevention"}, {"letter": "B", "text": "Execute And Fix Problems"}, {"letter": "C", "text": "Easier to Ask for Forgiveness than Permission"}, {"letter": "D", "text": "Every Action Follows Protocol"}], "correctAnswer": "C", "explanation": "Easier to Ask for Forgiveness than Permission"}, {"number": 4, "text": "Enumerate: What is the most Pythonic way to iterate with both index and value?", "code": null, "answers": [{"letter": "A", "text": "`for i in range(len(items)): print(i, items[i])`"}, {"letter": "B", "text": "`i = 0; for item in items: print(i, item); i += 1`"}, {"letter": "C", "text": "`for item in items: print(items.index(item), item)`"}, {"letter": "D", "text": "`for i, item in enumerate(items): print(i, item)`"}], "correctAnswer": "D", "explanation": "`for i, item in enumerate(items): print(i, item)`"}, {"number": 5, "text": "String Formatting: Which is the most modern and Pythonic string formatting method?", "code": null, "answers": [{"letter": "A", "text": "`\"Hello, %s\" % name`"}, {"letter": "B", "text": "`f\"Hello, {name}\"`"}, {"letter": "C", "text": "`\"Hello, {}\".format(name)`"}, {"letter": "D", "text": "`\"Hello, \" + name`"}], "correctAnswer": "B", "explanation": "`f\"Hello, {name}\"`"}, {"number": 6, "text": "Context Managers: When should you use a context manager (with statement)?", "code": null, "answers": [{"letter": "A", "text": "Only for file operations"}, {"letter": "B", "text": "For any resource that needs setup and cleanup"}, {"letter": "C", "text": "Only for database connections"}, {"letter": "D", "text": "Never, try/finally is better"}], "correctAnswer": "B", "explanation": "For any resource that needs setup and cleanup"}, {"number": 7, "text": "Unpacking: What does this code do: `a, *b, c = [1, 2, 3, 4, 5]`?", "code": null, "answers": [{"letter": "A", "text": "`a=1, b=[2, 3, 4], c=5`"}, {"letter": "B", "text": "Raises a SyntaxError"}, {"letter": "C", "text": "`a=1, b=2, c=5`"}, {"letter": "D", "text": "`a=1, b=[2, 3, 4, 5], c=None`"}], "correctAnswer": "A", "explanation": "`a=1, b=[2, 3, 4], c=5`"}, {"number": 8, "text": "Default Dictionary Values: What's the Pythonic way to get a dictionary value with a default?", "code": null, "answers": [{"letter": "A", "text": "`value = d[key] if key in d else default`"}, {"letter": "B", "text": "`try: value = d[key]\\nexcept: value = default`"}, {"letter": "C", "text": "`value = d.get(key, default)`"}, {"letter": "D", "text": "`value = d[key] or default`"}], "correctAnswer": "C", "explanation": "`value = d.get(key, default)`"}, {"number": 9, "text": "Multiple Comparisons: Which is the most Pythonic way to check if a value is in a range?", "code": null, "answers": [{"letter": "A", "text": "`if x >= 1 and x <= 10:`"}, {"letter": "B", "text": "`if x in range(1, 11):`"}, {"letter": "C", "text": "`if min(1, x) == 1 and max(x, 10) == 10:`"}, {"letter": "D", "text": "`if 1 <= x <= 10:`"}], "correctAnswer": "D", "explanation": "`if 1 <= x <= 10:`"}, {"number": 10, "text": "Any and All: What does `all([True, True, False, True])` return?", "code": null, "answers": [{"letter": "A", "text": "`False`"}, {"letter": "B", "text": "`True`"}, {"letter": "C", "text": "`[True, True, True]`"}, {"letter": "D", "text": "`3`"}], "correctAnswer": "A", "explanation": "`False`"}, {"number": 11, "text": "Generator vs List: What's the main advantage of `(x**2 for x in range(1000000))` over `[x**2 for x in range(1000000)]`?", "code": null, "answers": [{"letter": "A", "text": "Generators are faster"}, {"letter": "B", "text": "Generators use less memory (lazy evaluation)"}, {"letter": "C", "text": "Generators can be reused multiple times"}, {"letter": "D", "text": "Generators are easier to read"}], "correctAnswer": "B", "explanation": "Generators use less memory (lazy evaluation)"}, {"number": 12, "text": "Dictionary Comprehension: What does `{k: v*2 for k, v in {'a': 1, 'b': 2}.items() if v > 1}` produce?", "code": null, "answers": [{"letter": "A", "text": "`{'a': 2, 'b': 4}`"}, {"letter": "B", "text": "`{'b': 4}`"}, {"letter": "C", "text": "`{2: 'b'}`"}, {"letter": "D", "text": "`{'b': 2}`"}], "correctAnswer": "B", "explanation": "`{'b': 4}`"}, {"number": 13, "text": "Duck Typing: Which approach is more Pythonic for accepting different iterable types?", "code": null, "answers": [{"letter": "A", "text": "`if isinstance(items, (list, tuple, set)): process(items)`"}, {"letter": "B", "text": "`try: iter(items); process(items)`"}, {"letter": "C", "text": "Just use `for item in items:` without type checking"}, {"letter": "D", "text": "Convert everything to list first: `process(list(items))`"}], "correctAnswer": "C", "explanation": "Just use `for item in items:` without type checking"}, {"number": 14, "text": "Star Unpacking: Given `first, *middle, last = [1, 2, 3, 4, 5]`, what is `middle`?", "code": null, "answers": [{"letter": "A", "text": "`[2, 3, 4]`"}, {"letter": "B", "text": "`(2, 3, 4)`"}, {"letter": "C", "text": "`2`"}, {"letter": "D", "text": "`[2, 3, 4, 5]`"}], "correctAnswer": "A", "explanation": "`[2, 3, 4]`"}, {"number": 15, "text": "Swapping Variables: What's the Pythonic way to swap two variables?", "code": null, "answers": [{"letter": "A", "text": "`temp = a; a = b; b = temp`"}, {"letter": "B", "text": "`a, b = b, a`"}, {"letter": "C", "text": "`a = a + b; b = a - b; a = a - b`"}, {"letter": "D", "text": "`a ^= b; b ^= a; a ^= b`"}], "correctAnswer": "B", "explanation": "`a, b = b, a`"}, {"number": 16, "text": "Collections Module: Which `collections` tool is best for counting element frequencies?", "code": null, "answers": [{"letter": "A", "text": "`defaultdict(int)`"}, {"letter": "B", "text": "`Counter`"}, {"letter": "C", "text": "`OrderedDict`"}, {"letter": "D", "text": "`deque`"}], "correctAnswer": "B", "explanation": "`Counter`"}, {"number": 17, "text": "Context Manager: What happens to the file if an exception occurs inside a `with` block?", "code": null, "answers": [{"letter": "A", "text": "File remains open"}, {"letter": "B", "text": "File is automatically closed"}, {"letter": "C", "text": "Program crashes"}, {"letter": "D", "text": "File is deleted"}], "correctAnswer": "B", "explanation": "File is automatically closed"}, {"number": 18, "text": "F-String Debugging: What does `print(f\"{x=}\")` output when `x = 42`?", "code": null, "answers": [{"letter": "A", "text": "`42`"}, {"letter": "B", "text": "`x`"}, {"letter": "C", "text": "`x=42`"}, {"letter": "D", "text": "`x = 42`"}], "correctAnswer": "C", "explanation": "`x=42`"}, {"number": 19, "text": "Chained Comparisons: Which statement is equivalent to `if 0 <= x < 100:`?", "code": null, "answers": [{"letter": "A", "text": "`if x >= 0 and x < 100:`"}, {"letter": "B", "text": "`if (0 <= x) < 100:`"}, {"letter": "C", "text": "`if x in range(0, 100):`"}, {"letter": "D", "text": "Both A and C"}], "correctAnswer": "A", "explanation": "`if x >= 0 and x < 100:`"}, {"number": 20, "text": "Zip Function: What does `list(zip([1, 2, 3], ['a', 'b', 'c']))` return?", "code": null, "answers": [{"letter": "A", "text": "`[[1, 'a'], [2, 'b'], [3, 'c']]`"}, {"letter": "B", "text": "`[(1, 'a'), (2, 'b'), (3, 'c')]`"}, {"letter": "C", "text": "`{1: 'a', 2: 'b', 3: 'c'}`"}, {"letter": "D", "text": "`[1, 2, 3, 'a', 'b', 'c']`"}], "correctAnswer": "B", "explanation": "`[(1, 'a'), (2, 'b'), (3, 'c')]`"}, {"number": 21, "text": "Generator Function: What's the key difference between `return` and `yield` in a function?", "code": null, "answers": [{"letter": "A", "text": "`yield` returns multiple values at once"}, {"letter": "B", "text": "`yield` creates a generator that produces values lazily"}, {"letter": "C", "text": "`yield` is faster than `return`"}, {"letter": "D", "text": "`yield` is only for lists"}], "correctAnswer": "B", "explanation": "`yield` creates a generator that produces values lazily"}, {"number": 22, "text": "Dictionary Merging: What's the Pythonic way (Python 3.5+) to merge two dictionaries?", "code": null, "answers": [{"letter": "A", "text": "`d1.update(d2)`"}, {"letter": "B", "text": "`{**d1, **d2}`"}, {"letter": "C", "text": "`dict(d1, **d2)`"}, {"letter": "D", "text": "Both B and C"}], "correctAnswer": "D", "explanation": "Both B and C (though B is more explicit)"}, {"number": 23, "text": "Enumerate with Start: What does `list(enumerate(['a', 'b', 'c'], start=1))` produce?", "code": null, "answers": [{"letter": "A", "text": "`[(0, 'a'), (1, 'b'), (2, 'c')]`"}, {"letter": "B", "text": "`[(1, 'a'), (2, 'b'), (3, 'c')]`"}, {"letter": "C", "text": "`[('a', 1), ('b', 2), ('c', 3)]`"}, {"letter": "D", "text": "`[(1, 0), (2, 1), (3, 2)]`"}], "correctAnswer": "B", "explanation": "`[(1, 'a'), (2, 'b'), (3, 'c')]`"}, {"number": 24, "text": "Defaultdict: What happens when you access a non-existent key in `defaultdict(list)`?", "code": null, "answers": [{"letter": "A", "text": "Raises KeyError"}, {"letter": "B", "text": "Returns None"}, {"letter": "C", "text": "Creates the key with an empty list `[]`"}, {"letter": "D", "text": "Returns an empty string"}], "correctAnswer": "C", "explanation": "Creates the key with an empty list `[]`"}, {"number": 25, "text": "String Formatting: Which is the most modern Pythonic string formatting?", "code": null, "answers": [{"letter": "A", "text": "`\"Value: %d\" % x`"}, {"letter": "B", "text": "`\"Value: {}\".format(x)`"}, {"letter": "C", "text": "`f\"Value: {x}\"`"}, {"letter": "D", "text": "`\"Value: \" + str(x)`"}], "correctAnswer": "C", "explanation": "`f\"Value: {x}\"`"}]};
+const COURSE_ID = "Python";
+const MODULE_ID = "09_Pythonic";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

@@ -1,60 +1,88 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="lecture-page">
-    <nav class="breadcrumb">
-        <a href="{{ base_url }}/">Home</a> &raquo;
-        <a href="{{ base_url }}/courses/">Courses</a> &raquo;
-        <a href="{{ base_url }}/courses/{{ course_id }}/">{{ course_title }}</a> &raquo;
-        <span>{{ module_title }}</span>
-    </nav>
-
-    <div class="lecture-header">
-        <h1>{{ title }}</h1>
-        <div class="lecture-meta">
-            <span class="module-badge">Module {{ module_number }}</span>
-            <span class="reading-time">📖 {{ reading_time }} min read</span>
+<div class="lecture-page-wrapper">
+    <!-- Left Sidebar: Course TOC -->
+    <aside class="sidebar sidebar-left">
+        <div class="sidebar-header">
+            <h3>{{ course_title }}</h3>
         </div>
-    </div>
-
-    <div class="lecture-content">
-        {{ content | safe }}
-    </div>
-
-    <div class="lecture-nav">
-        {% if prev_module %}
-        <a href="{{ prev_module.url }}" class="nav-prev">
-            <span class="nav-label">← Previous</span>
-            <span class="nav-title">{{ prev_module.title }}</span>
-        </a>
-        {% else %}
-        <div class="nav-placeholder"></div>
-        {% endif %}
-
-        {% if next_module %}
-        <a href="{{ next_module.url }}" class="nav-next">
-            <span class="nav-label">Next →</span>
-            <span class="nav-title">{{ next_module.title }}</span>
-        </a>
-        {% endif %}
-    </div>
-
-    <div class="lecture-resources">
-        <h3>📚 Resources</h3>
-        <div class="resource-links">
-            <a href="{{ quiz_url }}" class="resource-btn quiz-btn">
-                <span class="icon">📝</span>
-                <span class="text">Take Quiz</span>
+        <nav class="course-toc">
+            {% for module in course_modules %}
+            <a href="{{ base_url }}/courses/{{ course_id }}/{{ module.id }}/" 
+               class="toc-item {% if module.id == current_module_id %}active{% endif %}">
+                <span class="toc-number">{{ module.number }}</span>
+                <span class="toc-title">{{ module.title }}</span>
             </a>
-            <a href="{{ hw_url }}" class="resource-btn hw-btn">
-                <span class="icon">💻</span>
-                <span class="text">Homework</span>
-            </a>
-            <a href="{{ links_url }}" class="resource-btn links-btn">
-                <span class="icon">🔗</span>
-                <span class="text">More Links</span>
-            </a>
+            {% endfor %}
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <article class="lecture-page">
+        <nav class="breadcrumb">
+            <a href="{{ base_url }}/">Home</a> &raquo;
+            <a href="{{ base_url }}/courses/{{ course_id }}/">{{ course_title }}</a> &raquo;
+            <span>{{ module_title }}</span>
+        </nav>
+
+        <div class="lecture-header">
+            <h1>{{ title }}</h1>
+            <div class="lecture-meta">
+                <span class="module-badge">Module {{ module_number }}</span>
+                <span class="reading-time">📖 {{ reading_time }} min read</span>
+            </div>
         </div>
-    </div>
-</article>
+
+        <div class="lecture-content">
+            {{ content | safe }}
+        </div>
+
+        <div class="lecture-nav">
+            {% if prev_module %}
+            <a href="{{ prev_module.url }}" class="nav-prev">
+                <span class="nav-label">← Previous</span>
+                <span class="nav-title">{{ prev_module.title }}</span>
+            </a>
+            {% else %}
+            <div class="nav-placeholder"></div>
+            {% endif %}
+
+            {% if next_module %}
+            <a href="{{ next_module.url }}" class="nav-next">
+                <span class="nav-label">Next →</span>
+                <span class="nav-title">{{ next_module.title }}</span>
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="lecture-resources">
+            <h3>📚 Resources</h3>
+            <div class="resource-links">
+                <a href="{{ quiz_url }}" class="resource-btn quiz-btn">
+                    <span class="icon">📝</span>
+                    <span class="text">Take Quiz</span>
+                </a>
+                <a href="{{ hw_url }}" class="resource-btn hw-btn">
+                    <span class="icon">💻</span>
+                    <span class="text">Homework</span>
+                </a>
+                <a href="{{ links_url }}" class="resource-btn links-btn">
+                    <span class="icon">🔗</span>
+                    <span class="text">More Links</span>
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Right Sidebar: Lecture Navigation -->
+    <aside class="sidebar sidebar-right">
+        <div class="sidebar-header">
+            <h3>On this page</h3>
+        </div>
+        <nav class="lecture-nav-toc">
+            <!-- Will be populated by JavaScript -->
+        </nav>
+    </aside>
+</div>
 {% endblock %}

@@ -290,25 +290,25 @@ D) Compresses with gzip
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | D | Lossless is used for text, code, data. Lossy is for media. |
-| 2 | A | `gzip file.txt` compresses the file, creating file.txt.gz. |
+| 1 | B | Lossless is used for text, code, data. Lossy is for media. |
+| 2 | B | `gzip file.txt` compresses the file, creating file.txt.gz. |
 | 3 | B | `gunzip` or `gzip -d` decompresses .gz files. |
-| 4 | A | tar (tape archive) combines files without compression. |
-| 5 | C | `-z` activates gzip compression in tar. |
+| 4 | D | tar (tape archive) combines files without compression. |
+| 5 | A | `-z` activates gzip compression in tar. |
 | 6 | B | `-c` creates, `-z` gzip, `-v` verbose, `-f` file. |
-| 7 | B | `-x` (extract) extracts files from archive. |
-| 8 | D | bzip2 creates files with .bz2 extension. |
-| 9 | B | xz (LZMA2) provides best compression, but slower. |
-| 10 | C | `-j` activates bzip2 in tar. |
+| 7 | D | `-x` (extract) extracts files from archive. |
+| 8 | B | bzip2 creates files with .bz2 extension. |
+| 9 | A | xz (LZMA2) provides best compression, but slower. |
+| 10 | B | `-j` activates bzip2 in tar. |
 | 11 | A | `zcat` outputs .gz contents without decompressing to disk. |
-| 12 | D | `-k` (keep) preserves the original file after compression. |
+| 12 | B | `-k` (keep) preserves the original file after compression. |
 | 13 | C | `'rt'` = read text, for text files with encoding. |
 | 14 | A | ZIP supports random access — can extract one file. |
-| 15 | B | `-J` (uppercase) activates xz compression in tar. |
+| 15 | C | `-J` (uppercase) activates xz compression in tar. |
 | 16 | D | zstd (Zstandard) — modern algorithm with excellent balance. |
-| 17 | D | `tarfile.open('file.tar.gz', 'w:gz')` — create tar.gz. |
-| 18 | C | `unzip -l` shows list of files in archive. |
-| 19 | C | gzip supports levels 1-9 (1=fast, 9=maximum). |
+| 17 | A | `tarfile.open('file.tar.gz', 'w:gz')` — create tar.gz. |
+| 18 | A | `unzip -l` shows list of files in archive. |
+| 19 | A | gzip supports levels 1-9 (1=fast, 9=maximum). |
 | 20 | A | `-C directory` specifies target directory for extraction. |
 
 ---

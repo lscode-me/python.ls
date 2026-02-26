@@ -175,21 +175,21 @@ D) Only stdin, stdout, stderr are inherited
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | D | I-nodes store file metadata and pointers to data blocks |
-| 2 | A | Both filenames point to the same i-node |
-| 3 | A | File descriptor 2 is stderr |
+| 1 | B | I-nodes store file metadata and pointers to data blocks |
+| 2 | B | Both filenames point to the same i-node |
+| 3 | C | File descriptor 2 is stderr |
 | 4 | C | 'p' indicates a named pipe (FIFO) |
 | 5 | A | 755 = rwxr-xr-x |
-| 6 | D | Redirects stderr to stdout |
+| 6 | C | Redirects stderr to stdout |
 | 7 | B | Symlinks are a separate file with a path, hard links share the same i-node |
-| 8 | B | umask 022 subtracts from 666 for files = 644 |
+| 8 | C | umask 022 subtracts from 666 for files = 644 |
 | 9 | C | /dev/null discards all data written to it |
-| 10 | C | Setuid allows file to run with owner's permissions |
-| 11 | D | `exec 4> output.txt` opens file descriptor 4 for writing |
+| 10 | B | Setuid allows file to run with owner's permissions |
+| 11 | A | `exec 4> output.txt` opens file descriptor 4 for writing |
 | 12 | B | /dev/zero provides null bytes, /dev/urandom provides pseudo-random data |
-| 13 | A | Setgid on directories makes new files inherit the directory's group |
+| 13 | B | Setgid on directories makes new files inherit the directory's group |
 | 14 | B | When link count reaches 0, data blocks are marked free for reuse |
-| 15 | C | Child processes inherit copies of parent's file descriptors |
+| 15 | B | Child processes inherit copies of parent's file descriptors |
 
 ---
 

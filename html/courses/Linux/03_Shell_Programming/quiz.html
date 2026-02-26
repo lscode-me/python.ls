@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -34,6 +33,655 @@
 
     <main class="main-content">
         
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="../../../">Home</a> &raquo;
+        <a href="../../../courses/Linux/">Linux for Developers: Unix &amp; Data Pipelines</a> &raquo;
+        <a href="index.html">Shell Programming as a Mini-DSL for Data Processing</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>Shell Programming as a Mini-DSL for Data Processing - Quiz</h1>
+        <p class="quiz-description">Test your knowledge of bash scripting and data processing.</p>
+        <div class="quiz-meta">
+            <span class="question-count">15 questions</span>
+            <span class="time-estimate">⏱️ ~15 min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 15</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            
+            <div class="question-card" data-question="1" >
+                <div class="question-number">Question 1</div>
+                <h3 class="question-text">Command Substitution: Which is the modern, preferred syntax for command substitution?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q1" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`command`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q1" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">$(command)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q1" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">${command}</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q1" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">$[command]</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="2" style="display: none;">
+                <div class="question-number">Question 2</div>
+                <h3 class="question-text">while read Loop: What does `IFS=&#39;,&#39; read col1 col2 col3` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q2" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Reads three files</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q2" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Splits input by comma into three variables</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q2" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Reads three lines</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q2" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Concatenates three columns with commas</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="3" style="display: none;">
+                <div class="question-number">Question 3</div>
+                <h3 class="question-text">Arrays: How do you get the length of a bash array named `arr`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q3" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`${arr.length}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q3" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`${#arr}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q3" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`${#arr[@]}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q3" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`length($arr)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="4" style="display: none;">
+                <div class="question-number">Question 4</div>
+                <h3 class="question-text">String Operations: What does `${text:5:10}` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q4" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Extracts substring starting at position 5, length 10</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q4" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Replaces 5 characters with 10</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q4" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Extracts characters from 5 to 10</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q4" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Repeats text 5 times</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="5" style="display: none;">
+                <div class="question-number">Question 5</div>
+                <h3 class="question-text">set Command: What does `set -euo pipefail` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q5" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Enables verbose output</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q5" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Exits on error, undefined variables, and pipe failures</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q5" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Sets environment variables</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q5" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Enables debugging mode</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="6" style="display: none;">
+                <div class="question-number">Question 6</div>
+                <h3 class="question-text">Exit Codes: What exit code indicates success in bash?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q6" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">1</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q6" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">-1</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q6" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">0</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q6" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">200</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="7" style="display: none;">
+                <div class="question-number">Question 7</div>
+                <h3 class="question-text">Process Substitution: What does `&lt;(command)` create?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q7" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">A temporary file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q7" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">A temporary named pipe for command output</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q7" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">A background process</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q7" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">A subshell</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="8" style="display: none;">
+                <div class="question-number">Question 8</div>
+                <h3 class="question-text">Arithmetic: Which is the correct way to do arithmetic in bash?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q8" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`$[5 + 3]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q8" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`$(5 + 3)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q8" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`$((5 + 3))`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q8" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`${5 + 3}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="9" style="display: none;">
+                <div class="question-number">Question 9</div>
+                <h3 class="question-text">Functions: How do you access the first argument in a bash function?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q9" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`$arg1`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q9" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`$1`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q9" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`${args[0]}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q9" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`argv[1]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="10" style="display: none;">
+                <div class="question-number">Question 10</div>
+                <h3 class="question-text">Local Variables: What does the `local` keyword do in a function?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q10" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Makes variable globally accessible</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q10" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Limits variable scope to the function</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q10" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Makes variable constant</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q10" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Exports variable to child processes</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="11" style="display: none;">
+                <div class="question-number">Question 11</div>
+                <h3 class="question-text">Default Values: What does `${var:-default}` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q11" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Sets var to &#34;default&#34; permanently</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q11" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Uses &#34;default&#34; if var is unset or empty</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q11" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Compares var to &#34;default&#34;</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q11" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Appends &#34;default&#34; to var</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="12" style="display: none;">
+                <div class="question-number">Question 12</div>
+                <h3 class="question-text">mapfile/readarray: What does `mapfile -t lines &lt; file.txt` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q12" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Prints lines from file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q12" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Counts lines in file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q12" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Reads file into an array variable called `lines`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q12" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Maps each line to a function</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="13" style="display: none;">
+                <div class="question-number">Question 13</div>
+                <h3 class="question-text">String Replacement: What does `${text//old/new}` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q13" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Replaces first occurrence of &#34;old&#34; with &#34;new&#34;</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q13" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Replaces all occurrences of &#34;old&#34; with &#34;new&#34;</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q13" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Removes &#34;old&#34; from text</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q13" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Searches for &#34;old&#34; in text</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="14" style="display: none;">
+                <div class="question-number">Question 14</div>
+                <h3 class="question-text">Conditional Expressions: What does `[[ -z &#34;$var&#34; ]]` test?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q14" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">If var is set</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q14" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">If var is empty or unset</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q14" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">If var is zero</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q14" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">If var is a file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="15" style="display: none;">
+                <div class="question-number">Question 15</div>
+                <h3 class="question-text">Here Documents: What does `cat &lt;&lt;EOF ... EOF` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q15" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Reads from a file named EOF</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q15" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Provides multi-line input to the command</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q15" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Appends to a file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q15" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Creates a named pipe</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ 15</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="index.html" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Shell Programming as a Mini-DSL for Data Processing - Quiz", "description": "Test your knowledge of bash scripting and data processing.", "courseId": "Linux", "moduleId": "03_Shell_Programming", "questions": [{"number": 1, "text": "Command Substitution: Which is the modern, preferred syntax for command substitution?", "code": null, "answers": [{"letter": "A", "text": "`command`"}, {"letter": "B", "text": "$(command)"}, {"letter": "C", "text": "${command}"}, {"letter": "D", "text": "$[command]"}], "correctAnswer": "A", "explanation": "$(command) is the modern, POSIX-compliant syntax"}, {"number": 2, "text": "while read Loop: What does `IFS=',' read col1 col2 col3` do?", "code": null, "answers": [{"letter": "A", "text": "Reads three files"}, {"letter": "B", "text": "Splits input by comma into three variables"}, {"letter": "C", "text": "Reads three lines"}, {"letter": "D", "text": "Concatenates three columns with commas"}], "correctAnswer": "C", "explanation": "IFS=',' sets the delimiter for read command"}, {"number": 3, "text": "Arrays: How do you get the length of a bash array named `arr`?", "code": null, "answers": [{"letter": "A", "text": "`${arr.length}`"}, {"letter": "B", "text": "`${#arr}`"}, {"letter": "C", "text": "`${#arr[@]}`"}, {"letter": "D", "text": "`length($arr)`"}], "correctAnswer": "C", "explanation": "`${#arr[@]}` gives the count of array elements"}, {"number": 4, "text": "String Operations: What does `${text:5:10}` do?", "code": null, "answers": [{"letter": "A", "text": "Extracts substring starting at position 5, length 10"}, {"letter": "B", "text": "Replaces 5 characters with 10"}, {"letter": "C", "text": "Extracts characters from 5 to 10"}, {"letter": "D", "text": "Repeats text 5 times"}], "correctAnswer": "A", "explanation": "Extracts substring starting at position 5, length 10"}, {"number": 5, "text": "set Command: What does `set -euo pipefail` do?", "code": null, "answers": [{"letter": "A", "text": "Enables verbose output"}, {"letter": "B", "text": "Exits on error, undefined variables, and pipe failures"}, {"letter": "C", "text": "Sets environment variables"}, {"letter": "D", "text": "Enables debugging mode"}], "correctAnswer": "B", "explanation": "set -euo pipefail: exit on error, undefined vars, and pipe failures"}, {"number": 6, "text": "Exit Codes: What exit code indicates success in bash?", "code": null, "answers": [{"letter": "A", "text": "1"}, {"letter": "B", "text": "-1"}, {"letter": "C", "text": "0"}, {"letter": "D", "text": "200"}], "correctAnswer": "C", "explanation": "Exit code 0 indicates success"}, {"number": 7, "text": "Process Substitution: What does `<(command)` create?", "code": null, "answers": [{"letter": "A", "text": "A temporary file"}, {"letter": "B", "text": "A temporary named pipe for command output"}, {"letter": "C", "text": "A background process"}, {"letter": "D", "text": "A subshell"}], "correctAnswer": "A", "explanation": "Process substitution creates a temporary named pipe"}, {"number": 8, "text": "Arithmetic: Which is the correct way to do arithmetic in bash?", "code": null, "answers": [{"letter": "A", "text": "`$[5 + 3]`"}, {"letter": "B", "text": "`$(5 + 3)`"}, {"letter": "C", "text": "`$((5 + 3))`"}, {"letter": "D", "text": "`${5 + 3}`"}], "correctAnswer": "D", "explanation": "`$((expression))` is arithmetic expansion"}, {"number": 9, "text": "Functions: How do you access the first argument in a bash function?", "code": null, "answers": [{"letter": "A", "text": "`$arg1`"}, {"letter": "B", "text": "`$1`"}, {"letter": "C", "text": "`${args[0]}`"}, {"letter": "D", "text": "`argv[1]`"}], "correctAnswer": "B", "explanation": "`$1` is the first positional parameter"}, {"number": 10, "text": "Local Variables: What does the `local` keyword do in a function?", "code": null, "answers": [{"letter": "A", "text": "Makes variable globally accessible"}, {"letter": "B", "text": "Limits variable scope to the function"}, {"letter": "C", "text": "Makes variable constant"}, {"letter": "D", "text": "Exports variable to child processes"}], "correctAnswer": "B", "explanation": "`local` limits variable scope to the function"}, {"number": 11, "text": "Default Values: What does `${var:-default}` do?", "code": null, "answers": [{"letter": "A", "text": "Sets var to \"default\" permanently"}, {"letter": "B", "text": "Uses \"default\" if var is unset or empty"}, {"letter": "C", "text": "Compares var to \"default\""}, {"letter": "D", "text": "Appends \"default\" to var"}], "correctAnswer": "B", "explanation": "Returns \"default\" if var is unset/empty, doesn't modify var"}, {"number": 12, "text": "mapfile/readarray: What does `mapfile -t lines < file.txt` do?", "code": null, "answers": [{"letter": "A", "text": "Prints lines from file"}, {"letter": "B", "text": "Counts lines in file"}, {"letter": "C", "text": "Reads file into an array variable called `lines`"}, {"letter": "D", "text": "Maps each line to a function"}], "correctAnswer": "C", "explanation": "mapfile reads lines into an array, -t strips newlines"}, {"number": 13, "text": "String Replacement: What does `${text//old/new}` do?", "code": null, "answers": [{"letter": "A", "text": "Replaces first occurrence of \"old\" with \"new\""}, {"letter": "B", "text": "Replaces all occurrences of \"old\" with \"new\""}, {"letter": "C", "text": "Removes \"old\" from text"}, {"letter": "D", "text": "Searches for \"old\" in text"}], "correctAnswer": "A", "explanation": "`//` replaces all occurrences (single `/` replaces only first)"}, {"number": 14, "text": "Conditional Expressions: What does `[[ -z \"$var\" ]]` test?", "code": null, "answers": [{"letter": "A", "text": "If var is set"}, {"letter": "B", "text": "If var is empty or unset"}, {"letter": "C", "text": "If var is zero"}, {"letter": "D", "text": "If var is a file"}], "correctAnswer": "B", "explanation": "`-z` tests if the string is empty or variable is unset"}, {"number": 15, "text": "Here Documents: What does `cat <<EOF ... EOF` do?", "code": null, "answers": [{"letter": "A", "text": "Reads from a file named EOF"}, {"letter": "B", "text": "Provides multi-line input to the command"}, {"letter": "C", "text": "Appends to a file"}, {"letter": "D", "text": "Creates a named pipe"}], "correctAnswer": "B", "explanation": "Here documents provide multi-line input to commands"}]};
+</script>
+<script src="../../../static/js/quiz.js"></script>
+
     </main>
 
     <footer class="site-footer">
@@ -63,7 +711,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

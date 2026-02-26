@@ -45,29 +45,46 @@ document.addEventListener('DOMContentLoaded', function() {
         wrapper.appendChild(copyBtn);
     });
 
-    // Table of Contents generation for lecture pages
+    // Generate lecture navigation in right sidebar
     const lectureContent = document.querySelector('.lecture-content');
-    if (lectureContent) {
+    const lectureNavToc = document.querySelector('.lecture-nav-toc');
+    
+    if (lectureContent && lectureNavToc) {
         const headings = lectureContent.querySelectorAll('h2, h3');
-        if (headings.length > 3) {
-            const toc = document.createElement('nav');
-            toc.className = 'table-of-contents';
-            toc.innerHTML = '<h4>📑 Table of Contents</h4>';
-            const list = document.createElement('ul');
+        
+        headings.forEach((heading, index) => {
+            if (!heading.id) {
+                heading.id = 'section-' + index;
+            }
             
-            headings.forEach((heading, index) => {
-                if (!heading.id) {
-                    heading.id = 'section-' + index;
+            const link = document.createElement('a');
+            link.href = '#' + heading.id;
+            link.textContent = heading.textContent;
+            link.className = heading.tagName.toLowerCase();
+            lectureNavToc.appendChild(link);
+        });
+        
+        // Scroll spy - highlight active section
+        const observerOptions = {
+            rootMargin: '-80px 0px -80% 0px',
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const link = lectureNavToc.querySelector(`a[href="#${id}"]`);
+                
+                if (link) {
+                    if (entry.isIntersecting) {
+                        lectureNavToc.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                        link.classList.add('active');
+                    }
                 }
-                const li = document.createElement('li');
-                li.className = heading.tagName.toLowerCase();
-                li.innerHTML = `<a href="#${heading.id}">${heading.textContent}</a>`;
-                list.appendChild(li);
             });
-            
-            toc.appendChild(list);
-            lectureContent.insertBefore(toc, lectureContent.firstChild);
-        }
+        }, observerOptions);
+        
+        headings.forEach(heading => observer.observe(heading));
     }
 
     // Reading progress indicator
@@ -101,33 +118,6 @@ style.textContent = `
             padding: 1rem 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-    }
-    .table-of-contents {
-        background: #f8fafc;
-        padding: 1rem 1.5rem;
-        border-radius: 0.5rem;
-        margin-bottom: 2rem;
-    }
-    .table-of-contents h4 {
-        margin-bottom: 0.75rem;
-    }
-    .table-of-contents ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    .table-of-contents li {
-        margin-bottom: 0.25rem;
-    }
-    .table-of-contents li.h3 {
-        padding-left: 1rem;
-        font-size: 0.9rem;
-    }
-    .table-of-contents a {
-        color: var(--text-muted);
-    }
-    .table-of-contents a:hover {
-        color: var(--primary-color);
     }
 `;
 document.head.appendChild(style);

@@ -228,19 +228,19 @@ D) Use text streams as universal interface
 |---|--------|-------------|
 | 1 | B | stdin, stdout, stderr |
 | 2 | C | `for line in sys.stdin:` |
-| 3 | D | To stderr |
-| 4 | D | 0 |
-| 5 | C | Exception when writing to a closed pipe |
-| 6 | A | Sets flag to True if option is specified, False otherwise |
-| 7 | B | Use fileinput or check for arguments |
-| 8 | D | Output is buffered |
-| 9 | A | Zero or more values |
-| 10 | C | script.py reads content through stdin |
+| 3 | B | To stderr |
+| 4 | A | 0 |
+| 5 | B | Exception when writing to a closed pipe |
+| 6 | B | Sets flag to True if option is specified, False otherwise |
+| 7 | C | Use fileinput or check for arguments |
+| 8 | B | Output is buffered |
+| 9 | C | Zero or more values |
+| 10 | B | script.py reads content through stdin |
 | 11 | C | Variant C |
-| 12 | A | `sys.stdin.buffer.read()` |
-| 13 | B | Variant A |
-| 14 | A | Interrupt signal (Ctrl+C) |
-| 15 | B | Create GUI for every program |
+| 12 | B | `sys.stdin.buffer.read()` |
+| 13 | A | Variant A |
+| 14 | B | Interrupt signal (Ctrl+C) |
+| 15 | C | Create GUI for every program |
 
 ---
 

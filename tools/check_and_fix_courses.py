@@ -361,16 +361,19 @@ class QuizBalancer:
             qnum = int(num_str)
             
             choices = {}
+            raw_lines = {}
             for letter in ['A', 'B', 'C', 'D']:
                 choice_pattern = rf'^{letter}\)\s*(.+?)$'
                 choice_match = re.search(choice_pattern, question_content, re.MULTILINE)
                 if choice_match:
                     choices[letter] = choice_match.group(1).strip()
+                    raw_lines[letter] = choice_match.group(0)
             
             if len(choices) == 4:
                 questions[qnum] = {
-                    'content': question_content.strip(),
-                    'choices': choices
+                    'content': question_content,
+                    'choices': choices,
+                    'raw_lines': raw_lines
                 }
         
         return questions
@@ -442,14 +445,18 @@ class QuizBalancer:
                 new_choices[new_letter] = choices[old_letter]
             
             q_content = questions[qnum]['content']
+            raw_lines = questions[qnum]['raw_lines']
             new_q_content = q_content
             
+            # Detect trailing whitespace format from existing lines  
+            trailing = ''
+            if raw_lines.get('A', '').endswith('  '):
+                trailing = '  '
+            
             for letter in ['A', 'B', 'C', 'D']:
-                old_choice_pattern = rf'^{letter}\)\s*.+?$'
-                old_match = re.search(old_choice_pattern, q_content, re.MULTILINE)
-                if old_match:
-                    old_line = old_match.group(0)
-                    new_line = f"{letter}) {new_choices[letter]}"
+                if letter in raw_lines:
+                    old_line = raw_lines[letter]
+                    new_line = f"{letter}) {new_choices[letter]}{trailing}"
                     new_q_content = new_q_content.replace(old_line, new_line, 1)
             
             old_q_block = f"## Question {qnum}:" + q_content

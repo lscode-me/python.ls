@@ -39,6 +39,733 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: Protocols and Interfaces</h2>
+        <p class="quiz-meta">15 questions • ~15 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 15</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+        <div class="question-card" data-question="1" >
+            <div class="question-header">
+                <span class="question-num">Q1</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Duck Typing: What is duck typing in Python?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">A way to check if an object is a duck</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">If an object has the required methods, it can be used regardless of its type</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">A strict type checking system</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q1" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">A method for converting types</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="2" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q2</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Iterator Protocol: Which two methods must a class implement to support the iterator protocol?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`__iter__()` and `__next__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`__start__()` and `__stop__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`__begin__()` and `__end__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q2" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`__first__()` and `__last__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="3" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q3</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Context Manager Protocol: What special methods define the context manager protocol?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`__open__()` and `__close__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`__start__()` and `__finish__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`__begin__()` and `__end__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q3" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`__enter__()` and `__exit__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="4" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q4</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Sequence Protocol: Which method is NOT part of the sequence protocol?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`__len__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`__getitem__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`__contains__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q4" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`__append__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="5" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q5</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Callable Protocol: How do you make a class instance callable like a function?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Inherit from the Function class</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Use the @callable decorator</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Define a `__call__()` method</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q5" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Define a `__invoke__()` method</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="6" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q6</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What is the advantage of `typing.Protocol` over ABC?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">It&#39;s faster at runtime</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">It enables structural subtyping without explicit inheritance</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">It works with older Python versions</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q6" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">It automatically implements methods</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="7" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q7</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Abstract Base Classes: What module provides abstract base classes in Python?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`abc`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`abstract`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`interfaces`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q7" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`protocols`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="8" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q8</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">When should an iterator raise `StopIteration`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">When an error occurs</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">When the iterator is created</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">When there are no more items to return</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q8" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Never, Python handles this automatically</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="9" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q9</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Descriptor Protocol: Which method is called when you access a descriptor attribute?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`__access__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`__read__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`__fetch__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q9" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`__get__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="10" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q10</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Collections ABC: Which collections.abc class represents a read-only sequence?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`Sequence`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`Iterable`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`MutableSequence`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q10" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`Container`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="11" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q11</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Hashable Protocol: What method must be implemented for an object to be hashable?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q11" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`__hash__()` only</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q11" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`__hash__()` and `__eq__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q11" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`__id__()` and `__hash__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q11" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`__key__()` only</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="12" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q12</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Comparison Protocol: Which methods are needed for full ordering comparison support?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q12" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Only `__eq__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q12" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`__lt__()` only with `@functools.total_ordering`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q12" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">All of `__lt__()`, `__le__()`, `__gt__()`, `__ge__()`, `__eq__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q12" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Both B and C can work</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="13" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q13</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Mapping Protocol: Which method is NOT part of the mapping protocol?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q13" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`__getitem__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q13" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`__iter__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q13" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`__len__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q13" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`__append__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="14" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q14</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Runtime Checkable: What decorator makes a `typing.Protocol` checkable with `isinstance()`?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q14" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`@abstract`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q14" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`@runtime_checkable`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q14" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`@isinstance_enabled`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q14" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`@type_check`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="15" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q15</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Numeric Protocol: Which method is called for the `+` operator?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q15" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`__plus__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q15" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`__sum__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q15" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`__add__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q15" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`__concat__()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 15</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Protocols and Interfaces - Quiz", "description": "Test your knowledge of Python protocols, duck typing, and abstract base classes.", "courseId": "Python", "moduleId": "10_Protocols", "questions": [{"number": 1, "text": "Duck Typing: What is duck typing in Python?", "code": null, "answers": [{"letter": "A", "text": "A way to check if an object is a duck"}, {"letter": "B", "text": "If an object has the required methods, it can be used regardless of its type"}, {"letter": "C", "text": "A strict type checking system"}, {"letter": "D", "text": "A method for converting types"}], "correctAnswer": "A", "explanation": "Duck typing means objects are used based on their methods, not their type"}, {"number": 2, "text": "Iterator Protocol: Which two methods must a class implement to support the iterator protocol?", "code": null, "answers": [{"letter": "A", "text": "`__iter__()` and `__next__()`"}, {"letter": "B", "text": "`__start__()` and `__stop__()`"}, {"letter": "C", "text": "`__begin__()` and `__end__()`"}, {"letter": "D", "text": "`__first__()` and `__last__()`"}], "correctAnswer": "A", "explanation": "`__iter__()` returns the iterator, `__next__()` returns next item"}, {"number": 3, "text": "Context Manager Protocol: What special methods define the context manager protocol?", "code": null, "answers": [{"letter": "A", "text": "`__open__()` and `__close__()`"}, {"letter": "B", "text": "`__start__()` and `__finish__()`"}, {"letter": "C", "text": "`__begin__()` and `__end__()`"}, {"letter": "D", "text": "`__enter__()` and `__exit__()`"}], "correctAnswer": "D", "explanation": "`__enter__()` and `__exit__()` define context manager behavior"}, {"number": 4, "text": "Sequence Protocol: Which method is NOT part of the sequence protocol?", "code": null, "answers": [{"letter": "A", "text": "`__len__()`"}, {"letter": "B", "text": "`__getitem__()`"}, {"letter": "C", "text": "`__contains__()`"}, {"letter": "D", "text": "`__append__()`"}], "correctAnswer": "D", "explanation": "`__append__()` is for mutable sequences, not the basic sequence protocol"}, {"number": 5, "text": "Callable Protocol: How do you make a class instance callable like a function?", "code": null, "answers": [{"letter": "A", "text": "Inherit from the Function class"}, {"letter": "B", "text": "Use the @callable decorator"}, {"letter": "C", "text": "Define a `__call__()` method"}, {"letter": "D", "text": "Define a `__invoke__()` method"}], "correctAnswer": "C", "explanation": "Define `__call__()` method to make instances callable"}, {"number": 6, "text": "What is the advantage of `typing.Protocol` over ABC?", "code": null, "answers": [{"letter": "A", "text": "It's faster at runtime"}, {"letter": "B", "text": "It enables structural subtyping without explicit inheritance"}, {"letter": "C", "text": "It works with older Python versions"}, {"letter": "D", "text": "It automatically implements methods"}], "correctAnswer": "B", "explanation": "Protocol enables structural subtyping without requiring inheritance"}, {"number": 7, "text": "Abstract Base Classes: What module provides abstract base classes in Python?", "code": null, "answers": [{"letter": "A", "text": "`abc`"}, {"letter": "B", "text": "`abstract`"}, {"letter": "C", "text": "`interfaces`"}, {"letter": "D", "text": "`protocols`"}], "correctAnswer": "A", "explanation": "The `abc` module provides abstract base class functionality"}, {"number": 8, "text": "When should an iterator raise `StopIteration`?", "code": null, "answers": [{"letter": "A", "text": "When an error occurs"}, {"letter": "B", "text": "When the iterator is created"}, {"letter": "C", "text": "When there are no more items to return"}, {"letter": "D", "text": "Never, Python handles this automatically"}], "correctAnswer": "C", "explanation": "`StopIteration` signals the iterator has no more items"}, {"number": 9, "text": "Descriptor Protocol: Which method is called when you access a descriptor attribute?", "code": null, "answers": [{"letter": "A", "text": "`__access__()`"}, {"letter": "B", "text": "`__read__()`"}, {"letter": "C", "text": "`__fetch__()`"}, {"letter": "D", "text": "`__get__()`"}], "correctAnswer": "D", "explanation": "`__get__()` is called when accessing a descriptor attribute"}, {"number": 10, "text": "Collections ABC: Which collections.abc class represents a read-only sequence?", "code": null, "answers": [{"letter": "A", "text": "`Sequence`"}, {"letter": "B", "text": "`Iterable`"}, {"letter": "C", "text": "`MutableSequence`"}, {"letter": "D", "text": "`Container`"}], "correctAnswer": "A", "explanation": "`Sequence` is read-only, `MutableSequence` allows modifications"}, {"number": 11, "text": "Hashable Protocol: What method must be implemented for an object to be hashable?", "code": null, "answers": [{"letter": "A", "text": "`__hash__()` only"}, {"letter": "B", "text": "`__hash__()` and `__eq__()`"}, {"letter": "C", "text": "`__id__()` and `__hash__()`"}, {"letter": "D", "text": "`__key__()` only"}], "correctAnswer": "B", "explanation": "Both `__hash__()` and `__eq__()` are needed for hashable objects"}, {"number": 12, "text": "Comparison Protocol: Which methods are needed for full ordering comparison support?", "code": null, "answers": [{"letter": "A", "text": "Only `__eq__()`"}, {"letter": "B", "text": "`__lt__()` only with `@functools.total_ordering`"}, {"letter": "C", "text": "All of `__lt__()`, `__le__()`, `__gt__()`, `__ge__()`, `__eq__()`"}, {"letter": "D", "text": "Both B and C can work"}], "correctAnswer": "B", "explanation": "Either implement all comparison methods or use `@total_ordering` with `__lt__` and `__eq__`"}, {"number": 13, "text": "Mapping Protocol: Which method is NOT part of the mapping protocol?", "code": null, "answers": [{"letter": "A", "text": "`__getitem__()`"}, {"letter": "B", "text": "`__iter__()`"}, {"letter": "C", "text": "`__len__()`"}, {"letter": "D", "text": "`__append__()`"}], "correctAnswer": "D", "explanation": "`__append__()` is not part of mapping protocol, it's for sequences"}, {"number": 14, "text": "Runtime Checkable: What decorator makes a `typing.Protocol` checkable with `isinstance()`?", "code": null, "answers": [{"letter": "A", "text": "`@abstract`"}, {"letter": "B", "text": "`@runtime_checkable`"}, {"letter": "C", "text": "`@isinstance_enabled`"}, {"letter": "D", "text": "`@type_check`"}], "correctAnswer": "B", "explanation": "`@runtime_checkable` enables `isinstance()` checks on Protocol classes"}, {"number": 15, "text": "Numeric Protocol: Which method is called for the `+` operator?", "code": null, "answers": [{"letter": "A", "text": "`__plus__()`"}, {"letter": "B", "text": "`__sum__()`"}, {"letter": "C", "text": "`__add__()`"}, {"letter": "D", "text": "`__concat__()`"}], "correctAnswer": "C", "explanation": "`__add__()` is called for the + operator"}]};
+const COURSE_ID = "Python";
+const MODULE_ID = "10_Protocols";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

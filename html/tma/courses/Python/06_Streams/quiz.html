@@ -39,6 +39,772 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: Input/Output Streams in Python</h2>
+        <p class="quiz-meta">15 questions • ~15 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 15</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+        <div class="question-card" data-question="1" >
+            <div class="question-header">
+                <span class="question-num">Q1</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Standard Streams: What are the three standard streams in Unix?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">input, output, error</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">stdin, stdout, stderr</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">read, write, log</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q1" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">in, out, err</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="2" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q2</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Reading from stdin: Which method of reading from stdin is most efficient for large files?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`data = sys.stdin.read()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`lines = sys.stdin.readlines()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`for line in sys.stdin:`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q2" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`while True: line = sys.stdin.readline()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="3" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q3</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Error Output: Where should error messages be written in a Unix utility?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">To stdout</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">To stderr</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">To a file error.log</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q3" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">To stdout with &#34;ERROR:&#34; prefix</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="4" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q4</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Exit Codes: What exit code should be used on successful program termination?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">0</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">1</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">200</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q4" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">-1</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="5" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q5</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">What is BrokenPipeError and when does it occur?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Error reading a corrupted file</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Exception when writing to a closed pipe</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Network error on connection drop</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q5" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Error using wrong delimiter</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="6" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q6</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">argparse Actions: What does `action=&#39;store_true&#39;` do in argparse?</p>
+                
+                
+                <pre class="question-code"><code>parser.add_argument(&#39;-v&#39;, &#39;--verbose&#39;, action=&#39;store_true&#39;)</code></pre>
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Stores value True in a variable</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Sets flag to True if option is specified, False otherwise</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Requires specifying true or false value</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q6" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Prints True to console</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="7" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q7</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Universal File Input: How to make a utility work with both files and stdin?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Always read from sys.stdin</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Always require filename</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Use fileinput or check for arguments</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q7" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Create two different programs</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="8" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q8</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Buffering: Why might program output not appear immediately?</p>
+                
+                
+                <pre class="question-code"><code>for i in range(10):
+    print(f&#34;Step {i}&#34;)
+    time.sleep(1)</code></pre>
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Python runs slowly</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Output is buffered</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">print() works asynchronously</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q8" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Bug in code</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="9" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q9</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">nargs Parameter: What does `nargs=&#39;*&#39;` mean in argparse?</p>
+                
+                
+                <pre class="question-code"><code>parser.add_argument(&#39;files&#39;, nargs=&#39;*&#39;)</code></pre>
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Exactly one value</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">At least one value</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Zero or more values</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q9" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Any number but not zero</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="10" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q10</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Pipeline Mechanics: What happens in this pipeline?</p>
+                
+                
+                <pre class="question-code"><code>cat file.txt | python script.py | grep ERROR | head -5</code></pre>
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">script.py receives file.txt as argument</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">script.py reads content through stdin</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Error occurs</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q10" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">script.py receives nothing</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="11" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q11</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Program Structure: Which structure is considered correct for a CLI utility?</p>
+                
+                
+                <pre class="question-code"><code># Variant A
+print(&#34;Hello&#34;)
+
+# Variant B
+def main():
+    print(&#34;Hello&#34;)
+main()
+
+# Variant C
+def main():
+    print(&#34;Hello&#34;)
+    
+if __name__ == &#34;__main__&#34;:
+    main()</code></pre>
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q11" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Variant A</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q11" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Variant B</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q11" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Variant C</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q11" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">All variants are the same</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="12" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q12</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Binary Data: How to correctly read binary data from stdin?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q12" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`sys.stdin.read()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q12" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`sys.stdin.buffer.read()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q12" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`sys.stdin.readb()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q12" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`open(&#39;/dev/stdin&#39;, &#39;rb&#39;).read()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="13" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q13</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">CSV Processing: How to correctly read CSV from stdin?</p>
+                
+                
+                <pre class="question-code"><code>import sys
+import csv
+
+# Variant A
+reader = csv.reader(sys.stdin)
+
+# Variant B
+data = sys.stdin.read()
+reader = csv.reader(data.split(&#39;\n&#39;))
+
+# Variant C
+with open(sys.stdin) as f:
+    reader = csv.reader(f)</code></pre>
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q13" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Variant A</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q13" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Variant B</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q13" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Variant C</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q13" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">All are incorrect</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="14" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q14</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Signal Handling: What is SIGINT and when is it sent?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q14" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">System shutdown signal</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q14" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Interrupt signal (Ctrl+C)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q14" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Timeout signal</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q14" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Network error signal</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="15" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q15</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Unix Philosophy: Which principle is NOT part of Unix philosophy?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q15" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Do one thing well</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q15" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Programs should work together</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q15" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Create GUI for every program</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q15" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Use text streams as universal interface</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 15</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Streams and Unix I/O - Quiz", "description": "Test your knowledge of Python streams, standard I/O, and Unix-style programming.", "courseId": "Python", "moduleId": "06_Streams", "questions": [{"number": 1, "text": "Standard Streams: What are the three standard streams in Unix?", "code": null, "answers": [{"letter": "A", "text": "input, output, error"}, {"letter": "B", "text": "stdin, stdout, stderr"}, {"letter": "C", "text": "read, write, log"}, {"letter": "D", "text": "in, out, err"}], "correctAnswer": "B", "explanation": "stdin, stdout, stderr"}, {"number": 2, "text": "Reading from stdin: Which method of reading from stdin is most efficient for large files?", "code": null, "answers": [{"letter": "A", "text": "`data = sys.stdin.read()`"}, {"letter": "B", "text": "`lines = sys.stdin.readlines()`"}, {"letter": "C", "text": "`for line in sys.stdin:`"}, {"letter": "D", "text": "`while True: line = sys.stdin.readline()`"}], "correctAnswer": "C", "explanation": "`for line in sys.stdin:`"}, {"number": 3, "text": "Error Output: Where should error messages be written in a Unix utility?", "code": null, "answers": [{"letter": "A", "text": "To stdout"}, {"letter": "B", "text": "To stderr"}, {"letter": "C", "text": "To a file error.log"}, {"letter": "D", "text": "To stdout with \"ERROR:\" prefix"}], "correctAnswer": "B", "explanation": "To stderr"}, {"number": 4, "text": "Exit Codes: What exit code should be used on successful program termination?", "code": null, "answers": [{"letter": "A", "text": "0"}, {"letter": "B", "text": "1"}, {"letter": "C", "text": "200"}, {"letter": "D", "text": "-1"}], "correctAnswer": "A", "explanation": "0"}, {"number": 5, "text": "What is BrokenPipeError and when does it occur?", "code": null, "answers": [{"letter": "A", "text": "Error reading a corrupted file"}, {"letter": "B", "text": "Exception when writing to a closed pipe"}, {"letter": "C", "text": "Network error on connection drop"}, {"letter": "D", "text": "Error using wrong delimiter"}], "correctAnswer": "B", "explanation": "Exception when writing to a closed pipe"}, {"number": 6, "text": "argparse Actions: What does `action='store_true'` do in argparse?", "code": "parser.add_argument('-v', '--verbose', action='store_true')", "answers": [{"letter": "A", "text": "Stores value True in a variable"}, {"letter": "B", "text": "Sets flag to True if option is specified, False otherwise"}, {"letter": "C", "text": "Requires specifying true or false value"}, {"letter": "D", "text": "Prints True to console"}], "correctAnswer": "B", "explanation": "Sets flag to True if option is specified, False otherwise"}, {"number": 7, "text": "Universal File Input: How to make a utility work with both files and stdin?", "code": null, "answers": [{"letter": "A", "text": "Always read from sys.stdin"}, {"letter": "B", "text": "Always require filename"}, {"letter": "C", "text": "Use fileinput or check for arguments"}, {"letter": "D", "text": "Create two different programs"}], "correctAnswer": "C", "explanation": "Use fileinput or check for arguments"}, {"number": 8, "text": "Buffering: Why might program output not appear immediately?", "code": "for i in range(10):\n    print(f\"Step {i}\")\n    time.sleep(1)", "answers": [{"letter": "A", "text": "Python runs slowly"}, {"letter": "B", "text": "Output is buffered"}, {"letter": "C", "text": "print() works asynchronously"}, {"letter": "D", "text": "Bug in code"}], "correctAnswer": "B", "explanation": "Output is buffered"}, {"number": 9, "text": "nargs Parameter: What does `nargs='*'` mean in argparse?", "code": "parser.add_argument('files', nargs='*')", "answers": [{"letter": "A", "text": "Exactly one value"}, {"letter": "B", "text": "At least one value"}, {"letter": "C", "text": "Zero or more values"}, {"letter": "D", "text": "Any number but not zero"}], "correctAnswer": "C", "explanation": "Zero or more values"}, {"number": 10, "text": "Pipeline Mechanics: What happens in this pipeline?", "code": "cat file.txt | python script.py | grep ERROR | head -5", "answers": [{"letter": "A", "text": "script.py receives file.txt as argument"}, {"letter": "B", "text": "script.py reads content through stdin"}, {"letter": "C", "text": "Error occurs"}, {"letter": "D", "text": "script.py receives nothing"}], "correctAnswer": "B", "explanation": "script.py reads content through stdin"}, {"number": 11, "text": "Program Structure: Which structure is considered correct for a CLI utility?", "code": "# Variant A\nprint(\"Hello\")\n\n# Variant B\ndef main():\n    print(\"Hello\")\nmain()\n\n# Variant C\ndef main():\n    print(\"Hello\")\n    \nif __name__ == \"__main__\":\n    main()", "answers": [{"letter": "A", "text": "Variant A"}, {"letter": "B", "text": "Variant B"}, {"letter": "C", "text": "Variant C"}, {"letter": "D", "text": "All variants are the same"}], "correctAnswer": "C", "explanation": "Variant C"}, {"number": 12, "text": "Binary Data: How to correctly read binary data from stdin?", "code": null, "answers": [{"letter": "A", "text": "`sys.stdin.read()`"}, {"letter": "B", "text": "`sys.stdin.buffer.read()`"}, {"letter": "C", "text": "`sys.stdin.readb()`"}, {"letter": "D", "text": "`open('/dev/stdin', 'rb').read()`"}], "correctAnswer": "B", "explanation": "`sys.stdin.buffer.read()`"}, {"number": 13, "text": "CSV Processing: How to correctly read CSV from stdin?", "code": "import sys\nimport csv\n\n# Variant A\nreader = csv.reader(sys.stdin)\n\n# Variant B\ndata = sys.stdin.read()\nreader = csv.reader(data.split('\\n'))\n\n# Variant C\nwith open(sys.stdin) as f:\n    reader = csv.reader(f)", "answers": [{"letter": "A", "text": "Variant A"}, {"letter": "B", "text": "Variant B"}, {"letter": "C", "text": "Variant C"}, {"letter": "D", "text": "All are incorrect"}], "correctAnswer": "A", "explanation": "Variant A"}, {"number": 14, "text": "Signal Handling: What is SIGINT and when is it sent?", "code": null, "answers": [{"letter": "A", "text": "System shutdown signal"}, {"letter": "B", "text": "Interrupt signal (Ctrl+C)"}, {"letter": "C", "text": "Timeout signal"}, {"letter": "D", "text": "Network error signal"}], "correctAnswer": "B", "explanation": "Interrupt signal (Ctrl+C)"}, {"number": 15, "text": "Unix Philosophy: Which principle is NOT part of Unix philosophy?", "code": null, "answers": [{"letter": "A", "text": "Do one thing well"}, {"letter": "B", "text": "Programs should work together"}, {"letter": "C", "text": "Create GUI for every program"}, {"letter": "D", "text": "Use text streams as universal interface"}], "correctAnswer": "C", "explanation": "Create GUI for every program"}]};
+const COURSE_ID = "Python";
+const MODULE_ID = "06_Streams";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

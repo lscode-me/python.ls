@@ -304,31 +304,31 @@ D) The function has a string default value
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | D | Collects all positional arguments into a tuple |
-| 2 | C | `positional, defaults, *args, **kwargs` |
-| 3 | D | `{'extra': 'x'}` (key is matched to the named parameter) |
-| 4 | A | `c` and `d` must be passed as keyword arguments |
+| 1 | C | Collects all positional arguments into a tuple |
+| 2 | B | `positional, defaults, *args, **kwargs` |
+| 3 | B | `{'extra': 'x'}` (key is matched to the named parameter) |
+| 4 | B | `c` and `d` must be passed as keyword arguments |
 | 5 | B | Local, Enclosing, Global, Built-in |
-| 6 | A | `20` then `10` (local x shadows global x) |
+| 6 | C | `20` then `10` (local x shadows global x) |
 | 7 | B | When modifying a global variable inside a function |
 | 8 | A | `nonlocal` modifies enclosing function scope, `global` modifies module scope |
-| 9 | D | `lambda x, y: x + y` |
-| 10 | C | A function that remembers values from its enclosing scope |
-| 11 | B | `func = decorator(func)` |
+| 9 | B | `lambda x, y: x + y` |
+| 10 | A | A function that remembers values from its enclosing scope |
+| 11 | A | `func = decorator(func)` |
 | 12 | B | `greet = bold(italic(greet))` (bottom to top) |
-| 13 | A | Outer function receives decorator args, middle creates decorator, inner is the wrapper |
-| 14 | A | Preserves the original function's metadata |
-| 15 | C | Data cannot be changed after it's created |
-| 16 | D | `tuple` |
-| 17 | D | Default mutable argument is shared across calls |
-| 18 | A | `items = items + [4]` (creates new list) |
-| 19 | A | `new_d = {**d, "key": "value"}` |
-| 20 | C | `[2, 4, 6]` |
-| 21 | C | `[6, 8, 9]` |
-| 22 | B | yield |
-| 23 | D | Functions can be passed as arguments, returned from other functions, and assigned to variables |
-| 24 | C | The condition that stops the recursion |
-| 25 | B | The function returns a string |
+| 13 | B | Outer function receives decorator args, middle creates decorator, inner is the wrapper |
+| 14 | B | Preserves the original function's metadata |
+| 15 | A | Data cannot be changed after it's created |
+| 16 | C | `tuple` |
+| 17 | A | Default mutable argument is shared across calls |
+| 18 | B | `items = items + [4]` (creates new list) |
+| 19 | C | `new_d = {**d, "key": "value"}` |
+| 20 | D | `[2, 4, 6]` |
+| 21 | B | `[6, 8, 9]` |
+| 22 | A | yield |
+| 23 | C | Functions can be passed as arguments, returned from other functions, and assigned to variables |
+| 24 | D | The condition that stops the recursion |
+| 25 | A | The function returns a string |
 
 ---
 

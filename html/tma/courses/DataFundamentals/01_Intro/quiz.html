@@ -39,6 +39,1173 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: Data Fundamentals for Life Sci</h2>
+        <p class="quiz-meta">25 questions • ~25 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 25</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+        <div class="question-card" data-question="1" >
+            <div class="question-header">
+                <span class="question-num">Q1</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Data vs Information: What distinguishes data from information?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Data is for computers, information is for humans</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Data are raw facts without context, information is data in context</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Data is stored in files, information in databases</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q1" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Data is binary, information is textual</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="2" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q2</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Structured Data: Which of the following examples represents structured data?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">JSON file with nested objects</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Table in a relational database with fixed columns</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Vacation photo</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q2" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Email from a colleague</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="3" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q3</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Semi-Structured Data: Which format belongs to semi-structured data?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">JSON document</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">MP3 audio file</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">PostgreSQL table</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q3" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">JPEG image</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="4" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q4</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Text Files: What characterizes a text file?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">File can be opened in Microsoft Word</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Extension .txt</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">File consists of printable characters in a specific encoding</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q4" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">File contains only ASCII characters</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="5" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q5</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Binary Files: Which of these files is binary?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">photo.png</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">README.md</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">index.html</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q5" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">config.yaml</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="6" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q6</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Magic Numbers: What are magic numbers used for in files?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">To encrypt file contents</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">To store author metadata</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">To identify file format regardless of extension</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q6" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">To calculate file size</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="7" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q7</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">PNG Signature: What bytes are at the beginning of a PNG file?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`25 50 44 46`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`FF D8 FF`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`50 4B 03 04`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q7" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`89 50 4E 47`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="8" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q8</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">file Command: What does the command `file document.txt` do in Linux?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Shows file size</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Creates a new file</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Determines file type by its contents</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q8" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Opens file for editing</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="9" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q9</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">File Encoding: Which command shows the encoding of a text file?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`cat -e file.txt`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`ls -la file.txt`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`head file.txt`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q9" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`file -i file.txt`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="10" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q10</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Encoding Problem: Why might text display as &#34;Ð�Ñ€Ð¸Ð²ÐµÑ‚&#34; instead of &#34;Привет&#34;?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">File saved in UTF-8 but opened with Windows-1251 encoding</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">File is too large</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Text contains forbidden characters</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q10" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">File is corrupted</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="11" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q11</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Abstraction Levels: Which abstraction level is between &#34;bytes&#34; and &#34;data format&#34;?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q11" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Application</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q11" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Bits</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q11" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Electronics</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q11" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Encoding</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="12" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q12</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">File Extension: Can you fully trust file extension to determine its type?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q12" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Only for text files</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q12" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Yes, extension always matches file type</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q12" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">No, extension can be changed while contents remain the same</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q12" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Only in Windows</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="13" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q13</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Hex Viewing: Which command is used to view a file in hex format?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q13" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`stat file`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q13" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`xxd file`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q13" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`cat -x file`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q13" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`more file`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="14" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q14</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Encoding Conversion: Which command converts a file from Windows-1251 to UTF-8?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q14" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`convert -from win -to utf8 file.txt`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q14" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`charset -c utf8 file.txt`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q14" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`recode win..utf8 file.txt`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q14" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`iconv -f WINDOWS-1251 -t UTF-8 file.txt`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="15" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q15</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Line Endings: What does `\r\n` mean in the context of text files?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q15" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Escape sequence for Unicode</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q15" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Comment character</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q15" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Line ending in Windows style (CR+LF)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q15" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Tab and space</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="16" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q16</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">JSON vs CSV: What advantage does JSON have over CSV?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q16" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Support for nested data structures</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q16" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Parses faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q16" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Better human readability</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q16" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Smaller file size</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="17" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q17</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Configuration Format: Which format is best suited for configuration files with comments?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q17" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">YAML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q17" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">CSV</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q17" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Binary</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q17" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">JSON</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="18" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q18</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Unstructured Data: What percentage of world data is unstructured?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q18" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">~40%</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q18" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">~20%</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q18" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">~70%</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q18" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">~50%</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="19" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q19</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">xxd Command: What does the output of `xxd -l 8 file.png` show?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q19" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Last 8 lines of file</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q19" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">8 random lines of file</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q19" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">File size in octal</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q19" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">First 8 bytes of file in hex format</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="20" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q20</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Text Format: Which of these formats is NOT text-based?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q20" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">XML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q20" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Markdown</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q20" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">YAML</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q20" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Protocol Buffers</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="21" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q21</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">FASTQ Quality Encoding: What encoding is typically used for quality scores in FASTQ files?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q21" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">UTF-16</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q21" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Phred+33 (ASCII offset)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q21" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Base64</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q21" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Binary integers</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="22" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q22</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">BAM Files: What is the relationship between SAM and BAM files?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q22" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">They are completely different formats</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q22" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">BAM is the compressed binary version of SAM</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q22" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">SAM is encrypted, BAM is plaintext</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q22" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">They use different coordinate systems</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="23" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q23</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">VCF Format: VCF (Variant Call Format) is an example of:</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q23" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Purely structured data (like SQL table)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q23" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Semi-structured data (text with embedded structure)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q23" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Unstructured data</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q23" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Binary format only</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="24" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q24</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">FASTA Magic Numbers: Does a FASTA file have magic numbers like PNG or JPEG?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q24" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Yes, it starts with specific hex bytes</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q24" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">No, it&#39;s a simple text format starting with &#39;&gt;&#39;</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q24" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Only compressed FASTA files have magic numbers</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q24" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">It depends on the sequence type</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="25" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q25</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Genomic Data Integrity: Why are checksums (MD5/SHA256) important when downloading genomic data?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q25" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">To compress the files</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q25" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">To encrypt sensitive data</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q25" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">To verify data wasn&#39;t corrupted during transfer</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q25" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">To convert file formats</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 25</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Data Fundamentals: Introduction - Quiz", "description": "Test your knowledge on \"Introduction: Data, Information, and Formats\".", "courseId": "DataFundamentals", "moduleId": "01_Intro", "questions": [{"number": 1, "text": "Data vs Information: What distinguishes data from information?", "code": null, "answers": [{"letter": "A", "text": "Data is for computers, information is for humans"}, {"letter": "B", "text": "Data are raw facts without context, information is data in context"}, {"letter": "C", "text": "Data is stored in files, information in databases"}, {"letter": "D", "text": "Data is binary, information is textual"}], "correctAnswer": "B", "explanation": "Data are raw facts (42, \"Smith\"), information is data with context (\"Patient Smith, 42 years old\")."}, {"number": 2, "text": "Structured Data: Which of the following examples represents structured data?", "code": null, "answers": [{"letter": "A", "text": "JSON file with nested objects"}, {"letter": "B", "text": "Table in a relational database with fixed columns"}, {"letter": "C", "text": "Vacation photo"}, {"letter": "D", "text": "Email from a colleague"}], "correctAnswer": "C", "explanation": "Relational tables with fixed schema are structured data. JSON is semi-structured."}, {"number": 3, "text": "Semi-Structured Data: Which format belongs to semi-structured data?", "code": null, "answers": [{"letter": "A", "text": "JSON document"}, {"letter": "B", "text": "MP3 audio file"}, {"letter": "C", "text": "PostgreSQL table"}, {"letter": "D", "text": "JPEG image"}], "correctAnswer": "B", "explanation": "JSON has flexible schema embedded in the data itself \u2014 it's semi-structured."}, {"number": 4, "text": "Text Files: What characterizes a text file?", "code": null, "answers": [{"letter": "A", "text": "File can be opened in Microsoft Word"}, {"letter": "B", "text": "Extension .txt"}, {"letter": "C", "text": "File consists of printable characters in a specific encoding"}, {"letter": "D", "text": "File contains only ASCII characters"}], "correctAnswer": "C", "explanation": "Text file is a sequence of printable characters in specific encoding, independent of extension."}, {"number": 5, "text": "Binary Files: Which of these files is binary?", "code": null, "answers": [{"letter": "A", "text": "photo.png"}, {"letter": "B", "text": "README.md"}, {"letter": "C", "text": "index.html"}, {"letter": "D", "text": "config.yaml"}], "correctAnswer": "D", "explanation": "PNG is binary image format. YAML, HTML, Markdown are text formats."}, {"number": 6, "text": "Magic Numbers: What are magic numbers used for in files?", "code": null, "answers": [{"letter": "A", "text": "To encrypt file contents"}, {"letter": "B", "text": "To store author metadata"}, {"letter": "C", "text": "To identify file format regardless of extension"}, {"letter": "D", "text": "To calculate file size"}], "correctAnswer": "C", "explanation": "Magic numbers identify file format by first bytes, regardless of extension."}, {"number": 7, "text": "PNG Signature: What bytes are at the beginning of a PNG file?", "code": null, "answers": [{"letter": "A", "text": "`25 50 44 46`"}, {"letter": "B", "text": "`FF D8 FF`"}, {"letter": "C", "text": "`50 4B 03 04`"}, {"letter": "D", "text": "`89 50 4E 47`"}], "correctAnswer": "A", "explanation": "PNG starts with `89 50 4E 47` (`.PNG` in ASCII). `FF D8 FF` is JPEG, `50 4B` is ZIP, `25 50 44 46` is PDF."}, {"number": 8, "text": "file Command: What does the command `file document.txt` do in Linux?", "code": null, "answers": [{"letter": "A", "text": "Shows file size"}, {"letter": "B", "text": "Creates a new file"}, {"letter": "C", "text": "Determines file type by its contents"}, {"letter": "D", "text": "Opens file for editing"}], "correctAnswer": "C", "explanation": "The `file` command analyzes file contents and determines its type."}, {"number": 9, "text": "File Encoding: Which command shows the encoding of a text file?", "code": null, "answers": [{"letter": "A", "text": "`cat -e file.txt`"}, {"letter": "B", "text": "`ls -la file.txt`"}, {"letter": "C", "text": "`head file.txt`"}, {"letter": "D", "text": "`file -i file.txt`"}], "correctAnswer": "D", "explanation": "`file -i` shows MIME type and file encoding."}, {"number": 10, "text": "Encoding Problem: Why might text display as \"\u00d0\ufffd\u00d1\u20ac\u00d0\u00b8\u00d0\u00b2\u00d0\u00b5\u00d1\u201a\" instead of \"\u041f\u0440\u0438\u0432\u0435\u0442\"?", "code": null, "answers": [{"letter": "A", "text": "File saved in UTF-8 but opened with Windows-1251 encoding"}, {"letter": "B", "text": "File is too large"}, {"letter": "C", "text": "Text contains forbidden characters"}, {"letter": "D", "text": "File is corrupted"}], "correctAnswer": "C", "explanation": "\"Mojibake\" appears when file encoding doesn't match the encoding used to read it."}, {"number": 11, "text": "Abstraction Levels: Which abstraction level is between \"bytes\" and \"data format\"?", "code": null, "answers": [{"letter": "A", "text": "Application"}, {"letter": "B", "text": "Bits"}, {"letter": "C", "text": "Electronics"}, {"letter": "D", "text": "Encoding"}], "correctAnswer": "A", "explanation": "Levels: bits \u2192 bytes \u2192 encoding \u2192 data format \u2192 application."}, {"number": 12, "text": "File Extension: Can you fully trust file extension to determine its type?", "code": null, "answers": [{"letter": "A", "text": "Only for text files"}, {"letter": "B", "text": "Yes, extension always matches file type"}, {"letter": "C", "text": "No, extension can be changed while contents remain the same"}, {"letter": "D", "text": "Only in Windows"}], "correctAnswer": "B", "explanation": "Extension is just part of filename, can be changed without changing contents."}, {"number": 13, "text": "Hex Viewing: Which command is used to view a file in hex format?", "code": null, "answers": [{"letter": "A", "text": "`stat file`"}, {"letter": "B", "text": "`xxd file`"}, {"letter": "C", "text": "`cat -x file`"}, {"letter": "D", "text": "`more file`"}], "correctAnswer": "B", "explanation": "`xxd` outputs hex dump of file with ASCII representation."}, {"number": 14, "text": "Encoding Conversion: Which command converts a file from Windows-1251 to UTF-8?", "code": null, "answers": [{"letter": "A", "text": "`convert -from win -to utf8 file.txt`"}, {"letter": "B", "text": "`charset -c utf8 file.txt`"}, {"letter": "C", "text": "`recode win..utf8 file.txt`"}, {"letter": "D", "text": "`iconv -f WINDOWS-1251 -t UTF-8 file.txt`"}], "correctAnswer": "D", "explanation": "`iconv` is standard utility for encoding conversion with `-f` (from) and `-t` (to) flags."}, {"number": 15, "text": "Line Endings: What does `\\r\\n` mean in the context of text files?", "code": null, "answers": [{"letter": "A", "text": "Escape sequence for Unicode"}, {"letter": "B", "text": "Comment character"}, {"letter": "C", "text": "Line ending in Windows style (CR+LF)"}, {"letter": "D", "text": "Tab and space"}], "correctAnswer": "C", "explanation": "`\\r\\n` (CRLF) is Windows-style line ending. Unix uses `\\n` (LF)."}, {"number": 16, "text": "JSON vs CSV: What advantage does JSON have over CSV?", "code": null, "answers": [{"letter": "A", "text": "Support for nested data structures"}, {"letter": "B", "text": "Parses faster"}, {"letter": "C", "text": "Better human readability"}, {"letter": "D", "text": "Smaller file size"}], "correctAnswer": "D", "explanation": "JSON supports nested objects and arrays, CSV only flat tables."}, {"number": 17, "text": "Configuration Format: Which format is best suited for configuration files with comments?", "code": null, "answers": [{"letter": "A", "text": "YAML"}, {"letter": "B", "text": "CSV"}, {"letter": "C", "text": "Binary"}, {"letter": "D", "text": "JSON"}], "correctAnswer": "A", "explanation": "YAML supports comments (#), JSON does not."}, {"number": 18, "text": "Unstructured Data: What percentage of world data is unstructured?", "code": null, "answers": [{"letter": "A", "text": "~40%"}, {"letter": "B", "text": "~20%"}, {"letter": "C", "text": "~70%"}, {"letter": "D", "text": "~50%"}], "correctAnswer": "C", "explanation": "Estimates suggest ~70% of world data is unstructured (text, media)."}, {"number": 19, "text": "xxd Command: What does the output of `xxd -l 8 file.png` show?", "code": null, "answers": [{"letter": "A", "text": "Last 8 lines of file"}, {"letter": "B", "text": "8 random lines of file"}, {"letter": "C", "text": "File size in octal"}, {"letter": "D", "text": "First 8 bytes of file in hex format"}], "correctAnswer": "D", "explanation": "`xxd -l 8` outputs first 8 bytes of file in hex format."}, {"number": 20, "text": "Text Format: Which of these formats is NOT text-based?", "code": null, "answers": [{"letter": "A", "text": "XML"}, {"letter": "B", "text": "Markdown"}, {"letter": "C", "text": "YAML"}, {"letter": "D", "text": "Protocol Buffers"}], "correctAnswer": "D", "explanation": "Protocol Buffers is binary serialization format from Google."}, {"number": 21, "text": "FASTQ Quality Encoding: What encoding is typically used for quality scores in FASTQ files?", "code": null, "answers": [{"letter": "A", "text": "UTF-16"}, {"letter": "B", "text": "Phred+33 (ASCII offset)"}, {"letter": "C", "text": "Base64"}, {"letter": "D", "text": "Binary integers"}], "correctAnswer": "B", "explanation": "FASTQ quality scores use Phred+33 encoding (ASCII 33-126). Modern Illumina uses this standard."}, {"number": 22, "text": "BAM Files: What is the relationship between SAM and BAM files?", "code": null, "answers": [{"letter": "A", "text": "They are completely different formats"}, {"letter": "B", "text": "BAM is the compressed binary version of SAM"}, {"letter": "C", "text": "SAM is encrypted, BAM is plaintext"}, {"letter": "D", "text": "They use different coordinate systems"}], "correctAnswer": "B", "explanation": "BAM is compressed binary version of SAM (Sequence Alignment/Map). Same data, different format."}, {"number": 23, "text": "VCF Format: VCF (Variant Call Format) is an example of:", "code": null, "answers": [{"letter": "A", "text": "Purely structured data (like SQL table)"}, {"letter": "B", "text": "Semi-structured data (text with embedded structure)"}, {"letter": "C", "text": "Unstructured data"}, {"letter": "D", "text": "Binary format only"}], "correctAnswer": "B", "explanation": "VCF is text-based with structured header and data rows \u2014 semi-structured format."}, {"number": 24, "text": "FASTA Magic Numbers: Does a FASTA file have magic numbers like PNG or JPEG?", "code": null, "answers": [{"letter": "A", "text": "Yes, it starts with specific hex bytes"}, {"letter": "B", "text": "No, it's a simple text format starting with '>'"}, {"letter": "C", "text": "Only compressed FASTA files have magic numbers"}, {"letter": "D", "text": "It depends on the sequence type"}], "correctAnswer": "B", "explanation": "FASTA is simple text format starting with '>'. However, gzipped FASTA (.fa.gz) has gzip magic numbers."}, {"number": 25, "text": "Genomic Data Integrity: Why are checksums (MD5/SHA256) important when downloading genomic data?", "code": null, "answers": [{"letter": "A", "text": "To compress the files"}, {"letter": "B", "text": "To encrypt sensitive data"}, {"letter": "C", "text": "To verify data wasn't corrupted during transfer"}, {"letter": "D", "text": "To convert file formats"}], "correctAnswer": "B", "explanation": "Checksums verify data integrity. Critical for large genomic files (GB-TB) to ensure no corruption during download."}]};
+const COURSE_ID = "DataFundamentals";
+const MODULE_ID = "01_Intro";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

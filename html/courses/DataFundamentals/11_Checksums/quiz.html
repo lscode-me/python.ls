@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -34,6 +33,850 @@
 
     <main class="main-content">
         
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="../../../">Home</a> &raquo;
+        <a href="../../../courses/DataFundamentals/">Data Fundamentals for Life Sciences</a> &raquo;
+        <a href="index.html">Hashes and Checksums</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>Checksums - Quiz</h1>
+        <p class="quiz-description">Test your knowledge on &#34;Hashes and Checksums&#34;.</p>
+        <div class="quiz-meta">
+            <span class="question-count">20 questions</span>
+            <span class="time-estimate">⏱️ ~20 min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 20</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            
+            <div class="question-card" data-question="1" >
+                <div class="question-number">Question 1</div>
+                <h3 class="question-text">Hash Function: What does a hash function do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q1" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Compresses data</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q1" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Creates a backup</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q1" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Transforms data of arbitrary size into a fixed-length string</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q1" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Encrypts data</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="2" style="display: none;">
+                <div class="question-number">Question 2</div>
+                <h3 class="question-text">MD5 Length: What is the length of an MD5 hash?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q2" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">128 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q2" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">64 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q2" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">32 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q2" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">40 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="3" style="display: none;">
+                <div class="question-number">Question 3</div>
+                <h3 class="question-text">SHA-256 Length: What is the length of a SHA-256 hash?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q3" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">40 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q3" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">32 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q3" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">128 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q3" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">64 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="4" style="display: none;">
+                <div class="question-number">Question 4</div>
+                <h3 class="question-text">MD5 Security: Why is MD5 not recommended for security?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q4" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Collisions found (algorithm compromised)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q4" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Not supported by modern systems</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q4" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Hash is too long</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q4" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Too slow</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="5" style="display: none;">
+                <div class="question-number">Question 5</div>
+                <h3 class="question-text">sha256sum: What command computes SHA-256 in Linux?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q5" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`hashsum -256 file.txt`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q5" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">sha256sum file.txt</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q5" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`shasum file.txt`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q5" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`sha256 file.txt`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="6" style="display: none;">
+                <div class="question-number">Question 6</div>
+                <h3 class="question-text">Hash Verification: What sha256sum flag verifies a file with hashes?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q6" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`-x`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q6" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`-t`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q6" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">-c</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q6" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`-v`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="7" style="display: none;">
+                <div class="question-number">Question 7</div>
+                <h3 class="question-text">Irreversibility: Can you recover original data from a hash?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q7" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Yes, always</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q7" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">No, hash is irreversible</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q7" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Only with a key</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q7" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Only for short data</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="8" style="display: none;">
+                <div class="question-number">Question 8</div>
+                <h3 class="question-text">Avalanche Effect: What is the avalanche effect in hash functions?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q8" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Hash increases with input size</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q8" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Hash can be split into parts</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q8" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Hash is computed in cascade</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q8" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Small input change causes large hash change</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="9" style="display: none;">
+                <div class="question-number">Question 9</div>
+                <h3 class="question-text">Collision: What is a hash collision?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q9" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Computation error</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q9" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Two different inputs produce the same hash</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q9" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Hash is too long</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q9" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Impossible to compute hash</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="10" style="display: none;">
+                <div class="question-number">Question 10</div>
+                <h3 class="question-text">Python hashlib: How do you compute SHA-256 of a string in Python?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q10" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">hashlib.sha256(&#34;text&#34;.encode()).hexdigest()</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q10" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`hash(&#34;text&#34;, &#34;sha256&#34;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q10" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`sha256(&#34;text&#34;)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q10" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`hashlib.sha256(&#34;text&#34;).hexdigest()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="11" style="display: none;">
+                <div class="question-number">Question 11</div>
+                <h3 class="question-text">File Hash: Why are files read in chunks when hashing?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q11" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Algorithm requirement</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q11" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">For security</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q11" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">To avoid loading entire file into memory</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q11" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">For speed</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="12" style="display: none;">
+                <div class="question-number">Question 12</div>
+                <h3 class="question-text">SHA-1 in Git: What algorithm does Git use for commit identification?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q12" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">BLAKE2</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q12" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">SHA-256</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q12" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">MD5</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q12" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">SHA-1</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="13" style="display: none;">
+                <div class="question-number">Question 13</div>
+                <h3 class="question-text">Passwords: What algorithm is recommended for password storage?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q13" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">MD5</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q13" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">SHA-256</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q13" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">bcrypt or argon2</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q13" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">CRC32</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="14" style="display: none;">
+                <div class="question-number">Question 14</div>
+                <h3 class="question-text">macOS shasum: How do you compute SHA-256 on macOS?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q14" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`md5 -sha256 file`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q14" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`hash256 file`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q14" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`sha256sum file`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q14" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">shasum -a 256 file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="15" style="display: none;">
+                <div class="question-number">Question 15</div>
+                <h3 class="question-text">Why is the `-n` flag important in `echo -n &#34;text&#34; | sha256sum`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q15" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">For numeric format output</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q15" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">For binary output</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q15" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">For compatibility</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q15" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">To avoid adding newline to input</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="16" style="display: none;">
+                <div class="question-number">Question 16</div>
+                <h3 class="question-text">SHA-512 Length: What is the length of SHA-512 hash in hex characters?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q16" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">512 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q16" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">128 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q16" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">256 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q16" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">64 characters</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="17" style="display: none;">
+                <div class="question-number">Question 17</div>
+                <h3 class="question-text">What advantage does BLAKE3 have over SHA-256?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q17" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Built into all systems</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q17" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Doesn&#39;t require libraries</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q17" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Very fast while cryptographically strong</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q17" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Shorter hash</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="18" style="display: none;">
+                <div class="question-number">Question 18</div>
+                <h3 class="question-text">Deduplication: How can hashes be used to find duplicate files?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q18" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Rename files</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q18" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Delete all files</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q18" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Compress files and compare sizes</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q18" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Compare hashes of all files, identical = duplicates</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="19" style="display: none;">
+                <div class="question-number">Question 19</div>
+                <h3 class="question-text">Hash vs Encryption: What distinguishes hash from encryption?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q19" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Hash is faster</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q19" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Hash is irreversible and doesn&#39;t require a key</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q19" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Hash creates larger output</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q19" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Hash only works with text</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="20" style="display: none;">
+                <div class="question-number">Question 20</div>
+                <h3 class="question-text">hashlib.new: How do you create a hash object for an arbitrary algorithm in Python?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q20" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">hashlib.hash(&#39;sha512&#39;)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q20" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">hashlib.get(&#39;sha512&#39;)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q20" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">hashlib.create(&#39;sha512&#39;)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q20" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">hashlib.new(&#39;sha512&#39;)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ 20</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="index.html" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Checksums - Quiz", "description": "Test your knowledge on \"Hashes and Checksums\".", "courseId": "DataFundamentals", "moduleId": "11_Checksums", "questions": [{"number": 1, "text": "Hash Function: What does a hash function do?", "code": null, "answers": [{"letter": "A", "text": "Compresses data"}, {"letter": "B", "text": "Creates a backup"}, {"letter": "C", "text": "Transforms data of arbitrary size into a fixed-length string"}, {"letter": "D", "text": "Encrypts data"}], "correctAnswer": "C", "explanation": "Hash transforms input of any size into fixed-length string (fingerprint)."}, {"number": 2, "text": "MD5 Length: What is the length of an MD5 hash?", "code": null, "answers": [{"letter": "A", "text": "128 characters"}, {"letter": "B", "text": "64 characters"}, {"letter": "C", "text": "32 characters"}, {"letter": "D", "text": "40 characters"}], "correctAnswer": "A", "explanation": "MD5 = 128 bits = 32 hex characters."}, {"number": 3, "text": "SHA-256 Length: What is the length of a SHA-256 hash?", "code": null, "answers": [{"letter": "A", "text": "40 characters"}, {"letter": "B", "text": "32 characters"}, {"letter": "C", "text": "128 characters"}, {"letter": "D", "text": "64 characters"}], "correctAnswer": "D", "explanation": "SHA-256 = 256 bits = 64 hex characters."}, {"number": 4, "text": "MD5 Security: Why is MD5 not recommended for security?", "code": null, "answers": [{"letter": "A", "text": "Collisions found (algorithm compromised)"}, {"letter": "B", "text": "Not supported by modern systems"}, {"letter": "C", "text": "Hash is too long"}, {"letter": "D", "text": "Too slow"}], "correctAnswer": "A", "explanation": "Practical collisions found for MD5, cryptographically insecure."}, {"number": 5, "text": "sha256sum: What command computes SHA-256 in Linux?", "code": null, "answers": [{"letter": "A", "text": "`hashsum -256 file.txt`"}, {"letter": "B", "text": "sha256sum file.txt"}, {"letter": "C", "text": "`shasum file.txt`"}, {"letter": "D", "text": "`sha256 file.txt`"}], "correctAnswer": "A", "explanation": "`sha256sum` \u2014 standard command in Linux."}, {"number": 6, "text": "Hash Verification: What sha256sum flag verifies a file with hashes?", "code": null, "answers": [{"letter": "A", "text": "`-x`"}, {"letter": "B", "text": "`-t`"}, {"letter": "C", "text": "-c"}, {"letter": "D", "text": "`-v`"}], "correctAnswer": "C", "explanation": "`-c` (check) verifies files against hash list."}, {"number": 7, "text": "Irreversibility: Can you recover original data from a hash?", "code": null, "answers": [{"letter": "A", "text": "Yes, always"}, {"letter": "B", "text": "No, hash is irreversible"}, {"letter": "C", "text": "Only with a key"}, {"letter": "D", "text": "Only for short data"}], "correctAnswer": "D", "explanation": "Hash \u2014 one-way function, cannot recover input."}, {"number": 8, "text": "Avalanche Effect: What is the avalanche effect in hash functions?", "code": null, "answers": [{"letter": "A", "text": "Hash increases with input size"}, {"letter": "B", "text": "Hash can be split into parts"}, {"letter": "C", "text": "Hash is computed in cascade"}, {"letter": "D", "text": "Small input change causes large hash change"}], "correctAnswer": "C", "explanation": "Changing one bit of input changes ~50% of hash bits."}, {"number": 9, "text": "Collision: What is a hash collision?", "code": null, "answers": [{"letter": "A", "text": "Computation error"}, {"letter": "B", "text": "Two different inputs produce the same hash"}, {"letter": "C", "text": "Hash is too long"}, {"letter": "D", "text": "Impossible to compute hash"}], "correctAnswer": "B", "explanation": "Collision \u2014 when different inputs produce same hash."}, {"number": 10, "text": "Python hashlib: How do you compute SHA-256 of a string in Python?", "code": null, "answers": [{"letter": "A", "text": "hashlib.sha256(\"text\".encode()).hexdigest()"}, {"letter": "B", "text": "`hash(\"text\", \"sha256\")`"}, {"letter": "C", "text": "`sha256(\"text\")`"}, {"letter": "D", "text": "`hashlib.sha256(\"text\").hexdigest()`"}], "correctAnswer": "D", "explanation": "Need `.encode()` to convert str to bytes."}, {"number": 11, "text": "File Hash: Why are files read in chunks when hashing?", "code": null, "answers": [{"letter": "A", "text": "Algorithm requirement"}, {"letter": "B", "text": "For security"}, {"letter": "C", "text": "To avoid loading entire file into memory"}, {"letter": "D", "text": "For speed"}], "correctAnswer": "D", "explanation": "Chunk reading allows hashing files larger than RAM."}, {"number": 12, "text": "SHA-1 in Git: What algorithm does Git use for commit identification?", "code": null, "answers": [{"letter": "A", "text": "BLAKE2"}, {"letter": "B", "text": "SHA-256"}, {"letter": "C", "text": "MD5"}, {"letter": "D", "text": "SHA-1"}], "correctAnswer": "B", "explanation": "Git uses SHA-1 (migration to SHA-256 planned)."}, {"number": 13, "text": "Passwords: What algorithm is recommended for password storage?", "code": null, "answers": [{"letter": "A", "text": "MD5"}, {"letter": "B", "text": "SHA-256"}, {"letter": "C", "text": "bcrypt or argon2"}, {"letter": "D", "text": "CRC32"}], "correctAnswer": "C", "explanation": "bcrypt/argon2 specifically designed for passwords (slow, with salt)."}, {"number": 14, "text": "macOS shasum: How do you compute SHA-256 on macOS?", "code": null, "answers": [{"letter": "A", "text": "`md5 -sha256 file`"}, {"letter": "B", "text": "`hash256 file`"}, {"letter": "C", "text": "`sha256sum file`"}, {"letter": "D", "text": "shasum -a 256 file"}], "correctAnswer": "D", "explanation": "On macOS, use `shasum -a 256`."}, {"number": 15, "text": "Why is the `-n` flag important in `echo -n \"text\" | sha256sum`?", "code": null, "answers": [{"letter": "A", "text": "For numeric format output"}, {"letter": "B", "text": "For binary output"}, {"letter": "C", "text": "For compatibility"}, {"letter": "D", "text": "To avoid adding newline to input"}], "correctAnswer": "C", "explanation": "Without `-n`, echo adds `\\n`, changing the hash."}, {"number": 16, "text": "SHA-512 Length: What is the length of SHA-512 hash in hex characters?", "code": null, "answers": [{"letter": "A", "text": "512 characters"}, {"letter": "B", "text": "128 characters"}, {"letter": "C", "text": "256 characters"}, {"letter": "D", "text": "64 characters"}], "correctAnswer": "A", "explanation": "SHA-512 = 512 bits = 128 hex characters."}, {"number": 17, "text": "What advantage does BLAKE3 have over SHA-256?", "code": null, "answers": [{"letter": "A", "text": "Built into all systems"}, {"letter": "B", "text": "Doesn't require libraries"}, {"letter": "C", "text": "Very fast while cryptographically strong"}, {"letter": "D", "text": "Shorter hash"}], "correctAnswer": "C", "explanation": "BLAKE3 very fast while cryptographically strong."}, {"number": 18, "text": "Deduplication: How can hashes be used to find duplicate files?", "code": null, "answers": [{"letter": "A", "text": "Rename files"}, {"letter": "B", "text": "Delete all files"}, {"letter": "C", "text": "Compress files and compare sizes"}, {"letter": "D", "text": "Compare hashes of all files, identical = duplicates"}], "correctAnswer": "D", "explanation": "Identical hash = identical file contents."}, {"number": 19, "text": "Hash vs Encryption: What distinguishes hash from encryption?", "code": null, "answers": [{"letter": "A", "text": "Hash is faster"}, {"letter": "B", "text": "Hash is irreversible and doesn't require a key"}, {"letter": "C", "text": "Hash creates larger output"}, {"letter": "D", "text": "Hash only works with text"}], "correctAnswer": "C", "explanation": "Hash irreversible and no key; encryption reversible with key."}, {"number": 20, "text": "hashlib.new: How do you create a hash object for an arbitrary algorithm in Python?", "code": null, "answers": [{"letter": "A", "text": "hashlib.hash('sha512')"}, {"letter": "B", "text": "hashlib.get('sha512')"}, {"letter": "C", "text": "hashlib.create('sha512')"}, {"letter": "D", "text": "hashlib.new('sha512')"}], "correctAnswer": "D", "explanation": "`hashlib.new('algorithm')` creates object for any algorithm."}]};
+</script>
+<script src="../../../static/js/quiz.js"></script>
+
     </main>
 
     <footer class="site-footer">
@@ -63,7 +906,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

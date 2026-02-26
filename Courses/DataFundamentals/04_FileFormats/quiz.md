@@ -358,30 +358,30 @@ D) It doesn't actually compress the data
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | C | Text files contain characters in encoding (UTF-8, ASCII, etc.) and are human-readable. |
-| 2 | A | PNG is a binary image format. JSON, Python, HTML are text formats. |
-| 3 | D | Magic numbers are fixed bytes at the beginning of a file for format identification. |
-| 4 | D | PNG starts with `89 50 4E 47 0D 0A 1A 0A` (.PNG....). |
-| 5 | A | JPEG starts with `FF D8 FF`. |
-| 6 | A | DOCX, XLSX, PPTX are ZIP archives with XML inside, starting with `50 4B` (PK). |
+| 1 | D | Text files contain characters in encoding (UTF-8, ASCII, etc.) and are human-readable. |
+| 2 | B | PNG is a binary image format. JSON, Python, HTML are text formats. |
+| 3 | A | Magic numbers are fixed bytes at the beginning of a file for format identification. |
+| 4 | C | PNG starts with `89 50 4E 47 0D 0A 1A 0A` (.PNG....). |
+| 5 | B | JPEG starts with `FF D8 FF`. |
+| 6 | B | DOCX, XLSX, PPTX are ZIP archives with XML inside, starting with `50 4B` (PK). |
 | 7 | A | `file -i` shows MIME type and encoding. |
-| 8 | C | Correct MIME for JSON: `application/json`. |
+| 8 | D | Correct MIME for JSON: `application/json`. |
 | 9 | B | PNG has MIME type `image/png`. |
-| 10 | B | Extension is part of filename, can be changed without changing content. Critical for security! |
+| 10 | A | Extension is part of filename, can be changed without changing content. Critical for security! |
 | 11 | A | For binary files, use `'rb'` mode (read binary). |
-| 12 | B | PNG consists of signature and chunks (IHDR, IDAT, IEND, etc.) with length, type, data, CRC. |
-| 13 | D | PDF starts with `%PDF-` (bytes: 25 50 44 46 2D). |
-| 14 | D | ELF (Executable and Linkable Format) is the executable file format for Linux. |
+| 12 | A | PNG consists of signature and chunks (IHDR, IDAT, IEND, etc.) with length, type, data, CRC. |
+| 13 | A | PDF starts with `%PDF-` (bytes: 25 50 44 46 2D). |
+| 14 | C | ELF (Executable and Linkable Format) is the executable file format for Linux. |
 | 15 | B | tar only combines files. For compression, use gzip/bzip2 (tar.gz, tar.bz2). |
-| 16 | D | bzip2 gives better compression but works slower than gzip. |
-| 17 | D | `Content-Type` is the HTTP header for specifying MIME type. |
+| 16 | B | bzip2 gives better compression but works slower than gzip. |
+| 17 | C | `Content-Type` is the HTTP header for specifying MIME type. |
 | 18 | A | `python-magic` (imported as `magic`) determines type by content. |
-| 19 | C | `xxd -l 8` shows first 8 bytes in hex format. |
-| 20 | B | PNG uses Big-Endian (network byte order) for all numeric values. |
-| 21 | A | BAM files start with `42 41 4D 01` (BAM\x01). This distinguishes them from text SAM files. |
+| 19 | D | `xxd -l 8` shows first 8 bytes in hex format. |
+| 20 | C | PNG uses Big-Endian (network byte order) for all numeric values. |
+| 21 | B | BAM files start with `42 41 4D 01` (BAM\x01). This distinguishes them from text SAM files. |
 | 22 | C | FASTA files are text format starting with '>' followed by sequence identifier. |
-| 23 | C | BAM is the binary, compressed version of SAM. Same data, ~5x smaller and faster to parse. |
-| 24 | B | VCF files are commonly compressed with gzip (.vcf.gz) for distribution and storage. |
+| 23 | B | BAM is the binary, compressed version of SAM. Same data, ~5x smaller and faster to parse. |
+| 24 | C | VCF files are commonly compressed with gzip (.vcf.gz) for distribution and storage. |
 | 25 | C | BGZF (blocked gzip) allows random access to compressed data, crucial for indexed BAM files with tools like samtools. |
 
 ---

@@ -173,16 +173,16 @@ D) `sleep $RANDOM`
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | D | Split divides data into chunks, Map processes each chunk in parallel, Reduce aggregates results |
-| 2 | A | Make compares timestamps: if dependency is newer than target (or target doesn't exist), rebuild target |
-| 3 | A | Both `make -j 4` and `make --jobs=4` work for parallel execution |
+| 1 | A | Split divides data into chunks, Map processes each chunk in parallel, Reduce aggregates results |
+| 2 | B | Make compares timestamps: if dependency is newer than target (or target doesn't exist), rebuild target |
+| 3 | B | Both `make -j 4` and `make --jobs=4` work for parallel execution |
 | 4 | B | Checkpoints mark stages as complete. On restart, skip completed stages |
-| 5 | A | Creates unique temporary directory. Combine with trap for automatic cleanup |
-| 6 | A | `.PHONY` tells Make that target is not a file, so always execute its recipe |
+| 5 | D | Creates unique temporary directory. Combine with trap for automatic cleanup |
+| 6 | B | `.PHONY` tells Make that target is not a file, so always execute its recipe |
 | 7 | B | Check if checkpoint file exists. If not, do work and create checkpoint |
 | 8 | C | Staging stores intermediate results, allowing inspection and debugging between stages |
-| 9 | D | Make's built-in behavior: if any dependency is newer than target, rebuild target |
-| 10 | C | `$<` is first prerequisite, `$@` is target, `$^` is all prerequisites |
+| 9 | C | Make's built-in behavior: if any dependency is newer than target, rebuild target |
+| 10 | A | `$<` is first prerequisite, `$@` is target, `$^` is all prerequisites |
 | 11 | D | `mktemp -d` generates unique name, preventing conflicts from concurrent runs |
 | 12 | B | Idempotent pipelines can be safely rerun. Important for reliability and checkpointing |
 | 13 | C | Make rebuilds if target doesn't exist OR any dependency is newer |

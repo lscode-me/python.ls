@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -34,6 +33,1825 @@
 
     <main class="main-content">
         
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="../../../">Home</a> &raquo;
+        <a href="../../../courses/DataFundamentals/">Data Fundamentals for Life Sciences</a> &raquo;
+        <a href="index.html">Configuration Files</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>Configuration Files - Quiz</h1>
+        <p class="quiz-description">Test your knowledge on &#34;Configuration Files: INI, TOML, .env and Linux-Specific Formats&#34; with a bioinformatics focus.</p>
+        <div class="quiz-meta">
+            <span class="question-count">45 questions</span>
+            <span class="time-estimate">⏱️ ~45 min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 45</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            
+            <div class="question-card" data-question="1" >
+                <div class="question-number">Question 1</div>
+                <h3 class="question-text">INI Sections: How are sections denoted in INI files?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q1" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">[section]</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q1" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`&lt;section&gt;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q1" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`section:`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q1" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`{section}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="2" style="display: none;">
+                <div class="question-number">Question 2</div>
+                <h3 class="question-text">INI Comments: Which symbol is used for comments in INI?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q2" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`/*`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q2" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">; or #</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q2" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`--`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q2" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`//`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="3" style="display: none;">
+                <div class="question-number">Question 3</div>
+                <h3 class="question-text">TOML Acronym: What does TOML stand for?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q3" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Text Object Markup Language</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q3" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Tom&#39;s Obvious Minimal Language</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q3" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Typed Object Model Language</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q3" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Terminal Output Markup Language</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="4" style="display: none;">
+                <div class="question-number">Question 4</div>
+                <h3 class="question-text">TOML Data Types: Which data type does TOML support that INI doesn&#39;t?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q4" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Comments</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q4" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Boolean and numbers with explicit types</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q4" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Strings</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q4" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Keys</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="5" style="display: none;">
+                <div class="question-number">Question 5</div>
+                <h3 class="question-text">What is pyproject.toml used for?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q5" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Git settings</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q5" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Web server configuration</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q5" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Python project metadata and settings</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q5" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Docker configuration</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="6" style="display: none;">
+                <div class="question-number">Question 6</div>
+                <h3 class="question-text">.env Security: Why shouldn&#39;t .env files be committed to Git?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q6" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">They are too large</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q6" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">They are automatically generated</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q6" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Git doesn&#39;t support .env format</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q6" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">They contain secrets and passwords</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="7" style="display: none;">
+                <div class="question-number">Question 7</div>
+                <h3 class="question-text">.env Format: Which syntax is correct for .env?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q7" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">KEY=value</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q7" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[KEY] value`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q7" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`key: value`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q7" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`key = value`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="8" style="display: none;">
+                <div class="question-number">Question 8</div>
+                <h3 class="question-text">python-dotenv: Which function loads .env file in Python?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q8" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`read_env()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q8" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`parse_env()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q8" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">load_dotenv()</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q8" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`import_env()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="9" style="display: none;">
+                <div class="question-number">Question 9</div>
+                <h3 class="question-text">TOML Arrays: How do you write an array in TOML?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q9" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`items = {1, 2, 3}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q9" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`items: [1, 2, 3]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q9" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">items = [1, 2, 3]</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q9" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`items = (1, 2, 3)`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="10" style="display: none;">
+                <div class="question-number">Question 10</div>
+                <h3 class="question-text">TOML Tables: What does `[server]` create in TOML?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q10" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Array</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q10" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">String</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q10" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Table (object) server</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q10" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Comment</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="11" style="display: none;">
+                <div class="question-number">Question 11</div>
+                <h3 class="question-text">INI Python Module: Which Python module works with INI files?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q11" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`iniparser`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q11" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`settings`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q11" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`ini`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q11" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">configparser</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="12" style="display: none;">
+                <div class="question-number">Question 12</div>
+                <h3 class="question-text">TOML Python 3.11: Which module for reading TOML is built into Python 3.11+?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q12" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`tomlparser`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q12" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`toml`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q12" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">tomllib</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q12" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`pytoml`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="13" style="display: none;">
+                <div class="question-number">Question 13</div>
+                <h3 class="question-text">What is .env.example for?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q13" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Test .env</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q13" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Backup of .env</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q13" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Automatically generated .env</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q13" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Template with list of required variables (without values)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="14" style="display: none;">
+                <div class="question-number">Question 14</div>
+                <h3 class="question-text">Docker env_file: How do you connect .env in docker-compose?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q14" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`source: .env`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q14" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`environment: .env`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q14" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`load: .env`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q14" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">env_file: .env</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="15" style="display: none;">
+                <div class="question-number">Question 15</div>
+                <h3 class="question-text">TOML Dates: How do you write a date in TOML?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q15" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`date = &#34;2024-01-15&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q15" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">date = 2024-01-15</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q15" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`date = @2024-01-15`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q15" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`date = #2024-01-15&#34;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="16" style="display: none;">
+                <div class="question-number">Question 16</div>
+                <h3 class="question-text">Which language uses Cargo.toml?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q16" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Python</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q16" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Go</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q16" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">JavaScript</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q16" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Rust</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="17" style="display: none;">
+                <div class="question-number">Question 17</div>
+                <h3 class="question-text">INI Limitations: What limitation does INI format have?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q17" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">No comments</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q17" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Can&#39;t use sections</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q17" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Maximum 100 keys</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q17" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">All values are strings (no types)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="18" style="display: none;">
+                <div class="question-number">Question 18</div>
+                <h3 class="question-text">What does `os.getenv(&#39;KEY&#39;, &#39;default&#39;)` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q18" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Deletes variable</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q18" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Sets variable</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q18" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Checks existence</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q18" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Returns KEY value or &#39;default&#39; if not found</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="19" style="display: none;">
+                <div class="question-number">Question 19</div>
+                <h3 class="question-text">What is pydantic-settings used for?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q19" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Typed loading and validation of configuration</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q19" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Encrypting settings</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q19" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Converting formats</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q19" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Formatting configs</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="20" style="display: none;">
+                <div class="question-number">Question 20</div>
+                <h3 class="question-text">Format Choice: Which format is best for storing API keys?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q20" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">JSON (commit)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q20" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">YAML (commit)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q20" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">.env (don&#39;t commit)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q20" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">INI (commit)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="21" style="display: none;">
+                <div class="question-number">Question 21</div>
+                <h3 class="question-text">/etc/passwd Delimiter: Which symbol is used as field delimiter in `/etc/passwd`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q21" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Comma `,`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q21" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Tab</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q21" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Space</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q21" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Colon :</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="22" style="display: none;">
+                <div class="question-number">Question 22</div>
+                <h3 class="question-text">/etc/passwd Fields: How many fields does each entry in `/etc/passwd` contain?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q22" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">6</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q22" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">7</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q22" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">5</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q22" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">8</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="23" style="display: none;">
+                <div class="question-number">Question 23</div>
+                <h3 class="question-text">What is stored in `/etc/shadow`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q23" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Password hashes and password policies</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q23" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">User command history</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q23" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">User group list</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q23" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">User SSH keys</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="24" style="display: none;">
+                <div class="question-number">Question 24</div>
+                <h3 class="question-text">sshd_config Format: What format does SSH server configuration (`sshd_config`) use?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q24" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Keyword-value (directive and value separated by space)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q24" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">INI with sections</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q24" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">JSON</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q24" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">YAML</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="25" style="display: none;">
+                <div class="question-number">Question 25</div>
+                <h3 class="question-text">sshd_config Match: What does the `Match` directive do in `sshd_config`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q25" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Searches for files</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q25" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Checks syntax</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q25" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Compares passwords</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q25" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Applies settings conditionally (for specific users/groups)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="26" style="display: none;">
+                <div class="question-number">Question 26</div>
+                <h3 class="question-text">sudoers Editing: Which command should be used to safely edit `/etc/sudoers`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q26" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`vim /etc/sudoers`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q26" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`sudoedit`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q26" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`nano /etc/sudoers`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q26" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">visudo</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="27" style="display: none;">
+                <div class="question-number">Question 27</div>
+                <h3 class="question-text">/etc/fstab Columns: Which information is NOT contained in `/etc/fstab`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q27" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Filesystem type</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q27" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Mount options</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q27" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Mount point</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q27" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">File access permissions</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="28" style="display: none;">
+                <div class="question-number">Question 28</div>
+                <h3 class="question-text">/etc/hosts Format: What does the `/etc/hosts` file describe?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q28" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Static mapping of IP addresses and hostnames</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q28" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Firewall settings</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q28" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">System users</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q28" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Network interfaces</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="29" style="display: none;">
+                <div class="question-number">Question 29</div>
+                <h3 class="question-text">systemd Unit Sections: Which sections are standard for a systemd service file?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q29" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[Main]`, `[Config]`, `[Run]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q29" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">[Unit], [Service], [Install]</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q29" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[Global]`, `[Local]`, `[Remote]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q29" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[Server]`, `[Client]`, `[Network]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="30" style="display: none;">
+                <div class="question-number">Question 30</div>
+                <h3 class="question-text">systemd ExecStart: What does the `ExecStart` directive define in a systemd unit file?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q30" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Service start command</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q30" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Working directory</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q30" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">User for execution</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q30" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Service dependencies</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="31" style="display: none;">
+                <div class="question-number">Question 31</div>
+                <h3 class="question-text">systemd Restart: What does `Restart=on-failure` mean in systemd?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q31" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Restart only on non-zero exit code</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q31" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Never restart</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q31" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Restart on schedule</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q31" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Always restart</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="32" style="display: none;">
+                <div class="question-number">Question 32</div>
+                <h3 class="question-text">nginx Blocks: What syntax is used for blocks in nginx configuration?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q32" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">INI sections `[server]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q32" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">YAML indentation</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q32" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">XML tags `&lt;server&gt;...&lt;/server&gt;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q32" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Curly braces `server { ... }`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="33" style="display: none;">
+                <div class="question-number">Question 33</div>
+                <h3 class="question-text">nginx location: What is the `location` directive used for in nginx?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q33" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Defining physical file path</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q33" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Configuring SSL certificates</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q33" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Routing requests by URL paths</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q33" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Managing logs</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="34" style="display: none;">
+                <div class="question-number">Question 34</div>
+                <h3 class="question-text">What format does the `/etc/environment` file use?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q34" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">XML</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q34" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">INI with sections</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q34" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Shell-style variables `KEY=value`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q34" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">JSON</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="35" style="display: none;">
+                <div class="question-number">Question 35</div>
+                <h3 class="question-text">crontab Time Fields: How many time fields are in a crontab entry (without command)?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q35" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">3</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q35" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">4</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q35" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">6</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q35" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">5</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="36" style="display: none;">
+                <div class="question-number">Question 36</div>
+                <h3 class="question-text">crontab */15: What does `*/15` mean in the minutes field of crontab?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q36" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Until 15th minute</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q36" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Every 15 minutes</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q36" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Exactly at 15 minutes</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q36" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">After 15th minute</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="37" style="display: none;">
+                <div class="question-number">Question 37</div>
+                <h3 class="question-text">crontab @daily: What does `@daily` mean in crontab?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q37" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Run once a day (at midnight)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q37" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Run once an hour</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q37" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Run at boot</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q37" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Run every minute</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="38" style="display: none;">
+                <div class="question-number">Question 38</div>
+                <h3 class="question-text">Python pwd Module: Which standard Python module allows reading `/etc/passwd`?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q38" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">pwd</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q38" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`passwd`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q38" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`auth`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q38" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`users`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="39" style="display: none;">
+                <div class="question-number">Question 39</div>
+                <h3 class="question-text">systemd EnvironmentFile: What does the directive `EnvironmentFile=-/etc/myapp/env` do in systemd?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q39" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Creates environment file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q39" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Encrypts environment variables</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q39" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Loads variables from file (ignoring error if not exists)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q39" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Deletes file after loading</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="40" style="display: none;">
+                <div class="question-number">Question 40</div>
+                <h3 class="question-text">man Section 5: What does section 5 of man pages describe (e.g., `man 5 passwd`)?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q40" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">User commands</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q40" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">File formats and conventions</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q40" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">System administration</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q40" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">System calls</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="41" style="display: none;">
+                <div class="question-number">Question 41</div>
+                <h3 class="question-text">🧬 BLAST Configuration: Which file format is used for BLAST database configuration?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q41" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">JSON</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q41" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">YAML</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q41" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">INI-like (.ncbirc)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q41" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">XML</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="42" style="display: none;">
+                <div class="question-number">Question 42</div>
+                <h3 class="question-text">🧬 Pipeline Config Format: Which format is best for a bioinformatics pipeline configuration?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q42" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">.env (flat key-value)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q42" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">TOML (typed, structured)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q42" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Plain text</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q42" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Binary</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="43" style="display: none;">
+                <div class="question-number">Question 43</div>
+                <h3 class="question-text">🧬 Galaxy systemd: You need to create a systemd service for Galaxy. Which section defines the start command?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q43" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[Unit]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q43" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[Service]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q43" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[Install]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q43" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[Command]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="44" style="display: none;">
+                <div class="question-number">Question 44</div>
+                <h3 class="question-text">🧬 Environment Variables: Which format is best for storing bioinformatics tool credentials?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q44" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Hardcoded in scripts</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q44" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">.env file (not committed)</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q44" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Public JSON file</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q44" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">In source code</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="45" style="display: none;">
+                <div class="question-number">Question 45</div>
+                <h3 class="question-text">🧬 Reference Paths: You store reference genome paths in configuration. Which format allows comments for documentation?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q45" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">JSON</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q45" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">TOML or YAML</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q45" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">CSV</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q45" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Binary</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ 45</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="index.html" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Configuration Files - Quiz", "description": "Test your knowledge on \"Configuration Files: INI, TOML, .env and Linux-Specific Formats\" with a bioinformatics focus.", "courseId": "DataFundamentals", "moduleId": "08_ConfigFiles", "questions": [{"number": 1, "text": "INI Sections: How are sections denoted in INI files?", "code": null, "answers": [{"letter": "A", "text": "[section]"}, {"letter": "B", "text": "`<section>`"}, {"letter": "C", "text": "`section:`"}, {"letter": "D", "text": "`{section}`"}], "correctAnswer": "D", "explanation": "Sections in INI are denoted `[section_name]`."}, {"number": 2, "text": "INI Comments: Which symbol is used for comments in INI?", "code": null, "answers": [{"letter": "A", "text": "`/*`"}, {"letter": "B", "text": "; or #"}, {"letter": "C", "text": "`--`"}, {"letter": "D", "text": "`//`"}], "correctAnswer": "B", "explanation": "In INI, comments start with `;` or `#`."}, {"number": 3, "text": "TOML Acronym: What does TOML stand for?", "code": null, "answers": [{"letter": "A", "text": "Text Object Markup Language"}, {"letter": "B", "text": "Tom's Obvious Minimal Language"}, {"letter": "C", "text": "Typed Object Model Language"}, {"letter": "D", "text": "Terminal Output Markup Language"}], "correctAnswer": "B", "explanation": "Tom's Obvious Minimal Language \u2014 named after creator Tom Preston-Werner."}, {"number": 4, "text": "TOML Data Types: Which data type does TOML support that INI doesn't?", "code": null, "answers": [{"letter": "A", "text": "Comments"}, {"letter": "B", "text": "Boolean and numbers with explicit types"}, {"letter": "C", "text": "Strings"}, {"letter": "D", "text": "Keys"}], "correctAnswer": "B", "explanation": "TOML supports integer, float, boolean, datetime as separate types."}, {"number": 5, "text": "What is pyproject.toml used for?", "code": null, "answers": [{"letter": "A", "text": "Git settings"}, {"letter": "B", "text": "Web server configuration"}, {"letter": "C", "text": "Python project metadata and settings"}, {"letter": "D", "text": "Docker configuration"}], "correctAnswer": "B", "explanation": "pyproject.toml \u2014 standard Python project configuration file (PEP 518, 621)."}, {"number": 6, "text": ".env Security: Why shouldn't .env files be committed to Git?", "code": null, "answers": [{"letter": "A", "text": "They are too large"}, {"letter": "B", "text": "They are automatically generated"}, {"letter": "C", "text": "Git doesn't support .env format"}, {"letter": "D", "text": "They contain secrets and passwords"}], "correctAnswer": "C", "explanation": ".env contains secrets (passwords, keys) that shouldn't be in repository."}, {"number": 7, "text": ".env Format: Which syntax is correct for .env?", "code": null, "answers": [{"letter": "A", "text": "KEY=value"}, {"letter": "B", "text": "`[KEY] value`"}, {"letter": "C", "text": "`key: value`"}, {"letter": "D", "text": "`key = value`"}], "correctAnswer": "A", "explanation": "Standard .env format: `KEY=value` (no spaces around `=`)."}, {"number": 8, "text": "python-dotenv: Which function loads .env file in Python?", "code": null, "answers": [{"letter": "A", "text": "`read_env()`"}, {"letter": "B", "text": "`parse_env()`"}, {"letter": "C", "text": "load_dotenv()"}, {"letter": "D", "text": "`import_env()`"}], "correctAnswer": "C", "explanation": "`load_dotenv()` from python-dotenv library loads .env into os.environ."}, {"number": 9, "text": "TOML Arrays: How do you write an array in TOML?", "code": null, "answers": [{"letter": "A", "text": "`items = {1, 2, 3}`"}, {"letter": "B", "text": "`items: [1, 2, 3]`"}, {"letter": "C", "text": "items = [1, 2, 3]"}, {"letter": "D", "text": "`items = (1, 2, 3)`"}], "correctAnswer": "A", "explanation": "In TOML arrays: `key = [1, 2, 3]`."}, {"number": 10, "text": "TOML Tables: What does `[server]` create in TOML?", "code": null, "answers": [{"letter": "A", "text": "Array"}, {"letter": "B", "text": "String"}, {"letter": "C", "text": "Table (object) server"}, {"letter": "D", "text": "Comment"}], "correctAnswer": "C", "explanation": "`[server]` creates a table (equivalent to object/dict)."}, {"number": 11, "text": "INI Python Module: Which Python module works with INI files?", "code": null, "answers": [{"letter": "A", "text": "`iniparser`"}, {"letter": "B", "text": "`settings`"}, {"letter": "C", "text": "`ini`"}, {"letter": "D", "text": "configparser"}], "correctAnswer": "D", "explanation": "`configparser` \u2014 standard Python module for INI files."}, {"number": 12, "text": "TOML Python 3.11: Which module for reading TOML is built into Python 3.11+?", "code": null, "answers": [{"letter": "A", "text": "`tomlparser`"}, {"letter": "B", "text": "`toml`"}, {"letter": "C", "text": "tomllib"}, {"letter": "D", "text": "`pytoml`"}], "correctAnswer": "B", "explanation": "`tomllib` built into Python 3.11+ (read-only)."}, {"number": 13, "text": "What is .env.example for?", "code": null, "answers": [{"letter": "A", "text": "Test .env"}, {"letter": "B", "text": "Backup of .env"}, {"letter": "C", "text": "Automatically generated .env"}, {"letter": "D", "text": "Template with list of required variables (without values)"}], "correctAnswer": "D", "explanation": ".env.example \u2014 template with variable list without real values, committed to Git."}, {"number": 14, "text": "Docker env_file: How do you connect .env in docker-compose?", "code": null, "answers": [{"letter": "A", "text": "`source: .env`"}, {"letter": "B", "text": "`environment: .env`"}, {"letter": "C", "text": "`load: .env`"}, {"letter": "D", "text": "env_file: .env"}], "correctAnswer": "D", "explanation": "`env_file: .env` or `env_file: [.env]` in docker-compose.yml."}, {"number": 15, "text": "TOML Dates: How do you write a date in TOML?", "code": null, "answers": [{"letter": "A", "text": "`date = \"2024-01-15\"`"}, {"letter": "B", "text": "date = 2024-01-15"}, {"letter": "C", "text": "`date = @2024-01-15`"}, {"letter": "D", "text": "`date = #2024-01-15\"`"}], "correctAnswer": "B", "explanation": "TOML supports dates without quotes: `date = 2024-01-15`."}, {"number": 16, "text": "Which language uses Cargo.toml?", "code": null, "answers": [{"letter": "A", "text": "Python"}, {"letter": "B", "text": "Go"}, {"letter": "C", "text": "JavaScript"}, {"letter": "D", "text": "Rust"}], "correctAnswer": "D", "explanation": "Cargo.toml \u2014 Rust package configuration file."}, {"number": 17, "text": "INI Limitations: What limitation does INI format have?", "code": null, "answers": [{"letter": "A", "text": "No comments"}, {"letter": "B", "text": "Can't use sections"}, {"letter": "C", "text": "Maximum 100 keys"}, {"letter": "D", "text": "All values are strings (no types)"}], "correctAnswer": "D", "explanation": "In INI all values are strings, need manual type conversion."}, {"number": 18, "text": "What does `os.getenv('KEY', 'default')` do?", "code": null, "answers": [{"letter": "A", "text": "Deletes variable"}, {"letter": "B", "text": "Sets variable"}, {"letter": "C", "text": "Checks existence"}, {"letter": "D", "text": "Returns KEY value or 'default' if not found"}], "correctAnswer": "D", "explanation": "`os.getenv(key, default)` returns variable value or default."}, {"number": 19, "text": "What is pydantic-settings used for?", "code": null, "answers": [{"letter": "A", "text": "Typed loading and validation of configuration"}, {"letter": "B", "text": "Encrypting settings"}, {"letter": "C", "text": "Converting formats"}, {"letter": "D", "text": "Formatting configs"}], "correctAnswer": "B", "explanation": "pydantic-settings loads and validates configuration with typing."}, {"number": 20, "text": "Format Choice: Which format is best for storing API keys?", "code": null, "answers": [{"letter": "A", "text": "JSON (commit)"}, {"letter": "B", "text": "YAML (commit)"}, {"letter": "C", "text": ".env (don't commit)"}, {"letter": "D", "text": "INI (commit)"}], "correctAnswer": "A", "explanation": "Secrets stored in .env and excluded from Git via .gitignore."}, {"number": 21, "text": "/etc/passwd Delimiter: Which symbol is used as field delimiter in `/etc/passwd`?", "code": null, "answers": [{"letter": "A", "text": "Comma `,`"}, {"letter": "B", "text": "Tab"}, {"letter": "C", "text": "Space"}, {"letter": "D", "text": "Colon :"}], "correctAnswer": "D", "explanation": "`/etc/passwd` uses colon `:` as field delimiter (colon-separated values)."}, {"number": 22, "text": "/etc/passwd Fields: How many fields does each entry in `/etc/passwd` contain?", "code": null, "answers": [{"letter": "A", "text": "6"}, {"letter": "B", "text": "7"}, {"letter": "C", "text": "5"}, {"letter": "D", "text": "8"}], "correctAnswer": "B", "explanation": "Each entry contains 7 fields: username, password, UID, GID, GECOS, home, shell."}, {"number": 23, "text": "What is stored in `/etc/shadow`?", "code": null, "answers": [{"letter": "A", "text": "Password hashes and password policies"}, {"letter": "B", "text": "User command history"}, {"letter": "C", "text": "User group list"}, {"letter": "D", "text": "User SSH keys"}], "correctAnswer": "A", "explanation": "`/etc/shadow` stores password hashes and password policy info (expiry, etc.)."}, {"number": 24, "text": "sshd_config Format: What format does SSH server configuration (`sshd_config`) use?", "code": null, "answers": [{"letter": "A", "text": "Keyword-value (directive and value separated by space)"}, {"letter": "B", "text": "INI with sections"}, {"letter": "C", "text": "JSON"}, {"letter": "D", "text": "YAML"}], "correctAnswer": "A", "explanation": "`sshd_config` uses keyword-value format: directive and value separated by space."}, {"number": 25, "text": "sshd_config Match: What does the `Match` directive do in `sshd_config`?", "code": null, "answers": [{"letter": "A", "text": "Searches for files"}, {"letter": "B", "text": "Checks syntax"}, {"letter": "C", "text": "Compares passwords"}, {"letter": "D", "text": "Applies settings conditionally (for specific users/groups)"}], "correctAnswer": "D", "explanation": "`Match` applies conditional settings to specific users, groups, or hosts."}, {"number": 26, "text": "sudoers Editing: Which command should be used to safely edit `/etc/sudoers`?", "code": null, "answers": [{"letter": "A", "text": "`vim /etc/sudoers`"}, {"letter": "B", "text": "`sudoedit`"}, {"letter": "C", "text": "`nano /etc/sudoers`"}, {"letter": "D", "text": "visudo"}], "correctAnswer": "D", "explanation": "`visudo` checks syntax before saving, preventing system lockout."}, {"number": 27, "text": "/etc/fstab Columns: Which information is NOT contained in `/etc/fstab`?", "code": null, "answers": [{"letter": "A", "text": "Filesystem type"}, {"letter": "B", "text": "Mount options"}, {"letter": "C", "text": "Mount point"}, {"letter": "D", "text": "File access permissions"}], "correctAnswer": "B", "explanation": "`/etc/fstab` contains device, mount point, FS type, options, dump and pass. Not permissions!"}, {"number": 28, "text": "/etc/hosts Format: What does the `/etc/hosts` file describe?", "code": null, "answers": [{"letter": "A", "text": "Static mapping of IP addresses and hostnames"}, {"letter": "B", "text": "Firewall settings"}, {"letter": "C", "text": "System users"}, {"letter": "D", "text": "Network interfaces"}], "correctAnswer": "A", "explanation": "`/etc/hosts` describes static mapping of IP addresses and DNS names."}, {"number": 29, "text": "systemd Unit Sections: Which sections are standard for a systemd service file?", "code": null, "answers": [{"letter": "A", "text": "`[Main]`, `[Config]`, `[Run]`"}, {"letter": "B", "text": "[Unit], [Service], [Install]"}, {"letter": "C", "text": "`[Global]`, `[Local]`, `[Remote]`"}, {"letter": "D", "text": "`[Server]`, `[Client]`, `[Network]`"}], "correctAnswer": "B", "explanation": "Standard systemd service sections: `[Unit]`, `[Service]`, `[Install]`."}, {"number": 30, "text": "systemd ExecStart: What does the `ExecStart` directive define in a systemd unit file?", "code": null, "answers": [{"letter": "A", "text": "Service start command"}, {"letter": "B", "text": "Working directory"}, {"letter": "C", "text": "User for execution"}, {"letter": "D", "text": "Service dependencies"}], "correctAnswer": "A", "explanation": "`ExecStart` defines the command executed when starting the service."}, {"number": 31, "text": "systemd Restart: What does `Restart=on-failure` mean in systemd?", "code": null, "answers": [{"letter": "A", "text": "Restart only on non-zero exit code"}, {"letter": "B", "text": "Never restart"}, {"letter": "C", "text": "Restart on schedule"}, {"letter": "D", "text": "Always restart"}], "correctAnswer": "C", "explanation": "`Restart=on-failure` restarts service only if it exits with error (code != 0)."}, {"number": 32, "text": "nginx Blocks: What syntax is used for blocks in nginx configuration?", "code": null, "answers": [{"letter": "A", "text": "INI sections `[server]`"}, {"letter": "B", "text": "YAML indentation"}, {"letter": "C", "text": "XML tags `<server>...</server>`"}, {"letter": "D", "text": "Curly braces `server { ... }`"}], "correctAnswer": "D", "explanation": "nginx uses curly braces: `server { ... }`, `location { ... }`."}, {"number": 33, "text": "nginx location: What is the `location` directive used for in nginx?", "code": null, "answers": [{"letter": "A", "text": "Defining physical file path"}, {"letter": "B", "text": "Configuring SSL certificates"}, {"letter": "C", "text": "Routing requests by URL paths"}, {"letter": "D", "text": "Managing logs"}], "correctAnswer": "C", "explanation": "`location` defines rules for processing requests by URL paths."}, {"number": 34, "text": "What format does the `/etc/environment` file use?", "code": null, "answers": [{"letter": "A", "text": "XML"}, {"letter": "B", "text": "INI with sections"}, {"letter": "C", "text": "Shell-style variables `KEY=value`"}, {"letter": "D", "text": "JSON"}], "correctAnswer": "C", "explanation": "`/etc/environment` uses shell-style variables: `KEY=value`."}, {"number": 35, "text": "crontab Time Fields: How many time fields are in a crontab entry (without command)?", "code": null, "answers": [{"letter": "A", "text": "3"}, {"letter": "B", "text": "4"}, {"letter": "C", "text": "6"}, {"letter": "D", "text": "5"}], "correctAnswer": "D", "explanation": "Crontab has 5 time fields: minute, hour, day of month, month, day of week."}, {"number": 36, "text": "crontab */15: What does `*/15` mean in the minutes field of crontab?", "code": null, "answers": [{"letter": "A", "text": "Until 15th minute"}, {"letter": "B", "text": "Every 15 minutes"}, {"letter": "C", "text": "Exactly at 15 minutes"}, {"letter": "D", "text": "After 15th minute"}], "correctAnswer": "B", "explanation": "`*/15` means \"every 15 units\" \u2014 every 15 minutes in minutes field."}, {"number": 37, "text": "crontab @daily: What does `@daily` mean in crontab?", "code": null, "answers": [{"letter": "A", "text": "Run once a day (at midnight)"}, {"letter": "B", "text": "Run once an hour"}, {"letter": "C", "text": "Run at boot"}, {"letter": "D", "text": "Run every minute"}], "correctAnswer": "A", "explanation": "`@daily` \u2014 special string, equivalent to `0 0 * * *` (daily at midnight)."}, {"number": 38, "text": "Python pwd Module: Which standard Python module allows reading `/etc/passwd`?", "code": null, "answers": [{"letter": "A", "text": "pwd"}, {"letter": "B", "text": "`passwd`"}, {"letter": "C", "text": "`auth`"}, {"letter": "D", "text": "`users`"}], "correctAnswer": "A", "explanation": "Module `pwd` provides access to user database (password database)."}, {"number": 39, "text": "systemd EnvironmentFile: What does the directive `EnvironmentFile=-/etc/myapp/env` do in systemd?", "code": null, "answers": [{"letter": "A", "text": "Creates environment file"}, {"letter": "B", "text": "Encrypts environment variables"}, {"letter": "C", "text": "Loads variables from file (ignoring error if not exists)"}, {"letter": "D", "text": "Deletes file after loading"}], "correctAnswer": "C", "explanation": "Prefix `-` means \"don't fail if file doesn't exist\", loads variables from file."}, {"number": 40, "text": "man Section 5: What does section 5 of man pages describe (e.g., `man 5 passwd`)?", "code": null, "answers": [{"letter": "A", "text": "User commands"}, {"letter": "B", "text": "File formats and conventions"}, {"letter": "C", "text": "System administration"}, {"letter": "D", "text": "System calls"}], "correctAnswer": "B", "explanation": "Section 5 of man describes file formats and conventions."}, {"number": 41, "text": "\ud83e\uddec BLAST Configuration: Which file format is used for BLAST database configuration?", "code": null, "answers": [{"letter": "A", "text": "JSON"}, {"letter": "B", "text": "YAML"}, {"letter": "C", "text": "INI-like (.ncbirc)"}, {"letter": "D", "text": "XML"}], "correctAnswer": "C", "explanation": "\ud83e\uddec BLAST uses .ncbirc with INI-like format for database configuration."}, {"number": 42, "text": "\ud83e\uddec Pipeline Config Format: Which format is best for a bioinformatics pipeline configuration?", "code": null, "answers": [{"letter": "A", "text": ".env (flat key-value)"}, {"letter": "B", "text": "TOML (typed, structured)"}, {"letter": "C", "text": "Plain text"}, {"letter": "D", "text": "Binary"}], "correctAnswer": "B", "explanation": "\ud83e\uddec TOML provides typed, structured configuration with comments."}, {"number": 43, "text": "\ud83e\uddec Galaxy systemd: You need to create a systemd service for Galaxy. Which section defines the start command?", "code": null, "answers": [{"letter": "A", "text": "`[Unit]`"}, {"letter": "B", "text": "`[Service]`"}, {"letter": "C", "text": "`[Install]`"}, {"letter": "D", "text": "`[Command]`"}], "correctAnswer": "B", "explanation": "\ud83e\uddec `[Service]` section defines `ExecStart` for the start command."}, {"number": 44, "text": "\ud83e\uddec Environment Variables: Which format is best for storing bioinformatics tool credentials?", "code": null, "answers": [{"letter": "A", "text": "Hardcoded in scripts"}, {"letter": "B", "text": ".env file (not committed)"}, {"letter": "C", "text": "Public JSON file"}, {"letter": "D", "text": "In source code"}], "correctAnswer": "B", "explanation": "\ud83e\uddec .env file (not committed) is best for credentials and secrets."}, {"number": 45, "text": "\ud83e\uddec Reference Paths: You store reference genome paths in configuration. Which format allows comments for documentation?", "code": null, "answers": [{"letter": "A", "text": "JSON"}, {"letter": "B", "text": "TOML or YAML"}, {"letter": "C", "text": "CSV"}, {"letter": "D", "text": "Binary"}], "correctAnswer": "B", "explanation": "\ud83e\uddec TOML and YAML support comments for documenting paths and parameters."}]};
+</script>
+<script src="../../../static/js/quiz.js"></script>
+
     </main>
 
     <footer class="site-footer">
@@ -63,7 +1881,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

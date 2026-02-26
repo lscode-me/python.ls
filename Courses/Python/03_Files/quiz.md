@@ -395,41 +395,41 @@ D) `buffering=None`
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | C | Read and write mode (file must exist) |
-| 2 | C | It automatically closes the file, even if an exception occurs |
+| 1 | B | Read and write mode (file must exist) |
+| 2 | B | It automatically closes the file, even if an exception occurs |
 | 3 | A | `Path('/home') / 'user' / 'file.txt'` |
 | 4 | D | `csv` |
 | 5 | C | Converts a Python object to a JSON string |
-| 6 | D | `'rb'` |
-| 7 | B | UTF-8 |
-| 8 | D | `tempfile` |
-| 9 | B | `Path('file.txt').exists()` |
-| 10 | B | `zipfile` |
-| 11 | C | `open()` is an alias to `io.open()` |
-| 12 | A | Creating in-memory text streams |
-| 13 | B | `io.TextIOWrapper` |
+| 6 | A | `'rb'` |
+| 7 | D | UTF-8 |
+| 8 | B | `tempfile` |
+| 9 | A | `Path('file.txt').exists()` |
+| 10 | D | `zipfile` |
+| 11 | B | `open()` is an alias to `io.open()` |
+| 12 | B | Creating in-memory text streams |
+| 13 | C | `io.TextIOWrapper` |
 | 14 | C | Moves to the end of the file |
-| 15 | D | `'xmlcharrefreplace'` |
+| 15 | C | `'xmlcharrefreplace'` |
 | 16 | D | Both B and C are correct |
-| 17 | C | `'x'` |
-| 18 | D | A dictionary |
+| 17 | B | `'x'` |
+| 18 | C | A dictionary |
 | 19 | A | `load()` reads from a file, `loads()` reads from a string |
 | 20 | B | No buffering (only for binary mode) |
 | 21 | B | Wraps a binary stream to provide text interface |
-| 22 | C | `rglob()` |
-| 23 | A | `path.stat().st_size` |
-| 24 | D | `for line in file:` |
-| 25 | A | `'Hello'` |
-| 26 | A | `__enter__` and `__exit__` |
+| 22 | B | `rglob()` |
+| 23 | C | `path.stat().st_size` |
+| 24 | C | `for line in file:` |
+| 25 | B | `'Hello'` |
+| 26 | B | `__enter__` and `__exit__` |
 | 27 | C | `'rt'` |
-| 28 | D | `path.suffix` |
-| 29 | A | `file.readable()` |
-| 30 | A | `newline=''` |
+| 28 | C | `path.suffix` |
+| 29 | C | `file.readable()` |
+| 30 | B | `newline=''` |
 | 31 | B | `socket.makefile()` |
-| 32 | C | It uses zero-copy technology (no user-space copy) |
-| 33 | B | Writes buffered data to disk |
+| 32 | B | It uses zero-copy technology (no user-space copy) |
+| 33 | C | Writes buffered data to disk |
 | 34 | B | When a newline character is written |
-| 35 | A | `buffering=0` |
+| 35 | B | `buffering=0` |
 
 ---
 

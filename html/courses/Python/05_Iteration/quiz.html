@@ -13,7 +13,7 @@
     <!-- Geist font from Vercel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/style.css">
     
-    <link rel="stylesheet" href="../../../static/css/style.css?v=7">
+    <link rel="stylesheet" href="../../../static/css/style.css?v=10">
     <link rel="icon" type="image/svg+xml" href="../../../static/favicon.svg">
 </head>
 <body>
@@ -24,7 +24,6 @@
                 <span class="logo-text">LSCode</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../../../courses/">Courses</a></li>
                 <li><a href="mailto:admin@lscode.me">Contact</a></li>
                 <li><a href="https://t.me/en_lscode_me_bot" class="tg-link">📱 Telegram</a></li>
             </ul>
@@ -34,6 +33,1110 @@
 
     <main class="main-content">
         
+<article class="quiz-page">
+    <nav class="breadcrumb">
+        <a href="../../../">Home</a> &raquo;
+        <a href="../../../courses/Python/">Python for Life Science Developers</a> &raquo;
+        <a href="index.html">Iteration Protocol</a> &raquo;
+        <span>Quiz</span>
+    </nav>
+
+    <div class="quiz-header">
+        <h1>Iteration Protocol - Quiz</h1>
+        <p class="quiz-description">Test your knowledge of iterators, generators, and efficient data processing.</p>
+        <div class="quiz-meta">
+            <span class="question-count">25 questions</span>
+            <span class="time-estimate">⏱️ ~25 min</span>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="quiz-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">Question 1 of 25</span>
+        </div>
+
+        <form id="quiz-form" class="quiz-form">
+            
+            <div class="question-card" data-question="1" >
+                <div class="question-number">Question 1</div>
+                <h3 class="question-text">Iterator vs Iterable: What is the key difference between an iterable and an iterator?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q1" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">There is no difference</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q1" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">An iterable has `__iter__()`, an iterator has both `__iter__()` and `__next__()`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q1" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Iterables are faster than iterators</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q1" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Iterators require more memory than iterables</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="2" style="display: none;">
+                <div class="question-number">Question 2</div>
+                <h3 class="question-text">Multiple Iteration: What happens when you try to iterate over an iterator twice?</h3>
+                
+                
+                <pre class="question-code"><code>it = iter([1, 2, 3])
+list(it)  # First iteration
+list(it)  # Second iteration</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q2" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Both return `[1, 2, 3]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q2" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">First returns `[1, 2, 3]`, second returns `[]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q2" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Second iteration raises `StopIteration`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q2" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Second iteration raises `TypeError`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="3" style="display: none;">
+                <div class="question-number">Question 3</div>
+                <h3 class="question-text">Custom Iterator: What&#39;s missing in this iterator implementation?</h3>
+                
+                
+                <pre class="question-code"><code>class Counter:
+    def __init__(self, max_value):
+        self.max_value = max_value
+        self.current = 0
+    
+    def __next__(self):
+        if self.current &gt;= self.max_value:
+            raise StopIteration
+        self.current += 1
+        return self.current</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q3" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Nothing, it&#39;s complete</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q3" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Missing `__iter__()` method</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q3" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Missing `__len__()` method</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q3" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Missing `__getitem__()` method</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="4" style="display: none;">
+                <div class="question-number">Question 4</div>
+                <h3 class="question-text">iter() with Sentinel: What does `iter(callable, sentinel)` do?</h3>
+                
+                
+                <pre class="question-code"><code>with open(&#39;data.txt&#39;) as f:
+    for line in iter(f.readline, &#39;&#39;):
+        print(line)</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q4" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Calls `callable` until it returns `sentinel`, then stops</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q4" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Calls `callable` once with `sentinel` as argument</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q4" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Raises an error - invalid syntax</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q4" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Creates an infinite iterator</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="5" style="display: none;">
+                <div class="question-number">Question 5</div>
+                <h3 class="question-text">next() with Default: What does this code return?</h3>
+                
+                
+                <pre class="question-code"><code>it = iter([1, 2])
+next(it)  # 1
+next(it)  # 2
+next(it, &#39;END&#39;)</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q5" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Raises `StopIteration`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q5" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Returns `None`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q5" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Returns `&#39;END&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q5" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Returns `0`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="6" style="display: none;">
+                <div class="question-number">Question 6</div>
+                <h3 class="question-text">Generator Expression: Which of the following creates a generator expression?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q6" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`(x**2 for x in range(10))`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q6" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[x**2 for x in range(10)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q6" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`{x**2 for x in range(10)}`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q6" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`list(x**2 for x in range(10))`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="7" style="display: none;">
+                <div class="question-number">Question 7</div>
+                <h3 class="question-text">Yield Statement: What happens when a generator function encounters a `yield` statement?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q7" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">The function terminates</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q7" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">The function raises an exception</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q7" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">The function continues without interruption</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q7" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">The function pauses and returns a value, saving its state</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="8" style="display: none;">
+                <div class="question-number">Question 8</div>
+                <h3 class="question-text">Generator State: What does this generator produce? What is the second `next()` call&#39;s return value?</h3>
+                
+                
+                <pre class="question-code"><code>def gen():
+    x = 1
+    yield x
+    x += 1
+    yield x
+    x += 1
+    yield x
+
+g = gen()
+next(g)
+next(g)</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q8" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`1`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q8" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`2`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q8" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`3`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q8" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Raises `StopIteration`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="9" style="display: none;">
+                <div class="question-number">Question 9</div>
+                <h3 class="question-text">Generator.send(): What does the `send()` method do with a generator?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q9" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Terminates the generator</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q9" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Creates a new generator</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q9" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Sends a value into the generator that becomes the result of the current yield expression</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q9" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Sends the generator to another function</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="10" style="display: none;">
+                <div class="question-number">Question 10</div>
+                <h3 class="question-text">send() Example: What does this code print?</h3>
+                
+                
+                <pre class="question-code"><code>def echo():
+    while True:
+        x = yield
+        print(f&#34;Received: {x}&#34;)
+
+g = echo()
+next(g)  # Prime the generator
+g.send(42)</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q10" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`42`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q10" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`Received: 42`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q10" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`Received: None`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q10" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Nothing</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="11" style="display: none;">
+                <div class="question-number">Question 11</div>
+                <h3 class="question-text">What does `yield from` do?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q11" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Creates multiple generators</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q11" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Yields values in reverse order</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q11" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Combines multiple yield statements</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q11" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Delegates to a sub-iterator and yields all its values</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="12" style="display: none;">
+                <div class="question-number">Question 12</div>
+                <h3 class="question-text">yield from Example: What does this generator yield?</h3>
+                
+                
+                <pre class="question-code"><code>def combined():
+    yield from [1, 2]
+    yield from [3, 4]
+
+list(combined())</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q12" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[[1, 2], [3, 4]]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q12" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[1, 2, 3, 4]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q12" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[(1, 2), (3, 4)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q12" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[2, 4]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="13" style="display: none;">
+                <div class="question-number">Question 13</div>
+                <h3 class="question-text">What does `list(itertools.chain([1, 2], [3, 4]))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q13" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[[1, 2], [3, 4]]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q13" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[1, 2, 3, 4]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q13" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[(1, 3), (2, 4)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q13" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">A chain object</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="14" style="display: none;">
+                <div class="question-number">Question 14</div>
+                <h3 class="question-text">What does `list(itertools.islice(range(100), 5, 10))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q14" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q14" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[5, 10]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q14" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[5, 6, 7, 8, 9]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q14" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[5, 15, 25, 35, 45]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="15" style="display: none;">
+                <div class="question-number">Question 15</div>
+                <h3 class="question-text">itertools.islice with Step: What does `list(itertools.islice(range(20), 0, 10, 2))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q15" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[0, 2, 4, 6, 8]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q15" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[0, 2, 4, 6, 8, 10]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q15" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[2, 4, 6, 8, 10]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q15" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="16" style="display: none;">
+                <div class="question-number">Question 16</div>
+                <h3 class="question-text">itertools.cycle: What happens with this code?</h3>
+                
+                
+                <pre class="question-code"><code>import itertools
+counter = 0
+for item in itertools.cycle([1, 2, 3]):
+    counter += 1
+    if counter &gt; 5:
+        break
+    print(item)</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q16" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">Prints: `1 2 3`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q16" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">Prints: `1 2 3 1 2`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q16" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">Prints: `1 2 3 1 2 3`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q16" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Infinite loop with no output</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="17" style="display: none;">
+                <div class="question-number">Question 17</div>
+                <h3 class="question-text">What does `list(itertools.islice(itertools.count(10, 2), 5))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q17" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[10, 11, 12, 13, 14]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q17" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[10, 12, 14, 16, 18]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q17" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[2, 4, 6, 8, 10]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q17" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[0, 2, 4, 6, 8]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="18" style="display: none;">
+                <div class="question-number">Question 18</div>
+                <h3 class="question-text">What does `list(itertools.repeat(&#39;x&#39;, 3))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q18" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[&#39;x&#39;, &#39;xx&#39;, &#39;xxx&#39;]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q18" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[&#39;x&#39;, &#39;x&#39;, &#39;x&#39;]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q18" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`&#39;xxx&#39;`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q18" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[&#39;xxx&#39;]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="19" style="display: none;">
+                <div class="question-number">Question 19</div>
+                <h3 class="question-text">What does `list(itertools.zip_longest([1, 2], [3, 4, 5], fillvalue=0))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q19" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[(1, 3), (2, 4), (0, 5)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q19" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[(1, 3), (2, 4)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q19" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[(1, 3), (2, 4), (5,)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q19" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">Raises `ValueError`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="20" style="display: none;">
+                <div class="question-number">Question 20</div>
+                <h3 class="question-text">itertools.takewhile: What does this return?</h3>
+                
+                
+                <pre class="question-code"><code>import itertools
+list(itertools.takewhile(lambda x: x &lt; 5, [1, 2, 3, 6, 4, 7]))</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q20" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[1, 2, 3, 4]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q20" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[1, 2, 3]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q20" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[1, 2, 3, 4, 7]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q20" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[6, 7]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="21" style="display: none;">
+                <div class="question-number">Question 21</div>
+                <h3 class="question-text">itertools.dropwhile: What does this return?</h3>
+                
+                
+                <pre class="question-code"><code>import itertools
+list(itertools.dropwhile(lambda x: x &lt; 5, [1, 2, 3, 6, 4, 7]))</code></pre>
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q21" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[1, 2, 3, 4]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q21" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[6, 7]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q21" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[6, 4, 7]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q21" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[4, 7]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="22" style="display: none;">
+                <div class="question-number">Question 22</div>
+                <h3 class="question-text">What does `itertools.groupby()` require for correct grouping?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q22" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">The input must be a list</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q22" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">The input must be sorted by the key function</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q22" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">The input must contain unique values</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q22" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">No special requirements</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="23" style="display: none;">
+                <div class="question-number">Question 23</div>
+                <h3 class="question-text">What does `list(itertools.product([1, 2], [&#39;a&#39;, &#39;b&#39;]))` return?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q23" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">`[(1, &#39;a&#39;), (2, &#39;b&#39;)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q23" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">`[(1, 2), (&#39;a&#39;, &#39;b&#39;)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q23" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">`[(1, &#39;a&#39;), (1, &#39;b&#39;), (2, &#39;a&#39;), (2, &#39;b&#39;)]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q23" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">`[1, 2, &#39;a&#39;, &#39;b&#39;]`</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="24" style="display: none;">
+                <div class="question-number">Question 24</div>
+                <h3 class="question-text">Generator Memory: Why are generators memory-efficient?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q24" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">They generate values on-the-fly instead of storing all values in memory</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q24" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">They compress data automatically</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q24" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">They use less CPU</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q24" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">They cache results</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+            <div class="question-card" data-question="25" style="display: none;">
+                <div class="question-number">Question 25</div>
+                <h3 class="question-text">Generator vs List Performance: When is a generator expression preferred over a list comprehension?</h3>
+                
+                
+
+                <div class="answers">
+                    
+                    <label class="answer-option" data-answer="A">
+                        <input type="radio" name="q25" value="A" required>
+                        <span class="answer-letter">A</span>
+                        <span class="answer-text">When you need random access to elements</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="B">
+                        <input type="radio" name="q25" value="B" required>
+                        <span class="answer-letter">B</span>
+                        <span class="answer-text">When working with large datasets and you only need to iterate once</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="C">
+                        <input type="radio" name="q25" value="C" required>
+                        <span class="answer-letter">C</span>
+                        <span class="answer-text">When you need to sort the results</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                    <label class="answer-option" data-answer="D">
+                        <input type="radio" name="q25" value="D" required>
+                        <span class="answer-letter">D</span>
+                        <span class="answer-text">When you need to access the length</span>
+                        <span class="answer-feedback"></span>
+                    </label>
+                    
+                </div>
+            </div>
+            
+
+            <div class="quiz-actions">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>← Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next →</button>
+                <button type="submit" id="submit-btn" class="btn btn-success" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+
+        <div id="quiz-results" class="quiz-results" style="display: none;">
+            <div class="results-header">
+                <h2>Quiz Results</h2>
+                <div class="score-circle">
+                    <span class="score-value" id="score-value">0</span>
+                    <span class="score-total">/ 25</span>
+                </div>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <div class="score-grade" id="score-grade"></div>
+            </div>
+
+            <div class="results-breakdown" id="results-breakdown">
+                <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="results-actions">
+                <button type="button" id="review-btn" class="btn btn-secondary">Review Answers</button>
+                <button type="button" id="retake-btn" class="btn btn-primary">Retake Quiz</button>
+                <a href="index.html" class="btn btn-outline">Back to Lecture</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Iteration Protocol - Quiz", "description": "Test your knowledge of iterators, generators, and efficient data processing.", "courseId": "Python", "moduleId": "05_Iteration", "questions": [{"number": 1, "text": "Iterator vs Iterable: What is the key difference between an iterable and an iterator?", "code": null, "answers": [{"letter": "A", "text": "There is no difference"}, {"letter": "B", "text": "An iterable has `__iter__()`, an iterator has both `__iter__()` and `__next__()`"}, {"letter": "C", "text": "Iterables are faster than iterators"}, {"letter": "D", "text": "Iterators require more memory than iterables"}], "correctAnswer": "B", "explanation": "An iterable has `__iter__()`, an iterator has both `__iter__()` and `__next__()`"}, {"number": 2, "text": "Multiple Iteration: What happens when you try to iterate over an iterator twice?", "code": "it = iter([1, 2, 3])\nlist(it)  # First iteration\nlist(it)  # Second iteration", "answers": [{"letter": "A", "text": "Both return `[1, 2, 3]`"}, {"letter": "B", "text": "First returns `[1, 2, 3]`, second returns `[]`"}, {"letter": "C", "text": "Second iteration raises `StopIteration`"}, {"letter": "D", "text": "Second iteration raises `TypeError`"}], "correctAnswer": "B", "explanation": "First returns `[1, 2, 3]`, second returns `[]` (iterator is exhausted)"}, {"number": 3, "text": "Custom Iterator: What's missing in this iterator implementation?", "code": "class Counter:\n    def __init__(self, max_value):\n        self.max_value = max_value\n        self.current = 0\n    \n    def __next__(self):\n        if self.current >= self.max_value:\n            raise StopIteration\n        self.current += 1\n        return self.current", "answers": [{"letter": "A", "text": "Nothing, it's complete"}, {"letter": "B", "text": "Missing `__iter__()` method"}, {"letter": "C", "text": "Missing `__len__()` method"}, {"letter": "D", "text": "Missing `__getitem__()` method"}], "correctAnswer": "B", "explanation": "Missing `__iter__()` method (should return `self`)"}, {"number": 4, "text": "iter() with Sentinel: What does `iter(callable, sentinel)` do?", "code": "with open('data.txt') as f:\n    for line in iter(f.readline, ''):\n        print(line)", "answers": [{"letter": "A", "text": "Calls `callable` until it returns `sentinel`, then stops"}, {"letter": "B", "text": "Calls `callable` once with `sentinel` as argument"}, {"letter": "C", "text": "Raises an error - invalid syntax"}, {"letter": "D", "text": "Creates an infinite iterator"}], "correctAnswer": "A", "explanation": "Calls `callable` until it returns `sentinel`, then stops"}, {"number": 5, "text": "next() with Default: What does this code return?", "code": "it = iter([1, 2])\nnext(it)  # 1\nnext(it)  # 2\nnext(it, 'END')", "answers": [{"letter": "A", "text": "Raises `StopIteration`"}, {"letter": "B", "text": "Returns `None`"}, {"letter": "C", "text": "Returns `'END'`"}, {"letter": "D", "text": "Returns `0`"}], "correctAnswer": "C", "explanation": "Returns `'END'` (the default value provided to `next()`)"}, {"number": 6, "text": "Generator Expression: Which of the following creates a generator expression?", "code": null, "answers": [{"letter": "A", "text": "`(x**2 for x in range(10))`"}, {"letter": "B", "text": "`[x**2 for x in range(10)]`"}, {"letter": "C", "text": "`{x**2 for x in range(10)}`"}, {"letter": "D", "text": "`list(x**2 for x in range(10))`"}], "correctAnswer": "A", "explanation": "`(x**2 for x in range(10))` creates a generator expression"}, {"number": 7, "text": "Yield Statement: What happens when a generator function encounters a `yield` statement?", "code": null, "answers": [{"letter": "A", "text": "The function terminates"}, {"letter": "B", "text": "The function raises an exception"}, {"letter": "C", "text": "The function continues without interruption"}, {"letter": "D", "text": "The function pauses and returns a value, saving its state"}], "correctAnswer": "D", "explanation": "The function pauses and returns a value, saving its state"}, {"number": 8, "text": "Generator State: What does this generator produce? What is the second `next()` call's return value?", "code": "def gen():\n    x = 1\n    yield x\n    x += 1\n    yield x\n    x += 1\n    yield x\n\ng = gen()\nnext(g)\nnext(g)", "answers": [{"letter": "A", "text": "`1`"}, {"letter": "B", "text": "`2`"}, {"letter": "C", "text": "`3`"}, {"letter": "D", "text": "Raises `StopIteration`"}], "correctAnswer": "B", "explanation": "Returns `2` (generator remembers state)"}, {"number": 9, "text": "Generator.send(): What does the `send()` method do with a generator?", "code": null, "answers": [{"letter": "A", "text": "Terminates the generator"}, {"letter": "B", "text": "Creates a new generator"}, {"letter": "C", "text": "Sends a value into the generator that becomes the result of the current yield expression"}, {"letter": "D", "text": "Sends the generator to another function"}], "correctAnswer": "C", "explanation": "Sends a value into the generator that becomes the result of the current yield expression"}, {"number": 10, "text": "send() Example: What does this code print?", "code": "def echo():\n    while True:\n        x = yield\n        print(f\"Received: {x}\")\n\ng = echo()\nnext(g)  # Prime the generator\ng.send(42)", "answers": [{"letter": "A", "text": "`42`"}, {"letter": "B", "text": "`Received: 42`"}, {"letter": "C", "text": "`Received: None`"}, {"letter": "D", "text": "Nothing"}], "correctAnswer": "A", "explanation": "Prints `Received: 42`"}, {"number": 11, "text": "What does `yield from` do?", "code": null, "answers": [{"letter": "A", "text": "Creates multiple generators"}, {"letter": "B", "text": "Yields values in reverse order"}, {"letter": "C", "text": "Combines multiple yield statements"}, {"letter": "D", "text": "Delegates to a sub-iterator and yields all its values"}], "correctAnswer": "D", "explanation": "Delegates to a sub-iterator and yields all its values"}, {"number": 12, "text": "yield from Example: What does this generator yield?", "code": "def combined():\n    yield from [1, 2]\n    yield from [3, 4]\n\nlist(combined())", "answers": [{"letter": "A", "text": "`[[1, 2], [3, 4]]`"}, {"letter": "B", "text": "`[1, 2, 3, 4]`"}, {"letter": "C", "text": "`[(1, 2), (3, 4)]`"}, {"letter": "D", "text": "`[2, 4]`"}], "correctAnswer": "B", "explanation": "`[1, 2, 3, 4]`"}, {"number": 13, "text": "What does `list(itertools.chain([1, 2], [3, 4]))` return?", "code": null, "answers": [{"letter": "A", "text": "`[[1, 2], [3, 4]]`"}, {"letter": "B", "text": "`[1, 2, 3, 4]`"}, {"letter": "C", "text": "`[(1, 3), (2, 4)]`"}, {"letter": "D", "text": "A chain object"}], "correctAnswer": "B", "explanation": "`[1, 2, 3, 4]` (note: we wrapped with `list()` to get actual list)"}, {"number": 14, "text": "What does `list(itertools.islice(range(100), 5, 10))` return?", "code": null, "answers": [{"letter": "A", "text": "`[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`"}, {"letter": "B", "text": "`[5, 10]`"}, {"letter": "C", "text": "`[5, 6, 7, 8, 9]`"}, {"letter": "D", "text": "`[5, 15, 25, 35, 45]`"}], "correctAnswer": "C", "explanation": "`[5, 6, 7, 8, 9]`"}, {"number": 15, "text": "itertools.islice with Step: What does `list(itertools.islice(range(20), 0, 10, 2))` return?", "code": null, "answers": [{"letter": "A", "text": "`[0, 2, 4, 6, 8]`"}, {"letter": "B", "text": "`[0, 2, 4, 6, 8, 10]`"}, {"letter": "C", "text": "`[2, 4, 6, 8, 10]`"}, {"letter": "D", "text": "`[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`"}], "correctAnswer": "A", "explanation": "`[0, 2, 4, 6, 8]` (start=0, stop=10, step=2)"}, {"number": 16, "text": "itertools.cycle: What happens with this code?", "code": "import itertools\ncounter = 0\nfor item in itertools.cycle([1, 2, 3]):\n    counter += 1\n    if counter > 5:\n        break\n    print(item)", "answers": [{"letter": "A", "text": "Prints: `1 2 3`"}, {"letter": "B", "text": "Prints: `1 2 3 1 2`"}, {"letter": "C", "text": "Prints: `1 2 3 1 2 3`"}, {"letter": "D", "text": "Infinite loop with no output"}], "correctAnswer": "A", "explanation": "Prints `1 2 3 1 2` (cycles through values)"}, {"number": 17, "text": "What does `list(itertools.islice(itertools.count(10, 2), 5))` return?", "code": null, "answers": [{"letter": "A", "text": "`[10, 11, 12, 13, 14]`"}, {"letter": "B", "text": "`[10, 12, 14, 16, 18]`"}, {"letter": "C", "text": "`[2, 4, 6, 8, 10]`"}, {"letter": "D", "text": "`[0, 2, 4, 6, 8]`"}], "correctAnswer": "B", "explanation": "`[10, 12, 14, 16, 18]` (start=10, step=2)"}, {"number": 18, "text": "What does `list(itertools.repeat('x', 3))` return?", "code": null, "answers": [{"letter": "A", "text": "`['x', 'xx', 'xxx']`"}, {"letter": "B", "text": "`['x', 'x', 'x']`"}, {"letter": "C", "text": "`'xxx'`"}, {"letter": "D", "text": "`['xxx']`"}], "correctAnswer": "B", "explanation": "`['x', 'x', 'x']` (repeats value 3 times)"}, {"number": 19, "text": "What does `list(itertools.zip_longest([1, 2], [3, 4, 5], fillvalue=0))` return?", "code": null, "answers": [{"letter": "A", "text": "`[(1, 3), (2, 4), (0, 5)]`"}, {"letter": "B", "text": "`[(1, 3), (2, 4)]`"}, {"letter": "C", "text": "`[(1, 3), (2, 4), (5,)]`"}, {"letter": "D", "text": "Raises `ValueError`"}], "correctAnswer": "A", "explanation": "`[(1, 3), (2, 4), (0, 5)]` (fills missing values with 0)"}, {"number": 20, "text": "itertools.takewhile: What does this return?", "code": "import itertools\nlist(itertools.takewhile(lambda x: x < 5, [1, 2, 3, 6, 4, 7]))", "answers": [{"letter": "A", "text": "`[1, 2, 3, 4]`"}, {"letter": "B", "text": "`[1, 2, 3]`"}, {"letter": "C", "text": "`[1, 2, 3, 4, 7]`"}, {"letter": "D", "text": "`[6, 7]`"}], "correctAnswer": "B", "explanation": "`[1, 2, 3]` (stops when condition becomes false)"}, {"number": 21, "text": "itertools.dropwhile: What does this return?", "code": "import itertools\nlist(itertools.dropwhile(lambda x: x < 5, [1, 2, 3, 6, 4, 7]))", "answers": [{"letter": "A", "text": "`[1, 2, 3, 4]`"}, {"letter": "B", "text": "`[6, 7]`"}, {"letter": "C", "text": "`[6, 4, 7]`"}, {"letter": "D", "text": "`[4, 7]`"}], "correctAnswer": "C", "explanation": "`[6, 4, 7]` (drops elements until condition becomes false, then yields rest)"}, {"number": 22, "text": "What does `itertools.groupby()` require for correct grouping?", "code": null, "answers": [{"letter": "A", "text": "The input must be a list"}, {"letter": "B", "text": "The input must be sorted by the key function"}, {"letter": "C", "text": "The input must contain unique values"}, {"letter": "D", "text": "No special requirements"}], "correctAnswer": "B", "explanation": "The input must be sorted by the key function"}, {"number": 23, "text": "What does `list(itertools.product([1, 2], ['a', 'b']))` return?", "code": null, "answers": [{"letter": "A", "text": "`[(1, 'a'), (2, 'b')]`"}, {"letter": "B", "text": "`[(1, 2), ('a', 'b')]`"}, {"letter": "C", "text": "`[(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')]`"}, {"letter": "D", "text": "`[1, 2, 'a', 'b']`"}], "correctAnswer": "C", "explanation": "`[(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')]` (cartesian product)"}, {"number": 24, "text": "Generator Memory: Why are generators memory-efficient?", "code": null, "answers": [{"letter": "A", "text": "They generate values on-the-fly instead of storing all values in memory"}, {"letter": "B", "text": "They compress data automatically"}, {"letter": "C", "text": "They use less CPU"}, {"letter": "D", "text": "They cache results"}], "correctAnswer": "A", "explanation": "They generate values on-the-fly instead of storing all values in memory"}, {"number": 25, "text": "Generator vs List Performance: When is a generator expression preferred over a list comprehension?", "code": null, "answers": [{"letter": "A", "text": "When you need random access to elements"}, {"letter": "B", "text": "When working with large datasets and you only need to iterate once"}, {"letter": "C", "text": "When you need to sort the results"}, {"letter": "D", "text": "When you need to access the length"}], "correctAnswer": "B", "explanation": "When working with large datasets and you only need to iterate once"}]};
+</script>
+<script src="../../../static/js/quiz.js"></script>
+
     </main>
 
     <footer class="site-footer">
@@ -63,7 +1166,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/main.js"></script>
+    <script src="../../../static/js/main.js?v=10"></script>
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

@@ -175,20 +175,20 @@ D) `command >> file1 file2 file3`
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | B | stdin, stdout, stderr |
-| 2 | C | Connects stdout of one command to stdin of the next |
-| 3 | D | `command &> file` |
-| 4 | C | It only removes adjacent duplicate lines |
-| 5 | C | Extracts the second field using comma as delimiter |
-| 6 | B | Filter → Transform → Aggregate |
-| 7 | A | Continuously monitors the file for new lines |
+| 1 | D | stdin, stdout, stderr |
+| 2 | B | Connects stdout of one command to stdin of the next |
+| 3 | C | `command &> file` |
+| 4 | B | It only removes adjacent duplicate lines |
+| 5 | B | Extracts the second field using comma as delimiter |
+| 6 | D | Filter → Transform → Aggregate |
+| 7 | B | Continuously monitors the file for new lines |
 | 8 | B | `-n` |
-| 9 | A | Shows lines NOT matching pattern |
-| 10 | B | `-L` |
-| 11 | D | `tee` writes to file and passes data through to next command in pipeline |
-| 12 | A | FIFO write blocks until reader connects (synchronization mechanism) |
+| 9 | C | Shows lines NOT matching pattern |
+| 10 | C | `-L` |
+| 11 | B | `tee` writes to file and passes data through to next command in pipeline |
+| 12 | B | FIFO write blocks until reader connects (synchronization mechanism) |
 | 13 | D | `--line-buffered` forces immediate output, crucial for real-time monitoring (like `tail -f | grep`) |
-| 14 | A | `/dev/fd/0` is a symbolic link to stdin (file descriptor 0) |
+| 14 | C | `/dev/fd/0` is a symbolic link to stdin (file descriptor 0) |
 | 15 | C | `tee` can write to multiple files in one command and still output to stdout |
 
 ---

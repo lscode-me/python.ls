@@ -39,6 +39,170 @@
 
     <main class="tma-main">
         
+<section class="course-container">
+    <div class="course-header">
+        <span class="course-icon-large">🐍</span>
+        <h1>Python for Life Science Developers</h1>
+        <p class="course-desc">A comprehensive Python course designed for life science professionals. This course covers Python fun</p>
+        <span class="course-meta">11 modules</span>
+    </div>
+
+    <div class="modules-list">
+        
+        <a href="01_Objects/" class="module-item" data-module="1">
+            <div class="module-num">1</div>
+            <div class="module-content">
+                <h3>Python Core Foundations</h3>
+                <p>Before starting this module, you should:</p>
+            </div>
+            <div class="module-status" id="status-1">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="02_Functions/" class="module-item" data-module="2">
+            <div class="module-num">2</div>
+            <div class="module-content">
+                <h3>Functions and Functional Programming</h3>
+                <p>Functions are first-class objects in Python — they can be: - Assigned to variabl</p>
+            </div>
+            <div class="module-status" id="status-2">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="03_Files/" class="module-item" data-module="3">
+            <div class="module-num">3</div>
+            <div class="module-content">
+                <h3>File Handling in Python</h3>
+                <p>```python file = open(&#39;data.txt&#39;, &#39;r&#39;) content = file.read() file.close()</p>
+            </div>
+            <div class="module-status" id="status-3">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="04_Testing/" class="module-item" data-module="4">
+            <div class="module-num">4</div>
+            <div class="module-content">
+                <h3>Testing in Python</h3>
+                <p>Testing is not optional — it&#39;s a fundamental skill for professional development.</p>
+            </div>
+            <div class="module-status" id="status-4">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="05_Iteration/" class="module-item" data-module="5">
+            <div class="module-num">5</div>
+            <div class="module-content">
+                <h3>Iteration Protocol</h3>
+                <p>The iteration protocol defines how objects can be iterated over.</p>
+            </div>
+            <div class="module-status" id="status-5">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="06_Streams/" class="module-item" data-module="6">
+            <div class="module-num">6</div>
+            <div class="module-content">
+                <h3>Input/Output Streams in Python: The Unix Approach</h3>
+                <p>One of the key ideas of Unix philosophy is that programs should work together as</p>
+            </div>
+            <div class="module-status" id="status-6">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="07_Coroutines/" class="module-item" data-module="7">
+            <div class="module-num">7</div>
+            <div class="module-content">
+                <h3>Coroutines and Data Processing Pipelines in Python</h3>
+                <p>In previous lectures, we learned how to work with generators that **produce** da</p>
+            </div>
+            <div class="module-status" id="status-7">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="08_OOP/" class="module-item" data-module="8">
+            <div class="module-num">8</div>
+            <div class="module-content">
+                <h3>Object-Oriented Programming</h3>
+                <p>OOP is a programming paradigm based on the concept of &#34;objects&#34; that contain: - </p>
+            </div>
+            <div class="module-status" id="status-8">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="09_Pythonic/" class="module-item" data-module="9">
+            <div class="module-num">9</div>
+            <div class="module-content">
+                <h3>🐍 Pythonic Code: Clarity, Simplicity, and Speed</h3>
+                <p>This lecture explores the difference between writing code that merely runs on Py</p>
+            </div>
+            <div class="module-status" id="status-9">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="10_Protocols/" class="module-item" data-module="10">
+            <div class="module-num">10</div>
+            <div class="module-content">
+                <h3>Protocols and Interfaces</h3>
+                <p>Protocols define interfaces through method signatures without explicit inheritan</p>
+            </div>
+            <div class="module-status" id="status-10">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+        <a href="11_Bioinformatics/" class="module-item" data-module="11">
+            <div class="module-num">11</div>
+            <div class="module-content">
+                <h3>Python for Bioinformatics</h3>
+                <p>Bioinformatics combines biology, computer science, and statistics to analyze bio</p>
+            </div>
+            <div class="module-status" id="status-11">
+                <span class="status-icon">○</span>
+            </div>
+        </a>
+        
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const courseId = "Python";
+    try {
+        const quizResults = await TMAStorage.getCourseQuizResults(courseId);
+        
+        for (const [moduleId, result] of Object.entries(quizResults)) {
+            const moduleNum = moduleId.match(/(\d+)/)?.[1];
+            if (moduleNum) {
+                const statusEl = document.getElementById(`status-${moduleNum}`);
+                if (statusEl) {
+                    const icon = statusEl.querySelector('.status-icon');
+                    if (result.percentage >= 80) {
+                        icon.textContent = '✓';
+                        icon.classList.add('completed');
+                    } else if (result.percentage >= 50) {
+                        icon.textContent = '◐';
+                        icon.classList.add('partial');
+                    } else {
+                        icon.textContent = '○';
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('Could not load course progress:', e);
+    }
+});
+</script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">

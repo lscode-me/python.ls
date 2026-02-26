@@ -39,6 +39,1093 @@
 
     <main class="tma-main">
         
+<article class="quiz-container">
+    <div class="quiz-header">
+        <h2>Quiz: Testing in Python</h2>
+        <p class="quiz-meta">23 questions • ~23 min</p>
+    </div>
+
+    <div class="quiz-progress-container">
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+        <span class="quiz-progress-text" id="quiz-progress-text">1 / 23</span>
+    </div>
+
+    <form id="quiz-form" class="quiz-form">
+        
+        <div class="question-card" data-question="1" >
+            <div class="question-header">
+                <span class="question-num">Q1</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Testing Fundamentals: What is the primary purpose of writing tests?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q1" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">To make the code run faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q1" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">To ensure code works correctly and prevent regressions</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q1" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">To satisfy project requirements</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q1" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">To make the code more complex</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="2" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q2</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">unittest vs pytest: Which statement is TRUE about pytest compared to unittest?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q2" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">pytest requires test classes for all tests</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q2" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">pytest uses `assert` statements instead of `self.assertEqual()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q2" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">pytest is slower than unittest</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q2" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">pytest cannot run unittest tests</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="3" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q3</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Test Naming: Which test name follows best practices?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q3" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`test1()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q3" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`test_stuff()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q3" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`test_user_registration_with_valid_email()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q3" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`testUserReg()`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="4" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q4</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Fixtures: What is the purpose of pytest fixtures?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q4" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">To fix broken tests</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q4" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">To provide reusable test data and setup/teardown</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q4" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">To make tests run faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q4" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">To skip failing tests</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="5" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q5</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">AAA Pattern: What does AAA stand for in testing?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q5" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Assert, Arrange, Act</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q5" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Arrange, Act, Assert</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q5" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Act, Assert, Arrange</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q5" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Arrange, Assert, Act</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="6" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q6</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Parametrization: What is the benefit of parametrized tests?</p>
+                
+                
+                <pre class="question-code"><code>@pytest.mark.parametrize(&#34;a,b,expected&#34;, [
+    (2, 3, 5),
+    (0, 0, 0),
+    (-1, 1, 0),
+])
+def test_add(a, b, expected):
+    assert add(a, b) == expected</code></pre>
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q6" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Tests run in parallel</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q6" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Tests multiple inputs without code duplication</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q6" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Tests run faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q6" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Tests are skipped automatically</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="7" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q7</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Mocking: When should you use mocking in tests?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q7" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Always, for every test</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q7" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Never, it makes tests unreliable</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q7" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">When testing code with external dependencies (API, database)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q7" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Only for slow tests</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="8" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q8</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Test Coverage: What does 100% test coverage guarantee?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q8" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">The code has no bugs</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q8" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">The code is production-ready</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q8" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">All lines of code were executed during tests</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q8" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">The code is well-designed</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="9" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q9</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">TDD Cycle: What is the correct TDD cycle?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q9" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Write code → Write tests → Refactor</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q9" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Red → Green → Refactor</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q9" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Test → Debug → Deploy</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q9" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Design → Code → Test</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="10" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q10</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Exception Testing: Which is the correct way to test exceptions in pytest?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q10" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">`assert raises(ValueError)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q10" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">`with pytest.raises(ValueError):`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q10" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">`expect(ValueError)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q10" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">`assertRaises(ValueError)`</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="11" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q11</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Fixture Scope: What does `@pytest.fixture(scope=&#34;module&#34;)` mean?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q11" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Fixture runs for each test function</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q11" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Fixture runs once per test file/module</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q11" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Fixture runs once per test session</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q11" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Fixture runs once per test class</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="12" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q12</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Test Independence: Why should tests be independent of each other?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q12" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">To run faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q12" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">To avoid test order dependencies and flaky tests</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q12" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">To use less memory</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q12" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">To satisfy coding standards</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="13" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q13</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Testing Best Practices: Which is a testing anti-pattern?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q13" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Testing public interfaces</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q13" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Using fixtures for common setup</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q13" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Testing implementation details (private methods)</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q13" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Using descriptive test names</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="14" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q14</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">setUp vs Fixtures: What&#39;s the main advantage of pytest fixtures over unittest&#39;s setUp/tearDown?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q14" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Fixtures are faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q14" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Fixtures are reusable and composable</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q14" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Fixtures run automatically</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q14" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Fixtures don&#39;t require imports</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="15" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q15</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Integration vs Unit Tests: What&#39;s the main difference?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q15" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Integration tests are faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q15" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Unit tests test multiple components together</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q15" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Unit tests test components in isolation</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q15" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Integration tests don&#39;t need assertions</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="16" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q16</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Mock Assertions: What does `mock.assert_called_once_with(42)` verify?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q16" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">The mock was called at least once</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q16" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">The mock was called exactly once with argument 42</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q16" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">The mock returns 42</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q16" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">The mock was never called</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="17" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q17</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Test Organization: What&#39;s the recommended test file structure?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q17" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">All tests in one file</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q17" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Mirror the source code structure</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q17" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Random organization</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q17" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Group by developer</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="18" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q18</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Continuous Integration: What&#39;s the benefit of running tests in CI?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q18" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Tests run faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q18" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Automatically catch bugs before merging</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q18" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Fewer tests needed</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q18" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Code becomes simpler</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="19" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q19</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Edge Cases: Which should be tested as edge cases?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q19" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Only happy path scenarios</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q19" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Empty inputs, None, zero, negative numbers</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q19" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Only the most common use cases</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q19" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Random values</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="20" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q20</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Test Readability: What makes a test readable?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q20" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">Short variable names</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q20" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Many comments</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q20" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Clear AAA structure and descriptive names</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q20" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Complex logic</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="21" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q21</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Property-Based Testing: What library is used for property-based testing in Python?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q21" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">pytest-properties</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q21" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Hypothesis</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q21" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">QuickCheck</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q21" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">PropTest</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="22" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q22</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Test Doubles: What&#39;s the difference between a mock and a stub?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q22" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">No difference, same thing</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q22" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Mocks verify interactions, stubs provide data</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q22" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Stubs are faster</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q22" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Mocks are only for databases</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+        <div class="question-card" data-question="23" style="display: none;">
+            <div class="question-header">
+                <span class="question-num">Q23</span>
+            </div>
+            
+            <div class="question-body">
+                <p class="question-text">Coverage Pitfall: Why is 100% coverage not always the goal?</p>
+                
+                
+            </div>
+
+            <div class="answers-list">
+                
+                <label class="answer-item" data-answer="A">
+                    <input type="radio" name="q23" value="A">
+                    <span class="answer-marker">A</span>
+                    <span class="answer-text">It&#39;s impossible to achieve</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="B">
+                    <input type="radio" name="q23" value="B">
+                    <span class="answer-marker">B</span>
+                    <span class="answer-text">Diminishing returns; focus on critical code</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="C">
+                    <input type="radio" name="q23" value="C">
+                    <span class="answer-marker">C</span>
+                    <span class="answer-text">Tests become too slow</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+                <label class="answer-item" data-answer="D">
+                    <input type="radio" name="q23" value="D">
+                    <span class="answer-marker">D</span>
+                    <span class="answer-text">Coverage tools are unreliable</span>
+                    <span class="answer-result"></span>
+                </label>
+                
+            </div>
+        </div>
+        
+
+        <div class="quiz-controls">
+            <button type="button" id="btn-prev" class="control-btn" disabled>
+                <span>← Prev</span>
+            </button>
+            <button type="button" id="btn-next" class="control-btn primary">
+                <span>Next →</span>
+            </button>
+            <button type="button" id="btn-submit" class="control-btn success" style="display: none;">
+                <span>Submit ✓</span>
+            </button>
+        </div>
+    </form>
+
+    <div id="quiz-results" class="quiz-results" style="display: none;">
+        <div class="results-score">
+            <div class="score-circle">
+                <span class="score-num" id="score-num">0</span>
+                <span class="score-total">/ 23</span>
+            </div>
+            <div class="score-percent" id="score-percent">0%</div>
+            <div class="score-badge" id="score-badge"></div>
+        </div>
+
+        <div class="results-summary" id="results-summary"></div>
+
+        <div class="results-actions">
+            <button type="button" id="btn-review" class="action-btn">
+                📋 Review Answers
+            </button>
+            <button type="button" id="btn-retake" class="action-btn primary">
+                🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="action-btn outline">
+                📖 Back to Lecture
+            </a>
+        </div>
+
+        <div class="cloud-sync-status" id="cloud-status">
+            <span class="sync-icon">☁️</span>
+            <span class="sync-text">Synced to Telegram Cloud</span>
+        </div>
+    </div>
+</article>
+
+<script>
+const QUIZ_DATA = {"title": "Testing in Python - Quiz", "description": "Test your knowledge of Python testing fundamentals, pytest, and best practices.", "courseId": "Python", "moduleId": "04_Testing", "questions": [{"number": 1, "text": "Testing Fundamentals: What is the primary purpose of writing tests?", "code": null, "answers": [{"letter": "A", "text": "To make the code run faster"}, {"letter": "B", "text": "To ensure code works correctly and prevent regressions"}, {"letter": "C", "text": "To satisfy project requirements"}, {"letter": "D", "text": "To make the code more complex"}], "correctAnswer": "B", "explanation": "To ensure code works correctly and prevent regressions"}, {"number": 2, "text": "unittest vs pytest: Which statement is TRUE about pytest compared to unittest?", "code": null, "answers": [{"letter": "A", "text": "pytest requires test classes for all tests"}, {"letter": "B", "text": "pytest uses `assert` statements instead of `self.assertEqual()`"}, {"letter": "C", "text": "pytest is slower than unittest"}, {"letter": "D", "text": "pytest cannot run unittest tests"}], "correctAnswer": "B", "explanation": "pytest uses `assert` statements instead of `self.assertEqual()`"}, {"number": 3, "text": "Test Naming: Which test name follows best practices?", "code": null, "answers": [{"letter": "A", "text": "`test1()`"}, {"letter": "B", "text": "`test_stuff()`"}, {"letter": "C", "text": "`test_user_registration_with_valid_email()`"}, {"letter": "D", "text": "`testUserReg()`"}], "correctAnswer": "C", "explanation": "`test_user_registration_with_valid_email()` follows best practices"}, {"number": 4, "text": "Fixtures: What is the purpose of pytest fixtures?", "code": null, "answers": [{"letter": "A", "text": "To fix broken tests"}, {"letter": "B", "text": "To provide reusable test data and setup/teardown"}, {"letter": "C", "text": "To make tests run faster"}, {"letter": "D", "text": "To skip failing tests"}], "correctAnswer": "B", "explanation": "To provide reusable test data and setup/teardown"}, {"number": 5, "text": "AAA Pattern: What does AAA stand for in testing?", "code": null, "answers": [{"letter": "A", "text": "Assert, Arrange, Act"}, {"letter": "B", "text": "Arrange, Act, Assert"}, {"letter": "C", "text": "Act, Assert, Arrange"}, {"letter": "D", "text": "Arrange, Assert, Act"}], "correctAnswer": "B", "explanation": "Arrange, Act, Assert"}, {"number": 6, "text": "Parametrization: What is the benefit of parametrized tests?", "code": "@pytest.mark.parametrize(\"a,b,expected\", [\n    (2, 3, 5),\n    (0, 0, 0),\n    (-1, 1, 0),\n])\ndef test_add(a, b, expected):\n    assert add(a, b) == expected", "answers": [{"letter": "A", "text": "Tests run in parallel"}, {"letter": "B", "text": "Tests multiple inputs without code duplication"}, {"letter": "C", "text": "Tests run faster"}, {"letter": "D", "text": "Tests are skipped automatically"}], "correctAnswer": "B", "explanation": "Tests multiple inputs without code duplication"}, {"number": 7, "text": "Mocking: When should you use mocking in tests?", "code": null, "answers": [{"letter": "A", "text": "Always, for every test"}, {"letter": "B", "text": "Never, it makes tests unreliable"}, {"letter": "C", "text": "When testing code with external dependencies (API, database)"}, {"letter": "D", "text": "Only for slow tests"}], "correctAnswer": "C", "explanation": "When testing code with external dependencies (API, database)"}, {"number": 8, "text": "Test Coverage: What does 100% test coverage guarantee?", "code": null, "answers": [{"letter": "A", "text": "The code has no bugs"}, {"letter": "B", "text": "The code is production-ready"}, {"letter": "C", "text": "All lines of code were executed during tests"}, {"letter": "D", "text": "The code is well-designed"}], "correctAnswer": "C", "explanation": "All lines of code were executed during tests"}, {"number": 9, "text": "TDD Cycle: What is the correct TDD cycle?", "code": null, "answers": [{"letter": "A", "text": "Write code \u2192 Write tests \u2192 Refactor"}, {"letter": "B", "text": "Red \u2192 Green \u2192 Refactor"}, {"letter": "C", "text": "Test \u2192 Debug \u2192 Deploy"}, {"letter": "D", "text": "Design \u2192 Code \u2192 Test"}], "correctAnswer": "B", "explanation": "Red \u2192 Green \u2192 Refactor"}, {"number": 10, "text": "Exception Testing: Which is the correct way to test exceptions in pytest?", "code": null, "answers": [{"letter": "A", "text": "`assert raises(ValueError)`"}, {"letter": "B", "text": "`with pytest.raises(ValueError):`"}, {"letter": "C", "text": "`expect(ValueError)`"}, {"letter": "D", "text": "`assertRaises(ValueError)`"}], "correctAnswer": "B", "explanation": "`with pytest.raises(ValueError):`"}, {"number": 11, "text": "Fixture Scope: What does `@pytest.fixture(scope=\"module\")` mean?", "code": null, "answers": [{"letter": "A", "text": "Fixture runs for each test function"}, {"letter": "B", "text": "Fixture runs once per test file/module"}, {"letter": "C", "text": "Fixture runs once per test session"}, {"letter": "D", "text": "Fixture runs once per test class"}], "correctAnswer": "B", "explanation": "Fixture runs once per test file/module"}, {"number": 12, "text": "Test Independence: Why should tests be independent of each other?", "code": null, "answers": [{"letter": "A", "text": "To run faster"}, {"letter": "B", "text": "To avoid test order dependencies and flaky tests"}, {"letter": "C", "text": "To use less memory"}, {"letter": "D", "text": "To satisfy coding standards"}], "correctAnswer": "B", "explanation": "To avoid test order dependencies and flaky tests"}, {"number": 13, "text": "Testing Best Practices: Which is a testing anti-pattern?", "code": null, "answers": [{"letter": "A", "text": "Testing public interfaces"}, {"letter": "B", "text": "Using fixtures for common setup"}, {"letter": "C", "text": "Testing implementation details (private methods)"}, {"letter": "D", "text": "Using descriptive test names"}], "correctAnswer": "C", "explanation": "Testing implementation details (private methods)"}, {"number": 14, "text": "setUp vs Fixtures: What's the main advantage of pytest fixtures over unittest's setUp/tearDown?", "code": null, "answers": [{"letter": "A", "text": "Fixtures are faster"}, {"letter": "B", "text": "Fixtures are reusable and composable"}, {"letter": "C", "text": "Fixtures run automatically"}, {"letter": "D", "text": "Fixtures don't require imports"}], "correctAnswer": "B", "explanation": "Fixtures are reusable and composable"}, {"number": 15, "text": "Integration vs Unit Tests: What's the main difference?", "code": null, "answers": [{"letter": "A", "text": "Integration tests are faster"}, {"letter": "B", "text": "Unit tests test multiple components together"}, {"letter": "C", "text": "Unit tests test components in isolation"}, {"letter": "D", "text": "Integration tests don't need assertions"}], "correctAnswer": "C", "explanation": "Unit tests test components in isolation"}, {"number": 16, "text": "Mock Assertions: What does `mock.assert_called_once_with(42)` verify?", "code": null, "answers": [{"letter": "A", "text": "The mock was called at least once"}, {"letter": "B", "text": "The mock was called exactly once with argument 42"}, {"letter": "C", "text": "The mock returns 42"}, {"letter": "D", "text": "The mock was never called"}], "correctAnswer": "B", "explanation": "The mock was called exactly once with argument 42"}, {"number": 17, "text": "Test Organization: What's the recommended test file structure?", "code": null, "answers": [{"letter": "A", "text": "All tests in one file"}, {"letter": "B", "text": "Mirror the source code structure"}, {"letter": "C", "text": "Random organization"}, {"letter": "D", "text": "Group by developer"}], "correctAnswer": "B", "explanation": "Mirror the source code structure"}, {"number": 18, "text": "Continuous Integration: What's the benefit of running tests in CI?", "code": null, "answers": [{"letter": "A", "text": "Tests run faster"}, {"letter": "B", "text": "Automatically catch bugs before merging"}, {"letter": "C", "text": "Fewer tests needed"}, {"letter": "D", "text": "Code becomes simpler"}], "correctAnswer": "B", "explanation": "Automatically catch bugs before merging"}, {"number": 19, "text": "Edge Cases: Which should be tested as edge cases?", "code": null, "answers": [{"letter": "A", "text": "Only happy path scenarios"}, {"letter": "B", "text": "Empty inputs, None, zero, negative numbers"}, {"letter": "C", "text": "Only the most common use cases"}, {"letter": "D", "text": "Random values"}], "correctAnswer": "B", "explanation": "Empty inputs, None, zero, negative numbers"}, {"number": 20, "text": "Test Readability: What makes a test readable?", "code": null, "answers": [{"letter": "A", "text": "Short variable names"}, {"letter": "B", "text": "Many comments"}, {"letter": "C", "text": "Clear AAA structure and descriptive names"}, {"letter": "D", "text": "Complex logic"}], "correctAnswer": "C", "explanation": "Clear AAA structure and descriptive names"}, {"number": 21, "text": "Property-Based Testing: What library is used for property-based testing in Python?", "code": null, "answers": [{"letter": "A", "text": "pytest-properties"}, {"letter": "B", "text": "Hypothesis"}, {"letter": "C", "text": "QuickCheck"}, {"letter": "D", "text": "PropTest"}], "correctAnswer": "B", "explanation": "Hypothesis"}, {"number": 22, "text": "Test Doubles: What's the difference between a mock and a stub?", "code": null, "answers": [{"letter": "A", "text": "No difference, same thing"}, {"letter": "B", "text": "Mocks verify interactions, stubs provide data"}, {"letter": "C", "text": "Stubs are faster"}, {"letter": "D", "text": "Mocks are only for databases"}], "correctAnswer": "B", "explanation": "Mocks verify interactions, stubs provide data"}, {"number": 23, "text": "Coverage Pitfall: Why is 100% coverage not always the goal?", "code": null, "answers": [{"letter": "A", "text": "It's impossible to achieve"}, {"letter": "B", "text": "Diminishing returns; focus on critical code"}, {"letter": "C", "text": "Tests become too slow"}, {"letter": "D", "text": "Coverage tools are unreliable"}], "correctAnswer": "B", "explanation": "Diminishing returns; focus on critical code"}]};
+const COURSE_ID = "Python";
+const MODULE_ID = "04_Testing";
+</script>
+<script src="../../../static/js/tma-quiz.js"></script>
+
     </main>
 
     <nav class="tma-nav" id="tma-nav">
