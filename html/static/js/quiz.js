@@ -144,6 +144,14 @@ class QuizEngine {
                         option.querySelector('.answer-feedback').textContent = '✗ Incorrect';
                     }
                 });
+
+                // Show explanation if available
+                if (question.explanation) {
+                    const explanationDiv = document.createElement('div');
+                    explanationDiv.className = 'question-explanation';
+                    explanationDiv.innerHTML = `<span class="explanation-label">💡 Explanation:</span> ${question.explanation}`;
+                    card.appendChild(explanationDiv);
+                }
             }
         });
         
@@ -173,6 +181,7 @@ class QuizEngine {
                 <span class="q-num">Q${item.number}</span>
                 <span class="q-result">${item.isCorrect ? '✓' : '✗'}</span>
                 <span class="q-answer">Your: ${item.userAnswer || '-'} | Correct: ${item.correctAnswer}</span>
+                ${item.explanation ? `<span class="q-explanation">${item.explanation}</span>` : ''}
             </div>
         `).join('');
         
@@ -191,6 +200,7 @@ class QuizEngine {
             .q-num { font-weight: 600; width: 40px; }
             .q-result { font-size: 1.25rem; }
             .q-answer { color: #64748b; font-size: 0.875rem; }
+            .q-explanation { display: block; color: #475569; font-size: 0.8125rem; font-style: italic; margin-top: 0.25rem; padding-left: 40px; }
         `;
         document.head.appendChild(style);
         
@@ -247,6 +257,9 @@ class QuizEngine {
             option.querySelector('input').checked = false;
             option.querySelector('.answer-feedback').textContent = '';
         });
+
+        // Remove explanations
+        document.querySelectorAll('.question-explanation').forEach(el => el.remove());
         
         document.querySelectorAll('.question-card').forEach((card, index) => {
             card.style.display = index === 0 ? 'block' : 'none';

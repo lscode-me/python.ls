@@ -184,6 +184,14 @@ class TMAQuizEngine {
                         item.querySelector('.answer-result').textContent = '✗';
                     }
                 });
+
+                // Show explanation if available
+                if (question.explanation) {
+                    const explanationDiv = document.createElement('div');
+                    explanationDiv.className = 'question-explanation';
+                    explanationDiv.innerHTML = `<span class="explanation-label">💡 Explanation:</span> ${question.explanation}`;
+                    card.appendChild(explanationDiv);
+                }
             }
         });
         
@@ -292,6 +300,9 @@ class TMAQuizEngine {
                 item.querySelector('input').checked = false;
                 item.querySelector('.answer-result').textContent = '';
             });
+
+            // Remove explanations
+            document.querySelectorAll('.question-explanation').forEach(el => el.remove());
             
             document.querySelectorAll('.question-card').forEach((card, index) => {
                 card.style.display = index === 0 ? 'block' : 'none';

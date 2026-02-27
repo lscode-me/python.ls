@@ -778,6 +778,23 @@ body.tma-body {
     font-size: 16px;
 }
 
+/* Question Explanation (shown after submission) */
+.question-explanation {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--accent, #3b82f6);
+    border-radius: var(--radius);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.question-explanation .explanation-label {
+    font-weight: 600;
+    color: var(--text);
+}
+
 /* Quiz Controls */
 .quiz-controls {
     display: flex;

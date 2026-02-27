@@ -22,7 +22,7 @@
     --info-color: #3b82f6;
     
     /* Typography */
-    --font-sans: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
@@ -993,6 +993,23 @@ strong, b {
 .answer-option.correct .answer-feedback,
 .answer-option.incorrect .answer-feedback {
     display: block;
+}
+
+/* Question Explanation (shown after submission) */
+.question-explanation {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--background-alt);
+    border-left: 3px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.question-explanation .explanation-label {
+    font-weight: 600;
+    color: var(--text-color);
 }
 
 /* Quiz Actions */

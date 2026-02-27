@@ -183,7 +183,7 @@ D) Only stdin, stdout, stderr are inherited
 | 6 | C | Redirects stderr to stdout |
 | 7 | B | Symlinks are a separate file with a path, hard links share the same i-node |
 | 8 | C | umask 022 subtracts from 666 for files = 644 |
-| 9 | C | /dev/null discards all data written to it |
+| 9 | B | /dev/null discards all data written to it |
 | 10 | B | Setuid allows file to run with owner's permissions |
 | 11 | A | `exec 4> output.txt` opens file descriptor 4 for writing |
 | 12 | B | /dev/zero provides null bytes, /dev/urandom provides pseudo-random data |
