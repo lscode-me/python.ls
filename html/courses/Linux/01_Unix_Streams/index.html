@@ -236,7 +236,7 @@ sort | uniq -c
 awk '{sum += $1} END {print sum}'
 
 # Get statistics
-datamash mean 1 median 1 &lt; data.txt
+datamash mean 1 median 1 &lt; numbers.txt
 </code></pre>
 
 <hr />
@@ -265,43 +265,6 @@ Alice   30     NYC
 # Log format
 2024-11-27 10:23:45 INFO User logged in
 2024-11-27 10:24:12 ERROR Connection timeout
-</code></pre>
-
-<hr />
-<h2 id="building-your-first-data-pipeline">Building Your First Data Pipeline</h2>
-<h3 id="example-analyzing-web-server-logs">Example: Analyzing Web Server Logs</h3>
-<p>Given an access log:</p>
-<pre class="highlight"><code>192.168.1.1 - - [27/Nov/2024:10:23:45] &quot;GET /api/users&quot; 200
-192.168.1.2 - - [27/Nov/2024:10:24:12] &quot;GET /api/posts&quot; 404
-192.168.1.1 - - [27/Nov/2024:10:25:01] &quot;POST /api/login&quot; 200
-</code></pre>
-
-<h3 id="task-1-count-requests-by-ip">Task 1: Count Requests by IP</h3>
-<pre class="highlight"><code class="language-bash">cat access.log | \
-  awk '{print $1}' | \
-  sort | \
-  uniq -c | \
-  sort -rn
-</code></pre>
-
-<p><strong>Output:</strong></p>
-<pre class="highlight"><code>2 192.168.1.1
-1 192.168.1.2
-</code></pre>
-
-<h3 id="task-2-find-all-404-errors">Task 2: Find All 404 Errors</h3>
-<pre class="highlight"><code class="language-bash">grep &quot;404&quot; access.log | \
-  awk '{print $7}' | \
-  sort | \
-  uniq -c
-</code></pre>
-
-<h3 id="task-3-top-10-most-accessed-endpoints">Task 3: Top 10 Most Accessed Endpoints</h3>
-<pre class="highlight"><code class="language-bash">awk '{print $7}' access.log | \
-  sort | \
-  uniq -c | \
-  sort -rn | \
-  head -10
 </code></pre>
 
 <hr />
@@ -344,7 +307,7 @@ grep -n &quot;error&quot; app.log
 
 <h3 id="sort-order-lines"><code>sort</code> - Order Lines</h3>
 <pre class="highlight"><code class="language-bash"># Alphabetically
-sort data.txt
+sort numbers.txt
 
 # Numerically
 sort -n numbers.txt
@@ -365,6 +328,9 @@ sort data.txt | uniq -c
 
 # Show only duplicates
 sort data.txt | uniq -d
+
+# Show only unique lines (appear exactly once)
+sort data.txt | uniq -u
 </code></pre>
 
 <h3 id="head-and-tail-select-firstlast-lines"><code>head</code> and <code>tail</code> - Select First/Last Lines</h3>
@@ -377,7 +343,7 @@ head -20 data.csv
 # Last 10 lines
 tail data.csv
 
-# Follow file (useful for logs)
+# Follow file in real time (useful for logs)
 tail -f app.log
 </code></pre>
 
@@ -410,8 +376,61 @@ curl -s 'https://api.github.com/repos/torvalds/linux' | \
   jq -r '.stargazers_count'
 </code></pre>
 
+<hr />
+<h2 id="building-your-first-data-pipeline">Building Your First Data Pipeline</h2>
+<h3 id="example-analyzing-web-server-logs">Example: Analyzing Web Server Logs</h3>
+<blockquote>
+<p><strong>Note:</strong> The access log shown below is a simplified example for illustration purposes. The actual <code>access.log</code> file in the sample dataset uses the Combined Log Format with additional fields.</p>
+</blockquote>
+<p>Given an access log:</p>
+<pre class="highlight"><code>192.168.1.1 - - [27/Nov/2024:10:23:45] &quot;GET /api/users&quot; 200
+192.168.1.2 - - [27/Nov/2024:10:24:12] &quot;GET /api/posts&quot; 404
+192.168.1.1 - - [27/Nov/2024:10:25:01] &quot;POST /api/login&quot; 200
+</code></pre>
+
+<h3 id="task-1-count-requests-by-ip">Task 1: Count Requests by IP</h3>
+<pre class="highlight"><code class="language-bash">cat access.log | \
+  awk '{print $1}' | \
+  sort | \
+  uniq -c | \
+  sort -rn
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>2 192.168.1.1
+1 192.168.1.2
+</code></pre>
+
+<h3 id="task-2-find-and-count-all-404-errors">Task 2: Find and Count All 404 Errors</h3>
+<pre class="highlight"><code class="language-bash">grep &quot;404&quot; access.log | \
+  awk '{print $7}' | \
+  sort | \
+  uniq -c
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>1 /api/posts
+</code></pre>
+
+<h3 id="task-3-top-10-most-accessed-endpoints">Task 3: Top 10 Most Accessed Endpoints</h3>
+<pre class="highlight"><code class="language-bash">awk '{print $7}' access.log | \
+  sort | \
+  uniq -c | \
+  sort -rn | \
+  head -10
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="highlight"><code>1 /api/users
+1 /api/posts
+1 /api/login
+</code></pre>
+
+<hr />
+<h2 id="streaming-inter-process-communication-ipc">Streaming &amp; Inter-Process Communication (IPC)</h2>
 <h3 id="named-pipes-fifos-introduction">Named Pipes (FIFOs) - Introduction</h3>
-<p>Named pipes allow inter-process communication through the filesystem.</p>
+<p>A named pipe behaves like a file, but it doesn't store data; it only passes data through in real time.</p>
+<p>Named pipes allow inter-process communication through the filesystem. Named pipes will be covered in more depth in Module 10.</p>
 <pre class="highlight"><code class="language-bash"># Create a named pipe
 mkfifo mypipe
 
@@ -421,7 +440,7 @@ echo &quot;Hello from pipe&quot; &gt; mypipe
 # Terminal 2: Read from pipe
 cat &lt; mypipe
 
-# Use in pipelines
+# Use in pipelines - stream data from gzip into another process through a FIFO
 mkfifo data_pipe
 gzip -c large_file.txt &gt; data_pipe &amp;
 process_data &lt; data_pipe
@@ -433,7 +452,7 @@ rm data_pipe
 - Avoid intermediate files<br />
 - Enable parallel processing</p>
 <h3 id="devfd-file-descriptor-files"><code>/dev/fd/</code> - File Descriptor Files</h3>
-<p>The <code>/dev/fd/</code> directory contains special files representing open file descriptors.</p>
+<p>The <code>/dev/fd/</code> directory contains special files representing open file descriptors. File descriptors will be covered in more depth in Module 2.</p>
 <pre class="highlight"><code class="language-bash"># View your current file descriptors
 ls -l /dev/fd/
 
@@ -448,7 +467,7 @@ diff &lt;(ls /tmp) &lt;(ls /var/tmp)
 </code></pre>
 
 <h3 id="buffering-in-unix-streams">Buffering in Unix Streams</h3>
-<p>Understanding buffering is crucial for real-time data processing.</p>
+<p>Programs buffer output to improve performance, but this can delay data when working in pipelines. Understanding buffering is crucial for real-time data processing.</p>
 <p><strong>Buffering Modes:</strong><br />
 - <strong>Unbuffered</strong>: Data is written immediately (stderr is unbuffered by default)<br />
 - <strong>Line-buffered</strong>: Data is written when a newline is encountered (stdout to terminal)<br />
@@ -471,7 +490,7 @@ print(&quot;output&quot;, flush=True)
 </code></pre>
 
 <p><strong>Example: Real-time Log Monitoring</strong></p>
-<pre class="highlight"><code class="language-bash"># Without line buffering - delays appear
+<pre class="highlight"><code class="language-bash"># Without line buffering - delays appear, because it waits for a full buffer
 tail -f /var/log/syslog | grep &quot;error&quot; | awk '{print $1, $2, $5}'
 
 # With line buffering - immediate output

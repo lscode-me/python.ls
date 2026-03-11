@@ -4,6 +4,6 @@ id,name,age,city,status
 3,Carol,35,Kazan,inactive
 4,Dave,28,Moscow,active
 5,Eve,32,Sochi,inactive
-6,Frank,45,Novosibirsk,active
-7,Grace,27,Samara,active
-8,Henry,38,Ekaterinburg,inactive
+6,Frank,28,Novosibirsk,active
+7,Grace,30,Samara,active
+8,Henry,25,Ekaterinburg,inactive

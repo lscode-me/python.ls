@@ -117,7 +117,7 @@ sort | uniq -c
 awk '{sum += $1} END {print sum}'
 
 # Get statistics
-datamash mean 1 median 1 < data.txt
+datamash mean 1 median 1 < numbers.txt
 ```
 
 ---
@@ -150,54 +150,6 @@ Alice   30     NYC
 # Log format
 2024-11-27 10:23:45 INFO User logged in
 2024-11-27 10:24:12 ERROR Connection timeout
-```
-
----
-
-## Building Your First Data Pipeline
-
-### Example: Analyzing Web Server Logs
-
-Given an access log:
-```
-192.168.1.1 - - [27/Nov/2024:10:23:45] "GET /api/users" 200
-192.168.1.2 - - [27/Nov/2024:10:24:12] "GET /api/posts" 404
-192.168.1.1 - - [27/Nov/2024:10:25:01] "POST /api/login" 200
-```
-
-### Task 1: Count Requests by IP
-
-```bash
-cat access.log | \
-  awk '{print $1}' | \
-  sort | \
-  uniq -c | \
-  sort -rn
-```
-
-**Output:**
-```
-2 192.168.1.1
-1 192.168.1.2
-```
-
-### Task 2: Find All 404 Errors
-
-```bash
-grep "404" access.log | \
-  awk '{print $7}' | \
-  sort | \
-  uniq -c
-```
-
-### Task 3: Top 10 Most Accessed Endpoints
-
-```bash
-awk '{print $7}' access.log | \
-  sort | \
-  uniq -c | \
-  sort -rn | \
-  head -10
 ```
 
 ---
@@ -250,7 +202,7 @@ grep -n "error" app.log
 
 ```bash
 # Alphabetically
-sort data.txt
+sort numbers.txt
 
 # Numerically
 sort -n numbers.txt
@@ -273,6 +225,9 @@ sort data.txt | uniq -c
 
 # Show only duplicates
 sort data.txt | uniq -d
+
+# Show only unique lines (appear exactly once)
+sort data.txt | uniq -u
 ```
 
 ### `head` and `tail` - Select First/Last Lines
@@ -287,7 +242,7 @@ head -20 data.csv
 # Last 10 lines
 tail data.csv
 
-# Follow file (useful for logs)
+# Follow file in real time (useful for logs)
 tail -f app.log
 ```
 
@@ -324,9 +279,77 @@ curl -s 'https://api.github.com/repos/torvalds/linux' | \
   jq -r '.stargazers_count'
 ```
 
+---
+
+## Building Your First Data Pipeline
+
+### Example: Analyzing Web Server Logs
+
+> **Note:** The access log shown below is a simplified example for illustration purposes. The actual `access.log` file in the sample dataset uses the Combined Log Format with additional fields.
+
+Given an access log:
+```
+192.168.1.1 - - [27/Nov/2024:10:23:45] "GET /api/users" 200
+192.168.1.2 - - [27/Nov/2024:10:24:12] "GET /api/posts" 404
+192.168.1.1 - - [27/Nov/2024:10:25:01] "POST /api/login" 200
+```
+
+### Task 1: Count Requests by IP
+
+```bash
+cat access.log | \
+  awk '{print $1}' | \
+  sort | \
+  uniq -c | \
+  sort -rn
+```
+
+**Output:**
+```
+2 192.168.1.1
+1 192.168.1.2
+```
+
+### Task 2: Find and Count All 404 Errors
+
+```bash
+grep "404" access.log | \
+  awk '{print $7}' | \
+  sort | \
+  uniq -c
+```
+
+**Output:**
+```
+1 /api/posts
+```
+
+### Task 3: Top 10 Most Accessed Endpoints
+
+```bash
+awk '{print $7}' access.log | \
+  sort | \
+  uniq -c | \
+  sort -rn | \
+  head -10
+```
+
+**Output:**
+```
+1 /api/users
+1 /api/posts
+1 /api/login
+```
+
+---
+
+## Streaming & Inter-Process Communication (IPC)
+
 ### Named Pipes (FIFOs) - Introduction
 
-Named pipes allow inter-process communication through the filesystem.
+A named pipe behaves like a file, but it doesn't store data; it only passes data through in real time.
+
+Named pipes allow inter-process communication through the filesystem. Named pipes will be covered in more depth in Module 10.
 
 ```bash
 # Create a named pipe
@@ -338,7 +361,7 @@ echo "Hello from pipe" > mypipe
 # Terminal 2: Read from pipe
 cat < mypipe
 
-# Use in pipelines
+# Use in pipelines - stream data from gzip into another process through a FIFO
 mkfifo data_pipe
 gzip -c large_file.txt > data_pipe &
 process_data < data_pipe
@@ -352,7 +375,7 @@ rm data_pipe
 
 ### `/dev/fd/` - File Descriptor Files
 
-The `/dev/fd/` directory contains special files representing open file descriptors.
+The `/dev/fd/` directory contains special files representing open file descriptors. File descriptors will be covered in more depth in Module 2.
 
 ```bash
 # View your current file descriptors
@@ -370,7 +393,7 @@ diff <(ls /tmp) <(ls /var/tmp)
 
 ### Buffering in Unix Streams
 
-Understanding buffering is crucial for real-time data processing.
+Programs buffer output to improve performance, but this can delay data when working in pipelines. Understanding buffering is crucial for real-time data processing.
 
 **Buffering Modes:**
 - **Unbuffered**: Data is written immediately (stderr is unbuffered by default)
@@ -397,7 +420,7 @@ print("output", flush=True)
 
 **Example: Real-time Log Monitoring**
 ```bash
-# Without line buffering - delays appear
+# Without line buffering - delays appear, because it waits for a full buffer
 tail -f /var/log/syslog | grep "error" | awk '{print $1, $2, $5}'
 
 # With line buffering - immediate output

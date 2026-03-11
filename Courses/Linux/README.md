@@ -1,4 +1,4 @@
-# Unix & Data Pipelines
+ht# Unix & Data Pipelines
 ### A Practical Course for Engineers
 
 A course that teaches engineers to use Unix tools, shell scripting, and CLI-based data processing as a powerful DSL for building data pipelines. Students learn to work with large datasets, transform structured and unstructured data, and integrate Unix tools with Python.
@@ -19,7 +19,7 @@ Introduction to Unix philosophy and stream-based data processing.
 - [Resources](01_Unix_Streams/links.md)
 - [Quiz](01_Unix_Streams/quiz.md) - Test your knowledge
 
-**Tools:** `curl`, `cut`, `grep`, `sort`, `uniq`, `head`, `tail`
+**Tools:** `curl`, `cut`, `grep`, `sort`, `uniq`, `head`, `tail`, `tee`
 
 ---
 

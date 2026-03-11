@@ -187,9 +187,9 @@ D) `command >> file1 file2 file3`
 | 10 | C | `-L` |
 | 11 | B | `tee` writes to file and passes data through to next command in pipeline |
 | 12 | B | FIFO write blocks until reader connects (synchronization mechanism) |
-| 13 | D | `--line-buffered` forces immediate output, crucial for real-time monitoring (like `tail -f | grep`) |
-| 14 | C | `/dev/fd/0` is a symbolic link to stdin (file descriptor 0) |
-| 15 | C | `tee` can write to multiple files in one command and still output to stdout |
+| 13 | C | `--line-buffered` forces immediate output, crucial for real-time monitoring (like `tail -f | grep`) |
+| 14 | B | `/dev/fd/0` is a symbolic link to stdin (file descriptor 0) |
+| 15 | A | `tee` can write to multiple files in one command and still output to stdout |
 
 ---
 

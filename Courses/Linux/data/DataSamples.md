@@ -1,6 +1,7 @@
 # Sample Data Files
 
 All sample data files used throughout the course are available in the `files/` subfolder.
+At the bottom of this page, there is a script that recreates all sample files locally so learners can follow the course without copying files manually.
 
 ---
 
@@ -64,6 +65,7 @@ Numeric data for arithmetic operations.
 23
 56
 78
+125
 12
 45
 91
@@ -131,9 +133,9 @@ id,name,age,city,status
 3,Carol,35,Kazan,inactive
 4,Dave,28,Moscow,active
 5,Eve,32,Sochi,inactive
-6,Frank,45,Novosibirsk,active
-7,Grace,27,Samara,active
-8,Henry,38,Ekaterinburg,inactive
+6,Frank,28,Novosibirsk,active
+7,Grace,30,Samara,active
+8,Henry,25,Ekaterinburg,inactive
 ```
 
 ### users.csv
@@ -603,6 +605,7 @@ cat > numbers.txt << 'EOF'
 23
 56
 78
+125
 12
 45
 91
@@ -656,9 +659,9 @@ id,name,age,city,status
 3,Carol,35,Kazan,inactive
 4,Dave,28,Moscow,active
 5,Eve,32,Sochi,inactive
-6,Frank,45,Novosibirsk,active
-7,Grace,27,Samara,active
-8,Henry,38,Ekaterinburg,inactive
+6,Frank,28,Novosibirsk,active
+7,Grace,30,Samara,active
+8,Henry,25,Ekaterinburg,inactive
 EOF
 
 cat > users.csv << 'EOF'
