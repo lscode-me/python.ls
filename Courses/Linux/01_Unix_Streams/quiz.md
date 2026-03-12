@@ -59,9 +59,9 @@ D) Removes commas from the file
 
 ---
 
-## Question 6: Filter-Transform-Aggregate
+## Question 6: Data Processing Pattern
 
-Which represents the correct order in the Unix data processing pattern?
+In data pipelines, processing typically follows a three-step pattern. Which of the following shows the correct order?
 
 A) Aggregate → Filter → Transform  
 B) Transform → Filter → Aggregate  

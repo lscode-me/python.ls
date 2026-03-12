@@ -338,9 +338,15 @@ Web server access log (Combined Log Format).
 192.168.1.20 - - [15/Mar/2024:10:32:00 +0000] "GET /admin HTTP/1.1" 403 123 "Mozilla/5.0"
 192.168.1.15 - bob [15/Mar/2024:10:32:30 +0000] "GET /api/orders HTTP/1.1" 200 4567 "curl/7.64.1"
 192.168.1.25 - - [15/Mar/2024:10:33:45 +0000] "GET /missing.html HTTP/1.1" 404 89 "Googlebot/2.1"
-192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] "POST /checkout HTTP/1.1" 500 234 "Mozilla/5.0"
+192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] "GET /api/users HTTP/1.1" 200 2345 "Mozilla/5.0"
 192.168.1.30 - carol [15/Mar/2024:10:35:15 +0000] "GET /api/users HTTP/1.1" 200 2345 "Python-urllib/3.9"
 192.168.1.15 - bob [15/Mar/2024:10:36:00 +0000] "POST /api/checkout HTTP/1.1" 200 456 "curl/7.64.1"
+192.168.1.10 - alice [15/Mar/2024:10:37:22 +0000] "GET /index.html HTTP/1.1" 200 1234 "Mozilla/5.0"
+192.168.1.25 - - [15/Mar/2024:10:38:10 +0000] "GET /old-page HTTP/1.1" 404 89 "Googlebot/2.1"
+192.168.1.15 - bob [15/Mar/2024:10:39:30 +0000] "GET /api/users HTTP/1.1" 200 2345 "curl/7.64.1"
+192.168.1.10 - alice [15/Mar/2024:10:40:05 +0000] "POST /checkout HTTP/1.1" 200 234 "Mozilla/5.0"
+192.168.1.30 - carol [15/Mar/2024:10:41:18 +0000] "GET /index.html HTTP/1.1" 200 1234 "Python-urllib/3.9"
+192.168.1.25 - - [15/Mar/2024:10:42:55 +0000] "GET /missing.html HTTP/1.1" 404 89 "Googlebot/2.1"
 ```
 
 ---
@@ -821,9 +827,15 @@ cat > access.log << 'EOF'
 192.168.1.20 - - [15/Mar/2024:10:32:00 +0000] "GET /admin HTTP/1.1" 403 123 "Mozilla/5.0"
 192.168.1.15 - bob [15/Mar/2024:10:32:30 +0000] "GET /api/orders HTTP/1.1" 200 4567 "curl/7.64.1"
 192.168.1.25 - - [15/Mar/2024:10:33:45 +0000] "GET /missing.html HTTP/1.1" 404 89 "Googlebot/2.1"
-192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] "POST /checkout HTTP/1.1" 500 234 "Mozilla/5.0"
+192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] "GET /api/users HTTP/1.1" 200 2345 "Mozilla/5.0"
 192.168.1.30 - carol [15/Mar/2024:10:35:15 +0000] "GET /api/users HTTP/1.1" 200 2345 "Python-urllib/3.9"
 192.168.1.15 - bob [15/Mar/2024:10:36:00 +0000] "POST /api/checkout HTTP/1.1" 200 456 "curl/7.64.1"
+192.168.1.10 - alice [15/Mar/2024:10:37:22 +0000] "GET /index.html HTTP/1.1" 200 1234 "Mozilla/5.0"
+192.168.1.25 - - [15/Mar/2024:10:38:10 +0000] "GET /old-page HTTP/1.1" 404 89 "Googlebot/2.1"
+192.168.1.15 - bob [15/Mar/2024:10:39:30 +0000] "GET /api/users HTTP/1.1" 200 2345 "curl/7.64.1"
+192.168.1.10 - alice [15/Mar/2024:10:40:05 +0000] "POST /checkout HTTP/1.1" 200 234 "Mozilla/5.0"
+192.168.1.30 - carol [15/Mar/2024:10:41:18 +0000] "GET /index.html HTTP/1.1" 200 1234 "Python-urllib/3.9"
+192.168.1.25 - - [15/Mar/2024:10:42:55 +0000] "GET /missing.html HTTP/1.1" 404 89 "Googlebot/2.1"
 EOF
 
 # === JSON Files ===

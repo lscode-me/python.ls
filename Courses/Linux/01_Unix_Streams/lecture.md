@@ -285,13 +285,23 @@ curl -s 'https://api.github.com/repos/torvalds/linux' | \
 
 ### Example: Analyzing Web Server Logs
 
-> **Note:** The access log shown below is a simplified example for illustration purposes. The actual `access.log` file in the sample dataset uses the Combined Log Format with additional fields.
-
-Given an access log:
+Given an `access.log` (Combined Log Format):
 ```
-192.168.1.1 - - [27/Nov/2024:10:23:45] "GET /api/users" 200
-192.168.1.2 - - [27/Nov/2024:10:24:12] "GET /api/posts" 404
-192.168.1.1 - - [27/Nov/2024:10:25:01] "POST /api/login" 200
+192.168.1.10 - alice [15/Mar/2024:10:30:45 +0000] "GET /index.html HTTP/1.1" 200 1234 "Mozilla/5.0"
+192.168.1.15 - bob [15/Mar/2024:10:31:02 +0000] "POST /api/login HTTP/1.1" 200 256 "curl/7.64.1"
+192.168.1.10 - alice [15/Mar/2024:10:31:15 +0000] "GET /products?id=42 HTTP/1.1" 200 8901 "Mozilla/5.0"
+192.168.1.20 - - [15/Mar/2024:10:32:00 +0000] "GET /admin HTTP/1.1" 403 123 "Mozilla/5.0"
+192.168.1.15 - bob [15/Mar/2024:10:32:30 +0000] "GET /api/orders HTTP/1.1" 200 4567 "curl/7.64.1"
+192.168.1.25 - - [15/Mar/2024:10:33:45 +0000] "GET /missing.html HTTP/1.1" 404 89 "Googlebot/2.1"
+192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] "GET /api/users HTTP/1.1" 200 2345 "Mozilla/5.0"
+192.168.1.30 - carol [15/Mar/2024:10:35:15 +0000] "GET /api/users HTTP/1.1" 200 2345 "Python-urllib/3.9"
+192.168.1.15 - bob [15/Mar/2024:10:36:00 +0000] "POST /api/checkout HTTP/1.1" 200 456 "curl/7.64.1"
+192.168.1.10 - alice [15/Mar/2024:10:37:22 +0000] "GET /index.html HTTP/1.1" 200 1234 "Mozilla/5.0"
+192.168.1.25 - - [15/Mar/2024:10:38:10 +0000] "GET /old-page HTTP/1.1" 404 89 "Googlebot/2.1"
+192.168.1.15 - bob [15/Mar/2024:10:39:30 +0000] "GET /api/users HTTP/1.1" 200 2345 "curl/7.64.1"
+192.168.1.10 - alice [15/Mar/2024:10:40:05 +0000] "POST /checkout HTTP/1.1" 200 234 "Mozilla/5.0"
+192.168.1.30 - carol [15/Mar/2024:10:41:18 +0000] "GET /index.html HTTP/1.1" 200 1234 "Python-urllib/3.9"
+192.168.1.25 - - [15/Mar/2024:10:42:55 +0000] "GET /missing.html HTTP/1.1" 404 89 "Googlebot/2.1"
 ```
 
 ### Task 1: Count Requests by IP
@@ -306,8 +316,11 @@ cat access.log | \
 
 **Output:**
 ```
-2 192.168.1.1
-1 192.168.1.2
+5 192.168.1.10
+4 192.168.1.15
+3 192.168.1.25
+2 192.168.1.30
+1 192.168.1.20
 ```
 
 ### Task 2: Find and Count All 404 Errors
@@ -321,7 +334,8 @@ grep "404" access.log | \
 
 **Output:**
 ```
-1 /api/posts
+2 /missing.html
+1 /old-page
 ```
 
 ### Task 3: Top 10 Most Accessed Endpoints
@@ -336,9 +350,16 @@ awk '{print $7}' access.log | \
 
 **Output:**
 ```
-1 /api/users
-1 /api/posts
+3 /api/users
+3 /index.html
+2 /missing.html
+1 /products?id=42
+1 /old-page
+1 /checkout
+1 /api/orders
 1 /api/login
+1 /api/checkout
+1 /admin
 ```
 
 ---
