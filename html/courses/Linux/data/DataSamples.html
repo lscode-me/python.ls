@@ -325,9 +325,15 @@ u2,2024-01-01,2024-03-25,6
 192.168.1.20 - - [15/Mar/2024:10:32:00 +0000] &quot;GET /admin HTTP/1.1&quot; 403 123 &quot;Mozilla/5.0&quot;
 192.168.1.15 - bob [15/Mar/2024:10:32:30 +0000] &quot;GET /api/orders HTTP/1.1&quot; 200 4567 &quot;curl/7.64.1&quot;
 192.168.1.25 - - [15/Mar/2024:10:33:45 +0000] &quot;GET /missing.html HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
-192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] &quot;POST /checkout HTTP/1.1&quot; 500 234 &quot;Mozilla/5.0&quot;
+192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;Mozilla/5.0&quot;
 192.168.1.30 - carol [15/Mar/2024:10:35:15 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;Python-urllib/3.9&quot;
 192.168.1.15 - bob [15/Mar/2024:10:36:00 +0000] &quot;POST /api/checkout HTTP/1.1&quot; 200 456 &quot;curl/7.64.1&quot;
+192.168.1.10 - alice [15/Mar/2024:10:37:22 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 1234 &quot;Mozilla/5.0&quot;
+192.168.1.25 - - [15/Mar/2024:10:38:10 +0000] &quot;GET /old-page HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
+192.168.1.15 - bob [15/Mar/2024:10:39:30 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;curl/7.64.1&quot;
+192.168.1.10 - alice [15/Mar/2024:10:40:05 +0000] &quot;POST /checkout HTTP/1.1&quot; 200 234 &quot;Mozilla/5.0&quot;
+192.168.1.30 - carol [15/Mar/2024:10:41:18 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 1234 &quot;Python-urllib/3.9&quot;
+192.168.1.25 - - [15/Mar/2024:10:42:55 +0000] &quot;GET /missing.html HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
 </code></pre>
 
 <hr />
@@ -772,9 +778,15 @@ cat &gt; access.log &lt;&lt; 'EOF'
 192.168.1.20 - - [15/Mar/2024:10:32:00 +0000] &quot;GET /admin HTTP/1.1&quot; 403 123 &quot;Mozilla/5.0&quot;
 192.168.1.15 - bob [15/Mar/2024:10:32:30 +0000] &quot;GET /api/orders HTTP/1.1&quot; 200 4567 &quot;curl/7.64.1&quot;
 192.168.1.25 - - [15/Mar/2024:10:33:45 +0000] &quot;GET /missing.html HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
-192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] &quot;POST /checkout HTTP/1.1&quot; 500 234 &quot;Mozilla/5.0&quot;
+192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;Mozilla/5.0&quot;
 192.168.1.30 - carol [15/Mar/2024:10:35:15 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;Python-urllib/3.9&quot;
 192.168.1.15 - bob [15/Mar/2024:10:36:00 +0000] &quot;POST /api/checkout HTTP/1.1&quot; 200 456 &quot;curl/7.64.1&quot;
+192.168.1.10 - alice [15/Mar/2024:10:37:22 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 1234 &quot;Mozilla/5.0&quot;
+192.168.1.25 - - [15/Mar/2024:10:38:10 +0000] &quot;GET /old-page HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
+192.168.1.15 - bob [15/Mar/2024:10:39:30 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;curl/7.64.1&quot;
+192.168.1.10 - alice [15/Mar/2024:10:40:05 +0000] &quot;POST /checkout HTTP/1.1&quot; 200 234 &quot;Mozilla/5.0&quot;
+192.168.1.30 - carol [15/Mar/2024:10:41:18 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 1234 &quot;Python-urllib/3.9&quot;
+192.168.1.25 - - [15/Mar/2024:10:42:55 +0000] &quot;GET /missing.html HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
 EOF
 
 # === JSON Files ===

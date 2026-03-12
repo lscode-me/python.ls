@@ -44,7 +44,7 @@
         <span class="course-badge">Linux for Developers: Unix &amp; Data Pipelines</span>
         <div class="module-info">
             <span class="module-number">Module 1</span>
-            <span class="reading-time">📖 10 min</span>
+            <span class="reading-time">📖 11 min</span>
         </div>
     </div>
 
@@ -285,13 +285,22 @@ curl -s 'https://api.github.com/repos/torvalds/linux' | \
 <hr />
 <h2 id="building-your-first-data-pipeline">Building Your First Data Pipeline</h2>
 <h3 id="example-analyzing-web-server-logs">Example: Analyzing Web Server Logs</h3>
-<blockquote>
-<p><strong>Note:</strong> The access log shown below is a simplified example for illustration purposes. The actual <code>access.log</code> file in the sample dataset uses the Combined Log Format with additional fields.</p>
-</blockquote>
-<p>Given an access log:</p>
-<pre class="highlight"><code>192.168.1.1 - - [27/Nov/2024:10:23:45] &quot;GET /api/users&quot; 200
-192.168.1.2 - - [27/Nov/2024:10:24:12] &quot;GET /api/posts&quot; 404
-192.168.1.1 - - [27/Nov/2024:10:25:01] &quot;POST /api/login&quot; 200
+<p>Given an <code>access.log</code> (Combined Log Format):</p>
+<pre class="highlight"><code>192.168.1.10 - alice [15/Mar/2024:10:30:45 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 1234 &quot;Mozilla/5.0&quot;
+192.168.1.15 - bob [15/Mar/2024:10:31:02 +0000] &quot;POST /api/login HTTP/1.1&quot; 200 256 &quot;curl/7.64.1&quot;
+192.168.1.10 - alice [15/Mar/2024:10:31:15 +0000] &quot;GET /products?id=42 HTTP/1.1&quot; 200 8901 &quot;Mozilla/5.0&quot;
+192.168.1.20 - - [15/Mar/2024:10:32:00 +0000] &quot;GET /admin HTTP/1.1&quot; 403 123 &quot;Mozilla/5.0&quot;
+192.168.1.15 - bob [15/Mar/2024:10:32:30 +0000] &quot;GET /api/orders HTTP/1.1&quot; 200 4567 &quot;curl/7.64.1&quot;
+192.168.1.25 - - [15/Mar/2024:10:33:45 +0000] &quot;GET /missing.html HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
+192.168.1.10 - alice [15/Mar/2024:10:34:00 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;Mozilla/5.0&quot;
+192.168.1.30 - carol [15/Mar/2024:10:35:15 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;Python-urllib/3.9&quot;
+192.168.1.15 - bob [15/Mar/2024:10:36:00 +0000] &quot;POST /api/checkout HTTP/1.1&quot; 200 456 &quot;curl/7.64.1&quot;
+192.168.1.10 - alice [15/Mar/2024:10:37:22 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 1234 &quot;Mozilla/5.0&quot;
+192.168.1.25 - - [15/Mar/2024:10:38:10 +0000] &quot;GET /old-page HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
+192.168.1.15 - bob [15/Mar/2024:10:39:30 +0000] &quot;GET /api/users HTTP/1.1&quot; 200 2345 &quot;curl/7.64.1&quot;
+192.168.1.10 - alice [15/Mar/2024:10:40:05 +0000] &quot;POST /checkout HTTP/1.1&quot; 200 234 &quot;Mozilla/5.0&quot;
+192.168.1.30 - carol [15/Mar/2024:10:41:18 +0000] &quot;GET /index.html HTTP/1.1&quot; 200 1234 &quot;Python-urllib/3.9&quot;
+192.168.1.25 - - [15/Mar/2024:10:42:55 +0000] &quot;GET /missing.html HTTP/1.1&quot; 404 89 &quot;Googlebot/2.1&quot;
 </code></pre>
 
 <h3 id="task-1-count-requests-by-ip">Task 1: Count Requests by IP</h3>
@@ -303,8 +312,11 @@ curl -s 'https://api.github.com/repos/torvalds/linux' | \
 </code></pre>
 
 <p><strong>Output:</strong></p>
-<pre class="highlight"><code>2 192.168.1.1
-1 192.168.1.2
+<pre class="highlight"><code>5 192.168.1.10
+4 192.168.1.15
+3 192.168.1.25
+2 192.168.1.30
+1 192.168.1.20
 </code></pre>
 
 <h3 id="task-2-find-and-count-all-404-errors">Task 2: Find and Count All 404 Errors</h3>
@@ -315,7 +327,8 @@ curl -s 'https://api.github.com/repos/torvalds/linux' | \
 </code></pre>
 
 <p><strong>Output:</strong></p>
-<pre class="highlight"><code>1 /api/posts
+<pre class="highlight"><code>2 /missing.html
+1 /old-page
 </code></pre>
 
 <h3 id="task-3-top-10-most-accessed-endpoints">Task 3: Top 10 Most Accessed Endpoints</h3>
@@ -327,9 +340,16 @@ curl -s 'https://api.github.com/repos/torvalds/linux' | \
 </code></pre>
 
 <p><strong>Output:</strong></p>
-<pre class="highlight"><code>1 /api/users
-1 /api/posts
+<pre class="highlight"><code>3 /api/users
+3 /index.html
+2 /missing.html
+1 /products?id=42
+1 /old-page
+1 /checkout
+1 /api/orders
 1 /api/login
+1 /api/checkout
+1 /admin
 </code></pre>
 
 <hr />
