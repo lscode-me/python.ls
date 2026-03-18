@@ -44,7 +44,7 @@
         <span class="course-badge">Linux for Developers: Unix &amp; Data Pipelines</span>
         <div class="module-info">
             <span class="module-number">Module 2</span>
-            <span class="reading-time">📖 13 min</span>
+            <span class="reading-time">📖 16 min</span>
         </div>
     </div>
 
@@ -115,7 +115,8 @@ rm original.txt
 cat hardlink.txt  # Still works!
 </code></pre>
 
-<p><strong>Symbolic Link</strong>: A special file containing a path to another file</p>
+<p><strong>Limitations:</strong> Hard links cannot be created for directories, because allowing directory hard links would enable directory cycles and break normal filesystem traversal rules. They also cannot cross filesystem boundaries, since a hard link must refer to an inode that exists on the same filesystem as the original file.</p>
+<p><strong>Symbolic Link (also called a symlink or soft link)</strong>: A special file containing a path to another file</p>
 <pre class="highlight"><code class="language-bash"># Create symbolic link
 ln -s original.txt symlink.txt
 
@@ -127,8 +128,14 @@ ls -i original.txt symlink.txt
 # Deleting original breaks the symlink
 rm original.txt
 cat symlink.txt  # Error: No such file or directory
+
+# Detect broken symlinks
+find . -xtype l  # find broken symlinks
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> Symbolic links can be absolute or relative. Absolute symlinks store a full path, while relative symlinks store a path relative to the link's own location. Relative symlinks depend on the directory structure and may break if that structure changes, whereas absolute symlinks remain valid unless the target itself is moved.</p>
+</blockquote>
 <hr />
 <h2 id="file-descriptors">File Descriptors</h2>
 <h3 id="what-is-a-file-descriptor">What is a File Descriptor?</h3>
@@ -184,6 +191,7 @@ ls -l /proc/&lt;PID&gt;/fd/
 </code></pre>
 
 <h3 id="redirecting-file-descriptors">Redirecting File Descriptors</h3>
+<p>Redirecting file descriptors allows programs to control where their input, output, and error streams come from or go to. This mechanism is used to read data from files or other sources instead of the terminal, send output to files or devices, or route different streams independently.</p>
 <pre class="highlight"><code class="language-bash"># Redirect stdout to file
 command &gt; output.txt
 # Same as: command 1&gt; output.txt
@@ -206,7 +214,7 @@ command &gt; output.txt 2&gt; errors.txt
 </code></pre>
 
 <h3 id="custom-file-descriptors">Custom File Descriptors</h3>
-<p>You can create custom file descriptors (FD 3 and above):</p>
+<p>You can create custom file descriptors (FD 3 and above). The <code>exec</code> command updates the file descriptors of the current shell, so all subsequent commands automatically use the new redirections.</p>
 <pre class="highlight"><code class="language-bash"># Open file for reading on FD 3
 exec 3&lt; input.txt
 
@@ -227,6 +235,9 @@ echo &quot;Hello&quot; &gt;&amp;4
 exec 4&gt;&amp;-
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> Custom file descriptors remain open in the current shell unless closed manually. Leaving them open can cause file locks, unexpected writes, or inheritance by later commands. Closing them with <code>exec 3&gt;&amp;-</code> prevents these issues.</p>
+</blockquote>
 <h3 id="practical-example-separate-stdout-and-stderr">Practical Example: Separate Stdout and Stderr</h3>
 <pre class="highlight"><code class="language-bash">#!/bin/bash
 
@@ -258,7 +269,7 @@ process_logs() {
       *INFO*)
         echo &quot;$line&quot; &gt;&amp;3  # Write to FD 3 (info.log)
         ;;
-      *WARNING*)
+      *WARN*)
         echo &quot;$line&quot; &gt;&amp;4  # Write to FD 4 (warnings.log)
         ;;
       *ERROR*)
@@ -295,9 +306,9 @@ cat errors.log
 mkfifo info_pipe warning_pipe error_pipe
 
 # Start background processors for each stream
-grep &quot;INFO&quot; &lt; info_pipe | process_info &gt; info_results.txt &amp;
-grep &quot;WARNING&quot; &lt; warning_pipe | process_warnings &gt; warning_results.txt &amp;
-grep &quot;ERROR&quot; &lt; error_pipe | send_alerts &amp;
+grep &quot;INFO&quot; &lt; info_pipe | cat &gt; info_results.txt &amp;
+grep &quot;WARN&quot; &lt; warning_pipe | cat &gt; warning_results.txt &amp;
+grep &quot;ERROR&quot; &lt; error_pipe | cat &gt; error_results.txt &amp;
 
 # Split input into multiple streams simultaneously
 tee info_pipe warning_pipe error_pipe &lt; app.log &gt; /dev/null
@@ -345,23 +356,21 @@ echo &quot;This goes to terminal&quot;
 <h3 id="example-dual-logging-screen-file">Example: Dual Logging (Screen + File)</h3>
 <pre class="highlight"><code class="language-bash">#!/bin/bash
 
-# Open log file on FD 3
+# Open log file on FD 3 (overwrite mode)
 exec 3&gt; script.log
+
+# To append to existing log instead of overwriting, use:
+# exec 3&gt;&gt; script.log
 
 # Function that logs to both screen and file
 log() {
-  echo &quot;$@&quot; | tee /dev/fd/3
-}
-
-# Alternative: direct dual write
-log_dual() {
   echo &quot;$@&quot;      # To stdout (screen)
   echo &quot;$@&quot; &gt;&amp;3  # To FD 3 (file)
 }
 
 log &quot;Starting data processing...&quot;
 log &quot;Processing 1000 records...&quot;
-log_dual &quot;Completed!&quot;
+log &quot;Completed!&quot;
 
 exec 3&gt;&amp;-
 </code></pre>
@@ -543,8 +552,12 @@ ls -l /dev | cut -c1 | sort | uniq -c
 #      3 s  # Sockets
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> You may see an extra <code>t</code> entry in the output. This appears because <code>ls -l</code> prints a <code>total</code> header at the top of the listing. Since the pipeline cuts only the first character of each line, it also counts this header and treats the leading <code>t</code> as if it were a file type.</p>
+</blockquote>
 <hr />
 <h2 id="file-permissions">File Permissions</h2>
+<p>File permissions control who can read, modify, or execute files and directories, forming a core part of Unix access control.</p>
 <h3 id="permission-structure">Permission Structure</h3>
 <pre class="highlight"><code>-rwxr-xr--
 │└┬┘└┬┘└┬┘
@@ -555,13 +568,17 @@ ls -l /dev | cut -c1 | sort | uniq -c
 </code></pre>
 
 <h3 id="permission-bits">Permission Bits</h3>
+<blockquote>
+<p><strong>Note:</strong> Read, write, and execute permissions have different meanings for files and directories.</p>
+</blockquote>
 <table>
 <thead>
 <tr>
 <th>Permission</th>
 <th>Symbol</th>
 <th>Octal</th>
-<th>Meaning</th>
+<th>Meaning on Files</th>
+<th>Meaning on Directories</th>
 </tr>
 </thead>
 <tbody>
@@ -570,29 +587,34 @@ ls -l /dev | cut -c1 | sort | uniq -c
 <td>r</td>
 <td>4</td>
 <td>View file content</td>
+<td>List directory contents (<code>ls</code>)</td>
 </tr>
 <tr>
 <td>Write</td>
 <td>w</td>
 <td>2</td>
 <td>Modify file content</td>
+<td>Create or delete files in directory</td>
 </tr>
 <tr>
 <td>Execute</td>
 <td>x</td>
 <td>1</td>
 <td>Run file as program</td>
+<td>Enter the directory (<code>cd</code>) and access files inside</td>
 </tr>
 <tr>
 <td>None</td>
 <td>-</td>
 <td>0</td>
 <td>No permission</td>
+<td>No permission</td>
 </tr>
 </tbody>
 </table>
 <h3 id="octal-notation">Octal Notation</h3>
-<pre class="highlight"><code class="language-bash">chmod 755 script.sh
+<pre class="highlight"><code class="language-bash"># chmod sets permissions via octal: user/group/other; r=4, w=2, x=1 (sum per role)
+chmod 755 script.sh
 # 7 = 4+2+1 = rwx (user)
 # 5 = 4+0+1 = r-x (group)
 # 5 = 4+0+1 = r-x (other)
@@ -603,6 +625,13 @@ chmod 644 file.txt
 # 4 = 4+0+0 = r-- (other)
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> There are three permission categories in Unix:
+- <strong>User (u)</strong> — the file owner
+- <strong>Group (g)</strong> — users who belong to the file's group
+- <strong>Other (o)</strong> — all remaining system users</p>
+<p>Each category receives its own permission value when using octal notation.</p>
+</blockquote>
 <h3 id="symbolic-notation">Symbolic Notation</h3>
 <pre class="highlight"><code class="language-bash"># Add execute permission for user
 chmod u+x script.sh
@@ -616,7 +645,7 @@ chmod u=rwx,g=rx,o=r file.txt
 # Add read permission for all
 chmod a+r file.txt
 
-# Recursive change
+# Recursively apply the 755 permissions to the directory and all nested files/subdirectories
 chmod -R 755 directory/
 </code></pre>
 
@@ -637,6 +666,7 @@ chmod -R 755 directory/
 </code></pre>
 
 <h3 id="umask-default-permission-mask">umask — Default Permission Mask</h3>
+<p>The <code>umask</code> subtracts permission bits from the default values (666 for files and 777 for directories).</p>
 <pre class="highlight"><code class="language-bash"># View current umask
 umask
 # 0022
@@ -658,6 +688,7 @@ ls -l newfile.txt
 
 <hr />
 <h2 id="stdinstdoutstderr-as-files">stdin/stdout/stderr as Files</h2>
+<p>In Unix, standard streams and system resources are represented as special files under <code>/dev</code>, making it possible to handle input, output, and pseudodevices using ordinary file operations.</p>
 <h3 id="special-device-files">Special Device Files</h3>
 <pre class="highlight"><code class="language-bash"># These are symlinks to file descriptors
 ls -l /dev/std*
@@ -668,6 +699,7 @@ ls -l /dev/std*
 </code></pre>
 
 <h3 id="the-black-hole-devnull">The Black Hole: /dev/null</h3>
+<p><code>/dev/null</code> acts as a data sink that discards anything written to it and provides no input, which is useful for suppressing unwanted output.</p>
 <pre class="highlight"><code class="language-bash"># Discard output
 command &gt; /dev/null
 
@@ -718,6 +750,7 @@ file program
 </code></pre>
 
 <h3 id="line-endings">Line Endings</h3>
+<p>Different systems use different line ending characters, so converting between LF and CRLF is often necessary when sharing files across platforms.</p>
 <table>
 <thead>
 <tr>
@@ -767,7 +800,7 @@ export LC_ALL=en_US.UTF-8
 </code></pre>
 
 <h3 id="magic-bytes-and-file-signatures">Magic Bytes and File Signatures</h3>
-<p>Many file formats start with specific bytes:</p>
+<p>Many file formats start with specific bytes. These signature bytes allow tools to identify file types based on their internal structure, even when file extensions are missing or incorrect.</p>
 <pre class="highlight"><code class="language-bash"># View first bytes (hex)
 xxd -l 16 file.pdf
 # 00000000: 2550 4446 2d31 2e34 0a25 e2e3 cfd3 0a  %PDF-1.4.%......
