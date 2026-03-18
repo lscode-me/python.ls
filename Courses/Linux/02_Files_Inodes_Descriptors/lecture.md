@@ -81,7 +81,9 @@ rm original.txt
 cat hardlink.txt  # Still works!
 ```
 
-**Symbolic Link**: A special file containing a path to another file
+**Limitations:** Hard links cannot be created for directories, because allowing directory hard links would enable directory cycles and break normal filesystem traversal rules. They also cannot cross filesystem boundaries, since a hard link must refer to an inode that exists on the same filesystem as the original file.
+
+**Symbolic Link (also called a symlink or soft link)**: A special file containing a path to another file
 ```bash
 # Create symbolic link
 ln -s original.txt symlink.txt
@@ -94,7 +96,12 @@ ls -i original.txt symlink.txt
 # Deleting original breaks the symlink
 rm original.txt
 cat symlink.txt  # Error: No such file or directory
+
+# Detect broken symlinks
+find . -xtype l  # find broken symlinks
 ```
+
+> **Note:** Symbolic links can be absolute or relative. Absolute symlinks store a full path, while relative symlinks store a path relative to the link's own location. Relative symlinks depend on the directory structure and may break if that structure changes, whereas absolute symlinks remain valid unless the target itself is moved.
 
 ---
 
@@ -137,6 +144,8 @@ ls -l /proc/<PID>/fd/
 
 ### Redirecting File Descriptors
 
+Redirecting file descriptors allows programs to control where their input, output, and error streams come from or go to. This mechanism is used to read data from files or other sources instead of the terminal, send output to files or devices, or route different streams independently.
+
 ```bash
 # Redirect stdout to file
 command > output.txt
@@ -161,7 +170,7 @@ command > output.txt 2> errors.txt
 
 ### Custom File Descriptors
 
-You can create custom file descriptors (FD 3 and above):
+You can create custom file descriptors (FD 3 and above). The `exec` command updates the file descriptors of the current shell, so all subsequent commands automatically use the new redirections.
 
 ```bash
 # Open file for reading on FD 3
@@ -183,6 +192,8 @@ echo "Hello" >&4
 # Close FD 4
 exec 4>&-
 ```
+
+> **Note:** Custom file descriptors remain open in the current shell unless closed manually. Leaving them open can cause file locks, unexpected writes, or inheritance by later commands. Closing them with `exec 3>&-` prevents these issues.
 
 ### Practical Example: Separate Stdout and Stderr
 
@@ -220,7 +231,7 @@ process_logs() {
       *INFO*)
         echo "$line" >&3  # Write to FD 3 (info.log)
         ;;
-      *WARNING*)
+      *WARN*)
         echo "$line" >&4  # Write to FD 4 (warnings.log)
         ;;
       *ERROR*)
@@ -260,9 +271,9 @@ For parallel processing, named pipes are often more convenient:
 mkfifo info_pipe warning_pipe error_pipe
 
 # Start background processors for each stream
-grep "INFO" < info_pipe | process_info > info_results.txt &
-grep "WARNING" < warning_pipe | process_warnings > warning_results.txt &
-grep "ERROR" < error_pipe | send_alerts &
+grep "INFO" < info_pipe | cat > info_results.txt &
+grep "WARN" < warning_pipe | cat > warning_results.txt &
+grep "ERROR" < error_pipe | cat > error_results.txt &
 
 # Split input into multiple streams simultaneously
 tee info_pipe warning_pipe error_pipe < app.log > /dev/null
@@ -317,23 +328,21 @@ echo "This goes to terminal"
 ```bash
 #!/bin/bash
 
-# Open log file on FD 3
+# Open log file on FD 3 (overwrite mode)
 exec 3> script.log
+
+# To append to existing log instead of overwriting, use:
+# exec 3>> script.log
 
 # Function that logs to both screen and file
 log() {
-  echo "$@" | tee /dev/fd/3
-}
-
-# Alternative: direct dual write
-log_dual() {
   echo "$@"      # To stdout (screen)
   echo "$@" >&3  # To FD 3 (file)
 }
 
 log "Starting data processing..."
 log "Processing 1000 records..."
-log_dual "Completed!"
+log "Completed!"
 
 exec 3>&-
 ```
@@ -543,9 +552,13 @@ ls -l /dev | cut -c1 | sort | uniq -c
 #      3 s  # Sockets
 ```
 
+> **Note:** You may see an extra `t` entry in the output. This appears because `ls -l` prints a `total` header at the top of the listing. Since the pipeline cuts only the first character of each line, it also counts this header and treats the leading `t` as if it were a file type.
+
 ---
 
 ## File Permissions
+
+File permissions control who can read, modify, or execute files and directories, forming a core part of Unix access control.
 
 ### Permission Structure
 
@@ -560,16 +573,19 @@ ls -l /dev | cut -c1 | sort | uniq -c
 
 ### Permission Bits
 
-| Permission | Symbol | Octal | Meaning                    |
-|------------|--------|-------|----------------------------|
-| Read       | r      | 4     | View file content          |
-| Write      | w      | 2     | Modify file content        |
-| Execute    | x      | 1     | Run file as program        |
-| None       | -      | 0     | No permission              |
+> **Note:** Read, write, and execute permissions have different meanings for files and directories.
+
+| Permission | Symbol | Octal | Meaning on Files           | Meaning on Directories                        |
+|------------|--------|-------|----------------------------|-----------------------------------------------|
+| Read       | r      | 4     | View file content          | List directory contents (`ls`)                |
+| Write      | w      | 2     | Modify file content        | Create or delete files in directory           |
+| Execute    | x      | 1     | Run file as program        | Enter the directory (`cd`) and access files inside |
+| None       | -      | 0     | No permission              | No permission                                 |
 
 ### Octal Notation
 
 ```bash
+# chmod sets permissions via octal: user/group/other; r=4, w=2, x=1 (sum per role)
 chmod 755 script.sh
 # 7 = 4+2+1 = rwx (user)
 # 5 = 4+0+1 = r-x (group)
@@ -580,6 +596,13 @@ chmod 644 file.txt
 # 4 = 4+0+0 = r-- (group)
 # 4 = 4+0+0 = r-- (other)
 ```
+
+> **Note:** There are three permission categories in Unix:
+> - **User (u)** — the file owner
+> - **Group (g)** — users who belong to the file's group
+> - **Other (o)** — all remaining system users
+>
+> Each category receives its own permission value when using octal notation.
 
 ### Symbolic Notation
 
@@ -596,7 +619,7 @@ chmod u=rwx,g=rx,o=r file.txt
 # Add read permission for all
 chmod a+r file.txt
 
-# Recursive change
+# Recursively apply the 755 permissions to the directory and all nested files/subdirectories
 chmod -R 755 directory/
 ```
 
@@ -622,6 +645,8 @@ chmod 1777 /tmp
 
 ### umask — Default Permission Mask
 
+The `umask` subtracts permission bits from the default values (666 for files and 777 for directories).
+
 ```bash
 # View current umask
 umask
@@ -646,6 +671,8 @@ ls -l newfile.txt
 
 ## stdin/stdout/stderr as Files
 
+In Unix, standard streams and system resources are represented as special files under `/dev`, making it possible to handle input, output, and pseudodevices using ordinary file operations.
+
 ### Special Device Files
 
 ```bash
@@ -658,6 +685,8 @@ ls -l /dev/std*
 ```
 
 ### The Black Hole: /dev/null
+
+`/dev/null` acts as a data sink that discards anything written to it and provides no input, which is useful for suppressing unwanted output.
 
 ```bash
 # Discard output
@@ -719,6 +748,8 @@ file program
 
 ### Line Endings
 
+Different systems use different line ending characters, so converting between LF and CRLF is often necessary when sharing files across platforms.
+
 | System  | Line Ending | Representation |
 |---------|-------------|----------------|
 | Unix/Linux/Mac | LF | `\n` |
@@ -752,7 +783,7 @@ export LC_ALL=en_US.UTF-8
 
 ### Magic Bytes and File Signatures
 
-Many file formats start with specific bytes:
+Many file formats start with specific bytes. These signature bytes allow tools to identify file types based on their internal structure, even when file extensions are missing or incorrect.
 
 ```bash
 # View first bytes (hex)

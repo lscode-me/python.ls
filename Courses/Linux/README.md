@@ -35,7 +35,7 @@ Understanding Unix file system architecture.
 - [Resources](02_Files_Inodes_Descriptors/links.md)
 - [Quiz](02_Files_Inodes_Descriptors/quiz.md) - Test your knowledge
 
-**Tools:** `stat`, `ls`, `ln`, `chmod`, `umask`, `file`, `lsof`, redirections
+**Tools:** `stat`, `ls`, `ln`, `chmod`, `umask`, `file`, `lsof`, `exec`, `mkfifo`, redirections
 
 ---
 

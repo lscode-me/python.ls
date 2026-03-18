@@ -158,14 +158,14 @@ D) An error is raised
 
 ---
 
-## Question 15: File Descriptor Inheritance
+## Question 15: Named Pipes (FIFO)
 
-What happens to file descriptors when a process forks?
+What happens when a process writes to a named pipe and no reader is connected?
 
-A) Child process gets its own independent file descriptors  
-B) Child process inherits copies of parent's file descriptors  
-C) File descriptors are closed in the child  
-D) Only stdin, stdout, stderr are inherited  
+A) Data is discarded  
+B) The write operation blocks until a reader connects  
+C) Data is stored in the pipe file on disk  
+D) An error is returned immediately  
 
 ---
 
@@ -189,7 +189,7 @@ D) Only stdin, stdout, stderr are inherited
 | 12 | B | /dev/zero provides null bytes, /dev/urandom provides pseudo-random data |
 | 13 | B | Setgid on directories makes new files inherit the directory's group |
 | 14 | B | When link count reaches 0, data blocks are marked free for reuse |
-| 15 | B | Child processes inherit copies of parent's file descriptors |
+| 15 | B | Write operations to named pipes block until a reader connects |
 
 ---
 
