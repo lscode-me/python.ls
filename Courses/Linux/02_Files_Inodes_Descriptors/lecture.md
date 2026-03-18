@@ -328,21 +328,26 @@ echo "This goes to terminal"
 ```bash
 #!/bin/bash
 
-# Open log file on FD 3 (overwrite mode)
+# Open log file on FD 3
 exec 3> script.log
 
-# To append to existing log instead of overwriting, use:
+# To append instead of overwriting, use:
 # exec 3>> script.log
 
 # Function that logs to both screen and file
 log() {
+  echo "$@" | tee /dev/fd/3
+}
+
+# Alternative: direct dual write
+log_dual() {
   echo "$@"      # To stdout (screen)
   echo "$@" >&3  # To FD 3 (file)
 }
 
 log "Starting data processing..."
 log "Processing 1000 records..."
-log "Completed!"
+log_dual "Completed!"
 
 exec 3>&-
 ```
