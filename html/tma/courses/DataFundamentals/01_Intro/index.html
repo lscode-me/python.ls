@@ -659,12 +659,12 @@ file variants.vcf
 <tr>
 <td>PNG</td>
 <td>89 50 4E 47</td>
-<td><code>.PNG</code></td>
+<td><code>\x89PNG</code></td>
 </tr>
 <tr>
 <td>JPEG</td>
 <td>FF D8 FF</td>
-<td>(non-printable)</td>
+<td><code>\xff\xd8\xff</code></td>
 </tr>
 <tr>
 <td>PDF</td>
@@ -674,7 +674,7 @@ file variants.vcf
 <tr>
 <td>ZIP</td>
 <td>50 4B 03 04</td>
-<td><code>PK..</code></td>
+<td><code>PK\x03\x04</code></td>
 </tr>
 <tr>
 <td>GIF</td>
@@ -684,20 +684,23 @@ file variants.vcf
 <tr>
 <td>ELF (Linux exe)</td>
 <td>7F 45 4C 46</td>
-<td><code>.ELF</code></td>
+<td><code>\x7fELF</code></td>
 </tr>
 <tr>
 <td>Gzip</td>
 <td>1F 8B</td>
-<td>(non-printable)</td>
+<td><code>\x1f\x8b</code></td>
 </tr>
 <tr>
 <td>BAM</td>
 <td>42 41 4D 01</td>
-<td><code>BAM</code> + version</td>
+<td><code>BAM\x01</code></td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Note:</strong> Hex viewers like <code>xxd</code> display non-printable bytes (outside the 0x20–0x7E range) as <code>.</code> (dot). So PNG appears as <code>.PNG</code> in <code>xxd</code> output — but the leading <code>.</code> is not a real dot character (0x2E); it's the non-printable byte <code>0x89</code>. Similarly, ELF shows as <code>.ELF</code> because <code>0x7F</code> (DEL) is non-printable.</p>
+</blockquote>
 <h3 id="62-why-magic-numbers-are-needed">6.2 Why Magic Numbers Are Needed</h3>
 <ol>
 <li id="item-1">

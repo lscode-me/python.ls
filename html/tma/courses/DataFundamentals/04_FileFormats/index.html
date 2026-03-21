@@ -195,14 +195,17 @@ AATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTG
 <h2 id="2-magic-numbers">2. Magic Numbers</h2>
 <h3 id="21-what-are-they">2.1 What Are They</h3>
 <p><strong>Magic numbers</strong> are fixed bytes at the beginning of a file that identify its format.</p>
-<pre class="highlight"><code>PNG:  89 50 4E 47 0D 0A 1A 0A  (.PNG....)
-JPEG: FF D8 FF
+<pre class="highlight"><code>PNG:  89 50 4E 47 0D 0A 1A 0A  (\x89PNG\r\n\x1a\n)
+JPEG: FF D8 FF                 (non-printable)
 PDF:  25 50 44 46              (%PDF)
-ZIP:  50 4B 03 04              (PK..)
+ZIP:  50 4B 03 04              (PK\x03\x04)
 GIF:  47 49 46 38              (GIF8)
-BAM:  42 41 4D 01              (BAM.)
+BAM:  42 41 4D 01              (BAM\x01)
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> Hex viewers like <code>xxd</code> display non-printable bytes (outside 0x20–0x7E) as <code>.</code> (dot). For example, PNG's first byte <code>0x89</code> appears as <code>.</code> in <code>xxd</code> — so you'll see <code>.PNG....</code>, but none of those dots are the real ASCII dot (0x2E).</p>
+</blockquote>
 <h3 id="22-popular-signatures">2.2 Popular Signatures</h3>
 <table>
 <thead>
@@ -217,121 +220,121 @@ BAM:  42 41 4D 01              (BAM.)
 <tr>
 <td>PNG</td>
 <td><code>89 50 4E 47 0D 0A 1A 0A</code></td>
-<td>.PNG....</td>
+<td><code>\x89PNG\r\n\x1a\n</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>JPEG</td>
 <td><code>FF D8 FF</code></td>
-<td>-</td>
+<td>non-printable</td>
 <td>0</td>
 </tr>
 <tr>
 <td>GIF87a</td>
 <td><code>47 49 46 38 37 61</code></td>
-<td>GIF87a</td>
+<td><code>GIF87a</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>GIF89a</td>
 <td><code>47 49 46 38 39 61</code></td>
-<td>GIF89a</td>
+<td><code>GIF89a</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>PDF</td>
 <td><code>25 50 44 46 2D</code></td>
-<td>%PDF-</td>
+<td><code>%PDF-</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>ZIP</td>
 <td><code>50 4B 03 04</code></td>
-<td>PK..</td>
+<td><code>PK\x03\x04</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>RAR</td>
 <td><code>52 61 72 21 1A 07</code></td>
-<td>Rar!..</td>
+<td><code>Rar!\x1a\x07</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>7z</td>
 <td><code>37 7A BC AF 27 1C</code></td>
-<td>7z...</td>
+<td>non-printable</td>
 <td>0</td>
 </tr>
 <tr>
 <td>ELF</td>
 <td><code>7F 45 4C 46</code></td>
-<td>.ELF</td>
+<td><code>\x7fELF</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>Mach-O</td>
 <td><code>FE ED FA CE</code> or <code>CF FA ED FE</code></td>
-<td>-</td>
+<td>non-printable</td>
 <td>0</td>
 </tr>
 <tr>
 <td>gzip</td>
 <td><code>1F 8B</code></td>
-<td>-</td>
+<td>non-printable</td>
 <td>0</td>
 </tr>
 <tr>
 <td>bzip2</td>
 <td><code>42 5A 68</code></td>
-<td>BZh</td>
+<td><code>BZh</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>tar</td>
 <td><code>75 73 74 61 72</code></td>
-<td>ustar</td>
+<td><code>ustar</code></td>
 <td>257</td>
 </tr>
 <tr>
 <td>SQLite</td>
 <td><code>53 51 4C 69 74 65 20 66 6F 72 6D 61 74 20 33</code></td>
-<td>SQLite format 3</td>
+<td><code>SQLite format 3</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>MP3</td>
 <td><code>FF FB</code> or <code>49 44 33</code></td>
-<td>- / ID3</td>
+<td>non-printable / <code>ID3</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td>MP4</td>
 <td><code>66 74 79 70</code></td>
-<td>ftyp</td>
+<td><code>ftyp</code></td>
 <td>4</td>
 </tr>
 <tr>
 <td>DOCX/XLSX</td>
 <td><code>50 4B 03 04</code></td>
-<td>PK..</td>
+<td><code>PK\x03\x04</code></td>
 <td>0 (it's ZIP!)</td>
 </tr>
 <tr>
 <td><strong>BAM</strong></td>
 <td><code>42 41 4D 01</code></td>
-<td>BAM.</td>
+<td><code>BAM\x01</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td><strong>BCF</strong></td>
 <td><code>42 43 46 02</code></td>
-<td>BCF.</td>
+<td><code>BCF\x02</code></td>
 <td>0</td>
 </tr>
 <tr>
 <td><strong>CRAM</strong></td>
 <td><code>43 52 41 4D</code></td>
-<td>CRAM</td>
+<td><code>CRAM</code></td>
 <td>0</td>
 </tr>
 </tbody>

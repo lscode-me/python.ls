@@ -1346,6 +1346,7 @@ with open('file.txt', 'r', encoding='utf-8-sig') as f:
 <li>Understand combining characters and grapheme clusters</li>
 <li>Explore homograph attacks using look-alike characters</li>
 <li>Study encoding in different programming languages (Java uses UTF-16 internally)</li>
+<li>Look into <strong>Modified UTF-8 (MUTF-8)</strong> — a variant used by Java's <code>DataInput</code>/<code>DataOutput</code> and Android's DEX format. MUTF-8 encodes the null character (<code>U+0000</code>) as two bytes (<code>C0 80</code>) instead of one (<code>00</code>), so strings can be stored as C-style null-terminated sequences. It also uses CESU-8 style encoding for supplementary characters (surrogate pairs instead of direct 4-byte encoding). You'll rarely need it, but it explains why Java's serialized strings aren't always valid standard UTF-8.</li>
 </ul>
 <p><strong>Connections to Other Courses:</strong></p>
 <ul>

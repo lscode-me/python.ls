@@ -450,21 +450,26 @@ echo &quot;This goes to terminal&quot;
 <h3 id="example-dual-logging-screen-file">Example: Dual Logging (Screen + File)</h3>
 <pre class="highlight"><code class="language-bash">#!/bin/bash
 
-# Open log file on FD 3 (overwrite mode)
+# Open log file on FD 3
 exec 3&gt; script.log
 
-# To append to existing log instead of overwriting, use:
+# To append instead of overwriting, use:
 # exec 3&gt;&gt; script.log
 
 # Function that logs to both screen and file
 log() {
+  echo &quot;$@&quot; | tee /dev/fd/3
+}
+
+# Alternative: direct dual write
+log_dual() {
   echo &quot;$@&quot;      # To stdout (screen)
   echo &quot;$@&quot; &gt;&amp;3  # To FD 3 (file)
 }
 
 log &quot;Starting data processing...&quot;
 log &quot;Processing 1000 records...&quot;
-log &quot;Completed!&quot;
+log_dual &quot;Completed!&quot;
 
 exec 3&gt;&amp;-
 </code></pre>
