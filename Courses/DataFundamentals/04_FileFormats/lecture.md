@@ -133,38 +133,40 @@ xxd aligned.bam | head -3
 **Magic numbers** are fixed bytes at the beginning of a file that identify its format.
 
 ```
-PNG:  89 50 4E 47 0D 0A 1A 0A  (.PNG....)
-JPEG: FF D8 FF
+PNG:  89 50 4E 47 0D 0A 1A 0A  (\x89PNG\r\n\x1a\n)
+JPEG: FF D8 FF                 (non-printable)
 PDF:  25 50 44 46              (%PDF)
-ZIP:  50 4B 03 04              (PK..)
+ZIP:  50 4B 03 04              (PK\x03\x04)
 GIF:  47 49 46 38              (GIF8)
-BAM:  42 41 4D 01              (BAM.)
+BAM:  42 41 4D 01              (BAM\x01)
 ```
+
+> **Note:** Hex viewers like `xxd` display non-printable bytes (outside 0x20–0x7E) as `.` (dot). For example, PNG's first byte `0x89` appears as `.` in `xxd` — so you'll see `.PNG....`, but none of those dots are the real ASCII dot (0x2E).
 
 ### 2.2 Popular Signatures
 
 | Format | Magic Bytes (hex) | ASCII | Offset |
 |--------|-------------------|-------|--------|
-| PNG | `89 50 4E 47 0D 0A 1A 0A` | .PNG.... | 0 |
-| JPEG | `FF D8 FF` | - | 0 |
-| GIF87a | `47 49 46 38 37 61` | GIF87a | 0 |
-| GIF89a | `47 49 46 38 39 61` | GIF89a | 0 |
-| PDF | `25 50 44 46 2D` | %PDF- | 0 |
-| ZIP | `50 4B 03 04` | PK.. | 0 |
-| RAR | `52 61 72 21 1A 07` | Rar!.. | 0 |
-| 7z | `37 7A BC AF 27 1C` | 7z... | 0 |
-| ELF | `7F 45 4C 46` | .ELF | 0 |
-| Mach-O | `FE ED FA CE` or `CF FA ED FE` | - | 0 |
-| gzip | `1F 8B` | - | 0 |
-| bzip2 | `42 5A 68` | BZh | 0 |
-| tar | `75 73 74 61 72` | ustar | 257 |
-| SQLite | `53 51 4C 69 74 65 20 66 6F 72 6D 61 74 20 33` | SQLite format 3 | 0 |
-| MP3 | `FF FB` or `49 44 33` | - / ID3 | 0 |
-| MP4 | `66 74 79 70` | ftyp | 4 |
-| DOCX/XLSX | `50 4B 03 04` | PK.. | 0 (it's ZIP!) |
-| **BAM** | `42 41 4D 01` | BAM. | 0 |
-| **BCF** | `42 43 46 02` | BCF. | 0 |
-| **CRAM** | `43 52 41 4D` | CRAM | 0 |
+| PNG | `89 50 4E 47 0D 0A 1A 0A` | `\x89PNG\r\n\x1a\n` | 0 |
+| JPEG | `FF D8 FF` | non-printable | 0 |
+| GIF87a | `47 49 46 38 37 61` | `GIF87a` | 0 |
+| GIF89a | `47 49 46 38 39 61` | `GIF89a` | 0 |
+| PDF | `25 50 44 46 2D` | `%PDF-` | 0 |
+| ZIP | `50 4B 03 04` | `PK\x03\x04` | 0 |
+| RAR | `52 61 72 21 1A 07` | `Rar!\x1a\x07` | 0 |
+| 7z | `37 7A BC AF 27 1C` | non-printable | 0 |
+| ELF | `7F 45 4C 46` | `\x7fELF` | 0 |
+| Mach-O | `FE ED FA CE` or `CF FA ED FE` | non-printable | 0 |
+| gzip | `1F 8B` | non-printable | 0 |
+| bzip2 | `42 5A 68` | `BZh` | 0 |
+| tar | `75 73 74 61 72` | `ustar` | 257 |
+| SQLite | `53 51 4C 69 74 65 20 66 6F 72 6D 61 74 20 33` | `SQLite format 3` | 0 |
+| MP3 | `FF FB` or `49 44 33` | non-printable / `ID3` | 0 |
+| MP4 | `66 74 79 70` | `ftyp` | 4 |
+| DOCX/XLSX | `50 4B 03 04` | `PK\x03\x04` | 0 (it's ZIP!) |
+| **BAM** | `42 41 4D 01` | `BAM\x01` | 0 |
+| **BCF** | `42 43 46 02` | `BCF\x02` | 0 |
+| **CRAM** | `43 52 41 4D` | `CRAM` | 0 |
 
 ### 2.3 Checking Magic Numbers
 

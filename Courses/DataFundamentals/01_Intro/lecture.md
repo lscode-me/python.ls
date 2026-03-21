@@ -522,14 +522,16 @@ The `file` command looks at:
 
 | Format | Magic bytes (hex) | ASCII representation |
 |--------|-------------------|---------------------|
-| PNG | 89 50 4E 47 | `.PNG` |
-| JPEG | FF D8 FF | (non-printable) |
+| PNG | 89 50 4E 47 | `\x89PNG` |
+| JPEG | FF D8 FF | `\xff\xd8\xff` |
 | PDF | 25 50 44 46 | `%PDF` |
-| ZIP | 50 4B 03 04 | `PK..` |
+| ZIP | 50 4B 03 04 | `PK\x03\x04` |
 | GIF | 47 49 46 38 | `GIF8` |
-| ELF (Linux exe) | 7F 45 4C 46 | `.ELF` |
-| Gzip | 1F 8B | (non-printable) |
-| BAM | 42 41 4D 01 | `BAM` + version |
+| ELF (Linux exe) | 7F 45 4C 46 | `\x7fELF` |
+| Gzip | 1F 8B | `\x1f\x8b` |
+| BAM | 42 41 4D 01 | `BAM\x01` |
+
+> **Note:** Hex viewers like `xxd` display non-printable bytes (outside the 0x20–0x7E range) as `.` (dot). So PNG appears as `.PNG` in `xxd` output — but the leading `.` is not a real dot character (0x2E); it's the non-printable byte `0x89`. Similarly, ELF shows as `.ELF` because `0x7F` (DEL) is non-printable.
 
 ### 6.2 Why Magic Numbers Are Needed
 
