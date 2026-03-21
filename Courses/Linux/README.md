@@ -1,4 +1,4 @@
-ht# Unix & Data Pipelines
+# Unix & Data Pipelines
 ### A Practical Course for Engineers
 
 A course that teaches engineers to use Unix tools, shell scripting, and CLI-based data processing as a powerful DSL for building data pipelines. Students learn to work with large datasets, transform structured and unstructured data, and integrate Unix tools with Python.
