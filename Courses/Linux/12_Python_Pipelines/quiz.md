@@ -160,16 +160,16 @@ D) Multiple languages
 |---|--------|-------------|
 | 1 | C | `for line in sys.stdin:` iterates line-by-line (also `sys.stdin.readlines()` works) |
 | 2 | B | Python buffers output by default; `flush=True` writes immediately |
-| 3 | A | `-u` flag forces unbuffered stdout/stderr |
+| 3 | B | `-u` flag forces unbuffered stdout/stderr |
 | 4 | B | `pd.read_csv(sys.stdin)` reads CSV from stdin |
 | 5 | B | pandas loads entire file into memory; not suitable for streaming large files |
-| 6 | A | `ijson` parses JSON incrementally without loading entire file |
-| 7 | C | `csv.writer(sys.stdout)` writes to stdout properly |
-| 8 | D | Use Python for complex operations (APIs, libraries, logic); awk for simple transforms |
-| 9 | A | Wrap in try-except to skip malformed lines gracefully |
-| 10 | D | Streaming processes one item at a time: constant memory |
+| 6 | C | `ijson` parses JSON incrementally without loading entire file |
+| 7 | B | `csv.writer(sys.stdout)` writes to stdout properly |
+| 8 | B | Use Python for complex operations (APIs, libraries, logic); awk for simple transforms |
+| 9 | B | Wrap in try-except to skip malformed lines gracefully |
+| 10 | B | Streaming processes one item at a time: constant memory |
 | 11 | B | CLI tools (mlr, awk) are usually faster and more memory-efficient for simple ops |
-| 12 | A | `DictReader` parses headers automatically, returns dicts |
+| 12 | B | `DictReader` parses headers automatically, returns dicts |
 | 13 | B | Flushes Python's internal buffer to OS immediately |
 | 14 | B | `json.dumps()` serializes, `flush=True` ensures immediate output |
 | 15 | C | Hybrid uses shell for orchestration/simple ops, Python for complex logic |

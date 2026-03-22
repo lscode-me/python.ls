@@ -175,21 +175,21 @@ D) Log only errors, ignore all other information
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | A | ETL stands for Extract, Transform, Load - the standard order of operations |
-| 2 | B | Production pipelines should handle errors gracefully without losing valid data |
-| 3 | B | Validate at each stage to catch issues early and maintain data integrity |
-| 4 | A | Streaming and parallelism prevent memory issues and improve throughput |
+| 1 | C | ETL stands for Extract, Transform, Load - the standard order of operations |
+| 2 | C | Production pipelines should handle errors gracefully without losing valid data |
+| 3 | C | Validate at each stage to catch issues early and maintain data integrity |
+| 4 | B | Streaming and parallelism prevent memory issues and improve throughput |
 | 5 | B | Test components individually first, then verify they work together correctly |
-| 6 | D | Streaming is ideal for real-time processing where low latency is critical |
-| 7 | D | Comprehensive monitoring includes throughput, errors, latency, and resources |
-| 8 | A | Checkpointing enables recovery from failures without full reprocessing |
+| 6 | C | Streaming is ideal for real-time processing where low latency is critical |
+| 7 | B | Comprehensive monitoring includes throughput, errors, latency, and resources |
+| 8 | B | Checkpointing enables recovery from failures without full reprocessing |
 | 9 | C | Validation at all stages catches issues early and ensures data quality |
 | 10 | B | GNU parallel and xargs -P enable parallel execution of commands |
-| 11 | C | Makefile tracks dependencies and only rebuilds what's necessary |
-| 12 | A | Streaming processes data line-by-line without loading entire file |
-| 13 | D | Error sink stores invalid records for later analysis and reprocessing |
-| 14 | A | Idempotency ensures consistent results regardless of retry count |
-| 15 | C | Structured logging with timestamps and IDs enables debugging and tracing |
+| 11 | B | Makefile tracks dependencies and only rebuilds what's necessary |
+| 12 | B | Streaming processes data line-by-line without loading entire file |
+| 13 | B | Error sink stores invalid records for later analysis and reprocessing |
+| 14 | B | Idempotency ensures consistent results regardless of retry count |
+| 15 | B | Structured logging with timestamps and IDs enables debugging and tracing |
 
 ---
 

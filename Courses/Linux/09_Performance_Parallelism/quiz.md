@@ -159,17 +159,17 @@ D) Limits to 80% memory
 | # | Answer | Explanation |
 |---|--------|-------------|
 | 1 | B | `-j N` controls parallel jobs (e.g., `parallel -j 4`) |
-| 2 | A | `-S` allocates memory buffer for sort |
+| 2 | C | `-S` allocates memory buffer for sort |
 | 3 | C | `pv` (Pipe Viewer) shows progress and throughput |
-| 4 | C | `--parallel=N` enables N-threaded sorting |
-| 5 | A | `-P N` runs N processes in parallel |
+| 4 | D | `--parallel=N` enables N-threaded sorting |
+| 5 | B | `-P N` runs N processes in parallel |
 | 6 | B | `TMPDIR` sets temporary directory for sort and other tools |
 | 7 | C | `-v` (verbose) shows CPU time, memory, I/O, page faults |
-| 8 | C | `--delay` adds delay between job starts for rate limiting |
+| 8 | B | `--delay` adds delay between job starts for rate limiting |
 | 9 | A | CPU-bound = high CPU, low I/O; I/O-bound = opposite |
-| 10 | A | Both `--progress` and `--bar` show progress (bar is newer) |
+| 10 | D | Both `--progress` and `--bar` show progress (bar is newer) |
 | 11 | B | `-u` sorts and keeps only unique lines (faster than `sort | uniq`) |
-| 12 | D | `--retries N` retries failed jobs N times |
-| 13 | D | `time` is shell builtin (basic), `/usr/bin/time -v` is external (detailed) |
+| 12 | B | `--retries N` retries failed jobs N times |
+| 13 | B | `time` is shell builtin (basic), `/usr/bin/time -v` is external (detailed) |
 | 14 | C | `iostat -x 2` monitors I/O statistics every 2 seconds |
 | 15 | C | `--load` pauses new jobs when load average is high |

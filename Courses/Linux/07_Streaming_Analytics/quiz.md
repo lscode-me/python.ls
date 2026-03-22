@@ -160,16 +160,16 @@ D) For quick one-liners
 |---|--------|-------------|
 | 1 | B | `join` requires both files to be sorted by join key |
 | 2 | C | awk loads small file into hash, fast lookups |
-| 3 | B | Associative array accumulates sum by key |
-| 4 | A | `--ul` means "unpaired left" (left outer join) |
-| 5 | A | `-g 1` groups by column 1, `sum 3` sums column 3, `-s` means sorted input |
-| 6 | A | Accumulate into `sum` variable, print each iteration |
+| 3 | A | Associative array accumulates sum by key |
+| 4 | B | `--ul` means "unpaired left" (left outer join) |
+| 5 | B | `-g 1` groups by column 1, `sum 3` sums column 3, `-s` means sorted input |
+| 6 | B | Accumulate into `sum` variable, print each iteration |
 | 7 | B | Map phase transforms each input record independently |
 | 8 | C | `top` with `-n 5` and `-g category` finds top-K per group |
-| 9 | C | Hash join optimal for small lookup, large data |
+| 9 | B | Hash join optimal for small lookup, large data |
 | 10 | A | Maintain circular buffer of last N values |
 | 11 | C | DuckDB supports multiple JOIN clauses in a single SELECT query |
 | 12 | B | ROW_NUMBER assigns sequential numbers within each partition (category) |
 | 13 | C | LAG() returns the value from the previous row in the window |
-| 14 | A | PERCENTILE_CONT(0.5) calculates the median (50th percentile) |
+| 14 | C | PERCENTILE_CONT(0.5) calculates the median (50th percentile) |
 | 15 | B | DuckDB is better for SQL-style analytical queries with complex logic |

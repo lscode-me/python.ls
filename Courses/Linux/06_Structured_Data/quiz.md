@@ -160,7 +160,7 @@ D) For streaming data
 |---|--------|-------------|
 | 1 | A | `.[]` iterates array, `| .name` extracts name field |
 | 2 | B | `-r` outputs raw strings without JSON quotes |
-| 3 | A | Miller handles quoted fields, edge cases better than awk |
+| 3 | D | Miller handles quoted fields, edge cases better than awk |
 | 4 | B | Need `-r` for raw output, `[fields]` for array, `@csv` for CSV format |
 | 5 | C | JSONL has one JSON object per line for streaming |
 | 6 | D | `csvcut -c columns` extracts specific columns |

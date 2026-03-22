@@ -311,15 +311,15 @@ D) `\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}`
 | 1 | C | `-o` shows only matching text, not full lines |
 | 2 | B | `^` anchors pattern to start of line |
 | 3 | B | `/g` flag makes replacement global (all occurrences) |
-| 4 | A | `/pattern/d` deletes entire lines matching pattern |
+| 4 | B | `/pattern/d` deletes entire lines matching pattern |
 | 5 | C | `$0` is the entire current line/record |
 | 6 | B | Need comma separator in print for space-separated output |
 | 7 | A | NR is the current record (line) number |
 | 8 | B | Comprehensive email regex pattern with word boundaries |
 | 9 | B | `NR > 1` skips header row, accumulates in END block |
-| 10 | A | Filter first (grep), transform (sed), then aggregate (sort | uniq -c) |
+| 10 | B | Filter first (grep), transform (sed), then aggregate (sort | uniq -c) |
 | 11 | C | `-C` shows context lines both before and after (combines -A and -B) |
-| 12 | D | Need escaped parentheses for capturing groups, reference with `\1` `\2` `\3` |
+| 12 | B | Need escaped parentheses for capturing groups, reference with `\1` `\2` `\3` |
 | 13 | B | Associative array counts occurrences of each unique first field value |
 | 14 | D | Both semicolon separation and multiple `-e` flags work |
 | 15 | B | NF is the number of fields in the current record/line |
@@ -333,9 +333,9 @@ D) `\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}`
 | 23 | B | RNA uses AUGC (Uracil instead of Thymine); DNA uses ATGC |
 | 24 | B | `[^>]*` matches any character except `>`, preventing greedy matching |
 | 25 | B | `-v` inverts the match, showing non-matching lines |
-| 26 | C | Standard UUID format: 8-4-4-4-12 hexadecimal characters |
+| 26 | A | Standard UUID format: 8-4-4-4-12 hexadecimal characters |
 | 27 | B | Globbing `?` matches exactly one character; regex `?` means zero or one |
-| 28 | B | BEGIN block sets field separator, then prints fields 1 and 3 |
+| 28 | C | BEGIN block sets field separator, then prints fields 1 and 3 |
 | 29 | B | `-E` enables extended regex with `|` for alternation (OR logic) |
 | 30 | B | Uses repetition `{5}` for first 5 pairs, case-insensitive hex |
 

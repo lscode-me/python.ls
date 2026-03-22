@@ -175,19 +175,19 @@ D) Creates a named pipe
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | A | $(command) is the modern, POSIX-compliant syntax |
-| 2 | C | IFS=',' sets the delimiter for read command |
+| 1 | B | $(command) is the modern, POSIX-compliant syntax |
+| 2 | B | IFS=',' sets the delimiter for read command |
 | 3 | C | `${#arr[@]}` gives the count of array elements |
 | 4 | A | Extracts substring starting at position 5, length 10 |
 | 5 | B | set -euo pipefail: exit on error, undefined vars, and pipe failures |
 | 6 | C | Exit code 0 indicates success |
-| 7 | A | Process substitution creates a temporary named pipe |
-| 8 | D | `$((expression))` is arithmetic expansion |
+| 7 | B | Process substitution creates a temporary named pipe |
+| 8 | C | $((expression)) is arithmetic expansion |
 | 9 | B | `$1` is the first positional parameter |
 | 10 | B | `local` limits variable scope to the function |
 | 11 | B | Returns "default" if var is unset/empty, doesn't modify var |
 | 12 | C | mapfile reads lines into an array, -t strips newlines |
-| 13 | A | `//` replaces all occurrences (single `/` replaces only first) |
+| 13 | B | `//` replaces all occurrences (single `/` replaces only first) |
 | 14 | B | `-z` tests if the string is empty or variable is unset |
 | 15 | B | Here documents provide multi-line input to commands |
 

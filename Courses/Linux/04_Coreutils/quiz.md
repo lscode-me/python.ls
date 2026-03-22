@@ -180,18 +180,18 @@ D) Creates 4 sorted copies of the file
 | # | Answer | Explanation |
 |---|--------|-------------|
 | 1 | D | Both `cut -f2,4` and awk can extract specific columns |
-| 2 | A | `paste` merges files horizontally line-by-line with the specified delimiter |
-| 3 | A | Both `tr 'a-z' 'A-Z'` and `tr '[:lower:]' '[:upper:]'` convert to uppercase |
+| 2 | B | `paste` merges files horizontally line-by-line with the specified delimiter |
+| 3 | C | Both `tr 'a-z' 'A-Z'` and `tr '[:lower:]' '[:upper:]'` convert to uppercase |
 | 4 | C | `-k3,3nr` sorts by 3rd column numerically in reverse (descending) order |
 | 5 | B | `uniq` only removes adjacent duplicate lines, so data must be sorted first |
 | 6 | B | `-l 1000` sets line count, `-d` uses numeric suffixes, prefix is specified |
-| 7 | A | `pv` (pipe viewer) shows progress while passing data through to gzip |
-| 8 | D | `uniq -d` shows only duplicated lines (those appearing more than once) |
+| 7 | B | `pv` (pipe viewer) shows progress while passing data through to gzip |
+| 8 | C | `uniq -d` shows only duplicated lines (those appearing more than once) |
 | 9 | B | `stdbuf -oL` sets stdout to line-buffered mode for real-time output |
-| 10 | B | Must count with `uniq -c`, sort by count descending, then take top 5 |
+| 10 | C | Must count with `uniq -c`, sort by count descending, then take top 5 |
 | 11 | B | `--complement` inverts selection, extracting all columns except specified |
-| 12 | D | `-b 100M` splits by size (100 megabytes) with specified prefix |
-| 13 | C | `tr -d` deletes characters matching the specified class (digits) |
+| 12 | B | `-b 100M` splits by size (100 megabytes) with specified prefix |
+| 13 | B | `tr -d` deletes characters matching the specified class (digits) |
 | 14 | B | `-s` serial mode joins all lines into one, `-d','` uses comma separator |
 | 15 | B | `--parallel=4` uses 4 cores, `-S 2G` sets 2GB memory buffer for sorting |
 
