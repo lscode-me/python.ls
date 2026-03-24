@@ -444,10 +444,10 @@ D) XML
 |---|--------|-------------|
 | 1 | D | YAML Ain't Markup Language — recursive acronym. |
 | 2 | A | Comments in YAML start with `#`. |
-| 3 | A | YAML allows ONLY spaces for indentation, tabs are forbidden. |
+| 3 | D | YAML allows ONLY spaces for indentation, tabs are forbidden. |
 | 4 | A | `maybe` is a string. `yes`, `no`, `on`, `off` are boolean in YAML 1.1. |
 | 5 | D | `NO` is interpreted as false in YAML 1.1 (Norway Problem). |
-| 6 | A | `|` (literal block) preserves line breaks, `>` (folded) converts them to spaces. |
+| 6 | C | `|` (literal block) preserves line breaks, `>` (folded) converts them to spaces. |
 | 7 | C | Flow style uses `[]` for lists and `{}` for objects, like JSON. |
 | 8 | D | `&name` creates an anchor, `*name` references it (alias). |
 | 9 | A | `---` separates documents in YAML. |
@@ -465,7 +465,7 @@ D) XML
 | 21 | B | 🧬 Snakemake uses YAML for `config.yaml` and workflow definitions. |
 | 22 | B | 🧬 Quote to preserve leading zeros: `"001"`. |
 | 23 | D | 🧬 Both quoting and explicit type tag work to preserve as string. |
-| 24 | A | 🧬 "NO" is interpreted as false in YAML 1.1 — use quotes! |
+| 24 | B | 🧬 "NO" is interpreted as false in YAML 1.1 — use quotes! |
 | 25 | B | 🧬 `|` (literal block) preserves line breaks for sequences. |
 | 26 | C | 🧬 `environment.yaml` defines Conda environments. |
 | 27 | C | 🧬 Anchors (`&name`) and aliases (`*name`) allow parameter reuse. |

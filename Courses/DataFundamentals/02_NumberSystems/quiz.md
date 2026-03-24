@@ -362,8 +362,8 @@ D) 6.4 GB
 | 2 | D | 8 bits = 2^8 = 256 possible values (from 0 to 255). |
 | 3 | B | 101010 = 32 + 8 + 2 = 42 (positions: 1×32 + 0×16 + 1×8 + 0×4 + 1×2 + 0×1). |
 | 4 | D | 15 = 8 + 4 + 2 + 1 = 1111 in binary. |
-| 5 | A | Hex uses 0-9 and A-F (16 characters total for base 16). |
-| 6 | B | 0xFF = 15×16 + 15 = 240 + 15 = 255. |
+| 5 | B | Hex uses 0-9 and A-F (16 characters total for base 16). |
+| 6 | D | 0xFF = 15×16 + 15 = 240 + 15 = 255. |
 | 7 | A | Nibble is 4 bits, half a byte, one hex digit. |
 | 8 | A | 7=rwx, 5=r-x, 5=r-x. Owner has all, group and others have read and execute. |
 | 9 | D | Octal system has base 8, uses digits 0-7. |
@@ -371,14 +371,14 @@ D) 6.4 GB
 | 11 | C | x86-64 (Intel/AMD) uses Little-Endian. |
 | 12 | B | TCP/IP always uses Big-Endian (Network Byte Order). |
 | 13 | A | `xxd` is the standard utility for hex dump in Linux. |
-| 14 | A | `hex(42)` returns string `'0x2a'` (42 in hex = 2a). |
+| 14 | C | `hex(42)` returns string `'0x2a'` (42 in hex = 2a). |
 | 15 | A | `bin(42)` returns `'0b101010'`. |
-| 16 | A | Signed 8-bit: -128 to 127. Unsigned: 0 to 255. |
-| 17 | B | -5 in two's complement: invert 00000101 = 11111010, add 1 = 11111011. |
+| 16 | B | Signed 8-bit: -128 to 127. Unsigned: 0 to 255. |
+| 17 | C | -5 in two's complement: invert 00000101 = 11111010, add 1 = 11111011. |
 | 18 | A | IEEE 754 floating point has limited precision, 0.1 is infinite fraction in binary. |
-| 19 | B | 1 KiB (kibibyte per IEC) = 1024 bytes. Manufacturers often use 1000. |
+| 19 | D | 1 KiB (kibibyte per IEC) = 1024 bytes. Manufacturers often use 1000. |
 | 20 | A | `xxd -r -p` — reverse plain hex dump, converts hex to binary. |
-| 21 | A | ASCII 'I' = 73, Phred+33 quality = 73 - 33 = 40 (high quality). |
+| 21 | C | ASCII 'I' = 73, Phred+33 quality = 73 - 33 = 40 (high quality). |
 | 22 | B | BAM files start with magic number 42 41 4D 01 ("BAM" + version byte). |
 | 23 | B | 2 bits encode 4 values: 00=A, 01=C, 10=G, 11=T. Efficient compression! |
 | 24 | B | BAM format specification requires Little-Endian for all multi-byte integers. |

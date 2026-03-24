@@ -368,21 +368,21 @@ D) It doesn't actually compress the data
 | 8 | D | Correct MIME for JSON: `application/json`. |
 | 9 | B | PNG has MIME type `image/png`. |
 | 10 | A | Extension is part of filename, can be changed without changing content. Critical for security! |
-| 11 | A | For binary files, use `'rb'` mode (read binary). |
+| 11 | D | For binary files, use `'rb'` mode (read binary). |
 | 12 | A | PNG consists of signature and chunks (IHDR, IDAT, IEND, etc.) with length, type, data, CRC. |
 | 13 | A | PDF starts with `%PDF-` (bytes: 25 50 44 46 2D). |
 | 14 | C | ELF (Executable and Linkable Format) is the executable file format for Linux. |
-| 15 | B | tar only combines files. For compression, use gzip/bzip2 (tar.gz, tar.bz2). |
-| 16 | B | bzip2 gives better compression but works slower than gzip. |
+| 15 | C | tar only combines files. For compression, use gzip/bzip2 (tar.gz, tar.bz2). |
+| 16 | C | bzip2 gives better compression but works slower than gzip. |
 | 17 | C | `Content-Type` is the HTTP header for specifying MIME type. |
 | 18 | A | `python-magic` (imported as `magic`) determines type by content. |
 | 19 | D | `xxd -l 8` shows first 8 bytes in hex format. |
 | 20 | C | PNG uses Big-Endian (network byte order) for all numeric values. |
 | 21 | B | BAM files start with `42 41 4D 01` (BAM\x01). This distinguishes them from text SAM files. |
-| 22 | C | FASTA files are text format starting with '>' followed by sequence identifier. |
+| 22 | B | FASTA files are text format starting with '>' followed by sequence identifier. |
 | 23 | B | BAM is the binary, compressed version of SAM. Same data, ~5x smaller and faster to parse. |
 | 24 | C | VCF files are commonly compressed with gzip (.vcf.gz) for distribution and storage. |
-| 25 | C | BGZF (blocked gzip) allows random access to compressed data, crucial for indexed BAM files with tools like samtools. |
+| 25 | B | BGZF (blocked gzip) allows random access to compressed data, crucial for indexed BAM files with tools like samtools. |
 
 ---
 

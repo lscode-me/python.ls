@@ -645,13 +645,13 @@ D) Binary
 | 3 | B | Tom's Obvious Minimal Language — named after creator Tom Preston-Werner. |
 | 4 | B | TOML supports integer, float, boolean, datetime as separate types. |
 | 5 | B | pyproject.toml — standard Python project configuration file (PEP 518, 621). |
-| 6 | C | .env contains secrets (passwords, keys) that shouldn't be in repository. |
+| 6 | D | .env contains secrets (passwords, keys) that shouldn't be in repository. |
 | 7 | A | Standard .env format: `KEY=value` (no spaces around `=`). |
 | 8 | C | `load_dotenv()` from python-dotenv library loads .env into os.environ. |
-| 9 | A | In TOML arrays: `key = [1, 2, 3]`. |
+| 9 | C | In TOML arrays: `key = [1, 2, 3]`. |
 | 10 | C | `[server]` creates a table (equivalent to object/dict). |
 | 11 | D | `configparser` — standard Python module for INI files. |
-| 12 | B | `tomllib` built into Python 3.11+ (read-only). |
+| 12 | C | `tomllib` built into Python 3.11+ (read-only). |
 | 13 | D | .env.example — template with variable list without real values, committed to Git. |
 | 14 | D | `env_file: .env` or `env_file: [.env]` in docker-compose.yml. |
 | 15 | B | TOML supports dates without quotes: `date = 2024-01-15`. |
@@ -670,7 +670,7 @@ D) Binary
 | 28 | A | `/etc/hosts` describes static mapping of IP addresses and DNS names. |
 | 29 | B | Standard systemd service sections: `[Unit]`, `[Service]`, `[Install]`. |
 | 30 | A | `ExecStart` defines the command executed when starting the service. |
-| 31 | C | `Restart=on-failure` restarts service only if it exits with error (code != 0). |
+| 31 | A | `Restart=on-failure` restarts service only if it exits with error (code != 0). |
 | 32 | D | nginx uses curly braces: `server { ... }`, `location { ... }`. |
 | 33 | C | `location` defines rules for processing requests by URL paths. |
 | 34 | C | `/etc/environment` uses shell-style variables: `KEY=value`. |

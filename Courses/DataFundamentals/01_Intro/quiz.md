@@ -359,21 +359,21 @@ D) To convert file formats
 | # | Answer | Explanation |
 |---|--------|-------------|
 | 1 | B | Data are raw facts (42, "Smith"), information is data with context ("Patient Smith, 42 years old"). |
-| 2 | C | Relational tables with fixed schema are structured data. JSON is semi-structured. |
-| 3 | B | JSON has flexible schema embedded in the data itself — it's semi-structured. |
+| 2 | B | Relational tables with fixed schema are structured data. JSON is semi-structured. |
+| 3 | A | JSON has flexible schema embedded in the data itself — it's semi-structured. |
 | 4 | C | Text file is a sequence of printable characters in specific encoding, independent of extension. |
-| 5 | D | PNG is binary image format. YAML, HTML, Markdown are text formats. |
+| 5 | A | PNG is binary image format. YAML, HTML, Markdown are text formats. |
 | 6 | C | Magic numbers identify file format by first bytes, regardless of extension. |
-| 7 | A | PNG starts with `89 50 4E 47` (`.PNG` in ASCII). `FF D8 FF` is JPEG, `50 4B` is ZIP, `25 50 44 46` is PDF. |
+| 7 | D | PNG starts with `89 50 4E 47` (`.PNG` in ASCII). `FF D8 FF` is JPEG, `50 4B` is ZIP, `25 50 44 46` is PDF. |
 | 8 | C | The `file` command analyzes file contents and determines its type. |
 | 9 | D | `file -i` shows MIME type and file encoding. |
 | 10 | C | "Mojibake" appears when file encoding doesn't match the encoding used to read it. |
-| 11 | A | Levels: bits → bytes → encoding → data format → application. |
-| 12 | B | Extension is just part of filename, can be changed without changing contents. |
+| 11 | D | Levels: bits → bytes → encoding → data format → application. |
+| 12 | C | Extension is just part of filename, can be changed without changing contents. |
 | 13 | B | `xxd` outputs hex dump of file with ASCII representation. |
 | 14 | D | `iconv` is standard utility for encoding conversion with `-f` (from) and `-t` (to) flags. |
 | 15 | C | `\r\n` (CRLF) is Windows-style line ending. Unix uses `\n` (LF). |
-| 16 | D | JSON supports nested objects and arrays, CSV only flat tables. |
+| 16 | A | JSON supports nested objects and arrays, CSV only flat tables. |
 | 17 | A | YAML supports comments (#), JSON does not. |
 | 18 | C | Estimates suggest ~70% of world data is unstructured (text, media). |
 | 19 | D | `xxd -l 8` outputs first 8 bytes of file in hex format. |
@@ -382,7 +382,7 @@ D) To convert file formats
 | 22 | B | BAM is compressed binary version of SAM (Sequence Alignment/Map). Same data, different format. |
 | 23 | B | VCF is text-based with structured header and data rows — semi-structured format. |
 | 24 | B | FASTA is simple text format starting with '>'. However, gzipped FASTA (.fa.gz) has gzip magic numbers. |
-| 25 | B | Checksums verify data integrity. Critical for large genomic files (GB-TB) to ensure no corruption during download. |
+| 25 | C | Checksums verify data integrity. Critical for large genomic files (GB-TB) to ensure no corruption during download. |
 
 ---
 
