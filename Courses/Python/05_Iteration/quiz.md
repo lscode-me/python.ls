@@ -381,13 +381,13 @@ D) When you need to access the length
 | 7 | D | The function pauses and returns a value, saving its state |
 | 8 | B | Returns `2` (generator remembers state) |
 | 9 | C | Sends a value into the generator that becomes the result of the current yield expression |
-| 10 | A | Prints `Received: 42` |
+| 10 | B | Prints `Received: 42` |
 | 11 | D | Delegates to a sub-iterator and yields all its values |
 | 12 | B | `[1, 2, 3, 4]` |
 | 13 | B | `[1, 2, 3, 4]` (note: we wrapped with `list()` to get actual list) |
 | 14 | C | `[5, 6, 7, 8, 9]` |
 | 15 | A | `[0, 2, 4, 6, 8]` (start=0, stop=10, step=2) |
-| 16 | A | Prints `1 2 3 1 2` (cycles through values) |
+| 16 | B | Prints `1 2 3 1 2` (cycles through values) |
 | 17 | B | `[10, 12, 14, 16, 18]` (start=10, step=2) |
 | 18 | B | `['x', 'x', 'x']` (repeats value 3 times) |
 | 19 | A | `[(1, 3), (2, 4), (0, 5)]` (fills missing values with 0) |

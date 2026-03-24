@@ -175,7 +175,7 @@ D) `__concat__()`
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | A | Duck typing means objects are used based on their methods, not their type |
+| 1 | B | Duck typing means objects are used based on their methods, not their type |
 | 2 | A | `__iter__()` returns the iterator, `__next__()` returns next item |
 | 3 | D | `__enter__()` and `__exit__()` define context manager behavior |
 | 4 | D | `__append__()` is for mutable sequences, not the basic sequence protocol |
@@ -186,7 +186,7 @@ D) `__concat__()`
 | 9 | D | `__get__()` is called when accessing a descriptor attribute |
 | 10 | A | `Sequence` is read-only, `MutableSequence` allows modifications |
 | 11 | B | Both `__hash__()` and `__eq__()` are needed for hashable objects |
-| 12 | B | Either implement all comparison methods or use `@total_ordering` with `__lt__` and `__eq__` |
+| 12 | D | Either implement all comparison methods or use `@total_ordering` with `__lt__` and `__eq__` |
 | 13 | D | `__append__()` is not part of mapping protocol, it's for sequences |
 | 14 | B | `@runtime_checkable` enables `isinstance()` checks on Protocol classes |
 | 15 | C | `__add__()` is called for the + operator |
