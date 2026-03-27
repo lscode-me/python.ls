@@ -138,9 +138,13 @@ for fruit in "${fruits[@]}"; do
 done
 
 # Read into array
-mapfile -t lines < file.txt
+mapfile -t lines < data.txt
+echo "${lines[@]}"
 # or
-readarray -t lines < file.txt
+readarray -t lines < data.txt
+```
+
+> **Note:** `mapfile`/`readarray` loads the entire file into an array, which is convenient for small files but not suitable for large datasets, where streaming with `while read` is preferred.
 ```
 
 ### String Operations
@@ -163,18 +167,20 @@ echo "${text//o/0}"        # Hell0, W0rld!
 echo "${text^^}"  # HELLO, WORLD!
 echo "${text,,}"  # hello, world!
 
+# Check if a string contains a substring (using [[ ]] for pattern matching)
+if [[ "$text" == *"World"* ]]; then
+    echo "Found!"
+fi
+
 # Trim whitespace
 text="  data  "
 trimmed="${text#"${text%%[![:space:]]*}"}"
 trimmed="${trimmed%"${trimmed##*[![:space:]]}"}"
-
-# Check if string contains substring
-if [[ "$text" == *"World"* ]]; then
-    echo "Found!"
-fi
 ```
 
 ### Arithmetic
+
+Bash uses double parentheses `(( ))` for arithmetic that clearly separates math expressions from regular shell constructs.
 
 ```bash
 # Arithmetic expansion
@@ -194,7 +200,7 @@ if ((x > y)); then
     echo "x is greater"
 fi
 
-# Floating point with bc
+# Floating-point calculation with bc
 result=$(echo "scale=2; 10 / 3" | bc)
 echo "$result"  # 3.33
 
@@ -202,11 +208,15 @@ echo "$result"  # 3.33
 random=$((RANDOM % 100))  # 0-99
 ```
 
+> **Note:** `$(( ))` performs integer arithmetic only; floating-point calculations require external tools such as `bc`.
+
 ---
 
 ## Functions
 
 ### Basic Functions
+
+Bash functions accept positional arguments (`$1`, `$2`, etc.) and produce results via output (stdout) or variable changes — not through `return`, which only sets an exit code.
 
 ```bash
 # Define function
@@ -239,11 +249,14 @@ stats() {
     echo "$sum $count"
 }
 
+# Pass command output to read as if it were a file
 read sum count < <(seq 1 10 | stats)
 echo "Sum: $sum, Count: $count"
 ```
 
 ### Local Variables
+
+The `local` keyword restricts a variable to the function's scope, preventing accidental modification of global variables.
 
 ```bash
 process_data() {
@@ -251,7 +264,7 @@ process_data() {
     local output_file="$2"
     local temp_file=$(mktemp)
     
-    # Process data
+    # Process data — apply any transformation (e.g., uppercase, filtering, formatting)
     cat "$input_file" | transform > "$temp_file"
     mv "$temp_file" "$output_file"
 }
@@ -261,10 +274,12 @@ process_data() {
 
 ## Exit Codes and Error Handling
 
+Every command in Bash returns an exit code. Exit code `0` indicates success; any non-zero exit code represents a specific type of failure. Exit codes allow scripts to detect errors and react accordingly.
+
 ### Exit Codes
 
 ```bash
-# Check last command exit code
+# $? checks the exit code of the last executed command
 ls /nonexistent
 echo $?  # Non-zero indicates error
 
@@ -280,10 +295,10 @@ exit 1  # Error
 ### Conditional Execution
 
 ```bash
-# Run if previous command succeeded
+# Run command2 only if command1 succeeded (exit code 0)
 command1 && command2
 
-# Run if previous command failed
+# Run command2 only if command1 failed (non-zero exit code)
 command1 || command2
 
 # Chain conditionally
@@ -295,7 +310,44 @@ if command1 && command2; then
 fi
 ```
 
+### Useful Test Operators
+
+```bash
+# String tests
+[[ -z "$var" ]]    # True if var is empty or unset
+[[ -n "$var" ]]    # True if var is non-empty
+
+# File tests
+[[ -f "$file" ]]   # True if file exists and is a regular file
+[[ -d "$dir" ]]    # True if directory exists
+
+# String comparison
+[[ "$a" == "$b" ]] # True if strings are equal
+```
+
+### Here Documents
+
+Here documents (`<<`) provide multi-line input to a command inline, without a separate file:
+
+```bash
+# Multi-line input to a command
+cat <<EOF
+Hello, $USER!
+Today is $(date +%Y-%m-%d).
+EOF
+
+# Quoted delimiter disables variable expansion
+cat <<'EOF'
+This $variable is not expanded.
+EOF
+
+# Here string (single line)
+grep "error" <<< "no error here"
+```
+
 ### Error Handling with `set`
+
+The `set` builtin modifies the shell's behavior; the `-e`, `-u`, and `-o pipefail` options enable stricter error handling to stop scripts early when something goes wrong.
 
 ```bash
 #!/bin/bash
@@ -366,7 +418,7 @@ while read line; do
 done < <(curl -s https://api.example.com/data | jq -r '.[]')
 
 # Multiple inputs
-paste <(cut -d',' -f1 file1.csv) <(cut -d',' -f2 file2.csv)
+paste <(cut -d',' -f1 products.csv) <(cut -d',' -f2 customers.csv)
 ```
 
 ### Writing to Process Substitution
@@ -390,8 +442,8 @@ echo "data" | tee >(process1) >(process2) >(process3)
 # Join two CSV files after transformation
 
 join -t',' \
-    <(sort -t',' -k1 file1.csv) \
-    <(sort -t',' -k1 file2.csv)
+    <(sort -t',' -k1 data.csv) \
+    <(sort -t',' -k1 left.csv)
 ```
 
 **Example 2: Parallel processing**
@@ -430,9 +482,9 @@ set -euo pipefail
 
 # Filter CSV by date range and compute statistics
 
-input_file="${1:-data.csv}"
-start_date="${2:-2024-01-01}"
-end_date="${3:-2024-12-31}"
+input_file="${1:-transactions.csv}"
+start_date="${2:-2024-03-16}"
+end_date="${3:-2024-03-18}"
 
 echo "Processing $input_file from $start_date to $end_date"
 
@@ -466,7 +518,7 @@ set -euo pipefail
 
 # Convert JSONL to CSV with field selection
 
-input="${1:-/dev/stdin}"
+input="${1:-data.jsonl}"
 fields="${2:-name,age,city}"
 
 # Extract field names
@@ -504,8 +556,8 @@ count=0
 while read -r num; do
     values+=("$num")
     sum=$(echo "$sum + $num" | bc)
-    ((count++))
-done
+    count=$((count + 1))
+done < numbers.txt
 
 # Calculate mean
 mean=$(echo "scale=2; $sum / $count" | bc)
@@ -524,6 +576,77 @@ echo "Count: $count"
 echo "Mean: $mean"
 echo "Median: $median"
 ```
+
+### Example 4: File-Based Key-Value Database
+
+This elegant example is inspired by Martin Kleppmann's *"Designing Data-Intensive Applications"* (Chapter 3). The entire database is just **two shell functions** and one text file:
+
+```bash
+#!/bin/bash
+
+db_set() {
+    echo "$1,$2" >> database
+}
+
+db_get() {
+    grep "^$1," database | sed "s/^$1,//" | tail -n 1
+}
+```
+
+#### How It Works
+
+**Write (`db_set`)**: appends a key-value pair as a new line to the file. That's it — one `echo`, one `>>`.
+
+**Read (`db_get`)**: searches the file for all lines matching the key, strips the key prefix, and returns the **last** match (which is the most recent value).
+
+```bash
+# Usage
+db_set "name" "Alice"
+db_set "city" "Berlin"
+db_set "name" "Bob"      # overwrite: append new value
+
+db_get "name"             # Bob (last match wins)
+db_get "city"             # Berlin
+```
+
+The file after these operations:
+
+```
+name,Alice
+city,Berlin
+name,Bob
+```
+
+#### Advantages
+
+| Advantage | Why |
+|---|---|
+| **Blazing-fast writes** | `O(1)` — always appends to end of file, the fastest possible I/O operation |
+| **Simplicity** | The entire "database engine" fits in 2 lines. Easy to understand, debug, inspect |
+| **Crash-safe writes** | Append is atomic for small writes — no partial corruption of existing data |
+| **Natural history** | Every value is preserved — you get a built-in audit log for free |
+| **No dependencies** | Runs on any Unix system. No installation, no libraries, no daemon |
+
+#### Disadvantages
+
+| Disadvantage | Why |
+|---|---|
+| **Slow reads** | `O(n)` — `grep` must scan the entire file every time |
+| **Unbounded growth** | The file grows forever — old values are never removed (compaction needed) |
+| **No concurrency control** | Concurrent writes can corrupt data (`>>` is not guaranteed atomic for large values) |
+| **No data types** | Everything is a string. No integers, arrays, or nested structures |
+| **Comma in values** | If a value contains `,`, the parse breaks — no escaping mechanism |
+
+#### Key Insight
+
+This is essentially how **log-structured storage** works — the foundation of real databases like **LSM-trees** (used in LevelDB, RocksDB, Cassandra). The production versions add:
+
+- **Indexing** (hash maps, SSTables) to make reads `O(1)` or `O(log n)`
+- **Compaction** to merge old entries and reclaim space
+- **Write-ahead logs** for durability
+- **Concurrency control** with locks or MVCC
+
+The lesson: **append-only is a legitimate database design** — not a hack. The simplest version already demonstrates the core trade-off of log-structured storage: **write speed vs. read speed**.
 
 ---
 
@@ -606,6 +729,7 @@ In this module, you learned:
 - ✅ **Arrays and strings**: Data structures and manipulation
 - ✅ **Arithmetic**: Integer and floating-point calculations
 - ✅ **Functions**: Reusable code blocks
+- ✅ **Log-structured storage**: File-based key-value DB in 2 lines of shell
 - ✅ **Exit codes**: Error detection and handling
 - ✅ **`set -euo pipefail`**: Safe script execution
 - ✅ **Process substitution**: `<(cmd)` and `>(cmd)` for advanced pipelines

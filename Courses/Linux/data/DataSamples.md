@@ -274,6 +274,8 @@ Transaction records for filtering examples.
 
 ```csv
 date,amount,category
+2023-11-10,320,Electronics
+2023-12-25,85,Clothing
 2024-03-15,150,Electronics
 2024-03-15,45,Clothing
 2024-03-16,1499,Electronics
@@ -286,6 +288,8 @@ date,amount,category
 2024-03-19,50,Food
 2024-03-20,75,Clothing
 2024-03-20,120,Electronics
+2025-01-05,210,Food
+2025-02-14,450,Clothing
 ```
 
 ---
@@ -761,6 +765,8 @@ EOF
 
 cat > transactions.csv << 'EOF'
 date,amount,category
+2023-11-10,320,Electronics
+2023-12-25,85,Clothing
 2024-03-15,150,Electronics
 2024-03-15,45,Clothing
 2024-03-16,1499,Electronics
@@ -773,6 +779,8 @@ date,amount,category
 2024-03-19,50,Food
 2024-03-20,75,Clothing
 2024-03-20,120,Electronics
+2025-01-05,210,Food
+2025-02-14,450,Clothing
 EOF
 
 cat > user_activity.csv << 'EOF'

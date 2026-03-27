@@ -51,7 +51,7 @@ Bash as a domain-specific language for data processing.
 - [Resources](03_Shell_Programming/links.md)
 - [Quiz](03_Shell_Programming/quiz.md) - Test your knowledge
 
-**Tools:** `bash`, `jq`, `awk`, `printf`
+**Tools:** `bash`, `jq`, `awk`, `printf`, `bc`, `mapfile`/`readarray`
 
 ---
 

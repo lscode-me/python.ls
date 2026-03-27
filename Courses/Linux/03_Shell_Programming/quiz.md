@@ -127,7 +127,7 @@ D) Appends "default" to var
 
 ## Question 12: mapfile/readarray
 
-What does `mapfile -t lines < file.txt` do?
+What does `mapfile -t lines < data.txt` do?
 
 A) Prints lines from file  
 B) Counts lines in file  
@@ -136,7 +136,7 @@ D) Maps each line to a function
 
 ---
 
-## Question 13: String Replacement
+## Question 13: String Operations
 
 What does `${text//old/new}` do?
 
