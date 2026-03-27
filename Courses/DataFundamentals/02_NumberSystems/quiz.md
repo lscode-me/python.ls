@@ -258,7 +258,7 @@ D) You need to use a different operator
 
 ## Question 19: Data Size
 
-How many bytes in 1 kilobyte (IEC standard)?
+How many bytes in 1 kibibyte (KiB)?
 
 A) 1048
 
@@ -376,7 +376,7 @@ D) 6.4 GB
 | 16 | B | Signed 8-bit: -128 to 127. Unsigned: 0 to 255. |
 | 17 | C | -5 in two's complement: invert 00000101 = 11111010, add 1 = 11111011. |
 | 18 | A | IEEE 754 floating point has limited precision, 0.1 is infinite fraction in binary. |
-| 19 | D | 1 KiB (kibibyte per IEC) = 1024 bytes. Manufacturers often use 1000. |
+| 19 | D | 1 KiB (kibibyte) = 1024 bytes. Note: 1 KB (kilobyte, SI) = 1000 bytes. |
 | 20 | A | `xxd -r -p` — reverse plain hex dump, converts hex to binary. |
 | 21 | C | ASCII 'I' = 73, Phred+33 quality = 73 - 33 = 40 (high quality). |
 | 22 | B | BAM files start with magic number 42 41 4D 01 ("BAM" + version byte). |
