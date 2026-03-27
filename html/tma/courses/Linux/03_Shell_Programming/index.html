@@ -44,7 +44,7 @@
         <span class="course-badge">Linux for Developers: Unix &amp; Data Pipelines</span>
         <div class="module-info">
             <span class="module-number">Module 3</span>
-            <span class="reading-time">📖 8 min</span>
+            <span class="reading-time">📖 12 min</span>
         </div>
     </div>
 
@@ -162,13 +162,19 @@ for fruit in &quot;${fruits[@]}&quot;; do
 done
 
 # Read into array
-mapfile -t lines &lt; file.txt
+mapfile -t lines &lt; data.txt
+echo &quot;${lines[@]}&quot;
 # or
-readarray -t lines &lt; file.txt
+readarray -t lines &lt; data.txt
 </code></pre>
 
-<h3 id="string-operations">String Operations</h3>
-<pre class="highlight"><code class="language-bash">text=&quot;Hello, World!&quot;
+<blockquote>
+<p><strong>Note:</strong> <code>mapfile</code>/<code>readarray</code> loads the entire file into an array, which is convenient for small files but not suitable for large datasets, where streaming with <code>while read</code> is preferred.</p>
+</blockquote>
+<pre class="highlight"><code>### String Operations
+
+```bash
+text=&quot;Hello, World!&quot;
 
 # Length
 echo &quot;${#text}&quot;  # 13
@@ -185,18 +191,19 @@ echo &quot;${text//o/0}&quot;        # Hell0, W0rld!
 echo &quot;${text^^}&quot;  # HELLO, WORLD!
 echo &quot;${text,,}&quot;  # hello, world!
 
+# Check if a string contains a substring (using [[ ]] for pattern matching)
+if [[ &quot;$text&quot; == *&quot;World&quot;* ]]; then
+    echo &quot;Found!&quot;
+fi
+
 # Trim whitespace
 text=&quot;  data  &quot;
 trimmed=&quot;${text#&quot;${text%%[![:space:]]*}&quot;}&quot;
 trimmed=&quot;${trimmed%&quot;${trimmed##*[![:space:]]}&quot;}&quot;
-
-# Check if string contains substring
-if [[ &quot;$text&quot; == *&quot;World&quot;* ]]; then
-    echo &quot;Found!&quot;
-fi
 </code></pre>
 
 <h3 id="arithmetic">Arithmetic</h3>
+<p>Bash uses double parentheses <code>(( ))</code> for arithmetic that clearly separates math expressions from regular shell constructs.</p>
 <pre class="highlight"><code class="language-bash"># Arithmetic expansion
 x=5
 y=3
@@ -214,7 +221,7 @@ if ((x &gt; y)); then
     echo &quot;x is greater&quot;
 fi
 
-# Floating point with bc
+# Floating-point calculation with bc
 result=$(echo &quot;scale=2; 10 / 3&quot; | bc)
 echo &quot;$result&quot;  # 3.33
 
@@ -222,9 +229,13 @@ echo &quot;$result&quot;  # 3.33
 random=$((RANDOM % 100))  # 0-99
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> <code>$(( ))</code> performs integer arithmetic only; floating-point calculations require external tools such as <code>bc</code>.</p>
+</blockquote>
 <hr />
 <h2 id="functions">Functions</h2>
 <h3 id="basic-functions">Basic Functions</h3>
+<p>Bash functions accept positional arguments (<code>$1</code>, <code>$2</code>, etc.) and produce results via output (stdout) or variable changes — not through <code>return</code>, which only sets an exit code.</p>
 <pre class="highlight"><code class="language-bash"># Define function
 greet() {
     echo &quot;Hello, $1!&quot;
@@ -255,17 +266,19 @@ stats() {
     echo &quot;$sum $count&quot;
 }
 
+# Pass command output to read as if it were a file
 read sum count &lt; &lt;(seq 1 10 | stats)
 echo &quot;Sum: $sum, Count: $count&quot;
 </code></pre>
 
 <h3 id="local-variables">Local Variables</h3>
+<p>The <code>local</code> keyword restricts a variable to the function's scope, preventing accidental modification of global variables.</p>
 <pre class="highlight"><code class="language-bash">process_data() {
     local input_file=&quot;$1&quot;
     local output_file=&quot;$2&quot;
     local temp_file=$(mktemp)
 
-    # Process data
+    # Process data — apply any transformation (e.g., uppercase, filtering, formatting)
     cat &quot;$input_file&quot; | transform &gt; &quot;$temp_file&quot;
     mv &quot;$temp_file&quot; &quot;$output_file&quot;
 }
@@ -273,8 +286,9 @@ echo &quot;Sum: $sum, Count: $count&quot;
 
 <hr />
 <h2 id="exit-codes-and-error-handling">Exit Codes and Error Handling</h2>
+<p>Every command in Bash returns an exit code. Exit code <code>0</code> indicates success; any non-zero exit code represents a specific type of failure. Exit codes allow scripts to detect errors and react accordingly.</p>
 <h3 id="exit-codes">Exit Codes</h3>
-<pre class="highlight"><code class="language-bash"># Check last command exit code
+<pre class="highlight"><code class="language-bash"># $? checks the exit code of the last executed command
 ls /nonexistent
 echo $?  # Non-zero indicates error
 
@@ -288,10 +302,10 @@ exit 1  # Error
 </code></pre>
 
 <h3 id="conditional-execution">Conditional Execution</h3>
-<pre class="highlight"><code class="language-bash"># Run if previous command succeeded
+<pre class="highlight"><code class="language-bash"># Run command2 only if command1 succeeded (exit code 0)
 command1 &amp;&amp; command2
 
-# Run if previous command failed
+# Run command2 only if command1 failed (non-zero exit code)
 command1 || command2
 
 # Chain conditionally
@@ -303,7 +317,38 @@ if command1 &amp;&amp; command2; then
 fi
 </code></pre>
 
+<h3 id="useful-test-operators">Useful Test Operators</h3>
+<pre class="highlight"><code class="language-bash"># String tests
+[[ -z &quot;$var&quot; ]]    # True if var is empty or unset
+[[ -n &quot;$var&quot; ]]    # True if var is non-empty
+
+# File tests
+[[ -f &quot;$file&quot; ]]   # True if file exists and is a regular file
+[[ -d &quot;$dir&quot; ]]    # True if directory exists
+
+# String comparison
+[[ &quot;$a&quot; == &quot;$b&quot; ]] # True if strings are equal
+</code></pre>
+
+<h3 id="here-documents">Here Documents</h3>
+<p>Here documents (<code>&lt;&lt;</code>) provide multi-line input to a command inline, without a separate file:</p>
+<pre class="highlight"><code class="language-bash"># Multi-line input to a command
+cat &lt;&lt;EOF
+Hello, $USER!
+Today is $(date +%Y-%m-%d).
+EOF
+
+# Quoted delimiter disables variable expansion
+cat &lt;&lt;'EOF'
+This $variable is not expanded.
+EOF
+
+# Here string (single line)
+grep &quot;error&quot; &lt;&lt;&lt; &quot;no error here&quot;
+</code></pre>
+
 <h3 id="error-handling-with-set">Error Handling with <code>set</code></h3>
+<p>The <code>set</code> builtin modifies the shell's behavior; the <code>-e</code>, <code>-u</code>, and <code>-o pipefail</code> options enable stricter error handling to stop scripts early when something goes wrong.</p>
 <pre class="highlight"><code class="language-bash">#!/bin/bash
 
 # Exit on error
@@ -363,7 +408,7 @@ while read line; do
 done &lt; &lt;(curl -s https://api.example.com/data | jq -r '.[]')
 
 # Multiple inputs
-paste &lt;(cut -d',' -f1 file1.csv) &lt;(cut -d',' -f2 file2.csv)
+paste &lt;(cut -d',' -f1 products.csv) &lt;(cut -d',' -f2 customers.csv)
 </code></pre>
 
 <h3 id="writing-to-process-substitution">Writing to Process Substitution</h3>
@@ -383,8 +428,8 @@ echo &quot;data&quot; | tee &gt;(process1) &gt;(process2) &gt;(process3)
 # Join two CSV files after transformation
 
 join -t',' \
-    &lt;(sort -t',' -k1 file1.csv) \
-    &lt;(sort -t',' -k1 file2.csv)
+    &lt;(sort -t',' -k1 data.csv) \
+    &lt;(sort -t',' -k1 left.csv)
 </code></pre>
 
 <p><strong>Example 2: Parallel processing</strong></p>
@@ -417,9 +462,9 @@ set -euo pipefail
 
 # Filter CSV by date range and compute statistics
 
-input_file=&quot;${1:-data.csv}&quot;
-start_date=&quot;${2:-2024-01-01}&quot;
-end_date=&quot;${3:-2024-12-31}&quot;
+input_file=&quot;${1:-transactions.csv}&quot;
+start_date=&quot;${2:-2024-03-16}&quot;
+end_date=&quot;${3:-2024-03-18}&quot;
 
 echo &quot;Processing $input_file from $start_date to $end_date&quot;
 
@@ -451,7 +496,7 @@ set -euo pipefail
 
 # Convert JSONL to CSV with field selection
 
-input=&quot;${1:-/dev/stdin}&quot;
+input=&quot;${1:-data.jsonl}&quot;
 fields=&quot;${2:-name,age,city}&quot;
 
 # Extract field names
@@ -487,8 +532,8 @@ count=0
 while read -r num; do
     values+=(&quot;$num&quot;)
     sum=$(echo &quot;$sum + $num&quot; | bc)
-    ((count++))
-done
+    count=$((count + 1))
+done &lt; numbers.txt
 
 # Calculate mean
 mean=$(echo &quot;scale=2; $sum / $count&quot; | bc)
@@ -508,6 +553,108 @@ echo &quot;Mean: $mean&quot;
 echo &quot;Median: $median&quot;
 </code></pre>
 
+<h3 id="example-4-file-based-key-value-database">Example 4: File-Based Key-Value Database</h3>
+<p>This elegant example is inspired by Martin Kleppmann's <em>"Designing Data-Intensive Applications"</em> (Chapter 3). The entire database is just <strong>two shell functions</strong> and one text file:</p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+
+db_set() {
+    echo &quot;$1,$2&quot; &gt;&gt; database
+}
+
+db_get() {
+    grep &quot;^$1,&quot; database | sed &quot;s/^$1,//&quot; | tail -n 1
+}
+</code></pre>
+
+<h4 id="how-it-works">How It Works</h4>
+<p><strong>Write (<code>db_set</code>)</strong>: appends a key-value pair as a new line to the file. That's it — one <code>echo</code>, one <code>&gt;&gt;</code>.</p>
+<p><strong>Read (<code>db_get</code>)</strong>: searches the file for all lines matching the key, strips the key prefix, and returns the <strong>last</strong> match (which is the most recent value).</p>
+<pre class="highlight"><code class="language-bash"># Usage
+db_set &quot;name&quot; &quot;Alice&quot;
+db_set &quot;city&quot; &quot;Berlin&quot;
+db_set &quot;name&quot; &quot;Bob&quot;      # overwrite: append new value
+
+db_get &quot;name&quot;             # Bob (last match wins)
+db_get &quot;city&quot;             # Berlin
+</code></pre>
+
+<p>The file after these operations:</p>
+<pre class="highlight"><code>name,Alice
+city,Berlin
+name,Bob
+</code></pre>
+
+<h4 id="advantages">Advantages</h4>
+<table>
+<thead>
+<tr>
+<th>Advantage</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blazing-fast writes</strong></td>
+<td><code>O(1)</code> — always appends to end of file, the fastest possible I/O operation</td>
+</tr>
+<tr>
+<td><strong>Simplicity</strong></td>
+<td>The entire "database engine" fits in 2 lines. Easy to understand, debug, inspect</td>
+</tr>
+<tr>
+<td><strong>Crash-safe writes</strong></td>
+<td>Append is atomic for small writes — no partial corruption of existing data</td>
+</tr>
+<tr>
+<td><strong>Natural history</strong></td>
+<td>Every value is preserved — you get a built-in audit log for free</td>
+</tr>
+<tr>
+<td><strong>No dependencies</strong></td>
+<td>Runs on any Unix system. No installation, no libraries, no daemon</td>
+</tr>
+</tbody>
+</table>
+<h4 id="disadvantages">Disadvantages</h4>
+<table>
+<thead>
+<tr>
+<th>Disadvantage</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Slow reads</strong></td>
+<td><code>O(n)</code> — <code>grep</code> must scan the entire file every time</td>
+</tr>
+<tr>
+<td><strong>Unbounded growth</strong></td>
+<td>The file grows forever — old values are never removed (compaction needed)</td>
+</tr>
+<tr>
+<td><strong>No concurrency control</strong></td>
+<td>Concurrent writes can corrupt data (<code>&gt;&gt;</code> is not guaranteed atomic for large values)</td>
+</tr>
+<tr>
+<td><strong>No data types</strong></td>
+<td>Everything is a string. No integers, arrays, or nested structures</td>
+</tr>
+<tr>
+<td><strong>Comma in values</strong></td>
+<td>If a value contains <code>,</code>, the parse breaks — no escaping mechanism</td>
+</tr>
+</tbody>
+</table>
+<h4 id="key-insight">Key Insight</h4>
+<p>This is essentially how <strong>log-structured storage</strong> works — the foundation of real databases like <strong>LSM-trees</strong> (used in LevelDB, RocksDB, Cassandra). The production versions add:</p>
+<ul>
+<li><strong>Indexing</strong> (hash maps, SSTables) to make reads <code>O(1)</code> or <code>O(log n)</code></li>
+<li><strong>Compaction</strong> to merge old entries and reclaim space</li>
+<li><strong>Write-ahead logs</strong> for durability</li>
+<li><strong>Concurrency control</strong> with locks or MVCC</li>
+</ul>
+<p>The lesson: <strong>append-only is a legitimate database design</strong> — not a hack. The simplest version already demonstrates the core trade-off of log-structured storage: <strong>write speed vs. read speed</strong>.</p>
 <hr />
 <h2 id="best-practices">Best Practices</h2>
 <h3 id="1-always-use-quotes">1. Always Use Quotes</h3>
@@ -575,6 +722,7 @@ readonly TIMEOUT=30
 <li>✅ <strong>Arrays and strings</strong>: Data structures and manipulation</li>
 <li>✅ <strong>Arithmetic</strong>: Integer and floating-point calculations</li>
 <li>✅ <strong>Functions</strong>: Reusable code blocks</li>
+<li>✅ <strong>Log-structured storage</strong>: File-based key-value DB in 2 lines of shell</li>
 <li>✅ <strong>Exit codes</strong>: Error detection and handling</li>
 <li>✅ <strong><code>set -euo pipefail</code></strong>: Safe script execution</li>
 <li>✅ <strong>Process substitution</strong>: <code>&lt;(cmd)</code> and <code>&gt;(cmd)</code> for advanced pipelines</li>

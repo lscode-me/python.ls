@@ -269,6 +269,8 @@ u2,2024-01-01,2024-03-25,6
 <h3 id="transactionscsv">transactions.csv</h3>
 <p>Transaction records for filtering examples.</p>
 <pre class="highlight"><code class="language-csv">date,amount,category
+2023-11-10,320,Electronics
+2023-12-25,85,Clothing
 2024-03-15,150,Electronics
 2024-03-15,45,Clothing
 2024-03-16,1499,Electronics
@@ -281,6 +283,8 @@ u2,2024-01-01,2024-03-25,6
 2024-03-19,50,Food
 2024-03-20,75,Clothing
 2024-03-20,120,Electronics
+2025-01-05,210,Food
+2025-02-14,450,Clothing
 </code></pre>
 
 <hr />
@@ -712,6 +716,8 @@ EOF
 
 cat &gt; transactions.csv &lt;&lt; 'EOF'
 date,amount,category
+2023-11-10,320,Electronics
+2023-12-25,85,Clothing
 2024-03-15,150,Electronics
 2024-03-15,45,Clothing
 2024-03-16,1499,Electronics
@@ -724,6 +730,8 @@ date,amount,category
 2024-03-19,50,Food
 2024-03-20,75,Clothing
 2024-03-20,120,Electronics
+2025-01-05,210,Food
+2025-02-14,450,Clothing
 EOF
 
 cat &gt; user_activity.csv &lt;&lt; 'EOF'

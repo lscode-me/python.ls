@@ -164,7 +164,7 @@ What byte order is used in TCP/IP network protocols?
 
 A) Little-Endian
 
-B) Big-Endian (Network Byte Order)
+B) Big-Endian
 
 C) Middle-Endian
 

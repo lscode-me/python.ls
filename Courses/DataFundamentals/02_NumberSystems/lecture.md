@@ -148,21 +148,26 @@ Phred score: 73 - 33 = 40 (high quality base call)
 
 ### 2.3 Data Measurement Units
 
-| Unit | Size | Example | Genomics Example |
-|------|------|---------|------------------|
-| 1 bit | 1 bit | Yes/No | One DNA base (2 bits used) |
-| 1 byte (B) | 8 bits | One ASCII char | FASTQ quality score |
-| 1 kilobyte (KB) | 1024 bytes | Short text | Small gene sequence |
-| 1 megabyte (MB) | 1024 KB | Photo | Bacterial genome (E. coli ~4.6 MB) |
-| 1 gigabyte (GB) | 1024 MB | Movie | Human genome FASTA (~3.2 GB) |
-| 1 terabyte (TB) | 1024 GB | Large disk | Whole genome sequencing project |
-| 1 petabyte (PB) | 1024 TB | Data center | NCBI SRA database (~50 PB) |
+| Unit | IEC Name | Size | Example | Genomics Example |
+|------|----------|------|---------|------------------|
+| 1 bit | | 1 bit | Yes/No | One DNA base (2 bits used) |
+| 1 byte (B) | | 8 bits | One ASCII char | FASTQ quality score |
+| 1 kilobyte (KB) | 1 kibibyte (KiB) | 1024 bytes | Short text | Small gene sequence |
+| 1 megabyte (MB) | 1 mebibyte (MiB) | 1024 KiB | Photo | Bacterial genome (E. coli ~4.6 MB) |
+| 1 gigabyte (GB) | 1 gibibyte (GiB) | 1024 MiB | Movie | Human genome FASTA (~3.2 GB) |
+| 1 terabyte (TB) | 1 tebibyte (TiB) | 1024 GiB | Large disk | Whole genome sequencing project |
+| 1 petabyte (PB) | 1 pebibyte (PiB) | 1024 TiB | Data center | NCBI SRA database (~50 PB) |
 
-> **⚠️ Warning:**  
-> Disk manufacturers use 1000 (SI), not 1024 (IEC):  
+> **⚠️ Warning: KB vs KiB**  
+> Historically, "kilobyte" meant 1024 bytes (power of 2). In 1998, the IEC introduced **binary prefixes** (KiB, MiB, GiB) to remove ambiguity:  
+> - **KiB** (kibibyte) = 1024 bytes (binary, used by OS and tools like `ls -lh`)  
+> - **KB** (kilobyte) = 1000 bytes (decimal, used by disk manufacturers)  
+>  
+> This is why a "1 TB" disk shows as ~931 GiB in the system:  
 > 1 TB (manufacturer) = 1,000,000,000,000 bytes  
-> 1 TiB (actual) = 1,099,511,627,776 bytes  
-> So a "1 TB" disk shows as ~931 GiB in the system.
+> 1 TiB (actual binary) = 1,099,511,627,776 bytes  
+>  
+> In practice, most engineers still say "kilobyte" meaning 1024. But in formal contexts and newer tools, KiB/MiB/GiB is preferred.
 
 ### 2.4 Nibble (Half-byte)
 
