@@ -258,7 +258,7 @@ D) You need to use a different operator
 
 ## Question 19: Data Size
 
-How many bytes in 1 kibibyte (KiB)?
+How many bytes are in 1 kibibyte (KiB)?
 
 A) 1048
 
