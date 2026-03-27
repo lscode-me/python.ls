@@ -126,7 +126,7 @@
             <h1>Number Systems</h1>
             <div class="lecture-meta">
                 <span class="module-badge">Module 2</span>
-                <span class="reading-time">📖 15 min read</span>
+                <span class="reading-time">📖 16 min read</span>
             </div>
         </div>
 
@@ -280,6 +280,7 @@ Phred score: 73 - 33 = 40 (high quality base call)
 <thead>
 <tr>
 <th>Unit</th>
+<th>IEC Name</th>
 <th>Size</th>
 <th>Example</th>
 <th>Genomics Example</th>
@@ -288,54 +289,64 @@ Phred score: 73 - 33 = 40 (high quality base call)
 <tbody>
 <tr>
 <td>1 bit</td>
+<td></td>
 <td>1 bit</td>
 <td>Yes/No</td>
 <td>One DNA base (2 bits used)</td>
 </tr>
 <tr>
 <td>1 byte (B)</td>
+<td></td>
 <td>8 bits</td>
 <td>One ASCII char</td>
 <td>FASTQ quality score</td>
 </tr>
 <tr>
 <td>1 kilobyte (KB)</td>
+<td>1 kibibyte (KiB)</td>
 <td>1024 bytes</td>
 <td>Short text</td>
 <td>Small gene sequence</td>
 </tr>
 <tr>
 <td>1 megabyte (MB)</td>
-<td>1024 KB</td>
+<td>1 mebibyte (MiB)</td>
+<td>1024 KiB</td>
 <td>Photo</td>
 <td>Bacterial genome (E. coli ~4.6 MB)</td>
 </tr>
 <tr>
 <td>1 gigabyte (GB)</td>
-<td>1024 MB</td>
+<td>1 gibibyte (GiB)</td>
+<td>1024 MiB</td>
 <td>Movie</td>
 <td>Human genome FASTA (~3.2 GB)</td>
 </tr>
 <tr>
 <td>1 terabyte (TB)</td>
-<td>1024 GB</td>
+<td>1 tebibyte (TiB)</td>
+<td>1024 GiB</td>
 <td>Large disk</td>
 <td>Whole genome sequencing project</td>
 </tr>
 <tr>
 <td>1 petabyte (PB)</td>
-<td>1024 TB</td>
+<td>1 pebibyte (PiB)</td>
+<td>1024 TiB</td>
 <td>Data center</td>
 <td>NCBI SRA database (~50 PB)</td>
 </tr>
 </tbody>
 </table></div>
 <blockquote>
-<p><strong>⚠️ Warning:</strong><br />
-Disk manufacturers use 1000 (SI), not 1024 (IEC):<br />
+<p><strong>⚠️ Warning: KB vs KiB</strong><br />
+Historically, "kilobyte" meant 1024 bytes (power of 2). In 1998, the IEC introduced <strong>binary prefixes</strong> (KiB, MiB, GiB) to remove ambiguity:<br />
+- <strong>KiB</strong> (kibibyte) = 1024 bytes (binary, used by OS and tools like <code>ls -lh</code>)<br />
+- <strong>KB</strong> (kilobyte) = 1000 bytes (decimal, used by disk manufacturers)  </p>
+<p>This is why a "1 TB" disk shows as ~931 GiB in the system:<br />
 1 TB (manufacturer) = 1,000,000,000,000 bytes<br />
-1 TiB (actual) = 1,099,511,627,776 bytes<br />
-So a "1 TB" disk shows as ~931 GiB in the system.</p>
+1 TiB (actual binary) = 1,099,511,627,776 bytes  </p>
+<p>In practice, most engineers still say "kilobyte" meaning 1024. But in formal contexts and newer tools, KiB/MiB/GiB is preferred.</p>
 </blockquote>
 <h3 id="24-nibble-half-byte">2.4 Nibble (Half-byte)</h3>
 <p><strong>Nibble</strong> — 4 bits, half a byte. Convenient for hex representation.</p>
