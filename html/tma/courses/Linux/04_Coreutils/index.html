@@ -61,8 +61,8 @@
 <pre class="highlight"><code class="language-bash"># Extract columns 2,4 from CSV
 cut -d',' -f2,4 data.csv
 
-# Character positions 1-10
-cut -c1-10 data.txt
+# Character positions 1-10 (extract date from log lines)
+cut -c1-10 logs.txt
 
 # Everything except column 1
 cut -d',' -f2- data.csv
@@ -76,10 +76,10 @@ cut -d',' -f2- data.csv
 <h3 id="2-paste-column-merging">2. <code>paste</code> — Column Merging</h3>
 <p>Join files side-by-side:</p>
 <pre class="highlight"><code class="language-bash"># Merge two files with TAB separator
-paste file1.txt file2.txt
+paste data.txt numbers.txt
 
-# Use comma separator
-paste -d',' ids.txt names.txt ages.txt &gt; people.csv
+# Merge extracted columns into a new CSV
+paste -d',' &lt;(cut -d',' -f1 data.csv) &lt;(cut -d',' -f2 data.csv) &lt;(cut -d',' -f3 data.csv)
 
 # Serial mode: convert rows to columns
 paste -s -d',' data.txt
@@ -88,16 +88,16 @@ paste -s -d',' data.txt
 <h3 id="3-tr-character-translation">3. <code>tr</code> — Character Translation</h3>
 <p>Translate or delete characters:</p>
 <pre class="highlight"><code class="language-bash"># Convert case
-tr '[:lower:]' '[:upper:]' &lt; input.txt
+tr '[:lower:]' '[:upper:]' &lt; data.txt
 
 # Delete characters
-tr -d '[:punct:]' &lt; text.txt
+tr -d '[:punct:]' &lt; emails.txt
 
-# Squeeze repeats
-tr -s ' ' &lt; text.txt  # collapse spaces
+# Squeeze repeats (collapse multiple spaces in log lines)
+tr -s ' ' &lt; logs.txt
 
 # ROT13 encoding
-tr 'A-Za-z' 'N-ZA-Mn-za-m' &lt; secret.txt
+tr 'A-Za-z' 'N-ZA-Mn-za-m' &lt; data.txt
 </code></pre>
 
 <p><strong>Character Classes:</strong>
@@ -203,9 +203,9 @@ stdbuf -i0 -o0 -e0 command
 cut -d',' -f3,1,2,4 data.csv
 </code></pre>
 
-<h3 id="example-2-join-two-files">Example 2: Join Two Files</h3>
-<pre class="highlight"><code class="language-bash"># Create people.csv from separate files
-paste -d',' ids.txt names.txt ages.txt &gt; people.csv
+<h3 id="example-2-merge-columns-from-different-files">Example 2: Merge Columns from Different Files</h3>
+<pre class="highlight"><code class="language-bash"># Combine names from data.csv with cities from users.csv
+paste -d',' &lt;(cut -d',' -f2 data.csv) &lt;(cut -d',' -f4 users.csv)
 </code></pre>
 
 <h3 id="example-3-top-10-most-frequent-lines">Example 3: Top 10 Most Frequent Lines</h3>
@@ -266,7 +266,7 @@ sort -t',' -k1,1 -u data.csv
 
 <h3 id="pattern-4-parallel-processing">Pattern 4: Parallel Processing</h3>
 <pre class="highlight"><code class="language-bash"># Split, process, merge
-split -l 1000 -d input.csv chunk_
+split -l 1000 -d data.csv chunk_
 for f in chunk_*; do process.sh &quot;$f&quot; &gt; &quot;$f.out&quot; &amp; done
 wait
 cat chunk_*.out &gt; output.csv
