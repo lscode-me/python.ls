@@ -38,8 +38,8 @@ Join files side-by-side:
 # Merge two files with TAB separator
 paste data.txt numbers.txt
 
-# Merge extracted columns into a new CSV
-paste -d',' <(cut -d',' -f1 data.csv) <(cut -d',' -f2 data.csv) <(cut -d',' -f3 data.csv)
+# Merge extracted columns in a different order (age, name, id)
+paste -d',' <(cut -d',' -f3 data.csv) <(cut -d',' -f2 data.csv) <(cut -d',' -f1 data.csv)
 
 # Serial mode: convert rows to columns
 paste -s -d',' data.txt
@@ -55,8 +55,8 @@ tr '[:lower:]' '[:upper:]' < data.txt
 # Delete characters
 tr -d '[:punct:]' < emails.txt
 
-# Squeeze repeats (collapse multiple spaces in log lines)
-tr -s ' ' < logs.txt
+# Squeeze repeats (normalize whitespace to single TAB for cut)
+cat access.log | tr -s ' ' '\t' | cut -f1,7
 
 # ROT13 encoding
 tr 'A-Za-z' 'N-ZA-Mn-za-m' < data.txt
