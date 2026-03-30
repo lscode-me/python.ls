@@ -145,7 +145,6 @@ readarray -t lines < data.txt
 ```
 
 > **Note:** `mapfile`/`readarray` loads the entire file into an array, which is convenient for small files but not suitable for large datasets, where streaming with `while read` is preferred.
-```
 
 ### String Operations
 
