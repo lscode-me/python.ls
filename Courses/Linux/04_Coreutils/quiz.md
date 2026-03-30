@@ -71,10 +71,10 @@ D) To ensure alphabetical order
 
 Which command splits a file into 1000-line chunks with numeric suffixes?
 
-A) `split -l 1000 file.txt`
-B) `split -l 1000 -d file.txt chunk_`
-C) `split -n 1000 file.txt`
-D) `csplit -l 1000 file.txt`
+A) `split -l 1000 data.txt`
+B) `split -l 1000 -d data.txt chunk_`
+C) `split -n 1000 data.txt`
+D) `csplit -l 1000 data.txt`
 
 
 ## Question 7: What does do
@@ -91,10 +91,10 @@ D) Pipes file through gzip with verification
 
 Which command shows only duplicate lines (those that appear more than once)?
 
-A) `sort file.txt | uniq`
-B) `sort file.txt | uniq -u`
-C) `sort file.txt | uniq -d`
-D) `sort file.txt | uniq -c | grep -v ' 1 '`
+A) `sort data.txt | uniq`
+B) `sort data.txt | uniq -u`
+C) `sort data.txt | uniq -d`
+D) `sort data.txt | uniq -c | grep -v ' 1 '`
 
 
 ## Question 9: What does do
@@ -111,10 +111,10 @@ D) Logs errors to a buffer file
 
 Which command counts the frequency of each line and shows the top 5?
 
-A) `sort file.txt | uniq | head -5`
-B) `sort file.txt | uniq -c | head -5`
-C) `sort file.txt | uniq -c | sort -rn | head -5`
-D) `uniq -c file.txt | sort -rn | head -5`
+A) `sort data.txt | uniq | head -5`
+B) `sort data.txt | uniq -c | head -5`
+C) `sort data.txt | uniq -c | sort -rn | head -5`
+D) `uniq -c data.txt | sort -rn | head -5`
 
 ---
 

@@ -19,7 +19,7 @@ Extract specific fields/characters from each line:
 cut -d',' -f2,4 data.csv
 
 # Character positions 1-10
-cut -c1-10 file.txt
+cut -c1-10 data.txt
 
 # Everything except column 1
 cut -d',' -f2- data.csv
@@ -72,13 +72,13 @@ Sort lines efficiently:
 
 ```bash
 # Default alphabetical sort
-sort file.txt
+sort data.txt
 
 # Numeric sort
 sort -n numbers.txt
 
 # Reverse order
-sort -r file.txt
+sort -r data.txt
 
 # Sort by second field (CSV)
 sort -t',' -k2,2 data.csv
@@ -87,7 +87,7 @@ sort -t',' -k2,2 data.csv
 sort -t',' -k3,3nr data.csv
 
 # Unique sort
-sort -u file.txt
+sort -u data.txt
 
 # Parallel sort (faster)
 sort --parallel=4 -S 2G huge.txt
@@ -108,19 +108,19 @@ Remove or count adjacent duplicates:
 
 ```bash
 # Remove duplicates (requires sorted input)
-sort file.txt | uniq
+sort data.txt | uniq
 
 # Count occurrences
-sort file.txt | uniq -c
+sort data.txt | uniq -c
 
 # Show only duplicates
-sort file.txt | uniq -d
+sort data.txt | uniq -d
 
 # Show only unique
-sort file.txt | uniq -u
+sort data.txt | uniq -u
 
 # Case-insensitive
-sort -f file.txt | uniq -i
+sort -f data.txt | uniq -i
 ```
 
 ### 6. `split` — File Splitting
