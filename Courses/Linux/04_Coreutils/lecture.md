@@ -18,8 +18,8 @@ Extract specific fields/characters from each line:
 # Extract columns 2,4 from CSV
 cut -d',' -f2,4 data.csv
 
-# Character positions 1-10
-cut -c1-10 data.txt
+# Character positions 1-10 (extract date from log lines)
+cut -c1-10 logs.txt
 
 # Everything except column 1
 cut -d',' -f2- data.csv
@@ -36,10 +36,10 @@ Join files side-by-side:
 
 ```bash
 # Merge two files with TAB separator
-paste file1.txt file2.txt
+paste data.txt numbers.txt
 
-# Use comma separator
-paste -d',' ids.txt names.txt ages.txt > people.csv
+# Merge extracted columns into a new CSV
+paste -d',' <(cut -d',' -f1 data.csv) <(cut -d',' -f2 data.csv) <(cut -d',' -f3 data.csv)
 
 # Serial mode: convert rows to columns
 paste -s -d',' data.txt
@@ -50,16 +50,16 @@ Translate or delete characters:
 
 ```bash
 # Convert case
-tr '[:lower:]' '[:upper:]' < input.txt
+tr '[:lower:]' '[:upper:]' < data.txt
 
 # Delete characters
-tr -d '[:punct:]' < text.txt
+tr -d '[:punct:]' < emails.txt
 
-# Squeeze repeats
-tr -s ' ' < text.txt  # collapse spaces
+# Squeeze repeats (collapse multiple spaces in log lines)
+tr -s ' ' < logs.txt
 
 # ROT13 encoding
-tr 'A-Za-z' 'N-ZA-Mn-za-m' < secret.txt
+tr 'A-Za-z' 'N-ZA-Mn-za-m' < data.txt
 ```
 
 **Character Classes:**
@@ -179,10 +179,10 @@ stdbuf -i0 -o0 -e0 command
 cut -d',' -f3,1,2,4 data.csv
 ```
 
-### Example 2: Join Two Files
+### Example 2: Merge Columns from Different Files
 ```bash
-# Create people.csv from separate files
-paste -d',' ids.txt names.txt ages.txt > people.csv
+# Combine names from data.csv with cities from users.csv
+paste -d',' <(cut -d',' -f2 data.csv) <(cut -d',' -f4 users.csv)
 ```
 
 ### Example 3: Top 10 Most Frequent Lines
@@ -251,7 +251,7 @@ sort -t',' -k1,1 -u data.csv
 ### Pattern 4: Parallel Processing
 ```bash
 # Split, process, merge
-split -l 1000 -d input.csv chunk_
+split -l 1000 -d data.csv chunk_
 for f in chunk_*; do process.sh "$f" > "$f.out" & done
 wait
 cat chunk_*.out > output.csv
