@@ -172,8 +172,8 @@ cut -d',' -f2- data.csv
 <pre class="highlight"><code class="language-bash"># Merge two files with TAB separator
 paste data.txt numbers.txt
 
-# Merge extracted columns into a new CSV
-paste -d',' &lt;(cut -d',' -f1 data.csv) &lt;(cut -d',' -f2 data.csv) &lt;(cut -d',' -f3 data.csv)
+# Merge extracted columns in a different order (age, name, id)
+paste -d',' &lt;(cut -d',' -f3 data.csv) &lt;(cut -d',' -f2 data.csv) &lt;(cut -d',' -f1 data.csv)
 
 # Serial mode: convert rows to columns
 paste -s -d',' data.txt
@@ -187,8 +187,8 @@ tr '[:lower:]' '[:upper:]' &lt; data.txt
 # Delete characters
 tr -d '[:punct:]' &lt; emails.txt
 
-# Squeeze repeats (collapse multiple spaces in log lines)
-tr -s ' ' &lt; logs.txt
+# Squeeze repeats (normalize whitespace to single TAB for cut)
+cat access.log | tr -s ' ' '\t' | cut -f1,7
 
 # ROT13 encoding
 tr 'A-Za-z' 'N-ZA-Mn-za-m' &lt; data.txt
