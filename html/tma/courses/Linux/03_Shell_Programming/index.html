@@ -171,10 +171,8 @@ readarray -t lines &lt; data.txt
 <blockquote>
 <p><strong>Note:</strong> <code>mapfile</code>/<code>readarray</code> loads the entire file into an array, which is convenient for small files but not suitable for large datasets, where streaming with <code>while read</code> is preferred.</p>
 </blockquote>
-<pre class="highlight"><code>### String Operations
-
-```bash
-text=&quot;Hello, World!&quot;
+<h3 id="string-operations">String Operations</h3>
+<pre class="highlight"><code class="language-bash">text=&quot;Hello, World!&quot;
 
 # Length
 echo &quot;${#text}&quot;  # 13
