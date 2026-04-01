@@ -12,7 +12,7 @@ A) `cut -d',' -f2-4 file.csv`
 
 B) `cut -d',' -f2,4 file.csv`
 
-C) `awk -F',' '{print $2,$4}' file.csv`
+C) `awk -F',' '{print $2","$4}' file.csv`
 
 D) Both B and C
 
@@ -47,7 +47,7 @@ D) `sed 's/[a-z]/[A-Z]/g'`
 ---
    - D) `awk '{print toupper($0)}'`
 
-## Question 4: What does do
+## Question 4: Sort Key Options
 
 What does `sort -t',' -k3,3nr data.csv` do?
 
@@ -57,7 +57,7 @@ C) Sorts by 3rd column numerically in descending order
 D) Sorts by 3rd character of each line
 
 
-## Question 5: Why must you run before
+## Question 5: Sort Before Uniq
 
 Why must you run `sort` before `uniq`?
 
@@ -77,7 +77,7 @@ C) `split -n 1000 data.txt`
 D) `csplit -l 1000 data.txt`
 
 
-## Question 7: What does do
+## Question 7: Progress Viewer
 
 What does `pv large.csv | gzip > large.csv.gz` do?
 
@@ -94,10 +94,10 @@ Which command shows only duplicate lines (those that appear more than once)?
 A) `sort data.txt | uniq`
 B) `sort data.txt | uniq -u`
 C) `sort data.txt | uniq -d`
-D) `sort data.txt | uniq -c | grep -v ' 1 '`
+D) `sort data.txt | uniq --duplicates`
 
 
-## Question 9: What does do
+## Question 9: Buffer Control
 
 What does `stdbuf -oL grep ERROR app.log` do?
 
@@ -140,7 +140,7 @@ D) `split --size=100MB file.txt`
 
 ---
 
-## Question 13: TR Delete
+## Question 13: Character Deletion
 
 What does `tr -d '[:digit:]'` do?
 

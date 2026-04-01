@@ -158,8 +158,11 @@ cut -d',' -f2,4 data.csv
 # Character positions 1-10 (extract date from log lines)
 cut -c1-10 logs.txt
 
-# Everything except column 1
+# Select columns 2 through the end
 cut -d',' -f2- data.csv
+
+# Everything except column 1
+cut -d',' --complement -f1 data.csv
 </code></pre>
 
 <p><strong>Key Options:</strong><br />
@@ -187,10 +190,10 @@ tr '[:lower:]' '[:upper:]' &lt; data.txt
 # Delete characters
 tr -d '[:punct:]' &lt; emails.txt
 
-# Squeeze repeats (normalize whitespace to single TAB for cut)
+# Squeeze repeats (normalize space characters to single TAB for cut), then extract fields 1 and 7
 cat access.log | tr -s ' ' '\t' | cut -f1,7
 
-# ROT13 encoding
+# ROT13 encoding (example of character set translation)
 tr 'A-Za-z' 'N-ZA-Mn-za-m' &lt; data.txt
 </code></pre>
 
@@ -209,7 +212,7 @@ sort -n numbers.txt
 # Reverse order
 sort -r data.txt
 
-# Sort by second field (CSV)
+# Sort using only the second field as the key (from field 2 to field 2)
 sort -t',' -k2,2 data.csv
 
 # Sort by numeric field (descending)
@@ -218,7 +221,7 @@ sort -t',' -k3,3nr data.csv
 # Unique sort
 sort -u data.txt
 
-# Parallel sort (faster)
+# Parallel sort using multiple cores (beneficial for large files)
 sort --parallel=4 -S 2G huge.txt
 </code></pre>
 
@@ -242,7 +245,7 @@ sort data.txt | uniq -c
 # Show only duplicates
 sort data.txt | uniq -d
 
-# Show only unique
+# Show lines that appear exactly once
 sort data.txt | uniq -u
 
 # Case-insensitive
@@ -269,14 +272,14 @@ split -l 1000 -d -a 4 large.txt chunk_  # chunk_0000
 <pre class="highlight"><code class="language-bash"># Show progress for file copy
 pv large.csv | gzip &gt; large.csv.gz
 
-# Rate limit (1MB/s)
+# Rate limit transfer to 1MB/s while showing progress
 pv -L 1m large.csv &gt; output.csv
 
-# ETA and progress bar
+# Wait for first byte before showing progress bar
 pv -W large.csv | wc -l
 
 # Multi-file progress
-pv file1 file2 file3 | tar -cz &gt; archive.tar.gz
+tar -cz file1 file2 file3 | pv &gt; archive.tar.gz
 </code></pre>
 
 <h3 id="8-stdbuf-buffer-control">8. <code>stdbuf</code> — Buffer Control</h3>
@@ -349,12 +352,14 @@ cut -d',' -f2 data.csv | sort | uniq -c | sort -rn | head -10
 <h3 id="pattern-2-column-swap">Pattern 2: Column Swap</h3>
 <pre class="highlight"><code class="language-bash"># Swap columns 1 and 2
 awk -F',' '{print $2&quot;,&quot;$1&quot;,&quot;$3}' data.csv
-# OR
-cut -d',' -f2,1,3 data.csv
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> <code>cut</code> is suitable for selecting or dropping columns, but not for reordering them. To explicitly reorder columns, use tools such as <code>awk</code> or <code>paste</code> with process substitution.</p>
+</blockquote>
 <h3 id="pattern-3-deduplication-by-key">Pattern 3: Deduplication by Key</h3>
-<pre class="highlight"><code class="language-bash"># Keep first occurrence of each ID
+<p>Deduplication by key means removing multiple rows that share the same identifier field and keeping a single representative row per key value.</p>
+<pre class="highlight"><code class="language-bash"># Ensure uniqueness by ID (has effect only if duplicate IDs exist)
 sort -t',' -k1,1 -u data.csv
 </code></pre>
 

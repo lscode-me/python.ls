@@ -21,8 +21,11 @@ cut -d',' -f2,4 data.csv
 # Character positions 1-10 (extract date from log lines)
 cut -c1-10 logs.txt
 
-# Everything except column 1
+# Select columns 2 through the end
 cut -d',' -f2- data.csv
+
+# Everything except column 1
+cut -d',' --complement -f1 data.csv
 ```
 
 **Key Options:**
@@ -55,10 +58,10 @@ tr '[:lower:]' '[:upper:]' < data.txt
 # Delete characters
 tr -d '[:punct:]' < emails.txt
 
-# Squeeze repeats (normalize whitespace to single TAB for cut)
+# Squeeze repeats (normalize space characters to single TAB for cut), then extract fields 1 and 7
 cat access.log | tr -s ' ' '\t' | cut -f1,7
 
-# ROT13 encoding
+# ROT13 encoding (example of character set translation)
 tr 'A-Za-z' 'N-ZA-Mn-za-m' < data.txt
 ```
 
@@ -80,7 +83,7 @@ sort -n numbers.txt
 # Reverse order
 sort -r data.txt
 
-# Sort by second field (CSV)
+# Sort using only the second field as the key (from field 2 to field 2)
 sort -t',' -k2,2 data.csv
 
 # Sort by numeric field (descending)
@@ -89,7 +92,7 @@ sort -t',' -k3,3nr data.csv
 # Unique sort
 sort -u data.txt
 
-# Parallel sort (faster)
+# Parallel sort using multiple cores (beneficial for large files)
 sort --parallel=4 -S 2G huge.txt
 ```
 
@@ -116,7 +119,7 @@ sort data.txt | uniq -c
 # Show only duplicates
 sort data.txt | uniq -d
 
-# Show only unique
+# Show lines that appear exactly once
 sort data.txt | uniq -u
 
 # Case-insensitive
@@ -147,14 +150,14 @@ Monitor pipeline throughput:
 # Show progress for file copy
 pv large.csv | gzip > large.csv.gz
 
-# Rate limit (1MB/s)
+# Rate limit transfer to 1MB/s while showing progress
 pv -L 1m large.csv > output.csv
 
-# ETA and progress bar
+# Wait for first byte before showing progress bar
 pv -W large.csv | wc -l
 
 # Multi-file progress
-pv file1 file2 file3 | tar -cz > archive.tar.gz
+tar -cz file1 file2 file3 | pv > archive.tar.gz
 ```
 
 ### 8. `stdbuf` — Buffer Control
@@ -238,13 +241,16 @@ cut -d',' -f2 data.csv | sort | uniq -c | sort -rn | head -10
 ```bash
 # Swap columns 1 and 2
 awk -F',' '{print $2","$1","$3}' data.csv
-# OR
-cut -d',' -f2,1,3 data.csv
 ```
 
+> **Note:** `cut` is suitable for selecting or dropping columns, but not for reordering them. To explicitly reorder columns, use tools such as `awk` or `paste` with process substitution.
+
 ### Pattern 3: Deduplication by Key
+
+Deduplication by key means removing multiple rows that share the same identifier field and keeping a single representative row per key value.
+
 ```bash
-# Keep first occurrence of each ID
+# Ensure uniqueness by ID (has effect only if duplicate IDs exist)
 sort -t',' -k1,1 -u data.csv
 ```
 
