@@ -1,0 +1,73 @@
+# Changelog
+
+## 2026-04-08
+
+### Linux / 03_Shell_Programming
+- Add `paste -sd+ | bc` tip for quick number summing (GNU/Linux and macOS variants)
+- Add practical example: summing traffic bytes from access.log
+
+### Linux / 04_Coreutils
+- Add `paste -sd+ | bc` example in paste section (GNU/Linux and macOS variants)
+- Add practical example: summing traffic bytes from access.log
+
+## 2026-04-01
+
+### Linux / 04_Coreutils
+- Apply review feedback
+
+## 2026-03-30
+
+### Linux / 04_Coreutils
+- Fix paste column order demo, fix `tr -s` example with access.log pipeline
+- Replace all missing file refs with dataset files (logs.txt, emails.txt, data.txt, users.csv)
+- Replace file.txt with data.txt in sort/uniq/cut examples and quiz
+
+### Linux / 03_Shell_Programming
+- Fix stray closing fence that hid String Operations heading
+
+## 2026-03-27
+
+### DataFundamentals / 02_NumberSystems
+- Update Q19 to use kibibyte (KiB) terminology
+- Add IEC binary prefixes (KiB/MiB), fix Q12 hint
+
+### Linux / 03_Shell_Programming
+- Apply reviewer feedback: fix count++ bug, fix file refs, add intro texts, test operators, here docs
+
+## 2026-03-24
+
+### Python
+- Fix quiz answer keys
+
+### DataFundamentals
+- Fix quiz answer keys
+
+## 2026-03-23
+
+### Linux
+- Fix incorrect answer codes in quizzes (lectures 03-14)
+
+## 2026-03-21
+
+### DataFundamentals
+- Fix magic numbers ASCII representation, add MUTF-8 note
+
+## 2026-03-18
+
+### Linux / 02_Files_Inodes_Descriptors
+- Apply review feedback — add descriptions and fix issues
+
+## 2026-03-12
+
+### Linux / 01_Unix_Streams
+- Fix access.log consistency, expand to 15 lines, fix quiz Q6
+- Add app.log to data/files/
+- Review and polish chapter
+
+## 2026-02-27
+
+### Build / Web UI
+- Show quiz explanations after submission
+- Bump static versions
+- Fix broken Geist font CDN
+- Fix quizzes and Web UI

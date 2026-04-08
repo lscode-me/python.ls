@@ -46,6 +46,13 @@ paste -d',' <(cut -d',' -f3 data.csv) <(cut -d',' -f2 data.csv) <(cut -d',' -f1 
 
 # Serial mode: convert rows to columns
 paste -s -d',' data.txt
+
+# Quick sum: join numbers with '+' and pipe to bc
+seq 10 | paste -sd+ | bc        # 55 (GNU/Linux)
+seq 10 | paste -s -d '+' - | bc  # 55 (macOS)
+
+# Total bytes transferred (field 10 in Combined Log Format)
+awk '{print $10}' access.log | paste -sd+ | bc
 ```
 
 ### 3. `tr` — Character Translation

@@ -44,7 +44,7 @@
         <span class="course-badge">Linux for Developers: Unix &amp; Data Pipelines</span>
         <div class="module-info">
             <span class="module-number">Module 4</span>
-            <span class="reading-time">📖 5 min</span>
+            <span class="reading-time">📖 6 min</span>
         </div>
     </div>
 
@@ -86,6 +86,13 @@ paste -d',' &lt;(cut -d',' -f3 data.csv) &lt;(cut -d',' -f2 data.csv) &lt;(cut -
 
 # Serial mode: convert rows to columns
 paste -s -d',' data.txt
+
+# Quick sum: join numbers with '+' and pipe to bc
+seq 10 | paste -sd+ | bc        # 55 (GNU/Linux)
+seq 10 | paste -s -d '+' - | bc  # 55 (macOS)
+
+# Total bytes transferred (field 10 in Combined Log Format)
+awk '{print $10}' access.log | paste -sd+ | bc
 </code></pre>
 
 <h3 id="3-tr-character-translation">3. <code>tr</code> — Character Translation</h3>

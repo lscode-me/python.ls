@@ -208,6 +208,15 @@ random=$((RANDOM % 100))  # 0-99
 ```
 
 > **Note:** `$(( ))` performs integer arithmetic only; floating-point calculations require external tools such as `bc`.
+>
+> **Tip:** To quickly sum a column of numbers without a loop, use `paste` + `bc`:
+> ```bash
+> seq 10 | paste -sd+ | bc        # 55 (GNU/Linux)
+> seq 10 | paste -s -d '+' - | bc  # 55 (macOS)
+>
+> # Total bytes transferred (field 10 in Combined Log Format)
+> awk '{print $10}' access.log | paste -sd+ | bc
+> ```
 
 ---
 
