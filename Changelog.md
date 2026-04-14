@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-04-14
+
+### Python / 07_Coroutines
+- Fix quiz: convert checkbox-style answers to plain format so quiz parser renders all 20 questions
+
 ## 2026-04-08
 
 ### Linux / 03_Shell_Programming

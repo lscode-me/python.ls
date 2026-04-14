@@ -4,10 +4,10 @@
 
 What is the main difference between a generator and a coroutine?
 
-- [ ] A) Generators are faster than coroutines
-- [ ] B) Generators can only be used in Python 3
-- [ ] C) Generators produce data (pull), coroutines consume data (push)
-- [ ] D) Coroutines require the `async` keyword
+A) Generators are faster than coroutines
+B) Generators can only be used in Python 3
+C) Generators produce data (pull), coroutines consume data (push)
+D) Coroutines require the `async` keyword
 
 ---
 
@@ -25,10 +25,10 @@ c = my_coro()
 c.send(10)  # What happens?
 ```
 
-- [ ] A) It prints 10
-- [ ] B) It raises a `TypeError`
-- [ ] C) It raises a `StopIteration`
-- [ ] D) It does nothing
+A) It prints 10
+B) It raises a `TypeError`
+C) It raises a `StopIteration`
+D) It does nothing
 
 ---
 
@@ -50,10 +50,10 @@ result = m.send(10)
 
 What is `result`?
 
-- [ ] A) 0
-- [ ] B) 10
-- [ ] C) None
-- [ ] D) Raises an error
+A) 0
+B) 10
+C) None
+D) Raises an error
 
 ---
 
@@ -65,10 +65,10 @@ In which order should you build a coroutine pipeline?
 # Pipeline: source → filter → transform → sink
 ```
 
-- [ ] A) source, then filter, then transform, then sink
-- [ ] B) sink, then transform, then filter (backward from end)
-- [ ] C) It doesn't matter
-- [ ] D) All components must be built simultaneously
+A) source, then filter, then transform, then sink
+B) sink, then transform, then filter (backward from end)
+C) It doesn't matter
+D) All components must be built simultaneously
 
 ---
 
@@ -85,10 +85,10 @@ def coroutine(func):
     return wrapper
 ```
 
-- [ ] A) Makes coroutines run faster
-- [ ] B) Automatically primes the coroutine
-- [ ] C) Converts functions to coroutines
-- [ ] D) Enables async/await syntax
+A) Makes coroutines run faster
+B) Automatically primes the coroutine
+C) Converts functions to coroutines
+D) Enables async/await syntax
 
 ---
 
@@ -96,10 +96,10 @@ def coroutine(func):
 
 Which statement about pull and push models is TRUE?
 
-- [ ] A) Pull model is always faster than push model
-- [ ] B) Push model (coroutines) is better for infinite/streaming data
-- [ ] C) Pull model cannot handle real-time data
-- [ ] D) Push model uses less memory
+A) Pull model is always faster than push model
+B) Push model (coroutines) is better for infinite/streaming data
+C) Pull model cannot handle real-time data
+D) Push model uses less memory
 
 ---
 
@@ -122,10 +122,10 @@ c = my_coro(some_target)
 c.close()
 ```
 
-- [ ] A) Nothing happens
-- [ ] B) The coroutine's `except GeneratorExit` block is executed
-- [ ] C) The coroutine raises a `StopIteration`
-- [ ] D) The coroutine is paused
+A) Nothing happens
+B) The coroutine's `except GeneratorExit` block is executed
+C) The coroutine raises a `StopIteration`
+D) The coroutine is paused
 
 ---
 
@@ -142,10 +142,10 @@ def tee(*targets):
             target.send(item)
 ```
 
-- [ ] A) Splits items evenly across targets (round-robin)
-- [ ] B) Sends each item to all targets (broadcast)
-- [ ] C) Sends items to the first available target
-- [ ] D) Buffers items for later processing
+A) Splits items evenly across targets (round-robin)
+B) Sends each item to all targets (broadcast)
+C) Sends items to the first available target
+D) Buffers items for later processing
 
 ---
 
@@ -153,10 +153,10 @@ def tee(*targets):
 
 Why are coroutines well-suited for stateful processing?
 
-- [ ] A) They use global variables efficiently
-- [ ] B) They maintain local variables across calls
-- [ ] C) They have special state management syntax
-- [ ] D) They store state in a database
+A) They use global variables efficiently
+B) They maintain local variables across calls
+C) They have special state management syntax
+D) They store state in a database
 
 ---
 
@@ -177,10 +177,10 @@ filter.send(10)
 
 What gets printed?
 
-- [ ] A) 5, -3, 10
-- [ ] B) 10, 20
-- [ ] C) 5, 10
-- [ ] D) Nothing
+A) 5, -3, 10
+B) 10, 20
+C) 5, 10
+D) Nothing
 
 ---
 
@@ -197,10 +197,10 @@ def process(target):
         target.send(item)
 ```
 
-- [ ] A) Let errors propagate naturally
-- [ ] B) Use try/except around `target.send()`
-- [ ] C) Check if item is valid before sending
-- [ ] D) Use a separate error sink
+A) Let errors propagate naturally
+B) Use try/except around `target.send()`
+C) Check if item is valid before sending
+D) Use a separate error sink
 
 ---
 
@@ -224,10 +224,10 @@ for x in data:
     filter.send(x)
 ```
 
-- [ ] A) Approach A (list comprehensions)
-- [ ] B) Approach B (coroutine pipeline)
-- [ ] C) They use the same memory
-- [ ] D) It depends on the data
+A) Approach A (list comprehensions)
+B) Approach B (coroutine pipeline)
+C) They use the same memory
+D) It depends on the data
 
 ---
 
@@ -245,10 +245,10 @@ result1 = next(c)
 result2 = c.send(100)
 ```
 
-- [ ] A) x = 42, result1 = 42, result2 = 100
-- [ ] B) x = 100, result1 = 42, result2 = 100
-- [ ] C) x = None, result1 = 42, result2 = None
-- [ ] D) x = 100, result1 = None, result2 = 42
+A) x = 42, result1 = 42, result2 = 100
+B) x = 100, result1 = 42, result2 = 100
+C) x = None, result1 = 42, result2 = None
+D) x = 100, result1 = None, result2 = 42
 
 ---
 
@@ -256,10 +256,10 @@ result2 = c.send(100)
 
 Which pipeline pattern is described here: "Collect items until a certain size is reached, then send the batch downstream"?
 
-- [ ] A) Filter
-- [ ] B) Map
-- [ ] C) Batch/Window
-- [ ] D) Tee
+A) Filter
+B) Map
+C) Batch/Window
+D) Tee
 
 ---
 
@@ -267,11 +267,11 @@ Which pipeline pattern is described here: "Collect items until a certain size is
 
 Which of these is NOT a good use case for coroutine pipelines?
 
-- [ ] A) Real-time log processing
-- [ ] B) Processing CSV files with millions of rows
-- [ ] C) Reversing a small list
-- [ ] D) ETL (Extract-Transform-Load) operations
-- [ ] E) Streaming sensor data analysis
+A) Real-time log processing
+B) Processing CSV files with millions of rows
+C) Reversing a small list
+D) ETL (Extract-Transform-Load) operations
+E) Streaming sensor data analysis
 
 ---
 
@@ -287,10 +287,10 @@ stage2 = transform_b(stage3)
 stage1 = transform_a(stage2)
 ```
 
-- [ ] A) Add print statements in each stage
-- [ ] B) Use a debugger with breakpoints
-- [ ] C) Test each stage individually first
-- [ ] D) Rewrite everything from scratch
+A) Add print statements in each stage
+B) Use a debugger with breakpoints
+C) Test each stage individually first
+D) Rewrite everything from scratch
 
 ---
 
@@ -298,10 +298,10 @@ stage1 = transform_a(stage2)
 
 Which change would most improve the performance of a coroutine pipeline?
 
-- [ ] A) Adding more stages
-- [ ] B) Using `@coroutine` decorator
-- [ ] C) Reducing function call overhead by combining simple stages
-- [ ] D) Adding more error handling
+A) Adding more stages
+B) Using `@coroutine` decorator
+C) Reducing function call overhead by combining simple stages
+D) Adding more error handling
 
 ---
 
@@ -309,10 +309,10 @@ Which change would most improve the performance of a coroutine pipeline?
 
 How do traditional coroutines (using `yield` and `send()`) differ from async coroutines (`async def`)?
 
-- [ ] A) They are the same thing
-- [ ] B) Traditional coroutines are synchronous, async coroutines support concurrent I/O
-- [ ] C) Async coroutines are faster
-- [ ] D) Traditional coroutines don't support `yield`
+A) They are the same thing
+B) Traditional coroutines are synchronous, async coroutines support concurrent I/O
+C) Async coroutines are faster
+D) Traditional coroutines don't support `yield`
 
 ---
 
@@ -333,10 +333,10 @@ def sliding_window(size, target):
             target.send(list(window))
 ```
 
-- [ ] A) Collects all items into a list of given size
-- [ ] B) Sends every Nth item
-- [ ] C) Sends sliding windows of N consecutive items
-- [ ] D) Filters items based on window size
+A) Collects all items into a list of given size
+B) Sends every Nth item
+C) Sends sliding windows of N consecutive items
+D) Filters items based on window size
 
 ---
 
@@ -356,10 +356,10 @@ for item in data:
 # How to terminate?
 ```
 
-- [ ] A) Do nothing, Python cleans up automatically
-- [ ] B) Call `close()` on the entry point only
-- [ ] C) Call `close()` on all stages from entry to sink
-- [ ] D) Send a special "STOP" value
+A) Do nothing, Python cleans up automatically
+B) Call `close()` on the entry point only
+C) Call `close()` on all stages from entry to sink
+D) Send a special "STOP" value
 
 ---
 
