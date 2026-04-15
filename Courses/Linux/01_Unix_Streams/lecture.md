@@ -160,14 +160,16 @@ Alice   30     NYC
 
 ```bash
 # Download a file
-curl -O https://example.com/data.csv
+curl -O https://raw.githubusercontent.com/datasets/covid-19/main/data/countries-aggregated.csv
 
-# Fetch and pipe to processing
-curl -s https://api.example.com/data | jq '.results[]'
+# Fetch and pipe to processing (GitHub API — public, no auth needed)
+curl -s 'https://api.github.com/repos/torvalds/linux/commits?per_page=5' | jq '.[].commit.message'
 
 # Follow redirects
-curl -L https://example.com/redirect
+curl -L https://bit.ly/3RhKYbJ
 ```
+
+> **Tip**: All `curl` examples in this course use real, publicly available URLs you can try right away. GitHub API endpoints work without authentication (with a rate limit of 60 requests/hour).
 
 ### `cut` - Extract Columns
 
@@ -197,6 +199,55 @@ grep -v "DEBUG" app.log
 # Show line numbers
 grep -n "error" app.log
 ```
+
+### `awk` - Field-Based Text Processing
+
+`awk` processes text line by line, splitting each line into fields. It's especially powerful for extracting, transforming, and computing data from structured text.
+
+```bash
+# Print specific fields (default delimiter: whitespace)
+awk '{print $1, $3}' data.txt
+
+# Use comma as delimiter
+awk -F',' '{print $2}' data.csv
+
+# Filter lines by a condition
+awk -F',' '$3 > 100 {print $1, $3}' data.csv
+
+# Compute a sum
+awk -F',' '{sum += $3} END {print "Total:", sum}' data.csv
+
+# Count lines matching a pattern
+awk '/ERROR/ {count++} END {print count}' app.log
+```
+
+`awk` will be covered in much more depth in Module 5. For now, know that `$1`, `$2`, etc. refer to fields, `-F` sets the delimiter, and `END` runs code after all lines are processed.
+
+### `jq` - JSON Processing
+
+`jq` is a command-line JSON processor — think of it as `sed`/`awk` for JSON data.
+
+```bash
+# Pretty-print JSON
+curl -s 'https://api.github.com/repos/torvalds/linux' | jq .
+
+# Extract a single field
+curl -s 'https://api.github.com/repos/torvalds/linux' | jq '.stargazers_count'
+
+# Extract nested fields
+curl -s 'https://api.github.com/repos/torvalds/linux/commits?per_page=3' | \
+  jq '.[].commit.message'
+
+# Filter array elements
+echo '[{"name":"Alice","age":30},{"name":"Bob","age":25}]' | \
+  jq '.[] | select(.age > 27)'
+
+# Transform output format
+curl -s 'https://api.github.com/repos/torvalds/linux/commits?per_page=3' | \
+  jq -r '.[].commit | "\(.author.name): \(.message)"'
+```
+
+`jq` will be covered in depth in Module 6. Key syntax: `.field` extracts a field, `.[]` iterates arrays, `|` pipes within jq, and `-r` outputs raw strings.
 
 ### `sort` - Order Lines
 
@@ -261,11 +312,11 @@ command | tee -a output.txt
 command | tee file1.txt file2.txt file3.txt
 
 # Save intermediate results while continuing pipeline
-curl -s https://api.example.com/data | \
+curl -s 'https://api.github.com/repos/torvalds/linux/commits?per_page=5' | \
   tee raw_data.json | \
-  jq '.results[]' | \
-  tee processed.json | \
-  grep "ERROR"
+  jq '.[].commit.author.name' | \
+  tee authors.txt | \
+  sort | uniq -c | sort -rn
 
 # Silent tee (write to file but don't show on screen)
 command | tee output.txt > /dev/null
@@ -414,38 +465,68 @@ diff <(ls /tmp) <(ls /var/tmp)
 
 ### Buffering in Unix Streams
 
-Programs buffer output to improve performance, but this can delay data when working in pipelines. Understanding buffering is crucial for real-time data processing.
+Programs buffer output to improve performance, but this can cause unexpected delays when working with pipelines, especially in real-time scenarios.
 
-**Buffering Modes:**
-- **Unbuffered**: Data is written immediately (stderr is unbuffered by default)
-- **Line-buffered**: Data is written when a newline is encountered (stdout to terminal)
-- **Fully-buffered**: Data is written when buffer is full (stdout to file/pipe)
+#### What is Buffering?
+
+When a program writes output (e.g., via `printf` or `echo`), the data doesn't always go directly to the next command. Instead, it's collected in a memory area called a **buffer** and sent in chunks. This is faster for large data, but means the next command in the pipeline may not receive data immediately.
+
+#### Three Buffering Modes
+
+| Mode | When data is sent | When it's used | Buffer size |
+|------|------------------|----------------|-------------|
+| **Unbuffered** | Immediately, byte by byte | `stderr` (always) | 0 |
+| **Line-buffered** | After each newline (`\n`) | `stdout` → terminal | ~1 KB |
+| **Fully-buffered** | When buffer is full | `stdout` → file or pipe | ~4-8 KB |
+
+The key insight: **stdout behavior changes depending on where it's going**:
+- If stdout goes to your **terminal** → line-buffered (you see each line immediately)
+- If stdout goes to a **pipe or file** → fully-buffered (you see nothing until ~4KB accumulates)
+
+This is why a command that works fine alone may seem "stuck" when piped to another command.
+
+#### The Problem in Action
 
 ```bash
-# Problem: grep output doesn't appear immediately in pipeline
-tail -f app.log | grep ERROR | process_alerts
-# grep buffers output because stdout is a pipe
+# Run this and type lines — you'll see each one immediately:
+grep --color "hello" 
 
+# But in a pipeline, grep switches to full buffering:
+# Data is delayed until grep's 4KB buffer fills up!
+tail -f app.log | grep ERROR | awk '{print $1}'
+```
+
+#### Solutions
+
+```bash
 # Solution 1: Use --line-buffered with grep
-tail -f app.log | grep --line-buffered ERROR | process_alerts
+tail -f app.log | grep --line-buffered ERROR | awk '{print $1}'
 
-# Solution 2: Use stdbuf to control buffering
-tail -f app.log | stdbuf -oL grep ERROR | process_alerts
+# Solution 2: Use stdbuf to force line-buffering on any command
+# -oL means: output (o) should be Line-buffered (L)
+tail -f app.log | stdbuf -oL grep ERROR | awk '{print $1}'
 
-# Solution 3: Python with -u flag (unbuffered)
+# Solution 3: Python with -u flag (forces unbuffered stdout)
 tail -f app.log | python3 -u script.py
 
-# Solution 4: Flush in Python code
+# Solution 4: Flush explicitly in Python code
 print("output", flush=True)
 ```
 
-**Example: Real-time Log Monitoring**
-```bash
-# Without line buffering - delays appear, because it waits for a full buffer
-tail -f /var/log/syslog | grep "error" | awk '{print $1, $2, $5}'
+#### Try It Yourself
 
-# With line buffering - immediate output
-tail -f /var/log/syslog | grep --line-buffered "error" | awk '{print $1, $2, $5}'
+```bash
+# Demo: See buffering in action
+# Terminal 1: generate slow output (one line per second)
+for i in $(seq 1 20); do echo "line $i"; sleep 1; done > /tmp/slowlog &
+
+# Terminal 2: tail the file through a pipeline
+tail -f /tmp/slowlog | grep "line" | cat
+# Nothing appears for a while! (fully-buffered grep → cat)
+
+# Now try with --line-buffered:
+tail -f /tmp/slowlog | grep --line-buffered "line" | cat
+# Lines appear one by one!
 ```
 
 ---
@@ -455,9 +536,10 @@ tail -f /var/log/syslog | grep --line-buffered "error" | awk '{print $1, $2, $5}
 ### Example 1: Fetch and Analyze CSV
 
 ```bash
-# Fetch CSV, extract date column, count entries per date
-curl -s https://example.com/sales.csv | \
-  cut -d',' -f1 | \
+# Fetch real CSV data, extract country column, count entries per country
+curl -s https://raw.githubusercontent.com/datasets/covid-19/main/data/countries-aggregated.csv | \
+  tail -n +2 | \
+  cut -d',' -f2 | \
   sort | \
   uniq -c | \
   sort -rn | \
@@ -590,7 +672,7 @@ head -1000 huge_file.csv | your_pipeline
 [ -f data.csv ] && cat data.csv | process
 
 # Provide default if command fails
-curl -s https://api.example.com/data || echo '{"error": "API down"}'
+curl -s 'https://api.github.com/repos/torvalds/linux' || echo '{"error": "API down"}'
 ```
 
 ---

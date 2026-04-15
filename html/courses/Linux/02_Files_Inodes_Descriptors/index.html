@@ -138,7 +138,7 @@
             <h1>Files, I-nodes &amp; File Descriptors</h1>
             <div class="lecture-meta">
                 <span class="module-badge">Module 2</span>
-                <span class="reading-time">📖 16 min read</span>
+                <span class="reading-time">📖 ~161 min</span>
             </div>
         </div>
 
@@ -195,7 +195,9 @@ ls -i
 </code></pre>
 
 <h3 id="hard-links-vs-symbolic-links">Hard Links vs Symbolic Links</h3>
-<p><strong>Hard Link</strong>: Multiple directory entries pointing to the same i-node</p>
+<h4 id="hard-links">Hard Links</h4>
+<p>A <strong>hard link</strong> is simply another directory entry (another name) that points to the <strong>same i-node</strong> as the original file. Think of it this way: the file data lives on disk and has an i-node. The filename is just a label in a directory that says "this name → i-node #123456". A hard link creates a <strong>second label</strong> pointing to the same i-node.</p>
+<p>Both names are equally "real" — there is no "original" and "copy". They are two names for the same underlying data.</p>
 <pre class="highlight"><code class="language-bash"># Create hard link
 ln original.txt hardlink.txt
 
@@ -204,22 +206,40 @@ ls -i original.txt hardlink.txt
 # 123456 original.txt
 # 123456 hardlink.txt
 
-# Deleting one doesn't affect the other
+# The i-node tracks how many names point to it (link count)
+stat original.txt | grep Links
+# Links: 2    &lt;-- was 1, now 2 after creating the hard link
+
+# Modifying via either name changes the same data
+echo &quot;new content&quot; &gt;&gt; hardlink.txt
+cat original.txt   # Shows &quot;new content&quot; too!
+
+# Deleting one name just decreases the link count
 rm original.txt
-cat hardlink.txt  # Still works!
+cat hardlink.txt  # Still works! Data is NOT deleted.
+stat hardlink.txt | grep Links
+# Links: 1    &lt;-- back to 1
 </code></pre>
 
-<p><strong>Limitations:</strong> Hard links cannot be created for directories, because allowing directory hard links would enable directory cycles and break normal filesystem traversal rules. They also cannot cross filesystem boundaries, since a hard link must refer to an inode that exists on the same filesystem as the original file.</p>
-<p><strong>Symbolic Link (also called a symlink or soft link)</strong>: A special file containing a path to another file</p>
+<p><strong>When is the data actually deleted?</strong> The file system only frees the data blocks when the i-node's link count reaches zero <strong>and</strong> no process has the file open. Until then, the data remains on disk. This is why you can delete a file that a program is currently reading — the program keeps its file descriptor open, so the data persists until the process closes it.</p>
+<p><strong>Limitations of hard links:</strong><br />
+- Cannot be created for directories, because allowing directory hard links would enable directory cycles and break normal filesystem traversal rules<br />
+- Cannot cross filesystem boundaries, since a hard link must refer to an i-node that exists on the same filesystem as the original file</p>
+<h4 id="symbolic-links">Symbolic Links</h4>
+<p>A <strong>symbolic link (symlink or soft link)</strong> is a separate, small file that contains the <strong>path</strong> to another file. It's like a shortcut or a redirect — it says "go look at this other path".</p>
 <pre class="highlight"><code class="language-bash"># Create symbolic link
 ln -s original.txt symlink.txt
 
-# Different i-nodes
+# Different i-nodes — the symlink is its own file
 ls -i original.txt symlink.txt
 # 123456 original.txt
-# 789012 symlink.txt
+# 789012 symlink.txt     &lt;-- different i-node!
 
-# Deleting original breaks the symlink
+# The symlink just stores a path
+readlink symlink.txt
+# original.txt
+
+# Deleting original breaks the symlink (dangling link)
 rm original.txt
 cat symlink.txt  # Error: No such file or directory
 
@@ -227,9 +247,48 @@ cat symlink.txt  # Error: No such file or directory
 find . -xtype l  # find broken symlinks
 </code></pre>
 
-<blockquote>
-<p><strong>Note:</strong> Symbolic links can be absolute or relative. Absolute symlinks store a full path, while relative symlinks store a path relative to the link's own location. Relative symlinks depend on the directory structure and may break if that structure changes, whereas absolute symlinks remain valid unless the target itself is moved.</p>
-</blockquote>
+<h4 id="quick-comparison">Quick Comparison</h4>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Hard Link</th>
+<th>Symbolic Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Same i-node as target?</td>
+<td>Yes</td>
+<td>No (own i-node)</td>
+</tr>
+<tr>
+<td>Survives target deletion?</td>
+<td>Yes</td>
+<td>No (becomes dangling)</td>
+</tr>
+<tr>
+<td>Can cross filesystems?</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Can link to directories?</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Stores what?</td>
+<td>i-node number</td>
+<td>File path</td>
+</tr>
+<tr>
+<td>Created with</td>
+<td><code>ln file link</code></td>
+<td><code>ln -s file link</code></td>
+</tr>
+</tbody>
+</table></div>
 <hr />
 <h2 id="file-descriptors">File Descriptors</h2>
 <h3 id="what-is-a-file-descriptor">What is a File Descriptor?</h3>
@@ -749,19 +808,61 @@ chmod -R 755 directory/
 </code></pre>
 
 <h3 id="special-permission-bits">Special Permission Bits</h3>
-<p><strong>Setuid (4000)</strong>: Run as file owner</p>
+<p>Beyond the standard read/write/execute permissions, Unix has three special permission bits that modify how files and directories behave. These are prepended as a fourth octal digit (e.g., <code>4755</code> instead of <code>755</code>).</p>
+<h4 id="setuid-4000-run-as-file-owner">Setuid (4000) — Run as File Owner</h4>
+<p>When set on an <strong>executable file</strong>, the program runs with the permissions of the <strong>file's owner</strong> (not the user running it). This is how regular users can change their password — the <code>passwd</code> program is owned by root and has setuid set.</p>
 <pre class="highlight"><code class="language-bash">chmod 4755 program
-# -rwsr-xr-x  # Note the 's' instead of 'x'
+ls -l program
+# -rwsr-xr-x  # Note the 's' instead of 'x' in user position
+
+# Real-world example — passwd runs as root even when called by a regular user:
+ls -l /usr/bin/passwd
+# -rwsr-xr-x 1 root root 68208 ... /usr/bin/passwd
 </code></pre>
 
-<p><strong>Setgid (2000)</strong>: Run as file group / inherit directory group</p>
-<pre class="highlight"><code class="language-bash">chmod 2755 directory
-# drwxr-sr-x  # Note the 's' in group position
+<blockquote>
+<p><strong>Security note</strong>: Setuid programs are a common attack surface. Only trusted programs should have this bit set. Run <code>find / -perm -4000 2&gt;/dev/null</code> to audit setuid files on your system.</p>
+</blockquote>
+<h4 id="setgid-2000-run-as-file-group-inherit-group">Setgid (2000) — Run as File Group / Inherit Group</h4>
+<p>On <strong>executable files</strong>: the program runs with the permissions of the file's <strong>group</strong>.</p>
+<p>On <strong>directories</strong>: new files and subdirectories created inside automatically <strong>inherit the directory's group</strong> instead of the creator's primary group. This is essential for shared project directories.</p>
+<pre class="highlight"><code class="language-bash"># On a directory — shared team folder:
+chmod 2775 /shared/project
+ls -ld /shared/project
+# drwxrwsr-x 2 admin devteam 4096 ... /shared/project
+#                 ^-- 's' in group position
+
+# Now any file created here inherits the 'devteam' group:
+touch /shared/project/newfile.txt
+ls -l /shared/project/newfile.txt
+# -rw-r--r-- 1 alice devteam ... newfile.txt   &lt;-- group is devteam, not alice's primary group
 </code></pre>
 
-<p><strong>Sticky bit (1000)</strong>: Only owner can delete files</p>
+<h4 id="sticky-bit-1000-restrict-deletion">Sticky Bit (1000) — Restrict Deletion</h4>
+<p>When set on a <strong>directory</strong>, only the file's owner (or root) can delete or rename files in that directory, even if others have write permission. The classic example is <code>/tmp</code> — everyone can create files there, but you can't delete someone else's files.</p>
 <pre class="highlight"><code class="language-bash">chmod 1777 /tmp
-# drwxrwxrwt  # Note the 't' at the end
+ls -ld /tmp
+# drwxrwxrwt 10 root root ... /tmp
+#                          ^-- 't' at the end
+
+# Alice creates a file:
+touch /tmp/alice_file.txt
+
+# Bob cannot delete it, even though /tmp is world-writable:
+rm /tmp/alice_file.txt
+# rm: cannot remove '/tmp/alice_file.txt': Operation not permitted
+</code></pre>
+
+<h4 id="viewing-special-bits">Viewing Special Bits</h4>
+<pre class="highlight"><code class="language-bash"># Find all setuid files on the system
+find / -perm -4000 -type f 2&gt;/dev/null
+
+# Find all setgid directories
+find /shared -perm -2000 -type d
+
+# Check special bits with stat
+stat -c '%a %n' /usr/bin/passwd
+# 4755 /usr/bin/passwd
 </code></pre>
 
 <h3 id="umask-default-permission-mask">umask — Default Permission Mask</h3>

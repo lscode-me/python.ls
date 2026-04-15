@@ -116,9 +116,16 @@ class TMAConverter:
         return content
     
     def calculate_reading_time(self, content: str) -> int:
-        """Calculate estimated reading time in minutes."""
+        """Calculate estimated reading + practice time in minutes.
+        
+        Accounts for reading prose (200 WPM) plus extra time for
+        running and understanding code examples (~3 min per code block).
+        """
         words = len(content.split())
-        return max(1, words // 200)
+        reading_minutes = words / 200
+        code_blocks = len(re.findall(r'```', content)) // 2
+        practice_minutes = code_blocks * 3
+        return max(1, round(reading_minutes + practice_minutes))
     
     def extract_title(self, content: str) -> str:
         """Extract title from markdown content."""

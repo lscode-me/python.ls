@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-04-15
+
+### Linux / 01_Unix_Streams
+- Add dedicated `awk` and `jq` sections with explanations and examples
+- Rewrite buffering section: add table of modes, explain why behavior changes (terminal vs pipe), add "Try It Yourself" demo
+- Replace all fake `example.com` URLs with real working APIs (GitHub API, public CSV datasets)
+
+### Linux / 02_Files_Inodes_Descriptors
+- Rewrite hard links section: step-by-step i-node explanation, link count demo, hard vs symlink comparison table
+- Expand Special Permission Bits: full subsections for setuid, setgid, sticky bit with real-world examples (`/usr/bin/passwd`, `/tmp`, shared directories)
+- Add explanation of what happens when i-node link count reaches zero (covers quiz Q14)
+
+### Build
+- Fix reading time estimate: account for hands-on practice time (~3 min per code block) in addition to reading (200 WPM)
+- Update time label from "X min read" to "~X min"
+
 ## 2026-04-14
 
 ### Python / 07_Coroutines

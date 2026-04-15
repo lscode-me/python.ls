@@ -66,7 +66,12 @@ stat filename
 
 ### Hard Links vs Symbolic Links
 
-**Hard Link**: Multiple directory entries pointing to the same i-node
+#### Hard Links
+
+A **hard link** is simply another directory entry (another name) that points to the **same i-node** as the original file. Think of it this way: the file data lives on disk and has an i-node. The filename is just a label in a directory that says "this name → i-node #123456". A hard link creates a **second label** pointing to the same i-node.
+
+Both names are equally "real" — there is no "original" and "copy". They are two names for the same underlying data.
+
 ```bash
 # Create hard link
 ln original.txt hardlink.txt
@@ -76,24 +81,45 @@ ls -i original.txt hardlink.txt
 # 123456 original.txt
 # 123456 hardlink.txt
 
-# Deleting one doesn't affect the other
+# The i-node tracks how many names point to it (link count)
+stat original.txt | grep Links
+# Links: 2    <-- was 1, now 2 after creating the hard link
+
+# Modifying via either name changes the same data
+echo "new content" >> hardlink.txt
+cat original.txt   # Shows "new content" too!
+
+# Deleting one name just decreases the link count
 rm original.txt
-cat hardlink.txt  # Still works!
+cat hardlink.txt  # Still works! Data is NOT deleted.
+stat hardlink.txt | grep Links
+# Links: 1    <-- back to 1
 ```
 
-**Limitations:** Hard links cannot be created for directories, because allowing directory hard links would enable directory cycles and break normal filesystem traversal rules. They also cannot cross filesystem boundaries, since a hard link must refer to an inode that exists on the same filesystem as the original file.
+**When is the data actually deleted?** The file system only frees the data blocks when the i-node's link count reaches zero **and** no process has the file open. Until then, the data remains on disk. This is why you can delete a file that a program is currently reading — the program keeps its file descriptor open, so the data persists until the process closes it.
 
-**Symbolic Link (also called a symlink or soft link)**: A special file containing a path to another file
+**Limitations of hard links:**
+- Cannot be created for directories, because allowing directory hard links would enable directory cycles and break normal filesystem traversal rules
+- Cannot cross filesystem boundaries, since a hard link must refer to an i-node that exists on the same filesystem as the original file
+
+#### Symbolic Links
+
+A **symbolic link (symlink or soft link)** is a separate, small file that contains the **path** to another file. It's like a shortcut or a redirect — it says "go look at this other path".
+
 ```bash
 # Create symbolic link
 ln -s original.txt symlink.txt
 
-# Different i-nodes
+# Different i-nodes — the symlink is its own file
 ls -i original.txt symlink.txt
 # 123456 original.txt
-# 789012 symlink.txt
+# 789012 symlink.txt     <-- different i-node!
 
-# Deleting original breaks the symlink
+# The symlink just stores a path
+readlink symlink.txt
+# original.txt
+
+# Deleting original breaks the symlink (dangling link)
 rm original.txt
 cat symlink.txt  # Error: No such file or directory
 
@@ -101,7 +127,16 @@ cat symlink.txt  # Error: No such file or directory
 find . -xtype l  # find broken symlinks
 ```
 
-> **Note:** Symbolic links can be absolute or relative. Absolute symlinks store a full path, while relative symlinks store a path relative to the link's own location. Relative symlinks depend on the directory structure and may break if that structure changes, whereas absolute symlinks remain valid unless the target itself is moved.
+#### Quick Comparison
+
+| Feature | Hard Link | Symbolic Link |
+|---------|-----------|---------------|
+| Same i-node as target? | Yes | No (own i-node) |
+| Survives target deletion? | Yes | No (becomes dangling) |
+| Can cross filesystems? | No | Yes |
+| Can link to directories? | No | Yes |
+| Stores what? | i-node number | File path |
+| Created with | `ln file link` | `ln -s file link` |
 
 ---
 
@@ -630,22 +665,73 @@ chmod -R 755 directory/
 
 ### Special Permission Bits
 
-**Setuid (4000)**: Run as file owner
+Beyond the standard read/write/execute permissions, Unix has three special permission bits that modify how files and directories behave. These are prepended as a fourth octal digit (e.g., `4755` instead of `755`).
+
+#### Setuid (4000) — Run as File Owner
+
+When set on an **executable file**, the program runs with the permissions of the **file's owner** (not the user running it). This is how regular users can change their password — the `passwd` program is owned by root and has setuid set.
+
 ```bash
 chmod 4755 program
-# -rwsr-xr-x  # Note the 's' instead of 'x'
+ls -l program
+# -rwsr-xr-x  # Note the 's' instead of 'x' in user position
+
+# Real-world example — passwd runs as root even when called by a regular user:
+ls -l /usr/bin/passwd
+# -rwsr-xr-x 1 root root 68208 ... /usr/bin/passwd
 ```
 
-**Setgid (2000)**: Run as file group / inherit directory group
+> **Security note**: Setuid programs are a common attack surface. Only trusted programs should have this bit set. Run `find / -perm -4000 2>/dev/null` to audit setuid files on your system.
+
+#### Setgid (2000) — Run as File Group / Inherit Group
+
+On **executable files**: the program runs with the permissions of the file's **group**.
+
+On **directories**: new files and subdirectories created inside automatically **inherit the directory's group** instead of the creator's primary group. This is essential for shared project directories.
+
 ```bash
-chmod 2755 directory
-# drwxr-sr-x  # Note the 's' in group position
+# On a directory — shared team folder:
+chmod 2775 /shared/project
+ls -ld /shared/project
+# drwxrwsr-x 2 admin devteam 4096 ... /shared/project
+#                 ^-- 's' in group position
+
+# Now any file created here inherits the 'devteam' group:
+touch /shared/project/newfile.txt
+ls -l /shared/project/newfile.txt
+# -rw-r--r-- 1 alice devteam ... newfile.txt   <-- group is devteam, not alice's primary group
 ```
 
-**Sticky bit (1000)**: Only owner can delete files
+#### Sticky Bit (1000) — Restrict Deletion
+
+When set on a **directory**, only the file's owner (or root) can delete or rename files in that directory, even if others have write permission. The classic example is `/tmp` — everyone can create files there, but you can't delete someone else's files.
+
 ```bash
 chmod 1777 /tmp
-# drwxrwxrwt  # Note the 't' at the end
+ls -ld /tmp
+# drwxrwxrwt 10 root root ... /tmp
+#                          ^-- 't' at the end
+
+# Alice creates a file:
+touch /tmp/alice_file.txt
+
+# Bob cannot delete it, even though /tmp is world-writable:
+rm /tmp/alice_file.txt
+# rm: cannot remove '/tmp/alice_file.txt': Operation not permitted
+```
+
+#### Viewing Special Bits
+
+```bash
+# Find all setuid files on the system
+find / -perm -4000 -type f 2>/dev/null
+
+# Find all setgid directories
+find /shared -perm -2000 -type d
+
+# Check special bits with stat
+stat -c '%a %n' /usr/bin/passwd
+# 4755 /usr/bin/passwd
 ```
 
 ### umask — Default Permission Mask
