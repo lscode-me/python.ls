@@ -32,7 +32,7 @@ C) `sed 'g/cat/dog/s' file.txt`
 D) `sed 'replace cat dog' file.txt`
 
 
-## Question 4: Sed Delete
+## Question 4: What does this sed command do
 
 What does `sed '/pattern/d' file.txt` do?
 
@@ -42,7 +42,7 @@ C) Duplicates lines matching the pattern
 D) Displays only matching lines
 
 
-## Question 5: Awk $0
+## Question 5: What does $0 represent in awk
 
 In awk, what does `$0` represent?
 
@@ -62,7 +62,7 @@ C) `awk -F',' 'print $2,$4' file.csv`
 D) `awk '{print 2,4}' file.csv`
 
 
-## Question 7: Awk NR
+## Question 7: What does NR represent in awk
 
 What does `NR` represent in awk?
 
@@ -102,7 +102,7 @@ C) `sort → grep → sed → uniq -c`
 D) `grep → sort → sed → uniq -c`
 
 
-## Question 11: Grep Context
+## Question 11: What does grep -C 3 do
 
 What does `grep -C 3 "pattern" file.txt` do?
 
@@ -122,7 +122,7 @@ C) `sed 's/(\d{4})-(\d{2})-(\d{2})/\3\/\2\/\1/'`
 D) `sed 's/(.*)-(.*)-(.*)/\3\/\2\/\1/'`
 
 
-## Question 13: Awk Associative Arrays
+## Question 13: What does this awk command do
 
 What does `awk '{count[$1]++} END {for (key in count) print key, count[key]}'` do?
 
@@ -142,7 +142,7 @@ C) `sed -e 's/foo/bar/' -e 's/old/new/' file.txt`
 D) Both B and C
 
 
-## Question 15: Awk NF
+## Question 15: What does this awk command output
 
 What does `awk -F',' '{print NF}' data.csv` output?
 
@@ -162,7 +162,7 @@ C) Globbing is more powerful than regex
 D) Regex only works in Python
 
 
-## Question 17: Shell Globbing Wildcard
+## Question 17: What does *.txt match in shell
 
 In shell globbing, what does `*.txt` match?
 
@@ -242,7 +242,7 @@ C) `sed 's/html//g' file.html`
 D) `sed '/</d' file.html`
 
 
-## Question 25: Grep Invert Match
+## Question 25: What does grep -v do
 
 What does `grep -v "pattern" file.txt` do?
 
@@ -262,7 +262,7 @@ C) `\d{8}-\d{4}-\d{4}`
 D) `[0-9]{32}`
 
 
-## Question 27: Globbing vs Regex Question Mark
+## Question 27: How does ? differ in globbing vs regex
 
 In shell globbing, what does `?` mean, and how is it different from regex `?`?
 
@@ -272,7 +272,7 @@ C) Globbing: any characters; Regex: one character
 D) No difference
 
 
-## Question 28: Awk BEGIN Block
+## Question 28: What does this awk command do
 
 What does `awk 'BEGIN {FS=","} {print $1, $3}' file.csv` do?
 

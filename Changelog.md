@@ -1,5 +1,17 @@
 # Changelog
 
+## 2025-04-28
+
+### Linux / 05_Grep_Sed_Awk
+- Fix quiz titles: replace spoiler/hint titles with neutral question-based titles
+
+### Linux / 06_Structured_Data
+- Fix quiz titles: replace spoiler/hint titles with neutral question-based titles
+- Restore backticks around command options in quiz answers
+
+### Linux / data / DataSamples
+- Simplify top section: replace complex setup block with anchor link to full script
+
 ## 2026-04-27
 
 ### Linux / 01_Unix_Streams

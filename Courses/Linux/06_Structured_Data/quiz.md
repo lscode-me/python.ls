@@ -2,7 +2,7 @@
 
 ## Questions
 
-## Question 1: jq Array Iteration
+## Question 1: Which command extracts the name
 
 Which command extracts the "name" field from each object in a JSON array?
 
@@ -12,7 +12,7 @@ C) `jq 'name'`
 D) `jq '[].name'`
 
 
-## Question 2: jq Raw Output
+## Question 2: What does the -r flag do in jq
 
 What does the `-r` flag do in jq?
 
@@ -32,17 +32,17 @@ C) grep
 D) miller (mlr)
 
 
-## Question 4: jq CSV Conversion
+## Question 4: How do you convert JSON to CSV
 
 How do you convert a JSON array to CSV using jq?
 
-A) jq '.[] | @csv'
-B) jq -r '.[] | [.field1, .field2] | @csv'
-C) jq 'to_csv'
-D) jq --csv '.'
+A) `jq '.[] | @csv'`
+B) `jq -r '.[] | [.field1, .field2] | @csv'`
+C) `jq 'to_csv'`
+D) `jq --csv '.'`
 
 
-## Question 5: JSONL Format
+## Question 5: What format is JSONL
 
 What format is JSONL (JSON Lines)?
 
@@ -52,47 +52,47 @@ C) One JSON object per line
 D) JSON with line numbers
 
 
-## Question 6: csvkit Column Extraction
+## Question 6: Which csvkit tool extracts columns
 
 Which csvkit tool extracts specific columns from a CSV?
 
-A) csvgrep
-B) csvselect
-C) csvfilter
-D) csvcut
+A) `csvgrep`
+B) `csvselect`
+C) `csvfilter`
+D) `csvcut`
 
 
-## Question 7: jq Filter
+## Question 7: How do you filter JSON by condition
 
 How do you filter JSON objects where age > 25 using jq?
 
-A) jq '.[] | select(.age > 25)'
-B) jq 'filter(.age > 25)'
-C) jq 'where age > 25'
-D) jq '.age > 25'
+A) `jq '.[] | select(.age > 25)'`
+B) `jq 'filter(.age > 25)'`
+C) `jq 'where age > 25'`
+D) `jq '.age > 25'`
 
 
-## Question 8: Miller Group By
+## Question 8: Which miller command groups and sums
 
 Which miller command calculates the sum of a column grouped by another column?
 
-A) mlr sum -f amount -g customer
-B) mlr group-by customer sum amount
-C) mlr --csv stats1 -a sum -f amount -g customer
-D) mlr aggregate sum(amount) by customer
+A) `mlr sum -f amount -g customer`
+B) `mlr group-by customer sum amount`
+C) `mlr --csv stats1 -a sum -f amount -g customer`
+D) `mlr aggregate sum(amount) by customer`
 
 
-## Question 9: XML Pretty Print
+## Question 9: How do you pretty-print XML
 
 How do you pretty-print XML with xmlstarlet?
 
-A) xmlstarlet print file.xml
-B) xmlstarlet pretty file.xml
-C) xmlstarlet -p file.xml
-D) xmlstarlet format file.xml
+A) `xmlstarlet print file.xml`
+B) `xmlstarlet pretty file.xml`
+C) `xmlstarlet -p file.xml`
+D) `xmlstarlet format file.xml`
 
 
-## Question 10: jq Slurp
+## Question 10: What does jq -s do
 
 What does `jq -s '.'` do?
 
@@ -102,24 +102,24 @@ C) Sorts JSON objects
 D) Streams JSON output
 
 
-## Question 11: DuckDB CSV Query
+## Question 11: How do you query CSV with DuckDB
 
 How do you query a CSV file with DuckDB?
 
-A) duckdb -c "SELECT * FROM csv('users.csv')"
-B) duckdb users.csv -q "SELECT *"
-C) duckdb -c "SELECT * FROM 'users.csv'"
-D) duckdb --query users.csv
+A) `duckdb -c "SELECT * FROM csv('users.csv')"`
+B) `duckdb users.csv -q "SELECT *"`
+C) `duckdb -c "SELECT * FROM 'users.csv'"`
+D) `duckdb --query users.csv`
 
 
-## Question 12: DuckDB CSV Auto
+## Question 12: Which DuckDB function reads CSV
 
 Which DuckDB function reads CSV files with automatic schema detection?
 
-A) read_csv('file.csv')
-B) read_csv_auto('file.csv')
-C) auto_read_csv('file.csv')
-D) csv_read('file.csv')
+A) `read_csv('file.csv')`
+B) `read_csv_auto('file.csv')`
+C) `auto_read_csv('file.csv')`
+D) `csv_read('file.csv')`
 
 
 ## Question 13: What is the main advantage
@@ -132,14 +132,14 @@ C) More output formats
 D) Columnar storage and efficient memory usage
 
 
-## Question 14: DuckDB Parquet Export
+## Question 14: How do you export to Parquet
 
 How do you export DuckDB query results to Parquet format?
 
-A) duckdb -c "SELECT * FROM 'data.csv'" > output.parquet
-B) duckdb -c "COPY (SELECT * FROM 'data.csv') TO 'output.parquet'"
-C) duckdb -c "SELECT * FROM 'data.csv'" -parquet
-D) duckdb -c "EXPORT TO PARQUET 'output.parquet'"
+A) `duckdb -c "SELECT * FROM 'data.csv'" > output.parquet`
+B) `duckdb -c "COPY (SELECT * FROM 'data.csv') TO 'output.parquet'"`
+C) `duckdb -c "SELECT * FROM 'data.csv'" -parquet`
+D) `duckdb -c "EXPORT TO PARQUET 'output.parquet'"`
 
 
 ## Question 15: When should you use DuckDB
