@@ -138,7 +138,7 @@
             <h1>Structured Data Processing (JSON, CSV, YAML, XML)</h1>
             <div class="lecture-meta">
                 <span class="module-badge">Module 6</span>
-                <span class="reading-time">📖 ~70 min</span>
+                <span class="reading-time">📖 ~71 min</span>
             </div>
         </div>
 
@@ -148,8 +148,9 @@
 <p>📁 <strong><a href="../data/DataSamples.html">Sample Data</a></strong> — sample data files for practice</p>
 <hr />
 <h2 id="overview">Overview</h2>
-<p>Modern data comes in structured formats. This lecture covers tools for processing JSON, CSV, YAML, and XML in Unix pipelines.</p>
+<p>Modern data comes in structured formats — JSON for APIs, CSV for tabular data, YAML for configuration, XML for legacy systems. This module covers specialized CLI tools for processing these formats in Unix pipelines, enabling structured data processing without the need for loading data into a database or using a full programming environment.</p>
 <h2 id="json-processing-with-jq">JSON Processing with jq</h2>
+<p><code>jq</code> is a lightweight, functional language for processing JSON data. It reads JSON from stdin or a file, applies filters and transformations, and writes JSON (or text) to stdout. Because <code>jq</code> streams one value at a time, it can handle large files without loading everything into memory.</p>
 <h3 id="basic-jq-usage">Basic jq Usage</h3>
 <pre class="highlight"><code class="language-bash"># Pretty print
 echo '{&quot;name&quot;:&quot;John&quot;,&quot;age&quot;:30}' | jq '.'
@@ -182,6 +183,7 @@ jq 'sort_by(.age)' users.json
 </code></pre>
 
 <h3 id="jsonl-json-lines">JSONL (JSON Lines)</h3>
+<p>JSONL stores one JSON object per line, making it ideal for streaming pipelines. Unlike a JSON array, a JSONL file can be processed line by line without loading the entire file into memory.</p>
 <pre class="highlight"><code class="language-bash"># Stream processing
 cat events.jsonl | jq -c 'select(.type == &quot;error&quot;)'
 
@@ -191,11 +193,12 @@ jq -c '.[]' users.json &gt; users.jsonl
 # Convert JSONL to JSON array
 jq -s '.' users.jsonl &gt; users.json
 
-# Aggregate
+# Aggregate total amount across all records
 cat sales.jsonl | jq -s 'map(.amount) | add'
 </code></pre>
 
 <h2 id="csv-processing">CSV Processing</h2>
+<p>Standard Unix tools like <code>awk</code> and <code>cut</code> can work with CSV, but they break on quoted fields containing commas. The tools below — <code>csvkit</code> and <code>mlr</code> (Miller) — are CSV-aware and handle edge cases correctly.</p>
 <h3 id="csvkit-suite">csvkit Suite</h3>
 <pre class="highlight"><code class="language-bash"># csvstat - Summary statistics
 csvstat data.csv
@@ -206,14 +209,14 @@ csvlook data.csv | head
 # csvcut - Extract columns
 csvcut -c 1,3,5 data.csv
 
-# csvgrep - Filter rows
-csvgrep -c status -m &quot;active&quot; users.csv
+# csvgrep - Filter rows (use regex for exact match)
+csvgrep -c status -r '^active$' users.csv
 
 # csvsort - Sort
 csvsort -c age -r data.csv
 
 # csvjoin - Join files
-csvjoin -c id file1.csv file2.csv
+csvjoin -c id left.csv right.csv
 </code></pre>
 
 <h3 id="miller-mlr">Miller (mlr)</h3>
@@ -221,16 +224,16 @@ csvjoin -c id file1.csv file2.csv
 mlr --csv --opprint cat data.csv
 
 # Filter
-mlr --csv filter '$age &gt; 30' users.csv
+mlr --csv filter '$age &gt; 30' data.csv
 
 # Select columns
-mlr --csv cut -f name,age users.csv
+mlr --csv cut -f name,age data.csv
 
 # Stats
-mlr --csv stats1 -a sum,mean -f price sales.csv
+mlr --csv stats1 -a sum,mean -f revenue sales.csv
 
 # Group by
-mlr --csv stats1 -a sum -f amount -g customer sales.csv
+mlr --csv stats1 -a sum -f revenue -g region sales.csv
 
 # Convert CSV to JSON
 mlr --csv --ojson cat data.csv &gt; data.json
@@ -244,11 +247,11 @@ mlr --json --ocsv cat data.json &gt; data.csv
 mlr --csv cat data.csv | awk -F',' '{print $2}'
 
 # Sum column
-mlr --csv cut -f amount sales.csv | awk 'NR&gt;1 {sum+=$1} END {print sum}'
+mlr --csv cut -f revenue sales.csv | awk 'NR&gt;1 {sum+=$1} END {print sum}'
 </code></pre>
 
 <h2 id="duckdb-sql-for-files">DuckDB: SQL for Files</h2>
-<p>DuckDB is an embedded analytical database that can query CSV, JSON, and Parquet files directly using SQL. It's like SQLite but optimized for analytics.</p>
+<p>DuckDB is an embedded analytical database that can query CSV, JSON, and Parquet files directly using SQL. It's like SQLite but optimized for analytics — it reads files in-place and is optimized for column-oriented analytical queries (aggregations, window functions, joins). It is particularly useful when <code>mlr</code> or <code>awk</code> one-liners are not expressive enough, or when you need to join multiple files using SQL.</p>
 <h3 id="installation">Installation</h3>
 <pre class="highlight"><code class="language-bash"># macOS
 brew install duckdb
@@ -265,11 +268,11 @@ duckdb --version
 <pre class="highlight"><code class="language-bash"># Query CSV directly
 duckdb -c &quot;SELECT * FROM 'users.csv' WHERE status = 'active'&quot;
 
-# Pretty output
-duckdb -c &quot;SELECT * FROM 'users.csv'&quot; -markdown
+# Pretty markdown output
+duckdb -c &quot;.mode markdown&quot; -c &quot;SELECT * FROM 'users.csv'&quot;
 
 # JSON output
-duckdb -c &quot;SELECT * FROM 'users.csv'&quot; -json
+duckdb -c &quot;.mode json&quot; -c &quot;SELECT * FROM 'users.csv'&quot;
 </code></pre>
 
 <h3 id="reading-different-formats">Reading Different Formats</h3>
@@ -433,7 +436,7 @@ D .quit
 </tr>
 </tbody>
 </table></div>
-<h3 id="when-to-use-duckdb">When to Use DuckDB</h3>
+<h3 id="when-to-use-which-tool">When to Use Which Tool</h3>
 <p><strong>Use DuckDB when:</strong><br />
 - Complex joins across multiple files<br />
 - Analytical queries (GROUP BY, window functions)<br />
@@ -449,6 +452,9 @@ D .quit
 - Need streaming processing<br />
 - Complex JSON transformations</p>
 <h2 id="yaml-processing-with-yq">YAML Processing with yq</h2>
+<blockquote>
+<p><strong>Note:</strong> This module uses <code>yq</code> v4 (Mike Farah), whose syntax differs from other <code>yq</code> implementations. The <code>yq</code> package available via <code>apt</code> is a Python wrapper around <code>jq</code> and is not compatible with options such as <code>-o json</code>. Install <code>yq</code> v4 using the <a href="https://github.com/mikefarah/yq">official binary</a> to follow the examples correctly.</p>
+</blockquote>
 <pre class="highlight"><code class="language-bash"># View YAML
 yq '.' config.yaml
 
@@ -462,7 +468,7 @@ yq '.database.port = 5432' config.yaml
 yq -o json '.' config.yaml
 
 # Convert JSON to YAML
-yq -P '.' data.json
+yq -P '.' users.json
 </code></pre>
 
 <h2 id="xml-processing">XML Processing</h2>
@@ -483,12 +489,15 @@ xmlstarlet sel -t -m &quot;//user[age&gt;25]&quot; -v &quot;name&quot; -n data.x
 xmlstarlet ed -u &quot;//user[@id='1']/name&quot; -v &quot;NewName&quot; data.xml
 </code></pre>
 
-<h3 id="xq-yq-for-xml">xq (yq for XML)</h3>
+<h3 id="yq-for-xml">yq for XML</h3>
+<blockquote>
+<p><strong>Note:</strong> In recent <code>yq</code> v4, XML is handled natively via input format flags. The separate <code>xq</code> binary no longer exists.</p>
+</blockquote>
 <pre class="highlight"><code class="language-bash"># XML to JSON
-xq '.' data.xml
+yq -p xml -o json '.' data.xml
 
 # Extract data
-xq '.root.users.user[] | .name' data.xml
+yq -p xml -o json -r '.root.users.user[].name' data.xml
 </code></pre>
 
 <h2 id="practical-examples">Practical Examples</h2>
@@ -498,7 +507,7 @@ xq '.root.users.user[] | .name' data.xml
 </code></pre>
 
 <h3 id="example-2-csv-json-filter-csv">Example 2: CSV → JSON → Filter → CSV</h3>
-<pre class="highlight"><code class="language-bash">mlr --csv --ojson cat input.csv | \
+<pre class="highlight"><code class="language-bash">mlr --csv --ojson cat users.csv | \
   jq '.[] | select(.status == &quot;active&quot;)' | \
   jq -s '.' | \
   mlr --json --ocsv cat &gt; output.csv
@@ -519,7 +528,7 @@ xq '.root.users.user[] | .name' data.xml
 <li id="item-2"><strong>Use mlr for CSV</strong>: Handles edge cases better than awk</li>
 <li id="item-3"><strong>JSONL for streaming</strong>: One object per line</li>
 <li id="item-4"><strong>Validate data</strong> before processing</li>
-<li id="item-5"><strong>Use --null-data</strong> in jq for streaming</li>
+<li id="item-5"><strong>Use <code>jq -n</code></strong> (<code>--null-input</code>) when constructing JSON from scratch without reading from a file</li>
 <li id="item-6"><strong>Quote field names</strong> in jq filters</li>
 <li id="item-7"><strong>Test filters</strong> on small samples first</li>
 </ol>
@@ -536,7 +545,7 @@ xq '.root.users.user[] | .name' data.xml
 <tr>
 <td>JSON</td>
 <td>jq</td>
-<td><code>jq '.[] \| select(.age &gt; 30)'</code></td>
+<td><code>jq '.[] | select(.age &gt; 30)'</code></td>
 </tr>
 <tr>
 <td>CSV</td>

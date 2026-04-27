@@ -32,7 +32,7 @@ C) `sed 'g/cat/dog/s' file.txt`
 D) `sed 'replace cat dog' file.txt`
 
 
-## Question 4: What does do
+## Question 4: Sed Delete
 
 What does `sed '/pattern/d' file.txt` do?
 
@@ -42,7 +42,7 @@ C) Duplicates lines matching the pattern
 D) Displays only matching lines
 
 
-## Question 5: In awk what does represent
+## Question 5: Awk $0
 
 In awk, what does `$0` represent?
 
@@ -56,13 +56,13 @@ D) Zero (the number)
 
 Which awk command prints the 2nd and 4th columns of a CSV file?
 
-A) `awk -F',' '{print $2 $4}' file.csv`
+A) `awk -F',' '{print $2 + $4}' file.csv`
 B) `awk -F',' '{print $2, $4}' file.csv`
 C) `awk -F',' 'print $2,$4' file.csv`
 D) `awk '{print 2,4}' file.csv`
 
 
-## Question 7: What does represent in awk
+## Question 7: Awk NR
 
 What does `NR` represent in awk?
 
@@ -77,7 +77,7 @@ D) Next row
 Which command extracts all email addresses from a text file?
 
 A) `grep '@' file.txt`
-B) `grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' file.txt`
+B) `grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' file.txt`
 C) `grep 'email' file.txt`
 D) `sed '/email/p' file.txt`
 
@@ -102,7 +102,7 @@ C) `sort → grep → sed → uniq -c`
 D) `grep → sort → sed → uniq -c`
 
 
-## Question 11: What does do
+## Question 11: Grep Context
 
 What does `grep -C 3 "pattern" file.txt` do?
 
@@ -122,7 +122,7 @@ C) `sed 's/(\d{4})-(\d{2})-(\d{2})/\3\/\2\/\1/'`
 D) `sed 's/(.*)-(.*)-(.*)/\3\/\2\/\1/'`
 
 
-## Question 13: What does do
+## Question 13: Awk Associative Arrays
 
 What does `awk '{count[$1]++} END {for (key in count) print key, count[key]}'` do?
 
@@ -142,7 +142,7 @@ C) `sed -e 's/foo/bar/' -e 's/old/new/' file.txt`
 D) Both B and C
 
 
-## Question 15: What does output
+## Question 15: Awk NF
 
 What does `awk -F',' '{print NF}' data.csv` output?
 
@@ -162,7 +162,7 @@ C) Globbing is more powerful than regex
 D) Regex only works in Python
 
 
-## Question 17: In shell globbing what does
+## Question 17: Shell Globbing Wildcard
 
 In shell globbing, what does `*.txt` match?
 
@@ -242,7 +242,7 @@ C) `sed 's/html//g' file.html`
 D) `sed '/</d' file.html`
 
 
-## Question 25: What does do
+## Question 25: Grep Invert Match
 
 What does `grep -v "pattern" file.txt` do?
 
@@ -262,7 +262,7 @@ C) `\d{8}-\d{4}-\d{4}`
 D) `[0-9]{32}`
 
 
-## Question 27: In shell globbing what does
+## Question 27: Globbing vs Regex Question Mark
 
 In shell globbing, what does `?` mean, and how is it different from regex `?`?
 
@@ -272,7 +272,7 @@ C) Globbing: any characters; Regex: one character
 D) No difference
 
 
-## Question 28: What does do
+## Question 28: Awk BEGIN Block
 
 What does `awk 'BEGIN {FS=","} {print $1, $3}' file.csv` do?
 
@@ -317,7 +317,7 @@ D) `\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}`
 | 7 | A | NR is the current record (line) number |
 | 8 | B | Comprehensive email regex pattern with word boundaries |
 | 9 | B | `NR > 1` skips header row, accumulates in END block |
-| 10 | B | Filter first (grep), transform (sed), then aggregate (sort | uniq -c) |
+| 10 | B | Filter first (grep), transform (sed), then aggregate (sort + uniq -c) |
 | 11 | C | `-C` shows context lines both before and after (combines -A and -B) |
 | 12 | B | Need escaped parentheses for capturing groups, reference with `\1` `\2` `\3` |
 | 13 | B | Associative array counts occurrences of each unique first field value |
@@ -336,7 +336,7 @@ D) `\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}`
 | 26 | A | Standard UUID format: 8-4-4-4-12 hexadecimal characters |
 | 27 | B | Globbing `?` matches exactly one character; regex `?` means zero or one |
 | 28 | C | BEGIN block sets field separator, then prints fields 1 and 3 |
-| 29 | B | `-E` enables extended regex with `|` for alternation (OR logic) |
+| 29 | B | `-E` enables extended regex, allowing alternation with `|` |
 | 30 | B | Uses repetition `{5}` for first 5 pairs, case-insensitive hex |
 
 ---

@@ -44,7 +44,7 @@
         <span class="course-badge">Linux for Developers: Unix &amp; Data Pipelines</span>
         <div class="module-info">
             <span class="module-number">Module 5</span>
-            <span class="reading-time">📖 ~175 min</span>
+            <span class="reading-time">📖 ~178 min</span>
         </div>
     </div>
 
@@ -58,6 +58,7 @@
 - <strong>grep</strong>: Search and filter lines
 - <strong>sed</strong>: Stream editor for transformations
 - <strong>awk</strong>: Pattern scanning and data extraction</p>
+<p>These three tools are often used in combination: <code>grep</code> filters lines, <code>sed</code> transforms them, and <code>awk</code> processes fields and performs calculations. Together they form a pipeline that can handle most log parsing, data extraction, and text transformation tasks without requiring a full scripting language.</p>
 <h2 id="what-is-regex">What is Regex?</h2>
 <p><strong>Regular Expressions (regex)</strong> are a formal language for describing text patterns. Regex is used for searching, validating, and manipulating textual data.</p>
 <h3 id="core-concept">Core Concept</h3>
@@ -125,7 +126,7 @@
 <tr>
 <td><strong>Alternation</strong></td>
 <td><code>{txt,md}</code></td>
-<td><code>(txt\|md)</code></td>
+<td>BRE: <code>\(txt\|md\)</code>, ERE: <code>(txt|md)</code></td>
 </tr>
 </tbody>
 </table>
@@ -167,6 +168,9 @@ sed 's/[0-9]\{4\}-[0-9]\{2\}/XXXX-XX/' file.txt  # Mask dates
 awk '/^ERROR/ {print $0}' app.log    # Lines starting with ERROR
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> Although <code>grep</code>, <code>sed</code>, and <code>awk</code> all support regular expressions, they do not use the same regex syntax by default. <code>grep</code> and <code>sed</code> use BRE by default (use <code>-E</code> for ERE), while <code>awk</code> always uses ERE.</p>
+</blockquote>
 <h2 id="regular-expressions-primer">Regular Expressions Primer</h2>
 <h3 id="basic-patterns">Basic Patterns</h3>
 <pre class="highlight"><code class="language-bash">.       # Any single character
@@ -181,6 +185,9 @@ $       # End of line
 \       # Escape special char
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> <code>+</code> and <code>?</code> are ERE syntax. In BRE (default <code>grep</code>/<code>sed</code>), use <code>\+</code> and <code>\?</code>.</p>
+</blockquote>
 <h3 id="extended-patterns-ere">Extended Patterns (ERE)</h3>
 <pre class="highlight"><code class="language-bash">(pattern)     # Grouping
 |             # Alternation (OR)
@@ -188,10 +195,14 @@ $       # End of line
 {n,}          # n or more
 {n,m}         # Between n and m
 \b            # Word boundary
-\d \w \s      # Digit, word, space (in some tools)
+\d \w \s      # Digit, word, space (GNU/PCRE only)
 </code></pre>
 
+<blockquote>
+<p><strong>Note:</strong> <code>\b</code>, <code>\d</code>, <code>\w</code>, <code>\s</code> are not POSIX ERE constructs. They are supported in <code>grep -P</code> (PCRE mode) and some <code>awk</code> variants (e.g., <code>gawk</code>).</p>
+</blockquote>
 <h2 id="grep-pattern-matching">Grep: Pattern Matching</h2>
+<p><code>grep</code> is a line-oriented search tool that matches text using regular expressions. It is ideal for filtering logs, configuration files, and large datasets before passing results to tools like <code>sed</code> or <code>awk</code>.</p>
 <h3 id="basic-usage">Basic Usage</h3>
 <pre class="highlight"><code class="language-bash"># Search for pattern
 grep &quot;ERROR&quot; app.log
@@ -220,7 +231,7 @@ grep -E &quot;ERROR|FATAL|CRITICAL&quot; app.log
 grep -E '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b' access.log
 
 # Match email addresses
-grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' users.txt
+grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' users.txt
 
 # Date pattern (YYYY-MM-DD)
 grep -E '[0-9]{4}-[0-9]{2}-[0-9]{2}' logs.txt
@@ -250,8 +261,8 @@ grep &quot;ERROR&quot; *.log
 <pre class="highlight"><code class="language-bash"># Find all Python imports
 grep -rh &quot;^import\|^from&quot; --include=&quot;*.py&quot; src/ | sort -u
 
-# Extract all URLs
-grep -Eo 'https?://[^ ]+' page.html
+# Extract all URLs (stop at quotes or HTML tags)
+grep -Eo 'https?://[^&quot;&lt;&gt;]+' page.html
 
 # Find failed login attempts
 grep &quot;Failed password&quot; /var/log/auth.log | wc -l
@@ -260,7 +271,25 @@ grep &quot;Failed password&quot; /var/log/auth.log | wc -l
 grep -E '\b[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}\b' data.txt
 </code></pre>
 
+<h3 id="grep-flags-quick-reference">Grep Flags Quick Reference</h3>
+<pre class="highlight"><code class="language-bash"># Use -E for extended regex (recommended)
+grep -E 'pattern' file.txt
+
+# Case-insensitive
+grep -iE 'pattern' file.txt
+
+# Extract only matching parts
+grep -Eo 'pattern' file.txt
+
+# Show line numbers
+grep -nE 'pattern' file.txt
+
+# Invert match (exclude)
+grep -vE 'pattern' file.txt
+</code></pre>
+
 <h2 id="sed-stream-editor">Sed: Stream Editor</h2>
+<p><code>sed</code> (stream editor) reads input line by line, applies transformations based on patterns and commands, and writes the result to standard output. By default, it does not edit files in place; transformed lines are printed to stdout unless the <code>-i</code> option is used.</p>
 <h3 id="basic-substitution">Basic Substitution</h3>
 <pre class="highlight"><code class="language-bash"># Replace first occurrence per line
 sed 's/old/new/' file.txt
@@ -332,12 +361,13 @@ sed 's/#.*//' file.txt
 </code></pre>
 
 <h2 id="awk-pattern-scanning-and-processing">Awk: Pattern Scanning and Processing</h2>
+<p><code>awk</code> is a pattern–action language designed for structured text processing. It processes input line by line, splits each line into fields, and applies actions when patterns match. <code>awk</code> is especially powerful for working with tabular data, calculations, and aggregation.</p>
 <h3 id="basic-awk-syntax">Basic Awk Syntax</h3>
 <pre class="highlight"><code class="language-bash"># Print entire line
-awk '{print}' file.txt
+awk '{print}' data.txt
 
-# Print specific fields
-awk '{print $1, $3}' file.txt
+# Print specific fields (works well with multi-column files like logs)
+awk '{print $1, $3}' logs.txt
 
 # Field separator
 awk -F',' '{print $2}' data.csv
@@ -365,18 +395,18 @@ ORS     # Output record separator
 awk 'BEGIN {print &quot;Start&quot;} {print $1} END {print &quot;Done&quot;}' file.txt
 
 # Conditionals
-awk '{if ($3 &gt; 100) print $1, $3}' data.txt
+awk -F',' '{if ($3 &gt; 10) print $2, $3}' sales.csv
 
 # Calculations
-awk '{sum += $3} END {print sum}' numbers.txt
+awk '{sum += $1} END {print sum}' numbers.txt
 
 # Average
 awk '{sum += $1; count++} END {print sum/count}' numbers.txt
 
 # String operations
-awk '{print length($0)}' file.txt    # Line length
-awk '{print tolower($1)}' file.txt   # Lowercase
-awk '{print substr($1, 1, 5)}' file.txt  # Substring
+awk '{print length($0)}' data.txt    # Line length
+awk '{print tolower($1)}' data.txt   # Lowercase
+awk '{print substr($1, 1, 5)}' data.txt  # Substring
 </code></pre>
 
 <h3 id="csv-processing-with-awk">CSV Processing with Awk</h3>
@@ -386,14 +416,14 @@ awk -F',' '{print $2, $4}' data.csv
 # Skip header
 awk -F',' 'NR &gt; 1 {print $0}' data.csv
 
-# Sum column
-awk -F',' 'NR &gt; 1 {sum += $3} END {print sum}' sales.csv
+# Sum revenue column
+awk -F',' 'NR &gt; 1 {sum += $4} END {print sum}' sales.csv
 
-# Filter rows
-awk -F',' '$3 &gt; 1000 {print $0}' sales.csv
+# Filter by revenue
+awk -F',' '$4 &gt; 1000 {print $0}' sales.csv
 
-# Group by (simple)
-awk -F',' '{sum[$2] += $3} END {for (key in sum) print key, sum[key]}' data.csv
+# Group by (Sum revenue by product)
+awk -F',' '{sum[$2] += $4} END {for (key in sum) print key, sum[key]}' sales.csv
 </code></pre>
 
 <h3 id="log-analysis-with-awk">Log Analysis with Awk</h3>
@@ -403,14 +433,14 @@ awk '{print $9}' access.log | sort | uniq -c
 # Extract IP and status
 awk '{print $1, $9}' access.log
 
-# Calculate response time average
+# Calculate average response size
 awk '{sum += $10; count++} END {print sum/count}' access.log
 
 # Top 10 IPs by request count
 awk '{ip[$1]++} END {for (i in ip) print ip[i], i}' access.log | sort -rn | head -10
 
 # Requests per minute
-awk '{print substr($4, 2, 16)}' access.log | uniq -c
+awk '{print substr($4, 2, 16)}' access.log | sort | uniq -c
 </code></pre>
 
 <h3 id="practical-awk-examples">Practical Awk Examples</h3>
@@ -419,7 +449,7 @@ awk '{print substr($4, 2, 16)}' access.log | uniq -c
 </code></pre>
 
 <h4 id="example-2-convert-csv-to-json">Example 2: Convert CSV to JSON</h4>
-<pre class="highlight"><code class="language-bash">awk -F',' 'NR &gt; 1 {printf &quot;{\&quot;id\&quot;: \&quot;%s\&quot;, \&quot;name\&quot;: \&quot;%s\&quot;, \&quot;age\&quot;: %s}\n&quot;, $1, $2, $3}' users.csv
+<pre class="highlight"><code class="language-bash">awk -F',' 'NR &gt; 1 {printf &quot;{\&quot;id\&quot;: \&quot;%s\&quot;, \&quot;name\&quot;: \&quot;%s\&quot;, \&quot;age\&quot;: %s}\n&quot;, $1, $2, $3}' data.csv
 </code></pre>
 
 <h4 id="example-3-column-statistics">Example 3: Column Statistics</h4>
@@ -440,15 +470,15 @@ awk '{print substr($4, 2, 16)}' access.log | uniq -c
 
 <h2 id="combining-grep-sed-awk">Combining Grep, Sed, Awk</h2>
 <h3 id="pattern-filter-transform-aggregate">Pattern: Filter → Transform → Aggregate</h3>
-<pre class="highlight"><code class="language-bash"># Find errors, extract timestamps, count per hour
+<pre class="highlight"><code class="language-bash"># Find errors, extract date+hour, count per hour
 grep &quot;ERROR&quot; app.log | \
-  sed 's/.*\[\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}\):.*/\1/' | \
+  sed 's/^\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}\):.*/\1/' | \
   sort | uniq -c
 </code></pre>
 
 <h3 id="pattern-multi-step-extraction">Pattern: Multi-Step Extraction</h3>
 <pre class="highlight"><code class="language-bash"># Extract email domains and count
-grep -Eo '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' users.txt | \
+grep -Eo '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' users.txt | \
   sed 's/.*@//' | \
   sort | uniq -c | sort -rn
 </code></pre>
@@ -469,7 +499,7 @@ sed 's/&lt;[^&gt;]*&gt;//g' page.html | \
 <li id="item-4"><strong>Use grep first</strong> to reduce data volume before sed/awk</li>
 <li id="item-5"><strong>Avoid nested loops</strong> in awk for large files</li>
 <li id="item-6"><strong>Use -F option</strong> instead of setting FS in awk BEGIN</li>
-<li id="item-7"><strong>Compile regex</strong> when possible (<code>grep -P</code> for PCRE)</li>
+<li id="item-7"><strong>Use <code>grep -P</code></strong> for Perl-compatible regex (lookaheads, <code>\d</code>, <code>\w</code>) when available</li>
 </ol>
 <h2 id="best-practices">Best Practices</h2>
 <ol>
@@ -505,6 +535,113 @@ sed 's/&lt;[^&gt;]*&gt;//g' page.html | \
 <td><code>awk</code></td>
 <td>Field processing</td>
 <td><code>awk -F',' '{sum+=$3} END {print sum}'</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="quick-syntax-reminder">Quick Syntax Reminder</h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>Any single character</td>
+<td><code>c.t</code> matches <code>cat</code>, <code>cot</code>, <code>c5t</code></td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>Start of line</td>
+<td><code>^Hello</code> matches lines starting with "Hello"</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>End of line</td>
+<td><code>world$</code> matches lines ending with "world"</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Zero or more</td>
+<td><code>ab*c</code> matches <code>ac</code>, <code>abc</code>, <code>abbc</code></td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>One or more</td>
+<td><code>ab+c</code> matches <code>abc</code>, <code>abbc</code> (not <code>ac</code>)</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>Zero or one</td>
+<td><code>ab?c</code> matches <code>ac</code>, <code>abc</code></td>
+</tr>
+<tr>
+<td><code>[abc]</code></td>
+<td>Character class</td>
+<td>Matches <code>a</code>, <code>b</code>, or <code>c</code></td>
+</tr>
+<tr>
+<td><code>[^abc]</code></td>
+<td>Negated class</td>
+<td>Matches anything except <code>a</code>, <code>b</code>, <code>c</code></td>
+</tr>
+<tr>
+<td><code>[a-z]</code></td>
+<td>Range</td>
+<td>Matches any lowercase letter</td>
+</tr>
+<tr>
+<td><code>\|</code></td>
+<td>Alternation (OR)</td>
+<td><code>cat\|dog</code> matches <code>cat</code> or <code>dog</code></td>
+</tr>
+<tr>
+<td><code>()</code></td>
+<td>Grouping</td>
+<td><code>(ab)+</code> matches <code>ab</code>, <code>abab</code>, <code>ababab</code></td>
+</tr>
+<tr>
+<td><code>{n}</code></td>
+<td>Exactly n times</td>
+<td><code>[0-9]{3}</code> matches exactly 3 digits</td>
+</tr>
+<tr>
+<td><code>{n,}</code></td>
+<td>n or more times</td>
+<td><code>[0-9]{3,}</code> matches 3+ digits</td>
+</tr>
+<tr>
+<td><code>{n,m}</code></td>
+<td>Between n and m</td>
+<td><code>[0-9]{2,4}</code> matches 2-4 digits</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Word boundary</td>
+<td><code>\bcat\b</code> matches "cat" but not "category"</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>Digit (PCRE only)</td>
+<td>Equivalent to <code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Word character (PCRE only)</td>
+<td>Equivalent to <code>[A-Za-z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Whitespace (PCRE only)</td>
+<td>Matches space, tab, newline</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>Escape character</td>
+<td><code>\.</code> matches literal dot</td>
 </tr>
 </tbody>
 </table>
@@ -754,8 +891,8 @@ grep -E '\b[0-9]{3}-[0-9]{2}-[0-9]{4}\b' file.txt
 <pre class="highlight"><code class="language-bash"># Common log levels
 grep -E '\b(DEBUG|INFO|WARN(ING)?|ERROR|FATAL|CRITICAL)\b' app.log
 
-# With timestamp context
-grep -E '\[[^\]]+\] (DEBUG|INFO|WARN|ERROR|FATAL)' app.log
+# With timestamp context (matches app.log format: &quot;2024-03-15 10:23:45 ERROR ...&quot;)
+grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} (DEBUG|INFO|WARN|ERROR|FATAL)' app.log
 </code></pre>
 
 <h4 id="ipv4-cidr-notation">IPv4 CIDR Notation</h4>
@@ -954,24 +1091,7 @@ echo -e &quot;ATGC\nATGX\nGGCC&quot; | grep -E '^[ATGC]+$'
 </tr>
 </tbody>
 </table>
-<h3 id="usage-with-grep">Usage with grep</h3>
-<pre class="highlight"><code class="language-bash"># Use -E for extended regex (recommended)
-grep -E 'pattern' file.txt
-
-# Case-insensitive
-grep -iE 'pattern' file.txt
-
-# Extract only matching parts
-grep -Eo 'pattern' file.txt
-
-# Show line numbers
-grep -nE 'pattern' file.txt
-
-# Invert match (exclude)
-grep -vE 'pattern' file.txt
-</code></pre>
-
-<h3 id="quick-syntax-reminder">Quick Syntax Reminder</h3>
+<h3 id="quick-syntax-reminder_1">Quick Syntax Reminder</h3>
 <table>
 <thead>
 <tr>

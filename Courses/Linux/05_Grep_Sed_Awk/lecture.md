@@ -12,6 +12,8 @@ The trio of `grep`, `sed`, and `awk` form the foundation of Unix text processing
 - **sed**: Stream editor for transformations
 - **awk**: Pattern scanning and data extraction
 
+These three tools are often used in combination: `grep` filters lines, `sed` transforms them, and `awk` processes fields and performs calculations. Together they form a pipeline that can handle most log parsing, data extraction, and text transformation tasks without requiring a full scripting language.
+
 ## What is Regex?
 
 **Regular Expressions (regex)** are a formal language for describing text patterns. Regex is used for searching, validating, and manipulating textual data.
@@ -38,7 +40,7 @@ Regex allows you to describe a **pattern**, not a specific string:
 | **Range** | `[a-z]` ✓ | `[a-z]` ✓ |
 | **Negation** | `[!abc]` | `[^abc]` |
 | **Anchors** | ❌ | `^` start, `$` end |
-| **Alternation** | `{txt,md}` | `(txt\|md)` |
+| **Alternation** | `{txt,md}` | BRE: `\(txt\|md\)`, ERE: `(txt|md)` |
 
 ### Examples Comparison
 
@@ -84,6 +86,8 @@ sed 's/[0-9]\{4\}-[0-9]\{2\}/XXXX-XX/' file.txt  # Mask dates
 awk '/^ERROR/ {print $0}' app.log    # Lines starting with ERROR
 ```
 
+> **Note:** Although `grep`, `sed`, and `awk` all support regular expressions, they do not use the same regex syntax by default. `grep` and `sed` use BRE by default (use `-E` for ERE), while `awk` always uses ERE.
+
 ## Regular Expressions Primer
 
 ### Basic Patterns
@@ -100,6 +104,8 @@ $       # End of line
 \       # Escape special char
 ```
 
+> **Note:** `+` and `?` are ERE syntax. In BRE (default `grep`/`sed`), use `\+` and `\?`.
+
 ### Extended Patterns (ERE)
 ```bash
 (pattern)     # Grouping
@@ -108,10 +114,14 @@ $       # End of line
 {n,}          # n or more
 {n,m}         # Between n and m
 \b            # Word boundary
-\d \w \s      # Digit, word, space (in some tools)
+\d \w \s      # Digit, word, space (GNU/PCRE only)
 ```
 
+> **Note:** `\b`, `\d`, `\w`, `\s` are not POSIX ERE constructs. They are supported in `grep -P` (PCRE mode) and some `awk` variants (e.g., `gawk`).
+
 ## Grep: Pattern Matching
+
+`grep` is a line-oriented search tool that matches text using regular expressions. It is ideal for filtering logs, configuration files, and large datasets before passing results to tools like `sed` or `awk`.
 
 ### Basic Usage
 ```bash
@@ -143,7 +153,7 @@ grep -E "ERROR|FATAL|CRITICAL" app.log
 grep -E '\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b' access.log
 
 # Match email addresses
-grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' users.txt
+grep -E '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' users.txt
 
 # Date pattern (YYYY-MM-DD)
 grep -E '[0-9]{4}-[0-9]{2}-[0-9]{2}' logs.txt
@@ -175,8 +185,8 @@ grep "ERROR" *.log
 # Find all Python imports
 grep -rh "^import\|^from" --include="*.py" src/ | sort -u
 
-# Extract all URLs
-grep -Eo 'https?://[^ ]+' page.html
+# Extract all URLs (stop at quotes or HTML tags)
+grep -Eo 'https?://[^"<>]+' page.html
 
 # Find failed login attempts
 grep "Failed password" /var/log/auth.log | wc -l
@@ -185,7 +195,28 @@ grep "Failed password" /var/log/auth.log | wc -l
 grep -E '\b[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4}\b' data.txt
 ```
 
+### Grep Flags Quick Reference
+
+```bash
+# Use -E for extended regex (recommended)
+grep -E 'pattern' file.txt
+
+# Case-insensitive
+grep -iE 'pattern' file.txt
+
+# Extract only matching parts
+grep -Eo 'pattern' file.txt
+
+# Show line numbers
+grep -nE 'pattern' file.txt
+
+# Invert match (exclude)
+grep -vE 'pattern' file.txt
+```
+
 ## Sed: Stream Editor
+
+`sed` (stream editor) reads input line by line, applies transformations based on patterns and commands, and writes the result to standard output. By default, it does not edit files in place; transformed lines are printed to stdout unless the `-i` option is used.
 
 ### Basic Substitution
 ```bash
@@ -263,13 +294,15 @@ sed 's/#.*//' file.txt
 
 ## Awk: Pattern Scanning and Processing
 
+`awk` is a pattern–action language designed for structured text processing. It processes input line by line, splits each line into fields, and applies actions when patterns match. `awk` is especially powerful for working with tabular data, calculations, and aggregation.
+
 ### Basic Awk Syntax
 ```bash
 # Print entire line
-awk '{print}' file.txt
+awk '{print}' data.txt
 
-# Print specific fields
-awk '{print $1, $3}' file.txt
+# Print specific fields (works well with multi-column files like logs)
+awk '{print $1, $3}' logs.txt
 
 # Field separator
 awk -F',' '{print $2}' data.csv
@@ -299,18 +332,18 @@ ORS     # Output record separator
 awk 'BEGIN {print "Start"} {print $1} END {print "Done"}' file.txt
 
 # Conditionals
-awk '{if ($3 > 100) print $1, $3}' data.txt
+awk -F',' '{if ($3 > 10) print $2, $3}' sales.csv
 
 # Calculations
-awk '{sum += $3} END {print sum}' numbers.txt
+awk '{sum += $1} END {print sum}' numbers.txt
 
 # Average
 awk '{sum += $1; count++} END {print sum/count}' numbers.txt
 
 # String operations
-awk '{print length($0)}' file.txt    # Line length
-awk '{print tolower($1)}' file.txt   # Lowercase
-awk '{print substr($1, 1, 5)}' file.txt  # Substring
+awk '{print length($0)}' data.txt    # Line length
+awk '{print tolower($1)}' data.txt   # Lowercase
+awk '{print substr($1, 1, 5)}' data.txt  # Substring
 ```
 
 ### CSV Processing with Awk
@@ -321,14 +354,14 @@ awk -F',' '{print $2, $4}' data.csv
 # Skip header
 awk -F',' 'NR > 1 {print $0}' data.csv
 
-# Sum column
-awk -F',' 'NR > 1 {sum += $3} END {print sum}' sales.csv
+# Sum revenue column
+awk -F',' 'NR > 1 {sum += $4} END {print sum}' sales.csv
 
-# Filter rows
-awk -F',' '$3 > 1000 {print $0}' sales.csv
+# Filter by revenue
+awk -F',' '$4 > 1000 {print $0}' sales.csv
 
-# Group by (simple)
-awk -F',' '{sum[$2] += $3} END {for (key in sum) print key, sum[key]}' data.csv
+# Group by (Sum revenue by product)
+awk -F',' '{sum[$2] += $4} END {for (key in sum) print key, sum[key]}' sales.csv
 ```
 
 ### Log Analysis with Awk
@@ -339,14 +372,14 @@ awk '{print $9}' access.log | sort | uniq -c
 # Extract IP and status
 awk '{print $1, $9}' access.log
 
-# Calculate response time average
+# Calculate average response size
 awk '{sum += $10; count++} END {print sum/count}' access.log
 
 # Top 10 IPs by request count
 awk '{ip[$1]++} END {for (i in ip) print ip[i], i}' access.log | sort -rn | head -10
 
 # Requests per minute
-awk '{print substr($4, 2, 16)}' access.log | uniq -c
+awk '{print substr($4, 2, 16)}' access.log | sort | uniq -c
 ```
 
 ### Practical Awk Examples
@@ -358,7 +391,7 @@ awk -F',' 'NR > 1 {printf "INSERT INTO users VALUES (\"%s\", \"%s\", %s);\n", $1
 
 #### Example 2: Convert CSV to JSON
 ```bash
-awk -F',' 'NR > 1 {printf "{\"id\": \"%s\", \"name\": \"%s\", \"age\": %s}\n", $1, $2, $3}' users.csv
+awk -F',' 'NR > 1 {printf "{\"id\": \"%s\", \"name\": \"%s\", \"age\": %s}\n", $1, $2, $3}' data.csv
 ```
 
 #### Example 3: Column Statistics
@@ -382,16 +415,16 @@ awk -F',' '
 
 ### Pattern: Filter → Transform → Aggregate
 ```bash
-# Find errors, extract timestamps, count per hour
+# Find errors, extract date+hour, count per hour
 grep "ERROR" app.log | \
-  sed 's/.*\[\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}\):.*/\1/' | \
+  sed 's/^\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}\):.*/\1/' | \
   sort | uniq -c
 ```
 
 ### Pattern: Multi-Step Extraction
 ```bash
 # Extract email domains and count
-grep -Eo '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b' users.txt | \
+grep -Eo '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b' users.txt | \
   sed 's/.*@//' | \
   sort | uniq -c | sort -rn
 ```
@@ -413,7 +446,7 @@ sed 's/<[^>]*>//g' page.html | \
 4. **Use grep first** to reduce data volume before sed/awk
 5. **Avoid nested loops** in awk for large files
 6. **Use -F option** instead of setting FS in awk BEGIN
-7. **Compile regex** when possible (`grep -P` for PCRE)
+7. **Use `grep -P`** for Perl-compatible regex (lookaheads, `\d`, `\w`) when available
 
 ## Best Practices
 
@@ -432,6 +465,30 @@ sed 's/<[^>]*>//g' page.html | \
 | `grep` | Line filtering | `grep -E "ERROR\|WARN" app.log` |
 | `sed` | Line transformations | `sed 's/old/new/g' file.txt` |
 | `awk` | Field processing | `awk -F',' '{sum+=$3} END {print sum}'` |
+
+### Quick Syntax Reminder
+
+| Symbol | Meaning | Example |
+|--------|---------|--------|
+| `.` | Any single character | `c.t` matches `cat`, `cot`, `c5t` |
+| `^` | Start of line | `^Hello` matches lines starting with "Hello" |
+| `$` | End of line | `world$` matches lines ending with "world" |
+| `*` | Zero or more | `ab*c` matches `ac`, `abc`, `abbc` |
+| `+` | One or more | `ab+c` matches `abc`, `abbc` (not `ac`) |
+| `?` | Zero or one | `ab?c` matches `ac`, `abc` |
+| `[abc]` | Character class | Matches `a`, `b`, or `c` |
+| `[^abc]` | Negated class | Matches anything except `a`, `b`, `c` |
+| `[a-z]` | Range | Matches any lowercase letter |
+| `\|` | Alternation (OR) | `cat\|dog` matches `cat` or `dog` |
+| `()` | Grouping | `(ab)+` matches `ab`, `abab`, `ababab` |
+| `{n}` | Exactly n times | `[0-9]{3}` matches exactly 3 digits |
+| `{n,}` | n or more times | `[0-9]{3,}` matches 3+ digits |
+| `{n,m}` | Between n and m | `[0-9]{2,4}` matches 2-4 digits |
+| `\b` | Word boundary | `\bcat\b` matches "cat" but not "category" |
+| `\d` | Digit (PCRE only) | Equivalent to `[0-9]` |
+| `\w` | Word character (PCRE only) | Equivalent to `[A-Za-z0-9_]` |
+| `\s` | Whitespace (PCRE only) | Matches space, tab, newline |
+| `\\` | Escape character | `\.` matches literal dot |
 
 ## Next Steps
 - Practice regex on regex101.com
@@ -713,8 +770,8 @@ grep -E '\b[0-9]{3}-[0-9]{2}-[0-9]{4}\b' file.txt
 # Common log levels
 grep -E '\b(DEBUG|INFO|WARN(ING)?|ERROR|FATAL|CRITICAL)\b' app.log
 
-# With timestamp context
-grep -E '\[[^\]]+\] (DEBUG|INFO|WARN|ERROR|FATAL)' app.log
+# With timestamp context (matches app.log format: "2024-03-15 10:23:45 ERROR ...")
+grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} (DEBUG|INFO|WARN|ERROR|FATAL)' app.log
 ```
 
 #### IPv4 CIDR Notation
@@ -816,25 +873,6 @@ echo -e "ATGC\nATGX\nGGCC" | grep -E '^[ATGC]+$'
 | **SSN (US)** | `[0-9]{3}-[0-9]{2}-[0-9]{4}` | `123-45-6789` |
 | **Unix Path** | `^/([^/]+/)*[^/]+$` | `/usr/local/bin`, `/home/user/file.txt` |
 | **File Extension** | `\.(txt\|csv\|json\|xml\|yaml)$` | `.txt`, `.json`, `.csv` |
-
-### Usage with grep
-
-```bash
-# Use -E for extended regex (recommended)
-grep -E 'pattern' file.txt
-
-# Case-insensitive
-grep -iE 'pattern' file.txt
-
-# Extract only matching parts
-grep -Eo 'pattern' file.txt
-
-# Show line numbers
-grep -nE 'pattern' file.txt
-
-# Invert match (exclude)
-grep -vE 'pattern' file.txt
-```
 
 ### Quick Syntax Reminder
 

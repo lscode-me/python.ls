@@ -7,9 +7,11 @@
 ---
 
 ## Overview
-Modern data comes in structured formats. This lecture covers tools for processing JSON, CSV, YAML, and XML in Unix pipelines.
+Modern data comes in structured formats — JSON for APIs, CSV for tabular data, YAML for configuration, XML for legacy systems. This module covers specialized CLI tools for processing these formats in Unix pipelines, enabling structured data processing without the need for loading data into a database or using a full programming environment.
 
 ## JSON Processing with jq
+
+`jq` is a lightweight, functional language for processing JSON data. It reads JSON from stdin or a file, applies filters and transformations, and writes JSON (or text) to stdout. Because `jq` streams one value at a time, it can handle large files without loading everything into memory.
 
 ### Basic jq Usage
 ```bash
@@ -45,6 +47,9 @@ jq 'sort_by(.age)' users.json
 ```
 
 ### JSONL (JSON Lines)
+
+JSONL stores one JSON object per line, making it ideal for streaming pipelines. Unlike a JSON array, a JSONL file can be processed line by line without loading the entire file into memory.
+
 ```bash
 # Stream processing
 cat events.jsonl | jq -c 'select(.type == "error")'
@@ -55,11 +60,13 @@ jq -c '.[]' users.json > users.jsonl
 # Convert JSONL to JSON array
 jq -s '.' users.jsonl > users.json
 
-# Aggregate
+# Aggregate total amount across all records
 cat sales.jsonl | jq -s 'map(.amount) | add'
 ```
 
 ## CSV Processing
+
+Standard Unix tools like `awk` and `cut` can work with CSV, but they break on quoted fields containing commas. The tools below — `csvkit` and `mlr` (Miller) — are CSV-aware and handle edge cases correctly.
 
 ### csvkit Suite
 ```bash
@@ -72,14 +79,14 @@ csvlook data.csv | head
 # csvcut - Extract columns
 csvcut -c 1,3,5 data.csv
 
-# csvgrep - Filter rows
-csvgrep -c status -m "active" users.csv
+# csvgrep - Filter rows (use regex for exact match)
+csvgrep -c status -r '^active$' users.csv
 
 # csvsort - Sort
 csvsort -c age -r data.csv
 
 # csvjoin - Join files
-csvjoin -c id file1.csv file2.csv
+csvjoin -c id left.csv right.csv
 ```
 
 ### Miller (mlr)
@@ -88,16 +95,16 @@ csvjoin -c id file1.csv file2.csv
 mlr --csv --opprint cat data.csv
 
 # Filter
-mlr --csv filter '$age > 30' users.csv
+mlr --csv filter '$age > 30' data.csv
 
 # Select columns
-mlr --csv cut -f name,age users.csv
+mlr --csv cut -f name,age data.csv
 
 # Stats
-mlr --csv stats1 -a sum,mean -f price sales.csv
+mlr --csv stats1 -a sum,mean -f revenue sales.csv
 
 # Group by
-mlr --csv stats1 -a sum -f amount -g customer sales.csv
+mlr --csv stats1 -a sum -f revenue -g region sales.csv
 
 # Convert CSV to JSON
 mlr --csv --ojson cat data.csv > data.json
@@ -112,12 +119,12 @@ mlr --json --ocsv cat data.json > data.csv
 mlr --csv cat data.csv | awk -F',' '{print $2}'
 
 # Sum column
-mlr --csv cut -f amount sales.csv | awk 'NR>1 {sum+=$1} END {print sum}'
+mlr --csv cut -f revenue sales.csv | awk 'NR>1 {sum+=$1} END {print sum}'
 ```
 
 ## DuckDB: SQL for Files
 
-DuckDB is an embedded analytical database that can query CSV, JSON, and Parquet files directly using SQL. It's like SQLite but optimized for analytics.
+DuckDB is an embedded analytical database that can query CSV, JSON, and Parquet files directly using SQL. It's like SQLite but optimized for analytics — it reads files in-place and is optimized for column-oriented analytical queries (aggregations, window functions, joins). It is particularly useful when `mlr` or `awk` one-liners are not expressive enough, or when you need to join multiple files using SQL.
 
 ### Installation
 ```bash
@@ -137,11 +144,11 @@ duckdb --version
 # Query CSV directly
 duckdb -c "SELECT * FROM 'users.csv' WHERE status = 'active'"
 
-# Pretty output
-duckdb -c "SELECT * FROM 'users.csv'" -markdown
+# Pretty markdown output
+duckdb -c ".mode markdown" -c "SELECT * FROM 'users.csv'"
 
 # JSON output
-duckdb -c "SELECT * FROM 'users.csv'" -json
+duckdb -c ".mode json" -c "SELECT * FROM 'users.csv'"
 ```
 
 ### Reading Different Formats
@@ -266,7 +273,7 @@ D .quit
 | Memory Usage | ✅ Low | ✅ Low | ❌ High | ❌ High |
 | Learning Curve | ⚠️ SQL | ⚠️ Medium | ✅ Easy | ⚠️ Medium |
 
-### When to Use DuckDB
+### When to Use Which Tool
 
 **Use DuckDB when:**
 - Complex joins across multiple files
@@ -287,6 +294,8 @@ D .quit
 
 ## YAML Processing with yq
 
+> **Note:** This module uses `yq` v4 (Mike Farah), whose syntax differs from other `yq` implementations. The `yq` package available via `apt` is a Python wrapper around `jq` and is not compatible with options such as `-o json`. Install `yq` v4 using the [official binary](https://github.com/mikefarah/yq) to follow the examples correctly.
+
 ```bash
 # View YAML
 yq '.' config.yaml
@@ -301,7 +310,7 @@ yq '.database.port = 5432' config.yaml
 yq -o json '.' config.yaml
 
 # Convert JSON to YAML
-yq -P '.' data.json
+yq -P '.' users.json
 ```
 
 ## XML Processing
@@ -324,13 +333,16 @@ xmlstarlet sel -t -m "//user[age>25]" -v "name" -n data.xml
 xmlstarlet ed -u "//user[@id='1']/name" -v "NewName" data.xml
 ```
 
-### xq (yq for XML)
+### yq for XML
+
+> **Note:** In recent `yq` v4, XML is handled natively via input format flags. The separate `xq` binary no longer exists.
+
 ```bash
 # XML to JSON
-xq '.' data.xml
+yq -p xml -o json '.' data.xml
 
 # Extract data
-xq '.root.users.user[] | .name' data.xml
+yq -p xml -o json -r '.root.users.user[].name' data.xml
 ```
 
 ## Practical Examples
@@ -343,7 +355,7 @@ curl -s 'https://api.example.com/users' | \
 
 ### Example 2: CSV → JSON → Filter → CSV
 ```bash
-mlr --csv --ojson cat input.csv | \
+mlr --csv --ojson cat users.csv | \
   jq '.[] | select(.status == "active")' | \
   jq -s '.' | \
   mlr --json --ocsv cat > output.csv
@@ -366,7 +378,7 @@ jq -s 'add' file1.json file2.json file3.json > merged.json
 2. **Use mlr for CSV**: Handles edge cases better than awk
 3. **JSONL for streaming**: One object per line
 4. **Validate data** before processing
-5. **Use --null-data** in jq for streaming
+5. **Use `jq -n`** (`--null-input`) when constructing JSON from scratch without reading from a file
 6. **Quote field names** in jq filters
 7. **Test filters** on small samples first
 
@@ -374,7 +386,7 @@ jq -s 'add' file1.json file2.json file3.json > merged.json
 
 | Format | Tool | Key Command |
 |--------|------|-------------|
-| JSON | jq | `jq '.[] \| select(.age > 30)'` |
+| JSON | jq | `jq '.[] | select(.age > 30)'` |
 | CSV | mlr | `mlr --csv filter '$age > 30'` |
 | CSV/JSON/Parquet | DuckDB | `duckdb -c "SELECT * FROM 'data.csv' WHERE age > 30"` |
 | YAML | yq | `yq '.database.host'` |

@@ -1,5 +1,54 @@
 # Changelog
 
+## 2026-04-27
+
+### Linux / 01_Unix_Streams
+- Add early note that awk/sed/jq will be covered in later modules (before Filter→Transform→Aggregate section)
+
+### Linux / 05_Grep_Sed_Awk
+- Add intro paragraph explaining why grep/sed/awk are used together
+- Add intro paragraphs before grep, sed, and awk sections
+- Fix regex table: show both BRE and ERE alternation syntax
+- Add BRE/ERE notes for `+`, `?`, `\b`, `\d`, `\w`, `\s`
+- Fix `[A-Z|a-z]` → `[A-Za-z]` in email regex (lecture + quiz Q8)
+- Fix URL extraction regex: stop at quotes/tags instead of spaces
+- Fix awk examples: correct file references (data.txt, logs.txt, sales.csv), fix field numbers
+- Fix CSV processing: use revenue column ($4), group by sales.csv
+- Fix "response time average" → "response size average" in log analysis
+- Add `sort` before `uniq -c` in requests per minute
+- Fix Filter→Transform→Aggregate pattern for app.log timestamp format
+- Fix "Compile regex" → clarify grep -P usage
+- Fix log level regex for app.log format (no brackets)
+- Move "Usage with grep" to end of Grep section, "Quick Syntax Reminder" before Next Steps
+- Quiz: remove duplicated title prefixes (Q4,5,7,11,13,15,17,25,27,28)
+- Quiz Q6: fix option A to avoid ambiguity
+- Quiz Q10,Q29: fix truncated explanations
+
+### Linux / 06_Structured_Data
+- Add richer intro paragraph about structured data formats
+- Add intro paragraphs for jq, JSONL, CSV sections
+- Add JSONL conceptual explanation (JSON vs JSONL)
+- Fix csvgrep: use regex for exact match instead of substring match
+- Fix csvjoin: use left.csv/right.csv
+- Fix mlr examples: users.csv → data.csv (age field), price → revenue, amount/customer → revenue/region
+- Fix DuckDB output format flags (-markdown/-json → .mode)
+- Rename "When to Use DuckDB" → "When to Use Which Tool"
+- Add DuckDB analytics context in intro
+- Add yq v4 (Mike Farah) compatibility note
+- Rewrite xq examples to use yq -p xml (v4 native XML support)
+- Fix yq example: data.json → users.json
+- Fix Example 2: input.csv → users.csv
+- Fix Best Practices: --null-data → -n (--null-input)
+- Fix Summary table: remove unnecessary backslash
+- Quiz: remove backticks from answer options, remove duplicated title prefixes
+- Quiz Q1: fix truncated explanation
+- Quiz Q8: add --csv flag to correct answer
+- Quiz Q12: note read_csv() also valid in DuckDB v1.0+
+- Quiz Q13: improve explanation
+
+### Linux / Sample Data
+- Move Quick File Creation Script to top of DataSamples page for visibility
+
 ## 2026-04-15
 
 ### Linux / 01_Unix_Streams

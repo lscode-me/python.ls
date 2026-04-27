@@ -111,7 +111,10 @@ command &amp;&gt; all_output.log
 
 <hr />
 <h2 id="the-filter-transform-aggregate-workflow">The Filter → Transform → Aggregate Workflow</h2>
-<p>This is the fundamental pattern of Unix data processing:</p>
+<p>This is the fundamental pattern of Unix data processing.</p>
+<blockquote>
+<p><strong>Note:</strong> Some commands in this section (<code>awk</code>, <code>sed</code>, <code>jq</code>) are shown briefly as building blocks. Don't worry if the syntax is unfamiliar — <code>sed</code> and <code>awk</code> are covered in depth in <strong>Module 5</strong>, and <code>jq</code> in <strong>Module 6</strong>. For now, focus on the overall pipeline pattern.</p>
+</blockquote>
 <h3 id="1-filter-select-what-you-need">1. Filter — Select What You Need</h3>
 <pre class="highlight"><code class="language-bash"># Filter lines matching a pattern
 grep &quot;ERROR&quot; app.log

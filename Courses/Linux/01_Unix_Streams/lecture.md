@@ -79,7 +79,9 @@ command &> all_output.log
 
 ## The Filter → Transform → Aggregate Workflow
 
-This is the fundamental pattern of Unix data processing:
+This is the fundamental pattern of Unix data processing.
+
+> **Note:** Some commands in this section (`awk`, `sed`, `jq`) are shown briefly as building blocks. Don't worry if the syntax is unfamiliar — `sed` and `awk` are covered in depth in **Module 5**, and `jq` in **Module 6**. For now, focus on the overall pipeline pattern.
 
 ### 1. Filter — Select What You Need
 

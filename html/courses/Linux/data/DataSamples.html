@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="All sample data files used throughout the course are available in the `files/` subfolder. At the bottom of this page, there is a script that recreates all sample files locally so learners can follow t">
+    <meta name="description" content="All sample data files used throughout the course are available in the `files/` subfolder.">
     <title>Sample Data Files | Python and Linux for Life Science Developers</title>
     
     <!-- Fonts: Inter for text, JetBrains Mono for code -->
@@ -39,10 +39,28 @@
                         <span>Sample Data Files</span>
                     </nav>
                     <div class="lecture-content"><h1 id="sample-data-files">Sample Data Files</h1>
-<p>All sample data files used throughout the course are available in the <code>files/</code> subfolder.<br />
-At the bottom of this page, there is a script that recreates all sample files locally so learners can follow the course without copying files manually.</p>
+<p>All sample data files used throughout the course are available in the <code>files/</code> subfolder.</p>
 <hr />
-<h2 id="quick-setup">📁 Quick Setup</h2>
+<h2 id="quick-setup-script">📋 Quick Setup Script</h2>
+<blockquote>
+<p><strong>Prefer this option</strong> if you want all files created locally in one go.</p>
+</blockquote>
+<p>Run this script to create all sample files at once:</p>
+<pre class="highlight"><code class="language-bash">#!/bin/bash
+# Create all sample data files for the course
+mkdir -p ~/workspace/linux_course_data &amp;&amp; cd ~/workspace/linux_course_data
+# ... (see full script below)
+</code></pre>
+
+<details>
+<summary>📜 Click to expand the full script</summary>
+
+The full script is located at the [bottom of this page](#-full-file-creation-script).
+
+</details>
+
+<hr />
+<h2 id="alternative-setup-options">📁 Alternative Setup Options</h2>
 <p><strong>Option 1: Use files directly from the repository</strong></p>
 <pre class="highlight"><code class="language-bash">cd Linux/data/files/
 cat users.csv
@@ -535,7 +553,7 @@ features:
 </code></pre>
 
 <hr />
-<h2 id="quick-file-creation-script">📋 Quick File Creation Script</h2>
+<h2 id="full-file-creation-script">� Full File Creation Script</h2>
 <p>Run this script to create all sample files at once:</p>
 <pre class="highlight"><code class="language-bash">#!/bin/bash
 # Create all sample data files for the course

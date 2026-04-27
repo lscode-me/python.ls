@@ -1,11 +1,32 @@
 # Sample Data Files
 
 All sample data files used throughout the course are available in the `files/` subfolder.
-At the bottom of this page, there is a script that recreates all sample files locally so learners can follow the course without copying files manually.
 
 ---
 
-## 📁 Quick Setup
+## 📋 Quick Setup Script
+
+> **Prefer this option** if you want all files created locally in one go.
+
+Run this script to create all sample files at once:
+
+```bash
+#!/bin/bash
+# Create all sample data files for the course
+mkdir -p ~/workspace/linux_course_data && cd ~/workspace/linux_course_data
+# ... (see full script below)
+```
+
+<details>
+<summary>📜 Click to expand the full script</summary>
+
+The full script is located at the [bottom of this page](#-full-file-creation-script).
+
+</details>
+
+---
+
+## 📁 Alternative Setup Options
 
 **Option 1: Use files directly from the repository**
 ```bash
@@ -581,7 +602,7 @@ Sample HTML page for pattern extraction.
 
 ---
 
-## 📋 Quick File Creation Script
+## � Full File Creation Script
 
 Run this script to create all sample files at once:
 
