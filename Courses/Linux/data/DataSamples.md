@@ -2,7 +2,7 @@
 
 All sample data files used throughout the course are available in the `files/` subfolder.
 
-> **Quick start:** To create all files locally at once, copy-paste the [setup script](#-full-file-creation-script) at the bottom of this page into your terminal.
+> **Quick start:** To create all files locally at once, copy-paste the [setup script](#full-file-creation-script) at the bottom of this page into your terminal.
 
 ---
 
@@ -582,7 +582,7 @@ Sample HTML page for pattern extraction.
 
 ---
 
-## � Full File Creation Script
+## Full File Creation Script
 
 Run this script to create all sample files at once:
 
