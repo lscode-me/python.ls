@@ -60,7 +60,7 @@
             
             <div class="question-card" data-question="1" >
                 <div class="question-number">Question 1</div>
-                <h3 class="question-text">Which command extracts the name: Which command extracts the &#34;name&#34; field from each object in a JSON array?</h3>
+                <h3 class="question-text">Which command extracts the &#34;name&#34; field from each object in a JSON array?</h3>
                 
                 
 
@@ -99,7 +99,7 @@
             
             <div class="question-card" data-question="2" style="display: none;">
                 <div class="question-number">Question 2</div>
-                <h3 class="question-text">What does the -r flag do in jq: What does the `-r` flag do in jq?</h3>
+                <h3 class="question-text">What does the `-r` flag do in jq?</h3>
                 
                 
 
@@ -177,7 +177,7 @@
             
             <div class="question-card" data-question="4" style="display: none;">
                 <div class="question-number">Question 4</div>
-                <h3 class="question-text">How do you convert JSON to CSV: How do you convert a JSON array to CSV using jq?</h3>
+                <h3 class="question-text">How do you convert a JSON array to CSV using jq?</h3>
                 
                 
 
@@ -255,7 +255,7 @@
             
             <div class="question-card" data-question="6" style="display: none;">
                 <div class="question-number">Question 6</div>
-                <h3 class="question-text">Which csvkit tool extracts columns: Which csvkit tool extracts specific columns from a CSV?</h3>
+                <h3 class="question-text">Which csvkit tool extracts specific columns from a CSV?</h3>
                 
                 
 
@@ -294,7 +294,7 @@
             
             <div class="question-card" data-question="7" style="display: none;">
                 <div class="question-number">Question 7</div>
-                <h3 class="question-text">How do you filter JSON by condition: How do you filter JSON objects where age &gt; 25 using jq?</h3>
+                <h3 class="question-text">How do you filter JSON objects where age &gt; 25 using jq?</h3>
                 
                 
 
@@ -333,7 +333,7 @@
             
             <div class="question-card" data-question="8" style="display: none;">
                 <div class="question-number">Question 8</div>
-                <h3 class="question-text">Which miller command groups and sums: Which miller command calculates the sum of a column grouped by another column?</h3>
+                <h3 class="question-text">Which miller command calculates the sum of a column grouped by another column?</h3>
                 
                 
 
@@ -411,7 +411,7 @@
             
             <div class="question-card" data-question="10" style="display: none;">
                 <div class="question-number">Question 10</div>
-                <h3 class="question-text">What does jq -s do: What does `jq -s &#39;.&#39;` do?</h3>
+                <h3 class="question-text">What does `jq -s &#39;.&#39;` do?</h3>
                 
                 
 
@@ -450,7 +450,7 @@
             
             <div class="question-card" data-question="11" style="display: none;">
                 <div class="question-number">Question 11</div>
-                <h3 class="question-text">How do you query CSV with DuckDB: How do you query a CSV file with DuckDB?</h3>
+                <h3 class="question-text">How do you query a CSV file with DuckDB?</h3>
                 
                 
 
@@ -567,7 +567,7 @@
             
             <div class="question-card" data-question="14" style="display: none;">
                 <div class="question-number">Question 14</div>
-                <h3 class="question-text">How do you export to Parquet: How do you export DuckDB query results to Parquet format?</h3>
+                <h3 class="question-text">How do you export DuckDB query results to Parquet format?</h3>
                 
                 
 
@@ -676,7 +676,7 @@
 </article>
 
 <script>
-const QUIZ_DATA = {"title": "Structured Data Processing (JSON, CSV, YAML, XML) - Quiz", "description": "Which command extracts the \"name\" field from each object in a JSON array?", "courseId": "Linux", "moduleId": "06_Structured_Data", "questions": [{"number": 1, "text": "Which command extracts the name: Which command extracts the \"name\" field from each object in a JSON array?", "code": null, "answers": [{"letter": "A", "text": "`jq '.[] | .name'`"}, {"letter": "B", "text": "`jq '.name'`"}, {"letter": "C", "text": "`jq 'name'`"}, {"letter": "D", "text": "`jq '[].name'`"}], "correctAnswer": "A", "explanation": "`.[]` iterates over array elements, and `.name` extracts the field from each object"}, {"number": 2, "text": "What does the -r flag do in jq: What does the `-r` flag do in jq?", "code": null, "answers": [{"letter": "A", "text": "Reverses the output"}, {"letter": "B", "text": "Outputs raw text (no JSON quotes)"}, {"letter": "C", "text": "Recursive processing"}, {"letter": "D", "text": "Reads from file"}], "correctAnswer": "B", "explanation": "`-r` outputs raw strings without JSON quotes"}, {"number": 3, "text": "Which tool is best for processing CSV files with complex field handling?", "code": null, "answers": [{"letter": "A", "text": "awk"}, {"letter": "B", "text": "cut"}, {"letter": "C", "text": "grep"}, {"letter": "D", "text": "miller (mlr)"}], "correctAnswer": "D", "explanation": "Miller handles quoted fields, edge cases better than awk"}, {"number": 4, "text": "How do you convert JSON to CSV: How do you convert a JSON array to CSV using jq?", "code": null, "answers": [{"letter": "A", "text": "`jq '.[] | @csv'`"}, {"letter": "B", "text": "`jq -r '.[] | [.field1, .field2] | @csv'`"}, {"letter": "C", "text": "`jq 'to_csv'`"}, {"letter": "D", "text": "`jq --csv '.'`"}], "correctAnswer": "B", "explanation": "Need `-r` for raw output, `[fields]` for array, `@csv` for CSV format"}, {"number": 5, "text": "What format is JSONL (JSON Lines)?", "code": null, "answers": [{"letter": "A", "text": "Pretty-printed JSON"}, {"letter": "B", "text": "Compressed JSON"}, {"letter": "C", "text": "One JSON object per line"}, {"letter": "D", "text": "JSON with line numbers"}], "correctAnswer": "C", "explanation": "JSONL has one JSON object per line for streaming"}, {"number": 6, "text": "Which csvkit tool extracts columns: Which csvkit tool extracts specific columns from a CSV?", "code": null, "answers": [{"letter": "A", "text": "`csvgrep`"}, {"letter": "B", "text": "`csvselect`"}, {"letter": "C", "text": "`csvfilter`"}, {"letter": "D", "text": "`csvcut`"}], "correctAnswer": "D", "explanation": "`csvcut -c columns` extracts specific columns"}, {"number": 7, "text": "How do you filter JSON by condition: How do you filter JSON objects where age > 25 using jq?", "code": null, "answers": [{"letter": "A", "text": "`jq '.[] | select(.age > 25)'`"}, {"letter": "B", "text": "`jq 'filter(.age > 25)'`"}, {"letter": "C", "text": "`jq 'where age > 25'`"}, {"letter": "D", "text": "`jq '.age > 25'`"}], "correctAnswer": "A", "explanation": "`.[]` iterates, `select()` filters by condition"}, {"number": 8, "text": "Which miller command groups and sums: Which miller command calculates the sum of a column grouped by another column?", "code": null, "answers": [{"letter": "A", "text": "`mlr sum -f amount -g customer`"}, {"letter": "B", "text": "`mlr group-by customer sum amount`"}, {"letter": "C", "text": "`mlr --csv stats1 -a sum -f amount -g customer`"}, {"letter": "D", "text": "`mlr aggregate sum(amount) by customer`"}], "correctAnswer": "C", "explanation": "`mlr --csv stats1 -a sum -f field -g groupby` aggregates with `--csv` for proper CSV handling"}, {"number": 9, "text": "How do you pretty-print XML with xmlstarlet?", "code": null, "answers": [{"letter": "A", "text": "`xmlstarlet print file.xml`"}, {"letter": "B", "text": "`xmlstarlet pretty file.xml`"}, {"letter": "C", "text": "`xmlstarlet -p file.xml`"}, {"letter": "D", "text": "`xmlstarlet format file.xml`"}], "correctAnswer": "D", "explanation": "`format` command pretty-prints XML"}, {"number": 10, "text": "What does jq -s do: What does `jq -s '.'` do?", "code": null, "answers": [{"letter": "A", "text": "Slurps multiple JSON objects into an array"}, {"letter": "B", "text": "Selects all fields"}, {"letter": "C", "text": "Sorts JSON objects"}, {"letter": "D", "text": "Streams JSON output"}], "correctAnswer": "A", "explanation": "`-s` slurp mode reads all inputs into array"}, {"number": 11, "text": "How do you query CSV with DuckDB: How do you query a CSV file with DuckDB?", "code": null, "answers": [{"letter": "A", "text": "`duckdb -c \"SELECT * FROM csv('users.csv')\"`"}, {"letter": "B", "text": "`duckdb users.csv -q \"SELECT *\"`"}, {"letter": "C", "text": "`duckdb -c \"SELECT * FROM 'users.csv'\"`"}, {"letter": "D", "text": "`duckdb --query users.csv`"}], "correctAnswer": "C", "explanation": "DuckDB can read CSV files directly using `'filename.csv'` syntax"}, {"number": 12, "text": "Which DuckDB function reads CSV files with automatic schema detection?", "code": null, "answers": [{"letter": "A", "text": "`read_csv('file.csv')`"}, {"letter": "B", "text": "`read_csv_auto('file.csv')`"}, {"letter": "C", "text": "`auto_read_csv('file.csv')`"}, {"letter": "D", "text": "`csv_read('file.csv')`"}], "correctAnswer": "B", "explanation": "`read_csv_auto()` automatically detects headers, types, delimiters. Note: `read_csv()` also works in DuckDB v1.0+"}, {"number": 13, "text": "What is the main advantage of DuckDB over csvkit for large files?", "code": null, "answers": [{"letter": "A", "text": "Easier syntax"}, {"letter": "B", "text": "Better error messages"}, {"letter": "C", "text": "More output formats"}, {"letter": "D", "text": "Columnar storage and efficient memory usage"}], "correctAnswer": "D", "explanation": "DuckDB uses columnar storage and chunked processing, making it significantly more memory-efficient than csvkit for large analytical queries"}, {"number": 14, "text": "How do you export to Parquet: How do you export DuckDB query results to Parquet format?", "code": null, "answers": [{"letter": "A", "text": "`duckdb -c \"SELECT * FROM 'data.csv'\" > output.parquet`"}, {"letter": "B", "text": "`duckdb -c \"COPY (SELECT * FROM 'data.csv') TO 'output.parquet'\"`"}, {"letter": "C", "text": "`duckdb -c \"SELECT * FROM 'data.csv'\" -parquet`"}, {"letter": "D", "text": "`duckdb -c \"EXPORT TO PARQUET 'output.parquet'\"`"}], "correctAnswer": "B", "explanation": "`COPY (query) TO 'file.parquet'` exports to Parquet format"}, {"number": 15, "text": "When should you use DuckDB instead of Miller?", "code": null, "answers": [{"letter": "A", "text": "For simple column selection"}, {"letter": "B", "text": "For quick one-liners"}, {"letter": "C", "text": "For complex multi-way joins and window functions"}, {"letter": "D", "text": "For streaming data"}], "correctAnswer": "C", "explanation": "DuckDB excels at complex SQL operations, window functions, and analytical queries"}]};
+const QUIZ_DATA = {"title": "Structured Data Processing (JSON, CSV, YAML, XML) - Quiz", "description": "Which command extracts the \"name\" field from each object in a JSON array?", "courseId": "Linux", "moduleId": "06_Structured_Data", "questions": [{"number": 1, "text": "Which command extracts the \"name\" field from each object in a JSON array?", "code": null, "answers": [{"letter": "A", "text": "`jq '.[] | .name'`"}, {"letter": "B", "text": "`jq '.name'`"}, {"letter": "C", "text": "`jq 'name'`"}, {"letter": "D", "text": "`jq '[].name'`"}], "correctAnswer": "A", "explanation": "`.[]` iterates over array elements, and `.name` extracts the field from each object"}, {"number": 2, "text": "What does the `-r` flag do in jq?", "code": null, "answers": [{"letter": "A", "text": "Reverses the output"}, {"letter": "B", "text": "Outputs raw text (no JSON quotes)"}, {"letter": "C", "text": "Recursive processing"}, {"letter": "D", "text": "Reads from file"}], "correctAnswer": "B", "explanation": "`-r` outputs raw strings without JSON quotes"}, {"number": 3, "text": "Which tool is best for processing CSV files with complex field handling?", "code": null, "answers": [{"letter": "A", "text": "awk"}, {"letter": "B", "text": "cut"}, {"letter": "C", "text": "grep"}, {"letter": "D", "text": "miller (mlr)"}], "correctAnswer": "D", "explanation": "Miller handles quoted fields, edge cases better than awk"}, {"number": 4, "text": "How do you convert a JSON array to CSV using jq?", "code": null, "answers": [{"letter": "A", "text": "`jq '.[] | @csv'`"}, {"letter": "B", "text": "`jq -r '.[] | [.field1, .field2] | @csv'`"}, {"letter": "C", "text": "`jq 'to_csv'`"}, {"letter": "D", "text": "`jq --csv '.'`"}], "correctAnswer": "B", "explanation": "Need `-r` for raw output, `[fields]` for array, `@csv` for CSV format"}, {"number": 5, "text": "What format is JSONL (JSON Lines)?", "code": null, "answers": [{"letter": "A", "text": "Pretty-printed JSON"}, {"letter": "B", "text": "Compressed JSON"}, {"letter": "C", "text": "One JSON object per line"}, {"letter": "D", "text": "JSON with line numbers"}], "correctAnswer": "C", "explanation": "JSONL has one JSON object per line for streaming"}, {"number": 6, "text": "Which csvkit tool extracts specific columns from a CSV?", "code": null, "answers": [{"letter": "A", "text": "`csvgrep`"}, {"letter": "B", "text": "`csvselect`"}, {"letter": "C", "text": "`csvfilter`"}, {"letter": "D", "text": "`csvcut`"}], "correctAnswer": "D", "explanation": "`csvcut -c columns` extracts specific columns"}, {"number": 7, "text": "How do you filter JSON objects where age > 25 using jq?", "code": null, "answers": [{"letter": "A", "text": "`jq '.[] | select(.age > 25)'`"}, {"letter": "B", "text": "`jq 'filter(.age > 25)'`"}, {"letter": "C", "text": "`jq 'where age > 25'`"}, {"letter": "D", "text": "`jq '.age > 25'`"}], "correctAnswer": "A", "explanation": "`.[]` iterates, `select()` filters by condition"}, {"number": 8, "text": "Which miller command calculates the sum of a column grouped by another column?", "code": null, "answers": [{"letter": "A", "text": "`mlr sum -f amount -g customer`"}, {"letter": "B", "text": "`mlr group-by customer sum amount`"}, {"letter": "C", "text": "`mlr --csv stats1 -a sum -f amount -g customer`"}, {"letter": "D", "text": "`mlr aggregate sum(amount) by customer`"}], "correctAnswer": "C", "explanation": "`mlr --csv stats1 -a sum -f field -g groupby` aggregates with `--csv` for proper CSV handling"}, {"number": 9, "text": "How do you pretty-print XML with xmlstarlet?", "code": null, "answers": [{"letter": "A", "text": "`xmlstarlet print file.xml`"}, {"letter": "B", "text": "`xmlstarlet pretty file.xml`"}, {"letter": "C", "text": "`xmlstarlet -p file.xml`"}, {"letter": "D", "text": "`xmlstarlet format file.xml`"}], "correctAnswer": "D", "explanation": "`format` command pretty-prints XML"}, {"number": 10, "text": "What does `jq -s '.'` do?", "code": null, "answers": [{"letter": "A", "text": "Slurps multiple JSON objects into an array"}, {"letter": "B", "text": "Selects all fields"}, {"letter": "C", "text": "Sorts JSON objects"}, {"letter": "D", "text": "Streams JSON output"}], "correctAnswer": "A", "explanation": "`-s` slurp mode reads all inputs into array"}, {"number": 11, "text": "How do you query a CSV file with DuckDB?", "code": null, "answers": [{"letter": "A", "text": "`duckdb -c \"SELECT * FROM csv('users.csv')\"`"}, {"letter": "B", "text": "`duckdb users.csv -q \"SELECT *\"`"}, {"letter": "C", "text": "`duckdb -c \"SELECT * FROM 'users.csv'\"`"}, {"letter": "D", "text": "`duckdb --query users.csv`"}], "correctAnswer": "C", "explanation": "DuckDB can read CSV files directly using `'filename.csv'` syntax"}, {"number": 12, "text": "Which DuckDB function reads CSV files with automatic schema detection?", "code": null, "answers": [{"letter": "A", "text": "`read_csv('file.csv')`"}, {"letter": "B", "text": "`read_csv_auto('file.csv')`"}, {"letter": "C", "text": "`auto_read_csv('file.csv')`"}, {"letter": "D", "text": "`csv_read('file.csv')`"}], "correctAnswer": "B", "explanation": "`read_csv_auto()` automatically detects headers, types, delimiters. Note: `read_csv()` also works in DuckDB v1.0+"}, {"number": 13, "text": "What is the main advantage of DuckDB over csvkit for large files?", "code": null, "answers": [{"letter": "A", "text": "Easier syntax"}, {"letter": "B", "text": "Better error messages"}, {"letter": "C", "text": "More output formats"}, {"letter": "D", "text": "Columnar storage and efficient memory usage"}], "correctAnswer": "D", "explanation": "DuckDB uses columnar storage and chunked processing, making it significantly more memory-efficient than csvkit for large analytical queries"}, {"number": 14, "text": "How do you export DuckDB query results to Parquet format?", "code": null, "answers": [{"letter": "A", "text": "`duckdb -c \"SELECT * FROM 'data.csv'\" > output.parquet`"}, {"letter": "B", "text": "`duckdb -c \"COPY (SELECT * FROM 'data.csv') TO 'output.parquet'\"`"}, {"letter": "C", "text": "`duckdb -c \"SELECT * FROM 'data.csv'\" -parquet`"}, {"letter": "D", "text": "`duckdb -c \"EXPORT TO PARQUET 'output.parquet'\"`"}], "correctAnswer": "B", "explanation": "`COPY (query) TO 'file.parquet'` exports to Parquet format"}, {"number": 15, "text": "When should you use DuckDB instead of Miller?", "code": null, "answers": [{"letter": "A", "text": "For simple column selection"}, {"letter": "B", "text": "For quick one-liners"}, {"letter": "C", "text": "For complex multi-way joins and window functions"}, {"letter": "D", "text": "For streaming data"}], "correctAnswer": "C", "explanation": "DuckDB excels at complex SQL operations, window functions, and analytical queries"}]};
 </script>
 <script src="../../../static/js/quiz.js?v=11"></script>
 

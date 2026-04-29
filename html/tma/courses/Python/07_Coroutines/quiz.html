@@ -60,7 +60,7 @@
             </div>
             
             <div class="question-body">
-                <p class="question-text">Basic Concepts: What is the main difference between a generator and a coroutine?</p>
+                <p class="question-text">What is the main difference between a generator and a coroutine?</p>
                 
                 
             </div>
@@ -104,7 +104,7 @@
             </div>
             
             <div class="question-body">
-                <p class="question-text">Priming Coroutines: What happens if you try to send a non-None value to a just-started coroutine without priming it first?</p>
+                <p class="question-text">What happens if you try to send a non-None value to a just-started coroutine without priming it first?</p>
                 
                 
                 <pre class="question-code"><code>def my_coro():
@@ -156,7 +156,7 @@ c.send(10)  # What happens?</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Bidirectional Communication: What does this coroutine return when you send it values? What is `result`?</p>
+                <p class="question-text">What does this coroutine return when you send it values? What is `result`?</p>
                 
                 
                 <pre class="question-code"><code>def mystery():
@@ -210,7 +210,7 @@ result = m.send(10)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Pipeline Direction: In which order should you build a coroutine pipeline?</p>
+                <p class="question-text">In which order should you build a coroutine pipeline?</p>
                 
                 
                 <pre class="question-code"><code># Pipeline: source → filter → transform → sink</code></pre>
@@ -256,7 +256,7 @@ result = m.send(10)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">The @coroutine Decorator: What is the purpose of the `@coroutine` decorator?</p>
+                <p class="question-text">What is the purpose of the `@coroutine` decorator?</p>
                 
                 
                 <pre class="question-code"><code>def coroutine(func):
@@ -307,7 +307,7 @@ result = m.send(10)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Pull vs Push: Which statement about pull and push models is TRUE?</p>
+                <p class="question-text">Which statement about pull and push models is TRUE?</p>
                 
                 
             </div>
@@ -351,7 +351,7 @@ result = m.send(10)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Closing Coroutines: What happens when you call `close()` on a coroutine?</p>
+                <p class="question-text">What happens when you call `close()` on a coroutine?</p>
                 
                 
                 <pre class="question-code"><code>@coroutine
@@ -408,7 +408,7 @@ c.close()</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Tee (Broadcasting): What does the `tee` component do in a pipeline?</p>
+                <p class="question-text">What does the `tee` component do in a pipeline?</p>
                 
                 
                 <pre class="question-code"><code>@coroutine
@@ -459,7 +459,7 @@ def tee(*targets):
             </div>
             
             <div class="question-body">
-                <p class="question-text">State Management: Why are coroutines well-suited for stateful processing?</p>
+                <p class="question-text">Why are coroutines well-suited for stateful processing?</p>
                 
                 
             </div>
@@ -503,7 +503,7 @@ def tee(*targets):
             </div>
             
             <div class="question-body">
-                <p class="question-text">Pipeline Order: Given this pipeline setup: What gets printed?</p>
+                <p class="question-text">Given this pipeline setup: What gets printed?</p>
                 
                 
                 <pre class="question-code"><code>sink = printer()
@@ -556,7 +556,7 @@ filter.send(10)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Error Handling: What&#39;s the best way to handle errors in a coroutine pipeline?</p>
+                <p class="question-text">What&#39;s the best way to handle errors in a coroutine pipeline?</p>
                 
                 
                 <pre class="question-code"><code>@coroutine
@@ -607,7 +607,7 @@ def process(target):
             </div>
             
             <div class="question-body">
-                <p class="question-text">Memory Efficiency: Which approach uses less memory for processing 1 million items? **Approach A: List comprehensions** **Approach B: Coroutine pipeline**</p>
+                <p class="question-text">Which approach uses less memory for processing 1 million items? **Approach A: List comprehensions** **Approach B: Coroutine pipeline**</p>
                 
                 
                 <pre class="question-code"><code>sink = collector()
@@ -657,7 +657,7 @@ for x in data:
             </div>
             
             <div class="question-body">
-                <p class="question-text">Yield Expression: What is the value of `x` after this code runs?</p>
+                <p class="question-text">What is the value of `x` after this code runs?</p>
                 
                 
                 <pre class="question-code"><code>def coro():
@@ -709,7 +709,7 @@ result2 = c.send(100)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Pipeline Patterns: Which pipeline pattern is described here: &#34;Collect items until a certain size is reached, then send the batch downstream&#34;?</p>
+                <p class="question-text">Which pipeline pattern is described here: &#34;Collect items until a certain size is reached, then send the batch downstream&#34;?</p>
                 
                 
             </div>
@@ -753,7 +753,7 @@ result2 = c.send(100)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Real-World Use Case: Which of these is NOT a good use case for coroutine pipelines?</p>
+                <p class="question-text">Which of these is NOT a good use case for coroutine pipelines?</p>
                 
                 
             </div>
@@ -797,7 +797,7 @@ result2 = c.send(100)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Debugging Pipelines: You have a pipeline with 5 stages, but output is wrong. What&#39;s the best debugging approach?</p>
+                <p class="question-text">You have a pipeline with 5 stages, but output is wrong. What&#39;s the best debugging approach?</p>
                 
                 
                 <pre class="question-code"><code>stage5 = sink()
@@ -847,7 +847,7 @@ stage1 = transform_a(stage2)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Performance: Which change would most improve the performance of a coroutine pipeline?</p>
+                <p class="question-text">Which change would most improve the performance of a coroutine pipeline?</p>
                 
                 
             </div>
@@ -891,7 +891,7 @@ stage1 = transform_a(stage2)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Async Coroutines: How do traditional coroutines (using `yield` and `send()`) differ from async coroutines (`async def`)?</p>
+                <p class="question-text">How do traditional coroutines (using `yield` and `send()`) differ from async coroutines (`async def`)?</p>
                 
                 
             </div>
@@ -935,7 +935,7 @@ stage1 = transform_a(stage2)</code></pre>
             </div>
             
             <div class="question-body">
-                <p class="question-text">Windowing: What does this coroutine do?</p>
+                <p class="question-text">What does this coroutine do?</p>
                 
                 
                 <pre class="question-code"><code>@coroutine
@@ -990,7 +990,7 @@ def sliding_window(size, target):
             </div>
             
             <div class="question-body">
-                <p class="question-text">Pipeline Termination: What&#39;s the correct way to properly terminate a coroutine pipeline?</p>
+                <p class="question-text">What&#39;s the correct way to properly terminate a coroutine pipeline?</p>
                 
                 
                 <pre class="question-code"><code>sink = printer()
@@ -1084,7 +1084,7 @@ for item in data:
 </article>
 
 <script>
-const QUIZ_DATA = {"title": "Quiz: Coroutines and Data Pipelines", "description": "What is the main difference between a generator and a coroutine?", "courseId": "Python", "moduleId": "07_Coroutines", "questions": [{"number": 1, "text": "Basic Concepts: What is the main difference between a generator and a coroutine?", "code": null, "answers": [{"letter": "A", "text": "Generators are faster than coroutines"}, {"letter": "B", "text": "Generators can only be used in Python 3"}, {"letter": "C", "text": "Generators produce data (pull), coroutines consume data (push)"}, {"letter": "D", "text": "Coroutines require the `async` keyword"}], "correctAnswer": "C", "explanation": "Generators produce data (pull), coroutines consume data (push)"}, {"number": 2, "text": "Priming Coroutines: What happens if you try to send a non-None value to a just-started coroutine without priming it first?", "code": "def my_coro():\n    while True:\n        value = yield\n        print(value)\n\nc = my_coro()\nc.send(10)  # What happens?", "answers": [{"letter": "A", "text": "It prints 10"}, {"letter": "B", "text": "It raises a `TypeError`"}, {"letter": "C", "text": "It raises a `StopIteration`"}, {"letter": "D", "text": "It does nothing"}], "correctAnswer": "B", "explanation": "It raises a `TypeError` - must prime with next() first"}, {"number": 3, "text": "Bidirectional Communication: What does this coroutine return when you send it values? What is `result`?", "code": "def mystery():\n    total = 0\n    while True:\n        value = yield total\n        total += value\n\nm = mystery()\nnext(m)\nresult = m.send(10)", "answers": [{"letter": "A", "text": "0"}, {"letter": "B", "text": "10"}, {"letter": "C", "text": "None"}, {"letter": "D", "text": "Raises an error"}], "correctAnswer": "B", "explanation": "10 - yield returns total, then receives value"}, {"number": 4, "text": "Pipeline Direction: In which order should you build a coroutine pipeline?", "code": "# Pipeline: source \u2192 filter \u2192 transform \u2192 sink", "answers": [{"letter": "A", "text": "source, then filter, then transform, then sink"}, {"letter": "B", "text": "sink, then transform, then filter (backward from end)"}, {"letter": "C", "text": "It doesn't matter"}, {"letter": "D", "text": "All components must be built simultaneously"}], "correctAnswer": "B", "explanation": "Build backward from sink to source"}, {"number": 5, "text": "The @coroutine Decorator: What is the purpose of the `@coroutine` decorator?", "code": "def coroutine(func):\n    def wrapper(*args, **kwargs):\n        gen = func(*args, **kwargs)\n        next(gen)\n        return gen\n    return wrapper", "answers": [{"letter": "A", "text": "Makes coroutines run faster"}, {"letter": "B", "text": "Automatically primes the coroutine"}, {"letter": "C", "text": "Converts functions to coroutines"}, {"letter": "D", "text": "Enables async/await syntax"}], "correctAnswer": "B", "explanation": "@coroutine decorator automatically primes the coroutine"}, {"number": 6, "text": "Pull vs Push: Which statement about pull and push models is TRUE?", "code": null, "answers": [{"letter": "A", "text": "Pull model is always faster than push model"}, {"letter": "B", "text": "Push model (coroutines) is better for infinite/streaming data"}, {"letter": "C", "text": "Pull model cannot handle real-time data"}, {"letter": "D", "text": "Push model uses less memory"}], "correctAnswer": "B", "explanation": "Push model (coroutines) is better for infinite/streaming data"}, {"number": 7, "text": "Closing Coroutines: What happens when you call `close()` on a coroutine?", "code": "@coroutine\ndef my_coro(target):\n    try:\n        while True:\n            item = yield\n            target.send(item)\n    except GeneratorExit:\n        print(\"Closing!\")\n        target.close()\n\nc = my_coro(some_target)\nc.close()", "answers": [{"letter": "A", "text": "Nothing happens"}, {"letter": "B", "text": "The coroutine's `except GeneratorExit` block is executed"}, {"letter": "C", "text": "The coroutine raises a `StopIteration`"}, {"letter": "D", "text": "The coroutine is paused"}], "correctAnswer": "B", "explanation": "The coroutine's `except GeneratorExit` block is executed"}, {"number": 8, "text": "Tee (Broadcasting): What does the `tee` component do in a pipeline?", "code": "@coroutine\ndef tee(*targets):\n    while True:\n        item = yield\n        for target in targets:\n            target.send(item)", "answers": [{"letter": "A", "text": "Splits items evenly across targets (round-robin)"}, {"letter": "B", "text": "Sends each item to all targets (broadcast)"}, {"letter": "C", "text": "Sends items to the first available target"}, {"letter": "D", "text": "Buffers items for later processing"}], "correctAnswer": "B", "explanation": "Tee sends each item to all targets (broadcast)"}, {"number": 9, "text": "State Management: Why are coroutines well-suited for stateful processing?", "code": null, "answers": [{"letter": "A", "text": "They use global variables efficiently"}, {"letter": "B", "text": "They maintain local variables across calls"}, {"letter": "C", "text": "They have special state management syntax"}, {"letter": "D", "text": "They store state in a database"}], "correctAnswer": "B", "explanation": "Coroutines maintain local variables across calls"}, {"number": 10, "text": "Pipeline Order: Given this pipeline setup: What gets printed?", "code": "sink = printer()\nstats = statistics(sink)\ntransform = map_items(lambda x: x * 2, stats)\nfilter = filter_items(lambda x: x > 0, transform)\n\nfilter.send(5)\nfilter.send(-3)\nfilter.send(10)", "answers": [{"letter": "A", "text": "5, -3, 10"}, {"letter": "B", "text": "10, 20"}, {"letter": "C", "text": "5, 10"}, {"letter": "D", "text": "Nothing"}], "correctAnswer": "B", "explanation": "10, 20 - each send returns what was yielded"}, {"number": 11, "text": "Error Handling: What's the best way to handle errors in a coroutine pipeline?", "code": "@coroutine\ndef process(target):\n    while True:\n        item = yield\n        # How to handle errors?\n        target.send(item)", "answers": [{"letter": "A", "text": "Let errors propagate naturally"}, {"letter": "B", "text": "Use try/except around `target.send()`"}, {"letter": "C", "text": "Check if item is valid before sending"}, {"letter": "D", "text": "Use a separate error sink"}], "correctAnswer": "B", "explanation": "Use try/except around `target.send()`"}, {"number": 12, "text": "Memory Efficiency: Which approach uses less memory for processing 1 million items? **Approach A: List comprehensions** **Approach B: Coroutine pipeline**", "code": "sink = collector()\ndoubler = map_items(lambda x: x * 2, sink)\nfilter = filter_items(lambda x: x > 0, doubler)\nfor x in data:\n    filter.send(x)", "answers": [{"letter": "A", "text": "Approach A (list comprehensions)"}, {"letter": "B", "text": "Approach B (coroutine pipeline)"}, {"letter": "C", "text": "They use the same memory"}, {"letter": "D", "text": "It depends on the data"}], "correctAnswer": "B", "explanation": "Coroutine pipeline processes one item at a time, less memory"}, {"number": 13, "text": "Yield Expression: What is the value of `x` after this code runs?", "code": "def coro():\n    x = yield 42\n    yield x\n\nc = coro()\nresult1 = next(c)\nresult2 = c.send(100)", "answers": [{"letter": "A", "text": "x = 42, result1 = 42, result2 = 100"}, {"letter": "B", "text": "x = 100, result1 = 42, result2 = 100"}, {"letter": "C", "text": "x = None, result1 = 42, result2 = None"}, {"letter": "D", "text": "x = 100, result1 = None, result2 = 42"}], "correctAnswer": "B", "explanation": "x = 100, result1 = 42, result2 = 100"}, {"number": 14, "text": "Pipeline Patterns: Which pipeline pattern is described here: \"Collect items until a certain size is reached, then send the batch downstream\"?", "code": null, "answers": [{"letter": "A", "text": "Filter"}, {"letter": "B", "text": "Map"}, {"letter": "C", "text": "Batch/Window"}, {"letter": "D", "text": "Tee"}], "correctAnswer": "C", "explanation": "Batch/Window pattern processes items in groups"}, {"number": 15, "text": "Real-World Use Case: Which of these is NOT a good use case for coroutine pipelines?", "code": null, "answers": [{"letter": "A", "text": "Real-time log processing"}, {"letter": "B", "text": "Processing CSV files with millions of rows"}, {"letter": "C", "text": "Reversing a small list"}, {"letter": "D", "text": "ETL (Extract-Transform-Load) operations"}], "correctAnswer": "C", "explanation": "Reversing a small list - coroutines need full data first"}, {"number": 16, "text": "Debugging Pipelines: You have a pipeline with 5 stages, but output is wrong. What's the best debugging approach?", "code": "stage5 = sink()\nstage4 = transform_d(stage5)\nstage3 = transform_c(stage4)\nstage2 = transform_b(stage3)\nstage1 = transform_a(stage2)", "answers": [{"letter": "A", "text": "Add print statements in each stage"}, {"letter": "B", "text": "Use a debugger with breakpoints"}, {"letter": "C", "text": "Test each stage individually first"}, {"letter": "D", "text": "Rewrite everything from scratch"}], "correctAnswer": "C", "explanation": "Test each stage individually first"}, {"number": 17, "text": "Performance: Which change would most improve the performance of a coroutine pipeline?", "code": null, "answers": [{"letter": "A", "text": "Adding more stages"}, {"letter": "B", "text": "Using `@coroutine` decorator"}, {"letter": "C", "text": "Reducing function call overhead by combining simple stages"}, {"letter": "D", "text": "Adding more error handling"}], "correctAnswer": "C", "explanation": "Reducing function call overhead by combining simple stages"}, {"number": 18, "text": "Async Coroutines: How do traditional coroutines (using `yield` and `send()`) differ from async coroutines (`async def`)?", "code": null, "answers": [{"letter": "A", "text": "They are the same thing"}, {"letter": "B", "text": "Traditional coroutines are synchronous, async coroutines support concurrent I/O"}, {"letter": "C", "text": "Async coroutines are faster"}, {"letter": "D", "text": "Traditional coroutines don't support `yield`"}], "correctAnswer": "B", "explanation": "Traditional coroutines are synchronous, async supports concurrent I/O"}, {"number": 19, "text": "Windowing: What does this coroutine do?", "code": "@coroutine\ndef sliding_window(size, target):\n    window = []\n    while True:\n        item = yield\n        window.append(item)\n        if len(window) > size:\n            window.pop(0)\n        if len(window) == size:\n            target.send(list(window))", "answers": [{"letter": "A", "text": "Collects all items into a list of given size"}, {"letter": "B", "text": "Sends every Nth item"}, {"letter": "C", "text": "Sends sliding windows of N consecutive items"}, {"letter": "D", "text": "Filters items based on window size"}], "correctAnswer": "C", "explanation": "Sends sliding windows of N consecutive items"}, {"number": 20, "text": "Pipeline Termination: What's the correct way to properly terminate a coroutine pipeline?", "code": "sink = printer()\nstage2 = transform(sink)\nstage1 = filter_items(predicate, stage2)\n\n# Process data\nfor item in data:\n    stage1.send(item)\n\n# How to terminate?", "answers": [{"letter": "A", "text": "Do nothing, Python cleans up automatically"}, {"letter": "B", "text": "Call `close()` on the entry point only"}, {"letter": "C", "text": "Call `close()` on all stages from entry to sink"}, {"letter": "D", "text": "Send a special \"STOP\" value"}], "correctAnswer": "C", "explanation": "Call close() on all stages from entry to sink"}]};
+const QUIZ_DATA = {"title": "Quiz: Coroutines and Data Pipelines", "description": "What is the main difference between a generator and a coroutine?", "courseId": "Python", "moduleId": "07_Coroutines", "questions": [{"number": 1, "text": "What is the main difference between a generator and a coroutine?", "code": null, "answers": [{"letter": "A", "text": "Generators are faster than coroutines"}, {"letter": "B", "text": "Generators can only be used in Python 3"}, {"letter": "C", "text": "Generators produce data (pull), coroutines consume data (push)"}, {"letter": "D", "text": "Coroutines require the `async` keyword"}], "correctAnswer": "C", "explanation": "Generators produce data (pull), coroutines consume data (push)"}, {"number": 2, "text": "What happens if you try to send a non-None value to a just-started coroutine without priming it first?", "code": "def my_coro():\n    while True:\n        value = yield\n        print(value)\n\nc = my_coro()\nc.send(10)  # What happens?", "answers": [{"letter": "A", "text": "It prints 10"}, {"letter": "B", "text": "It raises a `TypeError`"}, {"letter": "C", "text": "It raises a `StopIteration`"}, {"letter": "D", "text": "It does nothing"}], "correctAnswer": "B", "explanation": "It raises a `TypeError` - must prime with next() first"}, {"number": 3, "text": "What does this coroutine return when you send it values? What is `result`?", "code": "def mystery():\n    total = 0\n    while True:\n        value = yield total\n        total += value\n\nm = mystery()\nnext(m)\nresult = m.send(10)", "answers": [{"letter": "A", "text": "0"}, {"letter": "B", "text": "10"}, {"letter": "C", "text": "None"}, {"letter": "D", "text": "Raises an error"}], "correctAnswer": "B", "explanation": "10 - yield returns total, then receives value"}, {"number": 4, "text": "In which order should you build a coroutine pipeline?", "code": "# Pipeline: source \u2192 filter \u2192 transform \u2192 sink", "answers": [{"letter": "A", "text": "source, then filter, then transform, then sink"}, {"letter": "B", "text": "sink, then transform, then filter (backward from end)"}, {"letter": "C", "text": "It doesn't matter"}, {"letter": "D", "text": "All components must be built simultaneously"}], "correctAnswer": "B", "explanation": "Build backward from sink to source"}, {"number": 5, "text": "What is the purpose of the `@coroutine` decorator?", "code": "def coroutine(func):\n    def wrapper(*args, **kwargs):\n        gen = func(*args, **kwargs)\n        next(gen)\n        return gen\n    return wrapper", "answers": [{"letter": "A", "text": "Makes coroutines run faster"}, {"letter": "B", "text": "Automatically primes the coroutine"}, {"letter": "C", "text": "Converts functions to coroutines"}, {"letter": "D", "text": "Enables async/await syntax"}], "correctAnswer": "B", "explanation": "@coroutine decorator automatically primes the coroutine"}, {"number": 6, "text": "Which statement about pull and push models is TRUE?", "code": null, "answers": [{"letter": "A", "text": "Pull model is always faster than push model"}, {"letter": "B", "text": "Push model (coroutines) is better for infinite/streaming data"}, {"letter": "C", "text": "Pull model cannot handle real-time data"}, {"letter": "D", "text": "Push model uses less memory"}], "correctAnswer": "B", "explanation": "Push model (coroutines) is better for infinite/streaming data"}, {"number": 7, "text": "What happens when you call `close()` on a coroutine?", "code": "@coroutine\ndef my_coro(target):\n    try:\n        while True:\n            item = yield\n            target.send(item)\n    except GeneratorExit:\n        print(\"Closing!\")\n        target.close()\n\nc = my_coro(some_target)\nc.close()", "answers": [{"letter": "A", "text": "Nothing happens"}, {"letter": "B", "text": "The coroutine's `except GeneratorExit` block is executed"}, {"letter": "C", "text": "The coroutine raises a `StopIteration`"}, {"letter": "D", "text": "The coroutine is paused"}], "correctAnswer": "B", "explanation": "The coroutine's `except GeneratorExit` block is executed"}, {"number": 8, "text": "What does the `tee` component do in a pipeline?", "code": "@coroutine\ndef tee(*targets):\n    while True:\n        item = yield\n        for target in targets:\n            target.send(item)", "answers": [{"letter": "A", "text": "Splits items evenly across targets (round-robin)"}, {"letter": "B", "text": "Sends each item to all targets (broadcast)"}, {"letter": "C", "text": "Sends items to the first available target"}, {"letter": "D", "text": "Buffers items for later processing"}], "correctAnswer": "B", "explanation": "Tee sends each item to all targets (broadcast)"}, {"number": 9, "text": "Why are coroutines well-suited for stateful processing?", "code": null, "answers": [{"letter": "A", "text": "They use global variables efficiently"}, {"letter": "B", "text": "They maintain local variables across calls"}, {"letter": "C", "text": "They have special state management syntax"}, {"letter": "D", "text": "They store state in a database"}], "correctAnswer": "B", "explanation": "Coroutines maintain local variables across calls"}, {"number": 10, "text": "Given this pipeline setup: What gets printed?", "code": "sink = printer()\nstats = statistics(sink)\ntransform = map_items(lambda x: x * 2, stats)\nfilter = filter_items(lambda x: x > 0, transform)\n\nfilter.send(5)\nfilter.send(-3)\nfilter.send(10)", "answers": [{"letter": "A", "text": "5, -3, 10"}, {"letter": "B", "text": "10, 20"}, {"letter": "C", "text": "5, 10"}, {"letter": "D", "text": "Nothing"}], "correctAnswer": "B", "explanation": "10, 20 - each send returns what was yielded"}, {"number": 11, "text": "What's the best way to handle errors in a coroutine pipeline?", "code": "@coroutine\ndef process(target):\n    while True:\n        item = yield\n        # How to handle errors?\n        target.send(item)", "answers": [{"letter": "A", "text": "Let errors propagate naturally"}, {"letter": "B", "text": "Use try/except around `target.send()`"}, {"letter": "C", "text": "Check if item is valid before sending"}, {"letter": "D", "text": "Use a separate error sink"}], "correctAnswer": "B", "explanation": "Use try/except around `target.send()`"}, {"number": 12, "text": "Which approach uses less memory for processing 1 million items? **Approach A: List comprehensions** **Approach B: Coroutine pipeline**", "code": "sink = collector()\ndoubler = map_items(lambda x: x * 2, sink)\nfilter = filter_items(lambda x: x > 0, doubler)\nfor x in data:\n    filter.send(x)", "answers": [{"letter": "A", "text": "Approach A (list comprehensions)"}, {"letter": "B", "text": "Approach B (coroutine pipeline)"}, {"letter": "C", "text": "They use the same memory"}, {"letter": "D", "text": "It depends on the data"}], "correctAnswer": "B", "explanation": "Coroutine pipeline processes one item at a time, less memory"}, {"number": 13, "text": "What is the value of `x` after this code runs?", "code": "def coro():\n    x = yield 42\n    yield x\n\nc = coro()\nresult1 = next(c)\nresult2 = c.send(100)", "answers": [{"letter": "A", "text": "x = 42, result1 = 42, result2 = 100"}, {"letter": "B", "text": "x = 100, result1 = 42, result2 = 100"}, {"letter": "C", "text": "x = None, result1 = 42, result2 = None"}, {"letter": "D", "text": "x = 100, result1 = None, result2 = 42"}], "correctAnswer": "B", "explanation": "x = 100, result1 = 42, result2 = 100"}, {"number": 14, "text": "Which pipeline pattern is described here: \"Collect items until a certain size is reached, then send the batch downstream\"?", "code": null, "answers": [{"letter": "A", "text": "Filter"}, {"letter": "B", "text": "Map"}, {"letter": "C", "text": "Batch/Window"}, {"letter": "D", "text": "Tee"}], "correctAnswer": "C", "explanation": "Batch/Window pattern processes items in groups"}, {"number": 15, "text": "Which of these is NOT a good use case for coroutine pipelines?", "code": null, "answers": [{"letter": "A", "text": "Real-time log processing"}, {"letter": "B", "text": "Processing CSV files with millions of rows"}, {"letter": "C", "text": "Reversing a small list"}, {"letter": "D", "text": "ETL (Extract-Transform-Load) operations"}], "correctAnswer": "C", "explanation": "Reversing a small list - coroutines need full data first"}, {"number": 16, "text": "You have a pipeline with 5 stages, but output is wrong. What's the best debugging approach?", "code": "stage5 = sink()\nstage4 = transform_d(stage5)\nstage3 = transform_c(stage4)\nstage2 = transform_b(stage3)\nstage1 = transform_a(stage2)", "answers": [{"letter": "A", "text": "Add print statements in each stage"}, {"letter": "B", "text": "Use a debugger with breakpoints"}, {"letter": "C", "text": "Test each stage individually first"}, {"letter": "D", "text": "Rewrite everything from scratch"}], "correctAnswer": "C", "explanation": "Test each stage individually first"}, {"number": 17, "text": "Which change would most improve the performance of a coroutine pipeline?", "code": null, "answers": [{"letter": "A", "text": "Adding more stages"}, {"letter": "B", "text": "Using `@coroutine` decorator"}, {"letter": "C", "text": "Reducing function call overhead by combining simple stages"}, {"letter": "D", "text": "Adding more error handling"}], "correctAnswer": "C", "explanation": "Reducing function call overhead by combining simple stages"}, {"number": 18, "text": "How do traditional coroutines (using `yield` and `send()`) differ from async coroutines (`async def`)?", "code": null, "answers": [{"letter": "A", "text": "They are the same thing"}, {"letter": "B", "text": "Traditional coroutines are synchronous, async coroutines support concurrent I/O"}, {"letter": "C", "text": "Async coroutines are faster"}, {"letter": "D", "text": "Traditional coroutines don't support `yield`"}], "correctAnswer": "B", "explanation": "Traditional coroutines are synchronous, async supports concurrent I/O"}, {"number": 19, "text": "What does this coroutine do?", "code": "@coroutine\ndef sliding_window(size, target):\n    window = []\n    while True:\n        item = yield\n        window.append(item)\n        if len(window) > size:\n            window.pop(0)\n        if len(window) == size:\n            target.send(list(window))", "answers": [{"letter": "A", "text": "Collects all items into a list of given size"}, {"letter": "B", "text": "Sends every Nth item"}, {"letter": "C", "text": "Sends sliding windows of N consecutive items"}, {"letter": "D", "text": "Filters items based on window size"}], "correctAnswer": "C", "explanation": "Sends sliding windows of N consecutive items"}, {"number": 20, "text": "What's the correct way to properly terminate a coroutine pipeline?", "code": "sink = printer()\nstage2 = transform(sink)\nstage1 = filter_items(predicate, stage2)\n\n# Process data\nfor item in data:\n    stage1.send(item)\n\n# How to terminate?", "answers": [{"letter": "A", "text": "Do nothing, Python cleans up automatically"}, {"letter": "B", "text": "Call `close()` on the entry point only"}, {"letter": "C", "text": "Call `close()` on all stages from entry to sink"}, {"letter": "D", "text": "Send a special \"STOP\" value"}], "correctAnswer": "C", "explanation": "Call close() on all stages from entry to sink"}]};
 const COURSE_ID = "Python";
 const MODULE_ID = "07_Coroutines";
 </script>

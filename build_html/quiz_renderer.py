@@ -123,8 +123,8 @@ class QuizParser:
                         text_lines.append(stripped)
             
             q_text = ' '.join(text_lines).strip()
-            if q_title and q_title not in q_text:
-                q_text = f"{q_title}: {q_text}" if q_text else q_title
+            if not q_text and q_title:
+                q_text = q_title
             
             # Parse answers
             answers = []

@@ -60,7 +60,7 @@
             
             <div class="question-card" data-question="1" >
                 <div class="question-number">Question 1</div>
-                <h3 class="question-text">What does do: What does `set -e` do?</h3>
+                <h3 class="question-text">What does `set -e` do?</h3>
                 
                 
 
@@ -99,7 +99,7 @@
             
             <div class="question-card" data-question="2" style="display: none;">
                 <div class="question-number">Question 2</div>
-                <h3 class="question-text">What does do: What does `set -u` do?</h3>
+                <h3 class="question-text">What does `set -u` do?</h3>
                 
                 
 
@@ -138,7 +138,7 @@
             
             <div class="question-card" data-question="3" style="display: none;">
                 <div class="question-number">Question 3</div>
-                <h3 class="question-text">What does do: What does `set -o pipefail` do?</h3>
+                <h3 class="question-text">What does `set -o pipefail` do?</h3>
                 
                 
 
@@ -216,7 +216,7 @@
             
             <div class="question-card" data-question="5" style="display: none;">
                 <div class="question-number">Question 5</div>
-                <h3 class="question-text">What does return: What does `mktemp` return?</h3>
+                <h3 class="question-text">What does `mktemp` return?</h3>
                 
                 
 
@@ -294,7 +294,7 @@
             
             <div class="question-card" data-question="7" style="display: none;">
                 <div class="question-number">Question 7</div>
-                <h3 class="question-text">What does do: What does `trap &#39;cleanup&#39; EXIT INT TERM` do?</h3>
+                <h3 class="question-text">What does `trap &#39;cleanup&#39; EXIT INT TERM` do?</h3>
                 
                 
 
@@ -372,7 +372,7 @@
             
             <div class="question-card" data-question="9" style="display: none;">
                 <div class="question-number">Question 9</div>
-                <h3 class="question-text">What does create: What does `mktemp -d` create?</h3>
+                <h3 class="question-text">What does `mktemp -d` create?</h3>
                 
                 
 
@@ -450,7 +450,7 @@
             
             <div class="question-card" data-question="11" style="display: none;">
                 <div class="question-number">Question 11</div>
-                <h3 class="question-text">What does do: What does `set -E` do?</h3>
+                <h3 class="question-text">What does `set -E` do?</h3>
                 
                 
 
@@ -567,7 +567,7 @@
             
             <div class="question-card" data-question="14" style="display: none;">
                 <div class="question-number">Question 14</div>
-                <h3 class="question-text">What does do: What does `trap - SIGNAL` do?</h3>
+                <h3 class="question-text">What does `trap - SIGNAL` do?</h3>
                 
                 
 
@@ -676,7 +676,7 @@
 </article>
 
 <script>
-const QUIZ_DATA = {"title": "Bash as Glue: Combining Tools & Error Handling - Quiz", "description": "What does `set -e` do?", "courseId": "Linux", "moduleId": "11_Bash_Glue", "questions": [{"number": 1, "text": "What does do: What does `set -e` do?", "code": null, "answers": [{"letter": "A", "text": "Exit on any error"}, {"letter": "B", "text": "Enable echo"}, {"letter": "C", "text": "Set environment variable"}, {"letter": "D", "text": "Exit when empty"}], "correctAnswer": "A", "explanation": "`set -e` exits immediately if any command returns non-zero status"}, {"number": 2, "text": "What does do: What does `set -u` do?", "code": null, "answers": [{"letter": "A", "text": "Set uppercase"}, {"letter": "B", "text": "Exit on undefined variable usage"}, {"letter": "C", "text": "Use UTF-8"}, {"letter": "D", "text": "Unbuffered output"}], "correctAnswer": "B", "explanation": "`set -u` treats unset variables as error and exits"}, {"number": 3, "text": "What does do: What does `set -o pipefail` do?", "code": null, "answers": [{"letter": "A", "text": "Pipe fails immediately"}, {"letter": "B", "text": "Pipeline returns failure if any command fails"}, {"letter": "C", "text": "Fails all pipes"}, {"letter": "D", "text": "Outputs pipe errors"}], "correctAnswer": "B", "explanation": "`pipefail` makes pipeline return failure if any command in pipe fails (not just last)"}, {"number": 4, "text": "Which trap signal runs cleanup on normal exit?", "code": null, "answers": [{"letter": "A", "text": "`TERM`"}, {"letter": "B", "text": "`INT`"}, {"letter": "C", "text": "`EXIT`"}, {"letter": "D", "text": "`ERR`"}], "correctAnswer": "C", "explanation": "`EXIT` trap runs on any exit (normal or error)"}, {"number": 5, "text": "What does return: What does `mktemp` return?", "code": null, "answers": [{"letter": "A", "text": "Current temp directory"}, {"letter": "B", "text": "Path to new temporary file"}, {"letter": "C", "text": "Temp file contents"}, {"letter": "D", "text": "Process ID"}], "correctAnswer": "B", "explanation": "`mktemp` creates unique temporary file and returns its path"}, {"number": 6, "text": "How do you auto-export all variables when sourcing a file?", "code": null, "answers": [{"letter": "A", "text": "`export -a`"}, {"letter": "B", "text": "`set -a; source .env; set +a`"}, {"letter": "C", "text": "`source -e .env`"}, {"letter": "D", "text": "`export $(cat .env)`"}], "correctAnswer": "B", "explanation": "`set -a` auto-exports all subsequent variable assignments"}, {"number": 7, "text": "What does do: What does `trap 'cleanup' EXIT INT TERM` do?", "code": null, "answers": [{"letter": "A", "text": "Runs cleanup on exit or interrupt signals"}, {"letter": "B", "text": "Traps only exit codes"}, {"letter": "C", "text": "Exits on interrupt"}, {"letter": "D", "text": "Terminates cleanup"}], "correctAnswer": "A", "explanation": "Trap runs cleanup function on EXIT (normal), INT (Ctrl+C), or TERM (kill)"}, {"number": 8, "text": "Which variable contains the line number where an error occurred?", "code": null, "answers": [{"letter": "A", "text": "`$LINE`"}, {"letter": "B", "text": "`$LINENO`"}, {"letter": "C", "text": "`$ERRNO`"}, {"letter": "D", "text": "`$ERROR_LINE`"}], "correctAnswer": "B", "explanation": "`$LINENO` expands to current line number in script"}, {"number": 9, "text": "What does create: What does `mktemp -d` create?", "code": null, "answers": [{"letter": "A", "text": "Temporary file with -d flag"}, {"letter": "B", "text": "Temporary directory"}, {"letter": "C", "text": "Temp file in /tmp/d/"}, {"letter": "D", "text": "Deletes temp file"}], "correctAnswer": "B", "explanation": "`-d` flag creates temporary directory instead of file"}, {"number": 10, "text": "How do you reference a variable with a default value if unset?", "code": null, "answers": [{"letter": "A", "text": "`$VAR || \"default\"`"}, {"letter": "B", "text": "`${VAR:-default}`"}, {"letter": "C", "text": "`$VAR ? default`"}, {"letter": "D", "text": "`default($VAR)`"}], "correctAnswer": "B", "explanation": "`${VAR:-default}` uses default if VAR is unset or empty"}, {"number": 11, "text": "What does do: What does `set -E` do?", "code": null, "answers": [{"letter": "A", "text": "Extended globbing"}, {"letter": "B", "text": "ERR trap inherited by shell functions"}, {"letter": "C", "text": "Export all variables"}, {"letter": "D", "text": "Echo commands"}], "correctAnswer": "B", "explanation": "`-E` makes ERR trap inherited by functions and subshells"}, {"number": 12, "text": "Which is the proper way to quote a variable?", "code": null, "answers": [{"letter": "A", "text": "`$VAR`"}, {"letter": "B", "text": "`\"$VAR\"`"}, {"letter": "C", "text": "`'$VAR'`"}, {"letter": "D", "text": "`` `$VAR` ``"}], "correctAnswer": "B", "explanation": "Always quote variables to handle spaces and special characters"}, {"number": 13, "text": "How do you check if a file exists in bash?", "code": null, "answers": [{"letter": "A", "text": "`if [ -f file ]; then`"}, {"letter": "B", "text": "`if exists file; then`"}, {"letter": "C", "text": "`if file -e; then`"}, {"letter": "D", "text": "`if test file; then`"}], "correctAnswer": "A", "explanation": "`[ -f file ]` tests if file exists and is a regular file"}, {"number": 14, "text": "What does do: What does `trap - SIGNAL` do?", "code": null, "answers": [{"letter": "A", "text": "Ignores signal"}, {"letter": "B", "text": "Resets trap to default behavior"}, {"letter": "C", "text": "Negates signal"}, {"letter": "D", "text": "Subtracts signal"}], "correctAnswer": "B", "explanation": "`trap - SIGNAL` removes custom trap, restores default behavior"}, {"number": 15, "text": "Which command gets the directory of the current script?", "code": null, "answers": [{"letter": "A", "text": "`$0`"}, {"letter": "B", "text": "`pwd`"}, {"letter": "C", "text": "`dirname $0`"}, {"letter": "D", "text": "`$(cd \"$(dirname \"${BASH_SOURCE[0]}\")\" && pwd)`"}], "correctAnswer": "D", "explanation": "Gets absolute path of script directory, handling symlinks correctly"}]};
+const QUIZ_DATA = {"title": "Bash as Glue: Combining Tools & Error Handling - Quiz", "description": "What does `set -e` do?", "courseId": "Linux", "moduleId": "11_Bash_Glue", "questions": [{"number": 1, "text": "What does `set -e` do?", "code": null, "answers": [{"letter": "A", "text": "Exit on any error"}, {"letter": "B", "text": "Enable echo"}, {"letter": "C", "text": "Set environment variable"}, {"letter": "D", "text": "Exit when empty"}], "correctAnswer": "A", "explanation": "`set -e` exits immediately if any command returns non-zero status"}, {"number": 2, "text": "What does `set -u` do?", "code": null, "answers": [{"letter": "A", "text": "Set uppercase"}, {"letter": "B", "text": "Exit on undefined variable usage"}, {"letter": "C", "text": "Use UTF-8"}, {"letter": "D", "text": "Unbuffered output"}], "correctAnswer": "B", "explanation": "`set -u` treats unset variables as error and exits"}, {"number": 3, "text": "What does `set -o pipefail` do?", "code": null, "answers": [{"letter": "A", "text": "Pipe fails immediately"}, {"letter": "B", "text": "Pipeline returns failure if any command fails"}, {"letter": "C", "text": "Fails all pipes"}, {"letter": "D", "text": "Outputs pipe errors"}], "correctAnswer": "B", "explanation": "`pipefail` makes pipeline return failure if any command in pipe fails (not just last)"}, {"number": 4, "text": "Which trap signal runs cleanup on normal exit?", "code": null, "answers": [{"letter": "A", "text": "`TERM`"}, {"letter": "B", "text": "`INT`"}, {"letter": "C", "text": "`EXIT`"}, {"letter": "D", "text": "`ERR`"}], "correctAnswer": "C", "explanation": "`EXIT` trap runs on any exit (normal or error)"}, {"number": 5, "text": "What does `mktemp` return?", "code": null, "answers": [{"letter": "A", "text": "Current temp directory"}, {"letter": "B", "text": "Path to new temporary file"}, {"letter": "C", "text": "Temp file contents"}, {"letter": "D", "text": "Process ID"}], "correctAnswer": "B", "explanation": "`mktemp` creates unique temporary file and returns its path"}, {"number": 6, "text": "How do you auto-export all variables when sourcing a file?", "code": null, "answers": [{"letter": "A", "text": "`export -a`"}, {"letter": "B", "text": "`set -a; source .env; set +a`"}, {"letter": "C", "text": "`source -e .env`"}, {"letter": "D", "text": "`export $(cat .env)`"}], "correctAnswer": "B", "explanation": "`set -a` auto-exports all subsequent variable assignments"}, {"number": 7, "text": "What does `trap 'cleanup' EXIT INT TERM` do?", "code": null, "answers": [{"letter": "A", "text": "Runs cleanup on exit or interrupt signals"}, {"letter": "B", "text": "Traps only exit codes"}, {"letter": "C", "text": "Exits on interrupt"}, {"letter": "D", "text": "Terminates cleanup"}], "correctAnswer": "A", "explanation": "Trap runs cleanup function on EXIT (normal), INT (Ctrl+C), or TERM (kill)"}, {"number": 8, "text": "Which variable contains the line number where an error occurred?", "code": null, "answers": [{"letter": "A", "text": "`$LINE`"}, {"letter": "B", "text": "`$LINENO`"}, {"letter": "C", "text": "`$ERRNO`"}, {"letter": "D", "text": "`$ERROR_LINE`"}], "correctAnswer": "B", "explanation": "`$LINENO` expands to current line number in script"}, {"number": 9, "text": "What does `mktemp -d` create?", "code": null, "answers": [{"letter": "A", "text": "Temporary file with -d flag"}, {"letter": "B", "text": "Temporary directory"}, {"letter": "C", "text": "Temp file in /tmp/d/"}, {"letter": "D", "text": "Deletes temp file"}], "correctAnswer": "B", "explanation": "`-d` flag creates temporary directory instead of file"}, {"number": 10, "text": "How do you reference a variable with a default value if unset?", "code": null, "answers": [{"letter": "A", "text": "`$VAR || \"default\"`"}, {"letter": "B", "text": "`${VAR:-default}`"}, {"letter": "C", "text": "`$VAR ? default`"}, {"letter": "D", "text": "`default($VAR)`"}], "correctAnswer": "B", "explanation": "`${VAR:-default}` uses default if VAR is unset or empty"}, {"number": 11, "text": "What does `set -E` do?", "code": null, "answers": [{"letter": "A", "text": "Extended globbing"}, {"letter": "B", "text": "ERR trap inherited by shell functions"}, {"letter": "C", "text": "Export all variables"}, {"letter": "D", "text": "Echo commands"}], "correctAnswer": "B", "explanation": "`-E` makes ERR trap inherited by functions and subshells"}, {"number": 12, "text": "Which is the proper way to quote a variable?", "code": null, "answers": [{"letter": "A", "text": "`$VAR`"}, {"letter": "B", "text": "`\"$VAR\"`"}, {"letter": "C", "text": "`'$VAR'`"}, {"letter": "D", "text": "`` `$VAR` ``"}], "correctAnswer": "B", "explanation": "Always quote variables to handle spaces and special characters"}, {"number": 13, "text": "How do you check if a file exists in bash?", "code": null, "answers": [{"letter": "A", "text": "`if [ -f file ]; then`"}, {"letter": "B", "text": "`if exists file; then`"}, {"letter": "C", "text": "`if file -e; then`"}, {"letter": "D", "text": "`if test file; then`"}], "correctAnswer": "A", "explanation": "`[ -f file ]` tests if file exists and is a regular file"}, {"number": 14, "text": "What does `trap - SIGNAL` do?", "code": null, "answers": [{"letter": "A", "text": "Ignores signal"}, {"letter": "B", "text": "Resets trap to default behavior"}, {"letter": "C", "text": "Negates signal"}, {"letter": "D", "text": "Subtracts signal"}], "correctAnswer": "B", "explanation": "`trap - SIGNAL` removes custom trap, restores default behavior"}, {"number": 15, "text": "Which command gets the directory of the current script?", "code": null, "answers": [{"letter": "A", "text": "`$0`"}, {"letter": "B", "text": "`pwd`"}, {"letter": "C", "text": "`dirname $0`"}, {"letter": "D", "text": "`$(cd \"$(dirname \"${BASH_SOURCE[0]}\")\" && pwd)`"}], "correctAnswer": "D", "explanation": "Gets absolute path of script directory, handling symlinks correctly"}]};
 </script>
 <script src="../../../static/js/quiz.js?v=11"></script>
 
