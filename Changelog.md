@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-05-18
+
+### Linux / 07_Streaming_Analytics
+- Add intro paragraphs to Overview, Stream Joins, Group-By Aggregations, Map/Reduce Patterns, Window Functions with awk
+- Restructure: move Map/Reduce Patterns before DuckDB section to follow module title order
+- Rename DuckDB "Window Functions" → "SQL Window Functions"; rename standalone "Window Functions" → "Window Functions with awk" to remove duplication
+- Fix `join` examples: use existing `left.csv`/`right.csv` instead of nonexistent `sorted1.csv`/`sorted2.csv`
+- Fix awk hash join: join `customers.csv` (status_code) with `lookup.csv` so the example produces meaningful output
+- Fix awk group-by examples: use `orders.csv` (real grouping field) instead of `data.csv`
+- Fix Miller Top-K: `-f amount` → `-f price` (products.csv has price, not amount)
+- Fix datamash group-by: add `-H` flag so the header is recognized; use `orders.csv`
+- Fix DuckDB stdin/grep example: replace `-markdown` with `.mode markdown`, use positional `column3` since stdin loses headers
+- Fix Map/Reduce Reduce phase: use existing `sales.jsonl` instead of nonexistent `transformed.jsonl`
+- Fix Full Map/Reduce Pipeline: pure jq pipeline avoids `awk`/`tonumber` null errors
+- Fix Running Totals: `data.txt` → `numbers.txt` (data.txt holds fruit names, not numbers)
+- Fix Example 2 (User Session Analytics): use `sessions.jsonl` (has duration/pages fields)
+- Fix Streaming Group-By: use `orders.csv` and skip header before sorting
+- Fix Summary table: include filenames in commands consistently; remove unnecessary `\` in DuckDB vs Traditional Tools "Top-N" row
+- Quiz Q1: clarify "Unix `join` command" to disambiguate from mlr/SQL joins
+- Quiz Q2: improve explanation
+- Quiz Q6: explanation now notes option C is missing the `print` statement
+- Quiz Q11: rephrase option B (`UNION` instead of `JOIN`) so it is unambiguously incorrect
+- Quiz Q14: replace MEDIAN/PERCENTILE_CONT question (not covered in module) with RANK vs ROW_NUMBER
+
+### Linux / data
+- Add `status_code` column to `customers.csv` (joins to `lookup.csv` codes A/I/P/D)
+- Update `DataSamples.md` to reflect new `customers.csv` schema
+
 ## 2025-04-28
 
 ### Linux / 05_Grep_Sed_Awk

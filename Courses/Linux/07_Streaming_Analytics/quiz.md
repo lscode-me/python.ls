@@ -4,7 +4,7 @@
 
 ## Question 1: What must you do before
 
-What must you do before using the `join` command on two files?
+What must you do before using the Unix `join` command on two files?
 
 A) Convert them to CSV
 B) Sort both files by the join key
@@ -107,7 +107,7 @@ D) Sort and take average
 How do you join three CSV files using DuckDB?
 
 A) Run three separate join commands
-B) Use nested SELECT statements
+B) Use `UNION` instead of `JOIN` for all three files
 C) Use multiple JOIN clauses in one query
 D) You can't join more than two files
 
@@ -132,14 +132,14 @@ C) `LAG()`
 D) `LAST()`
 
 
-## Question 14: How do you calculate the
+## Question 14: What is the difference between
 
-How do you calculate the median in DuckDB?
+What is the difference between `RANK()` and `ROW_NUMBER()` window functions?
 
-A) `MEDIAN(column)`
-B) `AVG(column)`
-C) `PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY column)`
-D) `MIDDLE(column)`
+A) They are identical aliases for each other
+B) `ROW_NUMBER()` always assigns unique sequential numbers; `RANK()` gives tied rows the same rank and skips the next number(s)
+C) `RANK()` sorts ascending, `ROW_NUMBER()` sorts descending
+D) `RANK()` works only with `PARTITION BY`, `ROW_NUMBER()` does not
 
 
 ## Question 15: When should you use DuckDB
@@ -158,18 +158,18 @@ D) For quick one-liners
 
 | # | Answer | Explanation |
 |---|--------|-------------|
-| 1 | B | `join` requires both files to be sorted by join key |
-| 2 | C | awk loads small file into hash, fast lookups |
+| 1 | B | The Unix `join` command requires both files to be sorted by the join key |
+| 2 | C | `awk` loads the small file into a hash table, enabling fast lookups |
 | 3 | A | Associative array accumulates sum by key |
 | 4 | B | `--ul` means "unpaired left" (left outer join) |
 | 5 | B | `-g 1` groups by column 1, `sum 3` sums column 3, `-s` means sorted input |
-| 6 | B | Accumulate into `sum` variable, print each iteration |
+| 6 | B | Accumulate into `sum` variable, print each iteration. Option C is missing the `print` statement, so it computes the total but produces no output |
 | 7 | B | Map phase transforms each input record independently |
 | 8 | C | `top` with `-n 5` and `-g category` finds top-K per group |
 | 9 | B | Hash join optimal for small lookup, large data |
 | 10 | A | Maintain circular buffer of last N values |
-| 11 | C | DuckDB supports multiple JOIN clauses in a single SELECT query |
+| 11 | C | DuckDB supports multiple JOIN clauses in a single SELECT query. `UNION` stacks rows vertically — it does not combine columns from multiple files |
 | 12 | B | ROW_NUMBER assigns sequential numbers within each partition (category) |
 | 13 | C | LAG() returns the value from the previous row in the window |
-| 14 | C | PERCENTILE_CONT(0.5) calculates the median (50th percentile) |
+| 14 | B | `ROW_NUMBER()` is always unique (1, 2, 3, ...); `RANK()` ties get the same rank and the next rank is skipped (e.g. 1, 2, 2, 4) |
 | 15 | B | DuckDB is better for SQL-style analytical queries with complex logic |

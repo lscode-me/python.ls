@@ -8,11 +8,13 @@
 
 ## Overview
 
-Perform database-like operations on streams: joins, aggregations, group-by operations, and map/reduce patterns.
+This module covers database-like operations on data streams: joins, group-by aggregations, and map/reduce patterns. Unlike a relational database, these operations work directly on files and stdin/stdout, processing data record by record without loading everything into memory. The tools covered range from POSIX `join` and `awk` for lightweight tasks to Miller for CSV-aware aggregations, DuckDB for SQL-style analytics, and pure pipeline patterns for map/reduce workflows.
 
 ---
 
 ## Stream Joins
+
+Stream joins combine two sorted data sources on a common key, similar to a SQL JOIN. The Unix `join` command requires both inputs to be pre-sorted on the join key. Miller and `awk` offer more flexible alternatives that do not require pre-sorting.
 
 ### Using `join` Command
 ```bash
@@ -22,10 +24,12 @@ sort -k1 file2.txt > sorted2.txt
 join sorted1.txt sorted2.txt
 
 # Join CSV files
-join -t',' -1 1 -2 1 sorted1.csv sorted2.csv
+sort -k1 left.csv > left_sorted.csv
+sort -k1 right.csv > right_sorted.csv
+join -t',' -1 1 -2 1 left_sorted.csv right_sorted.csv
 
 # Left outer join
-join -a1 -t',' sorted1.csv sorted2.csv
+join -a1 -t',' left_sorted.csv right_sorted.csv
 ```
 
 ### Using Miller (mlr)
@@ -42,28 +46,31 @@ mlr --csv join -f left.csv -j id,date right.csv
 
 ### Using awk for Hash Joins
 ```bash
-# Load second file into hash, join with first
-awk -F',' 'NR==FNR {a[$1]=$2; next} $1 in a {print $0","a[$1]}' lookup.csv data.csv
+# Load lookup table (code → description) into hash,
+# then enrich customers.csv by matching its status_code (column 5) against the lookup.
+awk -F',' 'NR==FNR {a[$1]=$2; next} $5 in a {print $0","a[$5]}' lookup.csv customers.csv
 ```
 
 ## Group-By Aggregations
 
+Group-by aggregations collect records sharing a common key and compute summary statistics (sum, count, mean, min/max) across each group. In CLI pipelines this is typically done by sorting on the group key first, then folding with `awk`, `datamash`, or Miller.
+
 ### Using awk
 ```bash
-# Sum by group
-awk -F',' '{sum[$1] += $3} END {for (k in sum) print k, sum[k]}' data.csv
+# Sum amount by customer (skip header with NR>1)
+awk -F',' 'NR>1 {sum[$2] += $5} END {for (k in sum) print k, sum[k]}' orders.csv
 
-# Count by group
-awk -F',' '{count[$2]++} END {for (k in count) print k, count[k]}' data.csv
+# Count orders by customer
+awk -F',' 'NR>1 {count[$2]++} END {for (k in count) print k, count[k]}' orders.csv
 
-# Multiple aggregations
-awk -F',' '{
-    sum[$1] += $3
-    count[$1]++
+# Multiple aggregations: sum, count, average per customer
+awk -F',' 'NR>1 {
+    sum[$2] += $5
+    count[$2]++
 }
 END {
     for (k in sum) print k, sum[k], count[k], sum[k]/count[k]
-}' data.csv
+}' orders.csv
 ```
 
 ### Using Miller
@@ -74,20 +81,52 @@ mlr --csv stats1 -a sum -f amount -g customer_id orders.csv
 # Multiple aggregations
 mlr --csv stats1 -a sum,mean,count -f amount -g customer_id orders.csv
 
-# Top-K per group
-mlr --csv top -n 5 -f amount -g category products.csv
+# Top-K per group (products.csv has price, not amount)
+mlr --csv top -n 5 -f price -g category products.csv
 ```
 
 ### Using datamash
 ```bash
-# Group by and sum
-datamash -t',' -s -g 1 sum 3 < data.csv
+# datamash requires sorted input for group-by; -H treats the first line as a header.
+# Group by customer_id (col 2), sum amount (col 5)
+datamash -t',' -H -s -g 2 sum 5 < orders.csv
 
-# Multiple operations
-datamash -t',' -s -g 1 sum 3 mean 3 count 3 < data.csv
+# Multiple operations: sum + count of amount per customer
+datamash -t',' -H -s -g 2 sum 5 count 5 < orders.csv
 
 # Transpose
 datamash -t',' transpose < matrix.csv
+```
+
+## Map/Reduce Patterns
+
+Map/reduce is a two-phase pattern: the **map** phase transforms each record independently (extracting fields, reshaping), and the **reduce** phase aggregates the transformed records (summing, grouping, counting). In Unix pipelines, the map phase is typically implemented with `jq`, `awk`, or `cut`, and the reduce phase with `sort | uniq -c`, `datamash`, or `jq -s`.
+
+### Map Phase: Transform Each Record
+```bash
+# Extract and transform
+cat events.jsonl | \
+  jq -c '{user: .user_id, value: .amount, hour: .timestamp[:13]}'
+```
+
+### Reduce Phase: Aggregate
+```bash
+# Group sales by date and sum amount per day
+cat sales.jsonl | \
+  jq -s 'sort_by(.date) | group_by(.date)
+         | map({date: .[0].date, total_amount: (map(.amount) | add)})'
+```
+
+### Full Map/Reduce Pipeline
+```bash
+# Count events per user per hour (pure jq pipeline avoids
+# awk/jq round-trip issues with missing fields)
+cat events.jsonl | \
+  jq -s '
+    map({user: .user_id, hour: .timestamp[:13]})
+    | group_by(.user, .hour)
+    | map({user: .[0].user, hour: .[0].hour, count: length})
+  '
 ```
 
 ## DuckDB for Analytics
@@ -175,7 +214,7 @@ duckdb -c "
 "
 ```
 
-### Window Functions
+### SQL Window Functions
 ```bash
 # Row number and ranking
 duckdb -c "
@@ -281,12 +320,14 @@ cat orders.csv | duckdb -c "
   GROUP BY customer_id
 "
 
-# Chain with other tools
-grep "active" users.csv | duckdb -c "
-  SELECT city, COUNT(*) 
+# Chain with other tools.
+# DuckDB stdin input loses column names; use positional columns (column0, column1, ...)
+# or read the file directly. Output format flags must be set via .mode (not -markdown).
+grep "active" users.csv | duckdb -c ".mode markdown" -c "
+  SELECT column3 AS city, COUNT(*) AS active_users
   FROM read_csv_auto('/dev/stdin')
-  GROUP BY city
-" -markdown
+  GROUP BY column3
+"
 ```
 
 ### Materialized Results
@@ -339,7 +380,7 @@ duckdb -c "SELECT * FROM 'filtered.parquet'"
 |-----------|-------------|--------|
 | Join 2 files | `mlr --csv join -f left.csv -j id right.csv` | `duckdb -c "SELECT * FROM 'left.csv' l JOIN 'right.csv' r ON l.id=r.id"` |
 | Group-by sum | `mlr --csv stats1 -a sum -f amount -g customer orders.csv` | `duckdb -c "SELECT customer, SUM(amount) FROM 'orders.csv' GROUP BY customer"` |
-| Top-N | `mlr --csv sort -nr amount \| head -5` | `duckdb -c "SELECT * FROM 'data.csv' ORDER BY amount DESC LIMIT 5"` |
+| Top-N | `mlr --csv sort -nr amount | head -5` | `duckdb -c "SELECT * FROM 'data.csv' ORDER BY amount DESC LIMIT 5"` |
 | Window function | Complex awk script | `duckdb -c "SELECT *, LAG(value) OVER (ORDER BY date) FROM 'data.csv'"` |
 
 ### When to Use DuckDB
@@ -358,33 +399,9 @@ duckdb -c "SELECT * FROM 'filtered.parquet'"
 - ✅ Streaming processing
 - ✅ When SQL is overkill
 
-## Map/Reduce Patterns
+## Window Functions with awk
 
-### Map Phase: Transform Each Record
-```bash
-# Extract and transform
-cat events.jsonl | \
-  jq -c '{user: .user_id, value: .amount, hour: .timestamp[:13]}'
-```
-
-### Reduce Phase: Aggregate
-```bash
-# Group and sum
-cat transformed.jsonl | \
-  jq -s 'group_by(.hour) | map({hour: .[0].hour, total: map(.value) | add})'
-```
-
-### Full Map/Reduce Pipeline
-```bash
-# Count events per user per hour
-cat events.jsonl | \
-  jq -c '{user: .user_id, hour: .timestamp[:13]}' | \
-  sort | uniq -c | \
-  awk '{print $2, $1}' | \
-  jq -Rn '[inputs | split(" ") | {user: .[0], hour: .[1], count: .[2]|tonumber}]'
-```
-
-## Window Functions
+SQL window functions (LAG, LEAD, running totals) can also be implemented in pure `awk` for streaming scenarios where DuckDB is not available. These patterns process data line by line without loading the entire file into memory.
 
 ### Rolling Aggregations
 ```bash
@@ -400,8 +417,8 @@ awk '{
 
 ### Running Totals
 ```bash
-# Cumulative sum
-awk '{sum += $1; print $0, sum}' data.txt
+# Cumulative sum (numbers.txt contains integers; data.txt is text)
+awk '{sum += $1; print $0, sum}' numbers.txt
 ```
 
 ## Streaming Analytics Examples
@@ -415,15 +432,19 @@ mlr --csv stats1 -a sum -f revenue -g product sales.csv | \
 
 ### Example 2: User Session Analytics
 ```bash
-# Group events by session, calculate metrics
-cat events.jsonl | \
-  jq -c '{session: .session_id, duration: .duration, pages: .page_count}' | \
-  jq -s 'group_by(.session) | map({
-    session: .[0].session,
-    total_duration: map(.duration) | add,
-    total_pages: map(.pages) | add,
-    event_count: length
-  })'
+# Group session records (sessions.jsonl has duration and pages fields)
+# and aggregate duration and page metrics per session.
+cat sessions.jsonl | jq -s '
+  sort_by(.session_id)
+  | group_by(.session_id)
+  | map({
+      session_id: .[0].session_id,
+      user_id: .[0].user_id,
+      total_duration: (map(.duration) | add),
+      total_pages: (map(.pages) | add),
+      session_count: length
+    })
+'
 ```
 
 ### Example 3: Time-Series Aggregation
@@ -470,16 +491,18 @@ mlr --csv join -f customers.csv -j customer_id order_totals.csv
 
 ### Streaming Group-By
 ```bash
-# Assumes sorted input, processes in constant memory
-sort -k1 data.csv | \
+# Assumes sorted input, processes in constant memory.
+# Group orders.csv by customer_id (col 2), summing amount (col 5).
+# tail strips the header before sorting.
+tail -n +2 orders.csv | sort -t',' -k2,2 | \
   awk -F',' '
-    $1 != prev {
-        if (NR > 1) print prev, sum
-        prev = $1
+    $2 != prev {
+        if (prev != "") print prev, sum
+        prev = $2
         sum = 0
     }
-    {sum += $3}
-    END {print prev, sum}
+    { sum += $5 }
+    END { if (prev != "") print prev, sum }
   '
 ```
 
@@ -499,11 +522,11 @@ sort -k1 data.csv | \
 |-----------|------|---------|
 | Join | mlr | `mlr --csv join -f left.csv -j id right.csv` |
 | Join (SQL) | DuckDB | `duckdb -c "SELECT * FROM 'left.csv' l JOIN 'right.csv' r ON l.id=r.id"` |
-| Group-By | mlr | `mlr --csv stats1 -a sum -f amount -g customer` |
-| Group-By (SQL) | DuckDB | `duckdb -c "SELECT customer, SUM(amount) FROM 'orders.csv' GROUP BY customer"` |
-| Aggregation | datamash | `datamash -t',' -s -g 1 sum 3` |
-| Hash Join | awk | `awk 'NR==FNR {h[$1]=$2;next} {print $0,h[$1]}'` |
-| Window Functions | DuckDB | `duckdb -c "SELECT *, LAG(value) OVER (ORDER BY date) FROM 'data.csv'"` |
+| Group-By | mlr | `mlr --csv stats1 -a sum -f amount -g customer_id orders.csv` |
+| Group-By (SQL) | DuckDB | `duckdb -c "SELECT customer_id, SUM(amount) FROM 'orders.csv' GROUP BY customer_id"` |
+| Aggregation | datamash | `datamash -t',' -H -s -g 2 sum 5 < orders.csv` |
+| Hash Join | awk | `awk -F',' 'NR==FNR {h[$1]=$2;next} $5 in h {print $0","h[$5]}' lookup.csv customers.csv` |
+| Window Functions | DuckDB | `duckdb -c "SELECT *, LAG(amount) OVER (ORDER BY date) FROM 'orders.csv'"` |
 
 ## Next Steps
 - Practice join operations on real datasets

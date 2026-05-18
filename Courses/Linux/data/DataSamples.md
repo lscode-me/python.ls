@@ -200,16 +200,16 @@ date,product,quantity,revenue,region
 ```
 
 ### customers.csv
-Customer reference table.
+Customer reference table. The `status_code` column joins to `lookup.csv` (A=Active, I=Inactive, P=Pending, D=Deleted).
 
 ```csv
-customer_id,name,city,signup_date
-1,Alice,Moscow,2024-01-15
-2,Bob,SPb,2024-01-20
-3,Carol,Kazan,2024-02-01
-4,Dave,Moscow,2024-02-10
-5,Eve,Sochi,2024-02-15
-6,Frank,Novosibirsk,2024-03-01
+customer_id,name,city,signup_date,status_code
+1,Alice,Moscow,2024-01-15,A
+2,Bob,SPb,2024-01-20,A
+3,Carol,Kazan,2024-02-01,P
+4,Dave,Moscow,2024-02-10,I
+5,Eve,Sochi,2024-02-15,A
+6,Frank,Novosibirsk,2024-03-01,D
 ```
 
 ### left.csv & right.csv
@@ -724,13 +724,13 @@ date,product,quantity,revenue,region
 EOF
 
 cat > customers.csv << 'EOF'
-customer_id,name,city,signup_date
-1,Alice,Moscow,2024-01-15
-2,Bob,SPb,2024-01-20
-3,Carol,Kazan,2024-02-01
-4,Dave,Moscow,2024-02-10
-5,Eve,Sochi,2024-02-15
-6,Frank,Novosibirsk,2024-03-01
+customer_id,name,city,signup_date,status_code
+1,Alice,Moscow,2024-01-15,A
+2,Bob,SPb,2024-01-20,A
+3,Carol,Kazan,2024-02-01,P
+4,Dave,Moscow,2024-02-10,I
+5,Eve,Sochi,2024-02-15,A
+6,Frank,Novosibirsk,2024-03-01,D
 EOF
 
 cat > left.csv << 'EOF'
