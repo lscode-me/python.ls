@@ -209,14 +209,14 @@ jane_doe123@mail.ru
 </code></pre>
 
 <h3 id="customerscsv">customers.csv</h3>
-<p>Customer reference table.</p>
-<pre class="highlight"><code class="language-csv">customer_id,name,city,signup_date
-1,Alice,Moscow,2024-01-15
-2,Bob,SPb,2024-01-20
-3,Carol,Kazan,2024-02-01
-4,Dave,Moscow,2024-02-10
-5,Eve,Sochi,2024-02-15
-6,Frank,Novosibirsk,2024-03-01
+<p>Customer reference table. The <code>status_code</code> column joins to <code>lookup.csv</code> (A=Active, I=Inactive, P=Pending, D=Deleted).</p>
+<pre class="highlight"><code class="language-csv">customer_id,name,city,signup_date,status_code
+1,Alice,Moscow,2024-01-15,A
+2,Bob,SPb,2024-01-20,A
+3,Carol,Kazan,2024-02-01,P
+4,Dave,Moscow,2024-02-10,I
+5,Eve,Sochi,2024-02-15,A
+6,Frank,Novosibirsk,2024-03-01,D
 </code></pre>
 
 <h3 id="leftcsv-rightcsv">left.csv &amp; right.csv</h3>
@@ -676,13 +676,13 @@ date,product,quantity,revenue,region
 EOF
 
 cat &gt; customers.csv &lt;&lt; 'EOF'
-customer_id,name,city,signup_date
-1,Alice,Moscow,2024-01-15
-2,Bob,SPb,2024-01-20
-3,Carol,Kazan,2024-02-01
-4,Dave,Moscow,2024-02-10
-5,Eve,Sochi,2024-02-15
-6,Frank,Novosibirsk,2024-03-01
+customer_id,name,city,signup_date,status_code
+1,Alice,Moscow,2024-01-15,A
+2,Bob,SPb,2024-01-20,A
+3,Carol,Kazan,2024-02-01,P
+4,Dave,Moscow,2024-02-10,I
+5,Eve,Sochi,2024-02-15,A
+6,Frank,Novosibirsk,2024-03-01,D
 EOF
 
 cat &gt; left.csv &lt;&lt; 'EOF'
